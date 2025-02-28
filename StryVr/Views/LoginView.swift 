@@ -1,0 +1,67 @@
+import SwiftUI
+
+struct LoginView: View {
+    @State private var email: String = ""
+    @State private var password: String = ""
+    @State private var errorMessage: String?
+    @State private var isLoading: Bool = false
+
+    var body: some View {
+        VStack {
+            TextField("Email", text: $email)
+                .autocapitalization(.none)
+                .keyboardType(.emailAddress)
+                .padding()
+                .background(Color.gray.opacity(0.2))
+                .cornerRadius(8)
+
+            SecureField("Password", text: $password)
+                .padding()
+                .background(Color.gray.opacity(0.2))
+                .cornerRadius(8)
+
+            if let errorMessage = errorMessage {
+                Text(errorMessage)
+                    .foregroundColor(.red)
+                    .padding()
+            }
+
+            Button(action: loginUser) {
+                if isLoading {
+                    ProgressView()
+                } else {
+                    Text("Login")
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .cornerRadius(8)
+                }
+            }
+            .disabled(isLoading)
+            .padding()
+        }
+        .padding()
+    }
+
+    private func loginUser() {
+        guard !email.isEmpty, !password.isEmpty else {
+            errorMessage = "Please enter both email and password."
+            return
+        }
+
+        isLoading = true
+        AuthService.shared.signIn(email: email, password: password) { result in
+            DispatchQueue.main.async {
+                isLoading = false
+                switch result {
+                case .success:
+                    errorMessage = nil
+                case .failure(let error):
+                    errorMessage = error.localizedDescription
+                }
+            }
+        }
+    }
+}
+

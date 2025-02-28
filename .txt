@@ -1,0 +1,2 @@
+cd ~/Documents/StryVr-ios/ios
+tree -L 3 StryVr
