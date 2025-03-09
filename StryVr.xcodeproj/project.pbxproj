@@ -58,16 +58,28 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				"Info.plist\n",
+				Views/Security/CompanyVerificationView.swift,
 			);
 			target = 859B0AAF2D57D3E900E5ADF1 /* StryVr */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		8589CD362D7D191B005FF9B0 /* Exceptions for "StryVr" folder in "Copy Bundle Resources" phase from "StryVr" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = 859B0AAE2D57D3E900E5ADF1 /* Resources */;
+			membershipExceptions = (
+				Views/Security/CompanyVerificationView.swift,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		859B0AB22D57D3E900E5ADF1 /* StryVr */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				859B0AD82D57D3F500E5ADF1 /* Exceptions for "StryVr" folder in "StryVr" target */,
+				8589CD362D7D191B005FF9B0 /* Exceptions for "StryVr" folder in "Copy Bundle Resources" phase from "StryVr" target */,
 			);
 			path = StryVr;
 			sourceTree = "<group>";
