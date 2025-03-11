@@ -1,15 +1,17 @@
-//
-//  import SwiftUI
+import SwiftUI
 
+/// A tag-style view for displaying skills in a compact format
 struct SkillTagView: View {
-    let skill: String
-    
+    /// The skill to display
+    @Binding var skill: String
+
     var body: some View {
         Text(skill)
-            .padding()
+            .font(.caption)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 5)
             .background(Color.blue.opacity(0.2))
-            .cornerRadius(10)
+            .foregroundColor(.blue)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
     }
 }
-SkillTagView.swift
-

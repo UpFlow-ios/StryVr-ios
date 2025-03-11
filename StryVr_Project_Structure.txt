@@ -1,0 +1,96 @@
+StryVr-ios/
+│── 📁 StryVrApp/                        # Main application directory
+│   │── 📁 Controllers/                   # Manages UI logic & interactions
+│   │   ├── HomeView.swift
+│   │   ├── LearningPathsView.swift
+│   │   ├── CommunityView.swift
+│   │   ├── ProfileView.swift
+│   │   ├── MentorBookingView.swift
+│   │   ├── ReportsDashboardView.swift
+│   │   ├── SkillVerificationView.swift
+│   │   ├── AIProfileValidator.swift       # AI-driven fake profile detection
+│   │   ├── MentorMatchView.swift          # AI-powered mentor recommendations
+│   │   ├── VideoFeedView.swift            # Mentor video content & user posts
+│   │   ├── GroupConferenceCallView.swift  # Live mentor-mentee video calls
+│   │   ├── GroupChallengesView.swift      # Collaborative learning challenges
+│   │── 📁 Models/                         # Defines data structures
+│   │   ├── UserModel.swift
+│   │   ├── MentorModel.swift
+│   │   ├── LearningPathModel.swift
+│   │   ├── ReportModel.swift
+│   │   ├── SkillVerificationModel.swift
+│   │   ├── VideoPostModel.swift           # Video content structure
+│   │   ├── ConferenceCallModel.swift      # Handles group calls
+│   │── 📁 Views/                          # SwiftUI Views for UI design
+│   │   ├── CustomNavigationView.swift
+│   │   ├── MentorProfileView.swift
+│   │   ├── AIRecommendationsView.swift
+│   │   ├── ReportsDetailView.swift
+│   │   ├── LeaderboardView.swift
+│   │   ├── VideoContentDetailView.swift   # Detailed video post UI
+│   │   ├── ConferenceCallDetailView.swift # UI for group calls
+│   │── 📁 Components/                     # Reusable UI elements
+│   │   ├── MentorCard.swift
+│   │   ├── ProgressBar.swift
+│   │   ├── LottieAnimationManager.swift
+│   │   ├── CustomButton.swift
+│   │   ├── AvatarView.swift
+│   │   ├── FeedbackStarsView.swift
+│   │   ├── VideoPostCard.swift            # Card for video feed
+│   │   ├── ConferenceCallCard.swift       # Card for upcoming group calls
+│   │── 📁 Services/                       # Handles business logic
+│   │   ├── AuthService.swift              # Handles authentication
+│   │   ├── DatabaseService.swift          # Manages Firebase interactions
+│   │   ├── AIRecommendationService.swift  # AI-based suggestions
+│   │   ├── SecureStorageService.swift     # Keychain & secure storage
+│   │   ├── PaymentService.swift           # Handles subscriptions & payments
+│   │   ├── NotificationService.swift      # Manages push notifications
+│   │   ├── VideoContentService.swift      # Manages video uploads & playback
+│   │   ├── ConferenceCallService.swift    # Handles real-time video calls
+│   │   ├── MentorMatchingService.swift    # AI-based mentor recommendations
+│   │── 📁 Utils/                          # Helper functions & extensions
+│   │   ├── Constants.swift
+│   │   ├── Extensions.swift
+│   │   ├── UIHelper.swift
+│   │   ├── DateHelper.swift
+│   │   ├── LoggingHelper.swift
+│   │── 📁 VideoProcessing/                 # Handles video content management
+│   │   ├── VideoUploader.swift            # Upload videos securely to Firebase
+│   │   ├── VideoCompression.swift         # Optimizes video file sizes
+│   │   ├── AutoCaptioning.swift           # AI-generated subtitles
+│── 📁 Assets/                             # All images, icons, animations
+│   │── 📁 Icons/                          # Custom navigation icons
+│   │   ├── home_icon.png
+│   │   ├── mentor_icon.png
+│   │   ├── profile_icon.png
+│   │   ├── video_feed_icon.png
+│   │   ├── conference_icon.png
+│   │── 📁 Images/                         # UI images & placeholders
+│   │── 📁 Animations/                     # Lottie animations
+│   │   ├── loading_animation.json
+│   │   ├── success_animation.json
+│── 📁 Firebase/                           # Firebase configuration files
+│   │   ├── GoogleService-Info.plist
+│   │   ├── FirebaseConfig.swift
+│── 📁 SupportingFiles/                     # App setup files
+│   │   ├── Info.plist
+│   │   ├── AppDelegate.swift
+│   │   ├── SceneDelegate.swift
+│── 📁 Tests/                               # Unit & UI tests
+│   │   ├── StryVrUnitTests.swift
+│   │   ├── StryVrUITests.swift
+│── 📁 Docs/                                # Documentation & guidelines
+│   │   ├── README.md
+│   │   ├── STRYVR_DEV_RULES.md
+│   │   ├── API_REFERENCE.md
+│── 📁 Scripts/                             # Deployment, CI/CD scripts
+│   │   ├── deploy.sh
+│   │   ├── setup_env.sh
+│── 📁 CI/                                  # Continuous integration
+│   │   ├── fastlane/
+│   │   ├── github_actions/
+│── .gitignore                              # Git exclusions
+│── Package.swift                           # Swift Package Manager dependencies
+│── Podfile                                 # CocoaPods dependencies
+│── StryVr.xcodeproj                        # Xcode project file
+│── StryVr.xcworkspace                      # Xcode workspace file
