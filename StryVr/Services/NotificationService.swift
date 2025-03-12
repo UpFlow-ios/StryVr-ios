@@ -7,12 +7,14 @@
 import Foundation
 import UserNotifications
 import FirebaseMessaging
+import FirebaseFirestore
 import os.log
 
-/// Handles push notifications for security alerts, mentor updates, and learning progress
+/// Manages push notifications for video engagement, recommendations, and learning reminders
 final class NotificationService: NSObject, ObservableObject, UNUserNotificationCenterDelegate, MessagingDelegate {
 
     static let shared = NotificationService()
+    private let db = Firestore.firestore()
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "NotificationService")
 
     private override init() {}
@@ -64,7 +66,6 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
     /// Stores the FCM device token in Firestore for targeted notifications
     private func saveDeviceTokenToDatabase(_ token: String) {
         guard let userID = AuthService.shared.getCurrentUser()?.uid else { return }
-        let db = Firestore.firestore()
 
         db.collection("users").document(userID).updateData(["deviceToken": token]) { error in
             if let error = error {
@@ -75,22 +76,12 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
         }
     }
 
-    /// Sends a test notification (for debugging)
-    func sendTestNotification() {
-        let content = UNMutableNotificationContent()
-        content.title = "Test Notification"
-        content.body = "This is a test push notification from StryVr."
-        content.sound = .default
+    /// Sends a video engagement notification
+    func sendVideoEngagementNotification(to userID: String, videoTitle: String, type: String) {
+        let message = type == "like" ? "Someone liked your video: \(videoTitle)" :
+                      type == "comment" ? "Someone commented on your video: \(videoTitle)" :
+                      "Your video is getting more views: \(videoTitle)"
 
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-
-        UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
-                self.logger.error("Error scheduling test notification: \(error.localizedDescription)")
-            } else {
-                self.logger.info("Test notification scheduled successfully")
-            }
-        }
+        sendPushNotification(to: userID, title: "📢 Video Engagement", body: message)
     }
-}
+
