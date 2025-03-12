@@ -7,102 +7,94 @@
 import Foundation
 import FirebaseStorage
 import FirebaseFirestore
-import AVKit
 import os.log
 
-/// Handles AI-powered video uploads, tagging, auto-captioning, and recommendations
+/// Manages video uploads, real-time streaming, and AI-powered content tagging
 final class VideoContentService {
-
+    
     static let shared = VideoContentService()
-    private let storageRef = Storage.storage().reference()
+    private let storage = Storage.storage().reference()
     private let db = Firestore.firestore()
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "VideoContentService")
-
+    
     private init() {}
 
-    /// Uploads a video to Firebase Storage and generates AI-powered captions
-    /// - Parameters:
-    ///   - videoURL: The local URL of the video to be uploaded.
-    ///   - title: The title of the video.
-    ///   - description: The description of the video.
-    ///   - tags: An array of tags associated with the video.
-    ///   - completion: A closure that returns a result containing either the video URL or an error.
-    func uploadVideo(_ videoURL: URL, title: String, description: String, tags: [String], completion: @escaping (Result<String, Error>) -> Void) {
+    /// Uploads a video file to Firebase Storage
+    func uploadVideo(fileURL: URL, userID: String, completion: @escaping (String?) -> Void) {
         let videoID = UUID().uuidString
-        let videoRef = storageRef.child("videos/\(videoID).mp4")
+        let videoRef = storage.child("videos/\(userID)/\(videoID).mp4")
 
-        videoRef.putFile(from: videoURL, metadata: nil) { _, error in
+        videoRef.putFile(from: fileURL, metadata: nil) { _, error in
             if let error = error {
-                self.logger.error("Video Upload Error: \(error.localizedDescription)")
-                completion(.failure(error))
+                self.logger.error("Error uploading video: \(error.localizedDescription)")
+                completion(nil)
                 return
             }
-
+            
             videoRef.downloadURL { url, error in
+                guard let downloadURL = url, error == nil else {
+                    self.logger.error("Error retrieving download URL: \(error?.localizedDescription ?? "Unknown error")")
+                    completion(nil)
+                    return
+                }
+                
+                self.saveVideoMetadata(videoID: videoID, userID: userID, url: downloadURL.absoluteString)
+                completion(downloadURL.absoluteString)
+            }
+        }
+    }
+
+    /// Saves video metadata in Firestore
+    private func saveVideoMetadata(videoID: String, userID: String, url: String) {
+        generateAITags(for: url) { tags in
+            let videoData: [String: Any] = [
+                "videoID": videoID,
+                "userID": userID,
+                "url": url,
+                "timestamp": Timestamp(date: Date()),
+                "tags": tags
+            ]
+
+            self.db.collection("videos").document(videoID).setData(videoData) { error in
                 if let error = error {
-                    self.logger.error("Error getting video URL: \(error.localizedDescription)")
-                    completion(.failure(error))
-                } else if let url = url {
-                    self.logger.info("Video uploaded successfully: \(url.absoluteString)")
-
-                    // Generate AI captions & store video details
-                    self.generateAutoCaptions(for: videoID) { captions in
-                        self.saveVideoData(videoID: videoID, title: title, description: description, url: url.absoluteString, tags: tags, captions: captions)
-                    }
-
-                    completion(.success(url.absoluteString))
+                    self.logger.error("Error saving video metadata: \(error.localizedDescription)")
+                } else {
+                    self.logger.info("Video metadata saved successfully")
                 }
             }
         }
     }
 
-    /// Generates AI-powered captions for a given video
-    /// - Parameters:
-    ///   - videoID: The ID of the video.
-    ///   - completion: A closure that returns the generated captions.
-    private func generateAutoCaptions(for videoID: String, completion: @escaping (String) -> Void) {
-        DispatchQueue.global().asyncAfter(deadline: .now() + 2) {  // Simulating AI processing delay
-            let generatedCaptions = "AI-generated captions for video \(videoID)..."  // Placeholder for AI-generated text
-            completion(generatedCaptions)
-        }
-    }
-
-    /// Saves video metadata, tags, and captions in Firestore
-    /// - Parameters:
-    ///   - videoID: The ID of the video.
-    ///   - title: The title of the video.
-    ///   - description: The description of the video.
-    ///   - url: The URL of the video.
-    ///   - tags: An array of tags associated with the video.
-    ///   - captions: The AI-generated captions for the video.
-    private func saveVideoData(videoID: String, title: String, description: String, url: String, tags: [String], captions: String) {
-        let videoData: [String: Any] = [
-            "id": videoID,
-            "title": title,
-            "description": description,
-            "videoURL": url,
-            "tags": tags,
-            "captions": captions,
-            "uploadDate": Date(),
-            "engagement": ["likes": 0, "views": 0]
-        ]
-
-        db.collection("videos").document(videoID).setData(videoData) { error in
-            if let error = error {
-                self.logger.error("Error saving video data: \(error.localizedDescription)")
-            } else {
-                self.logger.info("Video metadata saved successfully!")
+    /// Fetches video data for real-time streaming
+    func fetchVideoList(completion: @escaping ([VideoModel]) -> Void) {
+        db.collection("videos").order(by: "timestamp", descending: true).getDocuments { snapshot, error in
+            guard let documents = snapshot?.documents, error == nil else {
+                self.logger.error("Error fetching video list: \(error?.localizedDescription ?? "Unknown error")")
+                completion([])
+                return
             }
+
+            let videos = documents.compactMap { doc -> VideoModel? in
+                try? doc.data(as: VideoModel.self)
+            }
+            completion(videos)
         }
     }
 
-    /// Fetches AI-powered recommended videos for a user
-    /// - Parameters:
-    ///   - userID: The ID of the user for whom to fetch recommendations.
-    ///   - completion: A closure that returns an array of recommended videos.
-    func fetchRecommendedVideos(for userID: String, completion: @escaping ([VideoPostModel]) -> Void) {
-        db.collection("videos")
-            .order(by: "engagement.views", descending: true)
-            .limit(to: 5)
-            .getDocuments { snapshot, error in
-                guard let documents = snapshot?.documents, error == nil else {
+    /// Generates AI-powered tags based on video content
+    private func generateAITags(for videoURL: String, completion: @escaping ([String]) -> Void) {
+        // Placeholder AI logic - In real implementation, use an AI model for tagging
+        DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
+            completion(["mentorship", "learning", "career growth"])
+        }
+    }
+}
+
+/// Represents a video object for streaming
+struct VideoModel: Identifiable, Codable {
+    let id: String
+    let userID: String
+    let url: String
+    let timestamp: Date
+    let tags: [String]
+}
