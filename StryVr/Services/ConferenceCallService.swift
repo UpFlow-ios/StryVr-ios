@@ -6,10 +6,9 @@
 //
 import Foundation
 import FirebaseFirestore
-import FirebaseAuth
 import os.log
 
-/// Manages real-time video calls, scheduling, and session tracking
+/// Manages real-time video calls, recording, chat, and screen sharing
 final class ConferenceCallService {
 
     static let shared = ConferenceCallService()
@@ -32,7 +31,10 @@ final class ConferenceCallService {
             "hostID": hostID,
             "participants": [hostID],
             "scheduledDate": scheduledDate,
-            "status": "upcoming"
+            "status": "upcoming",
+            "chatMessages": [],
+            "recordingURL": "",
+            "screenSharingEnabled": false
         ]
 
         db.collection("conferenceCalls").document(callID).setData(callData) { error in
@@ -46,31 +48,10 @@ final class ConferenceCallService {
         }
     }
 
-    /// Joins an existing conference call
+    /// Updates the status of a conference call (Live, Ongoing, Ended)
     /// - Parameters:
     ///   - callID: The ID of the conference call.
-    ///   - userID: The ID of the user joining the call.
-    ///   - completion: A closure that returns a boolean indicating success or failure, and an optional error.
-    func joinConferenceCall(callID: String, userID: String, completion: @escaping (Bool, Error?) -> Void) {
-        let callRef = db.collection("conferenceCalls").document(callID)
-
-        callRef.updateData([
-            "participants": FieldValue.arrayUnion([userID])
-        ]) { error in
-            if let error = error {
-                self.logger.error("Error joining conference call: \(error.localizedDescription)")
-            } else {
-                completion(false, error)
-                self.logger.info("User \(userID) joined the conference call")
-                completion(true, nil)
-            }
-        }
-    }
-
-    /// Updates the status of a conference call (live, completed, canceled)
-    /// - Parameters:
-    ///   - callID: The ID of the conference call.
-    ///   - status: The new status of the conference call.
+    ///   - status: The new status of the call.
     ///   - completion: A closure that returns a boolean indicating success or failure, and an optional error.
     func updateCallStatus(callID: String, status: String, completion: @escaping (Bool, Error?) -> Void) {
         db.collection("conferenceCalls").document(callID).updateData([
@@ -84,3 +65,30 @@ final class ConferenceCallService {
                 completion(true, nil)
             }
         }
+    }
+
+    /// Enables screen sharing during a live session
+    /// - Parameters:
+    ///   - callID: The ID of the conference call.
+    ///   - isEnabled: A boolean indicating whether screen sharing is enabled.
+    ///   - completion: A closure that returns a boolean indicating success or failure, and an optional error.
+    func enableScreenSharing(callID: String, isEnabled: Bool, completion: @escaping (Bool, Error?) -> Void) {
+        db.collection("conferenceCalls").document(callID).updateData([
+            "screenSharingEnabled": isEnabled
+        ]) { error in
+            if let error = error {
+                self.logger.error("Error updating screen sharing status: \(error.localizedDescription)")
+                completion(false, error)
+            } else {
+                self.logger.info("Screen sharing \(isEnabled ? "enabled" : "disabled")")
+                completion(true, nil)
+            }
+        }
+    }
+
+    /// Stores a chat message in Firestore for a specific conference call
+    /// - Parameters:
+    ///   - callID: The ID of the conference call.
+    ///   - senderID: The ID of the sender.
+    ///   - message: The chat message.
+    ///   - timestamp: The timestamp of the message.
