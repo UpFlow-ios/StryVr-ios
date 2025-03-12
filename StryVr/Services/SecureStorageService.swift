@@ -6,14 +6,15 @@
 //
 import Foundation
 import Security
+import LocalAuthentication
 import os.log
 
-/// Manages secure storage using Apple's Keychain for sensitive user data
+/// Manages secure storage of sensitive data using Apple's Keychain API
 final class SecureStorageService {
-    
+
     static let shared = SecureStorageService()
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "SecureStorageService")
-    
+
     private init() {}
 
     /// Saves a value securely in the Keychain
@@ -30,12 +31,12 @@ final class SecureStorageService {
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key,
             kSecValueData as String: data,
-            kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlocked
+            kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlockedThisDeviceOnly
         ]
 
-        SecItemDelete(query as CFDictionary) // Ensure no duplicates
+        SecItemDelete(query as CFDictionary) // Prevent duplicates
         let status = SecItemAdd(query as CFDictionary, nil)
-        
+
         if status != errSecSuccess {
             logger.error("Keychain Save Error: \(status)")
         }
@@ -76,4 +77,34 @@ final class SecureStorageService {
             logger.error("Keychain Delete Error: \(status)")
         }
     }
-}
+
+    /// Saves the authentication token securely
+    /// - Parameter token: The authentication token to be stored.
+    func saveAuthToken(_ token: String) {
+        save(key: "authToken", value: token)
+    }
+
+    /// Retrieves the authentication token
+    /// - Returns: The retrieved authentication token, or nil if not found.
+    func retrieveAuthToken() -> String? {
+        return retrieve(key: "authToken")
+    }
+
+    /// Deletes the authentication token (Logout)
+    func deleteAuthToken() {
+        delete(key: "authToken")
+    }
+
+    /// Authenticates the user with Face ID / Touch ID
+    /// - Parameter completion: A closure that returns a boolean indicating success or failure.
+    func authenticateWithBiometrics(completion: @escaping (Bool) -> Void) {
+        let context = LAContext()
+        let reason = "Authenticate to access StryVr securely"
+
+        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, error in
+            DispatchQueue.main.async {
+                if success {
+                    completion(true)
+                } else {
+                    self.logger.error("Biometric Authentication Failed: \(error?.localizedDescription ?? "Unknown error")")
+                    completion(false)
