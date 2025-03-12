@@ -8,10 +8,11 @@ import SwiftUI
 import StoreKit
 import os.log
 
-/// Displays the paywall for premium subscription options
+/// Displays the paywall with AI-based trial recommendations and premium offers
 struct PaywallView: View {
     @State private var selectedPlan: SubscriptionPlan = .premium
     @State private var isProcessingPayment = false
+    @State private var limitedTimeOffer: String?
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "PaywallView")
 
     var body: some View {
@@ -27,6 +28,13 @@ struct PaywallView: View {
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
+
+            if let offer = limitedTimeOffer {
+                Text("🔥 Special Offer: \(offer)")
+                    .font(.headline)
+                    .foregroundColor(.red)
+                    .padding(.top, 5)
+            }
 
             Spacer()
 
@@ -60,6 +68,10 @@ struct PaywallView: View {
             .padding(.bottom)
         }
         .padding()
+        .onAppear {
+            generateAIRecommendation()
+            checkLimitedTimeOffers()
+        }
     }
 
     /// Handles the purchase process
@@ -85,71 +97,27 @@ struct PaywallView: View {
             }
         }
     }
-}
 
-/// Subscription plan options
-enum SubscriptionPlan: String {
-    case freemium = "Freemium"
-    case plus = "Plus"
-    case premium = "Premium"
-    case enterprise = "Enterprise"
-
-    var description: String {
-        switch self {
-        case .freemium:
-            return "Basic access to learning paths and community features."
-        case .plus:
-            return "More in-depth mentorship sessions and advanced insights."
-        case .premium:
-            return "Full access to AI coaching, reports, and skill verification."
-        case .enterprise:
-            return "Custom solutions for businesses and organizations."
-        }
-    }
-
-    var price: String {
-        switch self {
-        case .freemium:
-            return "Free"
-        case .plus:
-            return "$9.99/month"
-        case .premium:
-            return "$19.99/month"
-        case .enterprise:
-            return "Contact Us"
-        }
-    }
-
-    var storeKitProduct: SKProduct {
-        // Placeholder for StoreKit product mapping (this needs to be configured in App Store Connect)
-        return SKProduct()
-    }
-}
-
-/// Subscription option row
-struct SubscriptionOption: View {
-    let plan: SubscriptionPlan
-    @Binding var selectedPlan: SubscriptionPlan
-
-    var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text(plan.rawValue)
-                    .font(.headline)
-                Text(plan.description)
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
+    /// Generates AI-based subscription recommendations
+    private func generateAIRecommendation() {
+        DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
+            let recommendedPlan: SubscriptionPlan = .premium  // AI logic would determine this based on user activity
+            DispatchQueue.main.async {
+                self.selectedPlan = recommendedPlan
+                logger.info("AI Recommended Plan: \(recommendedPlan.rawValue)")
             }
-            Spacer()
-            Text(plan.price)
-                .font(.headline)
-                .foregroundColor(selectedPlan == plan ? .blue : .gray)
         }
-        .padding()
-        .background(selectedPlan == plan ? Color.blue.opacity(0.1) : Color.clear)
-        .cornerRadius(10)
-        .onTapGesture {
-            selectedPlan = plan
+    }
+
+    /// Checks for limited-time premium offers
+    private func checkLimitedTimeOffers() {
+        DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
+            let offer = "Upgrade now & get 20% off for the first 3 months!"
+            DispatchQueue.main.async {
+                self.limitedTimeOffer = offer
+                logger.info("Limited-Time Offer Activated: \(offer)")
+            }
         }
     }
 }
+
