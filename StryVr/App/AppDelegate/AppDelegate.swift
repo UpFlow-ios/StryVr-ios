@@ -1,17 +1,21 @@
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
-
-    func scene(
-        _ scene: UIScene,
-        willConnectTo session: UISceneSession,
-        options connectionOptions: UIScene.ConnectionOptions
-    ) {
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = UIViewController() // Set your initial view controller here
-        window?.makeKeyAndVisible()
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
+        
+        // ✅ TEST: Retrieve Hugging Face API Key
+        if let apiKey = SecureStorageService.shared.getAPIKey(service: "HuggingFace") {
+            print("✅ Hugging Face API Key Retrieved: \(apiKey)")
+        } else {
+            print("🔴 Failed to Retrieve API Key")
+        }
+        
+        return true
     }
 }
+

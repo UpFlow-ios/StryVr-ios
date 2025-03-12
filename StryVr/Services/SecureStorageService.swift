@@ -11,11 +11,13 @@ import os.log
 
 /// Manages secure storage of sensitive data using Apple's Keychain API
 final class SecureStorageService {
-
+    
     static let shared = SecureStorageService()
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "SecureStorageService")
 
     private init() {}
+
+    // MARK: - Secure Storage Methods
 
     /// Saves a value securely in the Keychain
     /// - Parameters:
@@ -23,22 +25,37 @@ final class SecureStorageService {
     ///   - value: The value to be stored.
     func save(key: String, value: String) {
         guard let data = value.data(using: .utf8) else {
-            logger.error("Failed to convert value to data")
+            logger.error("🔴 Failed to convert value to data")
             return
         }
 
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: key,
+            kSecAttrAccount as String: key
+        ]
+
+        let attributes: [String: Any] = [
             kSecValueData as String: data,
             kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlockedThisDeviceOnly
         ]
 
-        SecItemDelete(query as CFDictionary) // Prevent duplicates
-        let status = SecItemAdd(query as CFDictionary, nil)
-
-        if status != errSecSuccess {
-            logger.error("Keychain Save Error: \(status)")
+        let status = SecItemCopyMatching(query as CFDictionary, nil)
+        if status == errSecSuccess {
+            let updateStatus = SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
+            if updateStatus == errSecSuccess {
+                logger.info("✅ Successfully updated key: \(key)")
+            } else {
+                logger.error("🔴 Keychain Update Error (\(key)): \(updateStatus)")
+            }
+        } else {
+            var newQuery = query
+            newQuery.merge(attributes) { (_, new) in new }
+            let addStatus = SecItemAdd(newQuery as CFDictionary, nil)
+            if addStatus == errSecSuccess {
+                logger.info("✅ Successfully stored key: \(key)")
+            } else {
+                logger.error("🔴 Keychain Save Error (\(key)): \(addStatus)")
+            }
         }
     }
 
@@ -56,10 +73,11 @@ final class SecureStorageService {
         var dataTypeRef: AnyObject?
         let status = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
 
-        if status == errSecSuccess, let retrievedData = dataTypeRef as? Data {
-            return String(data: retrievedData, encoding: .utf8)
+        if status == errSecSuccess, let retrievedData = dataTypeRef as? Data, let result = String(data: retrievedData, encoding: .utf8) {
+            logger.info("✅ Successfully retrieved key: \(key)")
+            return result
         } else {
-            logger.error("Keychain Retrieve Error: \(status)")
+            logger.error("🔴 Keychain Retrieve Error (\(key)): \(status)")
             return nil
         }
     }
@@ -73,10 +91,14 @@ final class SecureStorageService {
         ]
 
         let status = SecItemDelete(query as CFDictionary)
-        if status != errSecSuccess {
-            logger.error("Keychain Delete Error: \(status)")
+        if status == errSecSuccess {
+            logger.info("✅ Successfully deleted key: \(key)")
+        } else {
+            logger.error("🔴 Keychain Delete Error (\(key)): \(status)")
         }
     }
+
+    // MARK: - Authentication Token Management
 
     /// Saves the authentication token securely
     /// - Parameter token: The authentication token to be stored.
@@ -95,16 +117,37 @@ final class SecureStorageService {
         delete(key: "authToken")
     }
 
+    // MARK: - API Key Management
+
+    /// Saves an API key securely
+    /// - Parameters:
+    ///   - key: API key to store.
+    ///   - service: Service name for better identification.
+    func saveAPIKey(_ key: String, service: String) {
+        save(key: "\(service)_API_KEY", value: key)
+    }
+
+    /// Retrieves an API key securely
+    /// - Parameter service: Service name for better identification.
+    /// - Returns: The API key, or nil if not found.
+    func getAPIKey(service: String) -> String? {
+        return retrieve(key: "\(service)_API_KEY")
+    }
+
+    // MARK: - Biometric Authentication
+
     /// Authenticates the user with Face ID / Touch ID
     /// - Parameter completion: A closure that returns a boolean indicating success or failure.
     func authenticateWithBiometrics(completion: @escaping (Bool) -> Void) {
         let context = LAContext()
-        let reason = "Authenticate to access StryVr securely"
+        context.localizedReason = "Authenticate to access StryVr securely"
+        
+        // Check if device supports Face ID / Touch ID
+        var error: NSError?
+        guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
+            logger.error("🔴 Biometric authentication not available: \(error?.localizedDescription ?? "Unknown error")")
+            completion(false)
+            return
+        }
 
-        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, error in
-            DispatchQueue.main.async {
-                if success {
-                    completion(true)
-                } else {
-                    self.logger.error("Biometric Authentication Failed: \(error?.localizedDescription ?? "Unknown error")")
-                    completion(false)
+        // Perform authentication
