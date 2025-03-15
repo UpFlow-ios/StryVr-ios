@@ -4,15 +4,6 @@
 //
 //  Created by Joe Dormond on 3/12/25.
 //
-Here are some modifications to make the code more professional:
-
-1. Add documentation comments for the methods.
-2. Use logging instead of `print` for error handling.
-3. Add proper error handling for the `fetchLearningFeed` method.
-
-Here is the updated code:
-
-```swift
 import SwiftUI
 import FirebaseFirestore
 import os.log
@@ -87,4 +78,4 @@ struct LearningFeedItem: Identifiable, Codable {
     let skillName: String
     let timestamp: Date
 }
-```
+
