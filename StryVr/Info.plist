@@ -1,0 +1,88 @@
+Your `Info.plist` file looks well-structured and includes all necessary keys for the described functionalities. However, here are a few suggestions to ensure completeness and clarity:
+
+1. **Privacy - Location Always and When In Use Usage Descriptions**: Ensure that both descriptions are clear and distinct.
+2. **Background Modes**: Verify that all background modes are necessary and used appropriately to avoid app rejection during the review process.
+3. **Firebase Configuration**: Ensure that the Firebase configuration is correctly set up in your project.
+
+Here is the updated `Info.plist` with minor adjustments for clarity:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- App Information -->
+    <key>CFBundleName</key>
+    <string>StryVr</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.stryvr.app</string>
+    <key>CFBundleVersion</key>
+    <string>1.0.0</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+
+    <!-- Launch Screen (If using SwiftUI, remove this) -->
+    <key>UILaunchStoryboardName</key>
+    <string>LaunchScreen</string>
+
+    <!-- Network Permissions (Required for API requests) -->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+
+    <!-- Camera & Microphone (For Video Calls & Content Creation) -->
+    <key>NSCameraUsageDescription</key>
+    <string>StryVr needs access to your camera for video calls, mentor sessions, and content creation.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>StryVr needs access to your microphone for voice communication during video calls and mentor feedback.</string>
+
+    <!-- Photo Library Access (For Profile & Mentor Video Uploads) -->
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>StryVr needs access to your photo library to allow users to upload profile pictures and mentor content.</string>
+
+    <!-- Face ID / Touch ID (For Secure Authentication) -->
+    <key>NSFaceIDUsageDescription</key>
+    <string>StryVr uses Face ID for secure login and authentication.</string>
+
+    <!-- Background Modes (For Video Calls, Notifications & Updates) -->
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>audio</string>               <!-- Enables background audio for video calls -->
+        <string>voip</string>                <!-- Enables VoIP for mentor-mentee calls -->
+        <string>fetch</string>               <!-- Allows background updates -->
+        <string>remote-notification</string> <!-- Push notifications for mentor updates -->
+        <string>processing</string>          <!-- Background AI processing -->
+    </array>
+
+    <!-- Location Access (For Personalized Learning & Mentor Recommendations) -->
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>StryVr uses your location to personalize your learning experience and mentor recommendations.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>StryVr needs access to your location even when the app is not in use to enhance learning recommendations.</string>
+
+    <!-- Firebase Permissions (Required for Firebase Integration) -->
+    <key>FirebaseAppDelegateProxyEnabled</key>
+    <true/>
+
+    <!-- Push Notifications (For Updates, Mentor Sessions & Security Alerts) -->
+    <key>NSUserNotificationAlertStyle</key>
+    <string>banner</string>
+    <key>NSPushNotificationsUsageDescription</key>
+    <string>StryVr uses push notifications to keep you updated on mentor sessions, learning progress, and security alerts.</string>
+
+    <!-- Bluetooth & Motion Access -->
+    <key>NSBluetoothPeripheralUsageDescription</key>
+    <string>StryVr needs access to Bluetooth for connecting to external devices.</string>
+    <key>NSMotionUsageDescription</key>
+    <string>StryVr uses motion data to enhance your learning experience.</string>
+
+    <!-- AI Model Processing (Future-Proofing for AI-based Learning) -->
+    <key>NSCoreMLUsageDescription</key>
+    <string>StryVr uses CoreML to enhance AI-driven learning recommendations.</string>
+</dict>
+</plist>
+```
+
+Make sure to test your app thoroughly to ensure all permissions and functionalities work as expected.
