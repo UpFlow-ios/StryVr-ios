@@ -1,0 +1,110 @@
+{
+  "" : {
+    "const-values" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promises-master.swiftconstvalues",
+    "dependencies" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promises-master.d",
+    "diagnostics" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promises-master.dia",
+    "emit-module-dependencies" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promises-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promises-master-emit-module.dia",
+    "swift-dependencies" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promises-master.swiftdeps"
+  },
+  "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/Sources/Promises/Promise+All.swift" : {
+    "index-unit-output-path" : "/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+All.o",
+    "llvm-bc" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+All.bc",
+    "object" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+All.o"
+  },
+  "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/Sources/Promises/Promise+Always.swift" : {
+    "index-unit-output-path" : "/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Always.o",
+    "llvm-bc" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Always.bc",
+    "object" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Always.o"
+  },
+  "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/Sources/Promises/Promise+Any.swift" : {
+    "index-unit-output-path" : "/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Any.o",
+    "llvm-bc" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Any.bc",
+    "object" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Any.o"
+  },
+  "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/Sources/Promises/Promise+Async.swift" : {
+    "index-unit-output-path" : "/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Async.o",
+    "llvm-bc" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Async.bc",
+    "object" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Async.o"
+  },
+  "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/Sources/Promises/Promise+Await.swift" : {
+    "index-unit-output-path" : "/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Await.o",
+    "llvm-bc" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Await.bc",
+    "object" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Await.o"
+  },
+  "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/Sources/Promises/Promise+Catch.swift" : {
+    "index-unit-output-path" : "/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Catch.o",
+    "llvm-bc" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Catch.bc",
+    "object" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Catch.o"
+  },
+  "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/Sources/Promises/Promise+Delay.swift" : {
+    "index-unit-output-path" : "/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Delay.o",
+    "llvm-bc" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Delay.bc",
+    "object" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Delay.o"
+  },
+  "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/Sources/Promises/Promise+Do.swift" : {
+    "index-unit-output-path" : "/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Do.o",
+    "llvm-bc" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Do.bc",
+    "object" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Do.o"
+  },
+  "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/Sources/Promises/Promise+Race.swift" : {
+    "index-unit-output-path" : "/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Race.o",
+    "llvm-bc" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Race.bc",
+    "object" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Race.o"
+  },
+  "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/Sources/Promises/Promise+Recover.swift" : {
+    "index-unit-output-path" : "/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Recover.o",
+    "llvm-bc" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Recover.bc",
+    "object" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Recover.o"
+  },
+  "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/Sources/Promises/Promise+Reduce.swift" : {
+    "index-unit-output-path" : "/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Reduce.o",
+    "llvm-bc" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Reduce.bc",
+    "object" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Reduce.o"
+  },
+  "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/Sources/Promises/Promise+Retry.swift" : {
+    "index-unit-output-path" : "/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Retry.o",
+    "llvm-bc" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Retry.bc",
+    "object" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Retry.o"
+  },
+  "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/Sources/Promises/Promise+Testing.swift" : {
+    "index-unit-output-path" : "/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Testing.o",
+    "llvm-bc" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Testing.bc",
+    "object" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Testing.o"
+  },
+  "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/Sources/Promises/Promise+Then.swift" : {
+    "index-unit-output-path" : "/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Then.o",
+    "llvm-bc" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Then.bc",
+    "object" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Then.o"
+  },
+  "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/Sources/Promises/Promise+Timeout.swift" : {
+    "index-unit-output-path" : "/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Timeout.o",
+    "llvm-bc" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Timeout.bc",
+    "object" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Timeout.o"
+  },
+  "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/Sources/Promises/Promise+Validate.swift" : {
+    "index-unit-output-path" : "/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Validate.o",
+    "llvm-bc" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Validate.bc",
+    "object" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Validate.o"
+  },
+  "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/Sources/Promises/Promise+Wrap.swift" : {
+    "index-unit-output-path" : "/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Wrap.o",
+    "llvm-bc" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Wrap.bc",
+    "object" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise+Wrap.o"
+  },
+  "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/Sources/Promises/Promise.swift" : {
+    "index-unit-output-path" : "/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise.o",
+    "llvm-bc" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise.bc",
+    "object" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/Promise.o"
+  },
+  "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/Sources/Promises/PromiseError.swift" : {
+    "index-unit-output-path" : "/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/PromiseError.o",
+    "llvm-bc" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/PromiseError.bc",
+    "object" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/PromiseError.o"
+  },
+  "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "index-unit-output-path" : "/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "llvm-bc" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/resource_bundle_accessor.bc",
+    "object" : "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/promises/build/Promises.build/Release-iphoneos/Promises.build/Objects-normal/arm64/resource_bundle_accessor.o"
+  }
+}

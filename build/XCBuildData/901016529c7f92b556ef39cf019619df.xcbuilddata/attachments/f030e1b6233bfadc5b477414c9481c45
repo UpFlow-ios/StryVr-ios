@@ -1,0 +1,4 @@
+module third_party_IsAppEncrypted {
+umbrella "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/GoogleUtilities/third_party/IsAppEncrypted/Public"
+export *
+}

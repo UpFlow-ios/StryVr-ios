@@ -1,0 +1,4 @@
+module FirebaseMessaging {
+umbrella header "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/firebase-ios-sdk/FirebaseMessaging/Sources/Public/FirebaseMessaging/FirebaseMessaging.h"
+export *
+}

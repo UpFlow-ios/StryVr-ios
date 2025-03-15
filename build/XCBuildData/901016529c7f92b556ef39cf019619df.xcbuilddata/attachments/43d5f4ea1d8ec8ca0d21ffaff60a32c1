@@ -1,0 +1,4 @@
+module GoogleUtilities_MethodSwizzler {
+umbrella "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/MethodSwizzler/Public"
+export *
+}
