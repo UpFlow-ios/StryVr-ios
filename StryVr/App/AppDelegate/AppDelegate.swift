@@ -95,6 +95,3 @@ extension AppDelegate: MessagingDelegate {
         // TODO: If necessary, send token to application server.
     }
 }
-```
-
-This ensures that your app handles Firebase messaging events and responds to changes in notification settings.
