@@ -1,4 +1,0 @@
-module opensslWrapper {
-umbrella "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/grpc-binary/openssl-grpc-Wrapper/include"
-export *
-}

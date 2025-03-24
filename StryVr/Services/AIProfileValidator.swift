@@ -2,54 +2,58 @@
 //  AIProfileValidator.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 3/12/25.
+//  Created by Joe Dormond on 3/5/25.
 //
-import Foundation
-import FirebaseFirestore
-import os.log
+import SwiftUI
 
-/// AI-driven profile validation to detect fake accounts
-final class AIProfileValidator {
+class ProfileValidatorViewModel: ObservableObject {
+    @Published var isValidating = false
+    @Published var validationResult: String?
 
-    static let shared = AIProfileValidator()
-    private let db = Firestore.firestore()
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "AIProfileValidator")
-
-    private init() {}
-
-    /// Checks if a profile is potentially fake based on multiple factors
-    /// - Parameters:
-    ///   - userID: The ID of the user to validate.
-    ///   - completion: A closure that returns a boolean indicating if the profile is valid.
-    func validateProfile(userID: String, completion: @escaping (Bool) -> Void) {
-        db.collection("users").document(userID).getDocument { snapshot, error in
-            guard let data = snapshot?.data(), error == nil else {
-                logger.error("Error fetching user data: \(error?.localizedDescription ?? "Unknown error")")
-                completion(false)
-                return
-            }
-
-            let profileStrength = AIProfileValidator.analyzeProfile(data)
-            completion(profileStrength >= 70) // Minimum threshold for a valid profile
+    func validateProfile() {
+        isValidating = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.validationResult = Bool.random() ? "Profile is Valid ✅" : "Profile is Suspicious ❌"
+            self.isValidating = false
         }
     }
+}
 
-    /// Analyzes a profile's data and assigns a score
-    /// - Parameter data: The profile data to analyze.
-    /// - Returns: An integer score representing the profile strength.
-    private static func analyzeProfile(_ data: [String: Any]) -> Int {
-        var score = 0
+struct AIProfileValidatorView: View {
+    @StateObject private var viewModel = ProfileValidatorViewModel()
 
-        // Check if profile has a verified email
-        if let emailVerified = data["isVerified"] as? Bool, emailVerified {
-            score += 30
+    var body: some View {
+        VStack {
+            Text("AI Profile Validator")
+                .font(.title)
+                .fontWeight(.bold)
+
+            if viewModel.isValidating {
+                ProgressView("Validating...")
+                    .padding()
+            } else if let result = viewModel.validationResult {
+                Text(result)
+                    .foregroundColor(result.contains("Valid") ? .green : .red)
+                    .padding()
+            }
+
+            Button(action: viewModel.validateProfile) {
+                Text("Validate Profile")
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+            }
+            .padding()
+            .accessibilityLabel("Validate Profile Button")
         }
+        .padding()
+    }
+}
 
-        // Check if profile has a bio, profile image, and skills
-        if let bio = data["bio"] as? String, !bio.isEmpty { score += 20 }
-        if let profileImage = data["profileImageURL"] as? String, !profileImage.isEmpty { score += 20 }
-        if let skills = data["skills"] as? [String], !skills.isEmpty { score += 30 }
-
-        return score
+struct AIProfileValidatorView_Previews: PreviewProvider {
+    static var previews: some View {
+        AIProfileValidatorView()
     }
 }

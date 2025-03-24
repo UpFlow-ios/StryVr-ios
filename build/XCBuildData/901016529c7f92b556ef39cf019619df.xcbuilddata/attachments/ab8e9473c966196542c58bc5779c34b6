@@ -1,4 +1,0 @@
-module FirebaseSessions {
-header "FirebaseSessions-Swift.h"
-export *
-}

@@ -1,4 +1,0 @@
-module CocoaLumberjackSwiftLogBackend {
-header "CocoaLumberjackSwiftLogBackend-Swift.h"
-export *
-}

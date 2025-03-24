@@ -1,4 +1,0 @@
-module CocoaLumberjackSwiftSupport {
-umbrella "/Users/joedormond/Library/Developer/Xcode/DerivedData/StryVr-gdejhxbvrntbvtgcuhihdslqlojs/SourcePackages/checkouts/CocoaLumberjack/Sources/CocoaLumberjackSwiftSupport/include"
-export *
-}

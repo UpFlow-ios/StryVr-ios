@@ -1,4 +1,0 @@
-module FirebaseCrashlyticsSwift {
-header "FirebaseCrashlyticsSwift-Swift.h"
-export *
-}

@@ -1,4 +1,0 @@
-module Promises {
-header "Promises-Swift.h"
-export *
-}
