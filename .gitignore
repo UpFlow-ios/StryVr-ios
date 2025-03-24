@@ -1,2 +1,15 @@
-node_modules/
-lottie-ios/
+# Xcode files
+*.xcuserstate
+*.xcuserdata
+project.xcworkspace/
+DerivedData/
+build/
+
+# Swift Package Manager
+.build/
+
+# macOS Files
+.DS_Store
+
+# CocoaPods (future-proofing)
+Pods/
