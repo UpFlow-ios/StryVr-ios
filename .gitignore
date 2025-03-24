@@ -10,6 +10,3 @@ build/
 
 # macOS Files
 .DS_Store
-
-# CocoaPods (future-proofing)
-Pods/
