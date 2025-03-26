@@ -26,7 +26,7 @@
 		856AA63D2D9164E900402F84 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA5F12D9164E900402F84 /* UserModel.swift */; };
 		856AA63F2D9164E900402F84 /* FriendLearningFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA60D2D9164E900402F84 /* FriendLearningFeed.swift */; };
 		856AA6412D9164E900402F84 /* LottieAnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6042D9164E900402F84 /* LottieAnimationManager.swift */; };
-		856AA6452D9164E900402F84 /* profileview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6182D9164E900402F84 /* profileview.swift */; };
+		856AA6452D9164E900402F84 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6182D9164E900402F84 /* ProfileView.swift */; };
 		856AA6462D9164E900402F84 /* ConferenceCallModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA5EC2D9164E900402F84 /* ConferenceCallModel.swift */; };
 		856AA6492D9164E900402F84 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA61E2D9164E900402F84 /* SplashScreenView.swift */; };
 		856AA64B2D9164E900402F84 /* VideoPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA5F22D9164E900402F84 /* VideoPostModel.swift */; };
@@ -70,7 +70,7 @@
 		856AA69B2D91738700402F84 /* SkillVisualizationDashboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA69A2D91738700402F84 /* SkillVisualizationDashboards.swift */; };
 		856AA69D2D9173EF00402F84 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA69C2D9173EF00402F84 /* PaywallView.swift */; };
 		856AA69F2D91744E00402F84 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA69E2D91744E00402F84 /* LeaderboardView.swift */; };
-		856AA6A12D9174A300402F84 /* homeviewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6A02D9174A300402F84 /* homeviewmodel.swift */; };
+		856AA6A12D9174A300402F84 /* homeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6A02D9174A300402F84 /* homeViewModel.swift */; };
 		856EB3312D8520E300DC0134 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 856EB3302D8520E300DC0134 /* Lottie */; };
 		8576DD412D84849200409153 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 8576DD402D84849100409153 /* FirebaseMessaging */; };
 		858CD9762D82236900B6B9D3 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 858CD9752D82236900B6B9D3 /* FirebaseCore */; };
@@ -82,6 +82,9 @@
 		8591744E2D8201D700A06F42 /* CocoaLumberjackSwiftLogBackend in Frameworks */ = {isa = PBXBuildFile; productRef = 8591744D2D8201D700A06F42 /* CocoaLumberjackSwiftLogBackend */; };
 		859174522D82020000A06F42 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 859174512D82020000A06F42 /* FirebaseAnalyticsOnDeviceConversion */; };
 		859174562D82020000A06F42 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 859174552D82020000A06F42 /* FirebaseAppCheck */; };
+		85AD56992D945507007B6542 /* StryVr-ios.png in Resources */ = {isa = PBXBuildFile; fileRef = 85AD56962D945507007B6542 /* StryVr-ios.png */; };
+		85AD569B2D945507007B6542 /* StryVr-ios 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 85AD56972D945507007B6542 /* StryVr-ios 1.png */; };
+		85AD56A22D94BA79007B6542 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AD56A12D94BA79007B6542 /* Skill.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,7 +113,7 @@
 		854ECFD82D701D5F00D0B0AC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		856AA5EA2D9164E900402F84 /* Assets .xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets .xcassets"; sourceTree = "<group>"; };
 		856AA5EC2D9164E900402F84 /* ConferenceCallModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceCallModel.swift; sourceTree = "<group>"; };
-		856AA5ED2D9164E900402F84 /* LearningPathsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningPathsView.swift; sourceTree = "<group>"; };
+		856AA5ED2D9164E900402F84 /* LearningPathsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LearningPathsView.swift; path = ../Models/LearningPathsView.swift; sourceTree = "<group>"; };
 		856AA5EE2D9164E900402F84 /* MentorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorModel.swift; sourceTree = "<group>"; };
 		856AA5EF2D9164E900402F84 /* ReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportModel.swift; sourceTree = "<group>"; };
 		856AA5F02D9164E900402F84 /* SkillVerificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillVerificationModel.swift; sourceTree = "<group>"; };
@@ -124,20 +127,19 @@
 		856AA60E2D9164E900402F84 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		856AA6152D9164E900402F84 /* CustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationView.swift; sourceTree = "<group>"; };
 		856AA6162D9164E900402F84 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
-		856AA6182D9164E900402F84 /* profileview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileview.swift; sourceTree = "<group>"; };
+		856AA6182D9164E900402F84 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		856AA61A2D9164E900402F84 /* CompanyVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyVerificationView.swift; sourceTree = "<group>"; };
-		856AA61B2D9164E900402F84 /* SecureStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorageManager.swift; sourceTree = "<group>"; };
+		856AA61B2D9164E900402F84 /* SecureStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SecureStorageManager.swift; path = ../Views/Security/SecureStorageManager.swift; sourceTree = "<group>"; };
 		856AA61C2D9164E900402F84 /* SkillVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillVerificationView.swift; sourceTree = "<group>"; };
 		856AA61E2D9164E900402F84 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		856AA6202D9164E900402F84 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		856AA6212D9164E900402F84 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		856AA6222D9164E900402F84 /* SkillTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillTagView.swift; sourceTree = "<group>"; };
-		856AA6242D9164E900402F84 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		856AA6242D9164E900402F84 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ThemeManager.swift; path = ../Views/UITheme/ThemeManager.swift; sourceTree = "<group>"; };
 		856AA6632D91674C00402F84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		856AA6652D9167AE00402F84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		856AA6672D91681500402F84 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		856AA6692D91686B00402F84 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		856AA66B2D9168D100402F84 /* StryVr.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StryVr.entitlements; sourceTree = "<group>"; };
 		856AA66C2D91692E00402F84 /* StryVrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StryVrApp.swift; sourceTree = "<group>"; };
 		856AA66E2D9169A900402F84 /* AIProfileValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIProfileValidator.swift; sourceTree = "<group>"; };
 		856AA6702D916A2B00402F84 /* MentorListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorListView.swift; sourceTree = "<group>"; };
@@ -163,10 +165,20 @@
 		856AA69A2D91738700402F84 /* SkillVisualizationDashboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillVisualizationDashboards.swift; sourceTree = "<group>"; };
 		856AA69C2D9173EF00402F84 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		856AA69E2D91744E00402F84 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
-		856AA6A02D9174A300402F84 /* homeviewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeviewmodel.swift; sourceTree = "<group>"; };
+		856AA6A02D9174A300402F84 /* homeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeViewModel.swift; sourceTree = "<group>"; };
+		8594C5422D9436A300D53C39 /* StryVr.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StryVr.entitlements; sourceTree = "<group>"; };
 		859B0AB02D57D3E900E5ADF1 /* StryVr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StryVr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		859B0AC62D57D3F400E5ADF1 /* StryVrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StryVrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		859B0AD02D57D3F500E5ADF1 /* StryVrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StryVrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		85AD56962D945507007B6542 /* StryVr-ios.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StryVr-ios.png"; sourceTree = "<group>"; };
+		85AD56972D945507007B6542 /* StryVr-ios 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StryVr-ios 1.png"; sourceTree = "<group>"; };
+		85AD569C2D94B8A3007B6542 /* Mentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mentor.swift; sourceTree = "<group>"; };
+		85AD569D2D94B931007B6542 /* ChallengeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeModel.swift; sourceTree = "<group>"; };
+		85AD56A02D94B9EA007B6542 /* SubscriptionPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPlan.swift; sourceTree = "<group>"; };
+		85AD56A12D94BA79007B6542 /* Skill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skill.swift; sourceTree = "<group>"; };
+		85AD56A32D94BA97007B6542 /* LearningReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningReport.swift; sourceTree = "<group>"; };
+		85AD56A42D94BAE8007B6542 /* SkillProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillProgress.swift; sourceTree = "<group>"; };
+		85AD56A52D94BB38007B6542 /* MentorReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorReport.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,7 +253,7 @@
 				856AA6632D91674C00402F84 /* AppDelegate.swift */,
 				856AA6692D91686B00402F84 /* SceneDelegate.swift */,
 				856AA66C2D91692E00402F84 /* StryVrApp.swift */,
-				856AA66B2D9168D100402F84 /* StryVr.entitlements */,
+				8594C5422D9436A300D53C39 /* StryVr.entitlements */,
 				856AA6652D9167AE00402F84 /* Info.plist */,
 				856AA6672D91681500402F84 /* LaunchScreen.storyboard */,
 			);
@@ -252,6 +264,8 @@
 			isa = PBXGroup;
 			children = (
 				856AA5EA2D9164E900402F84 /* Assets .xcassets */,
+				85AD56972D945507007B6542 /* StryVr-ios 1.png */,
+				85AD56962D945507007B6542 /* StryVr-ios.png */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -262,10 +276,16 @@
 				856AA5F12D9164E900402F84 /* UserModel.swift */,
 				856AA5EE2D9164E900402F84 /* MentorModel.swift */,
 				856AA5EC2D9164E900402F84 /* ConferenceCallModel.swift */,
-				856AA5ED2D9164E900402F84 /* LearningPathsView.swift */,
 				856AA5EF2D9164E900402F84 /* ReportModel.swift */,
 				856AA5F02D9164E900402F84 /* SkillVerificationModel.swift */,
 				856AA5F22D9164E900402F84 /* VideoPostModel.swift */,
+				85AD569C2D94B8A3007B6542 /* Mentor.swift */,
+				85AD569D2D94B931007B6542 /* ChallengeModel.swift */,
+				85AD56A02D94B9EA007B6542 /* SubscriptionPlan.swift */,
+				85AD56A12D94BA79007B6542 /* Skill.swift */,
+				85AD56A32D94BA97007B6542 /* LearningReport.swift */,
+				85AD56A42D94BAE8007B6542 /* SkillProgress.swift */,
+				85AD56A52D94BB38007B6542 /* MentorReport.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -297,6 +317,8 @@
 			children = (
 				856AA6042D9164E900402F84 /* LottieAnimationManager.swift */,
 				856AA6052D9164E900402F84 /* NetworkManager.swift */,
+				856AA61B2D9164E900402F84 /* SecureStorageManager.swift */,
+				856AA6242D9164E900402F84 /* ThemeManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -305,7 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				856AA68E2D91700100402F84 /* AuthViewModel.swift */,
-				856AA6A02D9174A300402F84 /* homeviewmodel.swift */,
+				856AA6A02D9174A300402F84 /* homeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -358,7 +380,7 @@
 		856AA6192D9164E900402F84 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				856AA6182D9164E900402F84 /* profileview.swift */,
+				856AA6182D9164E900402F84 /* ProfileView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -367,7 +389,6 @@
 			isa = PBXGroup;
 			children = (
 				856AA61A2D9164E900402F84 /* CompanyVerificationView.swift */,
-				856AA61B2D9164E900402F84 /* SecureStorageManager.swift */,
 				856AA61C2D9164E900402F84 /* SkillVerificationView.swift */,
 			);
 			path = Security;
@@ -391,14 +412,6 @@
 			path = UIComponents;
 			sourceTree = "<group>";
 		};
-		856AA6252D9164E900402F84 /* UITheme */ = {
-			isa = PBXGroup;
-			children = (
-				856AA6242D9164E900402F84 /* ThemeManager.swift */,
-			);
-			path = UITheme;
-			sourceTree = "<group>";
-		};
 		856AA62A2D9164E900402F84 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -411,11 +424,11 @@
 				856AA61D2D9164E900402F84 /* Security */,
 				856AA61F2D9164E900402F84 /* SplashScreen */,
 				856AA6232D9164E900402F84 /* UIComponents */,
-				856AA6252D9164E900402F84 /* UITheme */,
 				856AA6982D91733900402F84 /* AISkillCoachView.swift */,
 				856AA69E2D91744E00402F84 /* LeaderboardView.swift */,
 				856AA69C2D9173EF00402F84 /* PaywallView.swift */,
 				856AA69A2D91738700402F84 /* SkillVisualizationDashboards.swift */,
+				856AA5ED2D9164E900402F84 /* LearningPathsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -517,6 +530,9 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
@@ -565,6 +581,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				856AA6602D9164E900402F84 /* LoginView.swift  in Resources */,
+				85AD56992D945507007B6542 /* StryVr-ios.png in Resources */,
+				85AD569B2D945507007B6542 /* StryVr-ios 1.png in Resources */,
 				856AA6662D9167AE00402F84 /* Info.plist in Resources */,
 				856AA6682D91681500402F84 /* LaunchScreen.storyboard in Resources */,
 				856AA6612D9164E900402F84 /* Assets .xcassets in Resources */,
@@ -593,6 +611,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				856AA62E2D9164E900402F84 /* CustomNavigationView.swift in Sources */,
+				85AD56A22D94BA79007B6542 /* Skill.swift in Sources */,
 				856AA66D2D91692E00402F84 /* StryVrApp.swift in Sources */,
 				856AA66F2D9169A900402F84 /* AIProfileValidator.swift in Sources */,
 				856AA68B2D916EC600402F84 /* PaymentService.swift in Sources */,
@@ -615,13 +634,13 @@
 				856AA63F2D9164E900402F84 /* FriendLearningFeed.swift in Sources */,
 				856AA67D2D916CB900402F84 /* ChallengeSystem.swift in Sources */,
 				856AA6412D9164E900402F84 /* LottieAnimationManager.swift in Sources */,
-				856AA6452D9164E900402F84 /* profileview.swift in Sources */,
+				856AA6452D9164E900402F84 /* ProfileView.swift in Sources */,
 				856AA6462D9164E900402F84 /* ConferenceCallModel.swift in Sources */,
 				856AA69F2D91744E00402F84 /* LeaderboardView.swift in Sources */,
 				856AA69B2D91738700402F84 /* SkillVisualizationDashboards.swift in Sources */,
 				856AA6752D916AF300402F84 /* APIService.swift in Sources */,
 				856AA6952D91716100402F84 /* MentorshipBookingView.swift in Sources */,
-				856AA6A12D9174A300402F84 /* homeviewmodel.swift in Sources */,
+				856AA6A12D9174A300402F84 /* homeViewModel.swift in Sources */,
 				856AA6492D9164E900402F84 /* SplashScreenView.swift in Sources */,
 				856AA64B2D9164E900402F84 /* VideoPostModel.swift in Sources */,
 				856AA64C2D9164E900402F84 /* CustomButton.swift in Sources */,
@@ -681,13 +700,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = StryVr/StryVr.entitlements;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = StryVr/App/StryVr.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 69Y49KN8KD;
 				FRAMEWORK_SEARCH_PATHS = FirebaseMessaging.framework;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/StryVr/Info.plist\n";
+				INFOPLIST_FILE = "StryVr/App/Info.plist\n";
 				INFOPLIST_KEY_CFBundleDisplayName = StryVr;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -703,6 +724,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stryvr.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -714,13 +736,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = StryVr/StryVr.entitlements;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = StryVr/App/StryVr.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 69Y49KN8KD;
 				FRAMEWORK_SEARCH_PATHS = FirebaseMessaging.framework;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/StryVr/Info.plist\n";
+				INFOPLIST_FILE = "StryVr/App/Info.plist\n";
 				INFOPLIST_KEY_CFBundleDisplayName = StryVr;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -736,6 +760,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stryvr.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

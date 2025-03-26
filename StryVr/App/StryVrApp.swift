@@ -8,7 +8,7 @@ struct StryVrApp: App {
     
     var body: some Scene {
         WindowGroup {
-            HomeView() // Set HomeView as the default screen
+            ContentView() // Set ContentView as the default screen
                 .environmentObject(AuthViewModel.shared) // Inject authentication state globally
         }
     }

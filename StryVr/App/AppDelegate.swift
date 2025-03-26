@@ -3,7 +3,6 @@ import Firebase
 import UserNotifications
 import os.log
 
-@main
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
@@ -25,12 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         setupPushNotifications(application)
 
         // Set Firebase Messaging delegate
+        Messaging.messaging().delegate = self
+
         return true
     }
 
     // MARK: - Push Notifications
-    func Messaging;.messaging().delegate = self
-
     private func setupPushNotifications(_ application: UIApplication) {
         let center = UNUserNotificationCenter.current()
         center.delegate = self
@@ -59,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         os_log("📲 APNS Device Token: %{public}@", log: .default, type: .info, tokenString)
 
         // Register token with Firebase for messaging
-        FirebaseMessaging.Messaging.messaging().apnsToken = deviceToken
+        Messaging.messaging().apnsToken = deviceToken
     }
 
     // Called when push notification registration fails
@@ -71,10 +70,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     }
 }
 
-// MARK: - UNUserNotificationCenterDelegate (Handles Notifications in Foreground)
-extension AppDelegate: UNUserNotificationCenterDelegate {
+//extension AppDelegate: UNUserNotificationCenterDelegate {
 
     // Handle notification while app is in the foreground
+ MARK: - UNUserNotificationCenterDelegate (Handles Notifications in Foreground)
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         willPresent notification: UNNotification,
@@ -112,4 +111,3 @@ extension AppDelegate: MessagingDelegate {
         os_log("📡 Sending token to server: %{public}@", log: .default, type: .info, token)
     }
 }
-

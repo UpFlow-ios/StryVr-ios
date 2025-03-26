@@ -1,0 +1,12 @@
+# Xcode files
+*.xcuserstate
+*.xcuserdata
+project.xcworkspace/
+DerivedData/
+build/
+
+# Swift Package Manager
+.build/
+
+# macOS Files
+.DS_Store
