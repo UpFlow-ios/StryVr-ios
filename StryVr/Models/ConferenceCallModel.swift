@@ -1,58 +1,83 @@
-//
-//  ConferenceCallModel.swift
-//  StryVr
-//
-//  Created by Joe Dormond on 3/11/25.
-//
 import Foundation
 
+// MARK: - ConferenceCallModel
 /// Represents a scheduled conference call within the StryVr platform
 struct ConferenceCallModel: Identifiable, Codable {
-    let id: String  // Unique conference call ID
-    let hostID: String  // ID of the mentor or organizer hosting the call
-    var title: String  // Title or topic of the call
-    var description: String?  // Optional description of the session
-    var participants: [String]  // List of user IDs participating in the call
-    var scheduledDate: Date  // Date and time of the scheduled call
-    var durationMinutes: Int  // Expected duration of the call
-    var callStatus: CallStatus  // Status of the call (upcoming, live, completed)
-    var recordingURL: String?  // Optional URL to a recorded session
-    var engagementMetrics: CallEngagement  // Engagement data for analytics
+    let id: String
+    let hostID: String
+    var title: String
+    var description: String?
+    var participants: [String]
+    var scheduledDate: Date
+    var durationMinutes: Int
+    var callStatus: CallStatus
+    var recordingURL: String?
+    var engagementMetrics: CallEngagement
 
-    /// Computed property to format scheduled date
+    /// Computed property for formatted scheduled date
     var formattedScheduledDate: String {
         return ConferenceCallModel.dateFormatter.string(from: scheduledDate)
     }
 
-    /// Static date formatter to avoid creating a new instance every time
+    /// Optimized static date formatter
     private static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
         return formatter
     }()
+
+    /// Explicit initializer clearly defined
+    init(
+        id: String,
+        hostID: String,
+        title: String,
+        description: String? = nil,
+        participants: [String] = [],
+        scheduledDate: Date,
+        durationMinutes: Int,
+        callStatus: CallStatus = .upcoming,
+        recordingURL: String? = nil,
+        engagementMetrics: CallEngagement = CallEngagement()
+    ) {
+        self.id = id
+        self.hostID = hostID
+        self.title = title
+        self.description = description
+        self.participants = participants
+        self.scheduledDate = scheduledDate
+        self.durationMinutes = durationMinutes
+        self.callStatus = callStatus
+        self.recordingURL = recordingURL
+        self.engagementMetrics = engagementMetrics
+    }
 }
 
-/// Enum for defining the status of a conference call
+// MARK: - CallStatus
+/// Enum defining the status of a conference call
 enum CallStatus: String, Codable {
-    /// Call is upcoming
     case upcoming = "Upcoming"
-    /// Call is live
     case live = "Live"
-    /// Call is completed
     case completed = "Completed"
-    /// Call is canceled
     case canceled = "Canceled"
 }
 
+// MARK: - CallEngagement
 /// Represents engagement metrics for a conference call
 struct CallEngagement: Codable {
-    var totalAttendees: Int = 0
-    var messagesSent: Int = 0
-    var reactions: Int = 0
+    var totalAttendees: Int
+    var messagesSent: Int
+    var reactions: Int
 
-    /// Computed property to calculate engagement score
+    /// Computed property calculating engagement score
     var engagementScore: Int {
         return (totalAttendees * 5) + (messagesSent * 2) + (reactions * 3)
+    }
+
+    /// Explicit initializer clearly defined
+    init(totalAttendees: Int = 0, messagesSent: Int = 0, reactions: Int = 0) {
+        self.totalAttendees = totalAttendees
+        self.messagesSent = messagesSent
+        self.reactions = reactions
     }
 }
