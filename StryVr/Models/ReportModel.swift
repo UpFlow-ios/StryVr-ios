@@ -1,60 +1,68 @@
-//
-//  ReportModel.swift
-//  StryVr
-//
-//  Created by Joe Dormond on 3/11/25.
-//
 import Foundation
 
+// MARK: - ReportModel
 /// Represents a report submitted within the StryVr app
 struct ReportModel: Identifiable, Codable {
-    let id: String  // Unique report ID
-    let reporterID: String  // User who submitted the report
-    let reportedUserID: String?  // User being reported (if applicable)
-    let reportType: ReportType  // Type of report
-    let description: String  // Detailed report description
-    let evidenceURLs: [String]?  // Optional links to evidence (images, videos, etc.)
-    let status: ReportStatus  // Current status of the report
-    let timestamp: Date  // Date when the report was submitted
+    let id: String
+    let reporterID: String
+    let reportedUserID: String?
+    let reportType: ReportType
+    let description: String
+    let evidenceURLs: [String]?
+    let status: ReportStatus
+    let timestamp: Date
 
-    /// Computed property to format report timestamp
+    /// Computed property for formatted timestamp
     var formattedTimestamp: String {
         return ReportModel.dateFormatter.string(from: timestamp)
     }
 
-    /// Static date formatter to avoid creating a new instance every time
+    /// Static date formatter for efficiency
     private static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
         return formatter
     }()
+
+    /// Explicit initializer with clear defaults
+    init(
+        id: String,
+        reporterID: String,
+        reportedUserID: String? = nil,
+        reportType: ReportType,
+        description: String,
+        evidenceURLs: [String]? = nil,
+        status: ReportStatus = .pending,
+        timestamp: Date = Date()
+    ) {
+        self.id = id
+        self.reporterID = reporterID
+        self.reportedUserID = reportedUserID
+        self.reportType = reportType
+        self.description = description
+        self.evidenceURLs = evidenceURLs
+        self.status = status
+        self.timestamp = timestamp
+    }
 }
 
-/// Enum to classify different types of reports
+// MARK: - ReportType
+/// Enum classifying different types of reports
 enum ReportType: String, Codable {
-    /// Report for inappropriate content
     case inappropriateContent = "Inappropriate Content"
-    /// Report for harassment
     case harassment = "Harassment"
-    /// Report for fraud
     case fraud = "Fraud"
-    /// Report for fake profile
     case fakeProfile = "Fake Profile"
-    /// Report for skill verification dispute
     case skillVerificationDispute = "Skill Verification Dispute"
-    /// Report for other reasons
     case other = "Other"
 }
 
-/// Enum to track the report’s current resolution status
+// MARK: - ReportStatus
+/// Enum tracking the report's current resolution status
 enum ReportStatus: String, Codable {
-    /// Report is pending
     case pending = "Pending"
-    /// Report is under review
     case underReview = "Under Review"
-    /// Report is resolved
     case resolved = "Resolved"
-    /// Report is dismissed
     case dismissed = "Dismissed"
 }
