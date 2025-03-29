@@ -1,12 +1,7 @@
-//
-//  ChallengeModel.swift
-//  StryVr
-//
-//  Created by Joe Dormond on 3/26/25.
-//
-
 import Foundation
 
+// MARK: - ChallengeModel
+/// Represents a challenge within the StryVr platform
 struct ChallengeModel: Identifiable, Codable {
     let id: String
     let title: String
@@ -15,4 +10,23 @@ struct ChallengeModel: Identifiable, Codable {
     let endDate: Date
     let participants: [String]
     let isActive: Bool
+
+    /// Explicit initializer clearly defined
+    init(
+        id: String,
+        title: String,
+        description: String,
+        startDate: Date,
+        endDate: Date,
+        participants: [String] = [],
+        isActive: Bool = true
+    ) {
+        self.id = id
+        self.title = title
+        self.description = description
+        self.startDate = startDate
+        self.endDate = endDate
+        self.participants = participants
+        self.isActive = isActive
+    }
 }
