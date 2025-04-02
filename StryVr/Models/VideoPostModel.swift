@@ -32,7 +32,7 @@ struct VideoPostModel: Identifiable, Codable {
         id: String,
         uploaderID: String,
         title: String,
-        description: String? = nil,
+        description: var caption: String?
         videoURL: String,
         thumbnailURL: String? = nil,
         duration: Int,

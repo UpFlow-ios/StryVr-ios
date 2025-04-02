@@ -16,6 +16,12 @@
 		854ECFDD2D701D5F00D0B0AC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854ECFD62D701D5F00D0B0AC /* Security.framework */; };
 		854ECFDE2D701D5F00D0B0AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854ECFD42D701D5F00D0B0AC /* Foundation.framework */; };
 		854ECFDF2D701D5F00D0B0AC /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854ECFD52D701D5F00D0B0AC /* SafariServices.framework */; };
+		855E96042D9D08D9002173EF /* MentorVideoFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855E96032D9D08CE002173EF /* MentorVideoFeedView.swift */; };
+		855E96062D9D0974002173EF /* MentorVideoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855E96052D9D096C002173EF /* MentorVideoCard.swift */; };
+		855E96092D9D0ED0002173EF /* CareerPathInsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855E96082D9D0EC8002173EF /* CareerPathInsightsView.swift */; };
+		855E960B2D9D1009002173EF /* CareerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855E960A2D9D1001002173EF /* CareerCard.swift */; };
+		855E960D2D9D1198002173EF /* MentorVideoUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855E960C2D9D118D002173EF /* MentorVideoUploadView.swift */; };
+		855E960F2D9D1228002173EF /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855E960E2D9D1222002173EF /* DocumentPicker.swift */; };
 		856AA62E2D9164E900402F84 /* CustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6152D9164E900402F84 /* CustomNavigationView.swift */; };
 		856AA6312D9164E900402F84 /* CompanyVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA61A2D9164E900402F84 /* CompanyVerificationView.swift */; };
 		856AA6352D9164E900402F84 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6242D9164E900402F84 /* ThemeManager.swift */; };
@@ -42,7 +48,6 @@
 		856AA6602D9164E900402F84 /* LoginView.swift  in Resources */ = {isa = PBXBuildFile; fileRef = 856AA6092D9164E900402F84 /* LoginView.swift  */; };
 		856AA6612D9164E900402F84 /* Assets .xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 856AA5EA2D9164E900402F84 /* Assets .xcassets */; };
 		856AA6642D91674C00402F84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6632D91674C00402F84 /* AppDelegate.swift */; };
-		856AA6662D9167AE00402F84 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 856AA6652D9167AE00402F84 /* Info.plist */; };
 		856AA6682D91681500402F84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 856AA6672D91681500402F84 /* LaunchScreen.storyboard */; };
 		856AA66A2D91686B00402F84 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6692D91686B00402F84 /* SceneDelegate.swift */; };
 		856AA66D2D91692E00402F84 /* StryVrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA66C2D91692E00402F84 /* StryVrApp.swift */; };
@@ -111,6 +116,13 @@
 		854ECFD62D701D5F00D0B0AC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		854ECFD72D701D5F00D0B0AC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		854ECFD82D701D5F00D0B0AC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		855E95FF2D9D0582002173EF /* ReportAnalysisHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportAnalysisHelper.swift; sourceTree = "<group>"; };
+		855E96032D9D08CE002173EF /* MentorVideoFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorVideoFeedView.swift; sourceTree = "<group>"; };
+		855E96052D9D096C002173EF /* MentorVideoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorVideoCard.swift; sourceTree = "<group>"; };
+		855E96082D9D0EC8002173EF /* CareerPathInsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerPathInsightsView.swift; sourceTree = "<group>"; };
+		855E960A2D9D1001002173EF /* CareerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerCard.swift; sourceTree = "<group>"; };
+		855E960C2D9D118D002173EF /* MentorVideoUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorVideoUploadView.swift; sourceTree = "<group>"; };
+		855E960E2D9D1222002173EF /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
 		856AA5EA2D9164E900402F84 /* Assets .xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets .xcassets"; sourceTree = "<group>"; };
 		856AA5EC2D9164E900402F84 /* ConferenceCallModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceCallModel.swift; sourceTree = "<group>"; };
 		856AA5ED2D9164E900402F84 /* LearningPathsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LearningPathsView.swift; path = ../Models/LearningPathsView.swift; sourceTree = "<group>"; };
@@ -181,6 +193,27 @@
 		85AD56A52D94BB38007B6542 /* MentorReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorReport.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		855E96012D9D0842002173EF /* Exceptions for "Enterprise" folder in "StryVr" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				BusinessAnalyticsDashboard.swift,
+			);
+			target = 859B0AAF2D57D3E900E5ADF1 /* StryVr */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		855E96002D9D0815002173EF /* Enterprise */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				855E96012D9D0842002173EF /* Exceptions for "Enterprise" folder in "StryVr" target */,
+			);
+			path = Enterprise;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		859B0AAD2D57D3E900E5ADF1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -245,6 +278,26 @@
 				854ECFD82D701D5F00D0B0AC /* UIKit.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		855E96022D9D089A002173EF /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				855E960E2D9D1222002173EF /* DocumentPicker.swift */,
+				855E960C2D9D118D002173EF /* MentorVideoUploadView.swift */,
+				855E96052D9D096C002173EF /* MentorVideoCard.swift */,
+				855E96032D9D08CE002173EF /* MentorVideoFeedView.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		855E96072D9D0E8B002173EF /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				855E960A2D9D1001002173EF /* CareerCard.swift */,
+				855E96082D9D0EC8002173EF /* CareerPathInsightsView.swift */,
+			);
+			path = AI;
 			sourceTree = "<group>";
 		};
 		856AA5E92D9164E900402F84 /* App */ = {
@@ -319,6 +372,7 @@
 				856AA6052D9164E900402F84 /* NetworkManager.swift */,
 				856AA61B2D9164E900402F84 /* SecureStorageManager.swift */,
 				856AA6242D9164E900402F84 /* ThemeManager.swift */,
+				855E95FF2D9D0582002173EF /* ReportAnalysisHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -415,6 +469,9 @@
 		856AA62A2D9164E900402F84 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				855E96072D9D0E8B002173EF /* AI */,
+				855E96022D9D089A002173EF /* Feed */,
+				855E96002D9D0815002173EF /* Enterprise */,
 				856AA60A2D9164E900402F84 /* Auth */,
 				856AA60C2D9164E900402F84 /* Challenges */,
 				856AA60F2D9164E900402F84 /* Home */,
@@ -481,6 +538,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				855E96002D9D0815002173EF /* Enterprise */,
 			);
 			name = StryVr;
 			productName = UpFlow;
@@ -583,7 +643,6 @@
 				856AA6602D9164E900402F84 /* LoginView.swift  in Resources */,
 				85AD56992D945507007B6542 /* StryVr-ios.png in Resources */,
 				85AD569B2D945507007B6542 /* StryVr-ios 1.png in Resources */,
-				856AA6662D9167AE00402F84 /* Info.plist in Resources */,
 				856AA6682D91681500402F84 /* LaunchScreen.storyboard in Resources */,
 				856AA6612D9164E900402F84 /* Assets .xcassets in Resources */,
 			);
@@ -610,8 +669,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				855E960D2D9D1198002173EF /* MentorVideoUploadView.swift in Sources */,
 				856AA62E2D9164E900402F84 /* CustomNavigationView.swift in Sources */,
 				85AD56A22D94BA79007B6542 /* Skill.swift in Sources */,
+				855E96092D9D0ED0002173EF /* CareerPathInsightsView.swift in Sources */,
 				856AA66D2D91692E00402F84 /* StryVrApp.swift in Sources */,
 				856AA66F2D9169A900402F84 /* AIProfileValidator.swift in Sources */,
 				856AA68B2D916EC600402F84 /* PaymentService.swift in Sources */,
@@ -622,6 +683,7 @@
 				856AA6352D9164E900402F84 /* ThemeManager.swift in Sources */,
 				856AA68D2D916F0800402F84 /* ReportGeneration.swift in Sources */,
 				856AA6362D9164E900402F84 /* HomeView.swift in Sources */,
+				855E96062D9D0974002173EF /* MentorVideoCard.swift in Sources */,
 				856AA6382D9164E900402F84 /* SkillTagView.swift in Sources */,
 				856AA6852D916DF500402F84 /* VideoContentService.swift in Sources */,
 				856AA6392D9164E900402F84 /* ProgressBarView.swift in Sources */,
@@ -631,7 +693,9 @@
 				856AA6872D916E4300402F84 /* NotificationService.swift in Sources */,
 				856AA6972D91720900402F84 /* MentorSessionListView.swift in Sources */,
 				856AA6732D916A9B00402F84 /* AIRecommendationService.swift in Sources */,
+				855E960B2D9D1009002173EF /* CareerCard.swift in Sources */,
 				856AA63F2D9164E900402F84 /* FriendLearningFeed.swift in Sources */,
+				855E96042D9D08D9002173EF /* MentorVideoFeedView.swift in Sources */,
 				856AA67D2D916CB900402F84 /* ChallengeSystem.swift in Sources */,
 				856AA6412D9164E900402F84 /* LottieAnimationManager.swift in Sources */,
 				856AA6452D9164E900402F84 /* ProfileView.swift in Sources */,
@@ -653,6 +717,7 @@
 				856AA6522D9164E900402F84 /* NetworkManager.swift in Sources */,
 				856AA6542D9164E900402F84 /* LearningPathsView.swift in Sources */,
 				856AA68F2D91702900402F84 /* AuthViewModel.swift in Sources */,
+				855E960F2D9D1228002173EF /* DocumentPicker.swift in Sources */,
 				856AA6572D9164E900402F84 /* GroupChallengesView.swift in Sources */,
 				856AA6812D916D7700402F84 /* FirestoreService.swift in Sources */,
 				856AA6582D9164E900402F84 /* SkillVerificationView.swift in Sources */,
@@ -822,7 +887,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include";
-				INFOPLIST_FILE = "$(SRCROOT)/StryVr/Info.plist\n";
+				INFOPLIST_FILE = StryVr/App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -883,7 +948,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include";
-				INFOPLIST_FILE = "$(SRCROOT)/StryVr/Info.plist\n";
+				INFOPLIST_FILE = StryVr/App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
