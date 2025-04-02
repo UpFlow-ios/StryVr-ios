@@ -178,7 +178,6 @@
 		856AA69C2D9173EF00402F84 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		856AA69E2D91744E00402F84 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		856AA6A02D9174A300402F84 /* homeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeViewModel.swift; sourceTree = "<group>"; };
-		8594C5422D9436A300D53C39 /* StryVr.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StryVr.entitlements; sourceTree = "<group>"; };
 		859B0AB02D57D3E900E5ADF1 /* StryVr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StryVr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		859B0AC62D57D3F400E5ADF1 /* StryVrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StryVrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		859B0AD02D57D3F500E5ADF1 /* StryVrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StryVrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,6 +209,11 @@
 				855E96012D9D0842002173EF /* Exceptions for "Enterprise" folder in "StryVr" target */,
 			);
 			path = Enterprise;
+			sourceTree = "<group>";
+		};
+		855E96122D9DB44E002173EF /* SupportingFiles */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -303,10 +307,10 @@
 		856AA5E92D9164E900402F84 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				855E96122D9DB44E002173EF /* SupportingFiles */,
 				856AA6632D91674C00402F84 /* AppDelegate.swift */,
 				856AA6692D91686B00402F84 /* SceneDelegate.swift */,
 				856AA66C2D91692E00402F84 /* StryVrApp.swift */,
-				8594C5422D9436A300D53C39 /* StryVr.entitlements */,
 				856AA6652D9167AE00402F84 /* Info.plist */,
 				856AA6672D91681500402F84 /* LaunchScreen.storyboard */,
 			);
@@ -541,6 +545,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				855E96002D9D0815002173EF /* Enterprise */,
+				855E96122D9DB44E002173EF /* SupportingFiles */,
 			);
 			name = StryVr;
 			productName = UpFlow;
