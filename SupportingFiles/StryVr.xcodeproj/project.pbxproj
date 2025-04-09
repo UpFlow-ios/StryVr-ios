@@ -14,6 +14,7 @@
 		8519660B2DA6D836004264AE /* StryVrCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8519660A2DA6D836004264AE /* StryVrCardView.swift */; };
 		8519660F2DA6D894004264AE /* StryVrProgressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8519660E2DA6D894004264AE /* StryVrProgressCircle.swift */; };
 		851966112DA6D8A7004264AE /* StryVrChartCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851966102DA6D8A7004264AE /* StryVrChartCard.swift */; };
+		851966132DA6DACE004264AE /* ReportsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851966122DA6DAC6004264AE /* ReportsDashboardView.swift */; };
 		854826732D83B55B0078A0F9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 854826722D83B55B0078A0F9 /* FirebaseAuth */; };
 		854826792D83B55B0078A0F9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 854826782D83B55B0078A0F9 /* FirebaseFirestore */; };
 		8548267F2D83B5E80078A0F9 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8548267E2D83B5E80078A0F9 /* CocoaLumberjackSwift */; };
@@ -123,6 +124,7 @@
 		8519660A2DA6D836004264AE /* StryVrCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StryVrCardView.swift; sourceTree = "<group>"; };
 		8519660E2DA6D894004264AE /* StryVrProgressCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StryVrProgressCircle.swift; sourceTree = "<group>"; };
 		851966102DA6D8A7004264AE /* StryVrChartCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StryVrChartCard.swift; sourceTree = "<group>"; };
+		851966122DA6DAC6004264AE /* ReportsDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsDashboardView.swift; sourceTree = "<group>"; };
 		854ECFD32D701D5F00D0B0AC /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
 		854ECFD42D701D5F00D0B0AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		854ECFD52D701D5F00D0B0AC /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/SafariServices.framework; sourceTree = DEVELOPER_DIR; };
@@ -431,6 +433,7 @@
 		856AA60F2D9164E900402F84 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				851966122DA6DAC6004264AE /* ReportsDashboardView.swift */,
 				856AA60E2D9164E900402F84 /* HomeView.swift */,
 				856AA60D2D9164E900402F84 /* FriendLearningFeed.swift */,
 			);
@@ -763,6 +766,7 @@
 				856AA65A2D9164E900402F84 /* ReportModel.swift in Sources */,
 				856AA6892D916E7E00402F84 /* SecureStorageService.swift in Sources */,
 				856AA6832D916DA000402F84 /* MentorMatchingService.swift in Sources */,
+				851966132DA6DACE004264AE /* ReportsDashboardView.swift in Sources */,
 				856AA6772D916B7800402F84 /* AuthManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
