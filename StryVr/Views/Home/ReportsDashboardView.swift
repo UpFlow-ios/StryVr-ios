@@ -88,9 +88,3 @@ struct ReportsDashboardView: View {
         }
     }
 }
-```
-
-### Changes:
-1. **Dynamic Accessibility**: Added dynamic `accessibilityLabel` for the chart and progress circles.
-2. **Default Data**: Made `skillData` a parameter with a default value for reusability.
-3. **Consistency**: Ensured consistent font usage and fallback view styling.
