@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		851966062DA6D782004264AE /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851966022DA6D782004264AE /* FontStyle.swift */; };
+		851966072DA6D782004264AE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851966012DA6D782004264AE /* Colors.swift */; };
+		851966082DA6D782004264AE /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851966042DA6D782004264AE /* ThemeManager.swift */; };
+		851966092DA6D782004264AE /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851966032DA6D782004264AE /* Spacing.swift */; };
+		8519660B2DA6D836004264AE /* StryVrCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8519660A2DA6D836004264AE /* StryVrCardView.swift */; };
+		8519660F2DA6D894004264AE /* StryVrProgressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8519660E2DA6D894004264AE /* StryVrProgressCircle.swift */; };
+		851966112DA6D8A7004264AE /* StryVrChartCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851966102DA6D8A7004264AE /* StryVrChartCard.swift */; };
 		854826732D83B55B0078A0F9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 854826722D83B55B0078A0F9 /* FirebaseAuth */; };
 		854826792D83B55B0078A0F9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 854826782D83B55B0078A0F9 /* FirebaseFirestore */; };
 		8548267F2D83B5E80078A0F9 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8548267E2D83B5E80078A0F9 /* CocoaLumberjackSwift */; };
@@ -24,7 +31,6 @@
 		855E960F2D9D1228002173EF /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855E960E2D9D1222002173EF /* DocumentPicker.swift */; };
 		856AA62E2D9164E900402F84 /* CustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6152D9164E900402F84 /* CustomNavigationView.swift */; };
 		856AA6312D9164E900402F84 /* CompanyVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA61A2D9164E900402F84 /* CompanyVerificationView.swift */; };
-		856AA6352D9164E900402F84 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6242D9164E900402F84 /* ThemeManager.swift */; };
 		856AA6362D9164E900402F84 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA60E2D9164E900402F84 /* HomeView.swift */; };
 		856AA6382D9164E900402F84 /* SkillTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6222D9164E900402F84 /* SkillTagView.swift */; };
 		856AA6392D9164E900402F84 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6212D9164E900402F84 /* ProgressBarView.swift */; };
@@ -110,6 +116,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		851966012DA6D782004264AE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		851966022DA6D782004264AE /* FontStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStyle.swift; sourceTree = "<group>"; };
+		851966032DA6D782004264AE /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
+		851966042DA6D782004264AE /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		8519660A2DA6D836004264AE /* StryVrCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StryVrCardView.swift; sourceTree = "<group>"; };
+		8519660E2DA6D894004264AE /* StryVrProgressCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StryVrProgressCircle.swift; sourceTree = "<group>"; };
+		851966102DA6D8A7004264AE /* StryVrChartCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StryVrChartCard.swift; sourceTree = "<group>"; };
 		854ECFD32D701D5F00D0B0AC /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
 		854ECFD42D701D5F00D0B0AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		854ECFD52D701D5F00D0B0AC /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/SafariServices.framework; sourceTree = DEVELOPER_DIR; };
@@ -147,7 +160,6 @@
 		856AA6202D9164E900402F84 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		856AA6212D9164E900402F84 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		856AA6222D9164E900402F84 /* SkillTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillTagView.swift; sourceTree = "<group>"; };
-		856AA6242D9164E900402F84 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ThemeManager.swift; path = ../Views/UITheme/ThemeManager.swift; sourceTree = "<group>"; };
 		856AA6632D91674C00402F84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		856AA6652D9167AE00402F84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		856AA6672D91681500402F84 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -271,6 +283,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		851966052DA6D782004264AE /* UITheme */ = {
+			isa = PBXGroup;
+			children = (
+				851966012DA6D782004264AE /* Colors.swift */,
+				851966022DA6D782004264AE /* FontStyle.swift */,
+				851966032DA6D782004264AE /* Spacing.swift */,
+				851966042DA6D782004264AE /* ThemeManager.swift */,
+			);
+			path = UITheme;
+			sourceTree = "<group>";
+		};
 		854ECFD92D701D5F00D0B0AC /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,7 +398,6 @@
 				856AA6042D9164E900402F84 /* LottieAnimationManager.swift */,
 				856AA6052D9164E900402F84 /* NetworkManager.swift */,
 				856AA61B2D9164E900402F84 /* SecureStorageManager.swift */,
-				856AA6242D9164E900402F84 /* ThemeManager.swift */,
 				855E95FF2D9D0582002173EF /* ReportAnalysisHelper.swift */,
 			);
 			path = Utils;
@@ -463,6 +485,9 @@
 		856AA6232D9164E900402F84 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				851966102DA6D8A7004264AE /* StryVrChartCard.swift */,
+				8519660E2DA6D894004264AE /* StryVrProgressCircle.swift */,
+				8519660A2DA6D836004264AE /* StryVrCardView.swift */,
 				856AA6202D9164E900402F84 /* CustomButton.swift */,
 				856AA6212D9164E900402F84 /* ProgressBarView.swift */,
 				856AA6222D9164E900402F84 /* SkillTagView.swift */,
@@ -473,6 +498,7 @@
 		856AA62A2D9164E900402F84 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				851966052DA6D782004264AE /* UITheme */,
 				855E96072D9D0E8B002173EF /* AI */,
 				855E96022D9D089A002173EF /* Feed */,
 				855E96002D9D0815002173EF /* Enterprise */,
@@ -678,6 +704,7 @@
 				856AA62E2D9164E900402F84 /* CustomNavigationView.swift in Sources */,
 				85AD56A22D94BA79007B6542 /* Skill.swift in Sources */,
 				855E96092D9D0ED0002173EF /* CareerPathInsightsView.swift in Sources */,
+				8519660B2DA6D836004264AE /* StryVrCardView.swift in Sources */,
 				856AA66D2D91692E00402F84 /* StryVrApp.swift in Sources */,
 				856AA66F2D9169A900402F84 /* AIProfileValidator.swift in Sources */,
 				856AA68B2D916EC600402F84 /* PaymentService.swift in Sources */,
@@ -685,12 +712,17 @@
 				856AA6312D9164E900402F84 /* CompanyVerificationView.swift in Sources */,
 				856AA6792D916BEA00402F84 /* AuthService.swift in Sources */,
 				856AA67F2D916D0900402F84 /* ConferenceCallService.swift in Sources */,
-				856AA6352D9164E900402F84 /* ThemeManager.swift in Sources */,
 				856AA68D2D916F0800402F84 /* ReportGeneration.swift in Sources */,
 				856AA6362D9164E900402F84 /* HomeView.swift in Sources */,
 				855E96062D9D0974002173EF /* MentorVideoCard.swift in Sources */,
+				851966062DA6D782004264AE /* FontStyle.swift in Sources */,
+				851966072DA6D782004264AE /* Colors.swift in Sources */,
+				851966112DA6D8A7004264AE /* StryVrChartCard.swift in Sources */,
+				851966082DA6D782004264AE /* ThemeManager.swift in Sources */,
+				851966092DA6D782004264AE /* Spacing.swift in Sources */,
 				856AA6382D9164E900402F84 /* SkillTagView.swift in Sources */,
 				856AA6852D916DF500402F84 /* VideoContentService.swift in Sources */,
+				8519660F2DA6D894004264AE /* StryVrProgressCircle.swift in Sources */,
 				856AA6392D9164E900402F84 /* ProgressBarView.swift in Sources */,
 				856AA63B2D9164E900402F84 /* CustomTabBar.swift in Sources */,
 				856AA6992D91733900402F84 /* AISkillCoachView.swift in Sources */,
@@ -771,7 +803,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = "App/SupportingFiles/StryVr.entitlements\n";
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -807,7 +839,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = "App/SupportingFiles/StryVr.entitlements\n";
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
