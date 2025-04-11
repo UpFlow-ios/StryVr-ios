@@ -11,35 +11,57 @@ import os.log
 /// Displays a real-time social feed showing what friends are learning
 struct FriendLearningFeed: View {
     @State private var feedItems: [LearningFeedItem] = []
+    @State private var isError: Bool = false
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "FriendLearningFeed")
 
     var body: some View {
         NavigationView {
-            List(feedItems) { item in
-                HStack {
-                    AsyncImage(url: URL(string: item.friendProfileImage)) { image in
-                        image.resizable().scaledToFill()
-                    } placeholder: {
-                        Circle().fill(Color.gray.opacity(0.3))
-                    }
-                    .frame(width: 50, height: 50)
-                    .clipShape(Circle())
+            ZStack {
+                if isError {
+                    Text("Failed to load feed. Please try again later.")
+                        .font(.headline)
+                        .foregroundColor(.red)
+                        .padding()
+                        .accessibilityLabel("Error: Failed to load feed")
+                } else if feedItems.isEmpty {
+                    Text("No activity to display.")
+                        .font(.headline)
+                        .foregroundColor(.gray)
+                        .padding()
+                        .accessibilityLabel("No activity to display")
+                } else {
+                    List(feedItems) { item in
+                        HStack {
+                            AsyncImage(url: URL(string: item.friendProfileImage)) { image in
+                                image.resizable().scaledToFill()
+                            } placeholder: {
+                                Circle().fill(Color.gray.opacity(0.3))
+                            }
+                            .frame(width: 50, height: 50)
+                            .clipShape(Circle())
+                            .accessibilityLabel("Profile image of \(item.friendName)")
 
-                    VStack(alignment: .leading) {
-                        Text("\(item.friendName) is learning \(item.skillName)")
-                            .font(.headline)
-                        Text(item.timestamp, style: .time)
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                    }
+                            VStack(alignment: .leading) {
+                                Text("\(item.friendName) is learning \(item.skillName)")
+                                    .font(.headline)
+                                    .accessibilityLabel("\(item.friendName) is learning \(item.skillName)")
+                                Text(item.timestamp, style: .time)
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                                    .accessibilityLabel("Timestamp: \(item.timestamp.formatted())")
+                            }
 
-                    Spacer()
+                            Spacer()
 
-                    Button(action: {
-                        logger.info("Engaged with \(item.skillName)")
-                    }) {
-                        Image(systemName: "hand.thumbsup.fill")
-                            .foregroundColor(.blue)
+                            Button(action: {
+                                logger.info("Engaged with \(item.skillName)")
+                            }) {
+                                Image(systemName: "hand.thumbsup.fill")
+                                    .foregroundColor(.blue)
+                                    .accessibilityLabel("Like \(item.skillName)")
+                            }
+                        }
+                        .transition(.opacity) // Smooth fade animation
                     }
                 }
             }
@@ -57,13 +79,23 @@ struct FriendLearningFeed: View {
             .whereField("followers", arrayContains: userID)
             .order(by: "timestamp", descending: true)
             .addSnapshotListener { snapshot, error in
-                guard let documents = snapshot?.documents, error == nil else {
-                    logger.error("Error fetching feed: \(error?.localizedDescription ?? "Unknown error")")
-                    return
-                }
+                DispatchQueue.main.async {
+                    if let error = error {
+                        logger.error("Error fetching feed: \(error.localizedDescription)")
+                        isError = true
+                        return
+                    }
 
-                self.feedItems = documents.compactMap { doc -> LearningFeedItem? in
-                    try? doc.data(as: LearningFeedItem.self)
+                    guard let documents = snapshot?.documents else {
+                        isError = true
+                        return
+                    }
+
+                    withAnimation {
+                        self.feedItems = documents.compactMap { doc -> LearningFeedItem? in
+                            try? doc.data(as: LearningFeedItem.self)
+                        }
+                    }
                 }
             }
     }
@@ -78,4 +110,3 @@ struct LearningFeedItem: Identifiable, Codable {
     let skillName: String
     let timestamp: Date
 }
-
