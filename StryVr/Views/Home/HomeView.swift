@@ -18,8 +18,11 @@ struct HomeView: View {
                     .font(.largeTitle)
                     .bold()
                 
-                MentorListView(mentors: recommendedMentors)
-                
+                if !recommendedMentors.isEmpty {
+                    MentorListView(mentors: recommendedMentors)
+                        .transition(.opacity) // Apply fade transition
+                }
+
                 Spacer()
             }
             .padding()
@@ -34,10 +37,14 @@ struct HomeView: View {
     private func fetchMentorRecommendations() {
         recommendationService.fetchMentorRecommendations(for: "currentUserID") { [weak self] mentors in
             guard let self = self else { return }
-            if mentors.isEmpty {
-                self.logger.error("No mentors found or an error occurred")
+            DispatchQueue.main.async {
+                if mentors.isEmpty {
+                    self.logger.error("No mentors found or an error occurred")
+                }
+                withAnimation { // Animate the state change
+                    self.recommendedMentors = mentors
+                }
             }
-            self.recommendedMentors = mentors
         }
     }
 }
