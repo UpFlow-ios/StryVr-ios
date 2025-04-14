@@ -1,49 +1,88 @@
 import SwiftUI
 
 struct LoginView: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var errorMessage: String?
     @State private var isLoading: Bool = false
 
     var body: some View {
-        VStack {
-            TextField("Email", text: $email)
-                .autocapitalization(.none)
-                .keyboardType(.emailAddress)
-                .padding()
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(8)
+        ZStack {
+            Color.background.ignoresSafeArea()
 
-            SecureField("Password", text: $password)
-                .padding()
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(8)
+            VStack(spacing: Spacing.large) {
+                // MARK: - Title
+                Text("Login to StryVr")
+                    .font(FontStyle.title)
+                    .foregroundColor(.whiteText)
+                    .padding(.top, Spacing.xLarge)
+                    .accessibilityLabel("Login to StryVr")
 
-            if let errorMessage = errorMessage {
-                Text(errorMessage)
-                    .foregroundColor(.red)
+                // MARK: - Email Field
+                TextField("Email", text: $email)
+                    .textContentType(.emailAddress)
+                    .keyboardType(.emailAddress)
                     .padding()
-            }
+                    .background(Color.card)
+                    .cornerRadius(10)
+                    .foregroundColor(.whiteText)
+                    .autocapitalization(.none)
+                    .accessibilityLabel("Email field")
 
-            Button(action: loginUser) {
-                if isLoading {
-                    ProgressView()
-                } else {
-                    Text("Login")
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .cornerRadius(8)
+                // MARK: - Password Field
+                SecureField("Password", text: $password)
+                    .textContentType(.password)
+                    .padding()
+                    .background(Color.card)
+                    .cornerRadius(10)
+                    .foregroundColor(.whiteText)
+                    .accessibilityLabel("Password field")
+
+                // MARK: - Error Message
+                if let errorMessage = errorMessage {
+                    Text(errorMessage)
+                        .font(FontStyle.caption)
+                        .foregroundColor(.red)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, Spacing.medium)
+                        .accessibilityLabel("Error message: \(errorMessage)")
                 }
+
+                // MARK: - Login Button
+                Button(action: loginUser) {
+                    if isLoading {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .neonBlue))
+                            .accessibilityLabel("Loading")
+                    } else {
+                        Text("Login")
+                            .font(FontStyle.body)
+                            .foregroundColor(.whiteText)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.neonBlue)
+                            .cornerRadius(10)
+                            .accessibilityLabel("Login button")
+                    }
+                }
+                .disabled(isLoading)
+                .padding(.top, Spacing.medium)
+
+                Spacer()
             }
-            .disabled(isLoading)
-            .padding()
+            .padding(.horizontal, Spacing.large)
         }
-        .padding()
+        .onReceive(authViewModel.$errorMessage) { newErrorMessage in
+            errorMessage = newErrorMessage
+            isLoading = false
+        }
+        .onReceive(authViewModel.$userSession) { _ in
+            isLoading = false
+        }
     }
 
+    // MARK: - Auth Logic
     private func loginUser() {
         guard !email.isEmpty, !password.isEmpty else {
             errorMessage = "Please enter both email and password."
@@ -51,17 +90,6 @@ struct LoginView: View {
         }
 
         isLoading = true
-        AuthService.shared.signIn(email: email, password: password) { result in
-            DispatchQueue.main.async {
-                isLoading = false
-                switch result {
-                case .success:
-                    errorMessage = nil
-                case .failure(let error):
-                    errorMessage = error.localizedDescription
-                }
-            }
-        }
+        authViewModel.signIn(email: email, password: password)
     }
 }
-
