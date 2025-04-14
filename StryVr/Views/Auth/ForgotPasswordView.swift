@@ -9,6 +9,8 @@ import SwiftUI
 import FirebaseAuth
 
 struct ForgotPasswordView: View {
+    @Environment(\.presentationMode) var presentationMode
+
     @State private var email: String = ""
     @State private var message: String?
     @State private var isError: Bool = false
@@ -20,14 +22,14 @@ struct ForgotPasswordView: View {
 
             VStack(spacing: Spacing.large) {
                 // MARK: - Title
-                Text("Forgot Password")
+                Text("Reset Password")
                     .font(FontStyle.title)
                     .foregroundColor(.whiteText)
                     .padding(.top, Spacing.xLarge)
-                    .accessibilityLabel("Forgot Password")
+                    .accessibilityLabel("Reset your password")
 
                 // MARK: - Email Field
-                TextField("Enter your email", text: $email)
+                TextField("Email", text: $email)
                     .textContentType(.emailAddress)
                     .keyboardType(.emailAddress)
                     .padding()
@@ -37,7 +39,7 @@ struct ForgotPasswordView: View {
                     .autocapitalization(.none)
                     .accessibilityLabel("Email field")
 
-                // MARK: - Message (Success or Error)
+                // MARK: - Message
                 if let message = message {
                     Text(message)
                         .font(FontStyle.caption)
@@ -47,7 +49,7 @@ struct ForgotPasswordView: View {
                         .accessibilityLabel("Message: \(message)")
                 }
 
-                // MARK: - Reset Button
+                // MARK: - Send Link Button
                 Button(action: sendResetLink) {
                     if isLoading {
                         ProgressView()
@@ -65,7 +67,15 @@ struct ForgotPasswordView: View {
                     }
                 }
                 .disabled(isLoading)
-                .padding(.top, Spacing.medium)
+
+                // MARK: - Back to Login
+                Button("Back to Login") {
+                    presentationMode.wrappedValue.dismiss()
+                }
+                .font(FontStyle.caption)
+                .foregroundColor(.neonBlue)
+                .padding(.top, Spacing.small)
+                .accessibilityLabel("Back to login")
 
                 Spacer()
             }
@@ -89,8 +99,8 @@ struct ForgotPasswordView: View {
                     isError = true
                 } else {
                     message = "✅ A password reset link has been sent to \(email)."
-                }
                     isError = false
+                }
             }
         }
     }
