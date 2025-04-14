@@ -6,6 +6,8 @@ struct LoginView: View {
     @State private var password: String = ""
     @State private var errorMessage: String?
     @State private var isLoading: Bool = false
+    @State private var showForgotPassword = false
+    @State private var showRegister = false
 
     var body: some View {
         ZStack {
@@ -19,7 +21,7 @@ struct LoginView: View {
                     .padding(.top, Spacing.xLarge)
                     .accessibilityLabel("Login to StryVr")
 
-                // MARK: - Email Field
+                // MARK: - Email
                 TextField("Email", text: $email)
                     .textContentType(.emailAddress)
                     .keyboardType(.emailAddress)
@@ -28,25 +30,22 @@ struct LoginView: View {
                     .cornerRadius(10)
                     .foregroundColor(.whiteText)
                     .autocapitalization(.none)
-                    .accessibilityLabel("Email field")
 
-                // MARK: - Password Field
+                // MARK: - Password
                 SecureField("Password", text: $password)
                     .textContentType(.password)
                     .padding()
                     .background(Color.card)
                     .cornerRadius(10)
                     .foregroundColor(.whiteText)
-                    .accessibilityLabel("Password field")
 
-                // MARK: - Error Message
+                // MARK: - Error
                 if let errorMessage = errorMessage {
                     Text(errorMessage)
                         .font(FontStyle.caption)
                         .foregroundColor(.red)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, Spacing.medium)
-                        .accessibilityLabel("Error message: \(errorMessage)")
                 }
 
                 // MARK: - Login Button
@@ -54,7 +53,6 @@ struct LoginView: View {
                     if isLoading {
                         ProgressView()
                             .progressViewStyle(CircularProgressViewStyle(tint: .neonBlue))
-                            .accessibilityLabel("Loading")
                     } else {
                         Text("Login")
                             .font(FontStyle.body)
@@ -63,15 +61,40 @@ struct LoginView: View {
                             .frame(maxWidth: .infinity)
                             .background(Color.neonBlue)
                             .cornerRadius(10)
-                            .accessibilityLabel("Login button")
                     }
                 }
                 .disabled(isLoading)
-                .padding(.top, Spacing.medium)
 
+                // MARK: - Links to Register / Forgot
+                HStack {
+                    Button("Forgot Password?") {
+                        showForgotPassword.toggle()
+                    }
+                    .font(FontStyle.caption)
+                    .foregroundColor(.neonBlue)
+                    .accessibilityLabel("Forgot password")
+
+                    Spacer()
+
+                    Button("Sign Up") {
+                        showRegister.toggle()
+                    }
+                    .font(FontStyle.caption)
+                    .foregroundColor(.neonBlue)
+                    .accessibilityLabel("Sign up")
                 Spacer()
+                }
+
             }
             .padding(.horizontal, Spacing.large)
+        }
+        .sheet(isPresented: $showForgotPassword) {
+            ForgotPasswordView()
+                .environmentObject(authViewModel)
+        }
+        .sheet(isPresented: $showRegister) {
+            RegisterView()
+                .environmentObject(authViewModel)
         }
         .onReceive(authViewModel.$errorMessage) { newErrorMessage in
             errorMessage = newErrorMessage
@@ -82,7 +105,7 @@ struct LoginView: View {
         }
     }
 
-    // MARK: - Auth Logic
+    // MARK: - Login Logic
     private func loginUser() {
         guard !email.isEmpty, !password.isEmpty else {
             errorMessage = "Please enter both email and password."
