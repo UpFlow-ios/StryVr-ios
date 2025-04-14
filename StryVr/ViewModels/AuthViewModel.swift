@@ -6,30 +6,55 @@
 //
 
 import Foundation
-import Combine
+import FirebaseAuth
+import os.log
 
 class AuthViewModel: ObservableObject {
-    @Published var username: String = ""
-    @Published var password: String = ""
-    @Published var isAuthenticated: Bool = false
+    static let shared = AuthViewModel()
+
+    @Published var userSession: FirebaseAuth.User?
     @Published var errorMessage: String?
 
-    private var cancellables = Set<AnyCancellable>()
+    private init() {
+        self.userSession = Auth.auth().currentUser
+    }
 
-    func login() {
-        // Simulate an authentication process
-        if username == "user" && password == "password" {
-            isAuthenticated = true
-            errorMessage = nil
-        } else {
-            isAuthenticated = false
-            errorMessage = "Invalid username or password"
+    // MARK: - Sign In
+    func signIn(email: String, password: String) {
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    self?.errorMessage = error.localizedDescription
+                    os_log("❌ Sign-in failed: %{public}@", log: .default, type: .error, error.localizedDescription)
+                    return
+                }
+
+                guard let user = result?.user else {
+                    self?.errorMessage = "Unexpected error occurred during sign-in."
+                    os_log("❌ Sign-in failed: Unexpected error", log: .default, type: .error)
+                    return
+                }
+
+                self?.userSession = user
+                self?.errorMessage = nil
+                os_log("✅ User signed in: %{public}@", log: .default, type: .info, user.email ?? "unknown")
+            }
         }
     }
 
-    func logout() {
-        isAuthenticated = false
-        username = ""
-        password = ""
+    // MARK: - Sign Out
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+            DispatchQueue.main.async {
+                self.userSession = nil
+                os_log("🚪 User signed out", log: .default, type: .info)
+            }
+        } catch {
+            DispatchQueue.main.async {
+                self.errorMessage = "Failed to sign out: \(error.localizedDescription)"
+            }
+            os_log("❌ Sign-out error: %{public}@", log: .default, type: .error, error.localizedDescription)
+        }
     }
-}
+} 
