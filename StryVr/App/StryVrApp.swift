@@ -1,67 +1,38 @@
 import SwiftUI
 import Firebase
+import os.log
 
 @main
 struct StryVrApp: App {
-    
+
+    // ✅ Integrate AppDelegate
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
+    // ✅ Global Auth Model
     @StateObject private var authViewModel = AuthViewModel.shared
+
+    init() {
+        // ✅ Firebase Initialization
+        if FirebaseApp.app() == nil {
+            do {
+                FirebaseApp.configure()
+                os_log("🔥 Firebase configured successfully", log: .default, type: .info)
+            } catch {
+                os_log("❌ Firebase configuration failed: %{public}@", log: .default, type: .error, error.localizedDescription)
+            }
+        }
+    }
 
     var body: some Scene {
         WindowGroup {
-            HomeView()
-                .environmentObject(authViewModel)
-        }
-    }
-}
-
-// MARK: - AuthViewModel
-class AuthViewModel: ObservableObject {
-    static let shared = AuthViewModel()
-    
-    @Published var userSession: FirebaseAuth.User?
-    
-    private init() {
-        self.userSession = Auth.auth().currentUser
-    }
-
-    func signIn(email: String, password: String) {
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
-            guard let user = result?.user, error == nil else {
-                print("Sign-in error: \(error?.localizedDescription ?? "Unknown error")")
-                return
+            Group {
+                if authViewModel.userSession != nil {
+                    HomeView()
+                } else {
+                    LoginView()
+                }
             }
-            DispatchQueue.main.async {
-                self?.userSession = user
-            }
+            .environmentObject(authViewModel)
         }
-    }
-
-    func signOut() {
-        do {
-            try Auth.auth().signOut()
-            DispatchQueue.main.async {
-                self.userSession = nil
-            }
-        } catch {
-            print("Sign-out error: \(error.localizedDescription)")
-        }
-    }
-}
-
-// MARK: - AppDelegate
-class AppDelegate: NSObject, UIApplicationDelegate {
-    
-    func application(
-        _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
-    ) -> Bool {
-        do {
-            FirebaseApp.configure()
-            print("✅ Firebase initialized successfully")
-        } catch let error {
-            print("❌ Error configuring Firebase: \(error.localizedDescription)")
-        }
-        return true
     }
 }
