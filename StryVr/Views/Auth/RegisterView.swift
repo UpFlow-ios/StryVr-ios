@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct RegisterView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
+    @Environment(\.presentationMode) var presentationMode
+
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var confirmPassword: String = ""
@@ -21,11 +24,11 @@ struct RegisterView: View {
 
             VStack(spacing: Spacing.large) {
                 // MARK: - Title
-                Text("Create Your Account")
+                Text("Create Account")
                     .font(FontStyle.title)
                     .foregroundColor(.whiteText)
                     .padding(.top, Spacing.xLarge)
-                    .accessibilityLabel("Create your account")
+                    .accessibilityLabel("Create Account")
 
                 // MARK: - Email
                 TextField("Email", text: $email)
@@ -84,7 +87,20 @@ struct RegisterView: View {
                     }
                 }
                 .disabled(isLoading)
-                .padding(.top, Spacing.medium)
+
+                // MARK: - Login Link
+                HStack {
+                    Text("Already have an account?")
+                        .font(FontStyle.caption)
+                        .foregroundColor(.lightGray)
+
+                    Button("Log In") {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                    .font(FontStyle.caption)
+                    .foregroundColor(.neonBlue)
+                    .accessibilityLabel("Back to login")
+                }
 
                 Spacer()
             }
