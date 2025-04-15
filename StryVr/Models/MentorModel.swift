@@ -2,38 +2,62 @@ import Foundation
 
 // MARK: - MentorModel
 /// Represents a mentor profile within the StryVr app
-struct MentorModel: Identifiable, Codable {
-    let id: String
-    var fullName: String
-    var profileImageURL: String?
-    var bio: String?
-    var expertise: [String]
-    var experienceYears: Int
-    var availability: String?
-    var rating: Double
-    var totalSessions: Int
-    var menteesCount: Int
-    var verified: Bool
-    let joinedDate: Date
+struct MentorModel: Identifiable, Codable, Hashable {
+    let id: String  // Unique mentor ID
+    var fullName: String  // Mentor's full name
+    var profileImageURL: String?  // URL to the mentor's profile image
+    var bio: String?  // Mentor's biography
+    var expertise: [String]  // Areas of expertise
+    var experienceYears: Int  // Years of experience
+    var availability: String?  // Availability details
+    var rating: Double  // Mentor's rating (0.0–5.0)
+    var totalSessions: Int  // Total number of sessions conducted
+    var menteesCount: Int  // Number of mentees mentored
+    var verified: Bool  // Indicates if the mentor is verified
+    let joinedDate: Date  // Date the mentor joined the platform
 
-    /// Computed property to format join date
+    // MARK: - Computed Properties
+
+    /// Format the mentor's join date
     var formattedJoinDate: String {
         return MentorModel.dateFormatter.string(from: joinedDate)
     }
 
-    /// Static date formatter for efficiency
+    /// Get the rating percentage (0–100%)
+    var ratingPercentage: Int {
+        return Int((rating / 5.0) * 100)
+    }
+
+    // MARK: - Formatter
     private static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         return formatter
     }()
 
-    /// Computed property for mentor's average rating percentage
-    var ratingPercentage: Int {
-        return Int((rating / 5.0) * 100)
+    // MARK: - Validation
+    /// Validates the mentor's rating to ensure it is within the valid range
+    func isValidRating() -> Bool {
+        return rating >= 0.0 && rating <= 5.0
     }
 
-    /// Default initializer with clear defaults
+    // MARK: - Default Empty Instance
+    static let empty: MentorModel = MentorModel(
+        id: UUID().uuidString,
+        fullName: "",
+        profileImageURL: nil,
+        bio: "",
+        expertise: [],
+        experienceYears: 0,
+        availability: nil,
+        rating: 0.0,
+        totalSessions: 0,
+        menteesCount: 0,
+        verified: false,
+        joinedDate: Date()
+    )
+
+    // MARK: - Initializer
     init(
         id: String,
         fullName: String,
@@ -60,36 +84,5 @@ struct MentorModel: Identifiable, Codable {
         self.menteesCount = menteesCount
         self.verified = verified
         self.joinedDate = joinedDate
-    }
-}
-
-// MARK: - MentorshipSession
-/// Represents a mentorship session with details about mentor-mentee interactions
-struct MentorshipSession: Identifiable, Codable {
-    let id: String
-    var mentorID: String
-    var menteeID: String
-    var sessionDate: Date
-    var sessionDuration: Int  // Duration in minutes
-    var feedback: String?
-    var rating: Double?
-
-    /// Default initializer clearly defined
-    init(
-        id: String,
-        mentorID: String,
-        menteeID: String,
-        sessionDate: Date,
-        sessionDuration: Int,
-        feedback: String? = nil,
-        rating: Double? = nil
-    ) {
-        self.id = id
-        self.mentorID = mentorID
-        self.menteeID = menteeID
-        self.sessionDate = sessionDate
-        self.sessionDuration = sessionDuration
-        self.feedback = feedback
-        self.rating = rating
     }
 }
