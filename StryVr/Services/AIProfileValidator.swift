@@ -4,56 +4,53 @@
 //
 //  Created by Joe Dormond on 3/5/25.
 //
-import SwiftUI
+import Foundation
+import Combine
 
-class ProfileValidatorViewModel: ObservableObject {
+/// Handles AI-powered profile validation
+final class ProfileValidatorViewModel: ObservableObject {
+    // MARK: - Published Properties
     @Published var isValidating = false
     @Published var validationResult: String?
+    @Published var validationError: String?
 
+    // MARK: - Dependencies
+    private let validationService: ProfileValidationServiceProtocol
+
+    // MARK: - Initialization
+    init(validationService: ProfileValidationServiceProtocol = MockProfileValidationService()) {
+        self.validationService = validationService
+    }
+
+    // MARK: - Methods
+    /// Validates the profile using the provided validation service
     func validateProfile() {
         isValidating = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.validationResult = Bool.random() ? "Profile is Valid ✅" : "Profile is Suspicious ❌"
-            self.isValidating = false
+        validationError = nil
+        validationService.validate { [weak self] result in
+            DispatchQueue.main.async {
+                self?.isValidating = false
+                switch result {
+                case .success(let isValid):
+                    self?.validationResult = isValid ? "✅ Profile is Valid" : "❌ Profile is Suspicious"
+                case .failure(let error):
+                    self?.validationError = "⚠️ Validation failed: \(error.localizedDescription)"
+                }
+            }
         }
     }
 }
 
-struct AIProfileValidatorView: View {
-    @StateObject private var viewModel = ProfileValidatorViewModel()
-
-    var body: some View {
-        VStack {
-            Text("AI Profile Validator")
-                .font(.title)
-                .fontWeight(.bold)
-
-            if viewModel.isValidating {
-                ProgressView("Validating...")
-                    .padding()
-            } else if let result = viewModel.validationResult {
-                Text(result)
-                    .foregroundColor(result.contains("Valid") ? .green : .red)
-                    .padding()
-            }
-
-            Button(action: viewModel.validateProfile) {
-                Text("Validate Profile")
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
-            }
-            .padding()
-            .accessibilityLabel("Validate Profile Button")
-        }
-        .padding()
-    }
+// MARK: - Protocol for Validation Service
+protocol ProfileValidationServiceProtocol {
+    func validate(completion: @escaping (Result<Bool, Error>) -> Void)
 }
 
-struct AIProfileValidatorView_Previews: PreviewProvider {
-    static var previews: some View {
-        AIProfileValidatorView()
+// MARK: - Mock Validation Service (for testing)
+struct MockProfileValidationService: ProfileValidationServiceProtocol {
+    func validate(completion: @escaping (Result<Bool, Error>) -> Void) {
+        DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
+        }
     }
+            completion(.success(Bool.random()))
 }
