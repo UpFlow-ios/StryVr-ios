@@ -2,24 +2,32 @@ import Foundation
 
 // MARK: - ConferenceCallModel
 /// Represents a scheduled conference call within the StryVr platform
-struct ConferenceCallModel: Identifiable, Codable {
-    let id: String
-    let hostID: String
-    var title: String
-    var description: String?
-    var participants: [String]
-    var scheduledDate: Date
-    var durationMinutes: Int
-    var callStatus: CallStatus
-    var recordingURL: String?
-    var engagementMetrics: CallEngagement
+struct ConferenceCallModel: Identifiable, Codable, Hashable {
+    let id: String                      // Unique call ID
+    let hostID: String                  // ID of the mentor or host
+    var title: String                   // Conference title
+    var description: String?            // Optional session description
+    var participants: [String]          // User IDs of attendees
+    var scheduledDate: Date             // Scheduled time/date
+    var durationMinutes: Int            // Duration in minutes
+    var callStatus: CallStatus          // Enum status
+    var recordingURL: String?           // Optional recorded video link
+    var engagementMetrics: CallEngagement // Viewer activity stats
 
-    /// Computed property for formatted scheduled date
+    // MARK: - Computed Properties
+
+    /// Formatted readable scheduled date
     var formattedScheduledDate: String {
-        return ConferenceCallModel.dateFormatter.string(from: scheduledDate)
+        ConferenceCallModel.dateFormatter.string(from: scheduledDate)
     }
 
-    /// Optimized static date formatter
+    /// Number of participants in the call
+    var participantCount: Int {
+        participants.count
+    }
+
+    // MARK: - Static Formatter
+
     private static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -27,7 +35,15 @@ struct ConferenceCallModel: Identifiable, Codable {
         return formatter
     }()
 
-    /// Explicit initializer clearly defined
+    // MARK: - Validation
+
+    /// Validates the duration to ensure it is positive
+    func isValidDuration() -> Bool {
+        return durationMinutes > 0
+    }
+
+    // MARK: - Initializer
+
     init(
         id: String,
         hostID: String,
@@ -51,33 +67,13 @@ struct ConferenceCallModel: Identifiable, Codable {
         self.recordingURL = recordingURL
         self.engagementMetrics = engagementMetrics
     }
-}
 
-// MARK: - CallStatus
-/// Enum defining the status of a conference call
-enum CallStatus: String, Codable {
-    case upcoming = "Upcoming"
-    case live = "Live"
-    case completed = "Completed"
-    case canceled = "Canceled"
-}
-
-// MARK: - CallEngagement
-/// Represents engagement metrics for a conference call
-struct CallEngagement: Codable {
-    var totalAttendees: Int
-    var messagesSent: Int
-    var reactions: Int
-
-    /// Computed property calculating engagement score
-    var engagementScore: Int {
-        return (totalAttendees * 5) + (messagesSent * 2) + (reactions * 3)
-    }
-
-    /// Explicit initializer clearly defined
-    init(totalAttendees: Int = 0, messagesSent: Int = 0, reactions: Int = 0) {
-        self.totalAttendees = totalAttendees
-        self.messagesSent = messagesSent
-        self.reactions = reactions
-    }
+    // MARK: - Empty Placeholder for Preview
+    static let empty = ConferenceCallModel(
+        id: UUID().uuidString,
+        hostID: "unknown",
+        title: "Untitled Conference",
+        scheduledDate: Date(),
+        durationMinutes: 60
+    )
 }
