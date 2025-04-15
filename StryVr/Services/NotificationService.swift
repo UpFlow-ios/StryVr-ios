@@ -15,10 +15,11 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
 
     static let shared = NotificationService()
     private let db = Firestore.firestore()
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "NotificationService")
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "NotificationService")
 
     private override init() {}
 
+    // MARK: - Notification Permissions
     /// Requests push notification permissions from the user
     func requestNotificationPermissions() {
         let center = UNUserNotificationCenter.current()
@@ -26,8 +27,9 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
 
         center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             if let error = error {
-                self.logger.error("Notification Permission Error: \(error.localizedDescription)")
+                self.logger.error("❌ Notification permission error: \(error.localizedDescription)")
             } else {
+                self.logger.info("✅ Notification permissions granted")
                 DispatchQueue.main.async {
                     UIApplication.shared.registerForRemoteNotifications()
                 }
@@ -35,6 +37,7 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
         }
     }
 
+    // MARK: - UNUserNotificationCenterDelegate
     /// Handles receiving push notifications while the app is in the foreground
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
@@ -46,10 +49,11 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-        self.logger.info("User tapped on a notification: \(response.notification.request.content.userInfo)")
+        self.logger.info("🔔 Notification tapped: \(response.notification.request.content.userInfo)")
         completionHandler()
     }
 
+    // MARK: - Firebase Messaging
     /// Configures Firebase Messaging for push notifications
     func configureFirebaseMessaging() {
         Messaging.messaging().delegate = self
@@ -59,7 +63,7 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
     /// Handles updating the Firebase FCM token
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         guard let token = fcmToken else { return }
-        self.logger.info("Firebase FCM Token: \(token)")
+        self.logger.info("📱 Firebase FCM Token received")
         saveDeviceTokenToDatabase(token)
     }
 
@@ -69,19 +73,53 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
 
         db.collection("users").document(userID).updateData(["deviceToken": token]) { error in
             if let error = error {
-                self.logger.error("Error saving device token: \(error.localizedDescription)")
+                self.logger.error("❌ Failed to save device token: \(error.localizedDescription)")
             } else {
-                self.logger.info("Device token saved successfully")
+                self.logger.info("✅ Device token saved successfully")
             }
         }
     }
 
+    // MARK: - Engagement Notifications
     /// Sends a video engagement notification
     func sendVideoEngagementNotification(to userID: String, videoTitle: String, type: String) {
+        guard !userID.isEmpty, !videoTitle.isEmpty, !type.isEmpty else {
+            logger.error("❌ Invalid input for video engagement notification")
+            return
+        }
+
         let message = type == "like" ? "Someone liked your video: \(videoTitle)" :
                       type == "comment" ? "Someone commented on your video: \(videoTitle)" :
-                      "Your video is getting more views: \(videoTitle)"
+                      "Your video is trending: \(videoTitle)"
 
         sendPushNotification(to: userID, title: "📢 Video Engagement", body: message)
     }
 
+    // MARK: - Universal Push Sender
+    /// Sends a push notification to a specific user
+    func sendPushNotification(to userID: String, title: String, body: String) {
+        guard !userID.isEmpty, !title.isEmpty, !body.isEmpty else {
+            logger.error("❌ Invalid input for push notification")
+            return
+        }
+
+        db.collection("users").document(userID).getDocument { [weak self] snapshot, error in
+            guard let self = self else { return }
+
+            if let error = error {
+                self.logger.error("❌ Failed to fetch user token: \(error.localizedDescription)")
+                return
+            }
+
+            guard let data = snapshot?.data(),
+                  let deviceToken = data["deviceToken"] as? String else {
+                self.logger.warning("⚠️ No device token found for user \(userID)")
+                return
+            }
+
+            // Prepare and send via Cloud Function, FCM or 3rd-party service
+            self.logger.info("📤 Sending push notification")
+            // Production: trigger Cloud Function/FCM REST API here
+        }
+    }
+}
