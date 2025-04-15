@@ -1,23 +1,31 @@
 import Foundation
 
-// MARK: - ReportModel
 /// Represents a report submitted within the StryVr app
-struct ReportModel: Identifiable, Codable {
-    let id: String
-    let reporterID: String
-    let reportedUserID: String?
-    let reportType: ReportType
-    let description: String
-    let evidenceURLs: [String]?
-    let status: ReportStatus
-    let timestamp: Date
+struct ReportModel: Identifiable, Codable, Hashable {
+    let id: String                      // Unique report ID
+    let reporterID: String              // ID of the user submitting the report
+    let reportedUserID: String?         // ID of the user being reported (optional)
+    let reportType: ReportType          // Type of the report
+    let description: String             // Description of the report
+    let evidenceURLs: [String]?         // Optional URLs for evidence
+    let status: ReportStatus            // Current status of the report
+    let timestamp: Date                 // Timestamp of when the report was submitted
 
-    /// Computed property for formatted timestamp
+    // MARK: - Computed Properties
+
+    /// Formatted readable timestamp
     var formattedTimestamp: String {
-        return ReportModel.dateFormatter.string(from: timestamp)
+        ReportModel.dateFormatter.string(from: timestamp)
     }
 
-    /// Static date formatter for efficiency
+    /// Checks if evidence URLs are provided
+    var hasEvidence: Bool {
+        guard let evidenceURLs = evidenceURLs else { return false }
+        return !evidenceURLs.isEmpty
+    // MARK: - Static Date Formatter
+
+    }
+
     private static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -25,7 +33,15 @@ struct ReportModel: Identifiable, Codable {
         return formatter
     }()
 
-    /// Explicit initializer with clear defaults
+    // MARK: - Validation
+
+    /// Validates that the description is not empty
+    func isValidDescription() -> Bool {
+        return !description.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
+    // MARK: - Init
+
     init(
         id: String,
         reporterID: String,
@@ -45,24 +61,14 @@ struct ReportModel: Identifiable, Codable {
         self.status = status
         self.timestamp = timestamp
     }
-}
 
-// MARK: - ReportType
-/// Enum classifying different types of reports
-enum ReportType: String, Codable {
-    case inappropriateContent = "Inappropriate Content"
-    case harassment = "Harassment"
-    case fraud = "Fraud"
-    case fakeProfile = "Fake Profile"
-    case skillVerificationDispute = "Skill Verification Dispute"
-    case other = "Other"
-}
+    // MARK: - Default
 
-// MARK: - ReportStatus
-/// Enum tracking the report's current resolution status
-enum ReportStatus: String, Codable {
-    case pending = "Pending"
-    case underReview = "Under Review"
-    case resolved = "Resolved"
-    case dismissed = "Dismissed"
+    static let empty = ReportModel(
+        id: UUID().uuidString,
+        reporterID: "",
+        reportType: .other,
+        description: "",
+        status: .pending
+    )
 }
