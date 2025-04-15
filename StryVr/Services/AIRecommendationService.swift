@@ -6,89 +6,108 @@
 //
 import Foundation
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 import os.log
 
-/// AI-powered recommendation service for StryVr
+/// AI-powered recommendation service for mentors and skills
 final class AIRecommendationService {
     static let shared = AIRecommendationService()
     private let db: Firestore
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "AIRecommendationService")
-    
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "AIRecommendationService")
+
     private init(db: Firestore = Firestore.firestore()) {
         self.db = db
     }
 
-    /// Fetches personalized mentor recommendations for a user
-    /// - Parameters:
-    ///   - userID: The ID of the user to fetch recommendations for
-    ///   - completion: Completion handler with an array of MentorModel
+    // MARK: - Mentor Recommendations
+
+    /// Fetches top-rated mentors for the user
     func fetchMentorRecommendations(for userID: String, completion: @escaping ([MentorModel]) -> Void) {
+        guard !userID.isEmpty else {
+            logger.error("❌ Invalid user ID")
+            completion([])
+            return
+        }
+
         db.collection("mentors")
             .order(by: "rating", descending: true)
             .limit(to: 5)
             .getDocuments { [weak self] snapshot, error in
                 guard let self = self else { return }
+
                 if let error = error {
-                    self.logger.error("Error fetching mentors: \(error.localizedDescription)")
+                    self.logger.error("❌ Failed to fetch mentors: \(error.localizedDescription)")
                     completion([])
                     return
                 }
-                
+
                 guard let documents = snapshot?.documents else {
-                    self.logger.error("No documents found")
+                    self.logger.error("⚠️ No mentor documents found")
                     completion([])
                     return
                 }
-                
-                let mentors = documents.compactMap { doc -> MentorModel? in
+
+                let mentors = documents.compactMap { doc in
                     try? doc.data(as: MentorModel.self)
                 }
-                
+
+                self.logger.info("✅ Loaded \(mentors.count) mentor recommendations")
                 completion(mentors)
             }
     }
 
-    /// Fetches skill recommendations based on user progress
-    /// - Parameters:
-    ///   - userID: The ID of the user to fetch recommendations for
-    ///   - completion: Completion handler with an array of recommended skills
+    /// Uses current skills to suggest related skills
+    // MARK: - Skill Recommendations
+
     func fetchSkillRecommendations(for userID: String, completion: @escaping ([String]) -> Void) {
-        db.collection("users").document(userID).getDocument { [weak self] snapshot, error in
-            guard let self = self else { return }
-            if let error = error {
-                self.logger.error("Error fetching user data: \(error.localizedDescription)")
-                completion([])
-                return
-            }
-
-            guard let data = snapshot?.data() else {
-                self.logger.error("No data found for user \(userID)")
-                completion([])
-                return
-            }
-
-            let userSkills = data["skills"] as? [String] ?? []
-            let recommendedSkills = AIRecommendationService.generateSkillSuggestions(from: userSkills)
-            completion(recommendedSkills)
+        guard !userID.isEmpty else {
+            logger.error("❌ Invalid user ID")
+            completion([])
+            return
         }
+
+        db.collection("users")
+            .document(userID)
+            .getDocument { [weak self] snapshot, error in
+                guard let self = self else { return }
+
+                if let error = error {
+                    self.logger.error("❌ Skill fetch error: \(error.localizedDescription)")
+                    completion([])
+                    return
+                }
+
+                guard let data = snapshot?.data() else {
+                    self.logger.error("⚠️ No skill data found")
+                    completion([])
+                    return
+                }
+
+                let currentSkills = data["skills"] as? [String] ?? []
+                let suggestions = Self.generateSkillSuggestions(from: currentSkills)
+                self.logger.info("✅ Suggested \(suggestions.count) skills")
+                completion(suggestions)
+            }
     }
-    
-    /// AI-based logic to suggest skills based on current skills
-    /// - Parameter skills: An array of current skills
-    /// - Returns: An array of recommended skills
+
+    // MARK: - Static AI Skill Logic
+
+    /// Placeholder AI suggestion logic (replace with real AI engine later)
     private static func generateSkillSuggestions(from skills: [String]) -> [String] {
-        let skillMappings: [String: [String]] = [
+        let skillMap: [String: [String]] = [
             "Swift": ["SwiftUI", "Combine", "Core Data"],
             "Firebase": ["Firestore", "Cloud Functions"],
             "UI/UX Design": ["Figma", "Sketch", "User Testing"]
         ]
-        
-        var suggestions: [String] = []
+
+        var recommended: [String] = []
+
         for skill in skills {
-            if let relatedSkills = skillMappings[skill] {
-                suggestions.append(contentsOf: relatedSkills)
+            if let related = skillMap[skill] {
+                recommended.append(contentsOf: related)
             }
         }
-        return Array(Set(suggestions)) // Remove duplicates
+
+        return Array(Set(recommended))
     }
 }
