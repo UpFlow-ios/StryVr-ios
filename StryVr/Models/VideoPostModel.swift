@@ -1,44 +1,56 @@
 import Foundation
 
-// MARK: - VideoPostModel
 /// Represents a video post within the StryVr platform
-struct VideoPostModel: Identifiable, Codable {
-    let id: String
-    let uploaderID: String
-    var title: String
-    var description: String?
-    var videoURL: String
-    var thumbnailURL: String?
-    var duration: Int
-    var category: VideoCategory
-    var uploadDate: Date
-    var engagement: VideoEngagement
-    var isFeatured: Bool
+struct VideoPostModel: Identifiable, Codable, Hashable {
+    let id: String                      // Unique ID for the video post
+    let uploaderID: String              // ID of the uploader
+    var title: String                   // Title of the video
+    var description: String?            // Optional description of the video
+    var videoURL: String                // URL of the video
+    var thumbnailURL: String?           // Optional URL of the thumbnail
+    var duration: Int                   // Duration of the video in seconds
+    var category: VideoCategory         // Category of the video
+    var uploadDate: Date                // Date the video was uploaded
+    var engagement: VideoEngagement     // Engagement metrics for the video
+    var isFeatured: Bool                // Whether the video is featured
 
-    /// Computed property for formatted upload date
+    /// Readable formatted date
     var formattedUploadDate: String {
-        return VideoPostModel.dateFormatter.string(from: uploadDate)
+        Self.dateFormatter.string(from: uploadDate)
     }
 
-    /// Optimized static date formatter
+    /// Checks if the video is long (e.g., > 10 minutes)
+    var isLongVideo: Bool {
+        duration > 600
+    }
+
+    /// Validates that the video URL and thumbnail URL (if provided) are valid
+    func isValid() -> Bool {
+        guard URL(string: videoURL) != nil else { return false }
+        if let thumbnail = thumbnailURL {
+            return URL(string: thumbnail) != nil
+        }
+        return true
+    }
+
+    // MARK: - Date Formatter
     private static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         return formatter
     }()
 
-    /// Explicit initializer with clear defaults
     init(
         id: String,
         uploaderID: String,
         title: String,
-        description: var caption: String?
+        description: String? = nil,
         videoURL: String,
         thumbnailURL: String? = nil,
         duration: Int,
         category: VideoCategory,
         uploadDate: Date = Date(),
-        engagement: VideoEngagement = VideoEngagement(),
+        engagement: VideoEngagement = .init(),
         isFeatured: Bool = false
     ) {
         self.id = id
@@ -53,37 +65,13 @@ struct VideoPostModel: Identifiable, Codable {
         self.engagement = engagement
         self.isFeatured = isFeatured
     }
-}
 
-// MARK: - VideoCategory
-/// Enum classifying video content
-enum VideoCategory: String, Codable {
-    case mentorship = "Mentorship"
-    case skillTutorial = "Skill Tutorial"
-    case industryInsights = "Industry Insights"
-    case successStory = "Success Story"
-    case projectShowcase = "Project Showcase"
-    case other = "Other"
-}
-
-// MARK: - VideoEngagement
-/// Represents engagement metrics for a video post
-struct VideoEngagement: Codable {
-    var likes: Int
-    var comments: Int
-    var shares: Int
-    var views: Int
-
-    /// Computed property calculating engagement score
-    var engagementScore: Int {
-        return (likes * 2) + (comments * 3) + (shares * 5) + views
-    }
-
-    /// Explicit initializer clearly defined
-    init(likes: Int = 0, comments: Int = 0, shares: Int = 0, views: Int = 0) {
-        self.likes = likes
-        self.comments = comments
-        self.shares = shares
-        self.views = views
-    }
+    static let empty = VideoPostModel(
+        id: UUID().uuidString,
+        uploaderID: "",
+        title: "",
+        duration: 0,
+        videoURL: "",
+        category: .other
+    )
 }
