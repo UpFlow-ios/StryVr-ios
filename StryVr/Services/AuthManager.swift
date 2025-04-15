@@ -11,52 +11,95 @@ import os.log
 
 /// Manages authentication, MFA, and session security in StryVr
 final class AuthManager {
-
     static let shared = AuthManager()
     private let db = Firestore.firestore()
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "AuthManager")
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "AuthManager")
 
     private init() {}
 
-    /// Sends a multi-factor authentication (MFA) verification email
-    /// - Parameter completion: A closure that returns a boolean indicating success or failure, and an optional error.
+    // MARK: - Send Email Verification (MFA)
+    /// Sends an email verification for MFA
     func sendMFAVerificationEmail(completion: @escaping (Bool, Error?) -> Void) {
         guard let user = Auth.auth().currentUser else {
-            completion(false, NSError(domain: "AuthError", code: 401, userInfo: [NSLocalizedDescriptionKey: "User not authenticated"]))
+            completion(false, AuthError.userNotAuthenticated)
             return
         }
 
         user.sendEmailVerification { error in
             if let error = error {
-                self.logger.error("MFA Email Error: \(error.localizedDescription)")
+                self.logger.error("📩 MFA email error: \(error.localizedDescription)")
                 completion(false, error)
             } else {
-                self.logger.info("MFA Verification Email Sent")
+                self.logger.info("✅ MFA email sent")
                 completion(true, nil)
             }
         }
     }
 
-    /// Sends a multi-factor authentication (MFA) verification SMS
-    /// - Parameters:
-    ///   - phoneNumber: The phone number to send the verification SMS to.
-    ///   - completion: A closure that returns a boolean indicating success or failure, and an optional error.
+    // MARK: - Send SMS for MFA
+    /// Sends an SMS verification code for MFA
     func sendMFAVerificationSMS(phoneNumber: String, completion: @escaping (Bool, Error?) -> Void) {
+        guard !phoneNumber.isEmpty else {
+            self.logger.error("❌ Invalid phone number")
+            completion(false, AuthError.invalidInput)
+            return
+        }
+
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
             if let error = error {
-                self.logger.error("MFA SMS Error: \(error.localizedDescription)")
+                self.logger.error("📲 MFA SMS error: \(error.localizedDescription)")
                 completion(false, error)
             } else if let verificationID = verificationID {
                 UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-                self.logger.info("MFA SMS Verification Code Sent")
+                self.logger.info("✅ MFA SMS code sent")
                 completion(true, nil)
             }
         }
     }
 
-    /// Confirms MFA code for phone authentication
-    /// - Parameters:
-    ///   - code: The verification code received via SMS.
-    ///   - completion: A closure that returns a boolean indicating success or failure, and an optional error.
+    // MARK: - Confirm SMS Code (MFA Login)
+    /// Confirms the SMS verification code for MFA login
     func confirmMFACode(_ code: String, completion: @escaping (Bool, Error?) -> Void) {
+        guard !code.isEmpty else {
+            self.logger.error("❌ Invalid verification code")
+            completion(false, AuthError.invalidInput)
+            return
+        }
 
+        guard let verificationID = UserDefaults.standard.string(forKey: "authVerificationID") else {
+            self.logger.error("❌ Verification ID not available")
+            completion(false, AuthError.verificationIDNotFound)
+            return
+        }
+
+        let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: code)
+
+        Auth.auth().signIn(with: credential) { authResult, error in
+            if let error = error {
+                self.logger.error("❌ MFA code confirmation failed: \(error.localizedDescription)")
+                completion(false, error)
+            } else {
+                self.logger.info("🔐 MFA login successful")
+                completion(true, nil)
+            }
+        }
+    }
+}
+
+// MARK: - Custom Error Type
+enum AuthError: LocalizedError {
+    case userNotAuthenticated
+    case invalidInput
+    case verificationIDNotFound
+
+    var errorDescription: String? {
+        switch self {
+        case .userNotAuthenticated:
+            return "User not authenticated."
+        case .invalidInput:
+            return "Invalid input provided."
+        case .verificationIDNotFound:
+            return "Verification ID not found."
+        }
+    }
+}
