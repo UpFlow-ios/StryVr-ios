@@ -9,11 +9,12 @@ import StoreKit
 import os.log
 
 /// Manages in-app purchases and subscriptions for StryVr
-final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObserver {
+final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObserver, SKProductsRequestDelegate {
 
     static let shared = PaymentService()
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "PaymentService")
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "PaymentService")
 
+    @Published var availableProducts: [SKProduct] = []
     @Published var purchasedProducts: Set<String> = []
 
     private override init() {
@@ -21,18 +22,21 @@ final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObse
         SKPaymentQueue.default().add(self)
     }
 
-    /// Checks if the user has an active subscription or purchased product
-    /// - Parameter productID: The product identifier to check.
-    /// - Returns: A boolean indicating if the product is purchased.
+    // MARK: - Check Purchase
+    /// Checks if a product has already been purchased
     func isProductPurchased(_ productID: String) -> Bool {
+        guard !productID.isEmpty else {
+            logger.error("❌ Invalid product ID")
+            return false
+        }
         return purchasedProducts.contains(productID)
     }
 
-    /// Starts the purchase process for a specific product
-    /// - Parameter product: The product to be purchased.
+    // MARK: - Start Purchase
+    /// Initiates the purchase of a product
     func purchaseProduct(_ product: SKProduct) {
         guard SKPaymentQueue.canMakePayments() else {
-            logger.error("In-App Purchases are disabled.")
+            logger.error("❌ In-App Purchases are disabled.")
             return
         }
 
@@ -40,15 +44,36 @@ final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObse
         SKPaymentQueue.default().add(payment)
     }
 
-    /// Restores previous purchases (used when reinstalling the app)
+    // MARK: - Restore Past Purchases
+    /// Restores previously completed purchases
     func restorePurchases() {
         SKPaymentQueue.default().restoreCompletedTransactions()
     }
 
-    /// Handles payment transaction updates
-    /// - Parameters:
-    ///   - queue: The payment queue.
-    ///   - transactions: The list of updated transactions.
+    // MARK: - Fetch Product Info
+    /// Fetches available products from the App Store
+    func fetchAvailableProducts(with productIDs: [String]) {
+        guard !productIDs.isEmpty else {
+            logger.error("❌ Product IDs list is empty")
+            return
+        }
+
+        let request = SKProductsRequest(productIdentifiers: Set(productIDs))
+        request.delegate = self
+        request.start()
+    }
+
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        availableProducts = response.products
+        logger.info("✅ Retrieved \(availableProducts.count) products from App Store")
+    }
+
+    func request(_ request: SKRequest, didFailWithError error: Error) {
+        logger.error("❌ Product request failed: \(error.localizedDescription)")
+    }
+
+    // MARK: - Transaction Handling
+    /// Handles updates to payment transactions
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
             switch transaction.transactionState {
@@ -58,7 +83,7 @@ final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObse
                 restoreTransaction(transaction)
             case .failed:
                 if let error = transaction.error {
-                    logger.error("Purchase failed: \(error.localizedDescription)")
+                    logger.error("❌ Purchase failed: \(error.localizedDescription)")
                 }
                 SKPaymentQueue.default().finishTransaction(transaction)
             default:
@@ -67,23 +92,17 @@ final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObse
         }
     }
 
-    /// Completes a successful purchase and saves it
-    /// - Parameter transaction: The completed transaction.
     private func completeTransaction(_ transaction: SKPaymentTransaction) {
         let productID = transaction.payment.productIdentifier
         purchasedProducts.insert(productID)
-        logger.info("Purchase successful: \(productID)")
-
+        logger.info("💰 Purchase completed: \(productID)")
         SKPaymentQueue.default().finishTransaction(transaction)
     }
 
-    /// Restores a previous purchase
-    /// - Parameter transaction: The restored transaction.
     private func restoreTransaction(_ transaction: SKPaymentTransaction) {
         let productID = transaction.payment.productIdentifier
         purchasedProducts.insert(productID)
-        logger.info("Purchase restored: \(productID)")
-
+        logger.info("♻️ Purchase restored: \(productID)")
         SKPaymentQueue.default().finishTransaction(transaction)
     }
 }
