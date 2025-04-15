@@ -1,37 +1,57 @@
 import Foundation
 
-// MARK: - SkillVerificationModel
 /// Represents a skill verification request in the StryVr app
-struct SkillVerificationModel: Identifiable, Codable {
-    let id: String
-    let userID: String
-    var skillName: String
-    var verificationMethod: VerificationMethod
-    var status: VerificationStatus
-    var submittedEvidenceURLs: [String]?
-    var mentorEndorsement: MentorEndorsement?
-    let requestDate: Date
-    var completionDate: Date?
+struct SkillVerificationModel: Identifiable, Codable, Hashable {
+    let id: String                      // Unique ID for the skill verification request
+    let userID: String                  // ID of the user requesting verification
+    var skillName: String               // Name of the skill being verified
+    var verificationMethod: VerificationMethod // Method used for verification
+    var status: VerificationStatus      // Current status of the verification request
+    var submittedEvidenceURLs: [String]? // Optional URLs for submitted evidence
+    var mentorEndorsement: MentorEndorsement? // Optional mentor endorsement details
+    let requestDate: Date               // Date when the request was submitted
+    var completionDate: Date?           // Optional date when the request was completed
 
-    /// Computed property for formatted request date
+    // MARK: - Computed Properties
+
+    /// Formatted readable request date
     var formattedRequestDate: String {
-        return SkillVerificationModel.dateFormatter.string(from: requestDate)
+        SkillVerificationModel.dateFormatter.string(from: requestDate)
     }
 
-    /// Computed property for formatted completion date
+    /// Formatted readable completion date
     var formattedCompletionDate: String? {
         guard let date = completionDate else { return nil }
         return SkillVerificationModel.dateFormatter.string(from: date)
     }
 
-    /// Optimized static date formatter
+    /// Checks if evidence URLs are provided
+    var hasEvidence: Bool {
+        guard let urls = submittedEvidenceURLs else { return false }
+        return !urls.isEmpty
+    }
+
+    // MARK: - Date Formatter
+
     private static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         return formatter
     }()
 
-    /// Explicit initializer with clear default values
+    // MARK: - Validation
+
+    /// Validates that the skill name is not empty and evidence URLs (if provided) are valid
+    func isValid() -> Bool {
+        guard !skillName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return false }
+        if let urls = submittedEvidenceURLs {
+            return urls.allSatisfy { URL(string: $0) != nil }
+        }
+        return true
+    }
+
+    // MARK: - Init
+
     init(
         id: String,
         userID: String,
@@ -53,41 +73,13 @@ struct SkillVerificationModel: Identifiable, Codable {
         self.requestDate = requestDate
         self.completionDate = completionDate
     }
-}
 
-// MARK: - VerificationMethod
-/// Enum defining different skill verification methods
-enum VerificationMethod: String, Codable {
-    case mentorEndorsement = "Mentor Endorsement"
-    case projectSubmission = "Project Submission"
-    case certificationUpload = "Certification Upload"
-    case assessmentTest = "Assessment Test"
-}
+    // MARK: - Placeholder
 
-// MARK: - VerificationStatus
-/// Enum tracking skill verification request status
-enum VerificationStatus: String, Codable {
-    case pending = "Pending"
-    case underReview = "Under Review"
-    case approved = "Approved"
-    case rejected = "Rejected"
-}
-
-// MARK: - MentorEndorsement
-/// Represents a mentor's endorsement for skill verification
-struct MentorEndorsement: Codable {
-    var mentorID: String
-    var feedback: String
-    var rating: Double
-
-    /// Explicit initializer clearly defined
-    init(
-        mentorID: String,
-        feedback: String,
-        rating: Double
-    ) {
-        self.mentorID = mentorID
-        self.feedback = feedback
-        self.rating = rating
-    }
+    static let empty = SkillVerificationModel(
+        id: UUID().uuidString,
+        userID: "",
+        skillName: "",
+        verificationMethod: .projectSubmission
+    )
 }
