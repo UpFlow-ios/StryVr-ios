@@ -3,13 +3,14 @@
 //  StryVr
 //
 //  Created by Joe Dormond on 4/1/25.
+//  📹 Mentor Video Upload Screen – AI-Powered & Scalable UI
 //
 
 import SwiftUI
 import UniformTypeIdentifiers
 import AVFoundation
 
-/// Upload screen for mentors to post educational videos
+/// Upload screen for mentors to post AI-tagged educational videos
 struct MentorVideoUploadView: View {
     @State private var videoURL: URL?
     @State private var title: String = ""
@@ -22,12 +23,13 @@ struct MentorVideoUploadView: View {
     @State private var isPickerPresented = false
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
+                // MARK: - Video File Section
                 Section(header: Text("Video File")) {
                     if let url = videoURL {
                         Text(url.lastPathComponent)
-                            .font(.callout)
+                            .font(.caption)
                             .lineLimit(1)
                             .accessibilityLabel("Selected video: \(url.lastPathComponent)")
                     } else {
@@ -39,39 +41,45 @@ struct MentorVideoUploadView: View {
                     Button("Choose Video") {
                         isPickerPresented.toggle()
                     }
-                    .accessibilityLabel("Choose Video")
+                    .accessibilityLabel("Choose Video Button")
                 }
 
+                // MARK: - Metadata Section
                 Section(header: Text("Metadata")) {
                     TextField("Title", text: $title)
-                        .accessibilityLabel("Video Title")
+                        .textInputAutocapitalization(.sentences)
+                        .accessibilityLabel("Video Title Input")
+
                     TextField("Caption (optional)", text: $caption)
-                        .accessibilityLabel("Video Caption")
+                        .textInputAutocapitalization(.sentences)
+                        .accessibilityLabel("Video Caption Input")
 
                     Picker("Category", selection: $category) {
                         ForEach(VideoCategory.allCases, id: \.self) { category in
-                            Text(category.rawValue)
+                            Text(category.displayName)
                         }
                     }
-                    .accessibilityLabel("Video Category")
+                    .accessibilityLabel("Video Category Picker")
                 }
 
+                // MARK: - Error Message
                 if let error = errorMessage {
                     Text(error)
                         .foregroundColor(.red)
-                        .accessibilityLabel("Error: \(error)")
+                        .accessibilityLabel("Error Message: \(error)")
                 }
 
+                // MARK: - Upload Button or Loader
                 if isUploading {
                     ProgressView("Uploading...")
-                        .padding()
-                        .accessibilityLabel("Uploading...")
+                        .progressViewStyle(CircularProgressViewStyle(tint: Theme.Colors.accent))
+                        .padding(Theme.Spacing.medium)
                 } else {
                     Button("Upload Video") {
                         upload()
                     }
-                    .disabled(videoURL == nil || title.isEmpty)
-                    .accessibilityLabel("Upload Video")
+                    .disabled(videoURL == nil || title.trimmingCharacters(in: .whitespaces).isEmpty)
+                    .accessibilityLabel("Upload Video Button")
                 }
             }
             .navigationTitle("Upload Mentor Video")
@@ -82,7 +90,6 @@ struct MentorVideoUploadView: View {
     }
 
     // MARK: - Upload Logic
-
     private func upload() {
         guard let videoURL = videoURL else {
             errorMessage = "Please select a video to upload."
@@ -92,12 +99,11 @@ struct MentorVideoUploadView: View {
         isUploading = true
         errorMessage = nil
 
-        // Estimate duration
         let duration = Int(CMTimeGetSeconds(AVAsset(url: videoURL).duration))
 
         VideoContentService.shared.uploadVideo(
             fileURL: videoURL,
-            uploaderID: "mentor-id-placeholder", // 🔐 Replace with Auth ID later
+            uploaderID: "mentor-id-placeholder", // 🔐 Replace with AuthViewModel.shared.userSession?.uid
             title: title,
             caption: caption,
             thumbnailURL: nil,
@@ -118,12 +124,15 @@ struct MentorVideoUploadView: View {
         }
     }
 
-    // MARK: - Clear Form After Upload
-
+    // MARK: - Form Reset After Upload
     private func clearForm() {
-        self.videoURL = nil
-        self.title = ""
-        self.caption = ""
-        self.category = .mentorship
+        videoURL = nil
+        title = ""
+        caption = ""
+        category = .mentorship
     }
+}
+
+#Preview {
+    MentorVideoUploadView()
 }
