@@ -3,28 +3,36 @@
 //  StryVr
 //
 //  Created by Joe Dormond on 4/1/25.
+//  📁 Native Video File Picker with Secure Binding & HIG Compliance
 //
-
 
 import SwiftUI
 import UniformTypeIdentifiers
 
-/// iOS-native video file picker using UIDocumentPickerViewController
+/// A secure, reusable SwiftUI wrapper for UIDocumentPickerViewController (for video files only).
 struct DocumentPicker: UIViewControllerRepresentable {
     @Binding var videoURL: URL?
 
     func makeCoordinator() -> Coordinator {
-        return Coordinator(self)
+        Coordinator(self)
     }
 
     func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
-        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.movie])
+        let supportedTypes: [UTType] = [UTType.movie]
+
+        let picker = UIDocumentPickerViewController(forOpeningContentTypes: supportedTypes)
+        picker.allowsMultipleSelection = false
         picker.delegate = context.coordinator
+        picker.shouldShowFileExtensions = true
+
         return picker
     }
 
-    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {}
+    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {
+        // No update logic needed here for one-time picker
+    }
 
+    // MARK: - Coordinator to handle file selection
     class Coordinator: NSObject, UIDocumentPickerDelegate {
         let parent: DocumentPicker
 
@@ -33,16 +41,22 @@ struct DocumentPicker: UIViewControllerRepresentable {
         }
 
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-            if let selectedURL = urls.first {
+            guard let selectedURL = urls.first else {
+                parent.videoURL = nil
+                return
+            }
+
+            // Security-scoped resource access (required for sandboxed access)
+            if selectedURL.startAccessingSecurityScopedResource() {
                 parent.videoURL = selectedURL
+                selectedURL.stopAccessingSecurityScopedResource()
             } else {
-                // Handle the case where no document was selected
+                // Log or handle the failure to access the resource
                 parent.videoURL = nil
             }
         }
 
         func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-            // Handle the case where the document picker was cancelled
             parent.videoURL = nil
         }
     }
