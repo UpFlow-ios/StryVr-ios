@@ -3,6 +3,7 @@
 //  StryVr
 //
 //  Created by Joe Dormond on 4/14/25.
+//  🔐 Password Reset – Secure, Themed, Accessible
 //
 
 import SwiftUI
@@ -18,74 +19,85 @@ struct ForgotPasswordView: View {
 
     var body: some View {
         ZStack {
-            Color.background.ignoresSafeArea()
+            Theme.Colors.background.ignoresSafeArea()
 
-            VStack(spacing: Spacing.large) {
+            VStack(spacing: Theme.Spacing.large) {
+
                 // MARK: - Title
                 Text("Reset Password")
-                    .font(FontStyle.title)
-                    .foregroundColor(.whiteText)
-                    .padding(.top, Spacing.xLarge)
+                    .font(Theme.Typography.headline)
+                    .foregroundColor(Theme.Colors.textPrimary)
+                    .padding(.top, Theme.Spacing.xLarge)
                     .accessibilityLabel("Reset your password")
 
                 // MARK: - Email Field
-                TextField("Email", text: $email)
+                TextField("Enter your email", text: $email)
                     .textContentType(.emailAddress)
                     .keyboardType(.emailAddress)
-                    .padding()
-                    .background(Color.card)
-                    .cornerRadius(10)
-                    .foregroundColor(.whiteText)
                     .autocapitalization(.none)
-                    .accessibilityLabel("Email field")
+                    .padding()
+                    .background(Theme.Colors.card)
+                    .cornerRadius(Theme.CornerRadius.medium)
+                    .foregroundColor(Theme.Colors.textPrimary)
+                    .accessibilityLabel("Email input field")
+                    .accessibilityHint("Enter the email address associated with your account")
 
                 // MARK: - Message
                 if let message = message {
                     Text(message)
-                        .font(FontStyle.caption)
+                        .font(Theme.Typography.caption)
                         .foregroundColor(isError ? .red : .green)
                         .multilineTextAlignment(.center)
-                        .padding(.horizontal, Spacing.medium)
+                        .padding(.horizontal, Theme.Spacing.medium)
                         .accessibilityLabel("Message: \(message)")
                 }
 
-                // MARK: - Send Link Button
+                // MARK: - Send Reset Link Button
                 Button(action: sendResetLink) {
                     if isLoading {
                         ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle(tint: .neonBlue))
-                            .accessibilityLabel("Loading")
+                            .progressViewStyle(CircularProgressViewStyle(tint: Theme.Colors.accent))
+                            .accessibilityLabel("Sending reset link")
                     } else {
                         Text("Send Reset Link")
-                            .font(FontStyle.body)
-                            .foregroundColor(.whiteText)
-                            .padding()
+                            .font(Theme.Typography.body)
+                            .foregroundColor(Theme.Colors.whiteText)
                             .frame(maxWidth: .infinity)
-                            .background(Color.neonBlue)
-                            .cornerRadius(10)
-                            .accessibilityLabel("Send Reset Link button")
+                            .padding()
+                            .background(Theme.Colors.accent)
+                            .cornerRadius(Theme.CornerRadius.medium)
+                            .accessibilityLabel("Send reset link button")
+                            .accessibilityHint("Tap to send a password reset link to your email")
                     }
                 }
                 .disabled(isLoading)
 
-                // MARK: - Back to Login
+                // MARK: - Back Navigation
                 Button("Back to Login") {
                     presentationMode.wrappedValue.dismiss()
                 }
-                .font(FontStyle.caption)
-                .foregroundColor(.neonBlue)
-                .padding(.top, Spacing.small)
-                .accessibilityLabel("Back to login")
+                .font(Theme.Typography.caption)
+                .foregroundColor(Theme.Colors.accent)
+                .padding(.top, Theme.Spacing.small)
+                .accessibilityLabel("Back to login screen")
+                .accessibilityHint("Tap to return to the login screen")
 
                 Spacer()
             }
-            .padding(.horizontal, Spacing.large)
+            .padding(.horizontal, Theme.Spacing.large)
         }
     }
 
+    // MARK: - Send Password Reset Email
     private func sendResetLink() {
-        guard !email.isEmpty else {
+        guard !email.trimmingCharacters(in: .whitespaces).isEmpty else {
             message = "Please enter your email."
+            isError = true
+            return
+        }
+
+        guard isValidEmail(email) else {
+            message = "Please enter a valid email address."
             isError = true
             return
         }
@@ -104,4 +116,14 @@ struct ForgotPasswordView: View {
             }
         }
     }
+
+    // MARK: - Email Validation
+    private func isValidEmail(_ email: String) -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email)
+    }
+}
+
+#Preview {
+    ForgotPasswordView()
 }
