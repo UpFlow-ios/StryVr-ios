@@ -13,17 +13,19 @@ import os.log
 final class SecureStorageService {
     
     static let shared = SecureStorageService()
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "SecureStorageService")
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "SecureStorageService")
 
     private init() {}
 
     // MARK: - Secure Storage Methods
 
     /// Saves a value securely in the Keychain
-    /// - Parameters:
-    ///   - key: The key under which the value is stored.
-    ///   - value: The value to be stored.
     func save(key: String, value: String) {
+        guard !key.isEmpty, !value.isEmpty else {
+            logger.error("🔴 Invalid key or value provided")
+            return
+        }
+
         guard let data = value.data(using: .utf8) else {
             logger.error("🔴 Failed to convert value to data")
             return
@@ -43,26 +45,29 @@ final class SecureStorageService {
         if status == errSecSuccess {
             let updateStatus = SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
             if updateStatus == errSecSuccess {
-                logger.info("✅ Successfully updated key: \(key)")
+                logger.info("✅ Updated key securely")
             } else {
-                logger.error("🔴 Keychain Update Error (\(key)): \(updateStatus)")
+                logger.error("🔴 Update error, code: \(updateStatus)")
             }
         } else {
             var newQuery = query
             newQuery.merge(attributes) { (_, new) in new }
             let addStatus = SecItemAdd(newQuery as CFDictionary, nil)
             if addStatus == errSecSuccess {
-                logger.info("✅ Successfully stored key: \(key)")
+                logger.info("✅ Saved key securely")
             } else {
-                logger.error("🔴 Keychain Save Error (\(key)): \(addStatus)")
+                logger.error("🔴 Save error, code: \(addStatus)")
             }
         }
     }
 
-    /// Retrieves a securely stored value
-    /// - Parameter key: The key under which the value is stored.
-    /// - Returns: The retrieved value, or nil if not found.
+    /// Retrieves a value securely from the Keychain
     func retrieve(key: String) -> String? {
+        guard !key.isEmpty else {
+            logger.error("🔴 Invalid key provided")
+            return nil
+        }
+
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key,
@@ -73,18 +78,24 @@ final class SecureStorageService {
         var dataTypeRef: AnyObject?
         let status = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
 
-        if status == errSecSuccess, let retrievedData = dataTypeRef as? Data, let result = String(data: retrievedData, encoding: .utf8) {
-            logger.info("✅ Successfully retrieved key: \(key)")
+        if status == errSecSuccess,
+           let retrievedData = dataTypeRef as? Data,
+           let result = String(data: retrievedData, encoding: .utf8) {
+            logger.info("✅ Retrieved key securely")
             return result
         } else {
-            logger.error("🔴 Keychain Retrieve Error (\(key)): \(status)")
+            logger.error("🔴 Retrieve error, code: \(status)")
             return nil
         }
     }
 
-    /// Deletes a value from Keychain
-    /// - Parameter key: The key under which the value is stored.
+    /// Deletes a value securely from the Keychain
     func delete(key: String) {
+        guard !key.isEmpty else {
+            logger.error("🔴 Invalid key provided")
+            return
+        }
+
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key
@@ -92,62 +103,36 @@ final class SecureStorageService {
 
         let status = SecItemDelete(query as CFDictionary)
         if status == errSecSuccess {
-            logger.info("✅ Successfully deleted key: \(key)")
+            logger.info("✅ Deleted key securely")
         } else {
-            logger.error("🔴 Keychain Delete Error (\(key)): \(status)")
+            logger.error("🔴 Delete error, code: \(status)")
         }
-    }
-
-    // MARK: - Authentication Token Management
-
-    /// Saves the authentication token securely
-    /// - Parameter token: The authentication token to be stored.
-    func saveAuthToken(_ token: String) {
-        save(key: "authToken", value: token)
-    }
-
-    /// Retrieves the authentication token
-    /// - Returns: The retrieved authentication token, or nil if not found.
-    func retrieveAuthToken() -> String? {
-        return retrieve(key: "authToken")
-    }
-
-    /// Deletes the authentication token (Logout)
-    func deleteAuthToken() {
-        delete(key: "authToken")
-    }
-
-    // MARK: - API Key Management
-
-    /// Saves an API key securely
-    /// - Parameters:
-    ///   - key: API key to store.
-    ///   - service: Service name for better identification.
-    func saveAPIKey(_ key: String, service: String) {
-        save(key: "\(service)_API_KEY", value: key)
-    }
-
-    /// Retrieves an API key securely
-    /// - Parameter service: Service name for better identification.
-    /// - Returns: The API key, or nil if not found.
-    func getAPIKey(service: String) -> String? {
-        return retrieve(key: "\(service)_API_KEY")
     }
 
     // MARK: - Biometric Authentication
 
-    /// Authenticates the user with Face ID / Touch ID
-    /// - Parameter completion: A closure that returns a boolean indicating success or failure.
+    /// Uses Face ID / Touch ID to validate the user
     func authenticateWithBiometrics(completion: @escaping (Bool) -> Void) {
         let context = LAContext()
         context.localizedReason = "Authenticate to access StryVr securely"
-        
-        // Check if device supports Face ID / Touch ID
+
         var error: NSError?
         guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
-            logger.error("🔴 Biometric authentication not available: \(error?.localizedDescription ?? "Unknown error")")
+            logger.error("🔴 Biometrics unavailable: \(error?.localizedDescription ?? "Unknown error")")
             completion(false)
             return
         }
 
-        // Perform authentication
+        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: context.localizedReason) { success, error in
+            DispatchQueue.main.async {
+                if success {
+                    self.logger.info("✅ Biometric authentication succeeded")
+                    completion(true)
+                } else {
+                    self.logger.error("❌ Biometric failed: \(error?.localizedDescription ?? "Unknown reason")")
+                    completion(false)
+                }
+            }
+        }
+    }
+}
