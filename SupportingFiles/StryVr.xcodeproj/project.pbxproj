@@ -99,6 +99,10 @@
 		85AD56992D945507007B6542 /* StryVr-ios.png in Resources */ = {isa = PBXBuildFile; fileRef = 85AD56962D945507007B6542 /* StryVr-ios.png */; };
 		85AD569B2D945507007B6542 /* StryVr-ios 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 85AD56972D945507007B6542 /* StryVr-ios 1.png */; };
 		85AD56A22D94BA79007B6542 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AD56A12D94BA79007B6542 /* Skill.swift */; };
+		85CB82D72DAE2C7F002AA544 /* MentorshipSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB82D62DAE2C74002AA544 /* MentorshipSession.swift */; };
+		85CB82D92DAE2E83002AA544 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB82D82DAE2E7B002AA544 /* UserRole.swift */; };
+		85CB82DB2DAE3088002AA544 /* MentorDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB82DA2DAE3073002AA544 /* MentorDetails.swift */; };
+		85CB83042DAE5D60002AA544 /* AIProfileValidatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB83032DAE5D5B002AA544 /* AIProfileValidatorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -201,13 +205,17 @@
 		859B0AD02D57D3F500E5ADF1 /* StryVrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StryVrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		85AD56962D945507007B6542 /* StryVr-ios.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StryVr-ios.png"; sourceTree = "<group>"; };
 		85AD56972D945507007B6542 /* StryVr-ios 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StryVr-ios 1.png"; sourceTree = "<group>"; };
-		85AD569C2D94B8A3007B6542 /* Mentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mentor.swift; sourceTree = "<group>"; };
+		85AD569C2D94B8A3007B6542 /* MentorSummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorSummaryModel.swift; sourceTree = "<group>"; };
 		85AD569D2D94B931007B6542 /* ChallengeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeModel.swift; sourceTree = "<group>"; };
 		85AD56A02D94B9EA007B6542 /* SubscriptionPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPlan.swift; sourceTree = "<group>"; };
 		85AD56A12D94BA79007B6542 /* Skill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skill.swift; sourceTree = "<group>"; };
 		85AD56A32D94BA97007B6542 /* LearningReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningReport.swift; sourceTree = "<group>"; };
 		85AD56A42D94BAE8007B6542 /* SkillProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillProgress.swift; sourceTree = "<group>"; };
 		85AD56A52D94BB38007B6542 /* MentorReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorReport.swift; sourceTree = "<group>"; };
+		85CB82D62DAE2C74002AA544 /* MentorshipSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorshipSession.swift; sourceTree = "<group>"; };
+		85CB82D82DAE2E7B002AA544 /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
+		85CB82DA2DAE3073002AA544 /* MentorDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorDetails.swift; sourceTree = "<group>"; };
+		85CB83032DAE5D5B002AA544 /* AIProfileValidatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIProfileValidatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -232,6 +240,16 @@
 		855E96122D9DB44E002173EF /* SupportingFiles */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		85CB82DC2DAE49B8002AA544 /* Enums */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		85CB82E02DAE4A58002AA544 /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -359,13 +377,18 @@
 		856AA5F32D9164E900402F84 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				85CB82E02DAE4A58002AA544 /* Shared */,
+				85CB82DC2DAE49B8002AA544 /* Enums */,
+				85CB82DA2DAE3073002AA544 /* MentorDetails.swift */,
+				85CB82D82DAE2E7B002AA544 /* UserRole.swift */,
+				85CB82D62DAE2C74002AA544 /* MentorshipSession.swift */,
 				856AA5F12D9164E900402F84 /* UserModel.swift */,
 				856AA5EE2D9164E900402F84 /* MentorModel.swift */,
 				856AA5EC2D9164E900402F84 /* ConferenceCallModel.swift */,
 				856AA5EF2D9164E900402F84 /* ReportModel.swift */,
 				856AA5F02D9164E900402F84 /* SkillVerificationModel.swift */,
 				856AA5F22D9164E900402F84 /* VideoPostModel.swift */,
-				85AD569C2D94B8A3007B6542 /* Mentor.swift */,
+				85AD569C2D94B8A3007B6542 /* MentorSummaryModel.swift */,
 				85AD569D2D94B931007B6542 /* ChallengeModel.swift */,
 				85AD56A02D94B9EA007B6542 /* SubscriptionPlan.swift */,
 				85AD56A12D94BA79007B6542 /* Skill.swift */,
@@ -477,6 +500,7 @@
 		856AA61D2D9164E900402F84 /* Security */ = {
 			isa = PBXGroup;
 			children = (
+				85CB83032DAE5D5B002AA544 /* AIProfileValidatorView.swift */,
 				856AA61A2D9164E900402F84 /* CompanyVerificationView.swift */,
 				856AA61C2D9164E900402F84 /* SkillVerificationView.swift */,
 			);
@@ -581,6 +605,8 @@
 			fileSystemSynchronizedGroups = (
 				855E96002D9D0815002173EF /* Enterprise */,
 				855E96122D9DB44E002173EF /* SupportingFiles */,
+				85CB82DC2DAE49B8002AA544 /* Enums */,
+				85CB82E02DAE4A58002AA544 /* Shared */,
 			);
 			name = StryVr;
 			productName = UpFlow;
@@ -742,6 +768,7 @@
 				856AA6732D916A9B00402F84 /* AIRecommendationService.swift in Sources */,
 				855E960B2D9D1009002173EF /* CareerCard.swift in Sources */,
 				856AA63F2D9164E900402F84 /* FriendLearningFeed.swift in Sources */,
+				85CB82D92DAE2E83002AA544 /* UserRole.swift in Sources */,
 				855E96042D9D08D9002173EF /* MentorVideoFeedView.swift in Sources */,
 				851966152DACF9C7004264AE /* RegisterView.swift in Sources */,
 				856AA67D2D916CB900402F84 /* ChallengeSystem.swift in Sources */,
@@ -749,6 +776,7 @@
 				856AA6452D9164E900402F84 /* ProfileView.swift in Sources */,
 				856AA6462D9164E900402F84 /* ConferenceCallModel.swift in Sources */,
 				856AA69F2D91744E00402F84 /* LeaderboardView.swift in Sources */,
+				85CB83042DAE5D60002AA544 /* AIProfileValidatorView.swift in Sources */,
 				856AA69B2D91738700402F84 /* SkillVisualizationDashboards.swift in Sources */,
 				856AA6752D916AF300402F84 /* APIService.swift in Sources */,
 				856AA6952D91716100402F84 /* MentorshipBookingView.swift in Sources */,
@@ -759,11 +787,13 @@
 				856AA6712D916A2B00402F84 /* MentorListView.swift in Sources */,
 				856AA69D2D9173EF00402F84 /* PaywallView.swift in Sources */,
 				856AA67B2D916C3C00402F84 /* MentorshipService.swift in Sources */,
+				85CB82DB2DAE3088002AA544 /* MentorDetails.swift in Sources */,
 				856AA64E2D9164E900402F84 /* SecureStorageManager.swift in Sources */,
 				856AA6512D9164E900402F84 /* MentorModel.swift in Sources */,
 				856AA6642D91674C00402F84 /* AppDelegate.swift in Sources */,
 				856AA6522D9164E900402F84 /* NetworkManager.swift in Sources */,
 				856AA6542D9164E900402F84 /* LearningPathsView.swift in Sources */,
+				85CB82D72DAE2C7F002AA544 /* MentorshipSession.swift in Sources */,
 				856AA68F2D91702900402F84 /* AuthViewModel.swift in Sources */,
 				855E960F2D9D1228002173EF /* DocumentPicker.swift in Sources */,
 				856AA6572D9164E900402F84 /* GroupChallengesView.swift in Sources */,
