@@ -3,103 +3,111 @@
 //  StryVr
 //
 //  Created by Joe Dormond on 3/12/25.
+//  🤖 AI-Powered Skill Coach – Learning Insights + Personalized Suggestions
 //
+
 import SwiftUI
 
-/// AI-powered skill coach that provides learning recommendations and progress insights
 struct AISkillCoachView: View {
     @State private var recommendedSkills: [String] = []
     @State private var progressInsights: String = "Loading insights..."
-    @State private var isLoading: Bool = true
     @State private var hasError: Bool = false
 
+    @State private var isLoading: Bool = true
     var body: some View {
         ZStack {
-            Color.background.ignoresSafeArea()
+            Theme.Colors.background.ignoresSafeArea()
 
             ScrollView {
-                VStack(alignment: .leading, spacing: Spacing.large) {
-                    
-                    // MARK: - Title
-                    Text("AI Skill Coach")
-                        .font(FontStyle.title)
-                        .foregroundColor(.whiteText)
-                        .padding(.top, Spacing.large)
-                        .accessibilityLabel("AI Skill Coach")
+                VStack(alignment: .leading, spacing: Theme.Spacing.large) {
 
-                    // MARK: - Skill Recommendations
+                    // MARK: - Header
+                    Text("AI Skill Coach")
+                        .font(Theme.Typography.headline)
+                        .foregroundColor(Theme.Colors.textPrimary)
+                        .padding(.top, Theme.Spacing.large)
+                        .accessibilityLabel("AI Skill Coach")
+                        .accessibilityHint("Provides personalized skill recommendations and growth insights")
+
+                    // MARK: - Recommendations
                     StryVrCardView(title: "🔍 Personalized Skill Recommendations") {
                         if hasError {
-                            Text("Failed to load recommendations. Please try again later.")
-                                .font(FontStyle.caption)
-                                .foregroundColor(.red)
-                                .accessibilityLabel("Error: Failed to load recommendations")
+                            VStack(spacing: Theme.Spacing.small) {
+                                Text("Failed to load recommendations. Please try again later.")
+                                    .font(Theme.Typography.caption)
+                                    .foregroundColor(.red)
+                                    .accessibilityLabel("Error: Failed to load recommendations")
+                                Button("Retry") {
+                                    fetchSkillRecommendations()
+                                }
+                                .font(Theme.Typography.caption)
+                                .foregroundColor(Theme.Colors.accent)
+                                .accessibilityLabel("Retry button")
+                            }
                         } else if recommendedSkills.isEmpty {
                             Text("No recommendations yet.")
-                                .font(FontStyle.caption)
-                                .foregroundColor(.lightGray)
-                                .accessibilityLabel("No recommendations yet")
+                                .font(Theme.Typography.caption)
+                                .foregroundColor(Theme.Colors.textSecondary)
+                                .accessibilityLabel("No recommendations available")
                         } else {
-                            VStack(alignment: .leading, spacing: Spacing.small) {
+                            VStack(alignment: .leading, spacing: Theme.Spacing.small) {
                                 ForEach(recommendedSkills, id: \.self) { skill in
-                                    SkillTagView(skill: skill)
+                                    SkillTagView(skill: .constant(skill))
                                         .accessibilityLabel("Recommended skill: \(skill)")
                                 }
                             }
                         }
                     }
 
-                    // MARK: - Growth Insights
+                    // MARK: - Insights
                     StryVrCardView(title: "📈 Growth Insights") {
                         if isLoading {
                             ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle(tint: .neonBlue))
+                                .progressViewStyle(CircularProgressViewStyle(tint: Theme.Colors.accent))
                                 .accessibilityLabel("Loading progress insights")
                         } else {
                             Text(progressInsights)
-                                .font(FontStyle.body)
-                                .foregroundColor(.lightGray)
+                                .font(Theme.Typography.body)
+                                .foregroundColor(Theme.Colors.textSecondary)
                                 .accessibilityLabel("Progress insight: \(progressInsights)")
                         }
                     }
 
-                    Spacer(minLength: Spacing.large)
+                    Spacer(minLength: Theme.Spacing.large)
                 }
-                .padding(.horizontal, Spacing.large)
+                .padding(.horizontal, Theme.Spacing.large)
             }
         }
         .onAppear {
             fetchSkillRecommendations()
-        }
             fetchProgressInsights()
+        }
     }
 
-    /// Fetch AI-powered skill recommendations
+    // MARK: - AI Skill Recommendation
     private func fetchSkillRecommendations() {
         AIRecommendationService.shared.fetchSkillRecommendations(for: "currentUserID") { result in
             DispatchQueue.main.async {
-                switch result {
-                    withAnimation {
-                case .success(let skills):
-                        recommendedSkills = skills
-                        hasError = false
-                    }
-                case .failure(let error):
-                    print("🔴 Error fetching skill recommendations: \(error.localizedDescription)")
-                    withAnimation {
-                        hasError = true
+                withAnimation {
+                    switch result {
+                    case .success(let skills):
+                        self.recommendedSkills = skills
+                        self.hasError = false
+                    case .failure(let error):
+                        print("🔴 Error fetching skill recommendations: \(error.localizedDescription)")
+                        self.hasError = true
                     }
                 }
             }
         }
     }
 
-    /// Fetch AI-generated learning progress insights
+    // MARK: - Progress Insights (Simulated)
     private func fetchProgressInsights() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             withAnimation {
-                progressInsights = "Your coding efficiency has improved by 18% this month. Keep up the great work!"
-                isLoading = false
+                self.progressInsights = "Your coding efficiency has improved by 18% this month. Keep up the great work!"
+                self.isLoading = false
             }
         }
     }
