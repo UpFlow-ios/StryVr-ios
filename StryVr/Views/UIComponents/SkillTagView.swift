@@ -1,17 +1,40 @@
+//
+//  SkillTagView.swift
+//  StryVr
+//
+//  Created by Joe Dormond on 3/6/25.
+//  🏷️ Branded Skill Pill Component – Reusable & Themed
+//
+
 import SwiftUI
 
-/// A tag-style view for displaying skills in a compact format
+/// A compact, styled tag for representing a user skill or category
 struct SkillTagView: View {
-    /// The skill to display
     @Binding var skill: String
+    var backgroundColor: Color = Theme.Colors.accent.opacity(0.15)
+    var textColor: Color = Theme.Colors.accent
+    var font: Font = Theme.Typography.caption
+    var cornerRadius: CGFloat = Theme.CornerRadius.small
+    var horizontalPadding: CGFloat = Theme.Spacing.medium
+    var verticalPadding: CGFloat = Theme.Spacing.small
 
     var body: some View {
         Text(skill)
-            .font(.caption)
-            .padding(.horizontal, 10)
-            .padding(.vertical, 5)
-            .background(Color.blue.opacity(0.2))
-            .foregroundColor(.blue)
-            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .font(font)
+            .padding(.horizontal, horizontalPadding)
+            .padding(.vertical, verticalPadding)
+            .background(backgroundColor)
+            .foregroundColor(textColor)
+            .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+            .accessibilityLabel("Skill tag: \(skill)")
+            .accessibilityHint("Represents a skill or category")
+    }
+}
+
+#Preview {
+    StatefulPreviewWrapper("Leadership") { skill in
+        SkillTagView(skill: skill)
+            .padding()
+            .background(Theme.Colors.background)
     }
 }
