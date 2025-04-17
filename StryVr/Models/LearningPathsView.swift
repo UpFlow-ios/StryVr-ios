@@ -1,9 +1,3 @@
-//
-//  LearningPathsView.swift
-//  StryVr
-//
-//  Created by Joe Dormond on 2/24/25.
-//
 import SwiftUI
 
 struct LearningPathsView: View {
@@ -20,16 +14,27 @@ struct LearningPathsView: View {
                     .font(.largeTitle)
                     .bold()
                     .padding(.top, 20)
-                
-                List(learningPaths) { path in
-                    LearningPathCard(path: path)
+                    .accessibilityLabel("Learning Paths Header")
+                    .accessibilityHint("Displays a list of your learning paths")
+
+                if learningPaths.isEmpty {
+                    Text("No learning paths available.")
+                        .font(.body)
+                        .foregroundColor(.gray)
+                        .accessibilityLabel("No learning paths available")
+                } else {
+                    List(learningPaths) { path in
+                        LearningPathCard(path: path)
+                    }
+                    .listStyle(PlainListStyle())
                 }
-                .listStyle(PlainListStyle())
             }
             .navigationTitle("My Learning Paths")
         }
     }
 }
+
+// MARK: - Models
 
 struct LearningPath: Identifiable {
     let id = UUID()
@@ -37,25 +42,32 @@ struct LearningPath: Identifiable {
     let progress: Int
 }
 
+// MARK: - Card UI
+
 struct LearningPathCard: View {
     let path: LearningPath
+    var cardColor: Color = Color(UIColor.systemBackground)
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(path.title)
                 .font(.headline)
-            
-            ProgressBarView(progress: CGFloat(path.progress))
+                .accessibilityLabel("Learning path title: \(path.title)")
+
+            ProgressBarView(progress: .constant(Double(path.progress) / 100.0))
                 .frame(height: 10)
+                .accessibilityLabel("Progress bar for \(path.title)")
+                .accessibilityValue("\(path.progress)% completed")
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 12).fill(Color(UIColor.systemBackground)).shadow(radius: 2))
+        .background(RoundedRectangle(cornerRadius: 12).fill(cardColor).shadow(radius: 2))
     }
 }
+
+// MARK: - Preview
 
 struct LearningPathsView_Previews: PreviewProvider {
     static var previews: some View {
         LearningPathsView()
     }
 }
-
