@@ -1,3 +1,11 @@
+//
+//  MentorSessionListView.swift
+//  StryVr
+//
+//  Created by Joe Dormond on 3/26/25.
+//  🗓️ Mentor Session Tracker – Booked & Past Learning Events
+//
+
 import SwiftUI
 
 struct MentorSession: Identifiable {
@@ -14,30 +22,37 @@ struct MentorSessionListView: View {
     ]
 
     var body: some View {
-        NavigationView {
-            List(sessions) { session in
-                VStack(alignment: .leading) {
-                    Text(session.title)
-                        .font(.headline)
-                    Text("\(session.date, formatter: dateFormatter)")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
+        NavigationStack {
+            if sessions.isEmpty {
+                Text("No sessions available.")
+                    .font(Theme.Typography.body)
+                    .foregroundColor(Theme.Colors.textSecondary)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                    .accessibilityLabel("No sessions available")
+            } else {
+                List(sessions) { session in
+                    VStack(alignment: .leading, spacing: Theme.Spacing.small) {
+                        Text(session.title)
+                            .font(Theme.Typography.body)
+                            .foregroundColor(Theme.Colors.textPrimary)
+
+                        Text(session.date.formatted(date: .abbreviated, time: .omitted))
+                            .font(Theme.Typography.caption)
+                            .foregroundColor(Theme.Colors.textSecondary)
+                    }
+                    .padding(.vertical, Theme.Spacing.small)
+                    .accessibilityElement(children: .combine)
+                    .accessibilityLabel("\(session.title) on \(session.date.formatted(.dateTime.month().day().year()))")
                 }
+                .listStyle(.insetGrouped)
             }
             .navigationTitle("Mentor Sessions")
+            .background(Theme.Colors.background)
         }
-    }
-
-    private var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .none
-        return formatter
     }
 }
 
-struct MentorSessionListView_Previews: PreviewProvider {
-    static var previews: some View {
-        MentorSessionListView()
-    }
+#Preview {
+    MentorSessionListView()
 }
