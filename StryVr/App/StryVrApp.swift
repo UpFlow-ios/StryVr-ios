@@ -1,35 +1,54 @@
+//
+//  StryVrApp.swift
+//  StryVr
+//
+//  Created by Joe Dormond on 3/5/25.
+//  🌱 App Entry Point with Firebase, Splash, and Auth Routing
+//
+
 import SwiftUI
 import Firebase
-import os.log
+import os
 
 @main
 struct StryVrApp: App {
 
-    // ✅ Integrate AppDelegate
+    // MARK: - AppDelegate Integration (for notifications, etc.)
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
-    // ✅ Global Auth Model
+    // MARK: - Global State
     @StateObject private var authViewModel = AuthViewModel.shared
+    @State private var showSplash = true
+
+    // MARK: - Constants
+    private let splashDuration: TimeInterval = 2.0
+    private let logger = Logger(subsystem: "com.stryvr.app", category: "AppLifecycle")
 
     init() {
-        // ✅ Firebase Initialization
         if FirebaseApp.app() == nil {
-            do {
-                FirebaseApp.configure()
-                os_log("🔥 Firebase configured successfully", log: .default, type: .info)
-            } catch {
-                os_log("❌ Firebase configuration failed: %{public}@", log: .default, type: .error, error.localizedDescription)
-            }
+            FirebaseApp.configure()
+            logger.info("🔥 Firebase configured successfully")
         }
     }
 
     var body: some Scene {
         WindowGroup {
             Group {
-                if authViewModel.userSession != nil {
-                    HomeView()
+                if showSplash {
+                    SplashScreenView()
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + splashDuration) {
+                                withAnimation {
+                                    showSplash = false
+                                }
+                            }
+                        }
                 } else {
-                    LoginView()
+                    if authViewModel.userSession != nil {
+                        HomeView()
+                    } else {
+                        LoginView()
+                    }
                 }
             }
             .environmentObject(authViewModel)
