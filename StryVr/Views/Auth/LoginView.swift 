@@ -1,7 +1,17 @@
+
+//
+//  LoginView.swift
+//  StryVr
+//
+//  Created by Joe Dormond on 4/14/25.
+//  🔐 Login Screen – Secure, Themed, and Firebase Integrated
+//
+
 import SwiftUI
 
 struct LoginView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
+
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var errorMessage: String?
@@ -11,82 +21,93 @@ struct LoginView: View {
 
     var body: some View {
         ZStack {
-            Color.background.ignoresSafeArea()
+            Theme.Colors.background.ignoresSafeArea()
 
-            VStack(spacing: Spacing.large) {
+            VStack(spacing: Theme.Spacing.large) {
+
                 // MARK: - Title
                 Text("Login to StryVr")
-                    .font(FontStyle.title)
-                    .foregroundColor(.whiteText)
-                    .padding(.top, Spacing.xLarge)
+                    .font(Theme.Typography.headline)
+                    .foregroundColor(Theme.Colors.textPrimary)
+                    .padding(.top, Theme.Spacing.xLarge)
                     .accessibilityLabel("Login to StryVr")
 
-                // MARK: - Email
+                // MARK: - Email Field
                 TextField("Email", text: $email)
                     .textContentType(.emailAddress)
                     .keyboardType(.emailAddress)
-                    .padding()
-                    .background(Color.card)
-                    .cornerRadius(10)
-                    .foregroundColor(.whiteText)
                     .autocapitalization(.none)
+                    .padding()
+                    .background(Theme.Colors.card)
+                    .cornerRadius(Theme.CornerRadius.medium)
+                    .foregroundColor(Theme.Colors.textPrimary)
+                    .accessibilityLabel("Email input field")
+                    .accessibilityHint("Enter your email address")
 
-                // MARK: - Password
+                // MARK: - Password Field
                 SecureField("Password", text: $password)
                     .textContentType(.password)
                     .padding()
-                    .background(Color.card)
-                    .cornerRadius(10)
-                    .foregroundColor(.whiteText)
+                    .background(Theme.Colors.card)
+                    .cornerRadius(Theme.CornerRadius.medium)
+                    .foregroundColor(Theme.Colors.textPrimary)
+                    .accessibilityLabel("Password input field")
+                    .accessibilityHint("Enter your password")
 
-                // MARK: - Error
-                if let errorMessage = errorMessage {
-                    Text(errorMessage)
-                        .font(FontStyle.caption)
+                // MARK: - Error Display
+                if let error = errorMessage {
+                    Text(error)
+                        .font(Theme.Typography.caption)
                         .foregroundColor(.red)
                         .multilineTextAlignment(.center)
-                        .padding(.horizontal, Spacing.medium)
+                        .padding(.horizontal, Theme.Spacing.medium)
+                        .accessibilityLabel("Error: \(error)")
                 }
 
                 // MARK: - Login Button
                 Button(action: loginUser) {
                     if isLoading {
                         ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle(tint: .neonBlue))
+                            .progressViewStyle(CircularProgressViewStyle(tint: Theme.Colors.accent))
+                            .accessibilityLabel("Logging in...")
                     } else {
                         Text("Login")
-                            .font(FontStyle.body)
-                            .foregroundColor(.whiteText)
+                            .font(Theme.Typography.body)
+                            .foregroundColor(Theme.Colors.whiteText)
                             .padding()
                             .frame(maxWidth: .infinity)
-                            .background(Color.neonBlue)
-                            .cornerRadius(10)
+                            .background(Theme.Colors.accent)
+                            .cornerRadius(Theme.CornerRadius.medium)
+                            .accessibilityLabel("Login button")
+                            .accessibilityHint("Tap to log in to your account")
                     }
                 }
                 .disabled(isLoading)
 
-                // MARK: - Links to Register / Forgot
+                // MARK: - Forgot / Sign Up Navigation
                 HStack {
                     Button("Forgot Password?") {
                         showForgotPassword.toggle()
                     }
-                    .font(FontStyle.caption)
-                    .foregroundColor(.neonBlue)
+                    .font(Theme.Typography.caption)
+                    .foregroundColor(Theme.Colors.accent)
                     .accessibilityLabel("Forgot password")
+                    .accessibilityHint("Tap to reset your password")
 
                     Spacer()
 
                     Button("Sign Up") {
                         showRegister.toggle()
                     }
-                    .font(FontStyle.caption)
-                    .foregroundColor(.neonBlue)
+                    .font(Theme.Typography.caption)
+                    .foregroundColor(Theme.Colors.accent)
                     .accessibilityLabel("Sign up")
-                Spacer()
+                    .accessibilityHint("Tap to create a new account")
                 }
 
+                Spacer()
             }
-            .padding(.horizontal, Spacing.large)
+            .padding(.horizontal, Theme.Spacing.large)
         }
         .sheet(isPresented: $showForgotPassword) {
             ForgotPasswordView()
@@ -97,22 +118,37 @@ struct LoginView: View {
                 .environmentObject(authViewModel)
         }
         .onReceive(authViewModel.$errorMessage) { newErrorMessage in
-            errorMessage = newErrorMessage
-            isLoading = false
+            self.errorMessage = newErrorMessage
+            self.isLoading = false
         }
         .onReceive(authViewModel.$userSession) { _ in
-            isLoading = false
+            self.isLoading = false
         }
     }
 
-    // MARK: - Login Logic
+    // MARK: - Firebase Login Logic
     private func loginUser() {
         guard !email.isEmpty, !password.isEmpty else {
             errorMessage = "Please enter both email and password."
             return
         }
 
+        guard isValidEmail(email) else {
+            errorMessage = "Please enter a valid email address."
+            return
+        }
+
         isLoading = true
         authViewModel.signIn(email: email, password: password)
     }
+
+    // MARK: - Email Validation
+    private func isValidEmail(_ email: String) -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email)
+    }
+}
+
+#Preview {
+    LoginView().environmentObject(AuthViewModel.shared)
 }
