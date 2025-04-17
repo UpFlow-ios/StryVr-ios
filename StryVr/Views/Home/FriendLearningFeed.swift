@@ -3,7 +3,9 @@
 //  StryVr
 //
 //  Created by Joe Dormond on 3/12/25.
+//  🧠 Real-Time Friend Skill Feed – Firebase-Powered Social Learning UI
 //
+
 import SwiftUI
 import FirebaseFirestore
 import os.log
@@ -12,76 +14,96 @@ import os.log
 struct FriendLearningFeed: View {
     @State private var feedItems: [LearningFeedItem] = []
     @State private var isError: Bool = false
+    @State private var isLoading: Bool = true
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "FriendLearningFeed")
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
-                if isError {
-                    Text("Failed to load feed. Please try again later.")
-                        .font(.headline)
-                        .foregroundColor(.red)
+                Theme.Colors.background.ignoresSafeArea()
+
+                if isLoading {
+                    ProgressView("Loading feed...")
+                        .progressViewStyle(CircularProgressViewStyle(tint: Theme.Colors.accent))
+                        .accessibilityLabel("Loading friend learning feed")
+                } else if isError {
+                    VStack {
+                        Text("⚠️ Failed to load feed. Please try again later.")
+                            .font(Theme.Typography.body)
+                            .foregroundColor(.red)
+                            .padding()
+                            .accessibilityLabel("Error loading learning feed")
+
+                        Button("Retry") {
+                            fetchLearningFeed()
+                        }
+                        .font(Theme.Typography.body)
+                        .foregroundColor(Theme.Colors.accent)
                         .padding()
-                        .accessibilityLabel("Error: Failed to load feed")
+                        .accessibilityLabel("Retry loading feed")
+                    }
                 } else if feedItems.isEmpty {
-                    Text("No activity to display.")
-                        .font(.headline)
-                        .foregroundColor(.gray)
+                    Text("No recent activity from your network.")
+                        .font(Theme.Typography.body)
+                        .foregroundColor(Theme.Colors.textSecondary)
                         .padding()
                         .accessibilityLabel("No activity to display")
                 } else {
                     List(feedItems) { item in
-                        HStack {
+                        HStack(spacing: Theme.Spacing.medium) {
                             AsyncImage(url: URL(string: item.friendProfileImage)) { image in
                                 image.resizable().scaledToFill()
                             } placeholder: {
-                                Circle().fill(Color.gray.opacity(0.3))
+                                Circle().fill(Color.gray.opacity(0.2))
                             }
                             .frame(width: 50, height: 50)
                             .clipShape(Circle())
-                            .accessibilityLabel("Profile image of \(item.friendName)")
+                            .accessibilityLabel("\(item.friendName)'s profile image")
 
-                            VStack(alignment: .leading) {
+                            VStack(alignment: .leading, spacing: 4) {
                                 Text("\(item.friendName) is learning \(item.skillName)")
-                                    .font(.headline)
-                                    .accessibilityLabel("\(item.friendName) is learning \(item.skillName)")
+                                    .font(Theme.Typography.body)
+                                    .foregroundColor(Theme.Colors.textPrimary)
+
                                 Text(item.timestamp, style: .time)
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                                    .accessibilityLabel("Timestamp: \(item.timestamp.formatted())")
+                                    .font(Theme.Typography.caption)
+                                    .foregroundColor(Theme.Colors.textSecondary)
                             }
 
                             Spacer()
 
-                            Button(action: {
-                                logger.info("Engaged with \(item.skillName)")
-                            }) {
+                            Button {
+                                logger.info("👍 Liked \(item.skillName)")
+                            } label: {
                                 Image(systemName: "hand.thumbsup.fill")
-                                    .foregroundColor(.blue)
+                                    .foregroundColor(Theme.Colors.accent)
                                     .accessibilityLabel("Like \(item.skillName)")
                             }
                         }
-                        .transition(.opacity) // Smooth fade animation
+                        .padding(.vertical, Theme.Spacing.small)
+                        .transition(.opacity)
                     }
+                    .listStyle(.plain)
                 }
             }
             .navigationTitle("Friend Learning Feed")
-            .onAppear {
-                fetchLearningFeed()
-            }
+            .onAppear(perform: fetchLearningFeed)
         }
     }
 
-    /// Fetches real-time updates of what friends are learning
+    /// Fetches real-time updates of what friends are learning from Firestore
     private func fetchLearningFeed() {
-        let userID = "currentUserID"
+        isLoading = true
+        isError = false
+        let userID = "currentUserID" // 🔐 Replace with AuthManager.userID
         Firestore.firestore().collection("friendLearningFeed")
             .whereField("followers", arrayContains: userID)
             .order(by: "timestamp", descending: true)
             .addSnapshotListener { snapshot, error in
                 DispatchQueue.main.async {
+                    isLoading = false
                     if let error = error {
-                        logger.error("Error fetching feed: \(error.localizedDescription)")
+                        logger.error("❌ Error fetching feed: \(error.localizedDescription)")
                         isError = true
                         return
                     }
@@ -92,7 +114,7 @@ struct FriendLearningFeed: View {
                     }
 
                     withAnimation {
-                        self.feedItems = documents.compactMap { doc -> LearningFeedItem? in
+                        self.feedItems = documents.compactMap { doc in
                             try? doc.data(as: LearningFeedItem.self)
                         }
                     }
@@ -101,7 +123,7 @@ struct FriendLearningFeed: View {
     }
 }
 
-/// Represents a learning feed item
+// MARK: - LearningFeedItem Model
 struct LearningFeedItem: Identifiable, Codable {
     let id: String
     let friendID: String
@@ -109,4 +131,8 @@ struct LearningFeedItem: Identifiable, Codable {
     let friendProfileImage: String
     let skillName: String
     let timestamp: Date
+}
+
+#Preview {
+    FriendLearningFeed()
 }
