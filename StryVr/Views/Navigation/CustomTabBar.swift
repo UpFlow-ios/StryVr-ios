@@ -1,27 +1,62 @@
+//
+//  CustomTabBar.swift
+//  StryVr
+//
+//  Created by Joe Dormond on 3/5/25.
+//  🧭 Custom Tab Navigation – Themed, Accessible, Scalable
+//
+
 import SwiftUI
 
-/// Custom tab bar navigation
+/// A model representing a tab item
+struct TabItem: Identifiable {
+    let id = UUID()
+    let icon: String
+    let label: String
+    let index: Int
+}
+
+/// A custom tab bar styled for StryVr with theming and accessibility
 struct CustomTabBar: View {
     @Binding var selectedTab: Int
-    private let tabItems = [
-        ("house.fill", "Home", 0),
-        ("person.fill", "Profile", 1)
+
+    private let tabItems: [TabItem] = [
+        TabItem(icon: "house.fill", label: "Home", index: 0),
+        TabItem(icon: "person.fill", label: "Profile", index: 1)
+        // ✅ Add more: TabItem(icon: "chart.bar.fill", label: "Reports", index: 2), etc.
     ]
-    
+
     var body: some View {
-        HStack {
-            ForEach(tabItems, id: \.2) { item in
-                Button(action: { selectedTab = item.2 }) {
-                    Image(systemName: item.0)
-                        .accessibility(label: Text(item.1))
+        HStack(spacing: Theme.Spacing.large) {
+            ForEach(tabItems) { item in
+                Button(action: {
+                    withAnimation {
+                        selectedTab = item.index
+                    }
+                }) {
+                    VStack(spacing: 4) {
+                        Image(systemName: item.icon)
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(selectedTab == item.index ? Theme.Colors.accent : Theme.Colors.textSecondary)
+
+                        Text(item.label)
+                            .font(.caption)
+                            .foregroundColor(selectedTab == item.index ? Theme.Colors.accent : Theme.Colors.textSecondary)
+                    }
+                    .accessibilityLabel("\(item.label) tab")
+                    .accessibilityHint("Switches to the \(item.label) tab")
                 }
-                if item != tabItems.last {
-                    Spacer()
-                }
+                .frame(maxWidth: .infinity)
             }
         }
-        .padding()
-        .background(Color.gray.opacity(0.1))
-        .clipShape(Capsule())
+        .padding(.vertical, Theme.Spacing.medium)
+        .padding(.horizontal)
+        .background(Theme.Colors.card)
+        .clipShape(RoundedRectangle(cornerRadius: Theme.CornerRadius.large))
+        .shadow(color: Theme.Colors.textSecondary.opacity(0.1), radius: 4, x: 0, y: -2)
     }
+}
+
+#Preview {
+    CustomTabBar(selectedTab: .constant(0))
 }
