@@ -3,34 +3,59 @@
 //  StryVr
 //
 //  Created by Joe Dormond on 3/5/25.
+//  🧭 Themed Custom Navigation Entry Point for Dynamic Routing
 //
+
 import SwiftUI
 
 struct CustomNavigationView: View {
     var body: some View {
-        NavigationView {
-            VStack {
-                Spacer()
-                Text("StryVr Navigation")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .accessibilityLabel("StryVr Navigation Title")
-                NavigationLink(destination: Text("Next Screen")) {
-                    Text("Go to Next Screen")
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                        .accessibilityLabel("Go to Next Screen Button")
+        NavigationStack {
+            ZStack {
+                Theme.Colors.background.ignoresSafeArea()
+
+                VStack(spacing: Theme.Spacing.large) {
+                    Spacer()
+
+                    Text("StryVr Navigation")
+                        .font(Theme.Typography.headline)
+                        .foregroundColor(Theme.Colors.textPrimary)
+                        .accessibilityLabel("StryVr Navigation Title")
+                        .accessibilityHint("Displays the main navigation entry point")
+
+                    NavigationLink(destination: PlaceholderView()) {
+                        Text("Go to Next Screen")
+                            .font(Theme.Typography.body)
+                            .foregroundColor(Theme.Colors.whiteText)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Theme.Colors.accent)
+                            .cornerRadius(Theme.CornerRadius.medium)
+                            .accessibilityLabel("Go to next screen")
+                            .accessibilityHint("Navigates to the next screen")
+                    }
+                    .padding(.horizontal, Theme.Spacing.large)
+
+                    Spacer()
                 }
-                Spacer()
             }
+            .navigationTitle("Navigation")
         }
     }
 }
 
-struct CustomNavigationView_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomNavigationView()
+struct PlaceholderView: View {
+    var body: some View {
+        ZStack {
+            Theme.Colors.background.ignoresSafeArea()
+            Text("🧭 Next Screen Content")
+                .font(Theme.Typography.body)
+                .foregroundColor(Theme.Colors.textPrimary)
+                .accessibilityLabel("Next screen content placeholder")
+        }
     }
+}
+
+#Preview {
+    CustomNavigationView()
 }
