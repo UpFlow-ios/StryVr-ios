@@ -3,6 +3,7 @@
 //  StryVr
 //
 //  Created by Joe Dormond on 4/9/25.
+//  📊 Skill Reports Dashboard – Progress Charts & Growth Metrics
 //
 
 import SwiftUI
@@ -18,23 +19,23 @@ struct ReportsDashboardView: View {
 
     var body: some View {
         ZStack {
-            Color.background.ignoresSafeArea()
+            Theme.Colors.background.ignoresSafeArea()
 
             ScrollView {
-                VStack(alignment: .leading, spacing: Spacing.large) {
-                    
-                    // MARK: - Header
+                VStack(alignment: .leading, spacing: Theme.Spacing.large) {
+
+                    // MARK: - Title
                     Text("Reports")
-                        .foregroundColor(.whiteText)
-                        .font(FontStyle.title)
-                        .padding(.top, Spacing.large)
+                        .font(Theme.Typography.headline)
+                        .foregroundColor(Theme.Colors.textPrimary)
                         .accessibilityLabel("Reports Dashboard")
 
-                    // MARK: - Bar Chart Card
+                        .padding(.top, Theme.Spacing.large)
+                    // MARK: - Skill Progress Chart
                     if skillData.isEmpty {
                         Text("No skill data available")
-                            .font(FontStyle.caption)
-                            .foregroundColor(.lightGray)
+                            .font(Theme.Typography.caption)
+                            .foregroundColor(Theme.Colors.textSecondary)
                             .accessibilityLabel("No skill data available")
                     } else {
                         StryVrChartCard(data: skillData)
@@ -42,49 +43,61 @@ struct ReportsDashboardView: View {
                     }
 
                     // MARK: - Circular Progress Grid
-                    StryVrCardView(title: "Skill Breakdown") {
-                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: Spacing.medium) {
-                            ForEach(skillData) { skill in
-                                StryVrProgressCircle(progress: skill.progress, label: skill.skill)
-                                    .accessibilityLabel("\(skill.skill) progress: \(Int(skill.progress * 100)) percent")
+                    if skillData.isEmpty {
+                        Text("No skills to display")
+                            .font(Theme.Typography.caption)
+                            .foregroundColor(Theme.Colors.textSecondary)
+                            .accessibilityLabel("No skills to display")
+                    } else {
+                        StryVrCardView(title: "Skill Breakdown") {
+                            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: Theme.Spacing.medium) {
+                                ForEach(skillData) { skill in
+                                    StryVrProgressCircle(progress: skill.progress, label: skill.skill)
+                                        .accessibilityLabel("\(skill.skill) progress: \(Int(skill.progress * 100)) percent")
+                                        .accessibilityHint("Displays the progress for \(skill.skill)")
+                                }
                             }
+                            .padding(.top, Theme.Spacing.small)
                         }
-                        .padding(.top, Spacing.small)
                     }
 
-                    // MARK: - Daily Metrics
+                    // MARK: - Daily Learning Metrics
                     StryVrCardView(title: "Learning Metrics") {
-                        VStack(alignment: .leading, spacing: Spacing.medium) {
+                        VStack(alignment: .leading, spacing: Theme.Spacing.medium) {
+
                             HStack {
                                 Text("Streak")
                                 Spacer()
                                 Text("12 Days")
                             }
-                            .font(FontStyle.body)
-                            .foregroundColor(.whiteText)
-                            .accessibilityLabel("Streak: 12 Days")
+                            .accessibilityLabel("Learning streak: 12 days")
 
                             HStack {
                                 Text("Last Activity")
                                 Spacer()
                                 Text("Today at 08:42")
                             }
-                            .accessibilityLabel("Last Activity: Today at 08:42")
+                            .accessibilityLabel("Last activity: Today at 8:42 AM")
 
                             HStack {
                                 Text("Monthly Growth")
                                 Spacer()
                                 Text("22% ↑")
                             }
-                            .accessibilityLabel("Monthly Growth: 22 percent increase")
+                            .accessibilityLabel("Monthly growth: 22 percent increase")
                         }
-                        .foregroundColor(.lightGray)
+                        .font(Theme.Typography.body)
+                        .foregroundColor(Theme.Colors.textPrimary)
                     }
 
                     Spacer()
                 }
-                .padding(.horizontal, Spacing.large)
+                .padding(.horizontal, Theme.Spacing.large)
             }
         }
     }
+}
+
+#Preview {
+    ReportsDashboardView()
 }
