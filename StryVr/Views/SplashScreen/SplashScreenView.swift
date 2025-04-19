@@ -2,14 +2,6 @@
 //  SplashScreenView.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 4/16/25.
-//  🌳 Animated Tree Logo Splash Screen – Branded App Entry
-//
-
-//
-//  SplashScreenView.swift
-//  StryVr
-//
 //  Created by Joe Dormond on 4/17/25.
 //
 
