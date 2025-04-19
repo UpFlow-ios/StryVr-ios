@@ -8,57 +8,57 @@
 
 import SwiftUI
 
-/// Displays the branded splash screen with StryVr tree logo and animated intro
+/// Displays the app's animated splash screen using LogoDark
 struct SplashScreenView: View {
     @State private var isActive = false
-    @State private var opacity = 0.0
-    @State private var scale: CGFloat = 0.85
-
     private let splashDuration: TimeInterval = 2.0
-    private let logoSize: CGFloat = 120
 
     var body: some View {
         ZStack {
-            Theme.Colors.background.ignoresSafeArea()
+            Color.black.ignoresSafeArea()
 
-            if isActive {
-                HomeView() // ✅ Replace with OnboardingView() later if needed
+            VStack(spacing: 20) {
+                // Logo with fallback
+                Image("LogoDark")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 120, height: 120)
                     .transition(.opacity)
-            } else {
-                VStack(spacing: Theme.Spacing.medium) {
-                    Image("stryvr-logo-tree") // Add this to Assets.xcassets
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: logoSize, height: logoSize)
-                        .opacity(opacity)
-                        .scaleEffect(scale)
-                        .accessibilityLabel("StryVr tree logo")
-                        .onAppear {
-                            withAnimation(.easeOut(duration: 1.0)) {
-                                self.opacity = 1.0
-                                self.scale = 1.0
-                            }
-                        }
+                    .accessibilityLabel("StryVr Logo")
+                    .accessibilityHint("Displays the app logo on launch")
 
-                    Text("stryvr")
-                        .font(.system(size: 36, weight: .bold, design: .rounded))
-                        .foregroundColor(Theme.Colors.textPrimary)
-                        .opacity(opacity)
-                        .accessibilityLabel("StryVr app name")
-                        .accessibilityHint("Welcome to the StryVr app")
-                }
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + splashDuration) {
-                        withAnimation {
-                            isActive = true
-                        }
-                    }
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                    .scaleEffect(1.2)
+                    .accessibilityLabel("Loading")
+                    .accessibilityHint("Indicates the app is launching")
+            }
+            .opacity(isActive ? 0 : 1)
+        }
+        .onAppear {
+            withAnimation(.easeInOut(duration: 0.5)) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + splashDuration) {
+                    isActive = true
                 }
             }
+        }
+        .fullScreenCover(isPresented: $isActive) {
+            StryVrAppEntryPoint()
         }
     }
 }
 
-#Preview {
-    SplashScreenView()
+/// Placeholder view to control app entry state
+struct StryVrAppEntryPoint: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
+
+    var body: some View {
+        Group {
+            if authViewModel.userSession != nil {
+                HomeView()
+            } else {
+                LoginView()
+            }
+        }
+    }
 }
