@@ -87,6 +87,7 @@
 		856AA6A12D9174A300402F84 /* homeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6A02D9174A300402F84 /* homeViewModel.swift */; };
 		856EB3312D8520E300DC0134 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 856EB3302D8520E300DC0134 /* Lottie */; };
 		8576DD412D84849200409153 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 8576DD402D84849100409153 /* FirebaseMessaging */; };
+		8588F0A12DC068C600D04995 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F0A02DC068BE00D04995 /* SettingsView.swift */; };
 		858CD9762D82236900B6B9D3 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 858CD9752D82236900B6B9D3 /* FirebaseCore */; };
 		858CD97C2D82236900B6B9D3 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 858CD97B2D82236900B6B9D3 /* FirebaseStorage */; };
 		859174032D82004100A06F42 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 859174022D82004100A06F42 /* FirebaseAnalytics */; };
@@ -199,6 +200,7 @@
 		856AA69C2D9173EF00402F84 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		856AA69E2D91744E00402F84 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		856AA6A02D9174A300402F84 /* homeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeViewModel.swift; sourceTree = "<group>"; };
+		8588F0A02DC068BE00D04995 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		8595B1832DB36711001D831E /* AppShellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShellView.swift; sourceTree = "<group>"; };
 		859B0AB02D57D3E900E5ADF1 /* StryVr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StryVr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		859B0AC62D57D3F400E5ADF1 /* StryVrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StryVrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -494,6 +496,7 @@
 		856AA6192D9164E900402F84 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				8588F0A02DC068BE00D04995 /* SettingsView.swift */,
 				856AA6182D9164E900402F84 /* ProfileView.swift */,
 			);
 			path = Profile;
@@ -754,6 +757,7 @@
 				855E96062D9D0974002173EF /* MentorVideoCard.swift in Sources */,
 				851966062DA6D782004264AE /* FontStyle.swift in Sources */,
 				851966072DA6D782004264AE /* Colors.swift in Sources */,
+				8588F0A12DC068C600D04995 /* SettingsView.swift in Sources */,
 				851966112DA6D8A7004264AE /* StryVrChartCard.swift in Sources */,
 				851966082DA6D782004264AE /* ThemeManager.swift in Sources */,
 				851966092DA6D782004264AE /* Spacing.swift in Sources */,
