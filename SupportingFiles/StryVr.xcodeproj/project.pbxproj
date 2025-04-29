@@ -90,6 +90,7 @@
 		8588F0A12DC068C600D04995 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F0A02DC068BE00D04995 /* SettingsView.swift */; };
 		8588F0A32DC0698A00D04995 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F0A22DC0698100D04995 /* EditProfileView.swift */; };
 		8588F0A52DC06A4200D04995 /* NotificationPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F0A42DC06A3C00D04995 /* NotificationPreferencesView.swift */; };
+		8588F0A72DC0798600D04995 /* AchievementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F0A62DC0798100D04995 /* AchievementsView.swift */; };
 		858CD9762D82236900B6B9D3 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 858CD9752D82236900B6B9D3 /* FirebaseCore */; };
 		858CD97C2D82236900B6B9D3 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 858CD97B2D82236900B6B9D3 /* FirebaseStorage */; };
 		859174032D82004100A06F42 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 859174022D82004100A06F42 /* FirebaseAnalytics */; };
@@ -205,6 +206,7 @@
 		8588F0A02DC068BE00D04995 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		8588F0A22DC0698100D04995 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		8588F0A42DC06A3C00D04995 /* NotificationPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPreferencesView.swift; sourceTree = "<group>"; };
+		8588F0A62DC0798100D04995 /* AchievementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsView.swift; sourceTree = "<group>"; };
 		8595B1832DB36711001D831E /* AppShellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShellView.swift; sourceTree = "<group>"; };
 		859B0AB02D57D3E900E5ADF1 /* StryVr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StryVr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		859B0AC62D57D3F400E5ADF1 /* StryVrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StryVrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -461,6 +463,7 @@
 		856AA60C2D9164E900402F84 /* Challenges */ = {
 			isa = PBXGroup;
 			children = (
+				8588F0A62DC0798100D04995 /* AchievementsView.swift */,
 				856AA60B2D9164E900402F84 /* GroupChallengesView.swift */,
 			);
 			path = Challenges;
@@ -802,6 +805,7 @@
 				856AA69D2D9173EF00402F84 /* PaywallView.swift in Sources */,
 				856AA67B2D916C3C00402F84 /* MentorshipService.swift in Sources */,
 				85CB82DB2DAE3088002AA544 /* MentorDetails.swift in Sources */,
+				8588F0A72DC0798600D04995 /* AchievementsView.swift in Sources */,
 				856AA64E2D9164E900402F84 /* SecureStorageManager.swift in Sources */,
 				856AA6512D9164E900402F84 /* MentorModel.swift in Sources */,
 				856AA6642D91674C00402F84 /* AppDelegate.swift in Sources */,
