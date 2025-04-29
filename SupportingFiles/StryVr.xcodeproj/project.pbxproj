@@ -92,6 +92,7 @@
 		8588F0A52DC06A4200D04995 /* NotificationPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F0A42DC06A3C00D04995 /* NotificationPreferencesView.swift */; };
 		8588F0A72DC0798600D04995 /* AchievementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F0A62DC0798100D04995 /* AchievementsView.swift */; };
 		8588F0A92DC07A2000D04995 /* ChallengeTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F0A82DC07A1A00D04995 /* ChallengeTrackerView.swift */; };
+		8588F0AB2DC07B1D00D04995 /* SkillStreaksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F0AA2DC07B1800D04995 /* SkillStreaksView.swift */; };
 		858CD9762D82236900B6B9D3 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 858CD9752D82236900B6B9D3 /* FirebaseCore */; };
 		858CD97C2D82236900B6B9D3 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 858CD97B2D82236900B6B9D3 /* FirebaseStorage */; };
 		859174032D82004100A06F42 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 859174022D82004100A06F42 /* FirebaseAnalytics */; };
@@ -209,6 +210,7 @@
 		8588F0A42DC06A3C00D04995 /* NotificationPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPreferencesView.swift; sourceTree = "<group>"; };
 		8588F0A62DC0798100D04995 /* AchievementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsView.swift; sourceTree = "<group>"; };
 		8588F0A82DC07A1A00D04995 /* ChallengeTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeTrackerView.swift; sourceTree = "<group>"; };
+		8588F0AA2DC07B1800D04995 /* SkillStreaksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillStreaksView.swift; sourceTree = "<group>"; };
 		8595B1832DB36711001D831E /* AppShellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShellView.swift; sourceTree = "<group>"; };
 		859B0AB02D57D3E900E5ADF1 /* StryVr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StryVr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		859B0AC62D57D3F400E5ADF1 /* StryVrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StryVrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -465,6 +467,7 @@
 		856AA60C2D9164E900402F84 /* Challenges */ = {
 			isa = PBXGroup;
 			children = (
+				8588F0AA2DC07B1800D04995 /* SkillStreaksView.swift */,
 				8588F0A82DC07A1A00D04995 /* ChallengeTrackerView.swift */,
 				8588F0A62DC0798100D04995 /* AchievementsView.swift */,
 				856AA60B2D9164E900402F84 /* GroupChallengesView.swift */,
@@ -825,6 +828,7 @@
 				856AA6592D9164E900402F84 /* SkillVerificationModel.swift in Sources */,
 				856AA65A2D9164E900402F84 /* ReportModel.swift in Sources */,
 				856AA6892D916E7E00402F84 /* SecureStorageService.swift in Sources */,
+				8588F0AB2DC07B1D00D04995 /* SkillStreaksView.swift in Sources */,
 				856AA6832D916DA000402F84 /* MentorMatchingService.swift in Sources */,
 				851966132DA6DACE004264AE /* ReportsDashboardView.swift in Sources */,
 				856AA6772D916B7800402F84 /* AuthManager.swift in Sources */,
