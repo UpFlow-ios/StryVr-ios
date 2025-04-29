@@ -2,8 +2,7 @@
 //  AuthViewModel.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 3/24/25.
-//  🔒 Optimized for Security, Performance, and Maintainability
+//  🔒 Optimized Authentication ViewModel – Secure, Scalable, and Maintainable
 //
 
 import Foundation
@@ -50,6 +49,58 @@ final class AuthViewModel: ObservableObject {
         }
     }
 
+    // MARK: - Register (Sign Up)
+    func createUser(email: String, password: String) {
+        guard isValidEmail(email), !password.isEmpty else {
+            DispatchQueue.main.async {
+                self.errorMessage = "Please enter a valid email and password."
+            }
+            os_log("❌ Sign-up failed: Invalid credentials format", log: .default, type: .error)
+            return
+        }
+
+        Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    self?.handleAuthError(error)
+                    return
+                }
+
+                guard let user = result?.user else {
+                    self?.errorMessage = "An unknown error occurred. Please try again."
+                    os_log("❌ Sign-up failed: No user returned", log: .default, type: .error)
+                    return
+                }
+
+                self?.userSession = user
+                self?.errorMessage = nil
+                os_log("✅ User registered and signed in: %{public}@", log: .default, type: .info, user.email ?? "unknown")
+            }
+        }
+    }
+
+    // MARK: - Password Reset
+    func resetPassword(email: String) {
+        guard isValidEmail(email) else {
+            DispatchQueue.main.async {
+                self.errorMessage = "Please enter a valid email address."
+            }
+            os_log("❌ Password reset failed: Invalid email format", log: .default, type: .error)
+            return
+        }
+
+        Auth.auth().sendPasswordReset(withEmail: email) { [weak self] error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    self?.handleAuthError(error)
+                } else {
+                    self?.errorMessage = "Password reset email sent successfully."
+                    os_log("📧 Password reset email sent", log: .default, type: .info)
+                }
+            }
+        }
+    }
+
     // MARK: - Sign Out
     func signOut() {
         do {
@@ -76,12 +127,15 @@ final class AuthViewModel: ObservableObject {
     private func handleAuthError(_ error: Error) {
         let nsError = error as NSError
         let errorCode = AuthErrorCode.Code(rawValue: nsError.code)
+
         DispatchQueue.main.async {
             switch errorCode {
             case .wrongPassword:
                 self.errorMessage = "Incorrect password. Please try again."
             case .userNotFound:
                 self.errorMessage = "No account found with this email. Please sign up."
+            case .emailAlreadyInUse:
+                self.errorMessage = "An account already exists for this email."
             case .networkError:
                 self.errorMessage = "Network error. Check your internet connection."
             default:
