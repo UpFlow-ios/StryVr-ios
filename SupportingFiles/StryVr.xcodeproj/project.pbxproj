@@ -252,6 +252,11 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
+		8588F0AC2DC07E3F00D04995 /* LearningPaths */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = LearningPaths;
+			sourceTree = "<group>";
+		};
 		8595B1852DB36A8C001D831E /* Onboarding */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Onboarding;
@@ -551,6 +556,7 @@
 		856AA62A2D9164E900402F84 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8588F0AC2DC07E3F00D04995 /* LearningPaths */,
 				8595B1852DB36A8C001D831E /* Onboarding */,
 				851966052DA6D782004264AE /* UITheme */,
 				855E96072D9D0E8B002173EF /* AI */,
@@ -626,6 +632,7 @@
 			fileSystemSynchronizedGroups = (
 				855E96002D9D0815002173EF /* Enterprise */,
 				855E96122D9DB44E002173EF /* SupportingFiles */,
+				8588F0AC2DC07E3F00D04995 /* LearningPaths */,
 				8595B1852DB36A8C001D831E /* Onboarding */,
 				85CB82DC2DAE49B8002AA544 /* Enums */,
 				85CB82E02DAE4A58002AA544 /* Shared */,
