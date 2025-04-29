@@ -2,17 +2,22 @@
 //  HomeView.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 3/8/25.
-//  🧠 AI-Powered Home Dashboard for Mentor Discovery & Engagement
+//  🏡 Upgraded Home Dashboard – Daily Goals, Streaks, Challenges, Achievements, Mentor Discovery
 //
 
 import SwiftUI
 import os.log
 
-/// Main home screen for StryVr, displaying learning paths, mentor suggestions, and community updates
 struct HomeView: View {
+    @State private var dailyGoalCompleted = false
+    @State private var currentStreak = 5
+    @State private var bestStreak = 12
+    @State private var activeChallengesCount = 3
+    @State private var recentAchievementsCount = 2
+
     @State private var recommendedMentors: [MentorModel] = []
-    @State private var isLoading: Bool = false
+    @State private var isLoadingMentors: Bool = false
+
     private let recommendationService: AIRecommendationService
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "HomeView")
 
@@ -26,45 +31,99 @@ struct HomeView: View {
                 VStack(alignment: .leading, spacing: Theme.Spacing.large) {
 
                     // MARK: - Greeting
-                    Text("Welcome to StryVr")
+                    Text("Welcome back to StryVr! 👋")
                         .font(Theme.Typography.headline)
                         .foregroundColor(Theme.Colors.textPrimary)
-                        .accessibilityLabel("Welcome to StryVr")
+                        .padding(.top, Theme.Spacing.large)
 
-                    // MARK: - Mentor Recommendations
-                    if isLoading {
-                        ProgressView("Loading mentors...")
-                            .progressViewStyle(CircularProgressViewStyle(tint: Theme.Colors.accent))
-                            .accessibilityLabel("Loading mentors")
-                    } else if recommendedMentors.isEmpty {
-                        Text("No mentor matches found.")
-                            .font(Theme.Typography.caption)
-                            .foregroundColor(Theme.Colors.textSecondary)
-                            .accessibilityLabel("No mentor matches found")
-                    } else {
-                        MentorListView(mentors: recommendedMentors)
-                            .transition(.opacity)
-                            .accessibilityLabel("Recommended mentors list")
+                    // MARK: - Today's Goal Card
+                    dashboardCard(title: "Today's Goal", subtitle: dailyGoalCompleted ? "✅ Completed" : "🎯 Complete 1 Learning Module", buttonAction: markGoalCompleted)
+
+                    // MARK: - Skill Streak Card
+                    dashboardCard(title: "Skill Streak", subtitle: "\(currentStreak) Days 🔥 | Best: \(bestStreak) Days 🏆")
+
+                    // MARK: - Active Challenges Card
+                    dashboardCard(title: "Active Challenges", subtitle: "\(activeChallengesCount) Challenges in Progress 🎯")
+
+                    // MARK: - Recent Achievements Card
+                    dashboardCard(title: "Recent Achievements", subtitle: "\(recentAchievementsCount) Badges Unlocked 🏅")
+
+                    // MARK: - AI Mentor Recommendations
+                    VStack(alignment: .leading, spacing: Theme.Spacing.medium) {
+                        Text("Recommended Mentors")
+                            .font(Theme.Typography.body)
+                            .foregroundColor(Theme.Colors.textPrimary)
+
+                        if isLoadingMentors {
+                            ProgressView("Finding mentors...")
+                                .progressViewStyle(CircularProgressViewStyle(tint: Theme.Colors.accent))
+                                .frame(maxWidth: .infinity)
+                        } else if recommendedMentors.isEmpty {
+                            Text("No mentor matches at the moment.")
+                                .font(Theme.Typography.caption)
+                                .foregroundColor(Theme.Colors.textSecondary)
+                                .frame(maxWidth: .infinity)
+                        } else {
+                            MentorListView(mentors: recommendedMentors)
+                                .transition(.opacity)
+                        }
                     }
+                    .padding(.top, Theme.Spacing.large)
 
                     Spacer()
                 }
-                .padding(.horizontal, Theme.Spacing.large)
-                .padding(.top, Theme.Spacing.medium)
+                .padding()
             }
-            .background(Theme.Colors.background)
-            .navigationBarHidden(true)
+            .background(Theme.Colors.background.ignoresSafeArea())
+            .navigationTitle("Home")
+            .navigationBarTitleDisplayMode(.large)
             .onAppear(perform: fetchMentorRecommendations)
         }
     }
 
-    /// Fetches mentor recommendations using AI and updates state
+    // MARK: - Dashboard Card Component
+    private func dashboardCard(title: String, subtitle: String, buttonAction: (() -> Void)? = nil) -> some View {
+        VStack(alignment: .leading, spacing: Theme.Spacing.small) {
+            HStack {
+                Text(title)
+                    .font(Theme.Typography.body)
+                    .foregroundColor(Theme.Colors.textPrimary)
+                Spacer()
+
+                if let action = buttonAction {
+                    Button(action: {
+                        withAnimation { action() }
+                    }) {
+                        Image(systemName: dailyGoalCompleted ? "checkmark.circle.fill" : "circle")
+                            .foregroundColor(dailyGoalCompleted ? .green : Theme.Colors.accent)
+                            .font(.title2)
+                    }
+                }
+            }
+
+            Text(subtitle)
+                .font(Theme.Typography.caption)
+                .foregroundColor(Theme.Colors.textSecondary)
+                .multilineTextAlignment(.leading)
+        }
+        .padding()
+        .background(Theme.Colors.card)
+        .cornerRadius(Theme.CornerRadius.medium)
+        .shadow(color: Theme.Colors.accent.opacity(0.05), radius: 4, x: 0, y: 2)
+    }
+
+    // MARK: - Handle Daily Goal Completion
+    private func markGoalCompleted() {
+        dailyGoalCompleted = true
+    }
+
+    // MARK: - Fetch AI Mentor Recommendations
     private func fetchMentorRecommendations() {
-        isLoading = true
+        isLoadingMentors = true
         recommendationService.fetchMentorRecommendations(for: "currentUserID") { [weak self] mentors in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                self.isLoading = false
+                self.isLoadingMentors = false
                 if mentors.isEmpty {
                     self.logger.error("❌ No mentors returned from AIRecommendationService.")
                 }
