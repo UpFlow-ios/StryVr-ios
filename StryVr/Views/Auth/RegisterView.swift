@@ -2,12 +2,10 @@
 //  RegisterView.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 4/14/25.
-//  🔐 Secure Account Creation – Firebase Auth & Themed UI
+//  🔐 Secure, Themed, Firebase-Integrated Account Creation
 //
 
 import SwiftUI
-import FirebaseAuth
 
 struct RegisterView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
@@ -24,15 +22,11 @@ struct RegisterView: View {
             Theme.Colors.background.ignoresSafeArea()
 
             VStack(spacing: Theme.Spacing.large) {
-
-                // MARK: - Title
                 Text("Create Account")
                     .font(Theme.Typography.headline)
                     .foregroundColor(Theme.Colors.textPrimary)
                     .padding(.top, Theme.Spacing.xLarge)
-                    .accessibilityLabel("Create Account")
 
-                // MARK: - Email Field
                 TextField("Email", text: $email)
                     .textContentType(.emailAddress)
                     .keyboardType(.emailAddress)
@@ -40,46 +34,31 @@ struct RegisterView: View {
                     .padding()
                     .background(Theme.Colors.card)
                     .cornerRadius(Theme.CornerRadius.medium)
-                    .foregroundColor(Theme.Colors.textPrimary)
-                    .accessibilityLabel("Email field")
-                    .accessibilityHint("Enter your email address")
 
-                // MARK: - Password Field
                 SecureField("Password", text: $password)
                     .textContentType(.newPassword)
                     .padding()
                     .background(Theme.Colors.card)
                     .cornerRadius(Theme.CornerRadius.medium)
-                    .foregroundColor(Theme.Colors.textPrimary)
-                    .accessibilityLabel("Password field")
-                    .accessibilityHint("Enter a secure password")
 
-                // MARK: - Confirm Password
                 SecureField("Confirm Password", text: $confirmPassword)
                     .textContentType(.password)
                     .padding()
                     .background(Theme.Colors.card)
                     .cornerRadius(Theme.CornerRadius.medium)
-                    .foregroundColor(Theme.Colors.textPrimary)
-                    .accessibilityLabel("Confirm password field")
-                    .accessibilityHint("Re-enter your password to confirm")
 
-                // MARK: - Error Message
                 if let error = errorMessage {
                     Text(error)
                         .font(Theme.Typography.caption)
                         .foregroundColor(.red)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, Theme.Spacing.medium)
-                        .accessibilityLabel("Error message: \(error)")
                 }
 
-                // MARK: - Register Button
                 Button(action: registerUser) {
                     if isLoading {
                         ProgressView()
                             .progressViewStyle(CircularProgressViewStyle(tint: Theme.Colors.accent))
-                            .accessibilityLabel("Registering...")
                     } else {
                         Text("Register")
                             .font(Theme.Typography.body)
@@ -88,25 +67,21 @@ struct RegisterView: View {
                             .padding()
                             .background(Theme.Colors.accent)
                             .cornerRadius(Theme.CornerRadius.medium)
-                            .accessibilityLabel("Register account")
-                            .accessibilityHint("Tap to create your account")
                     }
                 }
                 .disabled(isLoading)
 
-                // MARK: - Back to Login
                 HStack {
                     Text("Already have an account?")
                         .font(Theme.Typography.caption)
                         .foregroundColor(Theme.Colors.textSecondary)
 
                     Button("Log In") {
+                        simpleHaptic()
                         presentationMode.wrappedValue.dismiss()
                     }
                     .font(Theme.Typography.caption)
                     .foregroundColor(Theme.Colors.accent)
-                    .accessibilityLabel("Back to login")
-                    .accessibilityHint("Tap to return to the login screen")
                 }
 
                 Spacer()
@@ -115,7 +90,7 @@ struct RegisterView: View {
         }
     }
 
-    // MARK: - Firebase Registration Logic
+    // MARK: - Register User Logic
     private func registerUser() {
         guard !email.isEmpty, !password.isEmpty, !confirmPassword.isEmpty else {
             errorMessage = "Please fill in all fields."
@@ -128,7 +103,7 @@ struct RegisterView: View {
         }
 
         guard password.count >= 8 else {
-            errorMessage = "Password must be at least 8 characters long."
+            errorMessage = "Password must be at least 8 characters."
             return
         }
 
@@ -138,29 +113,17 @@ struct RegisterView: View {
         }
 
         isLoading = true
-
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-            DispatchQueue.main.async {
-                isLoading = false
-                if let error = error {
-                    self.errorMessage = error.localizedDescription
-                } else if let user = result?.user {
-                    self.errorMessage = nil
-                    authViewModel.userSession = user
-                } else {
-                    self.errorMessage = "An unexpected error occurred. Please try again."
-                }
-            }
-        }
+        simpleHaptic()
+        authViewModel.createUser(email: email, password: password)
     }
 
-    // MARK: - Email Validation
     private func isValidEmail(_ email: String) -> Bool {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email)
     }
-}
 
-#Preview {
-    RegisterView().environmentObject(AuthViewModel.shared)
+    private func simpleHaptic() {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.impactOccurred()
+    }
 }
