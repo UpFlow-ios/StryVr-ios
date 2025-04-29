@@ -2,65 +2,72 @@
 //  ProfileView.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 3/6/25.
-//  👤 User Profile – Themed, Accessible, and Scalable Profile Layout
+//  👤 Connected Profile View with AuthViewModel Integration
 //
 
 import SwiftUI
 
-/// Displays user profile details
 struct ProfileView: View {
-    let user: UserModel
+    @EnvironmentObject var authViewModel: AuthViewModel
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: Theme.Spacing.medium) {
-
-                // MARK: - Profile Image
-                if let urlString = user.profileImageURL, let url = URL(string: urlString) {
-                    AsyncImage(url: url) { phase in
-                        switch phase {
-                        case .empty:
-                            ProgressView()
-                                .frame(width: 100, height: 100)
-                                .accessibilityLabel("Loading profile image")
-                        case .success(let image):
-                            image
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 100, height: 100)
-                                .clipShape(Circle())
-                                .accessibilityLabel("Profile image of \(user.fullName)")
-                        case .failure:
-                            fallbackImage
-                        @unknown default:
-                            fallbackImage
+        NavigationStack {
+            ScrollView {
+                VStack(spacing: Theme.Spacing.medium) {
+                    // MARK: - Profile Image
+                    if let photoURL = authViewModel.userSession?.photoURL {
+                        AsyncImage(url: photoURL) { phase in
+                            switch phase {
+                            case .empty:
+                                ProgressView()
+                                    .frame(width: 100, height: 100)
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 100, height: 100)
+                                    .clipShape(Circle())
+                            case .failure:
+                                fallbackImage
+                            @unknown default:
+                                fallbackImage
+                            }
                         }
+                    } else {
+                        fallbackImage
                     }
-                } else {
-                    fallbackImage
+
+                    // MARK: - Name & Email
+                    Text(authViewModel.userSession?.displayName ?? "User")
+                        .font(Theme.Typography.headline)
+                        .foregroundColor(Theme.Colors.textPrimary)
+
+                    Text(authViewModel.userSession?.email ?? "No email available")
+                        .font(Theme.Typography.caption)
+                        .foregroundColor(Theme.Colors.textSecondary)
+                        .multilineTextAlignment(.center)
+
+                    // MARK: - Log Out Button
+                    Button(action: {
+                        simpleHaptic()
+                        authViewModel.signOut()
+                    }) {
+                        Text("Log Out")
+                            .font(Theme.Typography.body)
+                            .foregroundColor(Theme.Colors.whiteText)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Theme.Colors.accent)
+                            .cornerRadius(Theme.CornerRadius.medium)
+                            .padding(.top, Theme.Spacing.large)
+                    }
+                    
+                    Spacer()
                 }
-
-                // MARK: - Name & Bio
-                Text(user.fullName)
-                    .font(Theme.Typography.headline)
-                    .foregroundColor(Theme.Colors.textPrimary)
-                    .accessibilityLabel("Full name: \(user.fullName)")
-
-                Text(user.bio ?? "No bio available")
-                    .font(Theme.Typography.caption)
-                    .foregroundColor(Theme.Colors.textSecondary)
-                    .multilineTextAlignment(.center)
-                    .accessibilityLabel(user.bio ?? "No bio available")
-
-                // MARK: - Future: Tabs (Achievements, Feedback, etc.)
-                // 🔗 Placeholder for future sections
-
-                Spacer()
+                .padding()
+                .navigationTitle("Profile")
+                .background(Theme.Colors.background)
             }
-            .padding()
-            .navigationTitle("Profile")
-            .background(Theme.Colors.background)
         }
     }
 
@@ -71,15 +78,15 @@ struct ProfileView: View {
             .frame(width: 100, height: 100)
             .clipShape(Circle())
             .foregroundColor(.gray.opacity(0.5))
-            .accessibilityLabel("Profile image unavailable")
+    }
+
+    private func simpleHaptic() {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.impactOccurred()
     }
 }
 
 #Preview {
-    ProfileView(user: UserModel(
-        id: "1",
-        fullName: "Joe Dormond",
-        bio: "iOS Dev | SwiftUI Enthusiast",
-        profileImageURL: nil
-    ))
+    ProfileView()
+        .environmentObject(AuthViewModel.shared)
 }
