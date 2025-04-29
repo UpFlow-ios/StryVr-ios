@@ -1,10 +1,8 @@
-
 //
 //  LoginView.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 4/14/25.
-//  🔐 Login Screen – Secure, Themed, and Firebase Integrated
+//  🔐 Secure, Themed, and Firebase-Integrated Login Screen
 //
 
 import SwiftUI
@@ -24,13 +22,11 @@ struct LoginView: View {
             Theme.Colors.background.ignoresSafeArea()
 
             VStack(spacing: Theme.Spacing.large) {
-
                 // MARK: - Title
                 Text("Login to StryVr")
                     .font(Theme.Typography.headline)
                     .foregroundColor(Theme.Colors.textPrimary)
                     .padding(.top, Theme.Spacing.xLarge)
-                    .accessibilityLabel("Login to StryVr")
 
                 // MARK: - Email Field
                 TextField("Email", text: $email)
@@ -41,8 +37,6 @@ struct LoginView: View {
                     .background(Theme.Colors.card)
                     .cornerRadius(Theme.CornerRadius.medium)
                     .foregroundColor(Theme.Colors.textPrimary)
-                    .accessibilityLabel("Email input field")
-                    .accessibilityHint("Enter your email address")
 
                 // MARK: - Password Field
                 SecureField("Password", text: $password)
@@ -51,8 +45,6 @@ struct LoginView: View {
                     .background(Theme.Colors.card)
                     .cornerRadius(Theme.CornerRadius.medium)
                     .foregroundColor(Theme.Colors.textPrimary)
-                    .accessibilityLabel("Password input field")
-                    .accessibilityHint("Enter your password")
 
                 // MARK: - Error Display
                 if let error = errorMessage {
@@ -61,7 +53,6 @@ struct LoginView: View {
                         .foregroundColor(.red)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, Theme.Spacing.medium)
-                        .accessibilityLabel("Error: \(error)")
                 }
 
                 // MARK: - Login Button
@@ -69,7 +60,6 @@ struct LoginView: View {
                     if isLoading {
                         ProgressView()
                             .progressViewStyle(CircularProgressViewStyle(tint: Theme.Colors.accent))
-                            .accessibilityLabel("Logging in...")
                     } else {
                         Text("Login")
                             .font(Theme.Typography.body)
@@ -78,8 +68,6 @@ struct LoginView: View {
                             .frame(maxWidth: .infinity)
                             .background(Theme.Colors.accent)
                             .cornerRadius(Theme.CornerRadius.medium)
-                            .accessibilityLabel("Login button")
-                            .accessibilityHint("Tap to log in to your account")
                     }
                 }
                 .disabled(isLoading)
@@ -88,21 +76,19 @@ struct LoginView: View {
                 HStack {
                     Button("Forgot Password?") {
                         showForgotPassword.toggle()
+                        simpleHaptic()
                     }
                     .font(Theme.Typography.caption)
                     .foregroundColor(Theme.Colors.accent)
-                    .accessibilityLabel("Forgot password")
-                    .accessibilityHint("Tap to reset your password")
 
                     Spacer()
 
                     Button("Sign Up") {
                         showRegister.toggle()
+                        simpleHaptic()
                     }
                     .font(Theme.Typography.caption)
                     .foregroundColor(Theme.Colors.accent)
-                    .accessibilityLabel("Sign up")
-                    .accessibilityHint("Tap to create a new account")
                 }
 
                 Spacer()
@@ -139,6 +125,7 @@ struct LoginView: View {
         }
 
         isLoading = true
+        simpleHaptic()
         authViewModel.signIn(email: email, password: password)
     }
 
@@ -147,8 +134,15 @@ struct LoginView: View {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email)
     }
+
+    // MARK: - Simple Haptic Feedback
+    private func simpleHaptic() {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.impactOccurred()
+    }
 }
 
 #Preview {
-    LoginView().environmentObject(AuthViewModel.shared)
+    LoginView()
+        .environmentObject(AuthViewModel.shared)
 }
