@@ -1,31 +1,33 @@
 import UIKit
 import Firebase
 import UserNotifications
-import os.log
+import os
 
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
+    private let logger = Logger(subsystem: "com.stryvr.app", category: "AppDelegate")
 
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
 
-        // ✅ Initialize Firebase
-        do {
-            try FirebaseApp.configure()
-            os_log("🔥 Firebase Initialized Successfully", log: .default, type: .info)
-        } catch {
-            os_log("❌ Firebase Initialization Error: %{public}@", log: .default, type: .error, error.localizedDescription)
-            // Handle fallback logic if needed
-        }
-
-        // ✅ Push Notification Setup
+        configureFirebase()
         setupPushNotifications(application)
         Messaging.messaging().delegate = self
 
         return true
+    }
+
+    // MARK: - Firebase Configuration
+    private func configureFirebase() {
+        guard FirebaseApp.app() == nil else {
+            logger.info("✅ Firebase already configured.")
+            return
+        }
+        FirebaseApp.configure()
+        logger.info("🔥 Firebase configured successfully")
     }
 
     // MARK: - Push Notification Setup
@@ -35,16 +37,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
 
         center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             if granted {
-                os_log("✅ Push Notifications: Permission granted", log: .default, type: .info)
+                self.logger.info("✅ Push Notifications: Permission granted")
                 DispatchQueue.main.async {
                     application.registerForRemoteNotifications()
                 }
+            } else if let error = error {
+                self.logger.error("⚠️ Push Notification Error: \(error.localizedDescription)")
             } else {
-                if let error = error {
-                    os_log("⚠️ Push Notification Error: %{public}@", log: .default, type: .error, error.localizedDescription)
-                } else {
-                    os_log("⚠️ Push Notifications: Permission denied", log: .default, type: .error)
-                }
+                self.logger.warning("⚠️ Push Notifications: Permission denied")
             }
         }
     }
@@ -55,8 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
         let tokenString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-        os_log("📲 APNS Device Token: %{public}@", log: .default, type: .info, tokenString)
-
+        logger.info("📲 APNS Device Token: \(tokenString)")
         Messaging.messaging().apnsToken = deviceToken
     }
 
@@ -64,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         _ application: UIApplication,
         didFailToRegisterForRemoteNotificationsWithError error: Error
     ) {
-        os_log("❌ Push Notification Registration Failed: %{public}@", log: .default, type: .error, error.localizedDescription)
+        logger.error("❌ Push Notification Registration Failed: \(error.localizedDescription)")
     }
 
     // MARK: - Foreground Notification Handling
@@ -73,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
-        os_log("📩 Foreground Notification: %{public}@", log: .default, type: .info, notification.request.content.userInfo)
+        logger.info("📩 Foreground Notification: \(notification.request.content.userInfo)")
         completionHandler([.banner, .sound, .badge])
     }
 
@@ -83,23 +82,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
-        os_log("🛎️ User Tapped Notification: %{public}@", log: .default, type: .info, response.notification.request.content.userInfo)
+        logger.info("🛎️ User Tapped Notification: \(response.notification.request.content.userInfo)")
         completionHandler()
     }
 
     // MARK: - Firebase Messaging Delegate
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         guard let token = fcmToken else {
-            os_log("⚠️ FCM token was nil", log: .default, type: .error)
+            logger.warning("⚠️ FCM token was nil")
             return
         }
-        os_log("🔄 FCM Registration Token: %{public}@", log: .default, type: .info, token)
+        logger.info("🔄 FCM Registration Token: \(token)")
         sendTokenToServer(token)
     }
 
+    // MARK: - Token Network Upload
     private func sendTokenToServer(_ token: String) {
-        // Example implementation for sending the token to your server
-        let url = URL(string: "https://yourserver.com/api/registerToken")!
+        guard let url = URL(string: "https://yourserver.com/api/registerToken") else {
+            logger.error("❌ Invalid server URL.")
+            return
+        }
+        
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -109,10 +112,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
-                os_log("❌ Failed to send token to server: %{public}@", log: .default, type: .error, error.localizedDescription)
-                return
+                self.logger.error("❌ Failed to send token to server: \(error.localizedDescription)")
+            } else {
+                self.logger.info("✅ Token successfully sent to server")
             }
-            os_log("✅ Token successfully sent to server", log: .default, type: .info)
         }
         task.resume()
     }

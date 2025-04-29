@@ -2,60 +2,39 @@
 //  CustomNavigationView.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 3/5/25.
-//  🧭 Themed Custom Navigation Entry Point for Dynamic Routing
+//  🌳 Real Tab Navigation Controller with Custom TabBar Integration
 //
 
 import SwiftUI
 
 struct CustomNavigationView: View {
+    @State private var selectedTab: TabItem = .home
+
     var body: some View {
         NavigationStack {
-            ZStack {
+            ZStack(alignment: .bottom) {
                 Theme.Colors.background.ignoresSafeArea()
 
-                VStack(spacing: Theme.Spacing.large) {
-                    Spacer()
-
-                    Text("StryVr Navigation")
-                        .font(Theme.Typography.headline)
-                        .foregroundColor(Theme.Colors.textPrimary)
-                        .accessibilityLabel("StryVr Navigation Title")
-                        .accessibilityHint("Displays the main navigation entry point")
-
-                    NavigationLink(destination: PlaceholderView()) {
-                        Text("Go to Next Screen")
-                            .font(Theme.Typography.body)
-                            .foregroundColor(Theme.Colors.whiteText)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Theme.Colors.accent)
-                            .cornerRadius(Theme.CornerRadius.medium)
-                            .accessibilityLabel("Go to next screen")
-                            .accessibilityHint("Navigates to the next screen")
+                Group {
+                    switch selectedTab {
+                    case .home:
+                        HomeView()
+                    case .learning:
+                        LearningPathsView()
+                    case .community:
+                        MentorVideoFeedView()
+                    case .profile:
+                        ProfileView()
                     }
-                    .padding(.horizontal, Theme.Spacing.large)
-
-                    Spacer()
                 }
+                .transition(.opacity)
+                .animation(.easeInOut, value: selectedTab)
+
+                CustomTabBar(selectedTab: $selectedTab)
+                    .padding(.horizontal, Theme.Spacing.large)
+                    .padding(.bottom, Theme.Spacing.small)
             }
-            .navigationTitle("Navigation")
+            .navigationBarHidden(true)
         }
     }
-}
-
-struct PlaceholderView: View {
-    var body: some View {
-        ZStack {
-            Theme.Colors.background.ignoresSafeArea()
-            Text("🧭 Next Screen Content")
-                .font(Theme.Typography.body)
-                .foregroundColor(Theme.Colors.textPrimary)
-                .accessibilityLabel("Next screen content placeholder")
-        }
-    }
-}
-
-#Preview {
-    CustomNavigationView()
 }

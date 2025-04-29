@@ -55,7 +55,7 @@
 		856AA6592D9164E900402F84 /* SkillVerificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA5F02D9164E900402F84 /* SkillVerificationModel.swift */; };
 		856AA65A2D9164E900402F84 /* ReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA5EF2D9164E900402F84 /* ReportModel.swift */; };
 		856AA6602D9164E900402F84 /* LoginView.swift  in Resources */ = {isa = PBXBuildFile; fileRef = 856AA6092D9164E900402F84 /* LoginView.swift  */; };
-		856AA6612D9164E900402F84 /* Assets .xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 856AA5EA2D9164E900402F84 /* Assets .xcassets */; };
+		856AA6612D9164E900402F84 /* AppIcon in Resources */ = {isa = PBXBuildFile; fileRef = 856AA5EA2D9164E900402F84 /* AppIcon */; };
 		856AA6642D91674C00402F84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6632D91674C00402F84 /* AppDelegate.swift */; };
 		856AA6682D91681500402F84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 856AA6672D91681500402F84 /* LaunchScreen.storyboard */; };
 		856AA66A2D91686B00402F84 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6692D91686B00402F84 /* SceneDelegate.swift */; };
@@ -96,8 +96,7 @@
 		8591744E2D8201D700A06F42 /* CocoaLumberjackSwiftLogBackend in Frameworks */ = {isa = PBXBuildFile; productRef = 8591744D2D8201D700A06F42 /* CocoaLumberjackSwiftLogBackend */; };
 		859174522D82020000A06F42 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 859174512D82020000A06F42 /* FirebaseAnalyticsOnDeviceConversion */; };
 		859174562D82020000A06F42 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 859174552D82020000A06F42 /* FirebaseAppCheck */; };
-		85AD56992D945507007B6542 /* StryVr-ios.png in Resources */ = {isa = PBXBuildFile; fileRef = 85AD56962D945507007B6542 /* StryVr-ios.png */; };
-		85AD569B2D945507007B6542 /* StryVr-ios 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 85AD56972D945507007B6542 /* StryVr-ios 1.png */; };
+		8595B1842DB36722001D831E /* AppShellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8595B1832DB36711001D831E /* AppShellView.swift */; };
 		85AD56A22D94BA79007B6542 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AD56A12D94BA79007B6542 /* Skill.swift */; };
 		85CB82D72DAE2C7F002AA544 /* MentorshipSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB82D62DAE2C74002AA544 /* MentorshipSession.swift */; };
 		85CB82D92DAE2E83002AA544 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB82D82DAE2E7B002AA544 /* UserRole.swift */; };
@@ -146,7 +145,7 @@
 		855E960A2D9D1001002173EF /* CareerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerCard.swift; sourceTree = "<group>"; };
 		855E960C2D9D118D002173EF /* MentorVideoUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorVideoUploadView.swift; sourceTree = "<group>"; };
 		855E960E2D9D1222002173EF /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
-		856AA5EA2D9164E900402F84 /* Assets .xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets .xcassets"; sourceTree = "<group>"; };
+		856AA5EA2D9164E900402F84 /* AppIcon */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon; sourceTree = "<group>"; };
 		856AA5EC2D9164E900402F84 /* ConferenceCallModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceCallModel.swift; sourceTree = "<group>"; };
 		856AA5ED2D9164E900402F84 /* LearningPathsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LearningPathsView.swift; path = ../Models/LearningPathsView.swift; sourceTree = "<group>"; };
 		856AA5EE2D9164E900402F84 /* MentorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorModel.swift; sourceTree = "<group>"; };
@@ -200,11 +199,10 @@
 		856AA69C2D9173EF00402F84 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		856AA69E2D91744E00402F84 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		856AA6A02D9174A300402F84 /* homeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeViewModel.swift; sourceTree = "<group>"; };
+		8595B1832DB36711001D831E /* AppShellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShellView.swift; sourceTree = "<group>"; };
 		859B0AB02D57D3E900E5ADF1 /* StryVr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StryVr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		859B0AC62D57D3F400E5ADF1 /* StryVrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StryVrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		859B0AD02D57D3F500E5ADF1 /* StryVrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StryVrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		85AD56962D945507007B6542 /* StryVr-ios.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StryVr-ios.png"; sourceTree = "<group>"; };
-		85AD56972D945507007B6542 /* StryVr-ios 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StryVr-ios 1.png"; sourceTree = "<group>"; };
 		85AD569C2D94B8A3007B6542 /* MentorSummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorSummaryModel.swift; sourceTree = "<group>"; };
 		85AD569D2D94B931007B6542 /* ChallengeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeModel.swift; sourceTree = "<group>"; };
 		85AD56A02D94B9EA007B6542 /* SubscriptionPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPlan.swift; sourceTree = "<group>"; };
@@ -240,6 +238,11 @@
 		855E96122D9DB44E002173EF /* SupportingFiles */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		8595B1852DB36A8C001D831E /* Onboarding */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		85CB82DC2DAE49B8002AA544 /* Enums */ = {
@@ -367,9 +370,7 @@
 		856AA5EB2D9164E900402F84 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				856AA5EA2D9164E900402F84 /* Assets .xcassets */,
-				85AD56972D945507007B6542 /* StryVr-ios 1.png */,
-				85AD56962D945507007B6542 /* StryVr-ios.png */,
+				856AA5EA2D9164E900402F84 /* AppIcon */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -483,6 +484,7 @@
 		856AA6172D9164E900402F84 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				8595B1832DB36711001D831E /* AppShellView.swift */,
 				856AA6152D9164E900402F84 /* CustomNavigationView.swift */,
 				856AA6162D9164E900402F84 /* CustomTabBar.swift */,
 			);
@@ -531,6 +533,7 @@
 		856AA62A2D9164E900402F84 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8595B1852DB36A8C001D831E /* Onboarding */,
 				851966052DA6D782004264AE /* UITheme */,
 				855E96072D9D0E8B002173EF /* AI */,
 				855E96022D9D089A002173EF /* Feed */,
@@ -605,6 +608,7 @@
 			fileSystemSynchronizedGroups = (
 				855E96002D9D0815002173EF /* Enterprise */,
 				855E96122D9DB44E002173EF /* SupportingFiles */,
+				8595B1852DB36A8C001D831E /* Onboarding */,
 				85CB82DC2DAE49B8002AA544 /* Enums */,
 				85CB82E02DAE4A58002AA544 /* Shared */,
 			);
@@ -707,10 +711,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				856AA6602D9164E900402F84 /* LoginView.swift  in Resources */,
-				85AD56992D945507007B6542 /* StryVr-ios.png in Resources */,
-				85AD569B2D945507007B6542 /* StryVr-ios 1.png in Resources */,
 				856AA6682D91681500402F84 /* LaunchScreen.storyboard in Resources */,
-				856AA6612D9164E900402F84 /* Assets .xcassets in Resources */,
+				856AA6612D9164E900402F84 /* AppIcon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -796,6 +798,7 @@
 				85CB82D72DAE2C7F002AA544 /* MentorshipSession.swift in Sources */,
 				856AA68F2D91702900402F84 /* AuthViewModel.swift in Sources */,
 				855E960F2D9D1228002173EF /* DocumentPicker.swift in Sources */,
+				8595B1842DB36722001D831E /* AppShellView.swift in Sources */,
 				856AA6572D9164E900402F84 /* GroupChallengesView.swift in Sources */,
 				856AA6812D916D7700402F84 /* FirestoreService.swift in Sources */,
 				856AA6582D9164E900402F84 /* SkillVerificationView.swift in Sources */,

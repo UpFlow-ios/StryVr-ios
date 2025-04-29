@@ -12,46 +12,58 @@ import os
 
 @main
 struct StryVrApp: App {
-
-    // MARK: - AppDelegate Integration (for notifications, etc.)
+    
+    // MARK: - AppDelegate Integration
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-
+    
     // MARK: - Global State
     @StateObject private var authViewModel = AuthViewModel.shared
     @State private var showSplash = true
-
+    
     // MARK: - Constants
     private let splashDuration: TimeInterval = 2.0
     private let logger = Logger(subsystem: "com.stryvr.app", category: "AppLifecycle")
-
+    
     init() {
+        configureFirebase()
+    }
+    
+    var body: some Scene {
+        WindowGroup {
+            contentView
+                .environmentObject(authViewModel)
+        }
+    }
+    
+    // MARK: - Views
+    private var contentView: some View {
+        Group {
+            if showSplash {
+                SplashScreenView()
+                    .onAppear(perform: handleSplash)
+            } else {
+                if authViewModel.userSession != nil {
+                    HomeView()
+                } else {
+                    LoginView()
+                }
+            }
+        }
+    }
+    
+    // MARK: - Private Methods
+    private func configureFirebase() {
         if FirebaseApp.app() == nil {
             FirebaseApp.configure()
             logger.info("🔥 Firebase configured successfully")
         }
     }
-
-    var body: some Scene {
-        WindowGroup {
-            Group {
-                if showSplash {
-                    SplashScreenView()
-                        .onAppear {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + splashDuration) {
-                                withAnimation {
-                                    showSplash = false
-                                }
-                            }
-                        }
-                } else {
-                    if authViewModel.userSession != nil {
-                        HomeView()
-                    } else {
-                        LoginView()
-                    }
-                }
+    
+    private func handleSplash() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + splashDuration) {
+            withAnimation {
+                showSplash = false
             }
-            .environmentObject(authViewModel)
         }
     }
 }
