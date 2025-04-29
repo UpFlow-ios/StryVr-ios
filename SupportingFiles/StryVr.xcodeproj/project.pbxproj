@@ -89,6 +89,7 @@
 		8576DD412D84849200409153 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 8576DD402D84849100409153 /* FirebaseMessaging */; };
 		8588F0A12DC068C600D04995 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F0A02DC068BE00D04995 /* SettingsView.swift */; };
 		8588F0A32DC0698A00D04995 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F0A22DC0698100D04995 /* EditProfileView.swift */; };
+		8588F0A52DC06A4200D04995 /* NotificationPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F0A42DC06A3C00D04995 /* NotificationPreferencesView.swift */; };
 		858CD9762D82236900B6B9D3 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 858CD9752D82236900B6B9D3 /* FirebaseCore */; };
 		858CD97C2D82236900B6B9D3 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 858CD97B2D82236900B6B9D3 /* FirebaseStorage */; };
 		859174032D82004100A06F42 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 859174022D82004100A06F42 /* FirebaseAnalytics */; };
@@ -203,6 +204,7 @@
 		856AA6A02D9174A300402F84 /* homeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeViewModel.swift; sourceTree = "<group>"; };
 		8588F0A02DC068BE00D04995 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		8588F0A22DC0698100D04995 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		8588F0A42DC06A3C00D04995 /* NotificationPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPreferencesView.swift; sourceTree = "<group>"; };
 		8595B1832DB36711001D831E /* AppShellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShellView.swift; sourceTree = "<group>"; };
 		859B0AB02D57D3E900E5ADF1 /* StryVr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StryVr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		859B0AC62D57D3F400E5ADF1 /* StryVrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StryVrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -498,6 +500,7 @@
 		856AA6192D9164E900402F84 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				8588F0A42DC06A3C00D04995 /* NotificationPreferencesView.swift */,
 				8588F0A22DC0698100D04995 /* EditProfileView.swift */,
 				8588F0A02DC068BE00D04995 /* SettingsView.swift */,
 				856AA6182D9164E900402F84 /* ProfileView.swift */,
@@ -788,6 +791,7 @@
 				856AA69F2D91744E00402F84 /* LeaderboardView.swift in Sources */,
 				85CB83042DAE5D60002AA544 /* AIProfileValidatorView.swift in Sources */,
 				856AA69B2D91738700402F84 /* SkillVisualizationDashboards.swift in Sources */,
+				8588F0A52DC06A4200D04995 /* NotificationPreferencesView.swift in Sources */,
 				856AA6752D916AF300402F84 /* APIService.swift in Sources */,
 				856AA6952D91716100402F84 /* MentorshipBookingView.swift in Sources */,
 				856AA6A12D9174A300402F84 /* homeViewModel.swift in Sources */,
