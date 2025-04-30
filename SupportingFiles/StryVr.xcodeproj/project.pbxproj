@@ -264,6 +264,11 @@
 			path = SkillVerification;
 			sourceTree = "<group>";
 		};
+		8588F0BC2DC2749600D04995 /* New Folder */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "New Folder";
+			sourceTree = "<group>";
+		};
 		8595B1852DB36A8C001D831E /* Onboarding */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Onboarding;
@@ -564,6 +569,7 @@
 		856AA62A2D9164E900402F84 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8588F0BC2DC2749600D04995 /* New Folder */,
 				8588F0B62DC081FF00D04995 /* SkillVerification */,
 				8588F0AC2DC07E3F00D04995 /* LearningPaths */,
 				8595B1852DB36A8C001D831E /* Onboarding */,
@@ -643,6 +649,7 @@
 				855E96122D9DB44E002173EF /* SupportingFiles */,
 				8588F0AC2DC07E3F00D04995 /* LearningPaths */,
 				8588F0B62DC081FF00D04995 /* SkillVerification */,
+				8588F0BC2DC2749600D04995 /* New Folder */,
 				8595B1852DB36A8C001D831E /* Onboarding */,
 				85CB82DC2DAE49B8002AA544 /* Enums */,
 				85CB82E02DAE4A58002AA544 /* Shared */,
