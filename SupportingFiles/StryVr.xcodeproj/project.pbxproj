@@ -94,6 +94,7 @@
 		8588F0A92DC07A2000D04995 /* ChallengeTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F0A82DC07A1A00D04995 /* ChallengeTrackerView.swift */; };
 		8588F0AB2DC07B1D00D04995 /* SkillStreaksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F0AA2DC07B1800D04995 /* SkillStreaksView.swift */; };
 		8588F0BB2DC26B5100D04995 /* ProfileBadgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F0BA2DC26B4A00D04995 /* ProfileBadgesView.swift */; };
+		8588F0C42DC2F8D000D04995 /* ResumePDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F0C32DC2F8C700D04995 /* ResumePDFGenerator.swift */; };
 		858CD9762D82236900B6B9D3 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 858CD9752D82236900B6B9D3 /* FirebaseCore */; };
 		858CD97C2D82236900B6B9D3 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 858CD97B2D82236900B6B9D3 /* FirebaseStorage */; };
 		859174032D82004100A06F42 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 859174022D82004100A06F42 /* FirebaseAnalytics */; };
@@ -213,6 +214,7 @@
 		8588F0A82DC07A1A00D04995 /* ChallengeTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeTrackerView.swift; sourceTree = "<group>"; };
 		8588F0AA2DC07B1800D04995 /* SkillStreaksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillStreaksView.swift; sourceTree = "<group>"; };
 		8588F0BA2DC26B4A00D04995 /* ProfileBadgesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBadgesView.swift; sourceTree = "<group>"; };
+		8588F0C32DC2F8C700D04995 /* ResumePDFGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumePDFGenerator.swift; sourceTree = "<group>"; };
 		8595B1832DB36711001D831E /* AppShellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShellView.swift; sourceTree = "<group>"; };
 		859B0AB02D57D3E900E5ADF1 /* StryVr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StryVr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		859B0AC62D57D3F400E5ADF1 /* StryVrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StryVrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -264,9 +266,9 @@
 			path = SkillVerification;
 			sourceTree = "<group>";
 		};
-		8588F0BC2DC2749600D04995 /* New Folder */ = {
+		8588F0BC2DC2749600D04995 /* Reports */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "New Folder";
+			path = Reports;
 			sourceTree = "<group>";
 		};
 		8595B1852DB36A8C001D831E /* Onboarding */ = {
@@ -454,6 +456,7 @@
 		856AA6062D9164E900402F84 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				8588F0C32DC2F8C700D04995 /* ResumePDFGenerator.swift */,
 				856AA6042D9164E900402F84 /* LottieAnimationManager.swift */,
 				856AA6052D9164E900402F84 /* NetworkManager.swift */,
 				856AA61B2D9164E900402F84 /* SecureStorageManager.swift */,
@@ -569,7 +572,7 @@
 		856AA62A2D9164E900402F84 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8588F0BC2DC2749600D04995 /* New Folder */,
+				8588F0BC2DC2749600D04995 /* Reports */,
 				8588F0B62DC081FF00D04995 /* SkillVerification */,
 				8588F0AC2DC07E3F00D04995 /* LearningPaths */,
 				8595B1852DB36A8C001D831E /* Onboarding */,
@@ -649,7 +652,7 @@
 				855E96122D9DB44E002173EF /* SupportingFiles */,
 				8588F0AC2DC07E3F00D04995 /* LearningPaths */,
 				8588F0B62DC081FF00D04995 /* SkillVerification */,
-				8588F0BC2DC2749600D04995 /* New Folder */,
+				8588F0BC2DC2749600D04995 /* Reports */,
 				8595B1852DB36A8C001D831E /* Onboarding */,
 				85CB82DC2DAE49B8002AA544 /* Enums */,
 				85CB82E02DAE4A58002AA544 /* Shared */,
@@ -847,6 +850,7 @@
 				855E960F2D9D1228002173EF /* DocumentPicker.swift in Sources */,
 				8595B1842DB36722001D831E /* AppShellView.swift in Sources */,
 				856AA6572D9164E900402F84 /* GroupChallengesView.swift in Sources */,
+				8588F0C42DC2F8D000D04995 /* ResumePDFGenerator.swift in Sources */,
 				856AA6812D916D7700402F84 /* FirestoreService.swift in Sources */,
 				856AA6582D9164E900402F84 /* SkillVerificationView.swift in Sources */,
 				856AA66A2D91686B00402F84 /* SceneDelegate.swift in Sources */,

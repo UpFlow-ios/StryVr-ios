@@ -1,8 +1,7 @@
-//
+///
 //  BusinessAnalyticsDashboard.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 4/1/25.
 //  📊 Team Analytics Dashboard – Skill Insights, Top Performers, Skill Gaps
 //
 
@@ -31,10 +30,27 @@ struct BusinessAnalyticsDashboard: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: Theme.Spacing.large) {
 
+                    // MARK: - Dashboard Title
                     Text("📈 Business Analytics")
                         .font(Theme.Typography.headline)
                         .padding(.top, Theme.Spacing.medium)
                         .padding(.horizontal)
+
+                    // MARK: - Company Info (Optional)
+                    Text("Organization: StryVr Inc.")
+                        .font(Theme.Typography.caption)
+                        .foregroundColor(.secondary)
+                        .padding(.horizontal)
+
+                    // MARK: - Export Button (Placeholder)
+                    Button(action: {
+                        // Future: export as PDF/CSV
+                    }) {
+                        Label("Export Summary", systemImage: "square.and.arrow.up")
+                            .font(Theme.Typography.caption)
+                            .foregroundColor(Theme.Colors.accent)
+                    }
+                    .padding(.horizontal)
 
                     // MARK: - Skill Progress Chart
                     if !averageProgressBySkill.isEmpty {
@@ -133,6 +149,14 @@ struct BusinessAnalyticsDashboard: View {
             }
             .background(Theme.Colors.background)
             .navigationTitle("Team Insights")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: loadData) {
+                        Image(systemName: "arrow.clockwise")
+                    }
+                    .accessibilityLabel("Refresh dashboard data")
+                }
+            }
             .onAppear(perform: loadData)
         }
     }
