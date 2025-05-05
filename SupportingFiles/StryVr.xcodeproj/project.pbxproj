@@ -83,6 +83,7 @@
 		8588F0AB2DC07B1D00D04995 /* SkillStreaksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F0AA2DC07B1800D04995 /* SkillStreaksView.swift */; };
 		8588F0BB2DC26B5100D04995 /* ProfileBadgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F0BA2DC26B4A00D04995 /* ProfileBadgesView.swift */; };
 		8588F0C42DC2F8D000D04995 /* ResumePDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F0C32DC2F8C700D04995 /* ResumePDFGenerator.swift */; };
+		8588F0C72DC97CB200D04995 /* ConfettiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F0C62DC97CAA00D04995 /* ConfettiManager.swift */; };
 		858CD9762D82236900B6B9D3 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 858CD9752D82236900B6B9D3 /* FirebaseCore */; };
 		858CD97C2D82236900B6B9D3 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 858CD97B2D82236900B6B9D3 /* FirebaseStorage */; };
 		859174032D82004100A06F42 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 859174022D82004100A06F42 /* FirebaseAnalytics */; };
@@ -189,6 +190,7 @@
 		8588F0AA2DC07B1800D04995 /* SkillStreaksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillStreaksView.swift; sourceTree = "<group>"; };
 		8588F0BA2DC26B4A00D04995 /* ProfileBadgesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBadgesView.swift; sourceTree = "<group>"; };
 		8588F0C32DC2F8C700D04995 /* ResumePDFGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumePDFGenerator.swift; sourceTree = "<group>"; };
+		8588F0C62DC97CAA00D04995 /* ConfettiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiManager.swift; sourceTree = "<group>"; };
 		8595B1832DB36711001D831E /* AppShellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShellView.swift; sourceTree = "<group>"; };
 		859B0AB02D57D3E900E5ADF1 /* StryVr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StryVr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		859B0AC62D57D3F400E5ADF1 /* StryVrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StryVrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -415,6 +417,7 @@
 		856AA6062D9164E900402F84 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				8588F0C62DC97CAA00D04995 /* ConfettiManager.swift */,
 				8588F0C32DC2F8C700D04995 /* ResumePDFGenerator.swift */,
 				856AA6042D9164E900402F84 /* LottieAnimationManager.swift */,
 				856AA6052D9164E900402F84 /* NetworkManager.swift */,
@@ -683,6 +686,7 @@
 				85D8A6942D6A6C6A004C03D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				859174482D8201D700A06F42 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */,
 				856EB32D2D8520AD00DC0134 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				8588F0C52DC8C35000D04995 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 859B0AB12D57D3E900E5ADF1 /* Products */;
@@ -794,6 +798,7 @@
 				851966132DA6DACE004264AE /* ReportsDashboardView.swift in Sources */,
 				856AA6772D916B7800402F84 /* AuthManager.swift in Sources */,
 				8588F0A92DC07A2000D04995 /* ChallengeTrackerView.swift in Sources */,
+				8588F0C72DC97CB200D04995 /* ConfettiManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1154,6 +1159,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.5.1;
+			};
+		};
+		8588F0C52DC8C35000D04995 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.3;
 			};
 		};
 		859174482D8201D700A06F42 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */ = {
