@@ -2,7 +2,7 @@
 //  HomeView.swift
 //  StryVr
 //
-//  🏡 Upgraded Home Dashboard – Daily Goals, Streaks, Challenges, Achievements, Mentor Discovery
+//  🏡 Clean Home Dashboard – Daily Goals, Streaks, Challenges, Achievements
 //
 
 import SwiftUI
@@ -15,15 +15,7 @@ struct HomeView: View {
     @State private var activeChallengesCount = 3
     @State private var recentAchievementsCount = 2
 
-    @State private var recommendedMentors: [MentorModel] = []
-    @State private var isLoadingMentors: Bool = false
-
-    private let recommendationService: AIRecommendationService
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "HomeView")
-
-    init(recommendationService: AIRecommendationService = .shared) {
-        self.recommendationService = recommendationService
-    }
 
     var body: some View {
         NavigationStack {
@@ -47,9 +39,6 @@ struct HomeView: View {
 
                     // MARK: - Recent Achievements Card
                     dashboardCard(title: "Recent Achievements", subtitle: "\(recentAchievementsCount) Badges Unlocked 🏅")
-                        }
-                    }
-                    .padding(.top, Theme.Spacing.large)
 
                     Spacer()
                 }
@@ -58,7 +47,6 @@ struct HomeView: View {
             .background(Theme.Colors.background.ignoresSafeArea())
             .navigationTitle("Home")
             .navigationBarTitleDisplayMode(.large)
-            .onAppear(perform: fetchMentorRecommendations)
         }
     }
 
@@ -96,8 +84,7 @@ struct HomeView: View {
     // MARK: - Handle Daily Goal Completion
     private func markGoalCompleted() {
         dailyGoalCompleted = true
-      }
-    // MARK: - Fetch Mentor Recommendations
+    }
 }
 
 #Preview {
