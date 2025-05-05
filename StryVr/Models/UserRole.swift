@@ -9,10 +9,6 @@ import Foundation
 
 /// Defines user roles within StryVr
 enum UserRole: String, Codable {
-    /// Represents a mentee user
-    case mentee = "Mentee"
-    /// Represents a mentor user
-    case mentor = "Mentor"
     /// Represents an admin user (future enterprise/management use)
     case admin = "Admin"
 

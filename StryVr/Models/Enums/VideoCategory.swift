@@ -9,8 +9,6 @@ import Foundation
 
 /// Type of video content posted
 enum VideoCategory: String, Codable, CaseIterable {
-    /// Videos related to mentorship
-    case mentorship = "Mentorship"
     /// Tutorials for developing skills
     case skillTutorial = "Skill Tutorial"
     /// Insights from the industry
@@ -25,7 +23,6 @@ enum VideoCategory: String, Codable, CaseIterable {
     /// Returns a user-friendly description of the video category
     var description: String {
         switch self {
-        case .mentorship: return "Videos related to mentorship."
         case .skillTutorial: return "Tutorials for developing skills."
         case .industryInsights: return "Insights from the industry."
         case .successStory: return "Stories of success."

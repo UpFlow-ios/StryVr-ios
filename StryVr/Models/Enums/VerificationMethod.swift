@@ -9,8 +9,6 @@ import Foundation
 
 /// Types of verification users can submit
 enum VerificationMethod: String, Codable, CaseIterable {
-    /// Verification through mentor endorsement
-    case mentorEndorsement = "Mentor Endorsement"
     /// Verification through project submission
     case projectSubmission = "Project Submission"
     /// Verification through certification upload
@@ -21,7 +19,6 @@ enum VerificationMethod: String, Codable, CaseIterable {
     /// Returns a user-friendly description of the verification method
     var description: String {
         switch self {
-        case .mentorEndorsement: return "Endorsement provided by a mentor."
         case .projectSubmission: return "Submission of a project for verification."
         case .certificationUpload: return "Upload of a certification document."
         case .assessmentTest: return "Completion of an assessment test."

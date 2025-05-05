@@ -4,7 +4,6 @@ import Foundation
 /// Represents a scheduled conference call within the StryVr platform
 struct ConferenceCallModel: Identifiable, Codable, Hashable {
     let id: String                      // Unique call ID
-    let hostID: String                  // ID of the mentor or host
     var title: String                   // Conference title
     var description: String?            // Optional session description
     var participants: [String]          // User IDs of attendees

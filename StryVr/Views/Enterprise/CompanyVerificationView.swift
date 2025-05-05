@@ -25,7 +25,7 @@ struct CompanyVerificationView: View {
                         .foregroundColor(Theme.Colors.textPrimary)
                         .padding(.top, Theme.Spacing.large)
 
-                    Text("Apply to verify your organization and unlock enterprise tools like recruiting dashboards, top learner access, and featured mentor publishing.")
+                    Text("Apply to verify your organization and unlock enterprise tools like recruiting dashboards, top learner access)
                         .font(Theme.Typography.caption)
                         .foregroundColor(Theme.Colors.textSecondary)
                         .multilineTextAlignment(.leading)

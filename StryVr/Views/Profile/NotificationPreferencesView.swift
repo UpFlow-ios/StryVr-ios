@@ -9,7 +9,6 @@ import SwiftUI
 
 struct NotificationPreferencesView: View {
     @State private var generalNotificationsEnabled: Bool = true
-    @State private var mentorshipNotificationsEnabled: Bool = true
     @State private var challengeNotificationsEnabled: Bool = true
     @State private var silentModeEnabled: Bool = false
 
@@ -22,7 +21,6 @@ struct NotificationPreferencesView: View {
                 // MARK: - Notification Toggles
                 Section(header: Text("Notification Settings")) {
                     Toggle("General App Updates", isOn: $generalNotificationsEnabled)
-                    Toggle("Mentorship Session Reminders", isOn: $mentorshipNotificationsEnabled)
                     Toggle("New Skill Challenges", isOn: $challengeNotificationsEnabled)
                 }
 
@@ -65,7 +63,6 @@ struct NotificationPreferencesView: View {
     // MARK: - Disable All Notifications Helper
     private func disableAllNotifications() {
         generalNotificationsEnabled = false
-        mentorshipNotificationsEnabled = false
         challengeNotificationsEnabled = false
     }
 

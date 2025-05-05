@@ -21,8 +21,6 @@ struct CustomNavigationView: View {
                         HomeView()
                     case .learning:
                         LearningPathsView()
-                    case .community:
-                        MentorVideoFeedView()
                     case .profile:
                         ProfileView()
                     }

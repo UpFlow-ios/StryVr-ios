@@ -9,7 +9,7 @@ import FirebaseStorage
 import FirebaseFirestore
 import os.log
 
-/// Manages mentor video uploads, metadata, streaming & AI tagging
+/// Manages video uploads, metadata, streaming & AI tagging
 final class VideoContentService {
 
     static let shared = VideoContentService()
@@ -68,7 +68,7 @@ final class VideoContentService {
                         "tags": tags
                     ]
 
-                    self.db.collection("mentorVideos").document(videoID).setData(metadata) { error in
+                    self.db.collection("Videos").document(videoID).setData(metadata) { error in
                         if let error = error {
                             self.logger.error("Metadata write failed: \(error.localizedDescription)")
                         } else {
@@ -83,8 +83,8 @@ final class VideoContentService {
 
     // MARK: - Fetch Videos (Streaming)
 
-    func fetchMentorVideos(completion: @escaping ([VideoPostModel]) -> Void) {
-        db.collection("mentorVideos")
+    func fetchVideos(completion: @escaping ([VideoPostModel]) -> Void) {
+        db.collection("Videos")
             .order(by: "uploadDate", descending: true)
             .getDocuments { snapshot, error in
                 if let error = error {
@@ -142,7 +142,7 @@ final class VideoContentService {
     private func generateAITags(for videoURL: String, completion: @escaping ([String]) -> Void) {
         // 🔁 Replace this with Hugging Face API or custom endpoint later
         DispatchQueue.global().asyncAfter(deadline: .now() + 1.5) {
-            completion(["career", "mentorship", "skills"])
+            completion(["career", "skills"])
         }
     }
 }

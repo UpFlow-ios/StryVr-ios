@@ -50,7 +50,6 @@ struct CustomButton: View {
 #Preview {
     VStack(spacing: 20) {
         CustomButton(title: "Get Started", action: {})
-        CustomButton(title: "Add Mentor", action: {}, icon: "leaf.fill")
         CustomButton(title: "Dark Mode", action: {}, backgroundColor: .black, icon: "moon.stars.fill")
     }
     .padding()

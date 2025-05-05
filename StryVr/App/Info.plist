@@ -21,8 +21,6 @@
 	<string>StryVr needs access to your camera for video calls and content creation.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>StryVr needs access to your microphone for voice communication during video calls.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>StryVr needs access to your photo library for uploading profile pictures and mentor content.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>StryVr uses Face ID for secure login and authentication.</string>
 	<key>UIBackgroundModes</key>
@@ -31,8 +29,6 @@
 		<string>voip</string>
 		<string>fetch</string>
 	</array>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>StryVr uses your location to personalize your learning experience and mentor recommendations.</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<true/>
 	<key>NSUserNotificationAlertStyle</key>

@@ -47,25 +47,6 @@ struct HomeView: View {
 
                     // MARK: - Recent Achievements Card
                     dashboardCard(title: "Recent Achievements", subtitle: "\(recentAchievementsCount) Badges Unlocked 🏅")
-
-                    // MARK: - AI Mentor Recommendations
-                    VStack(alignment: .leading, spacing: Theme.Spacing.medium) {
-                        Text("Recommended Mentors")
-                            .font(Theme.Typography.body)
-                            .foregroundColor(Theme.Colors.textPrimary)
-
-                        if isLoadingMentors {
-                            ProgressView("Finding mentors...")
-                                .progressViewStyle(CircularProgressViewStyle(tint: Theme.Colors.accent))
-                                .frame(maxWidth: .infinity)
-                        } else if recommendedMentors.isEmpty {
-                            Text("No mentor matches at the moment.")
-                                .font(Theme.Typography.caption)
-                                .foregroundColor(Theme.Colors.textSecondary)
-                                .frame(maxWidth: .infinity)
-                        } else {
-                            MentorListView(mentors: recommendedMentors)
-                                .transition(.opacity)
                         }
                     }
                     .padding(.top, Theme.Spacing.large)
@@ -115,24 +96,8 @@ struct HomeView: View {
     // MARK: - Handle Daily Goal Completion
     private func markGoalCompleted() {
         dailyGoalCompleted = true
-    }
-
-    // MARK: - Fetch AI Mentor Recommendations
-    private func fetchMentorRecommendations() {
-        isLoadingMentors = true
-        recommendationService.fetchMentorRecommendations(for: "currentUserID") { [weak self] mentors in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.isLoadingMentors = false
-                if mentors.isEmpty {
-                    self.logger.error("❌ No mentors returned from AIRecommendationService.")
-                }
-                withAnimation {
-                    self.recommendedMentors = mentors
-                }
-            }
-        }
-    }
+      }
+    // MARK: - Fetch Mentor Recommendations
 }
 
 #Preview {

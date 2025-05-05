@@ -9,17 +9,10 @@ struct UserModel: Identifiable, Codable, Hashable {
     var profileImageURL: String?                  // URL to user's profile image
     var bio: String?                              // User bio/intro
     var skills: [String]                          // Skill tags
-    var role: UserRole                            // Role type: mentee/mentor/admin
     var isVerified: Bool                          // Verified status
-    var mentorDetails: MentorDetails?             // Mentor-specific details
     let joinedDate: Date                          // Date of account creation
 
     // MARK: - Computed Properties
-
-    /// Whether this user is a mentor
-    var isMentor: Bool {
-        return role == .mentor
-    }
 
     /// Nicely formatted join date (e.g. "Jan 5, 2025")
     var formattedJoinDate: String {
@@ -58,7 +51,6 @@ struct UserModel: Identifiable, Codable, Hashable {
         skills: [String] = [],
         role: UserRole,
         isVerified: Bool = false,
-        mentorDetails: MentorDetails? = nil,
         joinedDate: Date = Date()
     ) {
         self.id = id
@@ -69,7 +61,6 @@ struct UserModel: Identifiable, Codable, Hashable {
         self.skills = skills
         self.role = role
         self.isVerified = isVerified
-        self.mentorDetails = mentorDetails
         self.joinedDate = joinedDate
     }
 }

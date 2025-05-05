@@ -3,7 +3,7 @@
 //  StryVr
 //
 //  Created by Joe Dormond on 3/12/25.
-//  🏆 Displays top learners & mentors (Gamification + Recognition)
+//  🏆 Displays top learners (Gamification + Recognition)
 //
 
 import SwiftUI
@@ -12,7 +12,6 @@ import os.log
 
 struct LeaderboardView: View {
     @State private var topLearners: [LeaderboardUser] = []
-    @State private var topMentors: [LeaderboardUser] = []
     @State private var isLoading: Bool = true
     @State private var hasError: Bool = false
 
@@ -53,9 +52,7 @@ struct LeaderboardView: View {
                                 }
                             }
 
-                            StryVrCardView(title: "🎓 Top Mentors") {
-                                ForEach(topMentors) { user in
-                                    LeaderboardRow(user: user)
+                            .padding(.horizontal, Theme.Spacing.medium)
                                 }
                             }
                         }
@@ -87,19 +84,6 @@ struct LeaderboardView: View {
             }
             group.leave()
         }
-
-        group.enter()
-        fetchData(collection: "mentors", orderBy: "rating", limit: 5) { result in
-            switch result {
-            case .success(let mentors):
-                self.topMentors = mentors
-            case .failure(let error):
-                logger.error("Error fetching top mentors: \(error.localizedDescription)")
-                self.hasError = true
-            }
-            group.leave()
-        }
-
         group.notify(queue: .main) {
             self.isLoading = false
         }
