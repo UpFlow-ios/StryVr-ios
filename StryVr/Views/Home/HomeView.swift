@@ -2,11 +2,12 @@
 //  HomeView.swift
 //  StryVr
 //
-//  🏡 Clean Home Dashboard – Daily Goals, Streaks, Challenges, Achievements
+//  🏡 Clean Home Dashboard – Daily Goals, Streaks, Challenges, Achievements with Confetti Celebrations
 //
 
 import SwiftUI
 import os.log
+import ConfettiSwiftUI
 
 struct HomeView: View {
     @State private var dailyGoalCompleted = false
@@ -14,6 +15,8 @@ struct HomeView: View {
     @State private var bestStreak = 12
     @State private var activeChallengesCount = 3
     @State private var recentAchievementsCount = 2
+
+    @StateObject private var confettiManager = ConfettiManager.shared
 
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "HomeView")
 
@@ -29,7 +32,11 @@ struct HomeView: View {
                         .padding(.top, Theme.Spacing.large)
 
                     // MARK: - Today's Goal Card
-                    dashboardCard(title: "Today's Goal", subtitle: dailyGoalCompleted ? "✅ Completed" : "🎯 Complete 1 Learning Module", buttonAction: markGoalCompleted)
+                    dashboardCard(
+                        title: "Today's Goal",
+                        subtitle: dailyGoalCompleted ? "✅ Completed" : "🎯 Complete 1 Learning Module",
+                        buttonAction: markGoalCompleted
+                    )
 
                     // MARK: - Skill Streak Card
                     dashboardCard(title: "Skill Streak", subtitle: "\(currentStreak) Days 🔥 | Best: \(bestStreak) Days 🏆")
@@ -40,9 +47,28 @@ struct HomeView: View {
                     // MARK: - Recent Achievements Card
                     dashboardCard(title: "Recent Achievements", subtitle: "\(recentAchievementsCount) Badges Unlocked 🏅")
 
+                    // MARK: - Manual Badge Unlock (Demo Button)
+                    Button(action: unlockBadge) {
+                        Text("🏅 Unlock New Badge")
+                            .font(Theme.Typography.body)
+                            .foregroundColor(Theme.Colors.whiteText)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Theme.Colors.accent)
+                            .cornerRadius(Theme.CornerRadius.medium)
+                    }
+
                     Spacer()
                 }
                 .padding()
+                .confettiCannon(
+                    counter: $confettiManager.counter,
+                    num: 30,
+                    colors: [.green, .blue, .purple, .pink, .orange],
+                    radius: 350,
+                    repetitions: 1,
+                    repetitionInterval: 0.2
+                )
             }
             .background(Theme.Colors.background.ignoresSafeArea())
             .navigationTitle("Home")
@@ -84,6 +110,13 @@ struct HomeView: View {
     // MARK: - Handle Daily Goal Completion
     private func markGoalCompleted() {
         dailyGoalCompleted = true
+        ConfettiManager.shared.triggerConfetti()
+    }
+
+    // MARK: - Badge Unlock
+    private func unlockBadge() {
+        recentAchievementsCount += 1
+        ConfettiManager.shared.triggerConfetti()
     }
 }
 
