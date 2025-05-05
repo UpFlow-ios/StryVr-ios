@@ -26,11 +26,8 @@
 		854ECFDD2D701D5F00D0B0AC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854ECFD62D701D5F00D0B0AC /* Security.framework */; };
 		854ECFDE2D701D5F00D0B0AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854ECFD42D701D5F00D0B0AC /* Foundation.framework */; };
 		854ECFDF2D701D5F00D0B0AC /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854ECFD52D701D5F00D0B0AC /* SafariServices.framework */; };
-		855E96042D9D08D9002173EF /* MentorVideoFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855E96032D9D08CE002173EF /* MentorVideoFeedView.swift */; };
-		855E96062D9D0974002173EF /* MentorVideoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855E96052D9D096C002173EF /* MentorVideoCard.swift */; };
 		855E96092D9D0ED0002173EF /* CareerPathInsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855E96082D9D0EC8002173EF /* CareerPathInsightsView.swift */; };
 		855E960B2D9D1009002173EF /* CareerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855E960A2D9D1001002173EF /* CareerCard.swift */; };
-		855E960D2D9D1198002173EF /* MentorVideoUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855E960C2D9D118D002173EF /* MentorVideoUploadView.swift */; };
 		855E960F2D9D1228002173EF /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855E960E2D9D1222002173EF /* DocumentPicker.swift */; };
 		856AA62E2D9164E900402F84 /* CustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6152D9164E900402F84 /* CustomNavigationView.swift */; };
 		856AA6312D9164E900402F84 /* CompanyVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA61A2D9164E900402F84 /* CompanyVerificationView.swift */; };
@@ -47,11 +44,9 @@
 		856AA64B2D9164E900402F84 /* VideoPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA5F22D9164E900402F84 /* VideoPostModel.swift */; };
 		856AA64C2D9164E900402F84 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6202D9164E900402F84 /* CustomButton.swift */; };
 		856AA64E2D9164E900402F84 /* SecureStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA61B2D9164E900402F84 /* SecureStorageManager.swift */; };
-		856AA6512D9164E900402F84 /* MentorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA5EE2D9164E900402F84 /* MentorModel.swift */; };
 		856AA6522D9164E900402F84 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6052D9164E900402F84 /* NetworkManager.swift */; };
 		856AA6542D9164E900402F84 /* LearningPathsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA5ED2D9164E900402F84 /* LearningPathsView.swift */; };
 		856AA6572D9164E900402F84 /* GroupChallengesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA60B2D9164E900402F84 /* GroupChallengesView.swift */; };
-		856AA6582D9164E900402F84 /* SkillVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA61C2D9164E900402F84 /* SkillVerificationView.swift */; };
 		856AA6592D9164E900402F84 /* SkillVerificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA5F02D9164E900402F84 /* SkillVerificationModel.swift */; };
 		856AA65A2D9164E900402F84 /* ReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA5EF2D9164E900402F84 /* ReportModel.swift */; };
 		856AA6602D9164E900402F84 /* LoginView.swift  in Resources */ = {isa = PBXBuildFile; fileRef = 856AA6092D9164E900402F84 /* LoginView.swift  */; };
@@ -61,25 +56,18 @@
 		856AA66A2D91686B00402F84 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6692D91686B00402F84 /* SceneDelegate.swift */; };
 		856AA66D2D91692E00402F84 /* StryVrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA66C2D91692E00402F84 /* StryVrApp.swift */; };
 		856AA66F2D9169A900402F84 /* AIProfileValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA66E2D9169A900402F84 /* AIProfileValidator.swift */; };
-		856AA6712D916A2B00402F84 /* MentorListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6702D916A2B00402F84 /* MentorListView.swift */; };
 		856AA6732D916A9B00402F84 /* AIRecommendationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6722D916A9B00402F84 /* AIRecommendationService.swift */; };
 		856AA6752D916AF300402F84 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6742D916AF300402F84 /* APIService.swift */; };
 		856AA6772D916B7800402F84 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6762D916B7800402F84 /* AuthManager.swift */; };
 		856AA6792D916BEA00402F84 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6782D916BEA00402F84 /* AuthService.swift */; };
-		856AA67B2D916C3C00402F84 /* MentorshipService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA67A2D916C3C00402F84 /* MentorshipService.swift */; };
 		856AA67D2D916CB900402F84 /* ChallengeSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA67C2D916CB900402F84 /* ChallengeSystem.swift */; };
 		856AA67F2D916D0900402F84 /* ConferenceCallService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA67E2D916D0900402F84 /* ConferenceCallService.swift */; };
 		856AA6812D916D7700402F84 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6802D916D7700402F84 /* FirestoreService.swift */; };
-		856AA6832D916DA000402F84 /* MentorMatchingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6822D916DA000402F84 /* MentorMatchingService.swift */; };
 		856AA6852D916DF500402F84 /* VideoContentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6842D916DF500402F84 /* VideoContentService.swift */; };
 		856AA6872D916E4300402F84 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6862D916E4300402F84 /* NotificationService.swift */; };
 		856AA6892D916E7E00402F84 /* SecureStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6882D916E7E00402F84 /* SecureStorageService.swift */; };
 		856AA68B2D916EC600402F84 /* PaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA68A2D916EC600402F84 /* PaymentService.swift */; };
-		856AA68D2D916F0800402F84 /* ReportGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA68C2D916F0800402F84 /* ReportGeneration.swift */; };
 		856AA68F2D91702900402F84 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA68E2D91700100402F84 /* AuthViewModel.swift */; };
-		856AA6932D91711300402F84 /* MentorFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6922D91711300402F84 /* MentorFeedbackView.swift */; };
-		856AA6952D91716100402F84 /* MentorshipBookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6942D91716100402F84 /* MentorshipBookingView.swift */; };
-		856AA6972D91720900402F84 /* MentorSessionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6962D91720900402F84 /* MentorSessionListView.swift */; };
 		856AA6992D91733900402F84 /* AISkillCoachView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6982D91733900402F84 /* AISkillCoachView.swift */; };
 		856AA69B2D91738700402F84 /* SkillVisualizationDashboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA69A2D91738700402F84 /* SkillVisualizationDashboards.swift */; };
 		856AA69D2D9173EF00402F84 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA69C2D9173EF00402F84 /* PaywallView.swift */; };
@@ -106,9 +94,7 @@
 		859174562D82020000A06F42 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 859174552D82020000A06F42 /* FirebaseAppCheck */; };
 		8595B1842DB36722001D831E /* AppShellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8595B1832DB36711001D831E /* AppShellView.swift */; };
 		85AD56A22D94BA79007B6542 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AD56A12D94BA79007B6542 /* Skill.swift */; };
-		85CB82D72DAE2C7F002AA544 /* MentorshipSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB82D62DAE2C74002AA544 /* MentorshipSession.swift */; };
 		85CB82D92DAE2E83002AA544 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB82D82DAE2E7B002AA544 /* UserRole.swift */; };
-		85CB82DB2DAE3088002AA544 /* MentorDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB82DA2DAE3073002AA544 /* MentorDetails.swift */; };
 		85CB83042DAE5D60002AA544 /* AIProfileValidatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB83032DAE5D5B002AA544 /* AIProfileValidatorView.swift */; };
 /* End PBXBuildFile section */
 
@@ -147,16 +133,12 @@
 		854ECFD72D701D5F00D0B0AC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		854ECFD82D701D5F00D0B0AC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		855E95FF2D9D0582002173EF /* ReportAnalysisHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportAnalysisHelper.swift; sourceTree = "<group>"; };
-		855E96032D9D08CE002173EF /* MentorVideoFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorVideoFeedView.swift; sourceTree = "<group>"; };
-		855E96052D9D096C002173EF /* MentorVideoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorVideoCard.swift; sourceTree = "<group>"; };
 		855E96082D9D0EC8002173EF /* CareerPathInsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerPathInsightsView.swift; sourceTree = "<group>"; };
 		855E960A2D9D1001002173EF /* CareerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerCard.swift; sourceTree = "<group>"; };
-		855E960C2D9D118D002173EF /* MentorVideoUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorVideoUploadView.swift; sourceTree = "<group>"; };
 		855E960E2D9D1222002173EF /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
 		856AA5EA2D9164E900402F84 /* AppIcon */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon; sourceTree = "<group>"; };
 		856AA5EC2D9164E900402F84 /* ConferenceCallModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceCallModel.swift; sourceTree = "<group>"; };
 		856AA5ED2D9164E900402F84 /* LearningPathsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LearningPathsView.swift; path = ../Models/LearningPathsView.swift; sourceTree = "<group>"; };
-		856AA5EE2D9164E900402F84 /* MentorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorModel.swift; sourceTree = "<group>"; };
 		856AA5EF2D9164E900402F84 /* ReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportModel.swift; sourceTree = "<group>"; };
 		856AA5F02D9164E900402F84 /* SkillVerificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillVerificationModel.swift; sourceTree = "<group>"; };
 		856AA5F12D9164E900402F84 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -172,7 +154,6 @@
 		856AA6182D9164E900402F84 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		856AA61A2D9164E900402F84 /* CompanyVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyVerificationView.swift; sourceTree = "<group>"; };
 		856AA61B2D9164E900402F84 /* SecureStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SecureStorageManager.swift; path = ../Views/Security/SecureStorageManager.swift; sourceTree = "<group>"; };
-		856AA61C2D9164E900402F84 /* SkillVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillVerificationView.swift; sourceTree = "<group>"; };
 		856AA61E2D9164E900402F84 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		856AA6202D9164E900402F84 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		856AA6212D9164E900402F84 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
@@ -183,25 +164,18 @@
 		856AA6692D91686B00402F84 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		856AA66C2D91692E00402F84 /* StryVrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StryVrApp.swift; sourceTree = "<group>"; };
 		856AA66E2D9169A900402F84 /* AIProfileValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIProfileValidator.swift; sourceTree = "<group>"; };
-		856AA6702D916A2B00402F84 /* MentorListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorListView.swift; sourceTree = "<group>"; };
 		856AA6722D916A9B00402F84 /* AIRecommendationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIRecommendationService.swift; sourceTree = "<group>"; };
 		856AA6742D916AF300402F84 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		856AA6762D916B7800402F84 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		856AA6782D916BEA00402F84 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
-		856AA67A2D916C3C00402F84 /* MentorshipService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorshipService.swift; sourceTree = "<group>"; };
 		856AA67C2D916CB900402F84 /* ChallengeSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeSystem.swift; sourceTree = "<group>"; };
 		856AA67E2D916D0900402F84 /* ConferenceCallService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceCallService.swift; sourceTree = "<group>"; };
 		856AA6802D916D7700402F84 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
-		856AA6822D916DA000402F84 /* MentorMatchingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorMatchingService.swift; sourceTree = "<group>"; };
 		856AA6842D916DF500402F84 /* VideoContentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoContentService.swift; sourceTree = "<group>"; };
 		856AA6862D916E4300402F84 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		856AA6882D916E7E00402F84 /* SecureStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorageService.swift; sourceTree = "<group>"; };
 		856AA68A2D916EC600402F84 /* PaymentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentService.swift; sourceTree = "<group>"; };
-		856AA68C2D916F0800402F84 /* ReportGeneration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportGeneration.swift; sourceTree = "<group>"; };
 		856AA68E2D91700100402F84 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
-		856AA6922D91711300402F84 /* MentorFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorFeedbackView.swift; sourceTree = "<group>"; };
-		856AA6942D91716100402F84 /* MentorshipBookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorshipBookingView.swift; sourceTree = "<group>"; };
-		856AA6962D91720900402F84 /* MentorSessionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorSessionListView.swift; sourceTree = "<group>"; };
 		856AA6982D91733900402F84 /* AISkillCoachView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AISkillCoachView.swift; sourceTree = "<group>"; };
 		856AA69A2D91738700402F84 /* SkillVisualizationDashboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillVisualizationDashboards.swift; sourceTree = "<group>"; };
 		856AA69C2D9173EF00402F84 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
@@ -219,16 +193,12 @@
 		859B0AB02D57D3E900E5ADF1 /* StryVr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StryVr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		859B0AC62D57D3F400E5ADF1 /* StryVrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StryVrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		859B0AD02D57D3F500E5ADF1 /* StryVrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StryVrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		85AD569C2D94B8A3007B6542 /* MentorSummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorSummaryModel.swift; sourceTree = "<group>"; };
 		85AD569D2D94B931007B6542 /* ChallengeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeModel.swift; sourceTree = "<group>"; };
 		85AD56A02D94B9EA007B6542 /* SubscriptionPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPlan.swift; sourceTree = "<group>"; };
 		85AD56A12D94BA79007B6542 /* Skill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skill.swift; sourceTree = "<group>"; };
 		85AD56A32D94BA97007B6542 /* LearningReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningReport.swift; sourceTree = "<group>"; };
 		85AD56A42D94BAE8007B6542 /* SkillProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillProgress.swift; sourceTree = "<group>"; };
-		85AD56A52D94BB38007B6542 /* MentorReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorReport.swift; sourceTree = "<group>"; };
-		85CB82D62DAE2C74002AA544 /* MentorshipSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorshipSession.swift; sourceTree = "<group>"; };
 		85CB82D82DAE2E7B002AA544 /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
-		85CB82DA2DAE3073002AA544 /* MentorDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorDetails.swift; sourceTree = "<group>"; };
 		85CB83032DAE5D5B002AA544 /* AIProfileValidatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIProfileValidatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -369,9 +339,6 @@
 			isa = PBXGroup;
 			children = (
 				855E960E2D9D1222002173EF /* DocumentPicker.swift */,
-				855E960C2D9D118D002173EF /* MentorVideoUploadView.swift */,
-				855E96052D9D096C002173EF /* MentorVideoCard.swift */,
-				855E96032D9D08CE002173EF /* MentorVideoFeedView.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -411,22 +378,17 @@
 			children = (
 				85CB82E02DAE4A58002AA544 /* Shared */,
 				85CB82DC2DAE49B8002AA544 /* Enums */,
-				85CB82DA2DAE3073002AA544 /* MentorDetails.swift */,
 				85CB82D82DAE2E7B002AA544 /* UserRole.swift */,
-				85CB82D62DAE2C74002AA544 /* MentorshipSession.swift */,
 				856AA5F12D9164E900402F84 /* UserModel.swift */,
-				856AA5EE2D9164E900402F84 /* MentorModel.swift */,
 				856AA5EC2D9164E900402F84 /* ConferenceCallModel.swift */,
 				856AA5EF2D9164E900402F84 /* ReportModel.swift */,
 				856AA5F02D9164E900402F84 /* SkillVerificationModel.swift */,
 				856AA5F22D9164E900402F84 /* VideoPostModel.swift */,
-				85AD569C2D94B8A3007B6542 /* MentorSummaryModel.swift */,
 				85AD569D2D94B931007B6542 /* ChallengeModel.swift */,
 				85AD56A02D94B9EA007B6542 /* SubscriptionPlan.swift */,
 				85AD56A12D94BA79007B6542 /* Skill.swift */,
 				85AD56A32D94BA97007B6542 /* LearningReport.swift */,
 				85AD56A42D94BAE8007B6542 /* SkillProgress.swift */,
-				85AD56A52D94BB38007B6542 /* MentorReport.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -436,17 +398,14 @@
 			children = (
 				856AA6742D916AF300402F84 /* APIService.swift */,
 				856AA6782D916BEA00402F84 /* AuthService.swift */,
-				856AA67A2D916C3C00402F84 /* MentorshipService.swift */,
 				856AA66E2D9169A900402F84 /* AIProfileValidator.swift */,
 				856AA6722D916A9B00402F84 /* AIRecommendationService.swift */,
 				856AA6762D916B7800402F84 /* AuthManager.swift */,
 				856AA67C2D916CB900402F84 /* ChallengeSystem.swift */,
 				856AA67E2D916D0900402F84 /* ConferenceCallService.swift */,
 				856AA6802D916D7700402F84 /* FirestoreService.swift */,
-				856AA6822D916DA000402F84 /* MentorMatchingService.swift */,
 				856AA6862D916E4300402F84 /* NotificationService.swift */,
 				856AA68A2D916EC600402F84 /* PaymentService.swift */,
-				856AA68C2D916F0800402F84 /* ReportGeneration.swift */,
 				856AA6882D916E7E00402F84 /* SecureStorageService.swift */,
 				856AA6842D916DF500402F84 /* VideoContentService.swift */,
 			);
@@ -505,17 +464,6 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		856AA6142D9164E900402F84 /* Mentorship */ = {
-			isa = PBXGroup;
-			children = (
-				856AA6922D91711300402F84 /* MentorFeedbackView.swift */,
-				856AA6702D916A2B00402F84 /* MentorListView.swift */,
-				856AA6962D91720900402F84 /* MentorSessionListView.swift */,
-				856AA6942D91716100402F84 /* MentorshipBookingView.swift */,
-			);
-			path = Mentorship;
-			sourceTree = "<group>";
-		};
 		856AA6172D9164E900402F84 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -543,7 +491,6 @@
 			children = (
 				85CB83032DAE5D5B002AA544 /* AIProfileValidatorView.swift */,
 				856AA61A2D9164E900402F84 /* CompanyVerificationView.swift */,
-				856AA61C2D9164E900402F84 /* SkillVerificationView.swift */,
 			);
 			path = Security;
 			sourceTree = "<group>";
@@ -583,7 +530,6 @@
 				856AA60A2D9164E900402F84 /* Auth */,
 				856AA60C2D9164E900402F84 /* Challenges */,
 				856AA60F2D9164E900402F84 /* Home */,
-				856AA6142D9164E900402F84 /* Mentorship */,
 				856AA6172D9164E900402F84 /* Navigation */,
 				856AA6192D9164E900402F84 /* Profile */,
 				856AA61D2D9164E900402F84 /* Security */,
@@ -783,7 +729,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8588F0A32DC0698A00D04995 /* EditProfileView.swift in Sources */,
-				855E960D2D9D1198002173EF /* MentorVideoUploadView.swift in Sources */,
 				856AA62E2D9164E900402F84 /* CustomNavigationView.swift in Sources */,
 				85AD56A22D94BA79007B6542 /* Skill.swift in Sources */,
 				855E96092D9D0ED0002173EF /* CareerPathInsightsView.swift in Sources */,
@@ -792,13 +737,10 @@
 				856AA66D2D91692E00402F84 /* StryVrApp.swift in Sources */,
 				856AA66F2D9169A900402F84 /* AIProfileValidator.swift in Sources */,
 				856AA68B2D916EC600402F84 /* PaymentService.swift in Sources */,
-				856AA6932D91711300402F84 /* MentorFeedbackView.swift in Sources */,
 				856AA6312D9164E900402F84 /* CompanyVerificationView.swift in Sources */,
 				856AA6792D916BEA00402F84 /* AuthService.swift in Sources */,
 				856AA67F2D916D0900402F84 /* ConferenceCallService.swift in Sources */,
-				856AA68D2D916F0800402F84 /* ReportGeneration.swift in Sources */,
 				856AA6362D9164E900402F84 /* HomeView.swift in Sources */,
-				855E96062D9D0974002173EF /* MentorVideoCard.swift in Sources */,
 				851966062DA6D782004264AE /* FontStyle.swift in Sources */,
 				851966072DA6D782004264AE /* Colors.swift in Sources */,
 				8588F0A12DC068C600D04995 /* SettingsView.swift in Sources */,
@@ -814,12 +756,10 @@
 				856AA63D2D9164E900402F84 /* UserModel.swift in Sources */,
 				856AA6872D916E4300402F84 /* NotificationService.swift in Sources */,
 				851966172DACFB1C004264AE /* ForgotPasswordView.swift in Sources */,
-				856AA6972D91720900402F84 /* MentorSessionListView.swift in Sources */,
 				856AA6732D916A9B00402F84 /* AIRecommendationService.swift in Sources */,
 				855E960B2D9D1009002173EF /* CareerCard.swift in Sources */,
 				856AA63F2D9164E900402F84 /* FriendLearningFeed.swift in Sources */,
 				85CB82D92DAE2E83002AA544 /* UserRole.swift in Sources */,
-				855E96042D9D08D9002173EF /* MentorVideoFeedView.swift in Sources */,
 				851966152DACF9C7004264AE /* RegisterView.swift in Sources */,
 				856AA67D2D916CB900402F84 /* ChallengeSystem.swift in Sources */,
 				856AA6412D9164E900402F84 /* LottieAnimationManager.swift in Sources */,
@@ -830,35 +770,27 @@
 				856AA69B2D91738700402F84 /* SkillVisualizationDashboards.swift in Sources */,
 				8588F0A52DC06A4200D04995 /* NotificationPreferencesView.swift in Sources */,
 				856AA6752D916AF300402F84 /* APIService.swift in Sources */,
-				856AA6952D91716100402F84 /* MentorshipBookingView.swift in Sources */,
 				856AA6A12D9174A300402F84 /* homeViewModel.swift in Sources */,
 				856AA6492D9164E900402F84 /* SplashScreenView.swift in Sources */,
 				856AA64B2D9164E900402F84 /* VideoPostModel.swift in Sources */,
 				856AA64C2D9164E900402F84 /* CustomButton.swift in Sources */,
-				856AA6712D916A2B00402F84 /* MentorListView.swift in Sources */,
 				856AA69D2D9173EF00402F84 /* PaywallView.swift in Sources */,
-				856AA67B2D916C3C00402F84 /* MentorshipService.swift in Sources */,
-				85CB82DB2DAE3088002AA544 /* MentorDetails.swift in Sources */,
 				8588F0A72DC0798600D04995 /* AchievementsView.swift in Sources */,
 				856AA64E2D9164E900402F84 /* SecureStorageManager.swift in Sources */,
-				856AA6512D9164E900402F84 /* MentorModel.swift in Sources */,
 				856AA6642D91674C00402F84 /* AppDelegate.swift in Sources */,
 				856AA6522D9164E900402F84 /* NetworkManager.swift in Sources */,
 				856AA6542D9164E900402F84 /* LearningPathsView.swift in Sources */,
-				85CB82D72DAE2C7F002AA544 /* MentorshipSession.swift in Sources */,
 				856AA68F2D91702900402F84 /* AuthViewModel.swift in Sources */,
 				855E960F2D9D1228002173EF /* DocumentPicker.swift in Sources */,
 				8595B1842DB36722001D831E /* AppShellView.swift in Sources */,
 				856AA6572D9164E900402F84 /* GroupChallengesView.swift in Sources */,
 				8588F0C42DC2F8D000D04995 /* ResumePDFGenerator.swift in Sources */,
 				856AA6812D916D7700402F84 /* FirestoreService.swift in Sources */,
-				856AA6582D9164E900402F84 /* SkillVerificationView.swift in Sources */,
 				856AA66A2D91686B00402F84 /* SceneDelegate.swift in Sources */,
 				856AA6592D9164E900402F84 /* SkillVerificationModel.swift in Sources */,
 				856AA65A2D9164E900402F84 /* ReportModel.swift in Sources */,
 				856AA6892D916E7E00402F84 /* SecureStorageService.swift in Sources */,
 				8588F0AB2DC07B1D00D04995 /* SkillStreaksView.swift in Sources */,
-				856AA6832D916DA000402F84 /* MentorMatchingService.swift in Sources */,
 				851966132DA6DACE004264AE /* ReportsDashboardView.swift in Sources */,
 				856AA6772D916B7800402F84 /* AuthManager.swift in Sources */,
 				8588F0A92DC07A2000D04995 /* ChallengeTrackerView.swift in Sources */,

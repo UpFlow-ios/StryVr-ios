@@ -2,69 +2,46 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <!-- App Information -->
-    <key>CFBundleName</key>
-    <string>StryVr</string>
-    <key>CFBundleIdentifier</key>
-    <string>com.stryvr.app</string>
-    <key>CFBundleVersion</key>
-    <string>1.0.0</string>
-    <key>CFBundleShortVersionString</key>
-    <string>1.0</string>
-
-    <!-- Launch Screen (Remove if using SwiftUI app lifecycle) -->
-    <key>UILaunchStoryboardName</key>
-    <string>LaunchScreen</string>
-
-    <!-- Network Permissions (Required for API requests) -->
-    <key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
-    </dict>
-
-    <!-- Camera & Microphone (For Mentor Video Calls & Content Creation) -->
-    <key>NSCameraUsageDescription</key>
-    <string>StryVr needs access to your camera for video calls and content creation.</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>StryVr needs access to your microphone for voice communication during video calls.</string>
-
-    <!-- Photo Library Access (For Profile & Mentor Video Uploads) -->
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>StryVr needs access to your photo library for uploading profile pictures and mentor content.</string>
-    
-    <!-- Face ID / Touch ID (For Secure Authentication) -->
-    <key>NSFaceIDUsageDescription</key>
-    <string>StryVr uses Face ID for secure login and authentication.</string>
-
-    <!-- Background Modes (For Video Calls & Notifications) -->
-    <key>UIBackgroundModes</key>
-    <array>
-        <string>audio</string> <!-- Enables background audio for video calls -->
-        <string>voip</string>  <!-- Enables VoIP for mentor-mentee calls -->
-        <string>fetch</string>  <!-- Allows background updates -->
-    </array>
-
-    <!-- Location Access (If Needed for Personalized Learning) -->
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>StryVr uses your location to personalize your learning experience and mentor recommendations.</string>
-
-    <!-- Firebase Permissions (Required for Firebase Integration) -->
-    <key>FirebaseAppDelegateProxyEnabled</key>
-    <true/>
-
-    <!-- Push Notifications (For Updates, Reminders & Security Alerts) -->
-    <key>NSUserNotificationAlertStyle</key>
-    <string>banner</string>
-    <key>NSPushNotificationsUsageDescription</key>
-    <string>StryVr uses push notifications to keep you updated on mentor sessions, learning progress, and security alerts.</string>
-
-    <!-- Additional Permissions -->
-    <key>NSBluetoothPeripheralUsageDescription</key>
-    <string>StryVr needs access to Bluetooth for connecting to external devices.</string>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>StryVr needs access to your location even when the app is not in use to provide continuous personalized learning.</string>
-    <key>NSMotionUsageDescription</key>
-    <string>StryVr uses motion data to enhance your learning experience.</string>
+	<key>CFBundleName</key>
+	<string>StryVr</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.stryvr.app</string>
+	<key>CFBundleVersion</key>
+	<string>1.0.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>StryVr needs access to your camera for video calls and content creation.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>StryVr needs access to your microphone for voice communication during video calls.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>StryVr needs access to your photo library for uploading profile pictures and mentor content.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>StryVr uses Face ID for secure login and authentication.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string>voip</string>
+		<string>fetch</string>
+	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>StryVr uses your location to personalize your learning experience and mentor recommendations.</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<true/>
+	<key>NSUserNotificationAlertStyle</key>
+	<string>banner</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>StryVr needs access to Bluetooth for connecting to external devices.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>StryVr needs access to your location even when the app is not in use to provide continuous personalized learning.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>StryVr uses motion data to enhance your learning experience.</string>
 </dict>
 </plist>
