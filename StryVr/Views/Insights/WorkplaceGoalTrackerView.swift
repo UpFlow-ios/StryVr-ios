@@ -3,7 +3,7 @@
 //  StryVr
 //
 //  Created by Joe Dormond on 5/5/25.
-//  🎯 Track & Update Workplace Goals – Team & Individual Goals with Progress Bars
+//  ✅ Workplace Goal Tracker – Progress & Deadlines for Professional Growth
 //
 
 import SwiftUI
@@ -11,70 +11,66 @@ import SwiftUI
 struct WorkplaceGoal: Identifiable {
     let id = UUID()
     let title: String
-    var progress: Double // 0.0 to 1.0
-    var completed: Bool
+    let progress: Double // 0.0 - 1.0
+    let dueDate: Date
 }
 
 struct WorkplaceGoalTrackerView: View {
+    // MARK: - Placeholder Data
     @State private var goals: [WorkplaceGoal] = [
-        WorkplaceGoal(title: "Improve Communication", progress: 0.6, completed: false),
-        WorkplaceGoal(title: "Finish Product Launch Prep", progress: 0.9, completed: false),
-        WorkplaceGoal(title: "Complete Feedback Reviews", progress: 1.0, completed: true)
+        WorkplaceGoal(title: "Submit Project Report", progress: 0.9, dueDate: .now.addingTimeInterval(86400)),
+        WorkplaceGoal(title: "Complete Compliance Training", progress: 0.4, dueDate: .now.addingTimeInterval(-86400 * 2)),
+        WorkplaceGoal(title: "Meet Quarterly Sales Target", progress: 0.7, dueDate: .now.addingTimeInterval(86400 * 10))
     ]
 
-    var body: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: Theme.Spacing.large) {
-                    Text("🎯 Workplace Goals")
-                        .font(Theme.Typography.headline)
-                        .foregroundColor(Theme.Colors.textPrimary)
-                        .padding(.top, Theme.Spacing.large)
-                        .padding(.horizontal)
-
-                    ForEach($goals) { $goal in
-                        goalCard(goal: $goal)
-                    }
-                }
-                .padding(.bottom)
-            }
-            .background(Theme.Colors.background.ignoresSafeArea())
-            .navigationTitle("Goals")
-        }
+    private var dateFormatter: DateFormatter {
+        let df = DateFormatter()
+        df.dateStyle = .medium
+        return df
     }
 
-    // MARK: - Reusable Goal Card
-    private func goalCard(goal: Binding<WorkplaceGoal>) -> some View {
-        VStack(alignment: .leading, spacing: Theme.Spacing.small) {
-            HStack {
-                Text(goal.wrappedValue.title)
-                    .font(Theme.Typography.body)
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: Theme.Spacing.large) {
+                Text("🎯 Workplace Goals")
+                    .font(Theme.Typography.headline)
                     .foregroundColor(Theme.Colors.textPrimary)
+                    .padding(.top)
 
-                Spacer()
+                ForEach(goals) { goal in
+                    VStack(alignment: .leading, spacing: Theme.Spacing.small) {
+                        HStack {
+                            Text(goal.title)
+                                .font(Theme.Typography.body)
+                                .foregroundColor(Theme.Colors.textPrimary)
 
-                Button(action: {
-                    withAnimation {
-                        goal.wrappedValue.completed.toggle()
-                        goal.wrappedValue.progress = goal.wrappedValue.completed ? 1.0 : 0.0
+                            Spacer()
+
+                            Text(goal.dueDate < Date() ? "Overdue" : dateFormatter.string(from: goal.dueDate))
+                                .font(Theme.Typography.caption)
+                                .foregroundColor(goal.dueDate < Date() ? .red : Theme.Colors.textSecondary)
+                        }
+
+                        ProgressView(value: goal.progress)
+                            .tint(goal.progress < 0.5 ? .orange : Theme.Colors.accent)
+                            .frame(height: 10)
+                            .background(Theme.Colors.card.opacity(0.3))
+                            .clipShape(Capsule())
+
+                        Text("\(Int(goal.progress * 100))% Complete")
+                            .font(Theme.Typography.caption)
+                            .foregroundColor(Theme.Colors.textSecondary)
                     }
-                }) {
-                    Image(systemName: goal.completed.wrappedValue ? "checkmark.circle.fill" : "circle")
-                        .font(.title2)
-                        .foregroundColor(goal.completed.wrappedValue ? .green : Theme.Colors.accent)
+                    .padding()
+                    .background(Theme.Colors.card)
+                    .cornerRadius(Theme.CornerRadius.medium)
+                    .shadow(color: Theme.Colors.accent.opacity(0.05), radius: 4, x: 0, y: 2)
                 }
-                .accessibilityLabel("Mark \(goal.wrappedValue.title) as completed")
             }
-
-            ProgressView(value: goal.wrappedValue.progress)
-                .progressViewStyle(LinearProgressViewStyle(tint: Theme.Colors.accent))
-                .accessibilityLabel("\(Int(goal.wrappedValue.progress * 100))% complete")
+            .padding()
         }
-        .padding()
-        .background(Theme.Colors.card)
-        .cornerRadius(Theme.CornerRadius.medium)
-        .shadow(color: Theme.Colors.accent.opacity(0.05), radius: 4, x: 0, y: 2)
-        .padding(.horizontal)
+        .background(Theme.Colors.background.ignoresSafeArea())
+        .navigationTitle("Goal Tracker")
     }
 }
 
