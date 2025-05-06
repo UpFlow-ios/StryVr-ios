@@ -250,6 +250,11 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		859947792DC9A51000EB6818 /* Insights */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Insights;
+			sourceTree = "<group>";
+		};
 		85CB82DC2DAE49B8002AA544 /* Enums */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Enums;
@@ -525,6 +530,7 @@
 		856AA62A2D9164E900402F84 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				859947792DC9A51000EB6818 /* Insights */,
 				8588F0CA2DC991AE00D04995 /* EmployeeInsights */,
 				8588F0BC2DC2749600D04995 /* Reports */,
 				8588F0AC2DC07E3F00D04995 /* LearningPaths */,
@@ -606,6 +612,7 @@
 				8588F0BC2DC2749600D04995 /* Reports */,
 				8588F0CA2DC991AE00D04995 /* EmployeeInsights */,
 				8595B1852DB36A8C001D831E /* Onboarding */,
+				859947792DC9A51000EB6818 /* Insights */,
 				85CB82DC2DAE49B8002AA544 /* Enums */,
 				85CB82E02DAE4A58002AA544 /* Shared */,
 			);
