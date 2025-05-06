@@ -97,6 +97,7 @@
 		8595B1842DB36722001D831E /* AppShellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8595B1832DB36711001D831E /* AppShellView.swift */; };
 		859947812DC9ABF700EB6818 /* TeamHealthStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859947802DC9ABF200EB6818 /* TeamHealthStat.swift */; };
 		859947832DC9ACB400EB6818 /* TeamHealthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859947822DC9ACA400EB6818 /* TeamHealthService.swift */; };
+		859947882DC9AEDE00EB6818 /* BehaviorFeedbackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859947872DC9AED900EB6818 /* BehaviorFeedbackModel.swift */; };
 		85AD56A22D94BA79007B6542 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AD56A12D94BA79007B6542 /* Skill.swift */; };
 		85CB82D92DAE2E83002AA544 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB82D82DAE2E7B002AA544 /* UserRole.swift */; };
 		85CB83042DAE5D60002AA544 /* AIProfileValidatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB83032DAE5D5B002AA544 /* AIProfileValidatorView.swift */; };
@@ -198,6 +199,7 @@
 		8595B1832DB36711001D831E /* AppShellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShellView.swift; sourceTree = "<group>"; };
 		859947802DC9ABF200EB6818 /* TeamHealthStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamHealthStat.swift; sourceTree = "<group>"; };
 		859947822DC9ACA400EB6818 /* TeamHealthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamHealthService.swift; sourceTree = "<group>"; };
+		859947872DC9AED900EB6818 /* BehaviorFeedbackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviorFeedbackModel.swift; sourceTree = "<group>"; };
 		859B0AB02D57D3E900E5ADF1 /* StryVr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StryVr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		859B0AC62D57D3F400E5ADF1 /* StryVrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StryVrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		859B0AD02D57D3F500E5ADF1 /* StryVrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StryVrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -389,6 +391,7 @@
 		856AA5F32D9164E900402F84 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				859947872DC9AED900EB6818 /* BehaviorFeedbackModel.swift */,
 				859947822DC9ACA400EB6818 /* TeamHealthService.swift */,
 				859947802DC9ABF200EB6818 /* TeamHealthStat.swift */,
 				8588F0C82DC9885400D04995 /* AchievementModel.swift */,
@@ -802,6 +805,7 @@
 				856AA6522D9164E900402F84 /* NetworkManager.swift in Sources */,
 				856AA6542D9164E900402F84 /* LearningPathsView.swift in Sources */,
 				856AA68F2D91702900402F84 /* AuthViewModel.swift in Sources */,
+				859947882DC9AEDE00EB6818 /* BehaviorFeedbackModel.swift in Sources */,
 				855E960F2D9D1228002173EF /* DocumentPicker.swift in Sources */,
 				8595B1842DB36722001D831E /* AppShellView.swift in Sources */,
 				856AA6572D9164E900402F84 /* GroupChallengesView.swift in Sources */,
