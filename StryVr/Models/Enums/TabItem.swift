@@ -3,7 +3,8 @@
 //  StryVr
 //
 //  Created by Joe Dormond on 4/28/25.
-//  🌱 Defines each tab item used in the custom tab bar.
+//
+//  📂 Enum - Defines available tabs for the CustomTabBar.
 //
 
 import SwiftUI
