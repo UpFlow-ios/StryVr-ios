@@ -3,7 +3,7 @@
 //  StryVr
 //
 //  Created by Joe Dormond on 5/5/25.
-//  🧾 Feedback Submission View – Structured, Anonymous, Themed
+//  🧾 Feedback Submission View – Structured, Anonymous, Themed + Firestore Integrated
 //
 
 import SwiftUI
@@ -14,6 +14,7 @@ struct BehaviorFeedbackView: View {
     @State private var comment: String = ""
     @State private var isAnonymous: Bool = false
     @State private var showConfirmation: Bool = false
+    @State private var errorMessage: String?
 
     var employeeId: String
 
@@ -59,6 +60,14 @@ struct BehaviorFeedbackView: View {
                     Toggle("Submit Anonymously", isOn: $isAnonymous)
                         .font(Theme.Typography.caption)
 
+                    // MARK: - Error Display
+                    if let errorMessage = errorMessage {
+                        Text(errorMessage)
+                            .font(Theme.Typography.caption)
+                            .foregroundColor(.red)
+                            .multilineTextAlignment(.center)
+                    }
+
                     // MARK: - Submit Button
                     Button(action: submitFeedback) {
                         Text("Submit Feedback")
@@ -80,32 +89,42 @@ struct BehaviorFeedbackView: View {
         }
     }
 
-    // MARK: - Submission Logic
+    // MARK: - Submit Feedback to Firestore
     private func submitFeedback() {
         let newFeedback = BehaviorFeedback(
             employeeId: employeeId,
-            reviewerId: isAnonymous ? nil : "currentUserId", // Replace with actual user ID logic
+            reviewerId: isAnonymous ? nil : "currentUserId", // TODO: Inject actual user ID from auth
             category: selectedCategory,
             rating: rating,
             comment: comment,
             isAnonymous: isAnonymous
         )
 
-        // 🚀 Replace with Firestore or Server call
-        print("🔐 Feedback submitted: \(newFeedback)")
-        showConfirmation = true
-        resetForm()
+        BehaviorFeedbackService.shared.submitFeedback(newFeedback) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
+                    print("✅ Feedback submitted to Firestore.")
+                    showConfirmation = true
+                    resetForm()
+                case .failure(let error):
+                    print("❌ Failed to submit feedback: \(error.localizedDescription)")
+                    errorMessage = "Could not submit feedback. Please try again."
+                }
+            }
+        }
     }
 
+    // MARK: - Reset Form After Submission
     private func resetForm() {
         selectedCategory = .communication
         rating = 3
         comment = ""
         isAnonymous = false
+        errorMessage = nil
     }
 }
 
 #Preview {
-    BehaviorFeedbackView(employeeId: "12345")
+    BehaviorFeedbackView(employeeId: "example-employee-id")
 }
-
