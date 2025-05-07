@@ -3,12 +3,14 @@
 //  StryVr
 //
 //  Created by Joe Dormond on 5/5/25.
-//  📊 Unified Dashboard – Team Health, Behavior, Goals, Feedback Access
+//  📊 Unified Dashboard – Team Health, Behavior, Goals, Feedback Access + Summary
 //
 
 import SwiftUI
 
 struct EmployeeInsightsDashboard: View {
+    let employeeId: String = "example_employee_id"
+
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -40,13 +42,16 @@ struct EmployeeInsightsDashboard: View {
                     }
 
                     // MARK: - Feedback History
-                    NavigationLink(destination: FeedbackHistoryView(employeeId: "example_employee_id")) {
+                    NavigationLink(destination: FeedbackHistoryView(employeeId: employeeId)) {
                         insightsCard(
                             title: "🧾 Feedback History",
                             description: "View recent feedback submitted for employees",
                             systemIcon: "doc.plaintext"
                         )
                     }
+
+                    // MARK: - Feedback Summary Card (NEW)
+                    FeedbackSummaryCard(employeeId: employeeId)
                 }
                 .padding(.horizontal)
             }
