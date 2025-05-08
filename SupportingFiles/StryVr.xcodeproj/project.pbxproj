@@ -85,6 +85,8 @@
 		8588F0C42DC2F8D000D04995 /* ResumePDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F0C32DC2F8C700D04995 /* ResumePDFGenerator.swift */; };
 		8588F0C72DC97CB200D04995 /* ConfettiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F0C62DC97CAA00D04995 /* ConfettiManager.swift */; };
 		8588F0C92DC9886500D04995 /* AchievementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588F0C82DC9885400D04995 /* AchievementModel.swift */; };
+		858AF3222DCCAFC900A85294 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 858AF3212DCCAFC900A85294 /* FirebaseFirestore */; };
+		858AF3242DCCAFC900A85294 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 858AF3232DCCAFC900A85294 /* FirebaseFirestoreSwift */; };
 		858CD9762D82236900B6B9D3 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 858CD9752D82236900B6B9D3 /* FirebaseCore */; };
 		858CD97C2D82236900B6B9D3 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 858CD97B2D82236900B6B9D3 /* FirebaseStorage */; };
 		859174032D82004100A06F42 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 859174022D82004100A06F42 /* FirebaseAnalytics */; };
@@ -291,6 +293,7 @@
 				8591743D2D82013D00A06F42 /* FirebaseAppDistribution-Beta in Frameworks */,
 				859174032D82004100A06F42 /* FirebaseAnalytics in Frameworks */,
 				859174432D82016F00A06F42 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				858AF3242DCCAFC900A85294 /* FirebaseFirestoreSwift in Frameworks */,
 				8548267F2D83B5E80078A0F9 /* CocoaLumberjackSwift in Frameworks */,
 				858CD9762D82236900B6B9D3 /* FirebaseCore in Frameworks */,
 				8591744A2D8201D700A06F42 /* CocoaLumberjack in Frameworks */,
@@ -306,6 +309,7 @@
 				8591744E2D8201D700A06F42 /* CocoaLumberjackSwiftLogBackend in Frameworks */,
 				854ECFDE2D701D5F00D0B0AC /* Foundation.framework in Frameworks */,
 				854ECFDF2D701D5F00D0B0AC /* SafariServices.framework in Frameworks */,
+				858AF3222DCCAFC900A85294 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -714,10 +718,10 @@
 			mainGroup = 859B0AA72D57D3E900E5ADF1;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				85D8A6942D6A6C6A004C03D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				859174482D8201D700A06F42 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */,
 				856EB32D2D8520AD00DC0134 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				8588F0C52DC8C35000D04995 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
+				858AF3202DCCAFC800A85294 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 859B0AB12D57D3E900E5ADF1 /* Products */;
@@ -1208,6 +1212,14 @@
 				minimumVersion = 2.0.3;
 			};
 		};
+		858AF3202DCCAFC800A85294 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		859174482D8201D700A06F42 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CocoaLumberjack/CocoaLumberjack";
@@ -1251,6 +1263,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 85D8A6942D6A6C6A004C03D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		858AF3212DCCAFC900A85294 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 858AF3202DCCAFC800A85294 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		858AF3232DCCAFC900A85294 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 858AF3202DCCAFC800A85294 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
 		};
 		858CD9752D82236900B6B9D3 /* FirebaseCore */ = {
 			isa = XCSwiftPackageProductDependency;
