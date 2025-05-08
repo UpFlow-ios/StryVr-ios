@@ -1,5 +1,5 @@
 //
-//  CompanyVerificationView.swift
+//  CompanySecurityVerificationView.swift
 //  StryVr
 //
 //  Created by Joe Dormond on 3/8/25.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct CompanyVerificationView: View {
+struct CompanySecurityVerificationView: View {
     @State private var companyName: String = ""
     @State private var companyID: String = ""
     @State private var verificationStatus: String = "Pending"
@@ -90,5 +90,5 @@ struct CompanyVerificationView: View {
 }
 
 #Preview {
-    CompanyVerificationView()
+    CompanySecurityVerificationView()
 }

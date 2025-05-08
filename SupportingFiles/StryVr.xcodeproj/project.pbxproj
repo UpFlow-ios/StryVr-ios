@@ -30,7 +30,7 @@
 		855E960B2D9D1009002173EF /* CareerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855E960A2D9D1001002173EF /* CareerCard.swift */; };
 		855E960F2D9D1228002173EF /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855E960E2D9D1222002173EF /* DocumentPicker.swift */; };
 		856AA62E2D9164E900402F84 /* CustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6152D9164E900402F84 /* CustomNavigationView.swift */; };
-		856AA6312D9164E900402F84 /* CompanyVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA61A2D9164E900402F84 /* CompanyVerificationView.swift */; };
+		856AA6312D9164E900402F84 /* CompanySecurityVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA61A2D9164E900402F84 /* CompanySecurityVerificationView.swift */; };
 		856AA6362D9164E900402F84 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA60E2D9164E900402F84 /* HomeView.swift */; };
 		856AA6382D9164E900402F84 /* SkillTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6222D9164E900402F84 /* SkillTagView.swift */; };
 		856AA6392D9164E900402F84 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6212D9164E900402F84 /* ProgressBarView.swift */; };
@@ -161,7 +161,7 @@
 		856AA6152D9164E900402F84 /* CustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationView.swift; sourceTree = "<group>"; };
 		856AA6162D9164E900402F84 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		856AA6182D9164E900402F84 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		856AA61A2D9164E900402F84 /* CompanyVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyVerificationView.swift; sourceTree = "<group>"; };
+		856AA61A2D9164E900402F84 /* CompanySecurityVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanySecurityVerificationView.swift; sourceTree = "<group>"; };
 		856AA61B2D9164E900402F84 /* SecureStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SecureStorageManager.swift; path = ../Views/Security/SecureStorageManager.swift; sourceTree = "<group>"; };
 		856AA61E2D9164E900402F84 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		856AA6202D9164E900402F84 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -522,7 +522,7 @@
 			isa = PBXGroup;
 			children = (
 				85CB83032DAE5D5B002AA544 /* AIProfileValidatorView.swift */,
-				856AA61A2D9164E900402F84 /* CompanyVerificationView.swift */,
+				856AA61A2D9164E900402F84 /* CompanySecurityVerificationView.swift */,
 			);
 			path = Security;
 			sourceTree = "<group>";
@@ -773,7 +773,7 @@
 				856AA66F2D9169A900402F84 /* AIProfileValidator.swift in Sources */,
 				856AA68B2D916EC600402F84 /* PaymentService.swift in Sources */,
 				8599479D2DCB200B00EB6818 /* BehaviorFeedbackService.swift in Sources */,
-				856AA6312D9164E900402F84 /* CompanyVerificationView.swift in Sources */,
+				856AA6312D9164E900402F84 /* CompanySecurityVerificationView.swift in Sources */,
 				856AA6792D916BEA00402F84 /* AuthService.swift in Sources */,
 				856AA67F2D916D0900402F84 /* ConferenceCallService.swift in Sources */,
 				856AA6362D9164E900402F84 /* HomeView.swift in Sources */,

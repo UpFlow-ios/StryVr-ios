@@ -1,5 +1,5 @@
 //
-//  CompanyVerificationView.swift
+//  EnterpriseCompanyVerificationView.swift
 //  StryVr
 //
 //  🏢 Verified Company Onboarding – Secure Access to Enterprise Features
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CompanyVerificationView: View {
+struct EnterpriseCompanyVerificationView: View {
     @State private var companyName: String = ""
     @State private var companyWebsite: String = ""
     @State private var linkedInURL: String = ""
@@ -104,5 +104,5 @@ struct CompanyVerificationView: View {
 }
 
 #Preview {
-    CompanyVerificationView()
+                        EnterpriseCompanyVerificationView()
 }
