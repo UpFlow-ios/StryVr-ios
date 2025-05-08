@@ -1,5 +1,5 @@
 //
-//  EmployeeInsightsDashboard.swift
+//  EnterprisePerformanceDashboard.swift
 //  StryVr
 //
 //  Created by Joe Dormond on 5/5/25.
@@ -9,7 +9,7 @@
 import SwiftUI
 import Charts
 
-struct EmployeeInsightsDashboard: View {
+struct EnterprisePerformanceDashboard: View {
     @State private var employeeReports: [LearningReport] = []
     @State private var errorMessage: String?
 
@@ -142,5 +142,5 @@ struct EmployeeInsightsDashboard: View {
 }
 
 #Preview {
-    EmployeeInsightsDashboard()
+    EnterprisePerformanceDashboard()
 }
