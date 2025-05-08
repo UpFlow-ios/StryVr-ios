@@ -1,5 +1,5 @@
 //
-//  BehaviorFeedbackView.swift
+//  WorkplaceBehaviorFeedbackView.swift
 //  StryVr
 //
 //  📋 Structured Workplace Behavior Feedback System
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BehaviorFeedbackView: View {
+struct WorkplaceBehaviorFeedbackView: View {
     @State private var collaborationRating: Int = 0
     @State private var punctualityRating: Int = 0
     @State private var problemSolvingRating: Int = 0
@@ -20,7 +20,7 @@ struct BehaviorFeedbackView: View {
             ScrollView {
                 VStack(spacing: Theme.Spacing.large) {
 
-                    Text("🧠 Behavior Feedback")
+                    Text("🧠 Worplace Behavior Feedback")
                         .font(Theme.Typography.headline)
                         .foregroundColor(Theme.Colors.textPrimary)
                         .padding(.top)
@@ -69,7 +69,7 @@ struct BehaviorFeedbackView: View {
         }
     }
 
-    // MARK: - Behavior Rating Row
+    // MARK: - Workplace Behavior Rating Row
     private func behaviorRatingRow(title: String, rating: Binding<Int>) -> some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(title)
@@ -103,6 +103,6 @@ struct BehaviorFeedbackView: View {
 }
 
 #Preview {
-    BehaviorFeedbackView()
+    WorkplaceBehaviorFeedbackView()
 }
 

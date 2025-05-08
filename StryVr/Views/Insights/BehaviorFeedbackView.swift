@@ -1,5 +1,5 @@
 //
-//  BehaviorFeedbackView.swift
+//  EmployeeBehaviorFeedbackView.swift
 //  StryVr
 //
 //  Created by Joe Dormond on 5/5/25.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct BehaviorFeedbackView: View {
+struct EmployeeBehaviorFeedbackView: View {
     @State private var selectedCategory: FeedbackCategory = .communication
     @State private var rating: Int = 3
     @State private var comment: String = ""
@@ -24,7 +24,7 @@ struct BehaviorFeedbackView: View {
                 VStack(spacing: Theme.Spacing.large) {
 
                     // MARK: - Title
-                    Text("Submit Feedback")
+                    Text("Submit Employee Feedback")
                         .font(Theme.Typography.headline)
                         .foregroundColor(Theme.Colors.textPrimary)
 
@@ -100,7 +100,7 @@ struct BehaviorFeedbackView: View {
             isAnonymous: isAnonymous
         )
 
-        BehaviorFeedbackService.shared.submitFeedback(newFeedback) { result in
+        Employee.Behavior.Feedback.shared.submitFeedback(newFeedback) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success:
@@ -126,5 +126,5 @@ struct BehaviorFeedbackView: View {
 }
 
 #Preview {
-    BehaviorFeedbackView(employeeId: "example-employee-id")
+    EmployeeBehaviorFeedbackView(employeeId: "example-employee-id")
 }
