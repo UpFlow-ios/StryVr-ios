@@ -22,7 +22,6 @@
 		854826792D83B55B0078A0F9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 854826782D83B55B0078A0F9 /* FirebaseFirestore */; };
 		8548267F2D83B5E80078A0F9 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8548267E2D83B5E80078A0F9 /* CocoaLumberjackSwift */; };
 		854ECFDA2D701D5F00D0B0AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854ECFD82D701D5F00D0B0AC /* UIKit.framework */; };
-		854ECFDB2D701D5F00D0B0AC /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854ECFD32D701D5F00D0B0AC /* CoreTelephony.framework */; };
 		854ECFDC2D701D5F00D0B0AC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854ECFD72D701D5F00D0B0AC /* SystemConfiguration.framework */; };
 		854ECFDD2D701D5F00D0B0AC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854ECFD62D701D5F00D0B0AC /* Security.framework */; };
 		854ECFDE2D701D5F00D0B0AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854ECFD42D701D5F00D0B0AC /* Foundation.framework */; };
@@ -108,8 +107,25 @@
 		859947AB2DCBC7EF00EB6818 /* EmployeeTimelineEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859947AA2DCBC7E700EB6818 /* EmployeeTimelineEvent.swift */; };
 		859947AD2DCBC87700EB6818 /* EmployeeProgressService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859947AC2DCBC87000EB6818 /* EmployeeProgressService.swift */; };
 		85AD56A22D94BA79007B6542 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AD56A12D94BA79007B6542 /* Skill.swift */; };
+		85BE23322DD3E53600298EDF /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE23312DD3E53600298EDF /* FirebaseAppCheck */; };
+		85BE23342DD3E53600298EDF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE23332DD3E53600298EDF /* FirebaseAuth */; };
+		85BE23362DD3E53600298EDF /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE23352DD3E53600298EDF /* FirebaseCore */; };
+		85BE23382DD3E53600298EDF /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE23372DD3E53600298EDF /* FirebaseFirestore */; };
+		85BE233A2DD3E53600298EDF /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE23392DD3E53600298EDF /* FirebaseInAppMessaging-Beta */; };
+		85BE233C2DD3E53600298EDF /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE233B2DD3E53600298EDF /* FirebaseMessaging */; };
+		85BE233E2DD3E53600298EDF /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE233D2DD3E53600298EDF /* FirebasePerformance */; };
+		85BE23402DD3E53600298EDF /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE233F2DD3E53600298EDF /* FirebaseStorage */; };
+		85BE23432DD3E5C400298EDF /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE23422DD3E5C400298EDF /* Lottie */; };
+		85BE23452DD3E5C400298EDF /* Lottie-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE23442DD3E5C400298EDF /* Lottie-Dynamic */; };
+		85BE23482DD3E62300298EDF /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE23472DD3E62300298EDF /* ConfettiSwiftUI */; };
+		85BE234B2DD3E68E00298EDF /* AppAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE234A2DD3E68E00298EDF /* AppAuth */; };
+		85BE234D2DD3E68E00298EDF /* AppAuthCore in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE234C2DD3E68E00298EDF /* AppAuthCore */; };
+		85BE23502DD3E6FB00298EDF /* CocoaLumberjack in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE234F2DD3E6FB00298EDF /* CocoaLumberjack */; };
+		85BE23522DD3E6FB00298EDF /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE23512DD3E6FB00298EDF /* CocoaLumberjackSwift */; };
+		85BE23542DD3E6FB00298EDF /* CocoaLumberjackSwiftLogBackend in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE23532DD3E6FB00298EDF /* CocoaLumberjackSwiftLogBackend */; };
 		85CB82D92DAE2E83002AA544 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB82D82DAE2E7B002AA544 /* UserRole.swift */; };
 		85CB83042DAE5D60002AA544 /* AIProfileValidatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB83032DAE5D5B002AA544 /* AIProfileValidatorView.swift */; };
+		85EA1C342DD3D65E001C992A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854ECFD32D701D5F00D0B0AC /* CoreTelephony.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -296,16 +312,30 @@
 				859174562D82020000A06F42 /* FirebaseAppCheck in Frameworks */,
 				8591743D2D82013D00A06F42 /* FirebaseAppDistribution-Beta in Frameworks */,
 				859174032D82004100A06F42 /* FirebaseAnalytics in Frameworks */,
+				85BE23502DD3E6FB00298EDF /* CocoaLumberjack in Frameworks */,
+				85EA1C342DD3D65E001C992A /* CoreTelephony.framework in Frameworks */,
+				85BE23402DD3E53600298EDF /* FirebaseStorage in Frameworks */,
 				859174432D82016F00A06F42 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				85BE23522DD3E6FB00298EDF /* CocoaLumberjackSwift in Frameworks */,
+				85BE23452DD3E5C400298EDF /* Lottie-Dynamic in Frameworks */,
 				858AF3242DCCAFC900A85294 /* FirebaseFirestoreSwift in Frameworks */,
 				8548267F2D83B5E80078A0F9 /* CocoaLumberjackSwift in Frameworks */,
+				85BE23322DD3E53600298EDF /* FirebaseAppCheck in Frameworks */,
 				858CD9762D82236900B6B9D3 /* FirebaseCore in Frameworks */,
 				8591744A2D8201D700A06F42 /* CocoaLumberjack in Frameworks */,
 				856EB3312D8520E300DC0134 /* Lottie in Frameworks */,
+				85BE233C2DD3E53600298EDF /* FirebaseMessaging in Frameworks */,
 				858CD97C2D82236900B6B9D3 /* FirebaseStorage in Frameworks */,
+				85BE23542DD3E6FB00298EDF /* CocoaLumberjackSwiftLogBackend in Frameworks */,
+				85BE233E2DD3E53600298EDF /* FirebasePerformance in Frameworks */,
+				85BE23382DD3E53600298EDF /* FirebaseFirestore in Frameworks */,
+				85BE234B2DD3E68E00298EDF /* AppAuth in Frameworks */,
+				85BE23432DD3E5C400298EDF /* Lottie in Frameworks */,
+				85BE234D2DD3E68E00298EDF /* AppAuthCore in Frameworks */,
+				85BE233A2DD3E53600298EDF /* FirebaseInAppMessaging-Beta in Frameworks */,
+				85BE23482DD3E62300298EDF /* ConfettiSwiftUI in Frameworks */,
 				8576DD412D84849200409153 /* FirebaseMessaging in Frameworks */,
 				854ECFDA2D701D5F00D0B0AC /* UIKit.framework in Frameworks */,
-				854ECFDB2D701D5F00D0B0AC /* CoreTelephony.framework in Frameworks */,
 				854826732D83B55B0078A0F9 /* FirebaseAuth in Frameworks */,
 				858AF3272DCCBD3500A85294 /* FirebaseFirestore in Frameworks */,
 				854826792D83B55B0078A0F9 /* FirebaseFirestore in Frameworks */,
@@ -314,7 +344,9 @@
 				8591744E2D8201D700A06F42 /* CocoaLumberjackSwiftLogBackend in Frameworks */,
 				854ECFDE2D701D5F00D0B0AC /* Foundation.framework in Frameworks */,
 				854ECFDF2D701D5F00D0B0AC /* SafariServices.framework in Frameworks */,
+				85BE23342DD3E53600298EDF /* FirebaseAuth in Frameworks */,
 				858AF3222DCCAFC900A85294 /* FirebaseFirestore in Frameworks */,
+				85BE23362DD3E53600298EDF /* FirebaseCore in Frameworks */,
 				858AF3292DCCBD3500A85294 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -725,11 +757,11 @@
 			mainGroup = 859B0AA72D57D3E900E5ADF1;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				859174482D8201D700A06F42 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */,
-				856EB32D2D8520AD00DC0134 /* XCRemoteSwiftPackageReference "lottie-ios" */,
-				8588F0C52DC8C35000D04995 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
-				858AF3252DCCBD3500A85294 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				8540F0A72DD37E4400B43444 /* XCRemoteSwiftPackageReference "AppAuth-iOS" */,
+				85BE23302DD3E53600298EDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				85BE23412DD3E5C400298EDF /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				85BE23462DD3E62300298EDF /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
+				85BE23492DD3E68E00298EDF /* XCRemoteSwiftPackageReference "AppAuth-iOS" */,
+				85BE234E2DD3E6FB00298EDF /* XCRemoteSwiftPackageReference "CocoaLumberjack" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 859B0AB12D57D3E900E5ADF1 /* Products */;
@@ -894,12 +926,12 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 69Y49KN8KD;
 				FRAMEWORK_SEARCH_PATHS = FirebaseMessaging.framework;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "StryVr/App/Info.plist\n";
 				INFOPLIST_KEY_CFBundleDisplayName = StryVr;
-				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -930,12 +962,12 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 69Y49KN8KD;
 				FRAMEWORK_SEARCH_PATHS = FirebaseMessaging.framework;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "StryVr/App/Info.plist\n";
 				INFOPLIST_KEY_CFBundleDisplayName = StryVr;
-				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1091,7 +1123,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 69Y49KN8KD;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stryvr.app;
 				PRODUCT_MODULE_NAME = StryVr;
@@ -1111,7 +1143,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 69Y49KN8KD;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stryvr.app;
 				PRODUCT_MODULE_NAME = StryVr;
@@ -1205,28 +1237,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8540F0A72DD37E4400B43444 /* XCRemoteSwiftPackageReference "AppAuth-iOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/openid/AppAuth-iOS.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
 		856EB32D2D8520AD00DC0134 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.5.1;
-			};
-		};
-		8588F0C52DC8C35000D04995 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.3;
 			};
 		};
 		858AF3202DCCAFC800A85294 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
@@ -1241,11 +1257,51 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 		859174482D8201D700A06F42 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CocoaLumberjack/CocoaLumberjack";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.8.5;
+			};
+		};
+		85BE23302DD3E53600298EDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.12.0;
+			};
+		};
+		85BE23412DD3E5C400298EDF /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.1;
+			};
+		};
+		85BE23462DD3E62300298EDF /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.3;
+			};
+		};
+		85BE23492DD3E68E00298EDF /* XCRemoteSwiftPackageReference "AppAuth-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/openid/AppAuth-iOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		85BE234E2DD3E6FB00298EDF /* XCRemoteSwiftPackageReference "CocoaLumberjack" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CocoaLumberjack/CocoaLumberjack";
 			requirement = {
@@ -1351,6 +1407,86 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 85D8A6942D6A6C6A004C03D0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAppCheck;
+		};
+		85BE23312DD3E53600298EDF /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85BE23302DD3E53600298EDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		85BE23332DD3E53600298EDF /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85BE23302DD3E53600298EDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		85BE23352DD3E53600298EDF /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85BE23302DD3E53600298EDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		85BE23372DD3E53600298EDF /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85BE23302DD3E53600298EDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		85BE23392DD3E53600298EDF /* FirebaseInAppMessaging-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85BE23302DD3E53600298EDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseInAppMessaging-Beta";
+		};
+		85BE233B2DD3E53600298EDF /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85BE23302DD3E53600298EDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		85BE233D2DD3E53600298EDF /* FirebasePerformance */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85BE23302DD3E53600298EDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebasePerformance;
+		};
+		85BE233F2DD3E53600298EDF /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85BE23302DD3E53600298EDF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		85BE23422DD3E5C400298EDF /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85BE23412DD3E5C400298EDF /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+		85BE23442DD3E5C400298EDF /* Lottie-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85BE23412DD3E5C400298EDF /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = "Lottie-Dynamic";
+		};
+		85BE23472DD3E62300298EDF /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85BE23462DD3E62300298EDF /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+		85BE234A2DD3E68E00298EDF /* AppAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85BE23492DD3E68E00298EDF /* XCRemoteSwiftPackageReference "AppAuth-iOS" */;
+			productName = AppAuth;
+		};
+		85BE234C2DD3E68E00298EDF /* AppAuthCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85BE23492DD3E68E00298EDF /* XCRemoteSwiftPackageReference "AppAuth-iOS" */;
+			productName = AppAuthCore;
+		};
+		85BE234F2DD3E6FB00298EDF /* CocoaLumberjack */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85BE234E2DD3E6FB00298EDF /* XCRemoteSwiftPackageReference "CocoaLumberjack" */;
+			productName = CocoaLumberjack;
+		};
+		85BE23512DD3E6FB00298EDF /* CocoaLumberjackSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85BE234E2DD3E6FB00298EDF /* XCRemoteSwiftPackageReference "CocoaLumberjack" */;
+			productName = CocoaLumberjackSwift;
+		};
+		85BE23532DD3E6FB00298EDF /* CocoaLumberjackSwiftLogBackend */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85BE234E2DD3E6FB00298EDF /* XCRemoteSwiftPackageReference "CocoaLumberjack" */;
+			productName = CocoaLumberjackSwiftLogBackend;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
