@@ -15,7 +15,8 @@ struct RegisterView: View {
     @State private var confirmPassword: String = ""
     @State private var errorMessage: String?
     @State private var isLoading: Bool = false
-    @State private var showSuccess = false
+
+    private let authViewModel = AuthViewModel.shared
 
     var body: some View {
         ZStack {
@@ -27,7 +28,7 @@ struct RegisterView: View {
                     .foregroundColor(Theme.Colors.textPrimary)
                     .padding(.top, Theme.Spacing.xLarge)
 
-                // MARK: - Email + Password Inputs
+                // MARK: - Input Fields
                 Group {
                     TextField("Email", text: $email)
                         .textContentType(.emailAddress)
@@ -50,7 +51,7 @@ struct RegisterView: View {
                         .cornerRadius(Theme.CornerRadius.medium)
                 }
 
-                // MARK: - Error Feedback
+                // MARK: - Error Message
                 if let error = errorMessage {
                     Text(error)
                         .font(Theme.Typography.caption)
@@ -123,20 +124,19 @@ struct RegisterView: View {
 
         isLoading = true
 
-        AuthService.shared.signUp(email: email, password: password) { result in
+        authViewModel.register(email: email, password: password) { success, error in
             DispatchQueue.main.async {
                 isLoading = false
-                switch result {
-                case .success:
-                    showSuccess = true
-                    presentationMode.wrappedValue.dismiss()
-                case .failure(let error):
+                if success {
+                    presentationMode.wrappedValue.dismiss() // StryVrApp will redirect to HomeView
+                } else if let error = error {
                     errorMessage = error.localizedDescription
                 }
             }
         }
     }
 
+    // MARK: - Validation
     private func isValidEmail(_ email: String) -> Bool {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email)
