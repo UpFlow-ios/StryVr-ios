@@ -2,147 +2,128 @@
 //  LoginView.swift
 //  StryVr
 //
-//  🔐 Secure, Themed, and Firebase-Integrated Login Screen
+//  🔐 Login screen with Firebase Email + Okta SSO, styled with full StryVr theme
 //
 
 import SwiftUI
 
 struct LoginView: View {
-    @EnvironmentObject var authViewModel: AuthViewModel
-
-    @State private var email: String = ""
-    @State private var password: String = ""
+    @State private var email = ""
+    @State private var password = ""
     @State private var errorMessage: String?
-    @State private var isLoading: Bool = false
-    @State private var showForgotPassword = false
-    @State private var showRegister = false
+    @State private var isLoading = false
 
     var body: some View {
-        ZStack {
-            Theme.Colors.background.ignoresSafeArea()
-
+        NavigationStack {
             VStack(spacing: Theme.Spacing.large) {
-                // MARK: - Title
-                Text("Login to StryVr")
-                    .font(Theme.Typography.headline)
-                    .foregroundColor(Theme.Colors.textPrimary)
-                    .padding(.top, Theme.Spacing.xLarge)
+                Spacer()
 
-                // MARK: - Email Field
-                TextField("Email", text: $email)
-                    .textContentType(.emailAddress)
-                    .keyboardType(.emailAddress)
-                    .autocapitalization(.none)
-                    .padding()
-                    .background(Theme.Colors.card)
-                    .cornerRadius(Theme.CornerRadius.medium)
-                    .foregroundColor(Theme.Colors.textPrimary)
+                // MARK: - Logo & Title
+                VStack(spacing: Theme.Spacing.small) {
+                    Image("stryvr_logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
 
-                // MARK: - Password Field
-                SecureField("Password", text: $password)
-                    .textContentType(.password)
-                    .padding()
-                    .background(Theme.Colors.card)
-                    .cornerRadius(Theme.CornerRadius.medium)
-                    .foregroundColor(Theme.Colors.textPrimary)
-
-                // MARK: - Error Display
-                if let error = errorMessage {
-                    Text(error)
-                        .font(Theme.Typography.caption)
-                        .foregroundColor(.red)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, Theme.Spacing.medium)
+                    Text("Welcome to StryVr")
+                        .font(Theme.Typography.headline)
+                        .foregroundColor(Theme.Colors.textPrimary)
                 }
 
-                // MARK: - Login Button
-                Button(action: loginUser) {
-                    if isLoading {
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle(tint: Theme.Colors.accent))
-                    } else {
-                        Text("Login")
-                            .font(Theme.Typography.body)
-                            .foregroundColor(Theme.Colors.whiteText)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Theme.Colors.accent)
-                            .cornerRadius(Theme.CornerRadius.medium)
+                // MARK: - Email & Password Fields
+                VStack(spacing: Theme.Spacing.medium) {
+                    TextField("Email", text: $email)
+                        .keyboardType(.emailAddress)
+                        .textContentType(.emailAddress)
+                        .autocapitalization(.none)
+                        .padding()
+                        .background(Theme.Colors.card)
+                        .cornerRadius(Theme.CornerRadius.medium)
+
+                    SecureField("Password", text: $password)
+                        .textContentType(.password)
+                        .padding()
+                        .background(Theme.Colors.card)
+                        .cornerRadius(Theme.CornerRadius.medium)
+
+                    if let error = errorMessage {
+                        Text(error)
+                            .font(Theme.Typography.caption)
+                            .foregroundColor(.red)
+                            .multilineTextAlignment(.center)
                     }
-                }
-                .disabled(isLoading)
 
-                // MARK: - Forgot / Sign Up Navigation
+                    Button(action: handleEmailLogin) {
+                        if isLoading {
+                            ProgressView()
+                        } else {
+                            Text("Login")
+                                .font(Theme.Typography.buttonText)
+                                .frame(maxWidth: .infinity)
+                        }
+                    }
+                    .disabled(isLoading)
+                    .padding()
+                    .background(Theme.Colors.accent)
+                    .foregroundColor(Theme.Colors.whiteText)
+                    .cornerRadius(Theme.CornerRadius.medium)
+                }
+
+                // MARK: - Divider
                 HStack {
-                    Button("Forgot Password?") {
-                        showForgotPassword.toggle()
-                        simpleHaptic()
-                    }
-                    .font(Theme.Typography.caption)
-                    .foregroundColor(Theme.Colors.accent)
+                    Rectangle().frame(height: 1).foregroundColor(Theme.Colors.textSecondary)
+                    Text("or").font(Theme.Typography.caption).foregroundColor(Theme.Colors.textSecondary)
+                    Rectangle().frame(height: 1).foregroundColor(Theme.Colors.textSecondary)
+                }
 
-                    Spacer()
-
-                    Button("Sign Up") {
-                        showRegister.toggle()
-                        simpleHaptic()
+                // MARK: - Okta SSO Login Button
+                Button(action: handleOktaLogin) {
+                    HStack {
+                        Image(systemName: "lock.shield.fill")
+                        Text("Sign in with SSO")
                     }
-                    .font(Theme.Typography.caption)
-                    .foregroundColor(Theme.Colors.accent)
+                    .font(Theme.Typography.body)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.black)
+                    .foregroundColor(.white)
+                    .cornerRadius(Theme.CornerRadius.medium)
                 }
 
                 Spacer()
             }
-            .padding(.horizontal, Theme.Spacing.large)
-        }
-        .sheet(isPresented: $showForgotPassword) {
-            ForgotPasswordView()
-                .environmentObject(authViewModel)
-        }
-        .sheet(isPresented: $showRegister) {
-            RegisterView()
-                .environmentObject(authViewModel)
-        }
-        .onReceive(authViewModel.$errorMessage) { newErrorMessage in
-            self.errorMessage = newErrorMessage
-            self.isLoading = false
-        }
-        .onReceive(authViewModel.$userSession) { _ in
-            self.isLoading = false
+            .padding(.horizontal, Theme.Spacing.medium)
+            .background(Theme.Colors.background.ignoresSafeArea())
+            .navigationTitle("Sign In")
         }
     }
 
-    // MARK: - Firebase Login Logic
-    private func loginUser() {
-        guard !email.isEmpty, !password.isEmpty else {
-            errorMessage = "Please enter both email and password."
-            return
-        }
-
-        guard isValidEmail(email) else {
-            errorMessage = "Please enter a valid email address."
-            return
-        }
-
+    // MARK: - Login with Email
+    private func handleEmailLogin() {
+        errorMessage = nil
         isLoading = true
-        simpleHaptic()
-        authViewModel.signIn(email: email, password: password)
+
+        AuthService.shared.logIn(email: email, password: password) { result in
+            DispatchQueue.main.async {
+                isLoading = false
+                switch result {
+                case .success:
+                    print("✅ Email login successful")
+                case .failure(let error):
+                    errorMessage = error.localizedDescription
+                }
+            }
+        }
     }
 
-    // MARK: - Email Validation
-    private func isValidEmail(_ email: String) -> Bool {
-        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email)
-    }
+    // MARK: - Login with Okta
+    private func handleOktaLogin() {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let rootVC = windowScene.windows.first?.rootViewController else {
+            errorMessage = "Unable to access app window."
+            return
+        }
 
-    // MARK: - Simple Haptic Feedback
-    private func simpleHaptic() {
-        let generator = UIImpactFeedbackGenerator(style: .light)
-        generator.impactOccurred()
+        AuthService.shared.loginWithOkta(presentingViewController: rootVC)
     }
-}
-
-#Preview {
-    LoginView()
-        .environmentObject(AuthViewModel.shared)
 }

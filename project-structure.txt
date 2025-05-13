@@ -1,0 +1,251 @@
+.
+├── CI
+│   └── github_actions
+├── Docs
+│   ├── API_REFERENCE.md
+│   ├── README.md
+│   └── STRYVR_DEV_RULES.md
+├── Package.realitycomposerpro
+├── Package.resolved
+├── Package.swift
+├── Scripts
+│   ├── deploy.sh
+│   └── setup_env.sh
+├── Sources
+│   └── StryVr-ios
+│       └── StryVr_ios.swift
+├── StryVr
+│   ├── App
+│   │   ├── AppDelegate.swift
+│   │   ├── Info.plist
+│   │   ├── LaunchScreen.storyboard
+│   │   ├── SceneDelegate.swift
+│   │   ├── StryVr.entitlements
+│   │   ├── StryVrApp.swift
+│   │   └── SupportingFiles
+│   │       └── StryVr.entitlements 
+│   ├── Assets.xcassets
+│   │   ├── AppIcon
+│   │   │   ├── Contents.json
+│   │   │   ├── Untitled design-2.png
+│   │   │   ├── Untitled design-3.png
+│   │   │   └── Untitled design.png
+│   │   ├── AppIcon .
+│   │   └── Untitled design.imageset
+│   │       ├── Contents.json
+│   │       ├── Untitled design-2.png
+│   │       ├── Untitled design-3.png
+│   │       └── Untitled design.png
+│   ├── Models
+│   │   ├── AchievementModel.swift
+│   │   ├── BehaviorFeedbackModel.swift
+│   │   ├── ChallengeModel.swift
+│   │   ├── ConferenceCallModel.swift
+│   │   ├── EmployeeTimelineEvent.swift
+│   │   ├── Enums
+│   │   │   ├── APIError.swift
+│   │   │   ├── CallStatus.swift
+│   │   │   ├── ChallengeType.swift
+│   │   │   ├── ReportStatus.swift
+│   │   │   ├── ReportType.swift
+│   │   │   ├── SubscriptionTier.swift
+│   │   │   ├── TabItem.swift
+│   │   │   ├── VerificationMethod.swift
+│   │   │   ├── VerificationStatus.swift
+│   │   │   └── VideoCategory.swift
+│   │   ├── LearningPathsView.swift
+│   │   ├── LearningReport.swift
+│   │   ├── ReportModel.swift
+│   │   ├── Shared
+│   │   │   ├── CallEngagement.swift
+│   │   │   └── VideoEngagement.swift
+│   │   ├── Skill.swift
+│   │   ├── SkillProgress.swift
+│   │   ├── SkillVerificationModel.swift
+│   │   ├── SubscriptionPlan.swift
+│   │   ├── TeamHealthService.swift
+│   │   ├── TeamHealthStat.swift
+│   │   ├── UserModel.swift
+│   │   ├── UserRole.swift
+│   │   └── VideoPostModel.swift
+│   ├── Services
+│   │   ├── AIProfileValidator.swift
+│   │   ├── AIRecommendationService.swift
+│   │   ├── APIService.swift
+│   │   ├── AuthManager.swift
+│   │   ├── AuthService.swift
+│   │   ├── BehaviorFeedbackService.swift
+│   │   ├── ChallengeSystem.swift
+│   │   ├── ConferenceCallService.swift
+│   │   ├── EmployeeProgressService.swift
+│   │   ├── FeedbackSummaryService.swift
+│   │   ├── FirestoreService.swift
+│   │   ├── NotificationService.swift
+│   │   ├── PaymentService.swift
+│   │   ├── SecureStorageService.swift
+│   │   └── VideoContentService.swift
+│   ├── Utils
+│   │   ├── ConfettiManager.swift
+│   │   ├── LottieAnimationManager.swift
+│   │   ├── NetworkManager.swift
+│   │   ├── ReportAnalysisHelper.swift
+│   │   └── ResumePDFGenerator.swift
+│   ├── ViewModels
+│   │   ├── AuthViewModel.swift
+│   │   └── homeViewModel.swift
+│   ├── Views
+│   │   ├── AI
+│   │   │   ├── CareerCard.swift
+│   │   │   └── CareerPathInsightsView.swift
+│   │   ├── AISkillCoachView.swift
+│   │   ├── Auth
+│   │   │   ├── ForgotPasswordView.swift
+│   │   │   ├── LoginView.swift 
+│   │   │   ├── MainRouter.swift
+│   │   │   └── RegisterView.swift
+│   │   ├── Challenges
+│   │   │   ├── AchievementsView.swift
+│   │   │   ├── ChallengeTrackerView.swift
+│   │   │   ├── GroupChallengesView.swift
+│   │   │   └── SkillStreaksView.swift
+│   │   ├── EmployeeInsights
+│   │   │   └── TeamHealthChart.swift
+│   │   ├── Enterprise
+│   │   │   ├── BusinessAnalyticsDashboard.swift
+│   │   │   ├── EnterpriseCompanyVerificationView.swift
+│   │   │   ├── EnterprisePerformanceDashboard.swift
+│   │   │   └── WorkplaceBehaviorFeedbackView.swift
+│   │   ├── Feed
+│   │   │   └── DocumentPicker.swift
+│   │   ├── Home
+│   │   │   ├── FriendLearningFeed.swift
+│   │   │   ├── HomeView.swift
+│   │   │   └── ReportsDashboardView.swift
+│   │   ├── Insights
+│   │   │   ├── BehaviorFeedbackView.swift
+│   │   │   ├── EmployeeInsightsDashboard.swift
+│   │   │   ├── EmployeePerformanceDetailView.swift
+│   │   │   ├── EmployeeProgressTimelineView.swift
+│   │   │   ├── EmployeeRecognitionBoard.swift
+│   │   │   ├── FeedbackHistoryView.swift
+│   │   │   ├── FeedbackSummaryCard.swift
+│   │   │   ├── FeedbackTrendsView.swift
+│   │   │   ├── GrowthPotentialAnalyze.swift
+│   │   │   ├── SkillMatrixView.swift
+│   │   │   ├── TeamHealthOverviewView.swift
+│   │   │   ├── WorkplaceGoalTrackerView.swift
+│   │   │   └── WorkplaceProgressTracker.swift
+│   │   ├── LeaderboardView.swift
+│   │   ├── LearningPaths
+│   │   │   ├──  LearningPathsView.swift
+│   │   │   └── LearningPathDetailView.swift
+│   │   ├── Navigation
+│   │   │   ├── AppShellView.swift
+│   │   │   ├── CustomNavigationView.swift
+│   │   │   ├── CustomTabBar.swift
+│   │   │   ├── TabItem 2.swift
+│   │   │   └── TabItem.swift
+│   │   ├── Onboarding
+│   │   │   ├── OnboardingFlowView.swift
+│   │   │   ├── OnboardingIntroView.swift
+│   │   │   └── OnboardingOptionsView.swift
+│   │   ├── PaywallView.swift
+│   │   ├── Profile
+│   │   │   ├── EditProfileView.swift
+│   │   │   ├── NotificationPreferencesView.swift
+│   │   │   ├── ProfileBadgesView.swift
+│   │   │   ├── ProfileView.swift
+│   │   │   └── SettingsView.swift
+│   │   ├── Reports
+│   │   │   └── StryvrProResumeView.swift
+│   │   ├── Security
+│   │   │   ├── AIProfileValidatorView.swift
+│   │   │   ├── CompanySecurityVerificationView.swift
+│   │   │   └── SecureStorageManager.swift
+│   │   ├── SkillVisualizationDashboards.swift
+│   │   ├── SplashScreen
+│   │   │   └── SplashScreenView.swift
+│   │   ├── UIComponents
+│   │   │   ├── CustomButton.swift
+│   │   │   ├── ProgressBarView.swift
+│   │   │   ├── SkillTagView.swift
+│   │   │   ├── StryVrCardView.swift
+│   │   │   ├── StryVrChartCard.swift
+│   │   │   └── StryVrProgressCircle.swift
+│   │   └── UITheme
+│   │       ├── Colors.swift
+│   │       ├── FontStyle.swift
+│   │       ├── Spacing.swift
+│   │       └── ThemeManager.swift
+│   └── stryvr-app
+│       ├── Package.realitycomposerpro
+│       ├── Package.swift
+│       └── Sources
+│           └── stryvr-app
+│               └── stryvr-app.swift
+├── SupportingFiles
+│   └── StryVr.xcodeproj
+│       ├── project.pbxproj
+│       ├── project.pbxproj.save
+│       ├── project.xcworkspace
+│       │   ├── contents.xcworkspacedata
+│       │   ├── xcshareddata
+│       │   │   └── swiftpm
+│       │   └── xcuserdata
+│       │       └── joedormond.xcuserdatad
+│       ├── xcshareddata
+│       │   └── xcschemes
+│       │       └── StryVr.xcscheme
+│       └── xcuserdata
+│           ├── joedormond.xcuserdatad
+│           │   └── xcschemes
+│           └── root.xcuserdatad
+│               └── xcschemes
+├── Tests
+│   └── StryVr-iosTests
+│       └── StryVr_iosTests.swift
+├── backend
+│   ├── (firestore.rules)
+│   ├── GoogleService-Info.plist
+│   ├── firebase-adminsdk.json
+│   ├── firebase.json
+│   ├── firebaseConfig.js
+│   ├── firestore.indexes.json
+│   ├── functions
+│   │   ├── index.js
+│   │   ├── package-lock.json
+│   │   └── package.json
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public
+│   │   ├── 404.html
+│   │   └── index.html
+│   ├── server.js
+│   └── stryvr-firebase-adminsdk-fbsvc-138ae84b46.json
+├── current-structure.txt
+├── frontend
+│   ├── GoogleService-info.plist
+│   ├── README.md
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public
+│   │   └── vite.svg
+│   ├── src
+│   │   ├── App.css
+│   │   ├── App.jsx
+│   │   ├── assets
+│   │   │   └── react.svg
+│   │   ├── index.css
+│   │   └── main.jsx
+│   └── vite.config.js
+├── gitignore
+├── myfile.cpp
+├── package-lock.json
+├── package.json
+├── project-structure.txt
+├── server.js
+└── stryvr-firebase-adminsdk-fbsvc-138ae84b46.json
+
+65 directories, 184 files

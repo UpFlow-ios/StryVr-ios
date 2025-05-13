@@ -21,17 +21,17 @@ final class AuthService: ObservableObject {
 
     func signUp(email: String, password: String, completion: @escaping (Result<AuthDataResult, Error>) -> Void) {
         guard isValidEmail(email), isValidPassword(password) else {
-            self.logger.error("❌ Invalid email or password format")
+            self.logger.error("❌ Invalid email or password format: %{public}@", "Signup input validation failed")
             completion(.failure(AuthError.invalidInput))
             return
         }
 
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if let error = error {
-                self.logger.error("❌ Sign-up error: \(error.localizedDescription)")
+                self.logger.error("❌ Sign-up error: %{public}@", "\(error.localizedDescription)")
                 completion(.failure(error))
             } else if let result = result {
-                self.logger.info("✅ User signed up with UID: \(result.user.uid)")
+                self.logger.info("✅ User signed up with UID: %{public}@", "\(result.user.uid)")
                 completion(.success(result))
             }
         }
@@ -39,17 +39,17 @@ final class AuthService: ObservableObject {
 
     func logIn(email: String, password: String, completion: @escaping (Result<AuthDataResult, Error>) -> Void) {
         guard isValidEmail(email), isValidPassword(password) else {
-            self.logger.error("❌ Invalid email or password format")
+            self.logger.error("❌ Invalid email or password format: %{public}@", "Login input validation failed")
             completion(.failure(AuthError.invalidInput))
             return
         }
 
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if let error = error {
-                self.logger.error("❌ Login error: \(error.localizedDescription)")
+                self.logger.error("❌ Login error: %{public}@", "\(error.localizedDescription)")
                 completion(.failure(error))
             } else if let result = result {
-                self.logger.info("✅ User logged in: \(result.user.uid)")
+                self.logger.info("✅ User logged in: %{public}@", "\(result.user.uid)")
                 completion(.success(result))
             }
         }
@@ -61,21 +61,21 @@ final class AuthService: ObservableObject {
             self.logger.info("🚪 User logged out")
             completion(true, nil)
         } catch {
-            self.logger.error("❌ Logout error: \(error.localizedDescription)")
+            self.logger.error("❌ Logout error: %{public}@", "\(error.localizedDescription)")
             completion(false, error)
         }
     }
 
     func sendPasswordReset(email: String, completion: @escaping (Bool, Error?) -> Void) {
         guard isValidEmail(email) else {
-            self.logger.error("❌ Invalid email format")
+            self.logger.error("❌ Invalid email format: %{public}@", "Password reset input validation failed")
             completion(false, AuthError.invalidInput)
             return
         }
 
         Auth.auth().sendPasswordReset(withEmail: email) { error in
             if let error = error {
-                self.logger.error("📩 Password reset failed: \(error.localizedDescription)")
+                self.logger.error("📩 Password reset failed: %{public}@", "\(error.localizedDescription)")
                 completion(false, error)
             } else {
                 self.logger.info("📬 Password reset email sent")
@@ -120,7 +120,7 @@ final class AuthService: ObservableObject {
     func loginWithOkta(presentingViewController: UIViewController) {
         OIDAuthorizationService.discoverConfiguration(forIssuer: issuer) { config, error in
             guard let config = config else {
-                self.logger.error("❌ OIDC discovery failed: \(error?.localizedDescription ?? "Unknown error")")
+                self.logger.error("❌ OIDC discovery failed: %{public}@", "\(error?.localizedDescription ?? "Unknown error")")
                 return
             }
 
@@ -142,7 +142,7 @@ final class AuthService: ObservableObject {
                     self.authState = authState
                     self.handleFirebaseOIDCLogin(authState)
                 } else {
-                    self.logger.error("❌ Okta Auth error: \(error?.localizedDescription ?? "Unknown error")")
+                    self.logger.error("❌ Okta Auth error: %{public}@", "\(error?.localizedDescription ?? "Unknown error")")
                 }
             }
         }
@@ -154,10 +154,9 @@ final class AuthService: ObservableObject {
             return
         }
 
-        // Exchange for Firebase custom token (or use as-is if already mapped)
         Auth.auth().signIn(withCustomToken: idToken) { result, error in
             if let error = error {
-                self.logger.error("❌ Firebase sign-in failed: \(error.localizedDescription)")
+                self.logger.error("❌ Firebase sign-in failed: %{public}@", "\(error.localizedDescription)")
             } else {
                 self.logger.info("✅ Logged into Firebase with Okta token")
             }
@@ -185,4 +184,3 @@ enum AuthError: LocalizedError {
         }
     }
 }
-
