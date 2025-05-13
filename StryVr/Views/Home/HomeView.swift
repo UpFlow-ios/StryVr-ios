@@ -19,75 +19,94 @@ struct HomeView: View {
     @StateObject private var confettiManager = ConfettiManager.shared
     @EnvironmentObject var authViewModel: AuthViewModel
 
+    @Environment(\.isDebug) var isDebug
+    @State private var showDevPanel = false
+
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "HomeView")
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: Theme.Spacing.large) {
+            ZStack(alignment: .topLeading) {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: Theme.Spacing.large) {
 
-                    // MARK: - Greeting
-                    Text("Welcome back to StryVr! 👋")
-                        .font(Theme.Typography.headline)
-                        .foregroundColor(Theme.Colors.textPrimary)
+                        // MARK: - Greeting
+                        Text("Welcome back to StryVr! 👋")
+                            .font(Theme.Typography.headline)
+                            .foregroundColor(Theme.Colors.textPrimary)
+                            .padding(.top, Theme.Spacing.large)
+
+                        // MARK: - Today's Goal Card
+                        dashboardCard(
+                            title: "Today's Goal",
+                            subtitle: dailyGoalCompleted ? "✅ Completed" : "🎯 Complete 1 Learning Module",
+                            buttonAction: markGoalCompleted
+                        )
+
+                        // MARK: - Skill Streak Card
+                        dashboardCard(title: "Skill Streak", subtitle: "\(currentStreak) Days 🔥 | Best: \(bestStreak) Days 🏆")
+
+                        // MARK: - Active Challenges Card
+                        dashboardCard(title: "Active Challenges", subtitle: "\(activeChallengesCount) Challenges in Progress 🎯")
+
+                        // MARK: - Recent Achievements Card
+                        dashboardCard(title: "Recent Achievements", subtitle: "\(recentAchievementsCount) Badges Unlocked 🏅")
+
+                        // MARK: - Manual Badge Unlock (Demo Button)
+                        Button(action: unlockBadge) {
+                            Text("🏅 Unlock New Badge")
+                                .font(Theme.Typography.body)
+                                .foregroundColor(Theme.Colors.whiteText)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Theme.Colors.accent)
+                                .cornerRadius(Theme.CornerRadius.medium)
+                        }
+
+                        // MARK: - Log Out Button
+                        Button(action: {
+                            authViewModel.signOut()
+                        }) {
+                            Text("Log Out")
+                                .font(Theme.Typography.buttonText)
+                                .foregroundColor(.white)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.red)
+                                .cornerRadius(Theme.CornerRadius.medium)
+                        }
                         .padding(.top, Theme.Spacing.large)
 
-                    // MARK: - Today's Goal Card
-                    dashboardCard(
-                        title: "Today's Goal",
-                        subtitle: dailyGoalCompleted ? "✅ Completed" : "🎯 Complete 1 Learning Module",
-                        buttonAction: markGoalCompleted
+                        Spacer()
+                    }
+                    .padding()
+                    .confettiCannon(
+                        counter: $confettiManager.counter,
+                        num: 30,
+                        colors: [.green, .blue, .purple, .pink, .orange],
+                        radius: 350,
+                        repetitions: 1,
+                        repetitionInterval: 0.2
                     )
-
-                    // MARK: - Skill Streak Card
-                    dashboardCard(title: "Skill Streak", subtitle: "\(currentStreak) Days 🔥 | Best: \(bestStreak) Days 🏆")
-
-                    // MARK: - Active Challenges Card
-                    dashboardCard(title: "Active Challenges", subtitle: "\(activeChallengesCount) Challenges in Progress 🎯")
-
-                    // MARK: - Recent Achievements Card
-                    dashboardCard(title: "Recent Achievements", subtitle: "\(recentAchievementsCount) Badges Unlocked 🏅")
-
-                    // MARK: - Manual Badge Unlock (Demo Button)
-                    Button(action: unlockBadge) {
-                        Text("🏅 Unlock New Badge")
-                            .font(Theme.Typography.body)
-                            .foregroundColor(Theme.Colors.whiteText)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Theme.Colors.accent)
-                            .cornerRadius(Theme.CornerRadius.medium)
-                    }
-
-                    // MARK: - Log Out Button
-                    Button(action: {
-                        authViewModel.signOut()
-                    }) {
-                        Text("Log Out")
-                            .font(Theme.Typography.buttonText)
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.red)
-                            .cornerRadius(Theme.CornerRadius.medium)
-                    }
-                    .padding(.top, Theme.Spacing.large)
-
-                    Spacer()
                 }
-                .padding()
-                .confettiCannon(
-                    counter: $confettiManager.counter,
-                    num: 30,
-                    colors: [.green, .blue, .purple, .pink, .orange],
-                    radius: 350,
-                    repetitions: 1,
-                    repetitionInterval: 0.2
-                )
+
+                // MARK: - Hidden Long-Press Dev Trigger (Debug Only)
+                if isDebug {
+                    Color.clear
+                        .frame(width: 44, height: 44)
+                        .contentShape(Rectangle())
+                        .onLongPressGesture(minimumDuration: 2.0) {
+                            showDevPanel = true
+                        }
+                        .position(x: 40, y: 40)
+                }
             }
             .background(Theme.Colors.background.ignoresSafeArea())
             .navigationTitle("Home")
             .navigationBarTitleDisplayMode(.large)
+        }
+        .sheet(isPresented: $showDevPanel) {
+            DevDebugView()
         }
     }
 
