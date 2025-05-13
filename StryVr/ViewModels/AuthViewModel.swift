@@ -2,7 +2,7 @@
 //  AuthViewModel.swift
 //  StryVr
 //
-//  🔒 Optimized Authentication ViewModel – Secure, Scalable, and Maintainable
+//  🔒 Unified Auth ViewModel – Firebase Auth + Okta, with real-time tracking
 //
 
 import Foundation
@@ -14,18 +14,30 @@ final class AuthViewModel: ObservableObject {
 
     @Published var userSession: FirebaseAuth.User?
     @Published var errorMessage: String?
+    @Published var isAuthenticated: Bool = false
+
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr.app", category: "AuthViewModel")
 
     private init() {
-        self.userSession = Auth.auth().currentUser
+        listenToAuthChanges()
     }
 
-    // MARK: - Sign In
+    // MARK: - Live Auth State Listener
+    func listenToAuthChanges() {
+        Auth.auth().addStateDidChangeListener { _, user in
+            DispatchQueue.main.async {
+                self.userSession = user
+                self.isAuthenticated = (user != nil)
+                self.logger.info("🔁 Auth state changed: \(self.isAuthenticated ? "✅ Logged In" : "🚪 Logged Out")")
+            }
+        }
+    }
+
+    // MARK: - Email/Password Sign In
     func signIn(email: String, password: String) {
         guard isValidEmail(email), !password.isEmpty else {
-            DispatchQueue.main.async {
-                self.errorMessage = "Please enter a valid email and password."
-            }
-            os_log("❌ Sign-in failed: Invalid credentials format", log: .default, type: .error)
+            errorMessage = "Please enter a valid email and password."
+            logger.error("❌ Sign-in failed: Invalid credentials format")
             return
         }
 
@@ -37,25 +49,23 @@ final class AuthViewModel: ObservableObject {
                 }
 
                 guard let user = result?.user else {
-                    self?.errorMessage = "An unknown error occurred. Please try again."
-                    os_log("❌ Sign-in failed: No user returned", log: .default, type: .error)
+                    self?.errorMessage = "An unknown error occurred."
+                    self?.logger.error("❌ Sign-in failed: No user returned")
                     return
                 }
 
                 self?.userSession = user
                 self?.errorMessage = nil
-                os_log("✅ User signed in: %{public}@", log: .default, type: .info, user.email ?? "unknown")
+                self?.isAuthenticated = true
+                self?.logger.info("✅ Email login: \(user.email ?? "unknown")")
             }
         }
     }
 
-    // MARK: - Register (Sign Up)
+    // MARK: - Register
     func createUser(email: String, password: String) {
         guard isValidEmail(email), !password.isEmpty else {
-            DispatchQueue.main.async {
-                self.errorMessage = "Please enter a valid email and password."
-            }
-            os_log("❌ Sign-up failed: Invalid credentials format", log: .default, type: .error)
+            errorMessage = "Please enter a valid email and password."
             return
         }
 
@@ -67,14 +77,14 @@ final class AuthViewModel: ObservableObject {
                 }
 
                 guard let user = result?.user else {
-                    self?.errorMessage = "An unknown error occurred. Please try again."
-                    os_log("❌ Sign-up failed: No user returned", log: .default, type: .error)
+                    self?.errorMessage = "Sign-up failed. Try again."
                     return
                 }
 
                 self?.userSession = user
                 self?.errorMessage = nil
-                os_log("✅ User registered and signed in: %{public}@", log: .default, type: .info, user.email ?? "unknown")
+                self?.isAuthenticated = true
+                self?.logger.info("✅ User signed up: \(user.email ?? "unknown")")
             }
         }
     }
@@ -82,10 +92,7 @@ final class AuthViewModel: ObservableObject {
     // MARK: - Password Reset
     func resetPassword(email: String) {
         guard isValidEmail(email) else {
-            DispatchQueue.main.async {
-                self.errorMessage = "Please enter a valid email address."
-            }
-            os_log("❌ Password reset failed: Invalid email format", log: .default, type: .error)
+            errorMessage = "Enter a valid email address."
             return
         }
 
@@ -94,8 +101,8 @@ final class AuthViewModel: ObservableObject {
                 if let error = error {
                     self?.handleAuthError(error)
                 } else {
-                    self?.errorMessage = "Password reset email sent successfully."
-                    os_log("📧 Password reset email sent", log: .default, type: .info)
+                    self?.errorMessage = "Password reset email sent."
+                    self?.logger.info("📧 Reset email sent")
                 }
             }
         }
@@ -107,18 +114,17 @@ final class AuthViewModel: ObservableObject {
             try Auth.auth().signOut()
             DispatchQueue.main.async {
                 self.userSession = nil
+                self.isAuthenticated = false
                 self.errorMessage = nil
-                os_log("🚪 User signed out successfully", log: .default, type: .info)
+                self.logger.info("🚪 User signed out")
             }
         } catch {
-            DispatchQueue.main.async {
-                self.errorMessage = "Failed to sign out: \(error.localizedDescription)"
-            }
-            os_log("❌ Sign-out failed: %{public}@", log: .default, type: .error, error.localizedDescription)
+            self.errorMessage = "Failed to sign out: \(error.localizedDescription)"
+            self.logger.error("❌ Sign-out failed: \(error.localizedDescription)")
         }
     }
 
-    // MARK: - Helper Methods
+    // MARK: - Validation
     private func isValidEmail(_ email: String) -> Bool {
         let emailRegex = #"^\S+@\S+\.\S+$"#
         return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email)
@@ -126,22 +132,16 @@ final class AuthViewModel: ObservableObject {
 
     private func handleAuthError(_ error: Error) {
         let nsError = error as NSError
-        let errorCode = AuthErrorCode.Code(rawValue: nsError.code)
+        let code = AuthErrorCode.Code(rawValue: nsError.code)
 
-        DispatchQueue.main.async {
-            switch errorCode {
-            case .wrongPassword:
-                self.errorMessage = "Incorrect password. Please try again."
-            case .userNotFound:
-                self.errorMessage = "No account found with this email. Please sign up."
-            case .emailAlreadyInUse:
-                self.errorMessage = "An account already exists for this email."
-            case .networkError:
-                self.errorMessage = "Network error. Check your internet connection."
-            default:
-                self.errorMessage = "An error occurred: \(error.localizedDescription)"
-            }
+        switch code {
+        case .wrongPassword: errorMessage = "Incorrect password."
+        case .userNotFound: errorMessage = "No account found. Please sign up."
+        case .emailAlreadyInUse: errorMessage = "Email is already registered."
+        case .networkError: errorMessage = "Network error. Try again."
+        default: errorMessage = "Error: \(error.localizedDescription)"
         }
-        os_log("❌ Authentication error: %{public}@", log: .default, type: .error, error.localizedDescription)
+
+        logger.error("❌ FirebaseAuth error: \(error.localizedDescription)")
     }
 }
