@@ -17,6 +17,7 @@ struct HomeView: View {
     @State private var recentAchievementsCount = 2
 
     @StateObject private var confettiManager = ConfettiManager.shared
+    @EnvironmentObject var authViewModel: AuthViewModel
 
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "HomeView")
 
@@ -57,6 +58,20 @@ struct HomeView: View {
                             .background(Theme.Colors.accent)
                             .cornerRadius(Theme.CornerRadius.medium)
                     }
+
+                    // MARK: - Log Out Button
+                    Button(action: {
+                        authViewModel.signOut()
+                    }) {
+                        Text("Log Out")
+                            .font(Theme.Typography.buttonText)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.red)
+                            .cornerRadius(Theme.CornerRadius.medium)
+                    }
+                    .padding(.top, Theme.Spacing.large)
 
                     Spacer()
                 }
@@ -122,4 +137,5 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
+        .environmentObject(AuthViewModel.shared)
 }
