@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct RegisterView: View {
-    @EnvironmentObject var authViewModel: AuthViewModel
     @Environment(\.presentationMode) var presentationMode
 
     @State private var email: String = ""
@@ -16,6 +15,7 @@ struct RegisterView: View {
     @State private var confirmPassword: String = ""
     @State private var errorMessage: String?
     @State private var isLoading: Bool = false
+    @State private var showSuccess = false
 
     var body: some View {
         ZStack {
@@ -27,26 +27,30 @@ struct RegisterView: View {
                     .foregroundColor(Theme.Colors.textPrimary)
                     .padding(.top, Theme.Spacing.xLarge)
 
-                TextField("Email", text: $email)
-                    .textContentType(.emailAddress)
-                    .keyboardType(.emailAddress)
-                    .autocapitalization(.none)
-                    .padding()
-                    .background(Theme.Colors.card)
-                    .cornerRadius(Theme.CornerRadius.medium)
+                // MARK: - Email + Password Inputs
+                Group {
+                    TextField("Email", text: $email)
+                        .textContentType(.emailAddress)
+                        .keyboardType(.emailAddress)
+                        .autocapitalization(.none)
+                        .padding()
+                        .background(Theme.Colors.card)
+                        .cornerRadius(Theme.CornerRadius.medium)
 
-                SecureField("Password", text: $password)
-                    .textContentType(.newPassword)
-                    .padding()
-                    .background(Theme.Colors.card)
-                    .cornerRadius(Theme.CornerRadius.medium)
+                    SecureField("Password", text: $password)
+                        .textContentType(.newPassword)
+                        .padding()
+                        .background(Theme.Colors.card)
+                        .cornerRadius(Theme.CornerRadius.medium)
 
-                SecureField("Confirm Password", text: $confirmPassword)
-                    .textContentType(.password)
-                    .padding()
-                    .background(Theme.Colors.card)
-                    .cornerRadius(Theme.CornerRadius.medium)
+                    SecureField("Confirm Password", text: $confirmPassword)
+                        .textContentType(.password)
+                        .padding()
+                        .background(Theme.Colors.card)
+                        .cornerRadius(Theme.CornerRadius.medium)
+                }
 
+                // MARK: - Error Feedback
                 if let error = errorMessage {
                     Text(error)
                         .font(Theme.Typography.caption)
@@ -55,6 +59,7 @@ struct RegisterView: View {
                         .padding(.horizontal, Theme.Spacing.medium)
                 }
 
+                // MARK: - Register Button
                 Button(action: registerUser) {
                     if isLoading {
                         ProgressView()
@@ -71,6 +76,7 @@ struct RegisterView: View {
                 }
                 .disabled(isLoading)
 
+                // MARK: - Already have an account?
                 HStack {
                     Text("Already have an account?")
                         .font(Theme.Typography.caption)
@@ -92,6 +98,9 @@ struct RegisterView: View {
 
     // MARK: - Register User Logic
     private func registerUser() {
+        errorMessage = nil
+        simpleHaptic()
+
         guard !email.isEmpty, !password.isEmpty, !confirmPassword.isEmpty else {
             errorMessage = "Please fill in all fields."
             return
@@ -113,8 +122,19 @@ struct RegisterView: View {
         }
 
         isLoading = true
-        simpleHaptic()
-        authViewModel.createUser(email: email, password: password)
+
+        AuthService.shared.signUp(email: email, password: password) { result in
+            DispatchQueue.main.async {
+                isLoading = false
+                switch result {
+                case .success:
+                    showSuccess = true
+                    presentationMode.wrappedValue.dismiss()
+                case .failure(let error):
+                    errorMessage = error.localizedDescription
+                }
+            }
+        }
     }
 
     private func isValidEmail(_ email: String) -> Bool {
