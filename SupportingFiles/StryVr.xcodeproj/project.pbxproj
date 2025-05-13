@@ -142,6 +142,7 @@
 		85BE237B2DD3F08000298EDF /* SwiftUIIntrospect-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 85BE23782DD3F07F00298EDF /* SwiftUIIntrospect-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		85BE237D2DD3F09200298EDF /* SwiftUIIntrospect-Static in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE237C2DD3F09200298EDF /* SwiftUIIntrospect-Static */; };
 		85BE237F2DD3F0F400298EDF /* netfox in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE237E2DD3F0F400298EDF /* netfox */; };
+		85BE238A2DD3F41500298EDF /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BE23892DD3F40F00298EDF /* FeatureFlags.swift */; };
 		85CB82D92DAE2E83002AA544 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB82D82DAE2E7B002AA544 /* UserRole.swift */; };
 		85CB83042DAE5D60002AA544 /* AIProfileValidatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB83032DAE5D5B002AA544 /* AIProfileValidatorView.swift */; };
 		85EA1C342DD3D65E001C992A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854ECFD32D701D5F00D0B0AC /* CoreTelephony.framework */; };
@@ -271,6 +272,7 @@
 		85AD56A12D94BA79007B6542 /* Skill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skill.swift; sourceTree = "<group>"; };
 		85AD56A32D94BA97007B6542 /* LearningReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningReport.swift; sourceTree = "<group>"; };
 		85AD56A42D94BAE8007B6542 /* SkillProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillProgress.swift; sourceTree = "<group>"; };
+		85BE23892DD3F40F00298EDF /* FeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
 		85CB82D82DAE2E7B002AA544 /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
 		85CB83032DAE5D5B002AA544 /* AIProfileValidatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIProfileValidatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -322,6 +324,11 @@
 		859947792DC9A51000EB6818 /* Insights */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Insights;
+			sourceTree = "<group>";
+		};
+		85BE23822DD3F1CA00298EDF /* Debug */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Debug;
 			sourceTree = "<group>";
 		};
 		85CB82DC2DAE49B8002AA544 /* Enums */ = {
@@ -539,6 +546,7 @@
 		856AA6062D9164E900402F84 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				85BE23892DD3F40F00298EDF /* FeatureFlags.swift */,
 				8588F0C62DC97CAA00D04995 /* ConfettiManager.swift */,
 				8588F0C32DC2F8C700D04995 /* ResumePDFGenerator.swift */,
 				856AA6042D9164E900402F84 /* LottieAnimationManager.swift */,
@@ -645,6 +653,7 @@
 		856AA62A2D9164E900402F84 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				85BE23822DD3F1CA00298EDF /* Debug */,
 				859947792DC9A51000EB6818 /* Insights */,
 				8588F0CA2DC991AE00D04995 /* EmployeeInsights */,
 				8588F0BC2DC2749600D04995 /* Reports */,
@@ -729,6 +738,7 @@
 				8588F0CA2DC991AE00D04995 /* EmployeeInsights */,
 				8595B1852DB36A8C001D831E /* Onboarding */,
 				859947792DC9A51000EB6818 /* Insights */,
+				85BE23822DD3F1CA00298EDF /* Debug */,
 				85CB82DC2DAE49B8002AA544 /* Enums */,
 				85CB82E02DAE4A58002AA544 /* Shared */,
 			);
@@ -873,6 +883,7 @@
 				856AA66F2D9169A900402F84 /* AIProfileValidator.swift in Sources */,
 				856AA68B2D916EC600402F84 /* PaymentService.swift in Sources */,
 				8599479D2DCB200B00EB6818 /* BehaviorFeedbackService.swift in Sources */,
+				85BE238A2DD3F41500298EDF /* FeatureFlags.swift in Sources */,
 				856AA6312D9164E900402F84 /* CompanySecurityVerificationView.swift in Sources */,
 				856AA6792D916BEA00402F84 /* AuthService.swift in Sources */,
 				856AA67F2D916D0900402F84 /* ConferenceCallService.swift in Sources */,
