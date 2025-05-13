@@ -29,10 +29,12 @@ struct StryVrApp: App {
                     SplashScreenView()
                         .onAppear(perform: handleSplash)
                 } else {
-                    if authViewModel.isAuthenticated {
-                        HomeView()
-                    } else {
-                        LoginView()
+                    NavigationStack {
+                        if authViewModel.isAuthenticated {
+                            HomeView()
+                        } else {
+                            LoginView()
+                        }
                     }
                 }
             }
@@ -41,6 +43,7 @@ struct StryVrApp: App {
         }
     }
 
+    // MARK: - Firebase Setup
     private func configureFirebase() {
         if FirebaseApp.app() == nil {
             FirebaseApp.configure()
@@ -48,6 +51,7 @@ struct StryVrApp: App {
         }
     }
 
+    // MARK: - Splash Transition
     private func handleSplash() {
         DispatchQueue.main.asyncAfter(deadline: .now() + splashDuration) {
             withAnimation {
