@@ -2,10 +2,11 @@
 //  RegisterView.swift
 //  StryVr
 //
-//  🔐 Secure, Themed, Firebase-Integrated Account Creation
+//  🔐 Secure, Firebase-integrated Account Creation with Optional Confetti Celebration
 //
 
 import SwiftUI
+import ConfettiSwiftUI
 
 struct RegisterView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -15,6 +16,7 @@ struct RegisterView: View {
     @State private var confirmPassword: String = ""
     @State private var errorMessage: String?
     @State private var isLoading: Bool = false
+    @State private var showConfetti: Int = 0
 
     private let authViewModel = AuthViewModel.shared
 
@@ -94,6 +96,11 @@ struct RegisterView: View {
                 Spacer()
             }
             .padding(.horizontal, Theme.Spacing.large)
+
+            // MARK: - Confetti Animation
+            if FeatureFlags.enableConfetti {
+                ConfettiCannon(counter: $showConfetti, repetitions: 1, confettiSize: 12, rainHeight: 800)
+            }
         }
     }
 
@@ -128,7 +135,14 @@ struct RegisterView: View {
             DispatchQueue.main.async {
                 isLoading = false
                 if success {
-                    presentationMode.wrappedValue.dismiss() // StryVrApp will redirect to HomeView
+                    if FeatureFlags.enableConfetti {
+                        showConfetti += 1
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    } else {
+                        presentationMode.wrappedValue.dismiss()
+                    }
                 } else if let error = error {
                     errorMessage = error.localizedDescription
                 }
