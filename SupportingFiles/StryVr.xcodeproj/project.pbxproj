@@ -17,6 +17,7 @@
 		851966132DA6DACE004264AE /* ReportsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851966122DA6DAC6004264AE /* ReportsDashboardView.swift */; };
 		851966152DACF9C7004264AE /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851966142DACF9C2004264AE /* RegisterView.swift */; };
 		851966172DACFB1C004264AE /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851966162DACFB12004264AE /* ForgotPasswordView.swift */; };
+		8540F0AA2DD38E1100B43444 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8540F0A92DD38E0800B43444 /* MainRouter.swift */; };
 		854826732D83B55B0078A0F9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 854826722D83B55B0078A0F9 /* FirebaseAuth */; };
 		854826792D83B55B0078A0F9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 854826782D83B55B0078A0F9 /* FirebaseFirestore */; };
 		8548267F2D83B5E80078A0F9 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8548267E2D83B5E80078A0F9 /* CocoaLumberjackSwift */; };
@@ -139,6 +140,7 @@
 		851966122DA6DAC6004264AE /* ReportsDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsDashboardView.swift; sourceTree = "<group>"; };
 		851966142DACF9C2004264AE /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		851966162DACFB12004264AE /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		8540F0A92DD38E0800B43444 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 		854ECFD32D701D5F00D0B0AC /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
 		854ECFD42D701D5F00D0B0AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		854ECFD52D701D5F00D0B0AC /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/SafariServices.framework; sourceTree = DEVELOPER_DIR; };
@@ -396,12 +398,12 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		856AA5EB2D9164E900402F84 /* Assets */ = {
+		856AA5EB2D9164E900402F84 /* Assets.xcassets */ = {
 			isa = PBXGroup;
 			children = (
 				856AA5EA2D9164E900402F84 /* AppIcon */,
 			);
-			path = Assets;
+			path = Assets.xcassets;
 			sourceTree = "<group>";
 		};
 		856AA5F32D9164E900402F84 /* Models */ = {
@@ -476,6 +478,7 @@
 		856AA60A2D9164E900402F84 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				8540F0A92DD38E0800B43444 /* MainRouter.swift */,
 				851966162DACFB12004264AE /* ForgotPasswordView.swift */,
 				851966142DACF9C2004264AE /* RegisterView.swift */,
 				856AA6092D9164E900402F84 /* LoginView.swift  */,
@@ -589,7 +592,7 @@
 			isa = PBXGroup;
 			children = (
 				856AA5E92D9164E900402F84 /* App */,
-				856AA5EB2D9164E900402F84 /* Assets */,
+				856AA5EB2D9164E900402F84 /* Assets.xcassets */,
 				856AA5F32D9164E900402F84 /* Models */,
 				856AA6032D9164E900402F84 /* Services */,
 				856AA6062D9164E900402F84 /* Utils */,
@@ -804,6 +807,7 @@
 				851966172DACFB1C004264AE /* ForgotPasswordView.swift in Sources */,
 				856AA6732D916A9B00402F84 /* AIRecommendationService.swift in Sources */,
 				855E960B2D9D1009002173EF /* CareerCard.swift in Sources */,
+				8540F0AA2DD38E1100B43444 /* MainRouter.swift in Sources */,
 				856AA63F2D9164E900402F84 /* FriendLearningFeed.swift in Sources */,
 				85CB82D92DAE2E83002AA544 /* UserRole.swift in Sources */,
 				851966152DACF9C7004264AE /* RegisterView.swift in Sources */,
