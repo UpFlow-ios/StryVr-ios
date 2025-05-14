@@ -20,6 +20,16 @@ enum APIError: Error, LocalizedError {
     /// Failed to decode the received data
     case decoding(Error)
 
+    /// Provides a mock error for UI previews or testing
+    static var mock: APIError {
+        .httpStatus(500)
+    }
+
+    /// A debug-friendly string for logging and diagnostics
+    var debugDescription: String {
+        "[APIError] \(errorDescription ?? "Unknown error")"
+    }
+
     /// Provides a user-friendly description of the error
     var errorDescription: String? {
         switch self {
