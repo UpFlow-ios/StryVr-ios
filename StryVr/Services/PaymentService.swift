@@ -7,6 +7,7 @@
 import Foundation
 import StoreKit
 import os.log
+import Combine
 
 /// Manages in-app purchases and subscriptions for StryVr
 final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObserver, SKProductsRequestDelegate {
@@ -31,12 +32,22 @@ final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObse
         }
         return purchasedProducts.contains(productID)
     }
+    
+    /// Checks if a product ID is valid and available
+    func isProductIDValid(_ productID: String) -> Bool {
+        return availableProducts.contains(where: { $0.productIdentifier == productID })
+    }
 
     // MARK: - Start Purchase
     /// Initiates the purchase of a product
     func purchaseProduct(_ product: SKProduct) {
         guard SKPaymentQueue.canMakePayments() else {
             logger.error("❌ In-App Purchases are disabled.")
+            return
+        }
+        
+        guard isProductIDValid(product.productIdentifier) else {
+            logger.error("❌ Attempted to purchase invalid product: \(product.productIdentifier)")
             return
         }
 
@@ -66,6 +77,9 @@ final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObse
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         availableProducts = response.products
         logger.info("✅ Retrieved \(availableProducts.count) products from App Store")
+        if response.invalidProductIdentifiers.count > 0 {
+            logger.warning("⚠️ Invalid Product IDs: \(response.invalidProductIdentifiers)")
+        }
     }
 
     func request(_ request: SKRequest, didFailWithError error: Error) {
