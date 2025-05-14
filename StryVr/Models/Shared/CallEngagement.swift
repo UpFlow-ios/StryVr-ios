@@ -44,4 +44,16 @@ struct CallEngagement: Codable, Hashable {
         self.messagesSent = messagesSent
         self.reactions = reactions
     }
+
+    // MARK: - Preview Sample
+    static let preview = CallEngagement(
+        totalAttendees: 12,
+        messagesSent: 30,
+        reactions: 22
+    )
+
+    // MARK: - Debug Description
+    var description: String {
+        "📊 CallEngagement — Attendees: \(totalAttendees), Messages: \(messagesSent), Reactions: \(reactions), Score: \(engagementScore)"
+    }
 }
