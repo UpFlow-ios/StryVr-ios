@@ -18,6 +18,7 @@ enum ReportType: String, Codable, CaseIterable {
     /// Reports related to fake profiles
     case fakeProfile = "Fake Profile"
     /// Reports related to disputes over skill verification
+    case skillVerificationDispute = "Skill Verification Dispute"
     /// Other types of reports
     case other = "Other"
 
