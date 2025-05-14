@@ -8,6 +8,7 @@ import Foundation
 import UserNotifications
 import FirebaseMessaging
 import FirebaseFirestore
+import FirebaseAuth
 import os.log
 
 /// Manages push notifications for video engagement, recommendations, and learning reminders
@@ -118,6 +119,7 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
             }
 
             // Prepare and send via Cloud Function, FCM or 3rd-party service
+            // 🔒 You may call a Firebase Cloud Function here using HTTPS callable or external API integration
             self.logger.info("📤 Sending push notification")
             // Production: trigger Cloud Function/FCM REST API here
         }
