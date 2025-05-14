@@ -1,3 +1,11 @@
+//
+//  ReportModel.swift
+//  StryVr
+//
+//  Created by Joe Dormond on 4/15/25.
+//
+//  📝 Report Model – Handles user-submitted reports including status, evidence, and metadata
+//
 import Foundation
 
 /// Represents a report submitted within the StryVr app

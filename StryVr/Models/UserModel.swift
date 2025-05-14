@@ -5,7 +5,7 @@
 //  Created by Joe Dormond on [Date]
 //
 //  👤 User Data Model – Represents user profile details and metadata
-//import Foundation
+import Foundation
 
 // MARK: - UserModel
 /// Represents a user in the StryVr app
