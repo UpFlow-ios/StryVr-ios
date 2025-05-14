@@ -32,4 +32,29 @@ enum CallStatus: String, Codable, CaseIterable {
     static func isValidStatus(_ status: String) -> Bool {
         return CallStatus(rawValue: status) != nil
     }
+
+    /// Provides a mock value for SwiftUI previews or testing
+    static var mock: CallStatus {
+        .live
+    }
+
+    /// Returns an associated color code name (for UI themes)
+    var colorCode: String {
+        switch self {
+        case .upcoming: return "gray"
+        case .live: return "red"
+        case .completed: return "green"
+        case .canceled: return "secondary"
+        }
+    }
+
+    /// Returns an SF Symbol name based on status
+    var iconName: String {
+        switch self {
+        case .upcoming: return "clock"
+        case .live: return "dot.radiowaves.left.and.right"
+        case .completed: return "checkmark.circle"
+        case .canceled: return "xmark.circle"
+        }
+    }
 }
