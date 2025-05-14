@@ -2,8 +2,11 @@
 //  LearningReport.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 3/26/25.
+//  Created by Joe Dormond on 3/26/25
 //
+//  📊 Learning Report – Tracks user progress, skill improvements, and report summaries
+//
+
 import Foundation
 
 /// Represents a generated learning progress report for a user
