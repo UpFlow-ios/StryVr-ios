@@ -34,3 +34,10 @@ final class CrashHandlingService {
         fatalError("💥 Simulated crash for testing purposes")
     }
 }
+
+
+
+
+
+
+
