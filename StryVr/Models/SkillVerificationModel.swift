@@ -1,6 +1,15 @@
+//
+//  SkillVerificationModel.swift
+//  StryVr
+//
+//  Created by Joe Dormond on [Date]
+//
+//  🧪 Skill Verification Model – Tracks verification requests, methods, and status
+//
+
 import Foundation
 
-    
+struct SkillVerificationModel: Identifiable, Codable {
     let id: String                      // Unique ID for the skill verification request
     let userID: String                  // ID of the user requesting verification
     var skillName: String               // Name of the skill being verified
@@ -11,7 +20,6 @@ import Foundation
     var completionDate: Date?           // Optional date when the request was completed
 
     // MARK: - Computed Properties
-    }
 
     /// Checks if evidence URLs are provided
     var hasEvidence: Bool {
