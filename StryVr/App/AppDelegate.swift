@@ -1,8 +1,16 @@
+//
+//  AppDelegate.swift
+//  StryVr
+//
+//  🔒 Secure App Lifecycle Setup with Firebase & Push Notifications
+//
+
 import UIKit
 import Firebase
 import UserNotifications
 import os
 
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
@@ -12,11 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-
         configureFirebase()
         setupPushNotifications(application)
         Messaging.messaging().delegate = self
-
         return true
     }
 
@@ -42,9 +48,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
                     application.registerForRemoteNotifications()
                 }
             } else if let error = error {
-                self.logger.error("⚠️ Push Notification Error: \(error.localizedDescription)")
+                self.logger.error("❌ Push Notification Error: \(error.localizedDescription)")
             } else {
-                self.logger.warning("⚠️ Push Notifications: Permission denied")
+                self.logger.warning("⚠️ Push Notifications: Permission denied by user.")
             }
         }
     }
@@ -63,60 +69,60 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         _ application: UIApplication,
         didFailToRegisterForRemoteNotificationsWithError error: Error
     ) {
-        logger.error("❌ Push Notification Registration Failed: \(error.localizedDescription)")
-    }
-
-    // MARK: - Foreground Notification Handling
-    func userNotificationCenter(
-        _ center: UNUserNotificationCenter,
-        willPresent notification: UNNotification,
-        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
-    ) {
-        logger.info("📩 Foreground Notification: \(notification.request.content.userInfo)")
-        completionHandler([.banner, .sound, .badge])
-    }
-
-    // MARK: - Notification Interaction
-    func userNotificationCenter(
-        _ center: UNUserNotificationCenter,
-        didReceive response: UNNotificationResponse,
-        withCompletionHandler completionHandler: @escaping () -> Void
-    ) {
-        logger.info("🛎️ User Tapped Notification: \(response.notification.request.content.userInfo)")
-        completionHandler()
+        logger.error("❌ Failed to register for APNS: \(error.localizedDescription)")
     }
 
     // MARK: - Firebase Messaging Delegate
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         guard let token = fcmToken else {
-            logger.warning("⚠️ FCM token was nil")
+            logger.warning("⚠️ FCM token was nil.")
             return
         }
         logger.info("🔄 FCM Registration Token: \(token)")
         sendTokenToServer(token)
     }
 
-    // MARK: - Token Network Upload
+    // MARK: - Upload Token to Server
     private func sendTokenToServer(_ token: String) {
         guard let url = URL(string: "https://yourserver.com/api/registerToken") else {
-            logger.error("❌ Invalid server URL.")
+            logger.error("❌ Invalid token registration URL.")
             return
         }
-        
+
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-        let body: [String: Any] = ["token": token]
-        request.httpBody = try? JSONSerialization.data(withJSONObject: body)
+        let payload: [String: Any] = ["token": token]
+        request.httpBody = try? JSONSerialization.data(withJSONObject: payload, options: [])
 
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        let task = URLSession.shared.dataTask(with: request) { _, response, error in
             if let error = error {
-                self.logger.error("❌ Failed to send token to server: \(error.localizedDescription)")
+                self.logger.error("❌ Failed to send token: \(error.localizedDescription)")
             } else {
-                self.logger.info("✅ Token successfully sent to server")
+                self.logger.info("✅ Token sent to server successfully.")
             }
         }
         task.resume()
+    }
+
+    // MARK: - Foreground Notification Handler
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+        logger.info("📩 Received notification in foreground: \(notification.request.content.userInfo)")
+        completionHandler([.banner, .sound, .badge])
+    }
+
+    // MARK: - Notification Interaction Handler
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
+        logger.info("🛎️ User interacted with notification: \(response.notification.request.content.userInfo)")
+        completionHandler()
     }
 }
