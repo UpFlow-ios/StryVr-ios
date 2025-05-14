@@ -25,6 +25,29 @@ enum VerificationMethod: String, Codable, CaseIterable {
         }
     }
 
+    /// Mock value for previews or test use
+    static var mock: VerificationMethod {
+        .projectSubmission
+    }
+
+    /// SF Symbol name associated with the verification method
+    var iconName: String {
+        switch self {
+        case .projectSubmission: return "doc.text"
+        case .certificationUpload: return "doc.plaintext"
+        case .assessmentTest: return "checkmark.seal"
+        }
+    }
+
+    /// Returns a UI color string based on method
+    var colorCode: String {
+        switch self {
+        case .projectSubmission: return "blue"
+        case .certificationUpload: return "teal"
+        case .assessmentTest: return "green"
+        }
+    }
+
     /// Validates if a given string matches a valid verification method
     static func isValidMethod(_ method: String) -> Bool {
         return VerificationMethod(rawValue: method) != nil
