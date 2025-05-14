@@ -34,4 +34,33 @@ struct AchievementModel: Identifiable, Codable, Equatable {
             isNew: true
         )
     }
+    
+    static var samples: [AchievementModel] {
+        [
+            AchievementModel(
+                id: UUID().uuidString,
+                title: "Streak Master",
+                description: "Completed 7-day learning streak!",
+                iconName: "flame.fill",
+                dateEarned: Date(),
+                isNew: true
+            ),
+            AchievementModel(
+                id: UUID().uuidString,
+                title: "Skill Pro",
+                description: "Verified 5 new skills",
+                iconName: "checkmark.seal.fill",
+                dateEarned: Calendar.current.date(byAdding: .day, value: -3, to: Date())!,
+                isNew: false
+            ),
+            AchievementModel(
+                id: UUID().uuidString,
+                title: "Team Contributor",
+                description: "Completed 3 team challenges",
+                iconName: "person.3.fill",
+                dateEarned: Calendar.current.date(byAdding: .day, value: -7, to: Date())!,
+                isNew: false
+            )
+        ]
+    }
 }
