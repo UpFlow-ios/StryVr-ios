@@ -2,6 +2,7 @@
 //  VideoContentService.swift
 //  StryVr
 //
+//  📹 VideoContentService – Manages uploads, metadata, streaming & AI tagging
 //  Created by Joe Dormond on 3/12/25.
 //
 import Foundation
