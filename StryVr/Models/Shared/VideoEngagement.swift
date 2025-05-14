@@ -18,6 +18,14 @@ struct VideoEngagement: Codable, Hashable {
     /// Number of views of the video
     var views: Int
 
+    /// Static preview for UI testing and previews
+    static let preview = VideoEngagement(likes: 120, comments: 35, shares: 10, views: 500)
+
+    /// Developer-friendly debug description
+    var description: String {
+        "🎥 VideoEngagement — Likes: \(likes), Comments: \(comments), Shares: \(shares), Views: \(views), Score: \(engagementScore)"
+    }
+
     /// Calculates the engagement score based on weighted metrics
     var engagementScore: Int {
         (likes * 2) + (comments * 3) + (shares * 5) + views
