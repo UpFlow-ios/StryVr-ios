@@ -14,7 +14,7 @@ enum UserRole: String, Codable {
 
     /// Provides a default user role
     static var defaultRole: UserRole {
-        return .mentee
+        return .admin
     }
 
     /// Validates if a given string matches a valid role
