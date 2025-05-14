@@ -37,25 +37,36 @@ struct BehaviorFeedback: Identifiable, Codable {
         self.timestamp = timestamp
         self.isAnonymous = isAnonymous
     }
+
+    // MARK: - Preview
+    static let preview = BehaviorFeedback(
+        employeeId: "employee123",
+        reviewerId: "reviewer456",
+        category: .communication,
+        rating: 4,
+        comment: "Excellent communication skills.",
+        isAnonymous: true
+    )
 }
 
 enum FeedbackCategory: String, Codable, CaseIterable, Identifiable {
-    case communication
-    case teamwork
-    case punctuality
     case attitude
+    case communication
     case professionalism
+    case punctuality
+    case teamwork
 
     var id: String { rawValue }
 
+    static var displayNameMap: [FeedbackCategory: String] = [
+        .attitude: "Attitude",
+        .communication: "Communication",
+        .professionalism: "Professionalism",
+        .punctuality: "Punctuality",
+        .teamwork: "Teamwork"
+    ]
+
     var displayName: String {
-        switch self {
-        case .communication: return "Communication"
-        case .teamwork: return "Teamwork"
-        case .punctuality: return "Punctuality"
-        case .attitude: return "Attitude"
-        case .professionalism: return "Professionalism"
-        }
+        return FeedbackCategory.displayNameMap[self] ?? rawValue.capitalized
     }
 }
-
