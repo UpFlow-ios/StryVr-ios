@@ -19,5 +19,13 @@ struct TeamHealthStat: Identifiable, Codable {
     var isRecentlyActive: Bool {
         Calendar.current.isDateInToday(lastActiveDate)
     }
-}
 
+    static let preview = TeamHealthStat(
+        id: UUID().uuidString,
+        employeeName: "Taylor Evans",
+        productivityScore: 88.0,
+        wellnessScore: 91.0,
+        checkInMood: "😊",
+        lastActiveDate: Date()
+    )
+}
