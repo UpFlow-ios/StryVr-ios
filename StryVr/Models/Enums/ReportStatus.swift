@@ -32,4 +32,29 @@ enum ReportStatus: String, Codable, CaseIterable {
     static func isValidStatus(_ status: String) -> Bool {
         return ReportStatus(rawValue: status) != nil
     }
+
+    /// Provides a mock status for preview/testing
+    static var mock: ReportStatus {
+        .underReview
+    }
+
+    /// Returns an icon representing the status
+    var iconName: String {
+        switch self {
+        case .pending: return "hourglass"
+        case .underReview: return "doc.text.magnifyingglass"
+        case .resolved: return "checkmark.seal"
+        case .dismissed: return "xmark.seal"
+        }
+    }
+
+    /// Provides a UI color name associated with the status
+    var colorCode: String {
+        switch self {
+        case .pending: return "gray"
+        case .underReview: return "blue"
+        case .resolved: return "green"
+        case .dismissed: return "red"
+        }
+    }
 }
