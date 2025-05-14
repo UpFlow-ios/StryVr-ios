@@ -1,4 +1,11 @@
-import Foundation
+//
+//  UserModel.swift
+//  StryVr
+//
+//  Created by Joe Dormond on [Date]
+//
+//  👤 User Data Model – Represents user profile details and metadata
+//import Foundation
 
 // MARK: - UserModel
 /// Represents a user in the StryVr app
@@ -30,7 +37,7 @@ struct UserModel: Identifiable, Codable, Hashable {
         id: UUID().uuidString,
         fullName: "",
         email: "",
-        role: .mentee,
+        role: .admin,
         joinedDate: Date()
     )
 
