@@ -1,3 +1,10 @@
+//
+//  SceneDelegate.swift
+//  StryVr
+//
+//  🌐 Manages App Window & Session Routing
+//
+
 import UIKit
 import SwiftUI
 import FirebaseAuth
@@ -18,30 +25,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
 
-        // ✅ Configure Firebase only if not already configured
+        // ✅ Initialize Firebase if not already done
         if FirebaseApp.app() == nil {
-            do {
-                FirebaseApp.configure()
-                os_log("🔥 Firebase configured in SceneDelegate", log: .default, type: .info)
-            } catch {
-                os_log("❌ Firebase configuration failed: %{public}@", log: .default, type: .error, error.localizedDescription)
-                return
-            }
+            FirebaseApp.configure()
+            os_log("🔥 Firebase configured in SceneDelegate", log: .default, type: .info)
         }
 
-        // ✅ Select root view based on authentication state
-        let contentView: some View = Group {
-            if Auth.auth().currentUser != nil {
-                HomeView()
-            } else {
-                LoginView()
-            }
-        }
+        // ✅ Determine initial view
+        let contentView: some View = Auth.auth().currentUser != nil
+            ? AnyView(HomeView())
+            : AnyView(LoginView())
 
-        // ✅ Apply SwiftUI view to UIWindow
-        window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = UIHostingController(rootView: contentView)
-        window?.makeKeyAndVisible()
+        // ✅ Setup UIWindow with SwiftUI
+        let window = UIWindow(windowScene: windowScene)
+        window.rootViewController = UIHostingController(rootView: contentView)
+        self.window = window
+        window.makeKeyAndVisible()
 
         os_log("✅ UIWindow attached to root view", log: .default, type: .info)
     }
@@ -65,15 +64,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // MARK: - Session Management
     private func saveAppState() {
         os_log("💾 Saving app state", log: .default, type: .info)
-        // Placeholder for state saving logic
-        // Example: Save user preferences or app data
+        // Placeholder: persist user or app data here
     }
 
     private func checkUserSession() {
+        guard let window = self.window else { return }
+
         if Auth.auth().currentUser == nil {
             os_log("🔐 No active user session. Redirecting to LoginView.", log: .default, type: .info)
             DispatchQueue.main.async {
-                self.window?.rootViewController = UIHostingController(rootView: LoginView())
+                window.rootViewController = UIHostingController(rootView: LoginView())
             }
         }
     }
