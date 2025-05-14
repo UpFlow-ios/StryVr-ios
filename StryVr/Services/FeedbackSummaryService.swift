@@ -2,8 +2,10 @@
 //  FeedbackSummaryService.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 5/5/25.
-//  📊 Feedback Summary Engine – Categorized Ratings, Trend Flags, AI-Ready
+//  Created by Joe Dormond on 5/5/25
+//
+//  📊 Feedback Summary Service – Analyzes behavior feedback to produce averages,
+//  flag underperforming categories, and calculate overall rating scores.
 //
 
 import Foundation
