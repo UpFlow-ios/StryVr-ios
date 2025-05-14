@@ -14,11 +14,13 @@ struct EmployeeTimelineEvent: Identifiable, Codable {
     let timestamp: Date
 
     var formattedDate: String {
+        return EmployeeTimelineEvent.dateFormatter.string(from: timestamp)
+    }
+
+    private static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
-        return formatter.string(from: timestamp)
-    }
+        return formatter
+    }()
 }
-
-
