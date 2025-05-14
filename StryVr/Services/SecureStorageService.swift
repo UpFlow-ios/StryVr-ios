@@ -1,8 +1,9 @@
-?//
+//
 //  SecureStorageService.swift
 //  StryVr
 //
 //  Created by Joe Dormond on 3/12/25.
+//  🔐 SecureStorageService – Keychain-based sensitive data handler with biometric authentication support
 //
 import Foundation
 import Security
