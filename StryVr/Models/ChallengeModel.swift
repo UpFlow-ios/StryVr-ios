@@ -1,3 +1,11 @@
+//
+//  ChallengeModel.swift
+//  StryVr
+//
+//  Created by Joe Dormond on 4/15/25
+//
+//  🏆 Challenge Model – Represents user-driven skill-building challenges
+//
 import Foundation
 
 /// Represents a skill-building challenge within StryVr
@@ -91,6 +99,6 @@ struct ChallengeModel: Identifiable, Codable, Hashable {
         description: "",
         type: .solo,
         startDate: Date(),
+        endDate: Calendar.current.date(byAdding: .day, value: 7, to: Date())!
     )
 }
-        endDate: Calendar.current.date(byAdding: .day, value: 7, to: Date())!
