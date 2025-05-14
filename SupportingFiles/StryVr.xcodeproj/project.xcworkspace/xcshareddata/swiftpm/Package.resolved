@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/simibac/ConfettiSwiftUI",
       "state" : {
-        "revision" : "79666d42b882bf7921b1941fa7c636d681d77980",
-        "version" : "2.0.3"
+        "revision" : "f45961f97bbae6fff6e2e64546fea0189425ad92",
+        "version" : "1.1.0"
       }
     },
     {
@@ -159,8 +159,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kean/Pulse",
       "state" : {
-        "revision" : "6125ce7fb51b114ba71b761d18cfd5557923bd4d",
-        "version" : "5.1.4"
+        "revision" : "2303a867926ba4d2f328d9237027b3ec95b6f189",
+        "version" : "2.1.5"
       }
     },
     {
