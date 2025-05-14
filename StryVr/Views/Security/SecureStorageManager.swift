@@ -3,7 +3,7 @@
 //  StryVr
 //
 //  Created by Joseph Dormond on 4/15/25.
-//  🔒 Optimized for Security & Scalability
+//  🔐 SecureStorageManager & View – Keychain-backed persistence with MVVM architecture
 //
 
 import SwiftUI

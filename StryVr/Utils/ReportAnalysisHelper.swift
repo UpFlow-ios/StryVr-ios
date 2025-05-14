@@ -1,4 +1,3 @@
-```swift
 //
 //  ReportAnalysisHelper.swift
 //  StryVr
@@ -71,4 +70,3 @@ struct ReportAnalysisHelper {
         return weakSkills
     }
 }
-
