@@ -2,8 +2,9 @@
 //  EmployeeProgressService.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 5/6/25.
-//  📈 Service – Fetches employee timeline events from Firestore
+//  Created by Joe Dormond on 5/6/25
+//
+//  📈 Employee Progress Service – Fetches timeline events from Firestore for analytics
 //
 
 import Foundation
@@ -34,4 +35,3 @@ final class EmployeeProgressService {
             }
     }
 }
-
