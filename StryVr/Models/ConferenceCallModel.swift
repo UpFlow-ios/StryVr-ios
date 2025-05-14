@@ -1,3 +1,12 @@
+//
+//  ConferenceCallModel.swift
+//  StryVr
+//
+//  Created by Joe Dormond on 4/15/25.
+//
+//  📞 Conference Call Model – Represents scheduled video conference metadata
+//
+
 import Foundation
 
 // MARK: - ConferenceCallModel
