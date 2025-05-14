@@ -29,4 +29,17 @@ enum TabItem: Int, CaseIterable {
         case .profile: return "icon_profile"
         }
     }
+
+    var colorCode: String {
+        switch self {
+        case .home: return "blue"
+        case .learning: return "orange"
+        case .community: return "green"
+        case .profile: return "purple"
+        }
+    }
+
+    static var mock: TabItem {
+        .home
+    }
 }
