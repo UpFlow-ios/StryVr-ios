@@ -7,6 +7,7 @@
 //  📡 FirestoreService – Centralized Firestore access layer for user data, skills, and history
 //
 
+import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 import os.log
@@ -27,7 +28,23 @@ class FirestoreService {
             completion(.failure(FirestoreServiceError.invalidInput))
             return
         }
-        // ... rest of fetchUserData implementation
+        db.collection("users").document(userID).getDocument { document, error in
+            if let error = error {
+                self.logger.error("❌ Firestore fetch error: \(error.localizedDescription)")
+                completion(.failure(error))
+                return
+            }
+
+            guard let document = document, document.exists,
+                  let data = try? document.data(as: UserData.self) else {
+                self.logger.warning("⚠️ Document missing or malformed")
+                completion(.failure(FirestoreServiceError.invalidInput))
+                return
+            }
+
+            self.logger.info("✅ User data retrieved")
+            completion(.success(data))
+        }
     }
 
     func updateUserData(userID: String, fields: [String: Any], completion: @escaping (Result<Void, Error>) -> Void) {
@@ -40,7 +57,15 @@ class FirestoreService {
             completion(.failure(FirestoreServiceError.invalidInput))
             return
         }
-        // ... rest of updateUserData implementation
+        db.collection("users").document(userID).updateData(fields) { error in
+            if let error = error {
+                self.logger.error("❌ Failed to update user data: \(error.localizedDescription)")
+                completion(.failure(error))
+            } else {
+                self.logger.info("✅ User data updated successfully")
+                completion(.success(()))
+            }
+        }
     }
 }
 
