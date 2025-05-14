@@ -24,11 +24,15 @@ struct ReportAnalysisHelper {
             }
         }
         
-        let averageProgress = skillProgressTotals.mapValues { progresses -> Double in
-            guard !progresses.isEmpty else { return 0.0 }
+        let averageProgress = skillProgressTotals.reduce(into: [String: Double]()) { result, entry in
+            let (skill, progresses) = entry
+            guard !progresses.isEmpty else {
+                result[skill] = 0.0
+                return
+            }
             let average = progresses.reduce(0, +) / Double(progresses.count)
             os_log("📊 Skill %{public}@ average progress: %{public}.2f", skill, average)
-            return average
+            result[skill] = average
         }
         
         return averageProgress
