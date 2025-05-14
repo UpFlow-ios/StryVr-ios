@@ -50,7 +50,7 @@ protocol ProfileValidationServiceProtocol {
 struct MockProfileValidationService: ProfileValidationServiceProtocol {
     func validate(completion: @escaping (Result<Bool, Error>) -> Void) {
         DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
+            completion(.success(Bool.random()))
         }
     }
-            completion(.success(Bool.random()))
 }
