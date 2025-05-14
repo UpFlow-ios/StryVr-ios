@@ -1,3 +1,11 @@
+//
+//  VideoPostModel.swift
+//  StryVr
+//
+//  Created by Joe Dormond on [Date]
+//
+//  🎥 VideoPost Model – Represents user-generated video content and engagement
+//
 import Foundation
 
 /// Represents a video post within the StryVr platform
