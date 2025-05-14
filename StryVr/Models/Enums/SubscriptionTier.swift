@@ -47,4 +47,29 @@ enum SubscriptionTier: String, Codable, CaseIterable {
     static func isValidTier(_ tier: String) -> Bool {
         return SubscriptionTier(rawValue: tier) != nil
     }
+
+    /// Preview/mock tier for UI testing
+    static var mock: SubscriptionTier {
+        .premium
+    }
+
+    /// SF Symbol for each tier
+    var iconName: String {
+        switch self {
+        case .freemium: return "leaf"
+        case .plus: return "star"
+        case .premium: return "crown"
+        case .enterprise: return "building.2"
+        }
+    }
+
+    /// Color name to represent tier visually
+    var colorCode: String {
+        switch self {
+        case .freemium: return "gray"
+        case .plus: return "blue"
+        case .premium: return "purple"
+        case .enterprise: return "orange"
+        }
+    }
 }
