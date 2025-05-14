@@ -10,7 +10,6 @@ import Pulse
 import PulseUI
 import XCGLogger
 import FirebaseAuth
-import DeepLinkKit
 
 struct DevDebugView: View {
     @State private var showLogs = false
@@ -68,17 +67,13 @@ struct DevDebugView: View {
                     ))
                 }
 
-                // MARK: - Deep Link Tester
-                if FeatureFlags.enableDeepLinks {
-                    Section(header: Text("🔗 Deep Link Tester")) {
-                        TextField("stryvr://deeplink?route=home", text: $testDeepLink)
+                // MARK: - Deep Link Test
+                Section(header: Text("🔗 Deep Link Simulation")) {
+                    TextField("Paste test link", text: $testDeepLink)
+                        .textFieldStyle(.roundedBorder)
 
-                        Button("Trigger Deep Link") {
-                            if let url = URL(string: testDeepLink) {
-                                _ = DPLDeepLinkRouter().handle(url)
-                                logger.info("Deep link triggered: \(url.absoluteString)")
-                            }
-                        }
+                    Button("Simulate Deep Link") {
+                        handleDeepLink(testDeepLink)
                     }
                 }
 
@@ -100,6 +95,22 @@ struct DevDebugView: View {
                 }
             }
             .navigationTitle("🔧 Dev Debug Panel")
+        }
+    }
+
+    private func handleDeepLink(_ link: String) {
+        guard let url = URL(string: link) else {
+            logger.error("❌ Invalid deep link: \(link)")
+            return
+        }
+
+        logger.info("📲 Simulating deep link: \(url.absoluteString)")
+
+        // Basic parsing example
+        if url.host == "debug" {
+            logger.info("🛠️ Triggered debug path via deep link")
+        } else {
+            logger.warning("⚠️ No route matched for: \(url.absoluteString)")
         }
     }
 }
