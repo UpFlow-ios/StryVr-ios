@@ -2,8 +2,9 @@
 //  BehaviorFeedbackService.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 5/5/25.
-//  ☁️ Service – Handles submission and fetching of behavior feedback
+//  Created by Joe Dormond on 5/5/25
+//
+//  ☁️ Behavior Feedback Service – Submits and retrieves employee behavior feedback using Firestore
 //
 
 import Foundation
@@ -55,4 +56,3 @@ final class BehaviorFeedbackService {
             }
     }
 }
-
