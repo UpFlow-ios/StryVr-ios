@@ -2,7 +2,9 @@
 //  AuthManager.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 3/12/25.
+//  Created by Joe Dormond on 3/12/25
+//
+//  🔐 Auth Manager – Handles MFA (email & SMS) and secure session management
 //
 import Foundation
 import FirebaseAuth

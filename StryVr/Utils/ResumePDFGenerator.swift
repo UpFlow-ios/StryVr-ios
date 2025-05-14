@@ -12,7 +12,23 @@ import UIKit
 class ResumePDFGenerator {
     static let shared = ResumePDFGenerator()
 
-    func createPDF() -> URL {
+    /// Generates a PDF resume with the given details.
+    /// - Parameters:
+    ///   - name: The name of the individual.
+    ///   - location: The location/address of the individual.
+    ///   - companies: An array of verified companies with role and dates.
+    ///   - skills: An array of tuples containing skill name and proficiency percentage.
+    ///   - workImpact: A description of the work impact.
+    ///   - teamFeedback: Feedback from the team.
+    /// - Returns: A URL pointing to the generated PDF file.
+    func createPDF(
+        name: String,
+        location: String,
+        companies: [String],
+        skills: [(name: String, percentage: Int)],
+        workImpact: String,
+        teamFeedback: String
+    ) -> URL {
         let pdfMetaData = [
             kCGPDFContextCreator: "Stryvr",
             kCGPDFContextAuthor: "Stryvr AI Engine",
@@ -39,26 +55,24 @@ class ResumePDFGenerator {
                 .paragraphStyle: paragraphStyle
             ]
 
+            let companiesText = companies.map { "• \($0)" }.joined(separator: "\n")
+            let skillsText = skills.map { "• \($0.name) – \($0.percentage)%" }.joined(separator: "\n")
+
             let resumeText = """
-            Name: Matthew Anderson
-            Location: 1234 Elm St, Springfield, IL 62701
+            Name: \(name)
+            Location: \(location)
 
             — Verified Companies —
-            • Microsoft – Software Engineer (May 2021 – April 2024)
-            • Google – Web Developer (Jan 2018 – April 2021)
-            • Meta – IT Specialist (Aug 2016 – Jan 2018)
-            • Creative Agency – Graphic Designer (2013–2015)
+            \(companiesText)
 
             — Top Skills —
-            • Swift – 62%
-            • UI Design – 25%
-            • Firebase – 13%
+            \(skillsText)
 
             — Work Impact —
-            Built scalable app features used by millions
+            \(workImpact)
 
             — Team Feedback —
-            Strong collaborator and communicates effectively
+            \(teamFeedback)
             """
 
             resumeText.draw(in: CGRect(x: 36, y: 50, width: pageWidth - 72, height: pageHeight - 100), withAttributes: attributes)

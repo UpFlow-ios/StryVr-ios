@@ -2,7 +2,9 @@
 //  AIRecommendationService.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 3/11/25.
+//  Created by Joe Dormond on 3/11/25
+//
+//  🤖 AI Recommendation Service – Suggests skill enhancements based on current user skills
 //
 import Foundation
 import FirebaseFirestore

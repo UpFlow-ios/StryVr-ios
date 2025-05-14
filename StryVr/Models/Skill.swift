@@ -2,8 +2,11 @@
 //  Skill.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 3/26/25.
+//  Created by Joe Dormond on 3/26/25
 //
+//  🧠 Skill Model – Tracks user skills, proficiency, activity, and validation
+//
+
 
 import Foundation
 

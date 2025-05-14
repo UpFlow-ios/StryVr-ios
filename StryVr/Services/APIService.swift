@@ -1,3 +1,11 @@
+//
+//  APIService.swift
+//  StryVr
+//
+//  Created by Joe Dormond on 3/26/25
+//
+//  🌐 API Service – Handles HTTP requests and JSON decoding across the app
+//
 import Foundation
 
 /// Custom error type for API calls

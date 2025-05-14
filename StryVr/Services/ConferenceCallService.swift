@@ -110,9 +110,9 @@ final class ConferenceCallService {
         ]
 
         db.collection("conferenceCalls").document(callID).updateData([
+            "chatMessages": FieldValue.arrayUnion([messageData])
         ]) { error in
             if let error = error {
-            "chatMessages": FieldValue.arrayUnion([messageData])
                 self.logger.error("❌ Chat message failed: \(error.localizedDescription)")
                 completion(false, error)
             } else {

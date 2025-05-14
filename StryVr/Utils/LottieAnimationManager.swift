@@ -1,3 +1,10 @@
+//
+//  LottieAnimationManager.swift
+//  StryVr
+//
+//  Created by Joe Dormond on 5/14/25.
+//  🎞️ Lottie Wrapper – SwiftUI-Compatible View for Confetti & Animations
+//
 import SwiftUI
 import Lottie
 
@@ -25,8 +32,10 @@ struct LottieAnimationView: UIViewRepresentable {
         containerView.addSubview(animationView)
 
         NSLayoutConstraint.activate([
-            animationView.widthAnchor.constraint(equalTo: containerView.widthAnchor),
-            animationView.heightAnchor.constraint(equalTo: containerView.heightAnchor)
+            animationView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            animationView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+            animationView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            animationView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
         ])
 
         // Auto-play animation

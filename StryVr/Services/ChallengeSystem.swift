@@ -2,8 +2,11 @@
 //  ChallengeSystem.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 3/12/25.
+//  Created by Joe Dormond on 3/12/25
 //
+//  🏆 Challenge System – Manages learning challenges, competitions, and streak tracking
+//
+
 import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
@@ -73,9 +76,8 @@ final class ChallengeSystem {
                 self.logger.info("✅ User joined challenge \(challengeID)")
                 completion(true, nil)
             }
-    }
-
         }
+    }
     // MARK: - Complete Challenge
     /// Marks a challenge as completed for a user
     func completeChallenge(challengeID: String, userID: String, completion: @escaping (Bool, Error?) -> Void) {
