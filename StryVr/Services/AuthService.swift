@@ -2,8 +2,9 @@
 //  AuthService.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 3/12/25.
-//  🔐 Unified Auth Manager: Firebase Email/Password + Okta OIDC
+//  Created by Joe Dormond on 3/12/25
+//
+//  🔐 Auth Service – Handles Firebase Email/Password Auth and Okta OIDC Integration
 //
 
 import Foundation
