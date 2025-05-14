@@ -32,4 +32,29 @@ enum VerificationStatus: String, Codable, CaseIterable {
     static func isValidStatus(_ status: String) -> Bool {
         return VerificationStatus(rawValue: status) != nil
     }
+
+    /// Preview/mock value for testing or UI previews
+    static var mock: VerificationStatus {
+        .underReview
+    }
+
+    /// Associated SF Symbol icon
+    var iconName: String {
+        switch self {
+        case .pending: return "hourglass"
+        case .underReview: return "doc.text.magnifyingglass"
+        case .approved: return "checkmark.seal"
+        case .rejected: return "xmark.seal"
+        }
+    }
+
+    /// Color token used for UI theming
+    var colorCode: String {
+        switch self {
+        case .pending: return "gray"
+        case .underReview: return "blue"
+        case .approved: return "green"
+        case .rejected: return "red"
+        }
+    }
 }
