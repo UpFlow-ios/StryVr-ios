@@ -35,4 +35,31 @@ enum ChallengeType: String, Codable, CaseIterable {
     static func isValidType(_ type: String) -> Bool {
         return ChallengeType(rawValue: type) != nil
     }
+
+    /// Provides a mock challenge type for preview/testing
+    static var mock: ChallengeType {
+        .solo
+    }
+
+    /// Returns an SF Symbol name representing the challenge type
+    var iconName: String {
+        switch self {
+        case .solo: return "person.fill"
+        case .group: return "person.3.fill"
+        case .timed: return "clock.fill"
+        case .open: return "square.and.pencil"
+        case .peerReview: return "person.crop.circle.badge.checkmark"
+        }
+    }
+
+    /// Returns a color token for UI usage
+    var colorCode: String {
+        switch self {
+        case .solo: return "blue"
+        case .group: return "green"
+        case .timed: return "orange"
+        case .open: return "indigo"
+        case .peerReview: return "purple"
+        }
+    }
 }
