@@ -35,4 +35,30 @@ enum VideoCategory: String, Codable, CaseIterable {
     static func isValidCategory(_ category: String) -> Bool {
         return VideoCategory(rawValue: category) != nil
     }
+    /// Mock value for SwiftUI previews
+    static var mock: VideoCategory {
+        .skillTutorial
+    }
+
+    /// Icon associated with the category
+    var iconName: String {
+        switch self {
+        case .skillTutorial: return "graduationcap.fill"
+        case .industryInsights: return "chart.bar.doc.horizontal"
+        case .successStory: return "star.circle"
+        case .projectShowcase: return "hammer.fill"
+        case .other: return "questionmark.circle"
+        }
+    }
+
+    /// Color name used for UI theming
+    var colorCode: String {
+        switch self {
+        case .skillTutorial: return "blue"
+        case .industryInsights: return "indigo"
+        case .successStory: return "yellow"
+        case .projectShowcase: return "teal"
+        case .other: return "gray"
+        }
+    }
 }
