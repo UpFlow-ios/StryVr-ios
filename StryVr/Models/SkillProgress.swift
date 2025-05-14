@@ -2,7 +2,9 @@
 //  SkillProgress.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 3/26/25.
+//  Created by Joe Dormond on 3/26/25
+//
+//  📈 Skill Progress Model – Tracks user's progress and proficiency level per skill
 //
 
 import Foundation
