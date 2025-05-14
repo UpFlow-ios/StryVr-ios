@@ -1,18 +1,27 @@
+//
+//  NetworkManager.swift
+//  StryVr
+//
+//  Created by Joe Dormond on 3/26/25.
+//  🌐 Centralized HTTP client for consistent and logged API requests
+//
+
 import Foundation
 import os.log
 
 final class NetworkManager {
-    
-    // Singleton for consistent networking
-    
+
+    // MARK: - Singleton
     static let shared = NetworkManager()
-    // Logger with a dedicated subsystem and category
+
+    // MARK: - Logger
     private let logger = Logger(subsystem: "com.stryvr.networking", category: "NetworkManager")
-    
-    // Private init to prevent instantiation
+
+    // MARK: - Init
     private init() {}
-    
-    // Generic request method with robust error handling and logging
+
+    // MARK: - Generic Request Method
+    /// Sends a generic HTTP request and decodes the result into a Codable type
     func request<T: Codable>(
         urlString: String,
         method: HTTPMethod = .get,
@@ -26,18 +35,18 @@ final class NetworkManager {
             completion(.failure(.invalidURL))
             return
         }
-        
+
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         request.timeoutInterval = timeout
-        
-        // Add headers if provided
-        headers?.forEach { request.setValue($0.value, forHTTPHeaderField: $0.key) }
-        
+
+        headers?.forEach { key, value in
+            request.setValue(value, forHTTPHeaderField: key)
+        }
+
         URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
             guard let self = self else { return }
-            
-            // Handle errors explicitly
+
             if let error = error {
                 self.logger.error("🚨 Request Failed: \(error.localizedDescription)")
                 DispatchQueue.main.async {
@@ -45,8 +54,7 @@ final class NetworkManager {
                 }
                 return
             }
-            
-            // Validate response status code
+
             guard let httpResponse = response as? HTTPURLResponse,
                   (200...299).contains(httpResponse.statusCode) else {
                 let statusCode = (response as? HTTPURLResponse)?.statusCode ?? -1
@@ -56,8 +64,7 @@ final class NetworkManager {
                 }
                 return
             }
-            
-            // Validate and decode data
+
             guard let data = data else {
                 self.logger.error("🚨 No data returned")
                 DispatchQueue.main.async {
@@ -65,20 +72,47 @@ final class NetworkManager {
                 }
                 return
             }
-            
+
             do {
                 let decodedData = try decoder.decode(T.self, from: data)
-                self.logger.info("✅ Successfully decoded response")
+                self.logger.info("✅ Successfully decoded response for \(urlString)")
                 DispatchQueue.main.async {
                     completion(.success(decodedData))
                 }
             } catch {
-                self.logger.error("🚨 Decoding Error: \(error.localizedDescription)")
+                self.logger.error("🚨 Decoding Error: \(error.localizedDescription)\nRaw Response: \(String(data: data, encoding: .utf8) ?? "N/A")")
                 DispatchQueue.main.async {
                     completion(.failure(.decodingError(error)))
                 }
             }
-            
         }.resume()
+    }
+}
+
+// MARK: - Supporting Types
+// These should be defined globally in your app if not already present
+
+enum HTTPMethod: String {
+    case get = "GET"
+    case post = "POST"
+    case put = "PUT"
+    case delete = "DELETE"
+}
+
+enum NetworkError: LocalizedError {
+    case invalidURL
+    case requestFailed(Error)
+    case invalidResponse(Int)
+    case noData
+    case decodingError(Error)
+
+    var errorDescription: String? {
+        switch self {
+        case .invalidURL: return "Invalid URL."
+        case .requestFailed(let error): return "Request failed: \(error.localizedDescription)"
+        case .invalidResponse(let statusCode): return "Invalid response with status code \(statusCode)."
+        case .noData: return "No data received."
+        case .decodingError(let error): return "Decoding error: \(error.localizedDescription)"
+        }
     }
 }
