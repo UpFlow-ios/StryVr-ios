@@ -2,9 +2,10 @@
 //  SubscriptionPlan.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 3/26/25.
+//  Created by Joe Dormond on 3/26/25
 //
-
+//  💳 Subscription Plan Model – Handles pricing tiers, labels, validation, and features
+//
 import Foundation
 
 /// Represents a pricing tier and features for subscriptions
