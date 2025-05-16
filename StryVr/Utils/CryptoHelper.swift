@@ -23,4 +23,4 @@ enum CryptoHelper {
         return hash(input) == hashed
     }
 }
-
+//     /// Generates a random UUID string

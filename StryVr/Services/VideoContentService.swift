@@ -9,6 +9,7 @@ import Foundation
 import FirebaseStorage
 import FirebaseFirestore
 import os.log
+import AVFoundation
 
 /// Manages video uploads, metadata, streaming & AI tagging
 final class VideoContentService {

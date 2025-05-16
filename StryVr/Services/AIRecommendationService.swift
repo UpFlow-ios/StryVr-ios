@@ -10,6 +10,8 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import os.log
+import AVFoundation
+
 
 /// AI-powered recommendation service for skills
 final class AIRecommendationService {

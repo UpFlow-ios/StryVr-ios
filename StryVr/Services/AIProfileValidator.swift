@@ -6,6 +6,8 @@
 //
 import Foundation
 import Combine
+import AVFoundation
+
 
 /// Handles AI-powered profile validation
 final class ProfileValidatorViewModel: ObservableObject {
