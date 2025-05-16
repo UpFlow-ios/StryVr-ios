@@ -10,20 +10,41 @@ import SwiftUI
 import Security
 import os.log
 
-// MARK: - SecureStorageManager (Keychain-based)
+// MARK: - SecureStorageError
+
+enum SecureStorageError: Error, LocalizedError {
+    case dataConversionFailed
+    case saveFailed(OSStatus)
+    case loadFailed(OSStatus)
+
+    var errorDescription: String? {
+        switch self {
+        case .dataConversionFailed:
+            return "Data conversion failed."
+        case .saveFailed(let status):
+            return "Save failed with status: \(status)."
+        case .loadFailed(let status):
+            return "Load failed with status: \(status)."
+        }
+    }
+}
+
+// MARK: - SecureStorageManager
 
 final class SecureStorageManager {
-
     static let shared = SecureStorageManager()
 
     private init() {}
 
-    func save(key: String, value: String) -> Bool {
-        guard let data = value.data(using: .utf8) else { return false }
+    func save(key: String, value: String) throws {
+        guard let data = value.data(using: .utf8) else {
+            throw SecureStorageError.dataConversionFailed
+        }
 
-        // Delete existing item first to prevent duplicates
-        SecItemDelete([kSecClass: kSecClassGenericPassword,
-                       kSecAttrAccount: key] as CFDictionary)
+        SecItemDelete([
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccount: key
+        ] as CFDictionary)
 
         let query: [CFString: Any] = [
             kSecClass: kSecClassGenericPassword,
@@ -33,14 +54,16 @@ final class SecureStorageManager {
         ]
 
         let status = SecItemAdd(query as CFDictionary, nil)
-        if status != errSecSuccess {
-            os_log("🔒 SecureStorageManager - Save failed with status: %{public}d", status)
+
+        guard status == errSecSuccess else {
+            os_log("🔒 Keychain save error %{public}@ - Status: %{public}d", key, status)
+            throw SecureStorageError.saveFailed(status)
         }
 
-        return status == errSecSuccess
+        os_log("🔒 Keychain save succeeded for key: %{public}@", key)
     }
 
-    func load(key: String) -> String? {
+    func load(key: String) throws -> String {
         let query: [CFString: Any] = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrAccount: key,
@@ -50,15 +73,15 @@ final class SecureStorageManager {
 
         var result: AnyObject?
         let status = SecItemCopyMatching(query as CFDictionary, &result)
-        if status != errSecSuccess {
-            os_log("🔒 SecureStorageManager - Load failed with status: %{public}d", status)
-        }
 
         guard status == errSecSuccess,
               let data = result as? Data,
               let value = String(data: data, encoding: .utf8) else {
-            return nil
+            os_log("🔒 Keychain load error %{public}@ - Status: %{public}d", key, status)
+            throw SecureStorageError.loadFailed(status)
         }
+
+        os_log("🔒 Keychain load succeeded for key: %{public}@", key)
 
         return value
     }
@@ -72,13 +95,15 @@ final class SecureStorageViewModel: ObservableObject {
 
     func saveToSecureStorage() {
         DispatchQueue.global(qos: .userInitiated).async {
-            let success = SecureStorageManager.shared.save(key: "secureData", value: self.inputText)
-            DispatchQueue.main.async {
-                if success {
+            do {
+                try SecureStorageManager.shared.save(key: "secureData", value: self.inputText)
+                DispatchQueue.main.async {
                     self.storedValue = "Data Saved Successfully ✅"
                     self.inputText = ""
-                } else {
-                    self.storedValue = "Failed to Save Data 🚨"
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.storedValue = error.localizedDescription
                 }
             }
         }
@@ -86,9 +111,15 @@ final class SecureStorageViewModel: ObservableObject {
 
     func retrieveFromSecureStorage() {
         DispatchQueue.global(qos: .userInitiated).async {
-            let value = SecureStorageManager.shared.load(key: "secureData") ?? "No Data Found"
-            DispatchQueue.main.async {
-                self.storedValue = value
+            do {
+                let value = try SecureStorageManager.shared.load(key: "secureData")
+                DispatchQueue.main.async {
+                    self.storedValue = value
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.storedValue = error.localizedDescription
+                }
             }
         }
     }
@@ -147,10 +178,7 @@ struct SecureStorageView: View {
 
 struct SecureStorageView_Previews: PreviewProvider {
     static var previews: some View {
-        SecureStorageView()
-            .preferredColorScheme(.light)
-
-        SecureStorageView()
-            .preferredColorScheme(.dark)
+        SecureStorageView().preferredColorScheme(.light)
+        SecureStorageView().preferredColorScheme(.dark)
     }
 }
