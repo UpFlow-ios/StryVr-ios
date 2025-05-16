@@ -2,7 +2,7 @@
 //  AuthViewModel.swift
 //  StryVr
 //
-//  🔒 Unified Auth ViewModel – Firebase Auth + Okta, with real-time tracking
+//  🔒 Fully Optimized Auth ViewModel with Enhanced Error Handling, Firebase Auth Integration, Real-Time Updates
 //
 
 import Foundation
@@ -12,79 +12,76 @@ import os.log
 final class AuthViewModel: ObservableObject {
     static let shared = AuthViewModel()
 
-    @Published var userSession: FirebaseAuth.User?
-    @Published var errorMessage: String?
-    @Published var isAuthenticated: Bool = false
+    @Published private(set) var userSession: FirebaseAuth.User?
+    @Published private(set) var errorMessage: String?
+    @Published private(set) var isAuthenticated: Bool = false
 
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr.app", category: "AuthViewModel")
+    private var authListenerHandle: AuthStateDidChangeListenerHandle?
 
     private init() {
-        listenToAuthChanges()
+        configureAuthListener()
     }
 
-    // MARK: - Live Auth State Listener
-    func listenToAuthChanges() {
-        Auth.auth().addStateDidChangeListener { _, user in
+    deinit {
+        removeAuthListener()
+    }
+
+    // MARK: - Auth State Listener
+    private func configureAuthListener() {
+        authListenerHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
             DispatchQueue.main.async {
-                self.userSession = user
-                self.isAuthenticated = (user != nil)
-                self.logger.info("🔁 Auth state changed: \(self.isAuthenticated ? "✅ Logged In" : "🚪 Logged Out")")
+                self?.userSession = user
+                self?.isAuthenticated = (user != nil)
+                self?.logger.info("🔁 Auth state changed: \(self?.isAuthenticated == true ? "✅ Logged In" : "🚪 Logged Out")")
             }
         }
     }
 
-    // MARK: - Email/Password Sign In
-    func signIn(email: String, password: String) {
-        guard isValidEmail(email), !password.isEmpty else {
-            errorMessage = "Please enter a valid email and password."
-            logger.error("❌ Sign-in failed: Invalid credentials format")
-            return
+    private func removeAuthListener() {
+        if let handle = authListenerHandle {
+            Auth.auth().removeStateDidChangeListener(handle)
         }
+    }
+
+    // MARK: - Email Sign In
+    func signIn(email: String, password: String) {
+        guard validate(email: email, password: password) else { return }
 
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
             DispatchQueue.main.async {
                 if let error = error {
-                    self?.handleAuthError(error)
+                    self?.processAuthError(error)
                     return
                 }
 
                 guard let user = result?.user else {
-                    self?.errorMessage = "An unknown error occurred."
-                    self?.logger.error("❌ Sign-in failed: No user returned")
+                    self?.updateError("An unknown sign-in error occurred.")
                     return
                 }
 
-                self?.userSession = user
-                self?.errorMessage = nil
-                self?.isAuthenticated = true
-                self?.logger.info("✅ Email login: \(user.email ?? "unknown")")
+                self?.updateAuthSuccess(user: user, action: "Sign-in")
             }
         }
     }
 
-    // MARK: - Register
+    // MARK: - User Registration
     func createUser(email: String, password: String) {
-        guard isValidEmail(email), !password.isEmpty else {
-            errorMessage = "Please enter a valid email and password."
-            return
-        }
+        guard validate(email: email, password: password) else { return }
 
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
             DispatchQueue.main.async {
                 if let error = error {
-                    self?.handleAuthError(error)
+                    self?.processAuthError(error)
                     return
                 }
 
                 guard let user = result?.user else {
-                    self?.errorMessage = "Sign-up failed. Try again."
+                    self?.updateError("An unknown registration error occurred.")
                     return
                 }
 
-                self?.userSession = user
-                self?.errorMessage = nil
-                self?.isAuthenticated = true
-                self?.logger.info("✅ User signed up: \(user.email ?? "unknown")")
+                self?.updateAuthSuccess(user: user, action: "Registration")
             }
         }
     }
@@ -92,18 +89,19 @@ final class AuthViewModel: ObservableObject {
     // MARK: - Password Reset
     func resetPassword(email: String) {
         guard isValidEmail(email) else {
-            errorMessage = "Enter a valid email address."
+            updateError("Enter a valid email address.")
             return
         }
 
         Auth.auth().sendPasswordReset(withEmail: email) { [weak self] error in
             DispatchQueue.main.async {
                 if let error = error {
-                    self?.handleAuthError(error)
-                } else {
-                    self?.errorMessage = "Password reset email sent."
-                    self?.logger.info("📧 Reset email sent")
+                    self?.processAuthError(error)
+                    return
                 }
+
+                self?.updateError("Password reset email sent. Check your inbox.")
+                self?.logger.info("📧 Password reset initiated for \(email)")
             }
         }
     }
@@ -115,33 +113,52 @@ final class AuthViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.userSession = nil
                 self.isAuthenticated = false
-                self.errorMessage = nil
-                self.logger.info("🚪 User signed out")
+                self.logger.info("🚪 User signed out successfully")
             }
         } catch {
-            self.errorMessage = "Failed to sign out: \(error.localizedDescription)"
-            self.logger.error("❌ Sign-out failed: \(error.localizedDescription)")
+            processAuthError(error)
         }
     }
 
-    // MARK: - Validation
-    private func isValidEmail(_ email: String) -> Bool {
-        let emailRegex = #"^\S+@\S+\.\S+$"#
-        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email)
+    // MARK: - Validation & Helpers
+    private func validate(email: String, password: String) -> Bool {
+        guard isValidEmail(email), !password.isEmpty else {
+            updateError("Please provide a valid email and password.")
+            return false
+        }
+        return true
     }
 
-    private func handleAuthError(_ error: Error) {
+    private func isValidEmail(_ email: String) -> Bool {
+        let regex = #"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"#
+        return NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: email)
+    }
+
+    private func updateAuthSuccess(user: FirebaseAuth.User, action: String) {
+        userSession = user
+        isAuthenticated = true
+        errorMessage = nil
+        logger.info("✅ \(action) successful for user: \(user.email ?? "unknown")")
+    }
+
+    private func updateError(_ message: String) {
+        errorMessage = message
+        logger.error("❌ Auth error: \(message)")
+    }
+
+    private func processAuthError(_ error: Error) {
         let nsError = error as NSError
         let code = AuthErrorCode.Code(rawValue: nsError.code)
 
         switch code {
-        case .wrongPassword: errorMessage = "Incorrect password."
-        case .userNotFound: errorMessage = "No account found. Please sign up."
-        case .emailAlreadyInUse: errorMessage = "Email is already registered."
-        case .networkError: errorMessage = "Network error. Try again."
-        default: errorMessage = "Error: \(error.localizedDescription)"
+        case .wrongPassword: updateError("Incorrect password. Please try again.")
+        case .userNotFound: updateError("User not found. Consider signing up.")
+        case .emailAlreadyInUse: updateError("Email already in use. Try logging in.")
+        case .invalidEmail: updateError("Invalid email format.")
+        case .networkError: updateError("Network error. Please check your connection.")
+        default: updateError(error.localizedDescription)
         }
 
-        logger.error("❌ FirebaseAuth error: \(error.localizedDescription)")
+        logger.error("❌ FirebaseAuth detailed error: \(error.localizedDescription)")
     }
 }
