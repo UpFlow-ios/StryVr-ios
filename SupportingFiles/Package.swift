@@ -18,7 +18,8 @@ let package = Package(
         .package(url: "https://github.com/airbnb/lottie-ios.git", from: "4.3.0"),
         .package(url: "https://github.com/simibac/ConfettiSwiftUI", from: "1.0.0"),
         .package(url: "https://github.com/DaveWoodCom/XCGLogger", from: "7.0.1"),
-        .package(url: "https://github.com/siteline/SwiftUI-Introspect", from: "1.1.0")
+        .package(url: "https://github.com/siteline/SwiftUI-Introspect", from: "1.1.0"),
+        .package(url: "https://github.com/kishikawakatsumi/KeychainAccess.git", from: "4.2.2") // 🔐 NEW
     ],
     targets: [
         .target(
@@ -36,7 +37,8 @@ let package = Package(
                 .product(name: "Lottie", package: "lottie-ios"),
                 .product(name: "ConfettiSwiftUI", package: "ConfettiSwiftUI"),
                 .product(name: "XCGLogger", package: "XCGLogger"),
-                .product(name: "Introspect", package: "SwiftUI-Introspect")
+                .product(name: "Introspect", package: "SwiftUI-Introspect"),
+                .product(name: "KeychainAccess", package: "KeychainAccess") // 🔐 NEW
             ]
         )
     ]
