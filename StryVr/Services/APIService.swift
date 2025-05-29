@@ -4,8 +4,9 @@
 //
 //  Created by Joe Dormond on 3/26/25
 //
-//  🌐 API Service – Handles HTTP requests and JSON decoding across the app
+//  🌐 API Service – Enhanced with POST support and JSON decoding
 //
+
 import Foundation
 
 /// Custom error type for API calls
@@ -30,41 +31,35 @@ final class APIService {
     }
 
     // MARK: - Basic Data Fetcher
-    /// Fetches raw data from a given URL string
     func fetchData(from urlString: String, completion: @escaping (Result<Data, APIError>) -> Void) {
-        guard !urlString.isEmpty else {
-            return completion(.failure(.invalidURL))
-        }
-
         guard let url = URL(string: urlString) else {
-            return completion(.failure(.invalidURL))
+            completion(.failure(.invalidURL))
+            return
         }
 
         let task = session.dataTask(with: url) { data, response, error in
-            // Check for low-level URL errors
             if let error = error {
-                return completion(.failure(.network(error)))
+                completion(.failure(.network(error)))
+                return
             }
 
-            // Check for HTTP response status
-            if let httpResponse = response as? HTTPURLResponse,
-               !(200...299).contains(httpResponse.statusCode) {
-                return completion(.failure(.httpStatus(httpResponse.statusCode)))
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode) else {
+                completion(.failure(.httpStatus((response as? HTTPURLResponse)?.statusCode ?? -1)))
+                return
             }
 
-            // Ensure we got data
             guard let data = data else {
-                return completion(.failure(.noData))
+                completion(.failure(.noData))
+                return
             }
 
             completion(.success(data))
         }
-
         task.resume()
     }
 
     // MARK: - JSON Decoder Utility
-    /// Fetches and decodes JSON data from a given URL string
     func fetchJSON<T: Decodable>(from urlString: String, as type: T.Type, completion: @escaping (Result<T, APIError>) -> Void) {
         fetchData(from: urlString) { result in
             switch result {
@@ -75,10 +70,58 @@ final class APIService {
                 } catch {
                     completion(.failure(.decoding(error)))
                 }
-
             case .failure(let error):
                 completion(.failure(error))
             }
         }
+    }
+
+    // MARK: - POST JSON Utility
+    func postJSON<T: Decodable>(to urlString: String, body: [String: Any], headers: [String: String]? = nil, as type: T.Type, completion: @escaping (Result<T, APIError>) -> Void) {
+        guard let url = URL(string: urlString) else {
+            completion(.failure(.invalidURL))
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        headers?.forEach { key, value in
+            request.addValue(value, forHTTPHeaderField: key)
+        }
+
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: body)
+        } catch {
+            completion(.failure(.decoding(error)))
+            return
+        }
+
+        let task = session.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(.network(error)))
+                return
+            }
+
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode) else {
+                completion(.failure(.httpStatus((response as? HTTPURLResponse)?.statusCode ?? -1)))
+                return
+            }
+
+            guard let data = data else {
+                completion(.failure(.noData))
+                return
+            }
+
+            do {
+                let decoded = try JSONDecoder().decode(T.self, from: data)
+                completion(.success(decoded))
+            } catch {
+                completion(.failure(.decoding(error)))
+            }
+        }
+        task.resume()
     }
 }

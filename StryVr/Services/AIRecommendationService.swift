@@ -4,16 +4,14 @@
 //
 //  Created by Joe Dormond on 3/11/25
 //
-//  🤖 AI Recommendation Service – Suggests skill enhancements based on current user skills
+//  🤖 AI Recommendation Service – Enhanced with Hugging Face integration
 //
+
 import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import os.log
-import AVFoundation
 
-
-/// AI-powered recommendation service for skills
 final class AIRecommendationService {
     static let shared = AIRecommendationService()
     private let db: Firestore
@@ -23,12 +21,10 @@ final class AIRecommendationService {
         self.db = db
     }
 
-    /// Uses current skills to suggest related skills
-    // MARK: - Skill Recommendations
-
+    // MARK: - Public Method for Skill Recommendations
     func fetchSkillRecommendations(for userID: String, completion: @escaping ([String]) -> Void) {
         guard !userID.isEmpty else {
-            logger.error("❌ Invalid user ID")
+            logger.error("❌ Invalid user ID provided.")
             completion([])
             return
         }
@@ -39,42 +35,50 @@ final class AIRecommendationService {
                 guard let self = self else { return }
 
                 if let error = error {
-                    self.logger.error("❌ Skill fetch error: \(error.localizedDescription)")
+                    self.logger.error("❌ Error fetching user skills: \(error.localizedDescription)")
                     completion([])
                     return
                 }
 
-                guard let data = snapshot?.data() else {
-                    self.logger.error("⚠️ No skill data found")
+                guard let data = snapshot?.data(),
+                      let currentSkills = data["skills"] as? [String] else {
+                    self.logger.error("⚠️ No skills found for user.")
                     completion([])
                     return
                 }
 
-                let currentSkills = data["skills"] as? [String] ?? []
-                let suggestions = Self.generateSkillSuggestions(from: currentSkills)
-                self.logger.info("✅ Suggested \(suggestions.count) skills")
-                completion(suggestions)
+                self.requestAISuggestions(currentSkills: currentSkills, completion: completion)
             }
     }
 
-    // MARK: - Static AI Skill Logic
-
-    /// Placeholder AI suggestion logic (replace with real AI engine later)
-    private static func generateSkillSuggestions(from skills: [String]) -> [String] {
-        let skillMap: [String: [String]] = [
-            "Swift": ["SwiftUI", "Combine", "Core Data"],
-            "Firebase": ["Firestore", "Cloud Functions"],
-            "UI/UX Design": ["Figma", "Sketch", "User Testing"]
-        ]
-
-        var recommended: [String] = []
-
-        for skill in skills {
-            if let related = skillMap[skill] {
-                recommended.append(contentsOf: related)
-            }
+    // MARK: - Private AI Request Method
+    private func requestAISuggestions(currentSkills: [String], completion: @escaping ([String]) -> Void) {
+        guard let apiKey = SecureStorageManager.shared.load(key: "huggingFaceAPIKey") else {
+            logger.error("❌ Missing API Key for Hugging Face.")
+            completion([])
+            return
         }
 
-        return Array(Set(recommended))
+        let headers = ["Authorization": "Bearer \(apiKey)"]
+        let body = ["inputs": "Given skills: \(currentSkills.joined(separator: ", ")). Suggest related professional skills."]
+
+        APIService.shared.postJSON(
+            to: "https://api-inference.huggingface.co/models/gpt2",
+            body: body,
+            headers: headers,
+            as: [AISuggestionResponse].self
+        ) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let suggestions):
+                    let skillRecommendations = suggestions.flatMap { $0.generatedSkills() }
+                    self.logger.info("✅ AI recommended \(skillRecommendations.count) skills successfully.")
+                    completion(skillRecommendations)
+                case .failure(let error):
+                    self.logger.error("❌ AI API call failed: \(error.localizedDescription)")
+                    completion([])
+                }
+            }
+        }
     }
 }
