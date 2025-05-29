@@ -2,7 +2,7 @@
 //  DevDebugView.swift
 //  StryVr
 //
-//  🧪 Developer Debug Panel – Logs, Feature Flags, Crash Sim, Deep Links
+//  🧪 Developer Debug Panel – Logs, Feature Flags, Crash Sim, Deep Links, API Tests
 //
 
 import SwiftUI
@@ -16,6 +16,8 @@ struct DevDebugView: View {
     @State private var logMessage = ""
     @State private var testDeepLink = ""
     @State private var showAuthStatus = false
+    @State private var aiSuggestions: [String] = []
+    @State private var apiTestResult: String = ""
 
     @Environment(\.isDebug) var isDebug
     private let logger = XCGLogger.default
@@ -67,6 +69,46 @@ struct DevDebugView: View {
                     ))
                 }
 
+                // MARK: - AI Test Section
+                Section(header: Text("🤖 AI Recommendations Test")) {
+                    Button("Fetch AI Recommendations") {
+                        AIRecommendationService.shared.fetchSkillRecommendations(for: "testUserId123") { suggestions in
+                            DispatchQueue.main.async {
+                                aiSuggestions = suggestions
+                                logger.info("✅ AI Suggestions: \(suggestions.joined(separator: ", "))")
+                            }
+                        }
+                    }
+                    if !aiSuggestions.isEmpty {
+                        Text("AI Suggestions: \(aiSuggestions.joined(separator: ", "))")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                }
+
+                // MARK: - API Test Section
+                Section(header: Text("🌐 APIService Test")) {
+                    Button("Test External API") {
+                        APIService.shared.fetchData(from: "https://jsonplaceholder.typicode.com/posts") { result in
+                            DispatchQueue.main.async {
+                                switch result {
+                                case .success(let data):
+                                    apiTestResult = "✅ Received \(data.count) bytes"
+                                    logger.info(apiTestResult)
+                                case .failure(let error):
+                                    apiTestResult = "❌ API Error: \(error)"
+                                    logger.error(apiTestResult)
+                                }
+                            }
+                        }
+                    }
+                    if !apiTestResult.isEmpty {
+                        Text(apiTestResult)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                }
+
                 // MARK: - Deep Link Test
                 Section(header: Text("🔗 Deep Link Simulation")) {
                     TextField("Paste test link", text: $testDeepLink)
@@ -106,7 +148,6 @@ struct DevDebugView: View {
 
         logger.info("📲 Simulating deep link: \(url.absoluteString)")
 
-        // Basic parsing example
         if url.host == "debug" {
             logger.info("🛠️ Triggered debug path via deep link")
         } else {
