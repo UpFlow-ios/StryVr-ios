@@ -3,45 +3,66 @@
 //  StryVr
 //
 //  Created by Joe Dormond on 4/15/25.
-//  📈 Optimized for Performance, Scalability, and Maintainability
+//  📈 Fully Optimized for Performance, Scalability, Robust Error Handling, and Maintainability
 //
 
-import Combine
 import Foundation
+import Combine
 import os.log
 
 final class HomeViewModel: ObservableObject {
-    
+
+    // MARK: - Published Properties
     @Published private(set) var skills: [Skill] = []
     @Published var errorMessage: String?
+    @Published private(set) var isLoading: Bool = false
 
+    // MARK: - Private Properties
     private var cancellables = Set<AnyCancellable>()
+    private let skillService: SkillServiceProtocol
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr.app", category: "HomeViewModel")
 
-    init() {
+    // MARK: - Initialization
+    init(skillService: SkillServiceProtocol = SkillService.shared) {
+        self.skillService = skillService
         fetchSkills()
     }
 
     // MARK: - Fetch Skills from SkillService
-    /// Fetches skills from the `SkillService` and updates the `skills` property.
+    /// Fetches skills using `SkillService` with structured logging and error handling.
     func fetchSkills() {
-        SkillService.shared.fetchSkills()
+        isLoading = true
+        skillService.fetchSkills()
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
-                if case let .failure(error) = completion {
-                    self?.handleFetchError(error)
+                guard let self = self else { return }
+                self.isLoading = false
+
+                switch completion {
+                case .finished:
+                    self.logger.info("✅ Skills successfully fetched and loaded.")
+                case .failure(let error):
+                    self.handleFetchError(error)
                 }
             }, receiveValue: { [weak self] skills in
-                self?.skills = skills
-                os_log("✅ HomeViewModel - Skills fetched successfully: %{public}d items", skills.count)
+                guard let self = self else { return }
+                self.skills = skills
+                self.logger.info("📦 Skills received: \(skills.count)")
             })
             .store(in: &cancellables)
     }
 
+    // MARK: - Retry Fetch
+    /// Retries fetching skills, useful for refresh actions.
+    func retryFetchSkills() {
+        fetchSkills()
+        logger.info("♻️ Retry fetching skills triggered.")
+    }
+
     // MARK: - Private Helper for Error Handling
-    /// Handles errors during the fetch operation and updates the `errorMessage`.
-    /// - Parameter error: The error encountered during the fetch operation.
+    /// Handles fetch errors with detailed logging and user-facing messages.
     private func handleFetchError(_ error: Error) {
-        self.errorMessage = "Failed to fetch skills: \(error.localizedDescription)"
-        os_log("❌ HomeViewModel - Error fetching skills: %{public}@", log: .default, type: .error, error.localizedDescription)
+        errorMessage = "Unable to load skills. Please try again."
+        logger.error("❌ Error fetching skills: \(error.localizedDescription, privacy: .public)")
     }
 }
