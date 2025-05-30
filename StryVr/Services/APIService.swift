@@ -10,7 +10,7 @@
 import Foundation
 
 /// Custom error type for API calls
-enum APIError: Error {
+    enum APIError: Error {
     case invalidURL
     case network(Error)
     case httpStatus(Int)

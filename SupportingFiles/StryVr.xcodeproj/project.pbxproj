@@ -145,6 +145,7 @@
 		85CB83042DAE5D60002AA544 /* AIProfileValidatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB83032DAE5D5B002AA544 /* AIProfileValidatorView.swift */; };
 		85DDE81C2DD6BA20009C1D19 /* CryptoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DDE81B2DD6BA07009C1D19 /* CryptoHelper.swift */; };
 		85DDE81E2DE8F79E009C1D19 /* AISuggestionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DDE81D2DE8F78D009C1D19 /* AISuggestionResponse.swift */; };
+		85DDE8242DE93483009C1D19 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DDE8232DE93483009C1D19 /* APIError.swift */; };
 		85EA1C342DD3D65E001C992A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854ECFD32D701D5F00D0B0AC /* CoreTelephony.framework */; };
 		D216694D2DD47103001DAE95 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D216694C2DD47103001DAE95 /* FirebaseAnalytics */; };
 		D216694F2DD47103001DAE95 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = D216694E2DD47103001DAE95 /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -349,6 +350,7 @@
 		85CB83032DAE5D5B002AA544 /* AIProfileValidatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIProfileValidatorView.swift; sourceTree = "<group>"; };
 		85DDE81B2DD6BA07009C1D19 /* CryptoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoHelper.swift; sourceTree = "<group>"; };
 		85DDE81D2DE8F78D009C1D19 /* AISuggestionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AISuggestionResponse.swift; sourceTree = "<group>"; };
+		85DDE8232DE93483009C1D19 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		D21669A52DD485C9001DAE95 /* CrashHandlingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashHandlingService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -414,6 +416,11 @@
 		85CB82E02DAE4A58002AA544 /* Shared */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		85DDE81F2DE92F77009C1D19 /* Config */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -674,6 +681,7 @@
 				859947A22DCBB8E800EB6818 /* FeedbackSummaryService.swift */,
 				8599479C2DCB200600EB6818 /* BehaviorFeedbackService.swift */,
 				856AA6742D916AF300402F84 /* APIService.swift */,
+				85DDE8232DE93483009C1D19 /* APIError.swift */,
 				856AA6782D916BEA00402F84 /* AuthService.swift */,
 				856AA66E2D9169A900402F84 /* AIProfileValidator.swift */,
 				856AA6722D916A9B00402F84 /* AIRecommendationService.swift */,
@@ -830,6 +838,7 @@
 		856AA62B2D9164E900402F84 /* StryVr */ = {
 			isa = PBXGroup;
 			children = (
+				85DDE81F2DE92F77009C1D19 /* Config */,
 				856AA5E92D9164E900402F84 /* App */,
 				856AA5EB2D9164E900402F84 /* Assets.xcassets */,
 				856AA5F32D9164E900402F84 /* Models */,
@@ -888,6 +897,7 @@
 				85BE23822DD3F1CA00298EDF /* Debug */,
 				85CB82DC2DAE49B8002AA544 /* Enums */,
 				85CB82E02DAE4A58002AA544 /* Shared */,
+				85DDE81F2DE92F77009C1D19 /* Config */,
 			);
 			name = StryVr;
 			productName = UpFlow;
@@ -1040,6 +1050,7 @@
 				856AA6362D9164E900402F84 /* HomeView.swift in Sources */,
 				851966062DA6D782004264AE /* FontStyle.swift in Sources */,
 				851966072DA6D782004264AE /* Colors.swift in Sources */,
+				85DDE8242DE93483009C1D19 /* APIError.swift in Sources */,
 				8588F0A12DC068C600D04995 /* SettingsView.swift in Sources */,
 				851966112DA6D8A7004264AE /* StryVrChartCard.swift in Sources */,
 				851966082DA6D782004264AE /* ThemeManager.swift in Sources */,

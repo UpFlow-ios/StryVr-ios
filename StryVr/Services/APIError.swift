@@ -1,5 +1,5 @@
 //
-//  APIService.swift
+//  APIError.swift
 //  StryVr
 //
 //  Created by Joe Dormond on 3/26/25
