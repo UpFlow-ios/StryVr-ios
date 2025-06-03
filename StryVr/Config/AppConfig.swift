@@ -69,3 +69,4 @@ struct AppConfig {
         #endif
     }
 }
+
