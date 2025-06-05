@@ -7,9 +7,7 @@
 //
 
 import SwiftUI
-import Charts
-import FirebaseFirestore
-import os.log
+import Foundation
 
 /// Displays a user's learning progress with interactive skill visualization charts
 struct SkillVisualizationDashboards: View {
@@ -141,13 +139,6 @@ struct SkillVisualizationDashboards: View {
         errorMessage = message
         hasError = true
     }
-}
-
-// MARK: - Skill Model
-struct SkillProgress: Identifiable {
-    let id = UUID()
-    let skillName: String
-    let percentage: Double
 }
 
 #Preview {

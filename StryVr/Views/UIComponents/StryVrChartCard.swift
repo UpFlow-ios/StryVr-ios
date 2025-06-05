@@ -8,13 +8,8 @@
 //
 
 import SwiftUI
-import Charts
+import Foundation
 
-struct SkillProgress: Identifiable {
-    let id = UUID()
-    let skill: String
-    let progress: Double
-}
 
 struct StryVrChartCard: View {
     var data: [SkillProgress]
