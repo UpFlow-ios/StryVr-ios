@@ -3,9 +3,9 @@
 //  StryVr
 //
 //  Created by Joe Dormond on 4/1/25.
-////
+//  🧠 Reusable AI Career Suggestion Card | HIG-Compliant & Accessible
+//
 
-  🧠 Reusable AI Career Suggestion Card | HIG-Compliant & Accessible
 import SwiftUI
 
 /// A reusable, visually polished career suggestion card powered by AI insights.
