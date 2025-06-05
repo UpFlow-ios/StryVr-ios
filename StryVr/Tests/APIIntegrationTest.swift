@@ -1,28 +1,33 @@
 //
 //  APIIntegrationTest.swift
-//  StryVr
+//  StryVrTests
 //
-//  Created by Joe Dormond on 6/5/25.
+//  ✅ Live Endpoint Test – Validates /api/recommendations endpoint
 //
-import Foundation
 
-func runLiveAPITest() {
-    let endpoint = AppConfig.Endpoints.recommendations
-    let fullURL = AppConfig.fullAPIURL(for: endpoint)
+import XCTest
+@testable import StryVr
 
-    APIService.shared.fetchData(from: fullURL) { result in
-        switch result {
-        case .success(let data):
-            if let text = String(data: data, encoding: .utf8) {
-                print("✅ API Response:\n\(text)")
-            } else {
-                print("⚠️ Received non-text data")
+final class APIIntegrationTest: XCTestCase {
+
+    func testFetchRecommendationsEndpoint() {
+        let expectation = self.expectation(description: "API responds with valid data")
+        let url = AppConfig.fullAPIURL(for: AppConfig.Endpoints.recommendations)
+
+        APIService.shared.fetchData(from: url) { result in
+            switch result {
+            case .success(let data):
+                XCTAssertFalse(data.isEmpty, "API returned empty data")
+                print("✅ API Response: \(String(data: data, encoding: .utf8) ?? "[non-text]")")
+
+            case .failure(let error):
+                XCTFail("❌ API call failed: \(error.localizedDescription)")
             }
-        case .failure(let error):
-            print("❌ API Error: \(error.localizedDescription)")
+
+            expectation.fulfill()
         }
+
+        waitForExpectations(timeout: 10)
     }
 }
-
-runLiveAPITest()
 
