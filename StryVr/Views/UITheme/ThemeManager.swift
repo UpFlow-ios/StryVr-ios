@@ -14,12 +14,14 @@ struct Theme {
     // MARK: - Color Palette (Asset-based)
     /// Defines the app's primary color palette, with optional fallbacks.
     struct Colors {
-        static let primary = Color("PrimaryColor")               // Asset catalog
-        static let secondary = Color("SecondaryColor")
+        static let safeTextPrimary = Color("TextPrimaryColor") ?? Fallback.textPrimary
+        static let safeTextSecondary = Color("TextSecondaryColor") ?? Fallback.textSecondary
         static let background = Color("BackgroundColor")
         static let textPrimary = Color("TextPrimaryColor")
         static let textSecondary = Color("TextSecondaryColor")
         static let accent = Color("AccentColor")
+        static let whiteText = Color.white // ✅ Add this to fix missing 'whiteText'
+
         
         /// Fallbacks (optional)
         struct Fallback {
