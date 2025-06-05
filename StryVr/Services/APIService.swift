@@ -9,15 +9,6 @@
 
 import Foundation
 
-/// Custom error type for API calls
-    enum APIError: Error {
-    case invalidURL
-    case network(Error)
-    case httpStatus(Int)
-    case noData
-    case decoding(Error)
-}
-
 /// Handles generic API calls throughout StryVr
 final class APIService {
     static let shared = APIService()
