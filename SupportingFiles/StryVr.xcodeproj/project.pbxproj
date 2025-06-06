@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		850D50A12DEFBB91008097DF /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850D50972DEFBB91008097DF /* APIError.swift */; };
+		850D50CF2DEFBB91008097DF /*  LearningPathsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850D50CD2DEFBB91008097DF /*  LearningPathsView.swift */; };
+		850D50E52DF20903008097DF /* LeaderboardUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850D50E42DF208F3008097DF /* LeaderboardUser.swift */; };
+		850D50E72DF20AC1008097DF /* EmployeeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850D50E62DF20AAB008097DF /* EmployeeModel.swift */; };
+		850D50EA2DF21054008097DF /* SkillMatrixEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850D50E92DF2103D008097DF /* SkillMatrixEntry.swift */; };
+		850D50F12DF21C72008097DF /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850D50F02DF21C65008097DF /* UserData.swift */; };
 		851966062DA6D782004264AE /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851966022DA6D782004264AE /* FontStyle.swift */; };
 		851966072DA6D782004264AE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851966012DA6D782004264AE /* Colors.swift */; };
 		851966082DA6D782004264AE /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851966042DA6D782004264AE /* ThemeManager.swift */; };
@@ -50,7 +56,7 @@
 		856AA6592D9164E900402F84 /* SkillVerificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA5F02D9164E900402F84 /* SkillVerificationModel.swift */; };
 		856AA65A2D9164E900402F84 /* ReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA5EF2D9164E900402F84 /* ReportModel.swift */; };
 		856AA6602D9164E900402F84 /* LoginView.swift  in Resources */ = {isa = PBXBuildFile; fileRef = 856AA6092D9164E900402F84 /* LoginView.swift  */; };
-		856AA6612D9164E900402F84 /* AppIcon in Resources */ = {isa = PBXBuildFile; fileRef = 856AA5EA2D9164E900402F84 /* AppIcon */; };
+		856AA6612D9164E900402F84 /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = 856AA5EA2D9164E900402F84 /* AppIcon.appiconset */; };
 		856AA6642D91674C00402F84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6632D91674C00402F84 /* AppDelegate.swift */; };
 		856AA6682D91681500402F84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 856AA6672D91681500402F84 /* LaunchScreen.storyboard */; };
 		856AA66A2D91686B00402F84 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AA6692D91686B00402F84 /* SceneDelegate.swift */; };
@@ -145,7 +151,6 @@
 		85CB83042DAE5D60002AA544 /* AIProfileValidatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB83032DAE5D5B002AA544 /* AIProfileValidatorView.swift */; };
 		85DDE81C2DD6BA20009C1D19 /* CryptoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DDE81B2DD6BA07009C1D19 /* CryptoHelper.swift */; };
 		85DDE81E2DE8F79E009C1D19 /* AISuggestionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DDE81D2DE8F78D009C1D19 /* AISuggestionResponse.swift */; };
-		85DDE8242DE93483009C1D19 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DDE8232DE93483009C1D19 /* APIError.swift */; };
 		85EA1C342DD3D65E001C992A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854ECFD32D701D5F00D0B0AC /* CoreTelephony.framework */; };
 		D216694D2DD47103001DAE95 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D216694C2DD47103001DAE95 /* FirebaseAnalytics */; };
 		D216694F2DD47103001DAE95 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = D216694E2DD47103001DAE95 /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -253,6 +258,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		850D50972DEFBB91008097DF /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		850D50CD2DEFBB91008097DF /*  LearningPathsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " LearningPathsView.swift"; sourceTree = "<group>"; };
+		850D50E42DF208F3008097DF /* LeaderboardUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardUser.swift; sourceTree = "<group>"; };
+		850D50E62DF20AAB008097DF /* EmployeeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeModel.swift; sourceTree = "<group>"; };
+		850D50E92DF2103D008097DF /* SkillMatrixEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillMatrixEntry.swift; sourceTree = "<group>"; };
+		850D50F02DF21C65008097DF /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		851966012DA6D782004264AE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		851966022DA6D782004264AE /* FontStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStyle.swift; sourceTree = "<group>"; };
 		851966032DA6D782004264AE /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
@@ -274,7 +285,7 @@
 		855E96082D9D0EC8002173EF /* CareerPathInsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerPathInsightsView.swift; sourceTree = "<group>"; };
 		855E960A2D9D1001002173EF /* CareerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerCard.swift; sourceTree = "<group>"; };
 		855E960E2D9D1222002173EF /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
-		856AA5EA2D9164E900402F84 /* AppIcon */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon; sourceTree = "<group>"; };
+		856AA5EA2D9164E900402F84 /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon.appiconset; sourceTree = "<group>"; };
 		856AA5EC2D9164E900402F84 /* ConferenceCallModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceCallModel.swift; sourceTree = "<group>"; };
 		856AA5ED2D9164E900402F84 /* LearningPathsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LearningPathsView.swift; path = ../Models/LearningPathsView.swift; sourceTree = "<group>"; };
 		856AA5EF2D9164E900402F84 /* ReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportModel.swift; sourceTree = "<group>"; };
@@ -350,7 +361,6 @@
 		85CB83032DAE5D5B002AA544 /* AIProfileValidatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIProfileValidatorView.swift; sourceTree = "<group>"; };
 		85DDE81B2DD6BA07009C1D19 /* CryptoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoHelper.swift; sourceTree = "<group>"; };
 		85DDE81D2DE8F78D009C1D19 /* AISuggestionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AISuggestionResponse.swift; sourceTree = "<group>"; };
-		85DDE8232DE93483009C1D19 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		D21669A52DD485C9001DAE95 /* CrashHandlingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashHandlingService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -365,6 +375,16 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		850D50E02DF17795008097DF /* Tests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		850D50EB2DF21358008097DF /* Protocols */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		855E96002D9D0815002173EF /* Enterprise */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -642,7 +662,7 @@
 		856AA5EB2D9164E900402F84 /* Assets.xcassets */ = {
 			isa = PBXGroup;
 			children = (
-				856AA5EA2D9164E900402F84 /* AppIcon */,
+				856AA5EA2D9164E900402F84 /* AppIcon.appiconset */,
 			);
 			path = Assets.xcassets;
 			sourceTree = "<group>";
@@ -650,6 +670,10 @@
 		856AA5F32D9164E900402F84 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				850D50F02DF21C65008097DF /* UserData.swift */,
+				850D50E92DF2103D008097DF /* SkillMatrixEntry.swift */,
+				850D50E62DF20AAB008097DF /* EmployeeModel.swift */,
+				850D50E42DF208F3008097DF /* LeaderboardUser.swift */,
 				859947AA2DCBC7E700EB6818 /* EmployeeTimelineEvent.swift */,
 				859947872DC9AED900EB6818 /* BehaviorFeedbackModel.swift */,
 				859947822DC9ACA400EB6818 /* TeamHealthService.swift */,
@@ -668,6 +692,7 @@
 				85AD56A12D94BA79007B6542 /* Skill.swift */,
 				85AD56A32D94BA97007B6542 /* LearningReport.swift */,
 				85AD56A42D94BAE8007B6542 /* SkillProgress.swift */,
+				850D50CD2DEFBB91008097DF /*  LearningPathsView.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -681,7 +706,6 @@
 				859947A22DCBB8E800EB6818 /* FeedbackSummaryService.swift */,
 				8599479C2DCB200600EB6818 /* BehaviorFeedbackService.swift */,
 				856AA6742D916AF300402F84 /* APIService.swift */,
-				85DDE8232DE93483009C1D19 /* APIError.swift */,
 				856AA6782D916BEA00402F84 /* AuthService.swift */,
 				856AA66E2D9169A900402F84 /* AIProfileValidator.swift */,
 				856AA6722D916A9B00402F84 /* AIRecommendationService.swift */,
@@ -708,6 +732,7 @@
 				856AA6052D9164E900402F84 /* NetworkManager.swift */,
 				856AA61B2D9164E900402F84 /* SecureStorageManager.swift */,
 				855E95FF2D9D0582002173EF /* ReportAnalysisHelper.swift */,
+				850D50972DEFBB91008097DF /* APIError.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -838,6 +863,8 @@
 		856AA62B2D9164E900402F84 /* StryVr */ = {
 			isa = PBXGroup;
 			children = (
+				850D50EB2DF21358008097DF /* Protocols */,
+				850D50E02DF17795008097DF /* Tests */,
 				85DDE81F2DE92F77009C1D19 /* Config */,
 				856AA5E92D9164E900402F84 /* App */,
 				856AA5EB2D9164E900402F84 /* Assets.xcassets */,
@@ -887,6 +914,8 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				850D50E02DF17795008097DF /* Tests */,
+				850D50EB2DF21358008097DF /* Protocols */,
 				855E96002D9D0815002173EF /* Enterprise */,
 				855E96122D9DB44E002173EF /* SupportingFiles */,
 				8588F0AC2DC07E3F00D04995 /* LearningPaths */,
@@ -1008,7 +1037,7 @@
 			files = (
 				856AA6602D9164E900402F84 /* LoginView.swift  in Resources */,
 				856AA6682D91681500402F84 /* LaunchScreen.storyboard in Resources */,
-				856AA6612D9164E900402F84 /* AppIcon in Resources */,
+				856AA6612D9164E900402F84 /* AppIcon.appiconset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1050,7 +1079,6 @@
 				856AA6362D9164E900402F84 /* HomeView.swift in Sources */,
 				851966062DA6D782004264AE /* FontStyle.swift in Sources */,
 				851966072DA6D782004264AE /* Colors.swift in Sources */,
-				85DDE8242DE93483009C1D19 /* APIError.swift in Sources */,
 				8588F0A12DC068C600D04995 /* SettingsView.swift in Sources */,
 				851966112DA6D8A7004264AE /* StryVrChartCard.swift in Sources */,
 				851966082DA6D782004264AE /* ThemeManager.swift in Sources */,
@@ -1061,6 +1089,7 @@
 				859947AD2DCBC87700EB6818 /* EmployeeProgressService.swift in Sources */,
 				856AA6392D9164E900402F84 /* ProgressBarView.swift in Sources */,
 				856AA63B2D9164E900402F84 /* CustomTabBar.swift in Sources */,
+				850D50CF2DEFBB91008097DF /*  LearningPathsView.swift in Sources */,
 				856AA6992D91733900402F84 /* AISkillCoachView.swift in Sources */,
 				856AA63D2D9164E900402F84 /* UserModel.swift in Sources */,
 				856AA6872D916E4300402F84 /* NotificationService.swift in Sources */,
@@ -1074,7 +1103,10 @@
 				851966152DACF9C7004264AE /* RegisterView.swift in Sources */,
 				856AA67D2D916CB900402F84 /* ChallengeSystem.swift in Sources */,
 				856AA6412D9164E900402F84 /* LottieAnimationManager.swift in Sources */,
+				850D50F12DF21C72008097DF /* UserData.swift in Sources */,
 				856AA6452D9164E900402F84 /* ProfileView.swift in Sources */,
+				850D50E52DF20903008097DF /* LeaderboardUser.swift in Sources */,
+				850D50E72DF20AC1008097DF /* EmployeeModel.swift in Sources */,
 				856AA6462D9164E900402F84 /* ConferenceCallModel.swift in Sources */,
 				856AA69F2D91744E00402F84 /* LeaderboardView.swift in Sources */,
 				859947812DC9ABF700EB6818 /* TeamHealthStat.swift in Sources */,
@@ -1101,12 +1133,14 @@
 				8595B1842DB36722001D831E /* AppShellView.swift in Sources */,
 				856AA6572D9164E900402F84 /* GroupChallengesView.swift in Sources */,
 				8588F0C42DC2F8D000D04995 /* ResumePDFGenerator.swift in Sources */,
+				850D50EA2DF21054008097DF /* SkillMatrixEntry.swift in Sources */,
 				856AA6812D916D7700402F84 /* FirestoreService.swift in Sources */,
 				856AA66A2D91686B00402F84 /* SceneDelegate.swift in Sources */,
 				856AA6592D9164E900402F84 /* SkillVerificationModel.swift in Sources */,
 				856AA65A2D9164E900402F84 /* ReportModel.swift in Sources */,
 				856AA6892D916E7E00402F84 /* SecureStorageService.swift in Sources */,
 				8588F0AB2DC07B1D00D04995 /* SkillStreaksView.swift in Sources */,
+				850D50A12DEFBB91008097DF /* APIError.swift in Sources */,
 				851966132DA6DACE004264AE /* ReportsDashboardView.swift in Sources */,
 				856AA6772D916B7800402F84 /* AuthManager.swift in Sources */,
 				8588F0A92DC07A2000D04995 /* ChallengeTrackerView.swift in Sources */,
