@@ -51,8 +51,8 @@ extension EmployeeModel {
         department: "Product Development",
         joinDate: Date(timeIntervalSince1970: 1672531200),
         skills: [
-            SkillProgress(skillName: "SwiftUI", percentage: 0.88),
-            SkillProgress(skillName: "Teamwork", percentage: 0.92)
+            SkillProgress(skill: "SwiftUI", progress: 0.88),
+            SkillProgress(skill: "Teamwork", progress: 0.92)
         ],
         feedbackEntries: [
             FeedbackEntry(category: .collaboration, comment: "Always helpful in team tasks.", rating: 5, date: .now),
