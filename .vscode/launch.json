@@ -6,6 +6,24 @@
             "request": "launch",
             "name": "Attach to running app (SweetPad)",
             "preLaunchTask": "sweetpad: launch"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:StryVr-ios}/StryVr/stryvr-app",
+            "name": "Debug stryvr-app (StryVr/stryvr-app)",
+            "program": "${workspaceFolder:StryVr-ios}/StryVr/stryvr-app/.build/debug/stryvr-app",
+            "preLaunchTask": "swift: Build Debug stryvr-app (StryVr/stryvr-app)"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:StryVr-ios}/StryVr/stryvr-app",
+            "name": "Release stryvr-app (StryVr/stryvr-app)",
+            "program": "${workspaceFolder:StryVr-ios}/StryVr/stryvr-app/.build/release/stryvr-app",
+            "preLaunchTask": "swift: Build Release stryvr-app (StryVr/stryvr-app)"
         }
     ]
 }

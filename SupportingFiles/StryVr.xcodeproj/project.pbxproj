@@ -364,16 +364,6 @@
 		D21669A52DD485C9001DAE95 /* CrashHandlingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashHandlingService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		855E96012D9D0842002173EF /* Exceptions for "Enterprise" folder in "StryVr" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				BusinessAnalyticsDashboard.swift,
-			);
-			target = 859B0AAF2D57D3E900E5ADF1 /* StryVr */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		850D50E02DF17795008097DF /* Tests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
@@ -387,9 +377,6 @@
 		};
 		855E96002D9D0815002173EF /* Enterprise */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				855E96012D9D0842002173EF /* Exceptions for "Enterprise" folder in "StryVr" target */,
-			);
 			path = Enterprise;
 			sourceTree = "<group>";
 		};
