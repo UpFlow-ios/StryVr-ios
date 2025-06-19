@@ -17,13 +17,10 @@ let package = Package(
     ],
     dependencies: [],
     targets: [
-        // ✅ All your core logic (views, models, etc.)
         .target(
             name: "StryVrModule",
             path: "StryVrModule"
         ),
-
-        // ✅ App launcher
         .executableTarget(
             name: "stryvr-app",
             dependencies: ["StryVrModule"],
