@@ -10,3 +10,4 @@ build/
 
 # macOS Files
 .DS_Storestryvr-firebase-adminsdk*.json
+node_modules/
