@@ -9,4 +9,4 @@ build/
 .build/
 
 # macOS Files
-.DS_Store
+.DS_Storestryvr-firebase-adminsdk*.json
