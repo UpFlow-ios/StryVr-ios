@@ -11,3 +11,5 @@ build/
 # macOS Files
 .DS_Storestryvr-firebase-adminsdk*.json
 node_modules/
+stryvr-firebase-adminsdk*.json
+stryvr-firebase-adminsdk*.json
