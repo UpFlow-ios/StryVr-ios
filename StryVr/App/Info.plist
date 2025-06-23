@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleName</key>
+	<string>StryVr</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.stryvr.app</string>
+	<key>CFBundleVersion</key>
+	<string>1.0.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>StryVr needs access to your camera for video calls and content creation.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>StryVr needs access to your microphone for voice communication during video calls.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>StryVr uses Face ID for secure login and authentication.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string>voip</string>
+		<string>fetch</string>
+	</array>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<true/>
+	<key>NSUserNotificationAlertStyle</key>
+	<string>banner</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>StryVr needs access to Bluetooth for connecting to external devices.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>StryVr needs access to your location even when the app is not in use to provide continuous personalized learning.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>StryVr uses motion data to enhance your learning experience.</string>
+</dict>
+</plist>
