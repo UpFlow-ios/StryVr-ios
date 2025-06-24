@@ -20,6 +20,7 @@ struct AppShellView: View {
 
             VStack(spacing: 0) {
                 // MARK: - Active View
+
                 Group {
                     switch selectedTab {
                     case .home:
@@ -44,6 +45,7 @@ struct AppShellView: View {
                 .animation(.easeInOut(duration: 0.25), value: selectedTab)
 
                 // MARK: - Custom Tab Bar
+
                 CustomTabBar(selectedTab: $selectedTab)
             }
         }

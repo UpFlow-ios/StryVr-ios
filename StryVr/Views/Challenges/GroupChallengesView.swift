@@ -9,15 +9,17 @@
 import SwiftUI
 
 // MARK: - ViewModel
+
 class GroupChallengesViewModel: ObservableObject {
     @Published var challenges: [String] = [
         "Hackathon",
         "AI Challenge",
-        "Startup Pitch"
+        "Startup Pitch",
     ]
 }
 
 // MARK: - View
+
 struct GroupChallengesView: View {
     @StateObject private var viewModel = GroupChallengesViewModel()
 

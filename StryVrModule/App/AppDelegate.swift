@@ -5,19 +5,18 @@
 //  🔒 Secure App Lifecycle Setup with Firebase & Push Notifications
 //
 
-import UIKit
 import Firebase
-import UserNotifications
 import os
+import UIKit
+import UserNotifications
 
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
-
     var window: UIWindow?
     private let logger = Logger(subsystem: "com.stryvr.app", category: "AppDelegate")
 
     func application(
         _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+        didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         configureFirebase()
         setupPushNotifications(application)
@@ -26,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     }
 
     // MARK: - Firebase Configuration
+
     private func configureFirebase() {
         guard FirebaseApp.app() == nil else {
             logger.info("✅ Firebase already configured.")
@@ -36,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     }
 
     // MARK: - Push Notification Setup
+
     private func setupPushNotifications(_ application: UIApplication) {
         let center = UNUserNotificationCenter.current()
         center.delegate = self
@@ -55,8 +56,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     }
 
     // MARK: - APNS Token Registration
+
     func application(
-        _ application: UIApplication,
+        _: UIApplication,
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
         let tokenString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
@@ -65,14 +67,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     }
 
     func application(
-        _ application: UIApplication,
+        _: UIApplication,
         didFailToRegisterForRemoteNotificationsWithError error: Error
     ) {
         logger.error("❌ Failed to register for APNS: \(error.localizedDescription)")
     }
 
     // MARK: - Firebase Messaging Delegate
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+
+    func messaging(_: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         guard let token = fcmToken else {
             logger.warning("⚠️ FCM token was nil.")
             return
@@ -82,6 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     }
 
     // MARK: - Upload Token to Server
+
     private func sendTokenToServer(_ token: String) {
         guard let url = URL(string: "https://yourserver.com/api/registerToken") else {
             logger.error("❌ Invalid token registration URL.")
@@ -95,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         let payload: [String: Any] = ["token": token]
         request.httpBody = try? JSONSerialization.data(withJSONObject: payload, options: [])
 
-        let task = URLSession.shared.dataTask(with: request) { _, response, error in
+        let task = URLSession.shared.dataTask(with: request) { _, _, error in
             if let error = error {
                 self.logger.error("❌ Failed to send token: \(error.localizedDescription)")
             } else {
@@ -106,8 +110,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     }
 
     // MARK: - Foreground Notification Handler
+
     func userNotificationCenter(
-        _ center: UNUserNotificationCenter,
+        _: UNUserNotificationCenter,
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
@@ -116,8 +121,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     }
 
     // MARK: - Notification Interaction Handler
+
     func userNotificationCenter(
-        _ center: UNUserNotificationCenter,
+        _: UNUserNotificationCenter,
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {

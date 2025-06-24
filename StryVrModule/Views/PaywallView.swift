@@ -5,9 +5,9 @@
 //  Created by Joe Dormond on 3/12/25.
 //
 
-import SwiftUI
-import StoreKit
 import os.log
+import StoreKit
+import SwiftUI
 
 /// Displays the paywall with AI-based trial recommendations and premium offers
 struct PaywallView: View {
@@ -24,8 +24,8 @@ struct PaywallView: View {
 
             ScrollView {
                 VStack(spacing: Spacing.large) {
-                    
                     // MARK: - Header
+
                     VStack(spacing: Spacing.small) {
                         Text("🔓 Unlock Your Full Potential!")
                             .font(FontStyle.title)
@@ -47,6 +47,7 @@ struct PaywallView: View {
                     .accessibilityElement(children: .combine)
 
                     // MARK: - Plan Selector
+
                     VStack(spacing: Spacing.medium) {
                         ForEach(SubscriptionPlan.allCases, id: \.self) { plan in
                             SubscriptionOption(plan: plan, selectedPlan: $selectedPlan)
@@ -54,6 +55,7 @@ struct PaywallView: View {
                     }
 
                     // MARK: - Action Button
+
                     VStack(spacing: Spacing.medium) {
                         Button(action: purchaseSubscription) {
                             if isProcessingPayment {
@@ -92,6 +94,7 @@ struct PaywallView: View {
     }
 
     // MARK: - Purchase Logic
+
     private func purchaseSubscription() {
         isProcessingPayment = true
         PaymentService.shared.purchaseProduct(selectedPlan.storeKitProduct) { success, error in
@@ -119,11 +122,12 @@ struct PaywallView: View {
     }
 
     // MARK: - AI-Driven Trial Suggestion
+
     private func generateAIRecommendation() {
         DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
             DispatchQueue.main.async {
                 self.selectedPlan = recommended
-            let recommended: SubscriptionPlan = .premium // Replace with AI logic later
+                let recommended: SubscriptionPlan = .premium // Replace with AI logic later
                 logger.info("🧠 AI Recommended Plan: \(recommended.rawValue)")
             }
         }
@@ -140,6 +144,7 @@ struct PaywallView: View {
     }
 
     // MARK: - Error Handling
+
     private func handleError(_ message: String) {
         logger.error("❌ \(message)")
         alertMessage = message

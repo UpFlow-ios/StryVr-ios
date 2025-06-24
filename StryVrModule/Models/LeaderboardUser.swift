@@ -25,6 +25,7 @@ struct LeaderboardUser: Identifiable, Codable, Hashable {
     var feedbackScore: Double = 0.0
 
     // MARK: - UI Helpers
+
     var initials: String {
         let components = name.components(separatedBy: " ")
         return components.compactMap { $0.first }.prefix(2).map(String.init).joined().uppercased()
@@ -40,19 +41,18 @@ struct LeaderboardUser: Identifiable, Codable, Hashable {
 }
 
 #if DEBUG
-extension LeaderboardUser {
-    static let mock: LeaderboardUser = LeaderboardUser(
-        id: "mock123",
-        name: "Ava Patel",
-        profileImageURL: nil,
-        totalPoints: 1500,
-        rank: 3,
-        skills: ["Swift", "Leadership"],
-        lastActive: Date(),
-        isVerified: true,
-        completedChallenges: 12,
-        feedbackScore: 4.8
-    )
-}
+    extension LeaderboardUser {
+        static let mock: LeaderboardUser = .init(
+            id: "mock123",
+            name: "Ava Patel",
+            profileImageURL: nil,
+            totalPoints: 1500,
+            rank: 3,
+            skills: ["Swift", "Leadership"],
+            lastActive: Date(),
+            isVerified: true,
+            completedChallenges: 12,
+            feedbackScore: 4.8
+        )
+    }
 #endif
-

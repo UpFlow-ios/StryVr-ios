@@ -10,11 +10,12 @@ import SwiftUI
 
 struct ReportsDashboardView: View {
     // MARK: - Mock Data
+
     var skillData: [SkillProgress] = [
         .init(skill: "Leadership", progress: 0.72),
         .init(skill: "UI/UX", progress: 0.64),
         .init(skill: "iOS Dev", progress: 0.89),
-        .init(skill: "Problem Solving", progress: 0.58)
+        .init(skill: "Problem Solving", progress: 0.58),
     ]
 
     var body: some View {
@@ -23,15 +24,16 @@ struct ReportsDashboardView: View {
 
             ScrollView {
                 VStack(alignment: .leading, spacing: Theme.Spacing.large) {
-
                     // MARK: - Title
+
                     Text("Reports")
                         .font(Theme.Typography.headline)
                         .foregroundColor(Theme.Colors.textPrimary)
                         .accessibilityLabel("Reports Dashboard")
-
                         .padding(.top, Theme.Spacing.large)
+
                     // MARK: - Skill Progress Chart
+
                     if skillData.isEmpty {
                         Text("No skill data available")
                             .font(Theme.Typography.caption)
@@ -43,6 +45,7 @@ struct ReportsDashboardView: View {
                     }
 
                     // MARK: - Circular Progress Grid
+
                     if skillData.isEmpty {
                         Text("No skills to display")
                             .font(Theme.Typography.caption)
@@ -62,9 +65,9 @@ struct ReportsDashboardView: View {
                     }
 
                     // MARK: - Daily Learning Metrics
+
                     StryVrCardView(title: "Learning Metrics") {
                         VStack(alignment: .leading, spacing: Theme.Spacing.medium) {
-
                             HStack {
                                 Text("Streak")
                                 Spacer()

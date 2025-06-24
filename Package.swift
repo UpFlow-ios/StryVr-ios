@@ -7,13 +7,13 @@ let package = Package(
     platforms: [
         .iOS(.v16),
         .macOS(.v13),
-        .visionOS(.v1)
+        .visionOS(.v1),
     ],
     products: [
         .executable(
             name: "stryvr-app",
             targets: ["stryvr-app"]
-        )
+        ),
     ],
     dependencies: [],
     targets: [
@@ -25,6 +25,6 @@ let package = Package(
             name: "stryvr-app",
             dependencies: ["StryVrModule"],
             path: "Sources/stryvr-app"
-        )
+        ),
     ]
 )

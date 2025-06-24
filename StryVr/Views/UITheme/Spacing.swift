@@ -10,7 +10,7 @@ import SwiftUI
 
 extension CGFloat {
     /// A collection of global spacing constants for consistent layout design.
-    struct Spacing {
+    enum Spacing {
         /// Small spacing (used for padding/margins in tight areas)
         static let small: CGFloat = 8
 

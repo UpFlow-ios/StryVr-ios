@@ -5,20 +5,19 @@
 //  🌐 Manages App Window & Session Routing
 //
 
-import UIKit
-import SwiftUI
 import FirebaseAuth
 import FirebaseCore
 import os.log
+import SwiftUI
+import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
 
     func scene(
         _ scene: UIScene,
-        willConnectTo session: UISceneSession,
-        options connectionOptions: UIScene.ConnectionOptions
+        willConnectTo _: UISceneSession,
+        options _: UIScene.ConnectionOptions
     ) {
         guard let windowScene = (scene as? UIWindowScene) else {
             os_log("❌ Failed to cast scene to UIWindowScene", log: .default, type: .error)
@@ -45,30 +44,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         os_log("✅ UIWindow attached to root view", log: .default, type: .info)
     }
 
-    func sceneDidBecomeActive(_ scene: UIScene) {
+    func sceneDidBecomeActive(_: UIScene) {
         os_log("🔄 Scene became active", log: .default, type: .info)
     }
 
-    func sceneWillResignActive(_ scene: UIScene) {
+    func sceneWillResignActive(_: UIScene) {
         os_log("⏸️ Scene will resign active", log: .default, type: .info)
     }
 
-    func sceneDidEnterBackground(_ scene: UIScene) {
+    func sceneDidEnterBackground(_: UIScene) {
         saveAppState()
     }
 
-    func sceneWillEnterForeground(_ scene: UIScene) {
+    func sceneWillEnterForeground(_: UIScene) {
         checkUserSession()
     }
 
     // MARK: - Session Management
+
     private func saveAppState() {
         os_log("💾 Saving app state", log: .default, type: .info)
         // Placeholder: persist user or app data here
     }
 
     private func checkUserSession() {
-        guard let window = self.window else { return }
+        guard let window = window else { return }
 
         if Auth.auth().currentUser == nil {
             os_log("🔐 No active user session. Redirecting to LoginView.", log: .default, type: .info)

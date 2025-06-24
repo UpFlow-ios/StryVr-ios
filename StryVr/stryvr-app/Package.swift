@@ -8,13 +8,14 @@ let package = Package(
     platforms: [
         .visionOS(.v2),
         .macOS(.v15),
-        .iOS(.v18)
+        .iOS(.v18),
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "stryvr-app",
-            targets: ["stryvr-app"]),
+            targets: ["stryvr-app"]
+        ),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -25,6 +26,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "stryvr-app",
-            dependencies: []),
+            dependencies: []
+        ),
     ]
 )

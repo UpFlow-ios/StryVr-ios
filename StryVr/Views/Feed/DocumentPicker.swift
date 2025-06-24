@@ -28,11 +28,12 @@ struct DocumentPicker: UIViewControllerRepresentable {
         return picker
     }
 
-    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {
+    func updateUIViewController(_: UIDocumentPickerViewController, context _: Context) {
         // No update logic needed here for one-time picker
     }
 
     // MARK: - Coordinator to handle file selection
+
     class Coordinator: NSObject, UIDocumentPickerDelegate {
         let parent: DocumentPicker
 
@@ -40,7 +41,7 @@ struct DocumentPicker: UIViewControllerRepresentable {
             self.parent = parent
         }
 
-        func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        func documentPicker(_: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
             guard let selectedURL = urls.first else {
                 parent.videoURL = nil
                 return
@@ -56,7 +57,7 @@ struct DocumentPicker: UIViewControllerRepresentable {
             }
         }
 
-        func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        func documentPickerWasCancelled(_: UIDocumentPickerViewController) {
             parent.videoURL = nil
         }
     }

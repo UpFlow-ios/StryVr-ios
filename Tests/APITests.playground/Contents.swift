@@ -12,7 +12,7 @@ enum AppEnvironment: String {
     case production = "Production"
 }
 
-struct AppConfig {
+enum AppConfig {
     static let currentEnvironment: AppEnvironment = .development
 
     static var apiBaseURL: String {
@@ -60,7 +60,8 @@ final class APIService {
             }
 
             guard let httpResponse = response as? HTTPURLResponse,
-                  (200...299).contains(httpResponse.statusCode) else {
+                  (200 ... 299).contains(httpResponse.statusCode)
+            else {
                 completion(.failure(.httpStatus((response as? HTTPURLResponse)?.statusCode ?? -1)))
                 return
             }
@@ -85,13 +86,13 @@ func testAPI() {
 
     APIService.shared.fetchData(from: fullURL) { result in
         switch result {
-        case .success(let data):
+        case let .success(data):
             if let responseText = String(data: data, encoding: .utf8) {
                 print("✅ API Response:\n\(responseText)")
             } else {
                 print("⚠️ Received non-text data")
             }
-        case .failure(let error):
+        case let .failure(error):
             print("❌ API Error: \(error)")
         }
 
@@ -100,5 +101,3 @@ func testAPI() {
 }
 
 testAPI()
-
-

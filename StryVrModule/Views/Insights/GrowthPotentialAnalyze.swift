@@ -1,12 +1,12 @@
 //
-//  GrowthPotentialAnalyzer.swift
+//  GrowthPotentialAnalyze.swift
 //  StryVr
 //
 //  📈 Growth Potential Analyzer – Scores employee growth capacity based on performance & trends
 //
 
-import SwiftUI
 import Charts
+import SwiftUI
 
 struct GrowthPotentialAnalyzer: View {
     @State private var potentialScore: Double = 0.0
@@ -50,6 +50,7 @@ struct GrowthPotentialAnalyzer: View {
     }
 
     // MARK: - Growth Score Card
+
     private var growthScoreCard: some View {
         VStack(spacing: Theme.Spacing.small) {
             Text("Overall Score")
@@ -69,6 +70,7 @@ struct GrowthPotentialAnalyzer: View {
     }
 
     // MARK: - Chart Breakdown
+
     private var breakdownChart: some View {
         VStack(alignment: .leading) {
             Text("Score Breakdown")
@@ -97,20 +99,21 @@ struct GrowthPotentialAnalyzer: View {
     }
 
     // MARK: - Simulated Analysis
+
     private func analyzeGrowthPotential() {
         isLoading = true
 
         // 🔧 Simulated logic (replace with Firestore logic as needed)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
             feedbackAverage = 4.2 // from feedback service
-            achievementCount = 5  // from achievement model
+            achievementCount = 5 // from achievement model
             progressConsistency = 75.0 // consistency index
 
             // 🚀 Calculated score logic
             potentialScore = (
                 (feedbackAverage / 5.0) * 40 +
-                Double(achievementCount) * 10 +
-                progressConsistency * 0.5
+                    Double(achievementCount) * 10 +
+                    progressConsistency * 0.5
             ).rounded()
 
             isLoading = false
@@ -121,4 +124,3 @@ struct GrowthPotentialAnalyzer: View {
 #Preview {
     GrowthPotentialAnalyzer(employeeId: "abc123")
 }
-

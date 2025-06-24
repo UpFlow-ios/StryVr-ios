@@ -12,7 +12,7 @@ struct EmployeeRecognitionBoard: View {
     let topEmployees: [EmployeeModel] = [
         EmployeeModel(name: "Alex Johnson", role: "Developer", avatar: "avatar_1", completedGoals: 18),
         EmployeeModel(name: "Briana Lee", role: "UX Designer", avatar: "avatar_2", completedGoals: 16),
-        EmployeeModel(name: "Carlos Wang", role: "Marketing Lead", avatar: "avatar_3", completedGoals: 14)
+        EmployeeModel(name: "Carlos Wang", role: "Marketing Lead", avatar: "avatar_3", completedGoals: 14),
     ]
 
     var body: some View {
@@ -70,4 +70,3 @@ struct EmployeeRecognitionBoard: View {
 #Preview {
     EmployeeRecognitionBoard()
 }
-

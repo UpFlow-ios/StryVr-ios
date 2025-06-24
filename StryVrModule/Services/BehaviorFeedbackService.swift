@@ -7,9 +7,9 @@
 //  ☁️ Behavior Feedback Service – Submits and retrieves employee behavior feedback using Firestore
 //
 
-import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import Foundation
 
 final class BehaviorFeedbackService {
     static let shared = BehaviorFeedbackService()
@@ -18,6 +18,7 @@ final class BehaviorFeedbackService {
     private init() {}
 
     // MARK: - Submit Feedback
+
     func submitFeedback(_ feedback: BehaviorFeedback, completion: @escaping (Result<Void, Error>) -> Void) {
         do {
             let docRef = db.collection("behaviorFeedback").document(feedback.id)
@@ -34,6 +35,7 @@ final class BehaviorFeedbackService {
     }
 
     // MARK: - Fetch Feedback for Employee
+
     func fetchFeedback(for employeeId: String, completion: @escaping (Result<[BehaviorFeedback], Error>) -> Void) {
         db.collection("behaviorFeedback")
             .whereField("employeeId", isEqualTo: employeeId)

@@ -39,6 +39,7 @@ struct BehaviorFeedback: Identifiable, Codable {
     }
 
     // MARK: - Preview
+
     static let preview = BehaviorFeedback(
         employeeId: "employee123",
         reviewerId: "reviewer456",
@@ -63,7 +64,7 @@ enum FeedbackCategory: String, Codable, CaseIterable, Identifiable {
         .communication: "Communication",
         .professionalism: "Professionalism",
         .punctuality: "Punctuality",
-        .teamwork: "Teamwork"
+        .teamwork: "Teamwork",
     ]
 
     var displayName: String {

@@ -5,9 +5,9 @@
 //  🏡 Clean Home Dashboard – Daily Goals, Streaks, Challenges, Achievements with Confetti Celebrations
 //
 
-import SwiftUI
-import os.log
 import ConfettiSwiftUI
+import os.log
+import SwiftUI
 
 struct HomeView: View {
     @State private var dailyGoalCompleted = false
@@ -29,14 +29,15 @@ struct HomeView: View {
             ZStack(alignment: .topLeading) {
                 ScrollView {
                     VStack(alignment: .leading, spacing: Theme.Spacing.large) {
-
                         // MARK: - Greeting
+
                         Text("Welcome back to StryVr! 👋")
                             .font(Theme.Typography.headline)
                             .foregroundColor(Theme.Colors.textPrimary)
                             .padding(.top, Theme.Spacing.large)
 
                         // MARK: - Today's Goal Card
+
                         dashboardCard(
                             title: "Today's Goal",
                             subtitle: dailyGoalCompleted ? "✅ Completed" : "🎯 Complete 1 Learning Module",
@@ -44,15 +45,19 @@ struct HomeView: View {
                         )
 
                         // MARK: - Skill Streak Card
+
                         dashboardCard(title: "Skill Streak", subtitle: "\(currentStreak) Days 🔥 | Best: \(bestStreak) Days 🏆")
 
                         // MARK: - Active Challenges Card
+
                         dashboardCard(title: "Active Challenges", subtitle: "\(activeChallengesCount) Challenges in Progress 🎯")
 
                         // MARK: - Recent Achievements Card
+
                         dashboardCard(title: "Recent Achievements", subtitle: "\(recentAchievementsCount) Badges Unlocked 🏅")
 
                         // MARK: - Manual Badge Unlock (Demo Button)
+
                         Button(action: unlockBadge) {
                             Text("🏅 Unlock New Badge")
                                 .font(Theme.Typography.body)
@@ -64,6 +69,7 @@ struct HomeView: View {
                         }
 
                         // MARK: - Log Out Button
+
                         Button(action: {
                             authViewModel.signOut()
                         }) {
@@ -91,6 +97,7 @@ struct HomeView: View {
                 }
 
                 // MARK: - Hidden Long-Press Dev Trigger (Debug Only)
+
                 if isDebug {
                     Color.clear
                         .frame(width: 44, height: 44)
@@ -111,6 +118,7 @@ struct HomeView: View {
     }
 
     // MARK: - Dashboard Card Component
+
     private func dashboardCard(title: String, subtitle: String, buttonAction: (() -> Void)? = nil) -> some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.small) {
             HStack {
@@ -142,12 +150,14 @@ struct HomeView: View {
     }
 
     // MARK: - Handle Daily Goal Completion
+
     private func markGoalCompleted() {
         dailyGoalCompleted = true
         ConfettiManager.shared.triggerConfetti()
     }
 
     // MARK: - Badge Unlock
+
     private func unlockBadge() {
         recentAchievementsCount += 1
         ConfettiManager.shared.triggerConfetti()

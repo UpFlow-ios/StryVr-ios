@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class FeatureFlags {
+enum FeatureFlags {
     static var enableMockData: Bool = false
     static var enableConfetti: Bool = true
     static var enableDeepLinks: Bool = true

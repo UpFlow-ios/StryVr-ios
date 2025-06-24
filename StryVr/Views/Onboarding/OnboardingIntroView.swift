@@ -20,6 +20,7 @@ struct OnboardingIntroView: View {
                 Spacer()
 
                 // MARK: - Logo
+
                 if let logo = logoForCurrentColorScheme() {
                     Image(uiImage: logo)
                         .resizable()
@@ -35,6 +36,7 @@ struct OnboardingIntroView: View {
                 }
 
                 // MARK: - Welcome Message
+
                 VStack(spacing: Theme.Spacing.small) {
                     Text("Welcome to StryVr")
                         .font(Theme.Typography.headline)
@@ -54,6 +56,7 @@ struct OnboardingIntroView: View {
                 Spacer()
 
                 // MARK: - Get Started Button
+
                 CustomButton(
                     title: "Get Started",
                     action: onContinue,
@@ -69,6 +72,7 @@ struct OnboardingIntroView: View {
     }
 
     // MARK: - Helper for Logo
+
     private func logoForCurrentColorScheme() -> UIImage? {
         let logoName = colorScheme == .dark ? "LogoDark" : "LogoLight"
         return UIImage(named: logoName)

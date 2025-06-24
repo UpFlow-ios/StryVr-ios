@@ -7,9 +7,9 @@
 //  🤖 AI Recommendation Service – Enhanced with Hugging Face integration
 //
 
-import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import Foundation
 import os.log
 
 final class AIRecommendationService {
@@ -22,6 +22,7 @@ final class AIRecommendationService {
     }
 
     // MARK: - Public Method for Skill Recommendations
+
     func fetchSkillRecommendations(for userID: String, completion: @escaping ([String]) -> Void) {
         guard !userID.isEmpty else {
             logger.error("❌ Invalid user ID provided.")
@@ -41,7 +42,8 @@ final class AIRecommendationService {
                 }
 
                 guard let data = snapshot?.data(),
-                      let currentSkills = data["skills"] as? [String] else {
+                      let currentSkills = data["skills"] as? [String]
+                else {
                     self.logger.error("⚠️ No skills found for user.")
                     completion([])
                     return
@@ -52,6 +54,7 @@ final class AIRecommendationService {
     }
 
     // MARK: - Private AI Request Method
+
     private func requestAISuggestions(currentSkills: [String], completion: @escaping ([String]) -> Void) {
         guard let apiKey = SecureStorageManager.shared.load(key: "huggingFaceAPIKey") else {
             logger.error("❌ Missing API Key for Hugging Face.")
@@ -70,11 +73,11 @@ final class AIRecommendationService {
         ) { result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let suggestions):
+                case let .success(suggestions):
                     let skillRecommendations = suggestions.flatMap { $0.generatedSkills() }
                     self.logger.info("✅ AI recommended \(skillRecommendations.count) skills successfully.")
                     completion(skillRecommendations)
-                case .failure(let error):
+                case let .failure(error):
                     self.logger.error("❌ AI API call failed: \(error.localizedDescription)")
                     completion([])
                 }

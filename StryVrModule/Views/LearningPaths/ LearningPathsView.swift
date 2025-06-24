@@ -1,5 +1,5 @@
 //
-//  LearningPathsView.swift
+//   LearningPathsView.swift
 //  StryVr
 //
 //  📚 Personalized Learning Paths – Skill Progress Tracker
@@ -19,7 +19,7 @@ struct LearningPathsView: View {
     @State private var learningPaths: [LearningPath] = [
         LearningPath(title: "iOS Developer Path", description: "Learn Swift, SwiftUI, and build real-world apps.", progress: 0.7, isCompleted: false),
         LearningPath(title: "AI Specialist Path", description: "Master Machine Learning, NLP, and AI Ethics.", progress: 1.0, isCompleted: true),
-        LearningPath(title: "Leadership & Communication Path", description: "Build professional leadership and soft skills.", progress: 0.4, isCompleted: false)
+        LearningPath(title: "Leadership & Communication Path", description: "Build professional leadership and soft skills.", progress: 0.4, isCompleted: false),
     ]
 
     var body: some View {
@@ -44,6 +44,7 @@ struct LearningPathsView: View {
     }
 
     // MARK: - Learning Path Card
+
     private func learningPathCard(for path: LearningPath) -> some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.small) {
             HStack {

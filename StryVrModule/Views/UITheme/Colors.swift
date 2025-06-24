@@ -1,5 +1,5 @@
 //
-//  Color+Theme.swift
+//  Colors.swift
 //  StryVr
 //
 //  Created by Joe Dormond on 4/15/25.
@@ -9,8 +9,8 @@
 import SwiftUI
 
 extension Color {
-
     // MARK: - Hex initializer with optional opacity
+
     /// Initializes a `Color` from a hex string with optional opacity.
     /// - Parameters:
     ///   - hex: The hex string representing the color (e.g., "#FFFFFF").
@@ -37,8 +37,9 @@ extension Color {
     }
 
     // MARK: - App Color Palette (HIG & Accessibility Compliant)
+
     /// App-wide color palette using asset catalog colors.
-    static let background = Color("Background")       // Use asset catalog colors
+    static let background = Color("Background") // Use asset catalog colors
     static let card = Color("Card")
     static let neonBlue = Color("NeonBlue")
     static let lightGray = Color("LightGray")
@@ -46,8 +47,9 @@ extension Color {
 }
 
 // MARK: - Preview colors (Fallback defaults if assets fail)
+
 extension Color {
-    struct Fallback {
+    enum Fallback {
         /// Fallback colors for previews or when asset catalog colors are unavailable.
         static let background = Color(hex: "#0D0D0D")
         static let card = Color(hex: "#1A1A1A")

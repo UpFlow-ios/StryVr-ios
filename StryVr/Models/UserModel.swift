@@ -8,16 +8,17 @@
 import Foundation
 
 // MARK: - UserModel
+
 /// Represents a user in the StryVr app
 struct UserModel: Identifiable, Codable, Hashable {
-    let id: String                                // Unique user ID (Firebase)
-    var fullName: String                          // User's full name
-    var email: String                             // User's email address
-    var profileImageURL: String?                  // URL to user's profile image
-    var bio: String?                              // User bio/intro
-    var skills: [String]                          // Skill tags
-    var isVerified: Bool                          // Verified status
-    let joinedDate: Date                          // Date of account creation
+    let id: String // Unique user ID (Firebase)
+    var fullName: String // User's full name
+    var email: String // User's email address
+    var profileImageURL: String? // URL to user's profile image
+    var bio: String? // User bio/intro
+    var skills: [String] // Skill tags
+    var isVerified: Bool // Verified status
+    let joinedDate: Date // Date of account creation
 
     // MARK: - Computed Properties
 
@@ -33,7 +34,8 @@ struct UserModel: Identifiable, Codable, Hashable {
     }
 
     // MARK: - Default Empty User
-    static let empty: UserModel = UserModel(
+
+    static let empty: UserModel = .init(
         id: UUID().uuidString,
         fullName: "",
         email: "",
@@ -42,6 +44,7 @@ struct UserModel: Identifiable, Codable, Hashable {
     )
 
     // MARK: - Static Date Formatter
+
     private static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -49,6 +52,7 @@ struct UserModel: Identifiable, Codable, Hashable {
     }()
 
     // MARK: - Initializer
+
     init(
         id: String,
         fullName: String,

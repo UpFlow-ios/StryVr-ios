@@ -5,14 +5,15 @@
 //  📊 Team Analytics Dashboard – Skill Insights, Top Performers, Skill Gaps
 //
 
-import SwiftUI
 import Charts
+import SwiftUI
 
 struct BusinessAnalyticsDashboard: View {
     @State private var teamReports: [LearningReport] = []
     @State private var errorMessage: String?
 
     // MARK: - Computed Analytics
+
     private var averageProgressBySkill: [String: Double] {
         ReportAnalysisHelper.calculateAverageSkillProgress(from: teamReports)
     }
@@ -29,20 +30,22 @@ struct BusinessAnalyticsDashboard: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: Theme.Spacing.large) {
-
                     // MARK: - Dashboard Title
+
                     Text("📈 Business Analytics")
                         .font(Theme.Typography.headline)
                         .padding(.top, Theme.Spacing.medium)
                         .padding(.horizontal)
 
                     // MARK: - Company Info (Optional)
+
                     Text("Organization: StryVr Inc.")
                         .font(Theme.Typography.caption)
                         .foregroundColor(.secondary)
                         .padding(.horizontal)
 
                     // MARK: - Export Button (Placeholder)
+
                     Button(action: {
                         // Future: export as PDF/CSV
                     }) {
@@ -53,6 +56,7 @@ struct BusinessAnalyticsDashboard: View {
                     .padding(.horizontal)
 
                     // MARK: - Skill Progress Chart
+
                     if !averageProgressBySkill.isEmpty {
                         Group {
                             Text("Average Skill Progress")
@@ -83,6 +87,7 @@ struct BusinessAnalyticsDashboard: View {
                     }
 
                     // MARK: - Top Performers
+
                     if !topPerformers.isEmpty {
                         Group {
                             Text("🏅 Top Performers")
@@ -113,6 +118,7 @@ struct BusinessAnalyticsDashboard: View {
                     }
 
                     // MARK: - Skills Needing Attention
+
                     if !lowPerformingSkills.isEmpty {
                         Group {
                             Text("⚠️ Skills Needing Attention")
@@ -137,6 +143,7 @@ struct BusinessAnalyticsDashboard: View {
                     }
 
                     // MARK: - Error Message
+
                     if let errorMessage = errorMessage {
                         Text(errorMessage)
                             .foregroundColor(.red)
@@ -162,12 +169,13 @@ struct BusinessAnalyticsDashboard: View {
     }
 
     // MARK: - Data Fetch Logic
+
     private func loadData() {
         errorMessage = nil
         ReportGeneration.shared.fetchTeamReports { result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let reports):
+                case let .success(reports):
                     self.teamReports = reports
                 case .failure:
                     self.errorMessage = "Failed to load team reports. Please try again later."

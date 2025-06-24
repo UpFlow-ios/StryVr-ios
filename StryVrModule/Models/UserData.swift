@@ -17,15 +17,16 @@ struct UserData: Identifiable, Codable, Hashable {
     let profileImageURL: String?
     let department: String?
     let jobTitle: String?
-    
+
     // Recent performance summary
     let lastReport: LearningReport?
     let progressScore: Double // 0.0 to 1.0
-    
+
     // Optional description or user bio
     let bio: String?
 
     // MARK: - Safe Defaults
+
     static let empty = UserData(
         id: UUID().uuidString,
         fullName: "N/A",
@@ -39,5 +40,3 @@ struct UserData: Identifiable, Codable, Hashable {
         bio: nil
     )
 }
-
-

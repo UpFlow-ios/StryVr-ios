@@ -19,7 +19,6 @@ struct WorkplaceBehaviorFeedbackView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: Theme.Spacing.large) {
-
                     Text("🧠 Worplace Behavior Feedback")
                         .font(Theme.Typography.headline)
                         .foregroundColor(Theme.Colors.textPrimary)
@@ -70,13 +69,14 @@ struct WorkplaceBehaviorFeedbackView: View {
     }
 
     // MARK: - Workplace Behavior Rating Row
+
     private func behaviorRatingRow(title: String, rating: Binding<Int>) -> some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(title)
                 .font(Theme.Typography.body)
                 .foregroundColor(Theme.Colors.textPrimary)
             HStack(spacing: 8) {
-                ForEach(1...5, id: \ .self) { value in
+                ForEach(1 ... 5, id: \ .self) { value in
                     Image(systemName: value <= rating.wrappedValue ? "star.fill" : "star")
                         .resizable()
                         .frame(width: 24, height: 24)
@@ -90,6 +90,7 @@ struct WorkplaceBehaviorFeedbackView: View {
     }
 
     // MARK: - Submit Feedback Action
+
     private func submitFeedback() {
         // Placeholder logic: In production, connect to FirestoreService
         withAnimation {
@@ -105,4 +106,3 @@ struct WorkplaceBehaviorFeedbackView: View {
 #Preview {
     WorkplaceBehaviorFeedbackView()
 }
-

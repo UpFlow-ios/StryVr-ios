@@ -73,6 +73,7 @@ struct ForgotPasswordView: View {
     }
 
     // MARK: - Reset Password Logic
+
     private func sendResetLink() {
         guard !email.trimmingCharacters(in: .whitespaces).isEmpty else {
             message = "Please enter your email."

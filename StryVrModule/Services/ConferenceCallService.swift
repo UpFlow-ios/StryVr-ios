@@ -4,15 +4,13 @@
 //
 //  Created by Joe Dormond on 3/12/25.
 //
-import Foundation
-import FirebaseFirestore
-import os.log
 import AVFoundation
-
+import FirebaseFirestore
+import Foundation
+import os.log
 
 /// Manages real-time video calls, recording, chat, and screen sharing
 final class ConferenceCallService {
-
     static let shared = ConferenceCallService()
     private let db = Firestore.firestore()
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "ConferenceCallService")
@@ -20,6 +18,7 @@ final class ConferenceCallService {
     private init() {}
 
     // MARK: - Schedule Call
+
     /// Schedules a new conference call
     func scheduleConferenceCall(title: String, hostID: String, scheduledDate: Date, completion: @escaping (Bool, Error?) -> Void) {
         guard !title.isEmpty, !hostID.isEmpty else {
@@ -38,7 +37,7 @@ final class ConferenceCallService {
             "status": "upcoming",
             "chatMessages": [],
             "recordingURL": "",
-            "screenSharingEnabled": false
+            "screenSharingEnabled": false,
         ]
 
         db.collection("conferenceCalls").document(callID).setData(callData) { error in
@@ -53,6 +52,7 @@ final class ConferenceCallService {
     }
 
     // MARK: - Update Status
+
     /// Updates the status of a conference call
     func updateCallStatus(callID: String, status: String, completion: @escaping (Bool, Error?) -> Void) {
         guard !callID.isEmpty, !status.isEmpty else {
@@ -62,7 +62,7 @@ final class ConferenceCallService {
         }
 
         db.collection("conferenceCalls").document(callID).updateData([
-            "status": status
+            "status": status,
         ]) { error in
             if let error = error {
                 self.logger.error("❌ Error updating status: \(error.localizedDescription)")
@@ -75,6 +75,7 @@ final class ConferenceCallService {
     }
 
     // MARK: - Screen Sharing
+
     /// Enables or disables screen sharing for a conference call
     func enableScreenSharing(callID: String, isEnabled: Bool, completion: @escaping (Bool, Error?) -> Void) {
         guard !callID.isEmpty else {
@@ -84,7 +85,7 @@ final class ConferenceCallService {
         }
 
         db.collection("conferenceCalls").document(callID).updateData([
-            "screenSharingEnabled": isEnabled
+            "screenSharingEnabled": isEnabled,
         ]) { error in
             if let error = error {
                 self.logger.error("❌ Screen sharing update error: \(error.localizedDescription)")
@@ -97,6 +98,7 @@ final class ConferenceCallService {
     }
 
     // MARK: - Add Chat Message
+
     /// Adds a chat message to a conference call
     func addChatMessage(callID: String, senderID: String, message: String, timestamp: Date, completion: @escaping (Bool, Error?) -> Void) {
         guard !callID.isEmpty, !senderID.isEmpty, !message.isEmpty else {
@@ -108,11 +110,11 @@ final class ConferenceCallService {
         let messageData: [String: Any] = [
             "senderID": senderID,
             "message": message,
-            "timestamp": timestamp
+            "timestamp": timestamp,
         ]
 
         db.collection("conferenceCalls").document(callID).updateData([
-            "chatMessages": FieldValue.arrayUnion([messageData])
+            "chatMessages": FieldValue.arrayUnion([messageData]),
         ]) { error in
             if let error = error {
                 self.logger.error("❌ Chat message failed: \(error.localizedDescription)")
@@ -126,6 +128,7 @@ final class ConferenceCallService {
 }
 
 // MARK: - Custom Error Type
+
 enum ConferenceCallError: LocalizedError {
     case invalidInput
 

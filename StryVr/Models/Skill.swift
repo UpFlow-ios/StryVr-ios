@@ -7,7 +7,6 @@
 //  🧠 Skill Model – Tracks user skills, proficiency, activity, and validation
 //
 
-
 import Foundation
 
 /// Represents a user’s skill inside StryVr
@@ -26,10 +25,10 @@ struct Skill: Identifiable, Codable, Hashable {
     /// Converts proficiency to a readable string
     var proficiencyLabel: String {
         switch proficiencyLevel {
-        case 0.8...1.0: return "Expert"
-        case 0.6..<0.8: return "Advanced"
-        case 0.4..<0.6: return "Intermediate"
-        case 0.2..<0.4: return "Beginner"
+        case 0.8 ... 1.0: return "Expert"
+        case 0.6 ..< 0.8: return "Advanced"
+        case 0.4 ..< 0.6: return "Intermediate"
+        case 0.2 ..< 0.4: return "Beginner"
         default: return "New"
         }
     }
@@ -46,7 +45,7 @@ struct Skill: Identifiable, Codable, Hashable {
     func isRecent(within days: Int = 7) -> Bool {
         guard let lastDate = lastPracticed else { return false }
         return Calendar.current.isDateInToday(lastDate) ||
-               lastDate >= Calendar.current.date(byAdding: .day, value: -days, to: Date())!
+            lastDate >= Calendar.current.date(byAdding: .day, value: -days, to: Date())!
     }
 
     /// Checks if the skill is at an expert level
@@ -58,7 +57,7 @@ struct Skill: Identifiable, Codable, Hashable {
 
     /// Validates that the proficiency level is within the valid range
     var isValid: Bool {
-        (0.0...1.0).contains(proficiencyLevel)
+        (0.0 ... 1.0).contains(proficiencyLevel)
     }
 
     // MARK: - Placeholder

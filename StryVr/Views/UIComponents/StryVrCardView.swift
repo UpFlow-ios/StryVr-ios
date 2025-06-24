@@ -15,7 +15,7 @@ struct StryVrCardView<Content: View>: View {
     var shadowColor: Color = Theme.Colors.accent.opacity(0.1)
     var cornerRadius: CGFloat = Theme.CornerRadius.medium
     var shadowRadius: CGFloat = 5
-    var shadowOffset: CGSize = CGSize(width: 0, height: 2)
+    var shadowOffset: CGSize = .init(width: 0, height: 2)
 
     init(
         title: String,

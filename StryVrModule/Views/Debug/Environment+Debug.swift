@@ -7,10 +7,9 @@ import SwiftUI
 extension EnvironmentValues {
     var isDebug: Bool {
         #if DEBUG
-        return true
+            return true
         #else
-        return false
+            return false
         #endif
     }
 }
-

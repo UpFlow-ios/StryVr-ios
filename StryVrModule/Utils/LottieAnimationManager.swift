@@ -5,8 +5,8 @@
 //  Created by Joe Dormond on 5/14/25.
 //  🎞️ Lottie Wrapper – SwiftUI-Compatible View for Confetti & Animations
 //
-import SwiftUI
 import Lottie
+import SwiftUI
 
 /// SwiftUI-compatible wrapper for displaying Lottie animations
 struct LottieAnimationView: UIViewRepresentable {
@@ -35,7 +35,7 @@ struct LottieAnimationView: UIViewRepresentable {
             animationView.topAnchor.constraint(equalTo: containerView.topAnchor),
             animationView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
             animationView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            animationView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
+            animationView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
         ])
 
         // Auto-play animation
@@ -49,7 +49,7 @@ struct LottieAnimationView: UIViewRepresentable {
         return containerView
     }
 
-    func updateUIView(_ uiView: UIView, context: Context) {
+    func updateUIView(_: UIView, context: Context) {
         guard let animationView = context.coordinator.animationView else { return }
         animationView.play { finished in
             if finished {

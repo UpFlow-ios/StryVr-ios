@@ -6,12 +6,11 @@
 //
 //  🔐 Auth Manager – Handles MFA (email & SMS) and secure session management
 //
-import Foundation
+import CryptoKit
 import FirebaseAuth
 import FirebaseFirestore
+import Foundation
 import os.log
-import CryptoKit
-
 
 /// Manages authentication, MFA, and session security in StryVr
 final class AuthManager {
@@ -22,6 +21,7 @@ final class AuthManager {
     private init() {}
 
     // MARK: - Send Email Verification (MFA)
+
     /// Sends an email verification for MFA
     func sendMFAVerificationEmail(completion: @escaping (Bool, Error?) -> Void) {
         guard let user = Auth.auth().currentUser else {
@@ -41,10 +41,11 @@ final class AuthManager {
     }
 
     // MARK: - Send SMS for MFA
+
     /// Sends an SMS verification code for MFA
     func sendMFAVerificationSMS(phoneNumber: String, completion: @escaping (Bool, Error?) -> Void) {
         guard !phoneNumber.isEmpty else {
-            self.logger.error("❌ Invalid phone number")
+            logger.error("❌ Invalid phone number")
             completion(false, AuthError.invalidInput)
             return
         }
@@ -62,23 +63,24 @@ final class AuthManager {
     }
 
     // MARK: - Confirm SMS Code (MFA Login)
+
     /// Confirms the SMS verification code for MFA login
     func confirmMFACode(_ code: String, completion: @escaping (Bool, Error?) -> Void) {
         guard !code.isEmpty else {
-            self.logger.error("❌ Invalid verification code")
+            logger.error("❌ Invalid verification code")
             completion(false, AuthError.invalidInput)
             return
         }
 
         guard let verificationID = UserDefaults.standard.string(forKey: "authVerificationID") else {
-            self.logger.error("❌ Verification ID not available")
+            logger.error("❌ Verification ID not available")
             completion(false, AuthError.verificationIDNotFound)
             return
         }
 
         let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: code)
 
-        Auth.auth().signIn(with: credential) { authResult, error in
+        Auth.auth().signIn(with: credential) { _, error in
             if let error = error {
                 self.logger.error("❌ MFA code confirmation failed: \(error.localizedDescription)")
                 completion(false, error)
@@ -91,6 +93,7 @@ final class AuthManager {
 }
 
 // MARK: - Custom Error Type
+
 enum AuthError: LocalizedError {
     case userNotAuthenticated
     case invalidInput

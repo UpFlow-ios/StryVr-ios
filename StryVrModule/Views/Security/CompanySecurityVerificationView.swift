@@ -17,8 +17,8 @@ struct CompanySecurityVerificationView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: Theme.Spacing.large) {
-
                 // MARK: - Header
+
                 Text("Company Verification")
                     .font(Theme.Typography.headline)
                     .foregroundColor(Theme.Colors.textPrimary)
@@ -27,6 +27,7 @@ struct CompanySecurityVerificationView: View {
                     .accessibilityHint("Enter company details to verify")
 
                 // MARK: - Company Name Field
+
                 TextField("Company Name", text: $companyName)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
@@ -34,6 +35,7 @@ struct CompanySecurityVerificationView: View {
                     .accessibilityHint("Enter the name of the company")
 
                 // MARK: - Registration ID Field
+
                 TextField("Company Registration ID", text: $companyID)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
@@ -41,6 +43,7 @@ struct CompanySecurityVerificationView: View {
                     .accessibilityHint("Enter the registration ID of the company")
 
                 // MARK: - Verify Button
+
                 Button(action: verifyCompany) {
                     Text("Verify Company")
                         .font(Theme.Typography.body)
@@ -62,6 +65,7 @@ struct CompanySecurityVerificationView: View {
                 }
 
                 // MARK: - Verification Status
+
                 Text("Status: \(verificationStatus)")
                     .font(Theme.Typography.caption)
                     .foregroundColor(verificationStatus == "Verified ✅" ? .green : .orange)
@@ -78,6 +82,7 @@ struct CompanySecurityVerificationView: View {
     }
 
     // MARK: - Placeholder Verification Logic
+
     private func verifyCompany() {
         guard !companyName.isEmpty, !companyID.isEmpty else {
             showError = true

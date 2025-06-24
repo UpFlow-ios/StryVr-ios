@@ -7,14 +7,13 @@
 //  🏆 Challenge System – Manages learning challenges, competitions, and streak tracking
 //
 
-import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import Foundation
 import os.log
 
 /// Manages learning challenges, competitions, and streak tracking
 final class ChallengeSystem {
-
     static let shared = ChallengeSystem()
     private let db = Firestore.firestore()
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "ChallengeSystem")
@@ -22,6 +21,7 @@ final class ChallengeSystem {
     private init() {}
 
     // MARK: - Create Challenge
+
     /// Creates a new learning challenge
     func createChallenge(title: String, description: String, reward: String, durationDays: Int, completion: @escaping (Bool, Error?) -> Void) {
         guard !title.isEmpty, !description.isEmpty, !reward.isEmpty else {
@@ -41,7 +41,7 @@ final class ChallengeSystem {
             "startDate": Date(),
             "endDate": endDate,
             "participants": [],
-            "completedUsers": []
+            "completedUsers": [],
         ]
 
         db.collection("challenges").document(challengeID).setData(challengeData) { error in
@@ -56,6 +56,7 @@ final class ChallengeSystem {
     }
 
     // MARK: - Join Challenge
+
     /// Allows a user to join a challenge
     func joinChallenge(challengeID: String, userID: String, completion: @escaping (Bool, Error?) -> Void) {
         guard !challengeID.isEmpty, !userID.isEmpty else {
@@ -67,7 +68,7 @@ final class ChallengeSystem {
         let ref = db.collection("challenges").document(challengeID)
 
         ref.updateData([
-            "participants": FieldValue.arrayUnion([userID])
+            "participants": FieldValue.arrayUnion([userID]),
         ]) { error in
             if let error = error {
                 self.logger.error("❌ Failed to join challenge: \(error.localizedDescription)")
@@ -78,7 +79,9 @@ final class ChallengeSystem {
             }
         }
     }
+
     // MARK: - Complete Challenge
+
     /// Marks a challenge as completed for a user
     func completeChallenge(challengeID: String, userID: String, completion: @escaping (Bool, Error?) -> Void) {
         guard !challengeID.isEmpty, !userID.isEmpty else {
@@ -90,7 +93,7 @@ final class ChallengeSystem {
         let ref = db.collection("challenges").document(challengeID)
 
         ref.updateData([
-            "completedUsers": FieldValue.arrayUnion([userID])
+            "completedUsers": FieldValue.arrayUnion([userID]),
         ]) { error in
             if let error = error {
                 self.logger.error("❌ Failed to complete challenge: \(error.localizedDescription)")
@@ -103,6 +106,7 @@ final class ChallengeSystem {
     }
 
     // MARK: - Fetch Active Challenges
+
     /// Fetches all active challenges
     func fetchActiveChallenges(completion: @escaping ([ChallengeModel]) -> Void) {
         db.collection("challenges")
@@ -133,6 +137,7 @@ final class ChallengeSystem {
 }
 
 // MARK: - Custom Error Type
+
 enum ChallengeError: LocalizedError {
     case invalidInput
 

@@ -10,16 +10,16 @@ import Foundation
 import os.log
 
 // MARK: - ReportAnalysisHelper
-struct ReportAnalysisHelper {
 
+enum ReportAnalysisHelper {
     /// Calculates average progress for each skill across reports.
     /// - Parameter reports: `[LearningReport]` array.
     /// - Returns: `[String: Double]` skills dictionary with average progress.
     static func calculateAverageSkillProgress(from reports: [LearningReport]) -> [String: Double] {
         var skillTotals = [String: (total: Double, count: Int)]()
 
-        reports.forEach { report in
-            report.skillsProgress.forEach { skill, progress in
+        for report in reports {
+            for (skill, progress) in report.skillsProgress {
                 skillTotals[skill, default: (0, 0)].total += progress
                 skillTotals[skill, default: (0, 0)].count += 1
             }
@@ -43,8 +43,8 @@ struct ReportAnalysisHelper {
     static func findTopUsers(from reports: [LearningReport], topCount: Int = 5) -> [UserModel] {
         var userProgress = [UserModel]()
 
-        reports.forEach { report in
-            guard !report.skillsProgress.isEmpty else { return }
+        for report in reports {
+            guard !report.skillsProgress.isEmpty else { continue }
             var user = report.user
             user.averageProgress = report.skillsProgress.values.reduce(0, +) / Double(report.skillsProgress.count)
             userProgress.append(user)
@@ -73,6 +73,7 @@ struct ReportAnalysisHelper {
 }
 
 // MARK: - Collection Extension for Clarity
+
 extension Collection {
     /// Allows inline logging and chaining within closures.
     @discardableResult

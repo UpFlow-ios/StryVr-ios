@@ -10,14 +10,14 @@
 import Foundation
 
 struct SkillVerificationModel: Identifiable, Codable {
-    let id: String                      // Unique ID for the skill verification request
-    let userID: String                  // ID of the user requesting verification
-    var skillName: String               // Name of the skill being verified
+    let id: String // Unique ID for the skill verification request
+    let userID: String // ID of the user requesting verification
+    var skillName: String // Name of the skill being verified
     var verificationMethod: VerificationMethod // Method used for verification
-    var status: VerificationStatus      // Current status of the verification request
+    var status: VerificationStatus // Current status of the verification request
     var submittedEvidenceURLs: [String]? // Optional URLs for submitted evidence
-    let requestDate: Date               // Date when the request was submitted
-    var completionDate: Date?           // Optional date when the request was completed
+    let requestDate: Date // Date when the request was submitted
+    var completionDate: Date? // Optional date when the request was completed
 
     // MARK: - Computed Properties
 

@@ -4,8 +4,8 @@
 //  🧠 Skill Matrix – Visualize Team Skill Distribution & Strengths
 //
 
-import SwiftUI
 import Charts
+import SwiftUI
 
 struct SkillMatrixView: View {
     @State private var skillMatrix: [SkillMatrixEntry] = []
@@ -16,8 +16,8 @@ struct SkillMatrixView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: Theme.Spacing.large) {
-
                     // MARK: - Title
+
                     Text("🧠 Team Skill Matrix")
                         .font(Theme.Typography.headline)
                         .foregroundColor(Theme.Colors.textPrimary)
@@ -25,6 +25,7 @@ struct SkillMatrixView: View {
                         .padding(.top)
 
                     // MARK: - Chart or Message
+
                     if isLoading {
                         ProgressView("Loading matrix...")
                     } else if let errorMessage = errorMessage {
@@ -58,12 +59,13 @@ struct SkillMatrixView: View {
     }
 
     // MARK: - Load Skill Matrix Data
+
     private func loadMatrix() {
         SkillMatrixService.shared.fetchMatrix { result in
             DispatchQueue.main.async {
                 isLoading = false
                 switch result {
-                case .success(let data):
+                case let .success(data):
                     self.skillMatrix = data
                 case .failure:
                     self.errorMessage = "Failed to load skill matrix."
@@ -76,4 +78,3 @@ struct SkillMatrixView: View {
 #Preview {
     SkillMatrixView()
 }
-

@@ -19,12 +19,14 @@ struct NotificationPreferencesView: View {
         NavigationStack {
             Form {
                 // MARK: - Notification Toggles
+
                 Section(header: Text("Notification Settings")) {
                     Toggle("General App Updates", isOn: $generalNotificationsEnabled)
                     Toggle("New Skill Challenges", isOn: $challengeNotificationsEnabled)
                 }
 
                 // MARK: - Silent Mode
+
                 Section(header: Text("Silent Mode")) {
                     Toggle("Mute All Notifications", isOn: $silentModeEnabled)
                         .onChange(of: silentModeEnabled) { newValue in
@@ -35,6 +37,7 @@ struct NotificationPreferencesView: View {
                 }
 
                 // MARK: - Save Button
+
                 Section {
                     Button(action: savePreferences) {
                         if isSaving {
@@ -61,16 +64,18 @@ struct NotificationPreferencesView: View {
     }
 
     // MARK: - Disable All Notifications Helper
+
     private func disableAllNotifications() {
         generalNotificationsEnabled = false
         challengeNotificationsEnabled = false
     }
 
     // MARK: - Save Preferences
+
     private func savePreferences() {
         isSaving = true
         simpleHaptic()
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) { // Simulate save delay
             isSaving = false
             presentationMode.wrappedValue.dismiss()
@@ -78,6 +83,7 @@ struct NotificationPreferencesView: View {
     }
 
     // MARK: - Simple Haptic
+
     private func simpleHaptic() {
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()

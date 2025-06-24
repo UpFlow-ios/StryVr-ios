@@ -9,22 +9,21 @@
 import SwiftUI
 
 extension Font {
-    struct Style {
-        
+    enum Style {
         /// Large section title font
-        static let title: Font = Font.system(size: 28, weight: .bold, design: .rounded)
+        static let title: Font = .system(size: 28, weight: .bold, design: .rounded)
 
         /// Section header font
-        static let heading: Font = Font.system(size: 20, weight: .semibold, design: .rounded)
+        static let heading: Font = .system(size: 20, weight: .semibold, design: .rounded)
 
         /// Standard body font for general content
-        static let body: Font = Font.system(size: 16, weight: .regular, design: .rounded)
+        static let body: Font = .system(size: 16, weight: .regular, design: .rounded)
 
         /// Smaller caption or sublabel text
-        static let caption: Font = Font.system(size: 14, weight: .light, design: .rounded)
+        static let caption: Font = .system(size: 14, weight: .light, design: .rounded)
 
         /// Extra small micro text for footnotes or metadata
-        static let footnote: Font = Font.system(size: 12, weight: .thin, design: .rounded)
+        static let footnote: Font = .system(size: 12, weight: .thin, design: .rounded)
 
         /// Dynamic scaling wrapper for accessibility
         /// - Parameter font: The base font to scale dynamically.

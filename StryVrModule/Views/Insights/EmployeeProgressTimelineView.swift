@@ -5,8 +5,8 @@
 //  🕒 Progress Timeline – View employee milestones, feedback, and achievements over time
 //
 
-import SwiftUI
 import Charts
+import SwiftUI
 
 struct EmployeeProgressTimelineView: View {
     @State private var timelineItems: [EmployeeTimelineEvent] = []
@@ -48,6 +48,7 @@ struct EmployeeProgressTimelineView: View {
     }
 
     // MARK: - Timeline Card
+
     private func timelineCard(for event: EmployeeTimelineEvent) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(event.title)
@@ -69,12 +70,13 @@ struct EmployeeProgressTimelineView: View {
     }
 
     // MARK: - Load Timeline Data
+
     private func loadTimeline() {
         EmployeeProgressService.shared.fetchTimeline(for: employeeId) { result in
             DispatchQueue.main.async {
                 isLoading = false
                 switch result {
-                case .success(let events):
+                case let .success(events):
                     timelineItems = events
                 case .failure:
                     errorMessage = "Failed to load timeline data."
@@ -87,4 +89,3 @@ struct EmployeeProgressTimelineView: View {
 #Preview {
     EmployeeProgressTimelineView(employeeId: "sample123")
 }
-

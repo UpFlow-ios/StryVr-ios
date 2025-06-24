@@ -11,9 +11,9 @@ import Foundation
 struct TeamHealthStat: Identifiable, Codable {
     let id: String
     let employeeName: String
-    let productivityScore: Double   // 0–100
-    let wellnessScore: Double       // 0–100
-    let checkInMood: String         // "😊", "😐", "😞"
+    let productivityScore: Double // 0–100
+    let wellnessScore: Double // 0–100
+    let checkInMood: String // "😊", "😐", "😞"
     let lastActiveDate: Date
 
     var isRecentlyActive: Bool {

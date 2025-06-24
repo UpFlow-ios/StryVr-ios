@@ -35,6 +35,7 @@ enum VideoCategory: String, Codable, CaseIterable {
     static func isValidCategory(_ category: String) -> Bool {
         return VideoCategory(rawValue: category) != nil
     }
+
     /// Mock value for SwiftUI previews
     static var mock: VideoCategory {
         .skillTutorial

@@ -5,9 +5,9 @@
 //  🌱 Entry Point with Firebase Setup, Splash Screen, Auth Routing
 //
 
-import SwiftUI
 import Firebase
 import os
+import SwiftUI
 
 @main
 struct StryVrApp: App {
@@ -44,6 +44,7 @@ struct StryVrApp: App {
     }
 
     // MARK: - Firebase Setup
+
     private func configureFirebase() {
         if FirebaseApp.app() == nil {
             FirebaseApp.configure()
@@ -52,6 +53,7 @@ struct StryVrApp: App {
     }
 
     // MARK: - Splash Transition
+
     private func handleSplash() {
         DispatchQueue.main.asyncAfter(deadline: .now() + splashDuration) {
             withAnimation {

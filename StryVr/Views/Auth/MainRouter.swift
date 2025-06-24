@@ -24,4 +24,3 @@ struct MainRouter: View {
         .animation(.easeInOut, value: authViewModel.isAuthenticated)
     }
 }
-

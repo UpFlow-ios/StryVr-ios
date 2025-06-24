@@ -18,7 +18,7 @@ struct AchievementsView: View {
     @State private var achievements: [Achievement] = [
         Achievement(title: "First Challenge Completed", isUnlocked: true, imageName: "star.fill"),,
         Achievement(title: "Profile Verified", isUnlocked: true, imageName: "checkmark.shield"),
-        Achievement(title: "Learning Streak - 7 Days", isUnlocked: false, imageName: "flame.fill")
+        Achievement(title: "Learning Streak - 7 Days", isUnlocked: false, imageName: "flame.fill"),
     ]
 
     @State private var showConfetti = false
@@ -65,6 +65,7 @@ struct AchievementsView: View {
     }
 
     // MARK: - Achievement Card
+
     private func achievementCard(for achievement: Achievement) -> some View {
         VStack(spacing: Theme.Spacing.small) {
             Image(systemName: achievement.imageName)
@@ -87,6 +88,7 @@ struct AchievementsView: View {
     }
 
     // MARK: - Handle Achievement Tap
+
     private func handleAchievementTap(_ achievement: Achievement) {
         if achievement.isUnlocked {
             recentlyUnlockedAchievement = achievement

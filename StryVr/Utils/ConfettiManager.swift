@@ -6,8 +6,8 @@
 //  🎉 Central Confetti Manager for Achievements, Streaks & Challenges
 //
 
-import SwiftUI
 import ConfettiSwiftUI
+import SwiftUI
 
 /// Usage:
 /// Bind `.confettiCannon(counter: ConfettiManager.shared.counter, num: 20)` to a view.

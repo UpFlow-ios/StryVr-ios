@@ -18,10 +18,10 @@ struct CustomButton: View {
     var cornerRadius: CGFloat = Theme.CornerRadius.medium
     var font: Font = Theme.Typography.body
     var fullWidth: Bool = true
-    var padding: EdgeInsets = EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16)
+    var padding: EdgeInsets = .init(top: 12, leading: 16, bottom: 12, trailing: 16)
     var shadowColor: Color = Theme.Colors.accent.opacity(0.15)
     var shadowRadius: CGFloat = 4
-    var shadowOffset: CGSize = CGSize(width: 0, height: 2)
+    var shadowOffset: CGSize = .init(width: 0, height: 2)
 
     var body: some View {
         Button(action: action) {

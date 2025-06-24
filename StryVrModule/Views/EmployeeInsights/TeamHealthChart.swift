@@ -6,8 +6,8 @@
 //  📈 Team Health Chart – Visual comparison of productivity vs. wellness
 //
 
-import SwiftUI
 import Charts
+import SwiftUI
 
 struct TeamHealthChart: View {
     let stats: [TeamHealthStat]
@@ -43,4 +43,3 @@ struct TeamHealthChart: View {
         }
     }
 }
-

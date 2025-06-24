@@ -6,13 +6,12 @@
 //  🔐 SecureStorageService – Keychain-based sensitive data handler with biometric authentication support
 //
 import Foundation
-import Security
 import LocalAuthentication
 import os.log
+import Security
 
 /// Manages secure storage of sensitive data using Apple's Keychain API
 final class SecureStorageService {
-    
     static let shared = SecureStorageService()
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "SecureStorageService")
 
@@ -34,12 +33,12 @@ final class SecureStorageService {
 
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: key
+            kSecAttrAccount as String: key,
         ]
 
         let attributes: [String: Any] = [
             kSecValueData as String: data,
-            kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlockedThisDeviceOnly
+            kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlockedThisDeviceOnly,
         ]
 
         let status = SecItemCopyMatching(query as CFDictionary, nil)
@@ -52,7 +51,7 @@ final class SecureStorageService {
             }
         } else {
             var newQuery = query
-            newQuery.merge(attributes) { (_, new) in new }
+            newQuery.merge(attributes) { _, new in new }
             let addStatus = SecItemAdd(newQuery as CFDictionary, nil)
             if addStatus == errSecSuccess {
                 logger.info("✅ Saved key securely")
@@ -73,7 +72,7 @@ final class SecureStorageService {
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key,
             kSecReturnData as String: true,
-            kSecMatchLimit as String: kSecMatchLimitOne
+            kSecMatchLimit as String: kSecMatchLimitOne,
         ]
 
         var dataTypeRef: AnyObject?
@@ -81,7 +80,8 @@ final class SecureStorageService {
 
         if status == errSecSuccess,
            let retrievedData = dataTypeRef as? Data,
-           let result = String(data: retrievedData, encoding: .utf8) {
+           let result = String(data: retrievedData, encoding: .utf8)
+        {
             logger.info("✅ Retrieved key securely")
             return result
         } else {
@@ -99,7 +99,7 @@ final class SecureStorageService {
 
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: key
+            kSecAttrAccount as String: key,
         ]
 
         let status = SecItemDelete(query as CFDictionary)

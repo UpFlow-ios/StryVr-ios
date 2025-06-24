@@ -6,29 +6,32 @@
 //  📈 Fully Optimized for Performance, Scalability, Robust Error Handling, and Maintainability
 //
 
-import Foundation
 import Combine
+import Foundation
 import os.log
 
 final class HomeViewModel: ObservableObject {
-
     // MARK: - Published Properties
+
     @Published private(set) var skills: [Skill] = []
     @Published var errorMessage: String?
     @Published private(set) var isLoading: Bool = false
 
     // MARK: - Private Properties
+
     private var cancellables = Set<AnyCancellable>()
     private let skillService: SkillServiceProtocol
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr.app", category: "HomeViewModel")
 
     // MARK: - Initialization
+
     init(skillService: SkillServiceProtocol = SkillService.shared) {
         self.skillService = skillService
         fetchSkills()
     }
 
     // MARK: - Fetch Skills from SkillService
+
     /// Fetches skills using `SkillService` with structured logging and error handling.
     func fetchSkills() {
         isLoading = true
@@ -41,7 +44,7 @@ final class HomeViewModel: ObservableObject {
                 switch completion {
                 case .finished:
                     self.logger.info("✅ Skills successfully fetched and loaded.")
-                case .failure(let error):
+                case let .failure(error):
                     self.handleFetchError(error)
                 }
             }, receiveValue: { [weak self] skills in
@@ -53,6 +56,7 @@ final class HomeViewModel: ObservableObject {
     }
 
     // MARK: - Retry Fetch
+
     /// Retries fetching skills, useful for refresh actions.
     func retryFetchSkills() {
         fetchSkills()
@@ -60,6 +64,7 @@ final class HomeViewModel: ObservableObject {
     }
 
     // MARK: - Private Helper for Error Handling
+
     /// Handles fetch errors with detailed logging and user-facing messages.
     private func handleFetchError(_ error: Error) {
         errorMessage = "Unable to load skills. Please try again."

@@ -5,8 +5,8 @@
 //  📊 Individual Performance View – Goal tracking, feedback, streaks
 //
 
-import SwiftUI
 import Charts
+import SwiftUI
 
 struct EmployeePerformanceDetailView: View {
     let employeeName: String = "Alex Jordan"
@@ -23,12 +23,12 @@ struct EmployeePerformanceDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Theme.Spacing.large) {
-
                 Text("📌 Performance: \(employeeName)")
                     .font(Theme.Typography.headline)
                     .padding(.top)
 
                 // MARK: - Goal Completion Rate
+
                 VStack(alignment: .leading, spacing: Theme.Spacing.small) {
                     Text("🎯 Goal Completion")
                         .font(Theme.Typography.subheadline)
@@ -47,18 +47,21 @@ struct EmployeePerformanceDetailView: View {
                 .cornerRadius(Theme.CornerRadius.medium)
 
                 // MARK: - Challenge Participation
+
                 dashboardCard(title: "💪 Challenge Participation", value: "\(challengeParticipation) joined")
 
                 // MARK: - Achievements Unlocked
+
                 dashboardCard(title: "🏅 Achievements", value: "\(achievementsUnlocked) badges")
 
                 // MARK: - Daily Consistency (Bar Chart)
+
                 VStack(alignment: .leading, spacing: Theme.Spacing.small) {
                     Text("📅 Daily Streak (Last 7 Days)")
                         .font(Theme.Typography.subheadline)
 
                     Chart {
-                        ForEach(0..<dailyStreaks.count, id: \..self) { index in
+                        ForEach(0 ..< dailyStreaks.count, id: \..self) { index in
                             BarMark(
                                 x: .value("Day", index),
                                 y: .value("Check-ins", dailyStreaks[index])
@@ -81,6 +84,7 @@ struct EmployeePerformanceDetailView: View {
     }
 
     // MARK: - Dashboard Card Builder
+
     private func dashboardCard(title: String, value: String) -> some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.small) {
             Text(title)
@@ -98,5 +102,3 @@ struct EmployeePerformanceDetailView: View {
 #Preview {
     EmployeePerformanceDetailView()
 }
-
-

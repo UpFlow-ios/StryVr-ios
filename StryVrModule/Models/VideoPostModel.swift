@@ -10,17 +10,17 @@ import Foundation
 
 /// Represents a video post within the StryVr platform
 struct VideoPostModel: Identifiable, Codable, Hashable {
-    let id: String                      // Unique ID for the video post
-    let uploaderID: String              // ID of the uploader
-    var title: String                   // Title of the video
-    var description: String?            // Optional description of the video
-    var videoURL: String                // URL of the video
-    var thumbnailURL: String?           // Optional URL of the thumbnail
-    var duration: Int                   // Duration of the video in seconds
-    var category: VideoCategory         // Category of the video
-    var uploadDate: Date                // Date the video was uploaded
-    var engagement: VideoEngagement     // Engagement metrics for the video
-    var isFeatured: Bool                // Whether the video is featured
+    let id: String // Unique ID for the video post
+    let uploaderID: String // ID of the uploader
+    var title: String // Title of the video
+    var description: String? // Optional description of the video
+    var videoURL: String // URL of the video
+    var thumbnailURL: String? // Optional URL of the thumbnail
+    var duration: Int // Duration of the video in seconds
+    var category: VideoCategory // Category of the video
+    var uploadDate: Date // Date the video was uploaded
+    var engagement: VideoEngagement // Engagement metrics for the video
+    var isFeatured: Bool // Whether the video is featured
 
     /// Readable formatted date
     var formattedUploadDate: String {
@@ -42,6 +42,7 @@ struct VideoPostModel: Identifiable, Codable, Hashable {
     }
 
     // MARK: - Date Formatter
+
     private static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium

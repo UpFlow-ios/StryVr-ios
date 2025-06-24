@@ -12,29 +12,30 @@ import Foundation
 struct LearningReport: Identifiable, Codable, Hashable {
     /// Unique ID for this report
     let id: String
-    
+
     /// User identifier the report is for
     let userID: String
-    
+
     /// Date the report was generated
     let createdAt: Date
-    
+
     /// Skills analyzed with performance data
     let skills: [SkillPerformance]
-    
+
     /// AI-detected strengths (e.g. top 3 skills)
     let strengths: [String]
-    
+
     /// AI-detected areas of improvement
     let weaknesses: [String]
-    
+
     /// Optional AI-generated summary text for the report
     let summary: String?
-    
+
     /// Progress score 0.0–1.0
     let overallScore: Double
 
     // MARK: - Formatter
+
     var formattedDate: String {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -42,6 +43,7 @@ struct LearningReport: Identifiable, Codable, Hashable {
     }
 
     // MARK: - Placeholder
+
     static let sample = LearningReport(
         id: UUID().uuidString,
         userID: "user_001",
@@ -49,7 +51,7 @@ struct LearningReport: Identifiable, Codable, Hashable {
         skills: [
             SkillPerformance(skillName: "SwiftUI", rating: 0.9),
             SkillPerformance(skillName: "Communication", rating: 0.8),
-            SkillPerformance(skillName: "AI Literacy", rating: 0.6)
+            SkillPerformance(skillName: "AI Literacy", rating: 0.6),
         ],
         strengths: ["SwiftUI", "Communication"],
         weaknesses: ["AI Literacy"],

@@ -10,14 +10,14 @@ import Foundation
 
 /// Represents a report submitted within the StryVr app
 struct ReportModel: Identifiable, Codable, Hashable {
-    let id: String                      // Unique report ID
-    let reporterID: String              // ID of the user submitting the report
-    let reportedUserID: String?         // ID of the user being reported (optional)
-    let reportType: ReportType          // Type of the report
-    let description: String             // Description of the report
-    let evidenceURLs: [String]?         // Optional URLs for evidence
-    let status: ReportStatus            // Current status of the report
-    let timestamp: Date                 // Timestamp of when the report was submitted
+    let id: String // Unique report ID
+    let reporterID: String // ID of the user submitting the report
+    let reportedUserID: String? // ID of the user being reported (optional)
+    let reportType: ReportType // Type of the report
+    let description: String // Description of the report
+    let evidenceURLs: [String]? // Optional URLs for evidence
+    let status: ReportStatus // Current status of the report
+    let timestamp: Date // Timestamp of when the report was submitted
 
     // MARK: - Computed Properties
 
@@ -30,8 +30,8 @@ struct ReportModel: Identifiable, Codable, Hashable {
     var hasEvidence: Bool {
         guard let evidenceURLs = evidenceURLs else { return false }
         return !evidenceURLs.isEmpty
-    // MARK: - Static Date Formatter
 
+        // MARK: - Static Date Formatter
     }
 
     private static let dateFormatter: DateFormatter = {

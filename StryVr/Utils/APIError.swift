@@ -35,13 +35,13 @@ enum APIError: Error, LocalizedError {
         switch self {
         case .invalidURL:
             return "🚫 Invalid URL provided."
-        case .network(let err):
+        case let .network(err):
             return "🌐 Network error: \(err.localizedDescription)"
-        case .httpStatus(let code):
+        case let .httpStatus(code):
             return "❗ HTTP error with status code \(code)."
         case .noData:
             return "📭 No data received from server."
-        case .decoding(let err):
+        case let .decoding(err):
             return "📉 Failed to decode data: \(err.localizedDescription)"
         }
     }

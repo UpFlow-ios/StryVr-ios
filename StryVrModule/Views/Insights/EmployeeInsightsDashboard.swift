@@ -13,8 +13,8 @@ struct EmployeeInsightsDashboard: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: Theme.Spacing.large) {
-
                     // MARK: - Title
+
                     Text("📊 Employee Insights")
                         .font(Theme.Typography.headline)
                         .foregroundColor(Theme.Colors.textPrimary)
@@ -22,6 +22,7 @@ struct EmployeeInsightsDashboard: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
 
                     // MARK: - Team Health Overview
+
                     NavigationLink(destination: TeamHealthOverviewView()) {
                         insightsCard(
                             title: "❤️ Team Health Overview",
@@ -31,6 +32,7 @@ struct EmployeeInsightsDashboard: View {
                     }
 
                     // MARK: - Workplace Goal Tracker
+
                     NavigationLink(destination: WorkplaceGoalTrackerView()) {
                         insightsCard(
                             title: "🎯 Goal Tracker",
@@ -40,6 +42,7 @@ struct EmployeeInsightsDashboard: View {
                     }
 
                     // MARK: - Feedback History
+
                     NavigationLink(destination: FeedbackHistoryView(employeeId: "example_employee_id")) {
                         insightsCard(
                             title: "🧾 Feedback History",
@@ -49,6 +52,7 @@ struct EmployeeInsightsDashboard: View {
                     }
 
                     // MARK: - Progress Timeline
+
                     NavigationLink(destination: EmployeeProgressTimelineView(employeeId: "example_employee_id")) {
                         insightsCard(
                             title: "🕒 Progress Timeline",
@@ -65,6 +69,7 @@ struct EmployeeInsightsDashboard: View {
     }
 
     // MARK: - Card Component
+
     private func insightsCard(title: String, description: String, systemIcon: String) -> some View {
         HStack {
             VStack(alignment: .leading, spacing: Theme.Spacing.xSmall) {

@@ -4,13 +4,13 @@ import PackageDescription
 let package = Package(
     name: "StryVrPackages",
     platforms: [
-        .iOS(.v16)
+        .iOS(.v16),
     ],
     products: [
         .library(
             name: "StryVrPackages",
             targets: ["StryVrTarget"]
-        )
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/firebase/firebase-ios-sdk.git", from: "10.19.0"),
@@ -19,7 +19,7 @@ let package = Package(
         .package(url: "https://github.com/simibac/ConfettiSwiftUI", from: "1.0.0"),
         .package(url: "https://github.com/DaveWoodCom/XCGLogger", from: "7.0.1"),
         .package(url: "https://github.com/siteline/SwiftUI-Introspect", from: "1.1.0"),
-        .package(url: "https://github.com/kishikawakatsumi/KeychainAccess.git", from: "4.2.2") // 🔐 NEW
+        .package(url: "https://github.com/kishikawakatsumi/KeychainAccess.git", from: "4.2.2"), // 🔐 NEW
     ],
     targets: [
         .target(
@@ -38,8 +38,8 @@ let package = Package(
                 .product(name: "ConfettiSwiftUI", package: "ConfettiSwiftUI"),
                 .product(name: "XCGLogger", package: "XCGLogger"),
                 .product(name: "Introspect", package: "SwiftUI-Introspect"),
-                .product(name: "KeychainAccess", package: "KeychainAccess") // 🔐 NEW
+                .product(name: "KeychainAccess", package: "KeychainAccess"), // 🔐 NEW
             ]
-        )
+        ),
     ]
 )

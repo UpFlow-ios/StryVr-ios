@@ -44,6 +44,7 @@ struct ProfileBadgesView: View {
     }
 
     // MARK: - Badge Card
+
     private func badgeCard(for badge: Badge) -> some View {
         VStack(spacing: Theme.Spacing.small) {
             Image(systemName: badge.imageName)
@@ -73,4 +74,3 @@ struct ProfileBadgesView: View {
 #Preview {
     ProfileBadgesView()
 }
-

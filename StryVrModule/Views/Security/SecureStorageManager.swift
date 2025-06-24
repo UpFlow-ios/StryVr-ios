@@ -1,14 +1,14 @@
 //
-//  SecureStorageView.swift
+//  SecureStorageManager.swift
 //  StryVr
 //
 //  Created by Joseph Dormond on 4/15/25.
 //  🔐 SecureStorageManager & View – Keychain-backed persistence with MVVM architecture
 //
 
-import SwiftUI
-import Security
 import os.log
+import Security
+import SwiftUI
 
 // MARK: - SecureStorageError
 
@@ -21,9 +21,9 @@ enum SecureStorageError: Error, LocalizedError {
         switch self {
         case .dataConversionFailed:
             return "Data conversion failed."
-        case .saveFailed(let status):
+        case let .saveFailed(status):
             return "Save failed with status: \(status)."
-        case .loadFailed(let status):
+        case let .loadFailed(status):
             return "Load failed with status: \(status)."
         }
     }
@@ -43,14 +43,14 @@ final class SecureStorageManager {
 
         SecItemDelete([
             kSecClass: kSecClassGenericPassword,
-            kSecAttrAccount: key
+            kSecAttrAccount: key,
         ] as CFDictionary)
 
         let query: [CFString: Any] = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrAccount: key,
             kSecValueData: data,
-            kSecAttrAccessible: kSecAttrAccessibleWhenUnlocked
+            kSecAttrAccessible: kSecAttrAccessibleWhenUnlocked,
         ]
 
         let status = SecItemAdd(query as CFDictionary, nil)
@@ -68,7 +68,7 @@ final class SecureStorageManager {
             kSecClass: kSecClassGenericPassword,
             kSecAttrAccount: key,
             kSecReturnData: true,
-            kSecMatchLimit: kSecMatchLimitOne
+            kSecMatchLimit: kSecMatchLimitOne,
         ]
 
         var result: AnyObject?
@@ -76,7 +76,8 @@ final class SecureStorageManager {
 
         guard status == errSecSuccess,
               let data = result as? Data,
-              let value = String(data: data, encoding: .utf8) else {
+              let value = String(data: data, encoding: .utf8)
+        else {
             os_log("🔒 Keychain load error %{public}@ - Status: %{public}d", key, status)
             throw SecureStorageError.loadFailed(status)
         }

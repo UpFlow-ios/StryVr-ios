@@ -18,10 +18,11 @@ final class APIService {
     private init() {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 30 // 30 seconds timeout
-        self.session = URLSession(configuration: configuration)
+        session = URLSession(configuration: configuration)
     }
 
     // MARK: - Basic Data Fetcher
+
     func fetchData(from urlString: String, completion: @escaping (Result<Data, APIError>) -> Void) {
         guard let url = URL(string: urlString) else {
             completion(.failure(.invalidURL))
@@ -35,7 +36,8 @@ final class APIService {
             }
 
             guard let httpResponse = response as? HTTPURLResponse,
-                  (200...299).contains(httpResponse.statusCode) else {
+                  (200 ... 299).contains(httpResponse.statusCode)
+            else {
                 completion(.failure(.httpStatus((response as? HTTPURLResponse)?.statusCode ?? -1)))
                 return
             }
@@ -51,24 +53,26 @@ final class APIService {
     }
 
     // MARK: - JSON Decoder Utility
-    func fetchJSON<T: Decodable>(from urlString: String, as type: T.Type, completion: @escaping (Result<T, APIError>) -> Void) {
+
+    func fetchJSON<T: Decodable>(from urlString: String, as _: T.Type, completion: @escaping (Result<T, APIError>) -> Void) {
         fetchData(from: urlString) { result in
             switch result {
-            case .success(let data):
+            case let .success(data):
                 do {
                     let decoded = try JSONDecoder().decode(T.self, from: data)
                     completion(.success(decoded))
                 } catch {
                     completion(.failure(.decoding(error)))
                 }
-            case .failure(let error):
+            case let .failure(error):
                 completion(.failure(error))
             }
         }
     }
 
     // MARK: - POST JSON Utility
-    func postJSON<T: Decodable>(to urlString: String, body: [String: Any], headers: [String: String]? = nil, as type: T.Type, completion: @escaping (Result<T, APIError>) -> Void) {
+
+    func postJSON<T: Decodable>(to urlString: String, body: [String: Any], headers: [String: String]? = nil, as _: T.Type, completion: @escaping (Result<T, APIError>) -> Void) {
         guard let url = URL(string: urlString) else {
             completion(.failure(.invalidURL))
             return
@@ -96,7 +100,8 @@ final class APIService {
             }
 
             guard let httpResponse = response as? HTTPURLResponse,
-                  (200...299).contains(httpResponse.statusCode) else {
+                  (200 ... 299).contains(httpResponse.statusCode)
+            else {
                 completion(.failure(.httpStatus((response as? HTTPURLResponse)?.statusCode ?? -1)))
                 return
             }

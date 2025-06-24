@@ -22,7 +22,7 @@ struct LearningPathDetailView: View {
         LearningMilestone(title: "Learn Swift Basics", description: "Understand variables, control flow, functions, and basic syntax.", isCompleted: true),
         LearningMilestone(title: "Master SwiftUI", description: "Build beautiful, scalable UI using SwiftUI best practices.", isCompleted: false),
         LearningMilestone(title: "Connect to Firebase", description: "Integrate real-time databases and authentication.", isCompleted: false),
-        LearningMilestone(title: "Publish to App Store", description: "Prepare your app for review and submission.", isCompleted: false)
+        LearningMilestone(title: "Publish to App Store", description: "Prepare your app for review and submission.", isCompleted: false),
     ]
 
     var body: some View {
@@ -30,6 +30,7 @@ struct LearningPathDetailView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: Theme.Spacing.large) {
                     // MARK: - Learning Path Description
+
                     VStack(alignment: .leading, spacing: Theme.Spacing.small) {
                         Text(learningPathTitle)
                             .font(Theme.Typography.headline)
@@ -45,6 +46,7 @@ struct LearningPathDetailView: View {
                     Divider()
 
                     // MARK: - Milestones
+
                     VStack(alignment: .leading, spacing: Theme.Spacing.medium) {
                         Text("Milestones")
                             .font(Theme.Typography.body)
@@ -64,6 +66,7 @@ struct LearningPathDetailView: View {
     }
 
     // MARK: - Milestone Card
+
     private func milestoneCard(for milestone: LearningMilestone) -> some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.small) {
             HStack {

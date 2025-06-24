@@ -16,8 +16,7 @@ enum AppEnvironment: String {
 }
 
 /// Global configuration for the app
-struct AppConfig {
-
+enum AppConfig {
     // MARK: - Environment
 
     /// Set the current running environment here
@@ -47,7 +46,7 @@ struct AppConfig {
 
     // MARK: - API Paths (Centralize common endpoints)
 
-    struct Endpoints {
+    enum Endpoints {
         static let skills = "/api/skills"
         static let recommendations = "/api/recommendations"
         static let userProfile = "/api/user"
@@ -65,8 +64,7 @@ struct AppConfig {
     /// Logs current environment
     static func logCurrentEnvironment() {
         #if DEBUG
-        logger.info("🚀 Running in \(currentEnvironment.rawValue) environment. Base URL: \(apiBaseURL)")
+            logger.info("🚀 Running in \(currentEnvironment.rawValue) environment. Base URL: \(apiBaseURL)")
         #endif
     }
 }
-

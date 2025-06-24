@@ -17,8 +17,7 @@ struct FeedbackSummary {
     let overallAverage: Double
 }
 
-final class FeedbackSummaryService {
-
+enum FeedbackSummaryService {
     static func generateSummary(from feedbacks: [BehaviorFeedback], for employeeId: String, threshold: Double = 3.0) -> FeedbackSummary {
         let filtered = feedbacks.filter { $0.employeeId == employeeId }
 

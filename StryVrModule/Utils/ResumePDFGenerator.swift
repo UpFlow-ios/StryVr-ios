@@ -32,7 +32,7 @@ class ResumePDFGenerator {
         let pdfMetaData = [
             kCGPDFContextCreator: "Stryvr",
             kCGPDFContextAuthor: "Stryvr AI Engine",
-            kCGPDFContextTitle: "Verified Résumé"
+            kCGPDFContextTitle: "Verified Résumé",
         ]
         let format = UIGraphicsPDFRendererFormat()
         format.documentInfo = pdfMetaData as [String: Any]
@@ -52,7 +52,7 @@ class ResumePDFGenerator {
 
             let attributes: [NSAttributedString.Key: Any] = [
                 .font: UIFont.systemFont(ofSize: 12),
-                .paragraphStyle: paragraphStyle
+                .paragraphStyle: paragraphStyle,
             ]
 
             let companiesText = companies.map { "• \($0)" }.joined(separator: "\n")

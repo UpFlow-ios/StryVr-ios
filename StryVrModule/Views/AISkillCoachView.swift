@@ -20,8 +20,8 @@ struct AISkillCoachView: View {
 
             ScrollView {
                 VStack(alignment: .leading, spacing: Theme.Spacing.large) {
-
                     // MARK: - Header
+
                     Text("AI Skill Coach")
                         .font(Theme.Typography.headline)
                         .foregroundColor(Theme.Colors.textPrimary)
@@ -30,6 +30,7 @@ struct AISkillCoachView: View {
                         .accessibilityHint("Provides personalized skill recommendations and growth insights")
 
                     // MARK: - Recommendations
+
                     StryVrCardView(title: "🔍 Personalized Skill Recommendations") {
                         if hasError {
                             VStack(spacing: Theme.Spacing.small) {
@@ -60,6 +61,7 @@ struct AISkillCoachView: View {
                     }
 
                     // MARK: - Insights
+
                     StryVrCardView(title: "📈 Growth Insights") {
                         if isLoading {
                             ProgressView()
@@ -85,15 +87,16 @@ struct AISkillCoachView: View {
     }
 
     // MARK: - AI Skill Recommendation
+
     private func fetchSkillRecommendations() {
         AIRecommendationService.shared.fetchSkillRecommendations(for: "currentUserID") { result in
             DispatchQueue.main.async {
                 withAnimation {
                     switch result {
-                    case .success(let skills):
+                    case let .success(skills):
                         self.recommendedSkills = skills
                         self.hasError = false
-                    case .failure(let error):
+                    case let .failure(error):
                         print("🔴 Error fetching skill recommendations: \(error.localizedDescription)")
                         self.hasError = true
                     }
@@ -103,6 +106,7 @@ struct AISkillCoachView: View {
     }
 
     // MARK: - Progress Insights (Simulated)
+
     private func fetchProgressInsights() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             withAnimation {

@@ -7,9 +7,9 @@
 //  📡 FirestoreService – Centralized Firestore access layer for user data, skills, and history
 //
 
-import Foundation
 import FirebaseAuth
 import FirebaseFirestore
+import Foundation
 import os.log
 
 class FirestoreService {
@@ -36,7 +36,8 @@ class FirestoreService {
             }
 
             guard let document = document, document.exists,
-                  let data = try? document.data(as: UserData.self) else {
+                  let data = try? document.data(as: UserData.self)
+            else {
                 self.logger.warning("⚠️ Document missing or malformed")
                 completion(.failure(FirestoreServiceError.invalidInput))
                 return

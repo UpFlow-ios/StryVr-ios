@@ -7,9 +7,9 @@
 //  🔐 Auth Service – Handles Firebase Email/Password Auth and Okta OIDC Integration
 //
 
-import Foundation
-import FirebaseAuth
 import AppAuth
+import FirebaseAuth
+import Foundation
 import os.log
 
 final class AuthService: ObservableObject {
@@ -22,7 +22,7 @@ final class AuthService: ObservableObject {
 
     func signUp(email: String, password: String, completion: @escaping (Result<AuthDataResult, Error>) -> Void) {
         guard isValidEmail(email), isValidPassword(password) else {
-            self.logger.error("❌ Invalid email or password format: %{public}@", "Signup input validation failed")
+            logger.error("❌ Invalid email or password format: %{public}@", "Signup input validation failed")
             completion(.failure(AuthError.invalidInput))
             return
         }
@@ -40,7 +40,7 @@ final class AuthService: ObservableObject {
 
     func logIn(email: String, password: String, completion: @escaping (Result<AuthDataResult, Error>) -> Void) {
         guard isValidEmail(email), isValidPassword(password) else {
-            self.logger.error("❌ Invalid email or password format: %{public}@", "Login input validation failed")
+            logger.error("❌ Invalid email or password format: %{public}@", "Login input validation failed")
             completion(.failure(AuthError.invalidInput))
             return
         }
@@ -59,17 +59,17 @@ final class AuthService: ObservableObject {
     func logOut(completion: @escaping (Bool, Error?) -> Void) {
         do {
             try Auth.auth().signOut()
-            self.logger.info("🚪 User logged out")
+            logger.info("🚪 User logged out")
             completion(true, nil)
         } catch {
-            self.logger.error("❌ Logout error: %{public}@", "\(error.localizedDescription)")
+            logger.error("❌ Logout error: %{public}@", "\(error.localizedDescription)")
             completion(false, error)
         }
     }
 
     func sendPasswordReset(email: String, completion: @escaping (Bool, Error?) -> Void) {
         guard isValidEmail(email) else {
-            self.logger.error("❌ Invalid email format: %{public}@", "Password reset input validation failed")
+            logger.error("❌ Invalid email format: %{public}@", "Password reset input validation failed")
             completion(false, AuthError.invalidInput)
             return
         }
@@ -151,11 +151,11 @@ final class AuthService: ObservableObject {
 
     private func handleFirebaseOIDCLogin(_ authState: OIDAuthState) {
         guard let idToken = authState.lastTokenResponse?.idToken else {
-            self.logger.error("❌ Missing ID Token from Okta")
+            logger.error("❌ Missing ID Token from Okta")
             return
         }
 
-        Auth.auth().signIn(withCustomToken: idToken) { result, error in
+        Auth.auth().signIn(withCustomToken: idToken) { _, error in
             if let error = error {
                 self.logger.error("❌ Firebase sign-in failed: %{public}@", "\(error.localizedDescription)")
             } else {
@@ -166,7 +166,8 @@ final class AuthService: ObservableObject {
 
     func resumeAuthFlow(_ url: URL) -> Bool {
         if let flow = currentAuthorizationFlow,
-           flow.resumeExternalUserAgentFlow(with: url) {
+           flow.resumeExternalUserAgentFlow(with: url)
+        {
             currentAuthorizationFlow = nil
             return true
         }

@@ -9,11 +9,11 @@
 import SwiftUI
 
 /// Global Theme Configuration used throughout StryVr
-struct Theme {
-    
+enum Theme {
     // MARK: - Color Palette (Asset-based)
+
     /// Defines the app's primary color palette, with optional fallbacks.
-    struct Colors {
+    enum Colors {
         static let safeTextPrimary = Color("TextPrimaryColor") ?? Fallback.textPrimary
         static let safeTextSecondary = Color("TextSecondaryColor") ?? Fallback.textSecondary
         static let background = Color("BackgroundColor")
@@ -22,9 +22,8 @@ struct Theme {
         static let accent = Color("AccentColor")
         static let whiteText = Color.white // ✅ Add this to fix missing 'whiteText'
 
-        
         /// Fallbacks (optional)
-        struct Fallback {
+        enum Fallback {
             static let primary = Color(hex: "#4FC3F7")
             static let background = Color(hex: "#0D0D0D")
             static let textPrimary = Color.white
@@ -34,8 +33,9 @@ struct Theme {
     }
 
     // MARK: - Typography (Apple HIG + Rounded)
+
     /// Defines the app's typography styles for consistent text appearance.
-    struct Typography {
+    enum Typography {
         static let headline = Font.system(size: 24, weight: .bold, design: .rounded)
         static let subheadline = Font.system(size: 20, weight: .medium, design: .rounded)
         static let body = Font.system(size: 16, weight: .regular, design: .default)
@@ -44,8 +44,9 @@ struct Theme {
     }
 
     // MARK: - Corner Radius (UI Layout Tokens)
+
     /// Defines corner radius values for consistent UI layout.
-    struct CornerRadius {
+    enum CornerRadius {
         static let small: CGFloat = 8
         static let medium: CGFloat = 12
         static let large: CGFloat = 16
@@ -53,16 +54,18 @@ struct Theme {
     }
 
     // MARK: - Shadow Opacities
+
     /// Defines shadow opacity levels for consistent depth effects.
-    struct Shadows {
+    enum Shadows {
         static let light = Color.black.opacity(0.1)
         static let medium = Color.black.opacity(0.2)
         static let dark = Color.black.opacity(0.4)
     }
 
     // MARK: - Spacing Tokens
+
     /// Defines spacing values for consistent layout spacing.
-    struct Spacing {
+    enum Spacing {
         static let xSmall: CGFloat = 4
         static let small: CGFloat = 8
         static let medium: CGFloat = 16

@@ -42,27 +42,25 @@ enum FeedbackCategory: String, Codable, CaseIterable {
 }
 
 #if DEBUG
-extension EmployeeModel {
-    static let mock: EmployeeModel = EmployeeModel(
-        id: "emp001",
-        name: "Jordan Rivera",
-        email: "jordan.rivera@stryvr.com",
-        role: "iOS Engineer",
-        department: "Product Development",
-        joinDate: Date(timeIntervalSince1970: 1672531200),
-        skills: [
-            SkillProgress(skillName: "SwiftUI", percentage: 0.88),
-            SkillProgress(skillName: "Teamwork", percentage: 0.92)
-        ],
-        feedbackEntries: [
-            FeedbackEntry(category: .collaboration, comment: "Always helpful in team tasks.", rating: 5, date: .now),
-            FeedbackEntry(category: .clarity, comment: "Could communicate more clearly during standups.", rating: 3, date: .now)
-        ],
-        performanceRating: 4.6,
-        goalsAchieved: 12,
-        isActive: true
-    )
-}
+    extension EmployeeModel {
+        static let mock: EmployeeModel = .init(
+            id: "emp001",
+            name: "Jordan Rivera",
+            email: "jordan.rivera@stryvr.com",
+            role: "iOS Engineer",
+            department: "Product Development",
+            joinDate: Date(timeIntervalSince1970: 1_672_531_200),
+            skills: [
+                SkillProgress(skillName: "SwiftUI", percentage: 0.88),
+                SkillProgress(skillName: "Teamwork", percentage: 0.92),
+            ],
+            feedbackEntries: [
+                FeedbackEntry(category: .collaboration, comment: "Always helpful in team tasks.", rating: 5, date: .now),
+                FeedbackEntry(category: .clarity, comment: "Could communicate more clearly during standups.", rating: 3, date: .now),
+            ],
+            performanceRating: 4.6,
+            goalsAchieved: 12,
+            isActive: true
+        )
+    }
 #endif
-
-

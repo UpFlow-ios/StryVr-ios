@@ -5,15 +5,14 @@
 //  📹 VideoContentService – Manages uploads, metadata, streaming & AI tagging
 //  Created by Joe Dormond on 3/12/25.
 //
-import Foundation
-import FirebaseStorage
-import FirebaseFirestore
-import os.log
 import AVFoundation
+import FirebaseFirestore
+import FirebaseStorage
+import Foundation
+import os.log
 
 /// Manages video uploads, metadata, streaming & AI tagging
 final class VideoContentService {
-
     static let shared = VideoContentService()
     private let storage = Storage.storage().reference()
     private let db = Firestore.firestore()
@@ -67,7 +66,7 @@ final class VideoContentService {
                         "comments": 0,
                         "shares": 0,
                         "views": 0,
-                        "tags": tags
+                        "tags": tags,
                     ]
 
                     self.db.collection("Videos").document(videoID).setData(metadata) { error in
@@ -141,7 +140,7 @@ final class VideoContentService {
 
     // MARK: - AI Content Tagging Stub
 
-    private func generateAITags(for videoURL: String, completion: @escaping ([String]) -> Void) {
+    private func generateAITags(for _: String, completion: @escaping ([String]) -> Void) {
         // 🔁 Replace this with Hugging Face API or custom endpoint later
         DispatchQueue.global().asyncAfter(deadline: .now() + 1.5) {
             completion(["career", "skills"])

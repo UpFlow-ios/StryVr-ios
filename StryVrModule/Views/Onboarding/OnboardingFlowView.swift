@@ -44,6 +44,7 @@ struct OnboardingFlowView: View {
     }
 
     // MARK: - Reusable Step Navigation
+
     private func navigateTo(_ nextStep: OnboardingStep) {
         withAnimation(.easeInOut) {
             step = nextStep

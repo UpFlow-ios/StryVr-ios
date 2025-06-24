@@ -6,8 +6,8 @@
 //  🩺 Team Health Overview – Visual Summary of Wellness & Performance
 //
 
-import SwiftUI
 import Charts
+import SwiftUI
 
 struct TeamHealthOverviewView: View {
     @State private var teamStats: [TeamHealthStat] = []
@@ -18,7 +18,6 @@ struct TeamHealthOverviewView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: Theme.Spacing.large) {
-
                     Text("📊 Team Health Overview")
                         .font(Theme.Typography.headline)
                         .padding(.horizontal)
@@ -45,6 +44,7 @@ struct TeamHealthOverviewView: View {
     }
 
     // MARK: - Health Progress Chart
+
     private var healthChart: some View {
         VStack(alignment: .leading) {
             Text("Overall Health Score")
@@ -69,6 +69,7 @@ struct TeamHealthOverviewView: View {
     }
 
     // MARK: - Category Breakdown
+
     private var wellnessBreakdown: some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.medium) {
             Text("Category Breakdown")
@@ -90,14 +91,15 @@ struct TeamHealthOverviewView: View {
     }
 
     // MARK: - Load Data
+
     private func loadTeamHealthData() {
         TeamHealthService.shared.fetchWeeklyStats { result in
             DispatchQueue.main.async {
                 isLoading = false
                 switch result {
-                case .success(let stats):
+                case let .success(stats):
                     self.teamStats = stats
-                case .failure(let error):
+                case let .failure(error):
                     self.errorMessage = error.localizedDescription
                 }
             }
@@ -108,4 +110,3 @@ struct TeamHealthOverviewView: View {
 #Preview {
     TeamHealthOverviewView()
 }
-

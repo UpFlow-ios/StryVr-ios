@@ -5,8 +5,8 @@
 //  🔒 Fully Optimized Auth ViewModel with Enhanced Error Handling, Firebase Auth Integration, Real-Time Updates
 //
 
-import Foundation
 import FirebaseAuth
+import Foundation
 import os.log
 
 final class AuthViewModel: ObservableObject {
@@ -28,6 +28,7 @@ final class AuthViewModel: ObservableObject {
     }
 
     // MARK: - Auth State Listener
+
     private func configureAuthListener() {
         authListenerHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
             DispatchQueue.main.async {
@@ -45,6 +46,7 @@ final class AuthViewModel: ObservableObject {
     }
 
     // MARK: - Email Sign In
+
     func signIn(email: String, password: String) {
         guard validate(email: email, password: password) else { return }
 
@@ -66,6 +68,7 @@ final class AuthViewModel: ObservableObject {
     }
 
     // MARK: - User Registration
+
     func createUser(email: String, password: String) {
         guard validate(email: email, password: password) else { return }
 
@@ -87,6 +90,7 @@ final class AuthViewModel: ObservableObject {
     }
 
     // MARK: - Password Reset
+
     func resetPassword(email: String) {
         guard isValidEmail(email) else {
             updateError("Enter a valid email address.")
@@ -107,6 +111,7 @@ final class AuthViewModel: ObservableObject {
     }
 
     // MARK: - Sign Out
+
     func signOut() {
         do {
             try Auth.auth().signOut()
@@ -121,6 +126,7 @@ final class AuthViewModel: ObservableObject {
     }
 
     // MARK: - Validation & Helpers
+
     private func validate(email: String, password: String) -> Bool {
         guard isValidEmail(email), !password.isEmpty else {
             updateError("Please provide a valid email and password.")

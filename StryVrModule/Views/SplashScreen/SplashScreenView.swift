@@ -5,8 +5,8 @@
 //  Created by Joe Dormond on 4/17/25.
 //
 
-import SwiftUI
 import os.log
+import SwiftUI
 
 /// Animated splash screen that adapts to Light & Dark Mode with StryVr branding
 struct SplashScreenView: View {
@@ -24,6 +24,7 @@ struct SplashScreenView: View {
 
             VStack(spacing: 20) {
                 // MARK: - Logo
+
                 Image(logoName)
                     .resizable()
                     .scaledToFit()
@@ -33,6 +34,7 @@ struct SplashScreenView: View {
                     .accessibilityHint("Animated Splash Logo")
 
                 // MARK: - Loader
+
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: loaderColor))
                     .scaleEffect(1.2)
@@ -54,16 +56,19 @@ struct SplashScreenView: View {
     }
 
     // MARK: - Dynamic Logo
+
     private var logoName: String {
         colorScheme == .dark ? "LogoDark" : "LogoLight"
     }
 
     // MARK: - Dynamic Background Color
+
     private var backgroundColor: Color {
         colorScheme == .dark ? .black : .white
     }
 
     // MARK: - Dynamic Loader Tint
+
     private var loaderColor: Color {
         colorScheme == .dark ? .white : .black
     }
@@ -83,4 +88,3 @@ struct StryVrAppEntryPoint: View {
         }
     }
 }
-

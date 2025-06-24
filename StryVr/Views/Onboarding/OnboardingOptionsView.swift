@@ -20,6 +20,7 @@ struct OnboardingOptionsView: View {
 
             VStack(spacing: Theme.Spacing.large) {
                 // MARK: - Branding
+
                 if let logo = UIImage(named: "LogoDark") {
                     Image(uiImage: logo)
                         .resizable()
@@ -48,6 +49,7 @@ struct OnboardingOptionsView: View {
                 Spacer()
 
                 // MARK: - Options
+
                 VStack(spacing: Theme.Spacing.medium) {
                     CustomButton(
                         title: "Log In",
@@ -82,7 +84,9 @@ struct OnboardingOptionsView: View {
             }
             .padding(.horizontal, Theme.Spacing.large)
         }
+
         // MARK: - Navigation Logic
+
         .sheet(isPresented: $showLogin) {
             LoginView()
                 .environmentObject(authViewModel)
@@ -98,6 +102,7 @@ struct OnboardingOptionsView: View {
     }
 
     // MARK: - Navigation Helper
+
     private func navigateTo(_ destination: Destination) {
         switch destination {
         case .login:

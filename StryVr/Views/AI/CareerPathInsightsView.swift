@@ -64,6 +64,7 @@ struct CareerPathInsightsView: View {
     }
 
     // MARK: - AI Recommendation Fetch
+
     private func loadCareerInsights() {
         isLoading = true
         errorMessage = nil
@@ -71,7 +72,7 @@ struct CareerPathInsightsView: View {
         FirestoreService.shared.fetchSkillProgress { result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let skills):
+                case let .success(skills):
                     self.skillData = skills
 
                     guard !skills.isEmpty else {
@@ -83,7 +84,7 @@ struct CareerPathInsightsView: View {
                     AIRecommendationService.shared.getCareerRecommendations(from: skills) { result in
                         DispatchQueue.main.async {
                             switch result {
-                            case .success(let careers):
+                            case let .success(careers):
                                 self.suggestedCareers = careers
                             case .failure:
                                 self.errorMessage = "Failed to fetch career recommendations. Please try again later."
@@ -93,9 +94,9 @@ struct CareerPathInsightsView: View {
                     }
                 case .failure:
                     self.isLoading = false
-            }
-                    self.errorMessage = "Failed to fetch skill data. Please check your connection."
                 }
+                self.errorMessage = "Failed to fetch skill data. Please check your connection."
+            }
         }
     }
 }

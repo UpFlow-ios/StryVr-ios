@@ -4,7 +4,7 @@ struct LearningPathsView: View {
     @State private var learningPaths: [LearningPath] = [
         LearningPath(title: "iOS Development", progress: 70),
         LearningPath(title: "SwiftUI Mastery", progress: 50),
-        LearningPath(title: "AI & Machine Learning", progress: 30)
+        LearningPath(title: "AI & Machine Learning", progress: 30),
     ]
 
     var body: some View {
@@ -46,7 +46,7 @@ struct LearningPath: Identifiable {
 
 struct LearningPathCard: View {
     let path: LearningPath
-    var cardColor: Color = Color(UIColor.systemBackground)
+    var cardColor: Color = .init(UIColor.systemBackground)
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {

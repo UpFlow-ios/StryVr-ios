@@ -19,6 +19,7 @@ struct SkillStreaksView: View {
 
             VStack(spacing: Theme.Spacing.large) {
                 // MARK: - Streak Stats
+
                 VStack(spacing: Theme.Spacing.small) {
                     Text("Current Streak")
                         .font(Theme.Typography.caption)
@@ -36,6 +37,7 @@ struct SkillStreaksView: View {
                 Divider()
 
                 // MARK: - Today's Goal
+
                 VStack(spacing: Theme.Spacing.medium) {
                     Text("Today's Goal")
                         .font(Theme.Typography.body)
@@ -64,6 +66,7 @@ struct SkillStreaksView: View {
             .padding()
 
             // MARK: - Confetti Celebration
+
             if showConfetti {
                 LottieAnimationView(animationName: "confetti", loopMode: .playOnce)
                     .frame(width: 300, height: 300)
@@ -82,6 +85,7 @@ struct SkillStreaksView: View {
     }
 
     // MARK: - Handle Daily Goal Completion
+
     private func completeDailyGoal() {
         dailyGoalCompleted = true
         currentStreak += 1

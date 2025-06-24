@@ -10,10 +10,9 @@ import Foundation
 
 /// Protocol defining skill-related service operations used in StryVr
 protocol SkillServiceProtocol {
-    
     /// Fetches all skills for the given user
     func fetchSkills(for userID: String, completion: @escaping (Result<[SkillMatrixEntry], Error>) -> Void)
-    
+
     /// Updates the rating of a specific skill
     func updateSkillRating(
         userID: String,
@@ -21,14 +20,14 @@ protocol SkillServiceProtocol {
         newRating: Double,
         completion: @escaping (Result<Void, Error>) -> Void
     )
-    
+
     /// Adds a new skill entry for a user
     func addSkill(
         userID: String,
         skill: SkillMatrixEntry,
         completion: @escaping (Result<Void, Error>) -> Void
     )
-    
+
     /// Deletes a skill from a user's skill matrix
     func deleteSkill(
         userID: String,
@@ -36,5 +35,3 @@ protocol SkillServiceProtocol {
         completion: @escaping (Result<Void, Error>) -> Void
     )
 }
-
-

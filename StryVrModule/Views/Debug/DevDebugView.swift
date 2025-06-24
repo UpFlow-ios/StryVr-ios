@@ -5,11 +5,11 @@
 //  🧪 Developer Debug Panel – Logs, Feature Flags, Crash Sim, Deep Links, API Tests
 //
 
-import SwiftUI
+import FirebaseAuth
 import Pulse
 import PulseUI
+import SwiftUI
 import XCGLogger
-import FirebaseAuth
 
 struct DevDebugView: View {
     @State private var showLogs = false
@@ -26,6 +26,7 @@ struct DevDebugView: View {
         NavigationStack {
             Form {
                 // MARK: - Logs
+
                 if isDebug {
                     Section(header: Text("🪵 Logs & Console")) {
                         Toggle("Show Pulse Logs", isOn: $showLogs)
@@ -39,6 +40,7 @@ struct DevDebugView: View {
                 }
 
                 // MARK: - Firebase Auth
+
                 Section(header: Text("🔐 Firebase Auth")) {
                     Button("Check Auth State") {
                         logger.debug("User is signed in: \(Auth.auth().currentUser != nil)")
@@ -52,6 +54,7 @@ struct DevDebugView: View {
                 }
 
                 // MARK: - Feature Flags
+
                 Section(header: Text("🧪 Feature Flags")) {
                     Toggle("Enable Mock Data", isOn: Binding(
                         get: { FeatureFlags.enableMockData },
@@ -70,6 +73,7 @@ struct DevDebugView: View {
                 }
 
                 // MARK: - AI Test Section
+
                 Section(header: Text("🤖 AI Recommendations Test")) {
                     Button("Fetch AI Recommendations") {
                         AIRecommendationService.shared.fetchSkillRecommendations(for: "testUserId123") { suggestions in
@@ -87,15 +91,16 @@ struct DevDebugView: View {
                 }
 
                 // MARK: - API Test Section
+
                 Section(header: Text("🌐 APIService Test")) {
                     Button("Test External API") {
                         APIService.shared.fetchData(from: "https://jsonplaceholder.typicode.com/posts") { result in
                             DispatchQueue.main.async {
                                 switch result {
-                                case .success(let data):
+                                case let .success(data):
                                     apiTestResult = "✅ Received \(data.count) bytes"
                                     logger.info(apiTestResult)
-                                case .failure(let error):
+                                case let .failure(error):
                                     apiTestResult = "❌ API Error: \(error)"
                                     logger.error(apiTestResult)
                                 }
@@ -110,6 +115,7 @@ struct DevDebugView: View {
                 }
 
                 // MARK: - Deep Link Test
+
                 Section(header: Text("🔗 Deep Link Simulation")) {
                     TextField("Paste test link", text: $testDeepLink)
                         .textFieldStyle(.roundedBorder)
@@ -120,6 +126,7 @@ struct DevDebugView: View {
                 }
 
                 // MARK: - Crash Sim
+
                 Section(header: Text("💥 Crash & Reset")) {
                     Button("Simulate Crash") {
                         logger.error("💣 Simulated crash triggered from DevDebugView")

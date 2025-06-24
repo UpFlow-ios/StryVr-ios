@@ -5,8 +5,8 @@
 //  🔐 Secure, Firebase-integrated Account Creation with Optional Confetti Celebration
 //
 
-import SwiftUI
 import ConfettiSwiftUI
+import SwiftUI
 
 struct RegisterView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -31,6 +31,7 @@ struct RegisterView: View {
                     .padding(.top, Theme.Spacing.xLarge)
 
                 // MARK: - Input Fields
+
                 Group {
                     TextField("Email", text: $email)
                         .textContentType(.emailAddress)
@@ -54,6 +55,7 @@ struct RegisterView: View {
                 }
 
                 // MARK: - Error Message
+
                 if let error = errorMessage {
                     Text(error)
                         .font(Theme.Typography.caption)
@@ -63,6 +65,7 @@ struct RegisterView: View {
                 }
 
                 // MARK: - Register Button
+
                 Button(action: registerUser) {
                     if isLoading {
                         ProgressView()
@@ -80,6 +83,7 @@ struct RegisterView: View {
                 .disabled(isLoading)
 
                 // MARK: - Already have an account?
+
                 HStack {
                     Text("Already have an account?")
                         .font(Theme.Typography.caption)
@@ -98,6 +102,7 @@ struct RegisterView: View {
             .padding(.horizontal, Theme.Spacing.large)
 
             // MARK: - Confetti Animation
+
             if FeatureFlags.enableConfetti {
                 ConfettiCannon(counter: $showConfetti, repetitions: 1, confettiSize: 12, rainHeight: 800)
             }
@@ -105,6 +110,7 @@ struct RegisterView: View {
     }
 
     // MARK: - Register User Logic
+
     private func registerUser() {
         errorMessage = nil
         simpleHaptic()
@@ -151,6 +157,7 @@ struct RegisterView: View {
     }
 
     // MARK: - Validation
+
     private func isValidEmail(_ email: String) -> Bool {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email)

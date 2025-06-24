@@ -9,9 +9,9 @@ import Foundation
 
 /// Tracks engagement metrics during a StryVr conference call
 struct CallEngagement: Codable, Hashable {
-    var totalAttendees: Int  // Total number of attendees
-    var messagesSent: Int    // Total number of messages sent
-    var reactions: Int       // Total number of reactions
+    var totalAttendees: Int // Total number of attendees
+    var messagesSent: Int // Total number of messages sent
+    var reactions: Int // Total number of reactions
 
     // MARK: - Computed Properties
 
@@ -46,6 +46,7 @@ struct CallEngagement: Codable, Hashable {
     }
 
     // MARK: - Preview Sample
+
     static let preview = CallEngagement(
         totalAttendees: 12,
         messagesSent: 30,
@@ -53,6 +54,7 @@ struct CallEngagement: Codable, Hashable {
     )
 
     // MARK: - Debug Description
+
     var description: String {
         "📊 CallEngagement — Attendees: \(totalAttendees), Messages: \(messagesSent), Reactions: \(reactions), Score: \(engagementScore)"
     }

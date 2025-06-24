@@ -14,8 +14,8 @@ struct AIProfileValidatorView: View {
 
     var body: some View {
         VStack(spacing: Theme.Spacing.large) {
-            
             // MARK: - Title
+
             Text("AI Profile Validator")
                 .font(Theme.Typography.headline)
                 .foregroundColor(Theme.Colors.textPrimary)
@@ -23,6 +23,7 @@ struct AIProfileValidatorView: View {
                 .accessibilityHint("Displays the AI profile validation screen")
 
             // MARK: - Validation State
+
             if viewModel.isValidating {
                 ProgressView("Validating...")
                     .progressViewStyle(CircularProgressViewStyle(tint: Theme.Colors.accent))
@@ -58,6 +59,7 @@ struct AIProfileValidatorView: View {
             }
 
             // MARK: - Trigger Button
+
             Button(action: viewModel.validateProfile) {
                 Text("Validate Profile")
                     .font(Theme.Typography.body)

@@ -1,5 +1,5 @@
 //
-//  EmployeeBehaviorFeedbackView.swift
+//  BehaviorFeedbackView.swift
 //  StryVr
 //
 //  Created by Joe Dormond on 5/5/25.
@@ -22,13 +22,14 @@ struct EmployeeBehaviorFeedbackView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: Theme.Spacing.large) {
-
                     // MARK: - Title
+
                     Text("Submit Employee Feedback")
                         .font(Theme.Typography.headline)
                         .foregroundColor(Theme.Colors.textPrimary)
 
                     // MARK: - Category Picker
+
                     Picker("Category", selection: $selectedCategory) {
                         ForEach(FeedbackCategory.allCases) { category in
                             Text(category.displayName).tag(category)
@@ -40,6 +41,7 @@ struct EmployeeBehaviorFeedbackView: View {
                     .cornerRadius(Theme.CornerRadius.medium)
 
                     // MARK: - Rating Slider
+
                     VStack(alignment: .leading, spacing: 8) {
                         Text("Rating: \(rating) / 5")
                             .font(Theme.Typography.caption)
@@ -47,20 +49,23 @@ struct EmployeeBehaviorFeedbackView: View {
                             Double(rating)
                         }, set: { newValue in
                             rating = Int(newValue)
-                        }), in: 1...5, step: 1)
+                        }), in: 1 ... 5, step: 1)
                     }
 
                     // MARK: - Comment Field
+
                     TextField("Optional comment", text: $comment, axis: .vertical)
                         .padding()
                         .background(Theme.Colors.card)
                         .cornerRadius(Theme.CornerRadius.medium)
 
                     // MARK: - Anonymous Toggle
+
                     Toggle("Submit Anonymously", isOn: $isAnonymous)
                         .font(Theme.Typography.caption)
 
                     // MARK: - Error Display
+
                     if let errorMessage = errorMessage {
                         Text(errorMessage)
                             .font(Theme.Typography.caption)
@@ -69,6 +74,7 @@ struct EmployeeBehaviorFeedbackView: View {
                     }
 
                     // MARK: - Submit Button
+
                     Button(action: submitFeedback) {
                         Text("Submit Feedback")
                             .font(Theme.Typography.body)
@@ -90,6 +96,7 @@ struct EmployeeBehaviorFeedbackView: View {
     }
 
     // MARK: - Submit Feedback to Firestore
+
     private func submitFeedback() {
         let newFeedback = BehaviorFeedback(
             employeeId: employeeId,
@@ -107,7 +114,7 @@ struct EmployeeBehaviorFeedbackView: View {
                     print("✅ Feedback submitted to Firestore.")
                     showConfirmation = true
                     resetForm()
-                case .failure(let error):
+                case let .failure(error):
                     print("❌ Failed to submit feedback: \(error.localizedDescription)")
                     errorMessage = "Could not submit feedback. Please try again."
                 }
@@ -116,6 +123,7 @@ struct EmployeeBehaviorFeedbackView: View {
     }
 
     // MARK: - Reset Form After Submission
+
     private func resetForm() {
         selectedCategory = .communication
         rating = 3

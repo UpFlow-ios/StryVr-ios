@@ -14,7 +14,7 @@ struct AchievementModel: Identifiable, Codable, Equatable {
     let id: AchievementID
     var title: String
     var description: String
-    var iconName: String   // SF Symbol or custom icon name
+    var iconName: String // SF Symbol or custom icon name
     var dateEarned: Date
     var isNew: Bool
 
@@ -24,6 +24,7 @@ struct AchievementModel: Identifiable, Codable, Equatable {
     }
 
     // MARK: - Preview Sample
+
     static var mock: AchievementModel {
         AchievementModel(
             id: UUID().uuidString,
@@ -34,7 +35,7 @@ struct AchievementModel: Identifiable, Codable, Equatable {
             isNew: true
         )
     }
-    
+
     static var samples: [AchievementModel] {
         [
             AchievementModel(
@@ -60,7 +61,7 @@ struct AchievementModel: Identifiable, Codable, Equatable {
                 iconName: "person.3.fill",
                 dateEarned: Calendar.current.date(byAdding: .day, value: -7, to: Date())!,
                 isNew: false
-            )
+            ),
         ]
     }
 }

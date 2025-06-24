@@ -15,13 +15,14 @@ struct ProfileView: View {
             ScrollView {
                 VStack(spacing: Theme.Spacing.medium) {
                     // MARK: - Profile Image
+
                     if let photoURL = authViewModel.userSession?.photoURL {
                         AsyncImage(url: photoURL) { phase in
                             switch phase {
                             case .empty:
                                 ProgressView()
                                     .frame(width: 100, height: 100)
-                            case .success(let image):
+                            case let .success(image):
                                 image
                                     .resizable()
                                     .scaledToFill()
@@ -38,6 +39,7 @@ struct ProfileView: View {
                     }
 
                     // MARK: - Name & Email
+
                     Text(authViewModel.userSession?.displayName ?? "User")
                         .font(Theme.Typography.headline)
                         .foregroundColor(Theme.Colors.textPrimary)
@@ -48,6 +50,7 @@ struct ProfileView: View {
                         .multilineTextAlignment(.center)
 
                     // MARK: - Log Out Button
+
                     Button(action: {
                         simpleHaptic()
                         authViewModel.signOut()
@@ -61,7 +64,7 @@ struct ProfileView: View {
                             .cornerRadius(Theme.CornerRadius.medium)
                             .padding(.top, Theme.Spacing.large)
                     }
-                    
+
                     Spacer()
                 }
                 .padding()

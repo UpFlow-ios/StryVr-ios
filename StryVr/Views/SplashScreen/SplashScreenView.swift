@@ -6,70 +6,71 @@
 //
 
 import SwiftUI
+import AVKit
 import os.log
 
-/// Animated splash screen that adapts to Light & Dark Mode with StryVr branding
+/// Animated splash screen using a short `.mp4` intro video with dark/light mode support
 struct SplashScreenView: View {
-    @State private var isActive = false
+    @State private var isFinished = false
     @Environment(\.colorScheme) var colorScheme
 
-    private let splashDuration: TimeInterval = 2.0
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "StryVr", category: "SplashScreenView")
 
     var body: some View {
-        ZStack {
-            // Background adapts to light or dark mode
-            backgroundColor
-                .ignoresSafeArea()
-
-            VStack(spacing: 20) {
-                // MARK: - Logo
-                Image(logoName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 120, height: 120)
-                    .transition(.opacity)
-                    .accessibilityLabel("StryVr App Logo")
-                    .accessibilityHint("Animated Splash Logo")
-
-                // MARK: - Loader
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: loaderColor))
-                    .scaleEffect(1.2)
-                    .accessibilityLabel("Loading")
-            }
-            .opacity(isActive ? 0 : 1)
-        }
-        .onAppear {
-            logger.info("⏳ Splash screen started")
-            DispatchQueue.main.asyncAfter(deadline: .now() + splashDuration) {
-                withAnimation(.easeInOut) {
-                    isActive = true
+        Group {
+            if isFinished {
+                StryVrAppEntryPoint()
+            } else {
+                SplashVideoPlayer(videoName: "stryvr2", videoExtension: "mp4") {
+                    logger.info("🎬 Splash video finished")
+                    isFinished = true
                 }
+                .ignoresSafeArea()
+                .background(backgroundColor)
             }
         }
-        .fullScreenCover(isPresented: $isActive) {
-            StryVrAppEntryPoint()
-        }
-    }
-
-    // MARK: - Dynamic Logo
-    private var logoName: String {
-        colorScheme == .dark ? "LogoDark" : "LogoLight"
     }
 
     // MARK: - Dynamic Background Color
+
     private var backgroundColor: Color {
         colorScheme == .dark ? .black : .white
     }
-
-    // MARK: - Dynamic Loader Tint
-    private var loaderColor: Color {
-        colorScheme == .dark ? .white : .black
-    }
 }
 
-/// Entry point that determines whether to show Home or Login
+// MARK: - Video Player Component
+
+struct SplashVideoPlayer: UIViewControllerRepresentable {
+    let videoName: String
+    let videoExtension: String
+    let onFinished: () -> Void
+
+    func makeUIViewController(context: Context) -> AVPlayerViewController {
+        let controller = AVPlayerViewController()
+        controller.showsPlaybackControls = false
+
+        if let url = Bundle.main.url(forResource: videoName, withExtension: videoExtension) {
+            let player = AVPlayer(url: url)
+            controller.player = player
+
+            // Auto-detect when video finishes
+            NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
+                                                   object: player.currentItem,
+                                                   queue: .main) { _ in
+                onFinished()
+            }
+
+            player.play()
+        }
+
+        return controller
+    }
+
+    func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Context) {}
+}
+
+// MARK: - Entry Point
+
 struct StryVrAppEntryPoint: View {
     @EnvironmentObject var authViewModel: AuthViewModel
 
@@ -83,4 +84,3 @@ struct StryVrAppEntryPoint: View {
         }
     }
 }
-

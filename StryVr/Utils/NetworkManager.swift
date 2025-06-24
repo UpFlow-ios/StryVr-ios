@@ -10,17 +10,20 @@ import Foundation
 import os.log
 
 final class NetworkManager {
-
     // MARK: - Singleton
+
     static let shared = NetworkManager()
 
     // MARK: - Logger
+
     private let logger = Logger(subsystem: "com.stryvr.networking", category: "NetworkManager")
 
     // MARK: - Init
+
     private init() {}
 
     // MARK: - Generic Request Method
+
     /// Sends a generic HTTP request and decodes the result into a Codable type
     func request<T: Codable>(
         urlString: String,
@@ -56,7 +59,8 @@ final class NetworkManager {
             }
 
             guard let httpResponse = response as? HTTPURLResponse,
-                  (200...299).contains(httpResponse.statusCode) else {
+                  (200 ... 299).contains(httpResponse.statusCode)
+            else {
                 let statusCode = (response as? HTTPURLResponse)?.statusCode ?? -1
                 self.logger.error("🚨 Invalid Response: \(statusCode)")
                 DispatchQueue.main.async {
@@ -90,6 +94,7 @@ final class NetworkManager {
 }
 
 // MARK: - Supporting Types
+
 // These should be defined globally in your app if not already present
 
 enum HTTPMethod: String {
@@ -109,10 +114,10 @@ enum NetworkError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .invalidURL: return "Invalid URL."
-        case .requestFailed(let error): return "Request failed: \(error.localizedDescription)"
-        case .invalidResponse(let statusCode): return "Invalid response with status code \(statusCode)."
+        case let .requestFailed(error): return "Request failed: \(error.localizedDescription)"
+        case let .invalidResponse(statusCode): return "Invalid response with status code \(statusCode)."
         case .noData: return "No data received."
-        case .decodingError(let error): return "Decoding error: \(error.localizedDescription)"
+        case let .decodingError(error): return "Decoding error: \(error.localizedDescription)"
         }
     }
 }

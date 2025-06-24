@@ -6,8 +6,8 @@
 //  📊 Interactive Skill Progress Dashboard with AI-Generated Insights
 //
 
-import SwiftUI
 import Foundation
+import SwiftUI
 
 /// Displays a user's learning progress with interactive skill visualization charts
 struct SkillVisualizationDashboards: View {
@@ -47,14 +47,15 @@ struct SkillVisualizationDashboards: View {
                 } else {
                     ScrollView {
                         VStack(alignment: .leading, spacing: Theme.Spacing.large) {
-
                             // MARK: - Header
+
                             Text("📊 Skill Progress Dashboard")
                                 .font(Theme.Typography.headline)
                                 .foregroundColor(Theme.Colors.textPrimary)
                                 .padding(.top, Theme.Spacing.large)
 
                             // MARK: - Chart
+
                             StryVrCardView(title: "Skill Growth Overview") {
                                 Chart(skillProgress) { progress in
                                     BarMark(
@@ -72,6 +73,7 @@ struct SkillVisualizationDashboards: View {
                             }
 
                             // MARK: - AI Insights
+
                             StryVrCardView(title: "📈 AI Insights") {
                                 Text(generateAIInsights(from: skillProgress))
                                     .font(Theme.Typography.body)
@@ -94,6 +96,7 @@ struct SkillVisualizationDashboards: View {
     }
 
     // MARK: - Firestore Data
+
     private func fetchSkillProgress() {
         hasError = false
         let userID = "currentUserID"
@@ -105,7 +108,8 @@ struct SkillVisualizationDashboards: View {
                 }
 
                 guard let data = snapshot?.data(),
-                      let skills = data["progress"] as? [String: Double] else {
+                      let skills = data["progress"] as? [String: Double]
+                else {
                     handleError("Invalid or missing skill data in document.")
                     return
                 }
@@ -117,6 +121,7 @@ struct SkillVisualizationDashboards: View {
     }
 
     // MARK: - AI Insight Logic
+
     private func generateAIInsights(from progressData: [SkillProgress]) -> String {
         guard let topSkill = progressData.max(by: { $0.percentage < $1.percentage }) else {
             return "📘 Keep learning to unlock AI-powered progress insights."
@@ -134,6 +139,7 @@ struct SkillVisualizationDashboards: View {
     }
 
     // MARK: - Error Handling
+
     private func handleError(_ message: String) {
         logger.error("❌ \(message)")
         errorMessage = message

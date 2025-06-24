@@ -14,13 +14,14 @@ struct FeedbackSummaryCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.medium) {
-
             // MARK: - Title
+
             Text("Team Feedback Overview")
                 .font(Theme.Typography.subheadline)
                 .foregroundColor(Theme.Colors.textPrimary)
 
             // MARK: - Average Score
+
             HStack {
                 Text("Average Rating: ")
                     .font(Theme.Typography.caption)
@@ -30,6 +31,7 @@ struct FeedbackSummaryCard: View {
             }
 
             // MARK: - Strengths
+
             if !strengths.isEmpty {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Strengths")
@@ -44,6 +46,7 @@ struct FeedbackSummaryCard: View {
             }
 
             // MARK: - Weaknesses
+
             if !weaknesses.isEmpty {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Needs Improvement")
@@ -72,4 +75,3 @@ struct FeedbackSummaryCard: View {
         weaknesses: ["Clarity"]
     )
 }
-

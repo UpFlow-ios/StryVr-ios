@@ -65,6 +65,7 @@ struct EditProfileView: View {
     }
 
     // MARK: - Load Existing Profile
+
     private func loadUserProfile() {
         fullName = authViewModel.userSession?.displayName ?? ""
         bio = "🚀 No bio available yet."
@@ -72,10 +73,11 @@ struct EditProfileView: View {
     }
 
     // MARK: - Save Updated Profile
+
     private func saveProfile() {
         isSaving = true
         simpleHaptic()
-        
+
         // In the future: Save to Firebase Firestore or Realtime DB here
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) { // Mock save delay
             isSaving = false
@@ -85,6 +87,7 @@ struct EditProfileView: View {
     }
 
     // MARK: - Simple Haptic
+
     private func simpleHaptic() {
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()

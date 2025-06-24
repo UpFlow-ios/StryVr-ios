@@ -6,8 +6,8 @@
 //  📊 Workplace Progress Tracker – Pie Chart of Completed vs Missed Goals
 //
 
-import SwiftUI
 import Charts
+import SwiftUI
 
 struct GoalProgress: Identifiable {
     let id = UUID()
@@ -18,17 +18,17 @@ struct GoalProgress: Identifiable {
 
 struct WorkplaceProgressTracker: View {
     // MARK: - Sample Data
+
     let goalData: [GoalProgress] = [
         GoalProgress(category: "Completed", count: 42, color: .green),
         GoalProgress(category: "In Progress", count: 18, color: .orange),
-        GoalProgress(category: "Missed", count: 10, color: .red)
+        GoalProgress(category: "Missed", count: 10, color: .red),
     ]
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: Theme.Spacing.large) {
-
                     Text("📊 Progress Breakdown")
                         .font(Theme.Typography.headline)
                         .padding(.top, Theme.Spacing.large)
@@ -36,6 +36,7 @@ struct WorkplaceProgressTracker: View {
                         .accessibilityLabel("Progress Breakdown Title")
 
                     // MARK: - Pie Chart
+
                     Chart(goalData) { item in
                         SectorMark(
                             angle: .value("Goals", item.count),
@@ -58,6 +59,7 @@ struct WorkplaceProgressTracker: View {
                     .padding(.horizontal)
 
                     // MARK: - Breakdown Legend
+
                     VStack(alignment: .leading, spacing: 12) {
                         ForEach(goalData) { item in
                             HStack {
@@ -83,5 +85,3 @@ struct WorkplaceProgressTracker: View {
 #Preview {
     WorkplaceProgressTracker()
 }
-
-

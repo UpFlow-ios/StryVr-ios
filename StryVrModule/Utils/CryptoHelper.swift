@@ -6,11 +6,10 @@
 //  🔐 Utility – Secure Hashing with SHA256 (CryptoKit)
 //
 
-import Foundation
 import CryptoKit
+import Foundation
 
 enum CryptoHelper {
-
     /// Generates a SHA256 hash from a string
     static func hash(_ input: String) -> String {
         let inputData = Data(input.utf8)
@@ -23,4 +22,5 @@ enum CryptoHelper {
         return hash(input) == hashed
     }
 }
+
 //     /// Generates a random UUID string

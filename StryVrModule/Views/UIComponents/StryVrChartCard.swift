@@ -7,9 +7,8 @@
 //  📊 Skill Progress Chart – Themed Card View with Bar Chart
 //
 
-import SwiftUI
 import Foundation
-
+import SwiftUI
 
 struct StryVrChartCard: View {
     var data: [SkillProgress]

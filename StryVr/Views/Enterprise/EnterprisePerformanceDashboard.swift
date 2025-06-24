@@ -6,14 +6,15 @@
 //  📊 Dashboard – Tracks Team Health, Performance Metrics, Goal Progress
 //
 
-import SwiftUI
 import Charts
+import SwiftUI
 
 struct EnterprisePerformanceDashboard: View {
     @State private var employeeReports: [LearningReport] = []
     @State private var errorMessage: String?
 
     // MARK: - Computed Analytics
+
     private var averageProgressByCategory: [String: Double] {
         ReportAnalysisHelper.calculateAverageSkillProgress(from: employeeReports)
     }
@@ -30,13 +31,13 @@ struct EnterprisePerformanceDashboard: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: Theme.Spacing.large) {
-
                     Text("📈 Team Performance Overview")
                         .font(Theme.Typography.headline)
                         .padding(.top, Theme.Spacing.medium)
                         .padding(.horizontal)
 
                     // MARK: - Skill Progress Chart
+
                     if !averageProgressByCategory.isEmpty {
                         Group {
                             Text("Average Progress by Area")
@@ -65,6 +66,7 @@ struct EnterprisePerformanceDashboard: View {
                     }
 
                     // MARK: - Top Contributors
+
                     if !topContributors.isEmpty {
                         Group {
                             Text("🏅 Top Contributors")
@@ -93,6 +95,7 @@ struct EnterprisePerformanceDashboard: View {
                     }
 
                     // MARK: - Team Weaknesses
+
                     if !teamWeaknesses.isEmpty {
                         Group {
                             Text("⚠️ Areas for Improvement")
@@ -111,6 +114,7 @@ struct EnterprisePerformanceDashboard: View {
                     }
 
                     // MARK: - Error
+
                     if let errorMessage = errorMessage {
                         Text(errorMessage)
                             .foregroundColor(.red)
@@ -126,12 +130,13 @@ struct EnterprisePerformanceDashboard: View {
     }
 
     // MARK: - Load Reports
+
     private func loadReports() {
         errorMessage = nil
         ReportGeneration.shared.fetchTeamReports { result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let reports):
+                case let .success(reports):
                     self.employeeReports = reports
                 case .failure:
                     self.errorMessage = "⚠️ Could not load data. Try again later."

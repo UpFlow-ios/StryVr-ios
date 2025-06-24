@@ -7,8 +7,8 @@
 //  📉 Crash Monitoring Service – FirebaseCrashlytics Integration
 //
 
-import Foundation
 import FirebaseCrashlytics
+import Foundation
 import os
 
 final class CrashHandlingService {
@@ -36,10 +36,3 @@ final class CrashHandlingService {
         fatalError("💥 Simulated crash for testing purposes")
     }
 }
-
-
-
-
-
-
-

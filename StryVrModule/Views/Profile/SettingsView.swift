@@ -15,6 +15,7 @@ struct SettingsView: View {
         NavigationStack {
             List {
                 // MARK: - Profile Section
+
                 Section(header: Text("Profile")) {
                     NavigationLink(destination: EditProfileView()) {
                         Label("Edit Profile", systemImage: "pencil")
@@ -22,6 +23,7 @@ struct SettingsView: View {
                 }
 
                 // MARK: - Notifications Section (Future Feature)
+
                 Section(header: Text("Preferences")) {
                     NavigationLink(destination: NotificationPreferencesView()) {
                         Label("Notifications", systemImage: "bell.badge")
@@ -30,6 +32,7 @@ struct SettingsView: View {
                 }
 
                 // MARK: - Account Info Section
+
                 Section(header: Text("Account")) {
                     HStack {
                         Label("Email", systemImage: "envelope")
@@ -53,6 +56,7 @@ struct SettingsView: View {
                 }
 
                 // MARK: - Danger Zone
+
                 Section {
                     Button(role: .destructive) {
                         simpleHaptic()
@@ -70,6 +74,7 @@ struct SettingsView: View {
     }
 
     // MARK: - Simple Haptic
+
     private func simpleHaptic() {
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()

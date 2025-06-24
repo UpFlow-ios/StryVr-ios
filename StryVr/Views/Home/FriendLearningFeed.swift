@@ -6,9 +6,9 @@
 //  🧠 Real-Time Friend Skill Feed – Firebase-Powered Social Learning UI
 //
 
-import SwiftUI
 import FirebaseFirestore
 import os.log
+import SwiftUI
 
 /// Displays a real-time social feed showing what friends are learning
 struct FriendLearningFeed: View {
@@ -124,6 +124,7 @@ struct FriendLearningFeed: View {
 }
 
 // MARK: - LearningFeedItem Model
+
 struct LearningFeedItem: Identifiable, Codable {
     let id: String
     let friendID: String

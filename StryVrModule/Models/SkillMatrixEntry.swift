@@ -28,8 +28,8 @@ struct SkillMatrixEntry: Identifiable, Codable, Hashable {
     /// Color zone for rating visualization (low, medium, high)
     var performanceZone: PerformanceZone {
         switch rating {
-        case 0.8...1.0: return .high
-        case 0.5..<0.8: return .medium
+        case 0.8 ... 1.0: return .high
+        case 0.5 ..< 0.8: return .medium
         default: return .low
         }
     }
@@ -83,5 +83,3 @@ enum PerformanceZone: String, Codable {
     case medium
     case high
 }
-
-
