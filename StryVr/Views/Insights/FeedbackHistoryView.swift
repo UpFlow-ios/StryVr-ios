@@ -102,4 +102,5 @@ struct FeedbackHistoryView: View {
 }
 
 #Preview {
-    FeedbackHistoryView(employeeI
+    FeedbackHistoryView(employeeId: "sample-id")
+}
