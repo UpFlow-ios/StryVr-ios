@@ -35,7 +35,7 @@ enum AppConfig {
     }
 
     /// Optional: Unified logger (for debug-only prints)
-    static let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "AppConfig")
+    static let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr.app", category: "AppConfig")
 
     // MARK: - Feature Flags
 
