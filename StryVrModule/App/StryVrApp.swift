@@ -5,8 +5,12 @@
 //  🌱 Entry Point with Firebase Setup, Splash Screen, Auth Routing
 //
 
+#if canImport(Firebase)
 import Firebase
+#endif
+#if canImport(os)
 import os
+#endif
 import SwiftUI
 
 @main

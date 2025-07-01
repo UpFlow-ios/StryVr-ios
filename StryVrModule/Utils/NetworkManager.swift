@@ -7,7 +7,9 @@
 //
 
 import Foundation
+#if canImport(os)
 import os.log
+#endif
 
 final class NetworkManager {
     // MARK: - Singleton

@@ -7,8 +7,10 @@
 //  ☁️ Behavior Feedback Service – Submits and retrieves employee behavior feedback using Firestore
 //
 
+#if canImport(FirebaseFirestore)
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+#endif
 import Foundation
 
 final class BehaviorFeedbackService {

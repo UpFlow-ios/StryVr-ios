@@ -8,7 +8,9 @@
 
 import Combine
 import Foundation
+#if canImport(os)
 import os.log
+#endif
 
 final class HomeViewModel: ObservableObject {
     // MARK: - Published Properties
@@ -68,6 +70,6 @@ final class HomeViewModel: ObservableObject {
     /// Handles fetch errors with detailed logging and user-facing messages.
     private func handleFetchError(_ error: Error) {
         errorMessage = "Unable to load skills. Please try again."
-        logger.error("❌ Error fetching skills: \(error.localizedDescription, privacy: .public)")
+        logger.error("❌ Error fetching skills: \(error.localizedDescription)")
     }
 }

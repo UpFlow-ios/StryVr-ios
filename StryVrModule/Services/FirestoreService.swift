@@ -7,10 +7,16 @@
 //  📡 FirestoreService – Centralized Firestore access layer for user data, skills, and history
 //
 
+#if canImport(FirebaseAuth)
 import FirebaseAuth
+#endif
+#if canImport(FirebaseFirestore)
 import FirebaseFirestore
+#endif
 import Foundation
+#if canImport(os)
 import os.log
+#endif
 
 class FirestoreService {
     static let shared = FirestoreService()

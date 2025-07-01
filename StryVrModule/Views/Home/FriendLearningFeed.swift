@@ -6,8 +6,12 @@
 //  🧠 Real-Time Friend Skill Feed – Firebase-Powered Social Learning UI
 //
 
+#if canImport(FirebaseFirestore)
 import FirebaseFirestore
+#endif
+#if canImport(os)
 import os.log
+#endif
 import SwiftUI
 
 /// Displays a real-time social feed showing what friends are learning

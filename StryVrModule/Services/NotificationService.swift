@@ -4,11 +4,19 @@
 //
 //  Created by Joe Dormond on 3/12/25.
 //
+#if canImport(FirebaseAuth)
 import FirebaseAuth
+#endif
+#if canImport(FirebaseFirestore)
 import FirebaseFirestore
+#endif
+#if canImport(FirebaseMessaging)
 import FirebaseMessaging
+#endif
 import Foundation
+#if canImport(os)
 import os.log
+#endif
 import UserNotifications
 
 /// Manages push notifications for video engagement, recommendations, and learning reminders

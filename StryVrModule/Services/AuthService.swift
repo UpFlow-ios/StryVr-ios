@@ -8,9 +8,13 @@
 //
 
 import AppAuth
+#if canImport(FirebaseAuth)
 import FirebaseAuth
+#endif
 import Foundation
+#if canImport(os)
 import os.log
+#endif
 
 final class AuthService: ObservableObject {
     static let shared = AuthService()

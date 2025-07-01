@@ -7,10 +7,14 @@
 //  🤖 AI Recommendation Service – Enhanced with Hugging Face integration
 //
 
+#if canImport(FirebaseFirestore)
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+#endif
 import Foundation
+#if canImport(os)
 import os.log
+#endif
 
 final class AIRecommendationService {
     static let shared = AIRecommendationService()

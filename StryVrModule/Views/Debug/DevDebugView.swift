@@ -5,7 +5,9 @@
 //  🧪 Developer Debug Panel – Logs, Feature Flags, Crash Sim, Deep Links, API Tests
 //
 
+#if canImport(FirebaseAuth)
 import FirebaseAuth
+#endif
 import Pulse
 import PulseUI
 import SwiftUI

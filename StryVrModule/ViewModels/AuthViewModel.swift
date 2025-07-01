@@ -5,9 +5,13 @@
 //  🔒 Fully Optimized Auth ViewModel with Enhanced Error Handling, Firebase Auth Integration, Real-Time Updates
 //
 
+#if canImport(FirebaseAuth)
 import FirebaseAuth
+#endif
 import Foundation
+#if canImport(os)
 import os.log
+#endif
 
 final class AuthViewModel: ObservableObject {
     static let shared = AuthViewModel()

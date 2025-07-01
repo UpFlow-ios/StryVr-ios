@@ -6,7 +6,9 @@
 //
 
 import Foundation
+#if canImport(os)
 import os.log
+#endif
 
 /// Defines app environments
 enum AppEnvironment: String {

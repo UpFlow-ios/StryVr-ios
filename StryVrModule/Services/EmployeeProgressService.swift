@@ -7,8 +7,10 @@
 //  📈 Employee Progress Service – Fetches timeline events from Firestore for analytics
 //
 
+#if canImport(FirebaseFirestore)
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+#endif
 import Foundation
 
 final class EmployeeProgressService {

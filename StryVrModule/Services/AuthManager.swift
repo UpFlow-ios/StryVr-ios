@@ -7,10 +7,16 @@
 //  🔐 Auth Manager – Handles MFA (email & SMS) and secure session management
 //
 import CryptoKit
+#if canImport(FirebaseAuth)
 import FirebaseAuth
+#endif
+#if canImport(FirebaseFirestore)
 import FirebaseFirestore
+#endif
 import Foundation
+#if canImport(os)
 import os.log
+#endif
 
 /// Manages authentication, MFA, and session security in StryVr
 final class AuthManager {

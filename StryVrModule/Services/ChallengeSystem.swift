@@ -7,10 +7,14 @@
 //  🏆 Challenge System – Manages learning challenges, competitions, and streak tracking
 //
 
+#if canImport(FirebaseFirestore)
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+#endif
 import Foundation
+#if canImport(os)
 import os.log
+#endif
 
 /// Manages learning challenges, competitions, and streak tracking
 final class ChallengeSystem {

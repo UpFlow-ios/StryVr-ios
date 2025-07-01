@@ -7,9 +7,13 @@
 //  📉 Crash Monitoring Service – FirebaseCrashlytics Integration
 //
 
+#if canImport(FirebaseCrashlytics)
 import FirebaseCrashlytics
+#endif
 import Foundation
+#if canImport(os)
 import os
+#endif
 
 final class CrashHandlingService {
     static let shared = CrashHandlingService()

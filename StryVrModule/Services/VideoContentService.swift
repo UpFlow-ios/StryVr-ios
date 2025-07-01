@@ -6,10 +6,16 @@
 //  Created by Joe Dormond on 3/12/25.
 //
 import AVFoundation
+#if canImport(FirebaseFirestore)
 import FirebaseFirestore
+#endif
+#if canImport(FirebaseStorage)
 import FirebaseStorage
+#endif
 import Foundation
+#if canImport(os)
 import os.log
+#endif
 
 /// Manages video uploads, metadata, streaming & AI tagging
 final class VideoContentService {

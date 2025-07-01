@@ -6,7 +6,9 @@
 //  🔐 SecureStorageManager & View – Keychain-backed persistence with MVVM architecture
 //
 
+#if canImport(os)
 import os.log
+#endif
 import Security
 import SwiftUI
 

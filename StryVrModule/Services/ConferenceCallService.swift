@@ -5,9 +5,13 @@
 //  Created by Joe Dormond on 3/12/25.
 //
 import AVFoundation
+#if canImport(FirebaseFirestore)
 import FirebaseFirestore
+#endif
 import Foundation
+#if canImport(os)
 import os.log
+#endif
 
 /// Manages real-time video calls, recording, chat, and screen sharing
 final class ConferenceCallService {

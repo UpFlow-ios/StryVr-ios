@@ -5,8 +5,12 @@
 //  🔒 Secure App Lifecycle Setup with Firebase & Push Notifications
 //
 
+#if canImport(Firebase)
 import Firebase
+#endif
+#if canImport(os)
 import os
+#endif
 import UIKit
 import UserNotifications
 

@@ -5,7 +5,9 @@
 //  Created by Joe Dormond on 3/12/25.
 //
 
+#if canImport(os)
 import os.log
+#endif
 import StoreKit
 import SwiftUI
 

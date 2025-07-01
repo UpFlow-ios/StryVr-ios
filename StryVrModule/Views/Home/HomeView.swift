@@ -6,7 +6,9 @@
 //
 
 import ConfettiSwiftUI
+#if canImport(os)
 import os.log
+#endif
 import SwiftUI
 
 struct HomeView: View {

@@ -5,7 +5,9 @@
 //  Created by Joe Dormond on 4/17/25.
 //
 
+#if canImport(os)
 import os.log
+#endif
 import SwiftUI
 
 /// Animated splash screen that adapts to Light & Dark Mode with StryVr branding

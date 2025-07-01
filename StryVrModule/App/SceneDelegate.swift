@@ -5,9 +5,15 @@
 //  🌐 Manages App Window & Session Routing
 //
 
+#if canImport(FirebaseAuth)
 import FirebaseAuth
+#endif
+#if canImport(FirebaseCore)
 import FirebaseCore
+#endif
+#if canImport(os)
 import os.log
+#endif
 import SwiftUI
 import UIKit
 

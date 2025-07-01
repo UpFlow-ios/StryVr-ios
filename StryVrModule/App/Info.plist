@@ -37,7 +37,11 @@
 	<string>StryVr needs access to Bluetooth for connecting to external devices.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>StryVr needs access to your location even when the app is not in use to provide continuous personalized learning.</string>
-	<key>NSMotionUsageDescription</key>
-	<string>StryVr uses motion data to enhance your learning experience.</string>
+        <key>NSMotionUsageDescription</key>
+        <string>StryVr uses motion data to enhance your learning experience.</string>
+        <key>NSPhotoLibraryUsageDescription</key>
+        <string>StryVr needs access to your photo library for uploading images.</string>
+        <key>NSUserTrackingUsageDescription</key>
+        <string>This identifier will be used to deliver personalized ads.</string>
 </dict>
 </plist>
