@@ -1,3 +1,4 @@
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
 diff --git a/StryVr/App/AppDelegate.swift b/StryVr/App/AppDelegate.swift
 index 5ee5f9a91332d499b0238089ab384f14fbe35ed2..9fa9565d0e482ce884acc74d61782ea903c9c5f0 100755
 --- a/StryVr/App/AppDelegate.swift
@@ -223,6 +224,98 @@ index e854a62cc06c474fbac2b6ee2021c9082abc0f86..c9e6f2f1dff3c33e79d0a284ce9e04eb
          case .production:
              return "https://api.stryvr.app"
          }
+diff --git a/StryVr/Models/EmployeeModel.swift b/StryVr/Models/EmployeeModel.swift
+index e798d682d6871d1a248198cd1c5b17546abb004e..1e2c597f620c9e0dc94a68914d6b2253bbfe4446 100644
+--- a/StryVr/Models/EmployeeModel.swift
++++ b/StryVr/Models/EmployeeModel.swift
+@@ -1,66 +1,87 @@
+ //
+ //  EmployeeModel.swift
+ //  StryVr
+ //
+ //  Created by Joe Dormond on 6/5/25.
+ //  👨‍💼 Complete Employee Data Model for Insights & Dashboards
+ //
+ 
+ import Foundation
+ 
+ /// Represents an employee within the StryVr organization insights system.
+ struct EmployeeModel: Identifiable, Codable, Hashable {
+     let id: String
+     let name: String
+     let email: String
+     let role: String
+     let department: String
+     let joinDate: Date
++    /// Name of the avatar image in asset catalog
++    let avatar: String
+     var skills: [SkillProgress]
+     var feedbackEntries: [FeedbackEntry]
+     var performanceRating: Double
+     var goalsAchieved: Int
+     var isActive: Bool
+ }
+ 
+ /// Feedback associated with an employee's behavior or performance.
+ struct FeedbackEntry: Codable, Hashable {
+     let category: FeedbackCategory
+     let comment: String
+     let rating: Int // 1 to 5
+     let date: Date
+ }
+ 
+ /// Feedback rating types
+ enum FeedbackCategory: String, Codable, CaseIterable {
+     case communication
+     case collaboration
+     case responsiveness
+     case initiative
+     case clarity
+     case leadership
+ }
+ 
+ #if DEBUG
+     extension EmployeeModel {
+         static let mock: EmployeeModel = .init(
+             id: "emp001",
+             name: "Jordan Rivera",
+             email: "jordan.rivera@stryvr.com",
+             role: "iOS Engineer",
+             department: "Product Development",
+             joinDate: Date(timeIntervalSince1970: 1_672_531_200),
++            avatar: "avatar_mock",
+             skills: [
+                 SkillProgress(skillName: "SwiftUI", percentage: 0.88),
+                 SkillProgress(skillName: "Teamwork", percentage: 0.92),
+             ],
+             feedbackEntries: [
+                 FeedbackEntry(category: .collaboration, comment: "Always helpful in team tasks.", rating: 5, date: .now),
+                 FeedbackEntry(category: .clarity, comment: "Could communicate more clearly during standups.", rating: 3, date: .now),
+             ],
+             performanceRating: 4.6,
+             goalsAchieved: 12,
+             isActive: true
+         )
+     }
+ #endif
++
++extension EmployeeModel {
++    /// Convenience initializer used in preview/demo data
++    init(name: String, role: String, avatar: String, completedGoals: Int) {
++        self.id = UUID().uuidString
++        self.name = name
++        self.email = ""
++        self.role = role
++        self.department = ""
++        self.joinDate = Date()
++        self.avatar = avatar
++        self.skills = []
++        self.feedbackEntries = []
++        self.performanceRating = 0
++        self.goalsAchieved = completedGoals
++        self.isActive = true
++    }
++}
 diff --git a/StryVr/Models/Enums/TabItem.swift b/StryVr/Models/Enums/TabItem.swift
 index bfd6ead2e3a9ce72685947a4688cdf11d6414a5c..3bd5b408ce883b85b62b2527761ed3d9707d07c6 100644
 --- a/StryVr/Models/Enums/TabItem.swift
@@ -340,6 +433,55 @@ index 1107325bf057ae95058a0d978c1db9bde95b3386..333648357af0f59bc2e8e2aaff4fe96b
          )
      }
  #endif
+diff --git a/StryVr/Models/SkillProgress.swift b/StryVr/Models/SkillProgress.swift
+index ed5e1d930546a51cabde41e57c839744d05a8e72..4fad4517f99e2766471b86f0e7f910938b4d15e6 100644
+--- a/StryVr/Models/SkillProgress.swift
++++ b/StryVr/Models/SkillProgress.swift
+@@ -1,40 +1,40 @@
+ //
+ //  SkillProgress.swift
+ //  StryVr
+ //
+ //  Created by Joe Dormond on 3/26/25
+ //
+ //  📈 Skill Progress Model – Tracks user's progress and proficiency level per skill
+ //
+ 
+ import Foundation
+ 
+ /// Represents progress made on a specific skill
+ struct SkillProgress: Identifiable, Codable, Hashable {
+     /// Unique identifier for the skill progress
+     let id: String
+     /// Name of the skill
+-    let skill: String
++    let skillName: String
+     /// Progress level (0.0 = no progress, 1.0 = fully mastered)
+-    let progress: Double
++    let percentage: Double
+ 
+     // MARK: - Computed Properties
+ 
+     /// Converts progress to a readable string
+     var progressLabel: String {
+-        switch progress {
++        switch percentage {
+         case 0.8 ... 1.0: return "Excellent"
+         case 0.6 ..< 0.8: return "Good"
+         case 0.4 ..< 0.6: return "Average"
+         case 0.2 ..< 0.4: return "Below Average"
+         default: return "Needs Improvement"
+         }
+     }
+ 
+     // MARK: - Validation
+ 
+     /// Validates that the progress is within the valid range
+     var isValid: Bool {
+-        (0.0 ... 1.0).contains(progress)
++        (0.0 ... 1.0).contains(percentage)
+     }
+ }
 diff --git a/StryVr/Services/AIProfileValidator.swift b/StryVr/Services/AIProfileValidator.swift
 index 7bf6ac92ac652d1ecd160c9e5535d135424c7459..1b5dae696ee4a4e934a09adbddd07e81d07006b6 100755
 --- a/StryVr/Services/AIProfileValidator.swift
@@ -841,10 +983,10 @@ index 7c6b8a1ef5ea5b3d2f1224dc464e57222af38b40..fc62277597af7b6feacb840f40840075
          let videoID = UUID().uuidString
          let videoRef = storage.child("videos/\(uploaderID)/\(videoID).mp4")
 diff --git a/StryVr/Utils/ConfettiManager.swift b/StryVr/Utils/ConfettiManager.swift
-index f0b0c386d2f0ab2b62fa5b7a4b7c9ceae9cc6278..99067dd77536a7c9b73ce3a9a0ee8ab1bbbafb29 100644
+index f0b0c386d2f0ab2b62fa5b7a4b7c9ceae9cc6278..9a72712e0426b2ac567726517665a258070c3802 100644
 --- a/StryVr/Utils/ConfettiManager.swift
 +++ b/StryVr/Utils/ConfettiManager.swift
-@@ -1,35 +1,39 @@
+@@ -1,40 +1,49 @@
  //
  //  ConfettiManager.swift
  //  StryVr
@@ -861,8 +1003,8 @@ index f0b0c386d2f0ab2b62fa5b7a4b7c9ceae9cc6278..99067dd77536a7c9b73ce3a9a0ee8ab1
 +#endif
  
  /// Usage:
- /// Bind .confettiCannon(counter: ConfettiManager.shared.counter, num: 20) to a view.
- /// Call ConfettiManager.shared.triggerConfetti() to trigger the animation.
+ /// Bind `.confettiCannon(counter: ConfettiManager.shared.counter, num: 20)` to a view.
+ /// Call `ConfettiManager.shared.triggerConfetti()` to trigger the animation.
  
  /// Singleton manager to trigger confetti from anywhere in the app
  final class ConfettiManager: ObservableObject {
@@ -884,6 +1026,16 @@ index f0b0c386d2f0ab2b62fa5b7a4b7c9ceae9cc6278..99067dd77536a7c9b73ce3a9a0ee8ab1
          DispatchQueue.main.async {
              if let particles = particles {
                  self.numberOfParticles = particles
+             }
+             self.counter += 1
+         }
+     }
++
++    /// Alias for `triggerConfetti` used by legacy callers
++    func startConfetti(particles: Int? = nil) {
++        triggerConfetti(particles: particles)
++    }
+ }
 diff --git a/StryVr/Utils/CryptoHelper.swift b/StryVr/Utils/CryptoHelper.swift
 index 02fe3148a5e1f72348050248dc9aba92d1d62853..75bf80810527aa1a1c976e39b64967d84ea07fa9 100644
 --- a/StryVr/Utils/CryptoHelper.swift
@@ -1044,8 +1196,8 @@ index d5c42426bf858a7acc195901bd459719ae2355dd..8e70eac8482afe738a657650358ebc84
  
  enum ReportAnalysisHelper {
      /// Calculates average progress for each skill across reports.
-     /// - Parameter reports: [LearningReport] array.
-     /// - Returns: [String: Double] skills dictionary with average progress.
+     /// - Parameter reports: `[LearningReport]` array.
+     /// - Returns: `[String: Double]` skills dictionary with average progress.
      static func calculateAverageSkillProgress(from reports: [LearningReport]) -> [String: Double] {
          var skillTotals = [String: (total: Double, count: Int)]()
  
@@ -1193,13 +1345,13 @@ index fc921456245e09a7e514ad0b883108108f402ef0..e4299fadcb07877204ee1361905658b6
  
      // MARK: - Fetch Skills from SkillService
  
-     /// Fetches skills using SkillService with structured logging and error handling.
+     /// Fetches skills using `SkillService` with structured logging and error handling.
      func fetchSkills() {
 diff --git a/StryVr/Views/AI/CareerCard.swift b/StryVr/Views/AI/CareerCard.swift
-index a2d134d65313ac6bc37ae094b4b9dafb85c20c22..d27759d67d4159300eaedd5989d93ca9fcb3125f 100644
+index a2d134d65313ac6bc37ae094b4b9dafb85c20c22..b23a326246bfc2176c00319ae68875a1ceff9f72 100644
 --- a/StryVr/Views/AI/CareerCard.swift
 +++ b/StryVr/Views/AI/CareerCard.swift
-@@ -1,34 +1,36 @@
+@@ -1,43 +1,45 @@
  //
  //  CareerCard.swift
  //  StryVr
@@ -1232,10 +1384,20 @@ index a2d134d65313ac6bc37ae094b4b9dafb85c20c22..d27759d67d4159300eaedd5989d93ca9
          }
          .padding(Theme.Spacing.medium)
          .frame(maxWidth: .infinity, alignment: .leading)
-         .background(Theme.Colors.card ?? Color.gray) // Fallback color
+-        .background(Theme.Colors.card ?? Color.gray) // Fallback color
++        .background(Theme.Colors.card)
          .cornerRadius(Theme.CornerRadius.large)
          .shadow(color: Theme.Colors.textSecondary.opacity(0.1), radius: 4, x: 0, y: 2)
          .accessibilityElement(children: .combine)
+         .accessibilityAddTraits(.isButton) // Optional: if the card is interactive
+     }
+ }
+ 
+ #Preview {
+     CareerCard(title: "iOS Developer")
+         .padding()
+         .preferredColorScheme(.dark)
+ }
 diff --git a/StryVr/Views/AI/CareerPathInsightsView.swift b/StryVr/Views/AI/CareerPathInsightsView.swift
 index e453c5cfa4fd9af1774ebe9843d9847f685b673a..93b22df6cd555286e4570f6109ddf061812aa07e 100644
 --- a/StryVr/Views/AI/CareerPathInsightsView.swift
@@ -1448,10 +1610,10 @@ index 40df7de1cd401f2f45157899255bd3bd98799bda..10127e991ed253e0bf6382fe3ba6ba15
                          Text("Welcome back to StryVr! 👋")
                              .font(Theme.Typography.headline)
 diff --git a/StryVr/Views/LeaderboardView.swift b/StryVr/Views/LeaderboardView.swift
-index 0672add382081a040eb57d7d8a8054772e525908..79f5d10f97ff88431c7289004832996ca01dfc41 100755
+index 0672add382081a040eb57d7d8a8054772e525908..6ff0f08f3a758846784c1f9ad832a1c7365445d3 100755
 --- a/StryVr/Views/LeaderboardView.swift
 +++ b/StryVr/Views/LeaderboardView.swift
-@@ -1,36 +1,36 @@
+@@ -1,85 +1,82 @@
  //
  //  LeaderboardView.swift
  //  StryVr
@@ -1489,6 +1651,57 @@ index 0672add382081a040eb57d7d8a8054772e525908..79f5d10f97ff88431c7289004832996c
                              .accessibilityLabel("Failed to load leaderboard data")
                          Button("Retry") {
                              fetchLeaderboardData()
+                         }
+                         .font(Theme.Typography.body)
+                         .foregroundColor(Theme.Colors.accent)
+                         .accessibilityLabel("Retry button")
+                     }
+                 } else {
+                     ScrollView {
+                         VStack(alignment: .leading, spacing: Theme.Spacing.large) {
+                             Text("🏆 Leaderboard")
+                                 .font(Theme.Typography.headline)
+                                 .foregroundColor(Theme.Colors.textPrimary)
+ 
+                             StryVrCardView(title: "🔥 Top Learners") {
+                                 ForEach(topLearners) { user in
+                                     LeaderboardRow(user: user)
+                                 }
+                             }
+-
+-                            .padding(.horizontal, Theme.Spacing.medium)
+-                                }
+-                            }
+                         }
+-                        .padding()
++                        .padding(.horizontal, Theme.Spacing.medium)
+                     }
++                    .padding()
+                 }
+             }
+             .navigationTitle("Leaderboard")
+             .onAppear {
+                 fetchLeaderboardData()
+             }
+         }
+     }
+ 
+     private func fetchLeaderboardData() {
+         isLoading = true
+         hasError = false
+ 
+         let group = DispatchGroup()
+ 
+         group.enter()
+         fetchData(collection: "users", orderBy: "skillProgress", limit: 5) { result in
+             switch result {
+             case .success(let users):
+                 self.topLearners = users
+             case .failure(let error):
+                 logger.error("Error fetching top learners: \(error.localizedDescription)")
+                 self.hasError = true
+             }
+             group.leave()
 diff --git a/StryVr/Views/PaywallView.swift b/StryVr/Views/PaywallView.swift
 index 7667e1e65badfb57c394d881c29d54845a42d41b..ffed7d86596931818c13e0f045fff402bcf9651b 100755
 --- a/StryVr/Views/PaywallView.swift
@@ -1585,7 +1798,7 @@ index 4e14cbb75244aea5a2e9d152ba39f97d85980d5c..720bf37f6412a22ccfaf640fc98729e0
 -import os.log
 +import os
  
- /// Animated splash screen using a short .mp4 intro video with dark/light mode support
+ /// Animated splash screen using a short `.mp4` intro video with dark/light mode support
  struct SplashScreenView: View {
      @State private var isFinished = false
      @Environment(\.colorScheme) var colorScheme
@@ -1630,7 +1843,7 @@ index aed86bdb71d56c3a20d255ff1b6396611d541045..b7e344f4d0e7c39e711341b91031ac44
  extension Color {
      // MARK: - Hex initializer with optional opacity
  
-     /// Initializes a Color from a hex string with optional opacity.
+     /// Initializes a `Color` from a hex string with optional opacity.
      /// - Parameters:
      ///   - hex: The hex string representing the color (e.g., "#FFFFFF").
      ///   - opacity: The opacity of the color (default is 1.0).
@@ -1937,7 +2150,7 @@ new file mode 100644
 index 0000000000000000000000000000000000000000..1bf9cfddb751c761027aa74f8069994b2eafb2d4
 GIT binary patch
 literal 69
-zcmeAS@N?(olHyuVBq!ia0vp^j3CUx1|;Q0k8}bl9#0p?kcwN$2?+^69t#5_FPH8X
+zcmeAS@N?(olHy`uVBq!ia0vp^j3CUx1|;Q0k8}bl9#0p?kcwN$2?+^69t#5_FPH8X
 PAdA7%)z4*}Q$iB}br}p{
 
 literal 0
@@ -1948,7 +2161,7 @@ new file mode 100644
 index 0000000000000000000000000000000000000000..1bf9cfddb751c761027aa74f8069994b2eafb2d4
 GIT binary patch
 literal 69
-zcmeAS@N?(olHyuVBq!ia0vp^j3CUx1|;Q0k8}bl9#0p?kcwN$2?+^69t#5_FPH8X
+zcmeAS@N?(olHy`uVBq!ia0vp^j3CUx1|;Q0k8}bl9#0p?kcwN$2?+^69t#5_FPH8X
 PAdA7%)z4*}Q$iB}br}p{
 
 literal 0
@@ -2022,6 +2235,98 @@ index e854a62cc06c474fbac2b6ee2021c9082abc0f86..03ac49e27bd46d6095564abd744096f6
          case .production:
              return "https://api.stryvr.app"
          }
+diff --git a/StryVrModule/Models/EmployeeModel.swift b/StryVrModule/Models/EmployeeModel.swift
+index e798d682d6871d1a248198cd1c5b17546abb004e..1e2c597f620c9e0dc94a68914d6b2253bbfe4446 100644
+--- a/StryVrModule/Models/EmployeeModel.swift
++++ b/StryVrModule/Models/EmployeeModel.swift
+@@ -1,66 +1,87 @@
+ //
+ //  EmployeeModel.swift
+ //  StryVr
+ //
+ //  Created by Joe Dormond on 6/5/25.
+ //  👨‍💼 Complete Employee Data Model for Insights & Dashboards
+ //
+ 
+ import Foundation
+ 
+ /// Represents an employee within the StryVr organization insights system.
+ struct EmployeeModel: Identifiable, Codable, Hashable {
+     let id: String
+     let name: String
+     let email: String
+     let role: String
+     let department: String
+     let joinDate: Date
++    /// Name of the avatar image in asset catalog
++    let avatar: String
+     var skills: [SkillProgress]
+     var feedbackEntries: [FeedbackEntry]
+     var performanceRating: Double
+     var goalsAchieved: Int
+     var isActive: Bool
+ }
+ 
+ /// Feedback associated with an employee's behavior or performance.
+ struct FeedbackEntry: Codable, Hashable {
+     let category: FeedbackCategory
+     let comment: String
+     let rating: Int // 1 to 5
+     let date: Date
+ }
+ 
+ /// Feedback rating types
+ enum FeedbackCategory: String, Codable, CaseIterable {
+     case communication
+     case collaboration
+     case responsiveness
+     case initiative
+     case clarity
+     case leadership
+ }
+ 
+ #if DEBUG
+     extension EmployeeModel {
+         static let mock: EmployeeModel = .init(
+             id: "emp001",
+             name: "Jordan Rivera",
+             email: "jordan.rivera@stryvr.com",
+             role: "iOS Engineer",
+             department: "Product Development",
+             joinDate: Date(timeIntervalSince1970: 1_672_531_200),
++            avatar: "avatar_mock",
+             skills: [
+                 SkillProgress(skillName: "SwiftUI", percentage: 0.88),
+                 SkillProgress(skillName: "Teamwork", percentage: 0.92),
+             ],
+             feedbackEntries: [
+                 FeedbackEntry(category: .collaboration, comment: "Always helpful in team tasks.", rating: 5, date: .now),
+                 FeedbackEntry(category: .clarity, comment: "Could communicate more clearly during standups.", rating: 3, date: .now),
+             ],
+             performanceRating: 4.6,
+             goalsAchieved: 12,
+             isActive: true
+         )
+     }
+ #endif
++
++extension EmployeeModel {
++    /// Convenience initializer used in preview/demo data
++    init(name: String, role: String, avatar: String, completedGoals: Int) {
++        self.id = UUID().uuidString
++        self.name = name
++        self.email = ""
++        self.role = role
++        self.department = ""
++        self.joinDate = Date()
++        self.avatar = avatar
++        self.skills = []
++        self.feedbackEntries = []
++        self.performanceRating = 0
++        self.goalsAchieved = completedGoals
++        self.isActive = true
++    }
++}
 diff --git a/StryVrModule/Models/Enums/TabItem.swift b/StryVrModule/Models/Enums/TabItem.swift
 index bfd6ead2e3a9ce72685947a4688cdf11d6414a5c..638af8da211ca9f36de4ec651251a69f8a7f840f 100644
 --- a/StryVrModule/Models/Enums/TabItem.swift
@@ -2140,6 +2445,55 @@ index 1107325bf057ae95058a0d978c1db9bde95b3386..333648357af0f59bc2e8e2aaff4fe96b
          )
      }
  #endif
+diff --git a/StryVrModule/Models/SkillProgress.swift b/StryVrModule/Models/SkillProgress.swift
+index ed5e1d930546a51cabde41e57c839744d05a8e72..4fad4517f99e2766471b86f0e7f910938b4d15e6 100644
+--- a/StryVrModule/Models/SkillProgress.swift
++++ b/StryVrModule/Models/SkillProgress.swift
+@@ -1,40 +1,40 @@
+ //
+ //  SkillProgress.swift
+ //  StryVr
+ //
+ //  Created by Joe Dormond on 3/26/25
+ //
+ //  📈 Skill Progress Model – Tracks user's progress and proficiency level per skill
+ //
+ 
+ import Foundation
+ 
+ /// Represents progress made on a specific skill
+ struct SkillProgress: Identifiable, Codable, Hashable {
+     /// Unique identifier for the skill progress
+     let id: String
+     /// Name of the skill
+-    let skill: String
++    let skillName: String
+     /// Progress level (0.0 = no progress, 1.0 = fully mastered)
+-    let progress: Double
++    let percentage: Double
+ 
+     // MARK: - Computed Properties
+ 
+     /// Converts progress to a readable string
+     var progressLabel: String {
+-        switch progress {
++        switch percentage {
+         case 0.8 ... 1.0: return "Excellent"
+         case 0.6 ..< 0.8: return "Good"
+         case 0.4 ..< 0.6: return "Average"
+         case 0.2 ..< 0.4: return "Below Average"
+         default: return "Needs Improvement"
+         }
+     }
+ 
+     // MARK: - Validation
+ 
+     /// Validates that the progress is within the valid range
+     var isValid: Bool {
+-        (0.0 ... 1.0).contains(progress)
++        (0.0 ... 1.0).contains(percentage)
+     }
+ }
 diff --git a/StryVrModule/Protocols/MutablePropertyWrapper.swift b/StryVrModule/Protocols/MutablePropertyWrapper.swift
 new file mode 100644
 index 0000000000000000000000000000000000000000..8362237eb197dbeb942ed71afe947f1008e29292
@@ -2157,7 +2511,7 @@ index 0000000000000000000000000000000000000000..8362237eb197dbeb942ed71afe947f10
 +import Foundation
 +
 +/// Minimal protocol that matches the requirements of a mutable property wrapper
-+/// used in previews. Conforming wrappers must expose a mutable wrappedValue.
++/// used in previews. Conforming wrappers must expose a mutable `wrappedValue`.
 +public protocol MutablePropertyWrapper {
 +    associatedtype Value
 +    var wrappedValue: Value { get set }
@@ -2795,7 +3149,7 @@ index 0000000000000000000000000000000000000000..cc56430453c876391cabcc8ae0b3cfa1
 @@ -0,0 +1,39 @@
 +import Foundation
 +
-+/// Default implementation of SkillServiceProtocol using in-memory storage for previews
++/// Default implementation of `SkillServiceProtocol` using in-memory storage for previews
 +final class SkillService: SkillServiceProtocol {
 +    static let shared = SkillService()
 +
@@ -2925,10 +3279,10 @@ index fa6a89624f5b842486944f6c135fd8377fdae4b2..2de133f07b9f25acc2773592b9736ac7
  }
 +#endif
 diff --git a/StryVrModule/Utils/ConfettiManager.swift b/StryVrModule/Utils/ConfettiManager.swift
-index f0b0c386d2f0ab2b62fa5b7a4b7c9ceae9cc6278..99067dd77536a7c9b73ce3a9a0ee8ab1bbbafb29 100644
+index f0b0c386d2f0ab2b62fa5b7a4b7c9ceae9cc6278..984c18bb925fdad39cfa0dda44955e636acdbcdc 100644
 --- a/StryVrModule/Utils/ConfettiManager.swift
 +++ b/StryVrModule/Utils/ConfettiManager.swift
-@@ -1,35 +1,39 @@
+@@ -1,40 +1,49 @@
  //
  //  ConfettiManager.swift
  //  StryVr
@@ -2945,8 +3299,8 @@ index f0b0c386d2f0ab2b62fa5b7a4b7c9ceae9cc6278..99067dd77536a7c9b73ce3a9a0ee8ab1
 +#endif
  
  /// Usage:
- /// Bind .confettiCannon(counter: ConfettiManager.shared.counter, num: 20) to a view.
- /// Call ConfettiManager.shared.triggerConfetti() to trigger the animation.
+ /// Bind `.confettiCannon(counter: ConfettiManager.shared.counter, num: 20)` to a view.
+ /// Call `ConfettiManager.shared.triggerConfetti()` to trigger the animation.
  
  /// Singleton manager to trigger confetti from anywhere in the app
  final class ConfettiManager: ObservableObject {
@@ -2968,6 +3322,16 @@ index f0b0c386d2f0ab2b62fa5b7a4b7c9ceae9cc6278..99067dd77536a7c9b73ce3a9a0ee8ab1
          DispatchQueue.main.async {
              if let particles = particles {
                  self.numberOfParticles = particles
+             }
+             self.counter += 1
+         }
+     }
++
++    /// Alias for `triggerConfetti` used by legacy code
++    func startConfetti(particles: Int? = nil) {
++        triggerConfetti(particles: particles)
++    }
+ }
 diff --git a/StryVrModule/Utils/CryptoHelper.swift b/StryVrModule/Utils/CryptoHelper.swift
 index 02fe3148a5e1f72348050248dc9aba92d1d62853..75bf80810527aa1a1c976e39b64967d84ea07fa9 100644
 --- a/StryVrModule/Utils/CryptoHelper.swift
@@ -3160,8 +3524,8 @@ index d5c42426bf858a7acc195901bd459719ae2355dd..71f6dedd5e1f2cd519d2a3a89e154c9c
  
  enum ReportAnalysisHelper {
      /// Calculates average progress for each skill across reports.
-     /// - Parameter reports: [LearningReport] array.
-     /// - Returns: [String: Double] skills dictionary with average progress.
+     /// - Parameter reports: `[LearningReport]` array.
+     /// - Returns: `[String: Double]` skills dictionary with average progress.
      static func calculateAverageSkillProgress(from reports: [LearningReport]) -> [String: Double] {
          var skillTotals = [String: (total: Double, count: Int)]()
  
@@ -3313,7 +3677,7 @@ index fc921456245e09a7e514ad0b883108108f402ef0..dac4f7bcc134b88f827d2530bc499bb6
  
      // MARK: - Fetch Skills from SkillService
  
-     /// Fetches skills using SkillService with structured logging and error handling.
+     /// Fetches skills using `SkillService` with structured logging and error handling.
      func fetchSkills() {
 @@ -46,28 +50,28 @@ final class HomeViewModel: ObservableObject {
                      self.logger.info("✅ Skills successfully fetched and loaded.")
@@ -3346,10 +3710,10 @@ index fc921456245e09a7e514ad0b883108108f402ef0..dac4f7bcc134b88f827d2530bc499bb6
      }
  }
 diff --git a/StryVrModule/Views/AI/CareerCard.swift b/StryVrModule/Views/AI/CareerCard.swift
-index a2d134d65313ac6bc37ae094b4b9dafb85c20c22..d27759d67d4159300eaedd5989d93ca9fcb3125f 100644
+index a2d134d65313ac6bc37ae094b4b9dafb85c20c22..b23a326246bfc2176c00319ae68875a1ceff9f72 100644
 --- a/StryVrModule/Views/AI/CareerCard.swift
 +++ b/StryVrModule/Views/AI/CareerCard.swift
-@@ -1,34 +1,36 @@
+@@ -1,43 +1,45 @@
  //
  //  CareerCard.swift
  //  StryVr
@@ -3382,10 +3746,20 @@ index a2d134d65313ac6bc37ae094b4b9dafb85c20c22..d27759d67d4159300eaedd5989d93ca9
          }
          .padding(Theme.Spacing.medium)
          .frame(maxWidth: .infinity, alignment: .leading)
-         .background(Theme.Colors.card ?? Color.gray) // Fallback color
+-        .background(Theme.Colors.card ?? Color.gray) // Fallback color
++        .background(Theme.Colors.card)
          .cornerRadius(Theme.CornerRadius.large)
          .shadow(color: Theme.Colors.textSecondary.opacity(0.1), radius: 4, x: 0, y: 2)
          .accessibilityElement(children: .combine)
+         .accessibilityAddTraits(.isButton) // Optional: if the card is interactive
+     }
+ }
+ 
+ #Preview {
+     CareerCard(title: "iOS Developer")
+         .padding()
+         .preferredColorScheme(.dark)
+ }
 diff --git a/StryVrModule/Views/AI/CareerPathInsightsView.swift b/StryVrModule/Views/AI/CareerPathInsightsView.swift
 index e453c5cfa4fd9af1774ebe9843d9847f685b673a..93b22df6cd555286e4570f6109ddf061812aa07e 100644
 --- a/StryVrModule/Views/AI/CareerPathInsightsView.swift
@@ -3826,7 +4200,7 @@ index aed86bdb71d56c3a20d255ff1b6396611d541045..b7e344f4d0e7c39e711341b91031ac44
  extension Color {
      // MARK: - Hex initializer with optional opacity
  
-     /// Initializes a Color from a hex string with optional opacity.
+     /// Initializes a `Color` from a hex string with optional opacity.
      /// - Parameters:
      ///   - hex: The hex string representing the color (e.g., "#FFFFFF").
      ///   - opacity: The opacity of the color (default is 1.0).
