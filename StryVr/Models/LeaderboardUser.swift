@@ -54,5 +54,10 @@ struct LeaderboardUser: Identifiable, Codable, Hashable {
             completedChallenges: 12,
             feedbackScore: 4.8
         )
+
+        static let mockLeaderboardUsers: [LeaderboardUser] = [
+            .init(id: "1", name: "Jane", score: 900),
+            .init(id: "2", name: "Kyle", score: 850),
+        ]
     }
 #endif

@@ -11,7 +11,7 @@ import Foundation
 /// Represents an entry in an employee's skill matrix
 struct SkillMatrixEntry: Identifiable, Codable, Hashable {
     /// Unique ID for the skill entry
-    let id: String
+    let id: String = UUID().uuidString
     /// Name of the skill (e.g., Communication, SwiftUI)
     let skillName: String
     /// Numeric rating from 0.0 (no skill) to 1.0 (expert)
@@ -28,8 +28,8 @@ struct SkillMatrixEntry: Identifiable, Codable, Hashable {
     /// Color zone for rating visualization (low, medium, high)
     var performanceZone: PerformanceZone {
         switch rating {
-        case 0.8 ... 1.0: return .high
-        case 0.5 ..< 0.8: return .medium
+        case 0.8...1.0: return .high
+        case 0.5..<0.8: return .medium
         default: return .low
         }
     }
@@ -47,7 +47,6 @@ struct SkillMatrixEntry: Identifiable, Codable, Hashable {
     // MARK: - Placeholder
 
     static let empty = SkillMatrixEntry(
-        id: UUID().uuidString,
         skillName: "",
         rating: 0.0,
         category: .technical,
@@ -82,4 +81,11 @@ enum PerformanceZone: String, Codable {
     case low
     case medium
     case high
+}
+
+extension SkillMatrixEntry {
+    static let mockEntries: [SkillMatrixEntry] = [
+        .init(skillName: "SwiftUI", level: 5),
+        .init(skillName: "Firebase", level: 4),
+    ]
 }

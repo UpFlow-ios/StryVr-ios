@@ -58,3 +58,9 @@ struct FeedbackEntry: Codable, Hashable {
         )
     }
 #endif
+
+extension EmployeeModel {
+    static let mockData: [EmployeeModel] = [
+        .init(id: "emp1", name: "Alex", role: "Dev", department: "iOS")
+    ]
+}

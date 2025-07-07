@@ -11,7 +11,7 @@ import Foundation
 /// Represents a user's AI-generated learning report
 struct LearningReport: Identifiable, Codable, Hashable {
     /// Unique ID for this report
-    let id: String
+    let id: String = UUID().uuidString
 
     /// User identifier the report is for
     let userID: String
@@ -55,13 +55,20 @@ struct LearningReport: Identifiable, Codable, Hashable {
         ],
         strengths: ["SwiftUI", "Communication"],
         weaknesses: ["AI Literacy"],
-        summary: "You’ve made strong progress in SwiftUI and communication. Focus more on AI concepts to boost your profile.",
+        summary:
+            "You've made strong progress in SwiftUI and communication. Focus more on AI concepts to boost your profile.",
         overallScore: 0.77
     )
+
+    static var empty: LearningReport {
+        LearningReport(
+            id: "default", userID: "0", createdAt: Date(), skills: [], strengths: [],
+            weaknesses: [], summary: "", overallScore: 0.0)
+    }
 }
 
 /// Represents performance of a single skill
 struct SkillPerformance: Codable, Hashable {
     let skillName: String
-    let rating: Double // 0.0 to 1.0
+    let rating: Double  // 0.0 to 1.0
 }
