@@ -11,12 +11,14 @@ import FirebaseAuth
 import FirebaseFirestore
 import Foundation
 import OSLog
+import StryVr.Utils.APIError
 
 /// Manages authentication, MFA, and session security in StryVr
 final class AuthManager {
     static let shared = AuthManager()
     private let db = Firestore.firestore()
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "AuthManager")
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "AuthManager")
 
     private init() {}
 
@@ -50,7 +52,8 @@ final class AuthManager {
             return
         }
 
-        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) {
+            verificationID, error in
             if let error = error {
                 self.logger.error("📲 MFA SMS error: \(error.localizedDescription)")
                 completion(false, error)
@@ -78,7 +81,8 @@ final class AuthManager {
             return
         }
 
-        let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: code)
+        let credential = PhoneAuthProvider.provider().credential(
+            withVerificationID: verificationID, verificationCode: code)
 
         Auth.auth().signIn(with: credential) { _, error in
             if let error = error {
@@ -88,25 +92,6 @@ final class AuthManager {
                 self.logger.info("🔐 MFA login successful")
                 completion(true, nil)
             }
-        }
-    }
-}
-
-// MARK: - Custom Error Type
-
-enum AuthError: LocalizedError {
-    case userNotAuthenticated
-    case invalidInput
-    case verificationIDNotFound
-
-    var errorDescription: String? {
-        switch self {
-        case .userNotAuthenticated:
-            return "User not authenticated."
-        case .invalidInput:
-            return "Invalid input provided."
-        case .verificationIDNotFound:
-            return "Verification ID not found."
         }
     }
 }

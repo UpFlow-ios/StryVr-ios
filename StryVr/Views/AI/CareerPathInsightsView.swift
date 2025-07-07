@@ -6,6 +6,7 @@
 //  🧠 AI Career Insights View – Personalized Pathway Suggestions
 //
 
+import SkillProgress
 import SwiftUI
 
 struct CareerPathInsightsView: View {
@@ -77,17 +78,20 @@ struct CareerPathInsightsView: View {
 
                     guard !skills.isEmpty else {
                         self.isLoading = false
-                        self.errorMessage = "No skill data found. Complete a few learning paths to unlock insights."
+                        self.errorMessage =
+                            "No skill data found. Complete a few learning paths to unlock insights."
                         return
                     }
 
-                    AIRecommendationService.shared.getCareerRecommendations(from: skills) { result in
+                    AIRecommendationService.shared.getCareerRecommendations(from: skills) {
+                        result in
                         DispatchQueue.main.async {
                             switch result {
                             case let .success(careers):
                                 self.suggestedCareers = careers
                             case .failure:
-                                self.errorMessage = "Failed to fetch career recommendations. Please try again later."
+                                self.errorMessage =
+                                    "Failed to fetch career recommendations. Please try again later."
                             }
                             self.isLoading = false
                         }

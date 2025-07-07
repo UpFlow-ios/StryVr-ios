@@ -14,13 +14,13 @@ enum Theme {
 
     /// Defines the app's primary color palette, with optional fallbacks.
     enum Colors {
-        static let safeTextPrimary = Color("TextPrimaryColor") ?? Fallback.textPrimary
-        static let safeTextSecondary = Color("TextSecondaryColor") ?? Fallback.textSecondary
+        static let safeTextPrimary = Color("TextPrimaryColor")
+        static let safeTextSecondary = Color("TextSecondaryColor")
         static let background = Color("BackgroundColor")
         static let textPrimary = Color("TextPrimaryColor")
         static let textSecondary = Color("TextSecondaryColor")
         static let accent = Color("AccentColor")
-        static let whiteText = Color.white // ✅ Add this to fix missing 'whiteText'
+        static let whiteText = Color.white  // ✅ Add this to fix missing 'whiteText'
         static let card = Color("Card")
 
         /// Fallbacks (optional)

@@ -16,7 +16,7 @@ struct Achievement: Identifiable {
 
 struct AchievementsView: View {
     @State private var achievements: [Achievement] = [
-        Achievement(title: "First Challenge Completed", isUnlocked: true, imageName: "star.fill"),,
+        Achievement(title: "First Challenge Completed", isUnlocked: true, imageName: "star.fill"),
         Achievement(title: "Profile Verified", isUnlocked: true, imageName: "checkmark.shield"),
         Achievement(title: "Learning Streak - 7 Days", isUnlocked: false, imageName: "flame.fill"),
     ]
@@ -35,7 +35,10 @@ struct AchievementsView: View {
                         .foregroundColor(Theme.Colors.textPrimary)
                         .padding(.top, Theme.Spacing.large)
 
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: Theme.Spacing.large) {
+                    LazyVGrid(
+                        columns: [GridItem(.flexible()), GridItem(.flexible())],
+                        spacing: Theme.Spacing.large
+                    ) {
                         ForEach(achievements) { achievement in
                             achievementCard(for: achievement)
                                 .onTapGesture {

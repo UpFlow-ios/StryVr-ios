@@ -46,3 +46,21 @@ enum APIError: Error, LocalizedError {
         }
     }
 }
+
+// Shared AuthError for authentication-related errors
+public enum AuthError: LocalizedError {
+    case userNotAuthenticated
+    case invalidInput
+    case verificationIDNotFound
+
+    public var errorDescription: String? {
+        switch self {
+        case .userNotAuthenticated:
+            return "User not authenticated."
+        case .invalidInput:
+            return "Invalid input provided."
+        case .verificationIDNotFound:
+            return "Verification ID not found."
+        }
+    }
+}

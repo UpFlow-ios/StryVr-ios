@@ -6,8 +6,8 @@
 //  🏆 Displays top learners (Gamification + Recognition)
 //
 
-import SwiftUI
 import FirebaseFirestore
+import SwiftUI
 import os.log
 
 struct LeaderboardView: View {
@@ -15,7 +15,8 @@ struct LeaderboardView: View {
     @State private var isLoading: Bool = true
     @State private var hasError: Bool = false
 
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "LeaderboardView")
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier!, category: "LeaderboardView")
 
     var body: some View {
         NavigationView {
@@ -53,10 +54,7 @@ struct LeaderboardView: View {
                             }
 
                             .padding(.horizontal, Theme.Spacing.medium)
-                                }
-                            }
                         }
-                        .padding()
                     }
                 }
             }
@@ -89,7 +87,10 @@ struct LeaderboardView: View {
         }
     }
 
-    private func fetchData(collection: String, orderBy: String, limit: Int, completion: @escaping (Result<[LeaderboardUser], Error>) -> Void) {
+    private func fetchData(
+        collection: String, orderBy: String, limit: Int,
+        completion: @escaping (Result<[LeaderboardUser], Error>) -> Void
+    ) {
         Firestore.firestore().collection(collection)
             .order(by: orderBy, descending: true)
             .limit(to: limit)

@@ -25,10 +25,12 @@ struct EnterpriseCompanyVerificationView: View {
                         .foregroundColor(Theme.Colors.textPrimary)
                         .padding(.top, Theme.Spacing.large)
 
-                    Text("Apply to verify your organization and unlock enterprise tools like recruiting dashboards, top learner access)
-                        .font(Theme.Typography.caption)
-                        .foregroundColor(Theme.Colors.textSecondary)
-                        .multilineTextAlignment(.leading)
+                    Text(
+                        "Apply to verify your organization and unlock enterprise tools like recruiting dashboards, top learner access"
+                    )
+                    .font(Theme.Typography.caption)
+                    .foregroundColor(Theme.Colors.textSecondary)
+                    .multilineTextAlignment(.leading)
 
                     // MARK: - Form Fields
                     Group {
@@ -42,7 +44,8 @@ struct EnterpriseCompanyVerificationView: View {
                     Button(action: submitApplication) {
                         if isLoading {
                             ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle(tint: Theme.Colors.accent))
+                                .progressViewStyle(
+                                    CircularProgressViewStyle(tint: Theme.Colors.accent))
                         } else {
                             Text("Submit Verification Request")
                                 .font(Theme.Typography.body)
@@ -87,7 +90,8 @@ struct EnterpriseCompanyVerificationView: View {
 
     // MARK: - Form Validation
     private func formValid() -> Bool {
-        return !companyName.isEmpty && !companyWebsite.isEmpty && !linkedInURL.isEmpty && !businessEmail.isEmpty
+        return !companyName.isEmpty && !companyWebsite.isEmpty && !linkedInURL.isEmpty
+            && !businessEmail.isEmpty
     }
 
     // MARK: - Submit Logic (Mock Logic for Now)
@@ -104,5 +108,5 @@ struct EnterpriseCompanyVerificationView: View {
 }
 
 #Preview {
-                        EnterpriseCompanyVerificationView()
+    EnterpriseCompanyVerificationView()
 }

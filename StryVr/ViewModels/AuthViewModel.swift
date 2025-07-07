@@ -16,10 +16,11 @@ final class AuthViewModel: ObservableObject {
     @Published private(set) var errorMessage: String?
     @Published private(set) var isAuthenticated: Bool = false
 
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr.app", category: "AuthViewModel")
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr.app", category: "AuthViewModel")
     private var authListenerHandle: AuthStateDidChangeListenerHandle?
 
-    private init() {
+    init() {
         configureAuthListener()
     }
 
@@ -34,7 +35,9 @@ final class AuthViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self?.userSession = user
                 self?.isAuthenticated = (user != nil)
-                self?.logger.info("🔁 Auth state changed: \(self?.isAuthenticated == true ? "✅ Logged In" : "🚪 Logged Out")")
+                self?.logger.info(
+                    "🔁 Auth state changed: \(self?.isAuthenticated == true ? "✅ Logged In" : "🚪 Logged Out")"
+                )
             }
         }
     }

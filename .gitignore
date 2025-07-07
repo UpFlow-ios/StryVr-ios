@@ -15,3 +15,5 @@ stryvr-firebase-adminsdk*.json
 stryvr-firebase-adminsdk*.json
 Package.resolved
 build.log
+.vscode/
+codex-fix.patch
