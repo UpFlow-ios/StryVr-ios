@@ -11,7 +11,7 @@ import Foundation
 /// Represents a pricing tier and features for subscriptions
 struct SubscriptionPlan: Identifiable, Codable, Hashable {
     /// Unique identifier for the subscription plan
-    let id: String
+    let id: String = UUID().uuidString
     /// Tier of the subscription (e.g., freemium, premium)
     let tier: SubscriptionTier
     /// Monthly price of the subscription

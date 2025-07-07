@@ -11,7 +11,7 @@ import SwiftUI
 
 /// Represents a user on the StryVr leaderboard with performance metrics
 struct LeaderboardUser: Identifiable, Codable, Hashable {
-    let id: String // Firebase UID or internal user ID
+    let id: String = UUID().uuidString
     let name: String
     let profileImageURL: String?
     let totalPoints: Int

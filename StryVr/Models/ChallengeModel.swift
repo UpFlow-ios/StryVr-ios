@@ -11,7 +11,7 @@ import Foundation
 /// Represents a skill-building challenge within StryVr
 struct ChallengeModel: Identifiable, Codable, Hashable {
     /// Unique identifier for the challenge
-    let id: String
+    let id: String = UUID().uuidString
     /// Title of the challenge
     let title: String
     /// Description of the challenge

@@ -10,7 +10,7 @@ import Foundation
 
 /// Represents an employee within the StryVr organization insights system.
 struct EmployeeModel: Identifiable, Codable, Hashable {
-    let id: String
+    let id: String = UUID().uuidString
     let name: String
     let email: String
     let role: String
@@ -27,10 +27,9 @@ struct EmployeeModel: Identifiable, Codable, Hashable {
 struct FeedbackEntry: Codable, Hashable {
     let category: FeedbackCategory
     let comment: String
-    let rating: Int // 1 to 5
+    let rating: Int  // 1 to 5
     let date: Date
 }
-
 
 #if DEBUG
     extension EmployeeModel {
@@ -46,8 +45,12 @@ struct FeedbackEntry: Codable, Hashable {
                 SkillProgress(skillName: "Teamwork", percentage: 0.92),
             ],
             feedbackEntries: [
-                FeedbackEntry(category: .collaboration, comment: "Always helpful in team tasks.", rating: 5, date: .now),
-                FeedbackEntry(category: .clarity, comment: "Could communicate more clearly during standups.", rating: 3, date: .now),
+                FeedbackEntry(
+                    category: .collaboration, comment: "Always helpful in team tasks.", rating: 5,
+                    date: .now),
+                FeedbackEntry(
+                    category: .clarity, comment: "Could communicate more clearly during standups.",
+                    rating: 3, date: .now),
             ],
             performanceRating: 4.6,
             goalsAchieved: 12,
