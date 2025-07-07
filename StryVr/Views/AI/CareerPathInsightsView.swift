@@ -6,7 +6,6 @@
 //  🧠 AI Career Insights View – Personalized Pathway Suggestions
 //
 
-import SkillProgress
 import SwiftUI
 
 struct CareerPathInsightsView: View {

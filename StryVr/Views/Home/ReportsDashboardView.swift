@@ -6,7 +6,6 @@
 //  📊 Skill Reports Dashboard – Progress Charts & Growth Metrics
 //
 
-import SkillProgress
 import SwiftUI
 
 struct ReportsDashboardView: View {
