@@ -11,7 +11,6 @@ import AppAuth
 import FirebaseAuth
 import Foundation
 import OSLog
-import StryVr.Utils
 
 final class AuthService: ObservableObject {
     static let shared = AuthService()
