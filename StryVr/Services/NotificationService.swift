@@ -8,7 +8,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseMessaging
 import Foundation
-import os.log
+import OSLog
 import UserNotifications
 
 /// Manages push notifications for video engagement, recommendations, and learning reminders

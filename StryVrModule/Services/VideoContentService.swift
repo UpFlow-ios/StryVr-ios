@@ -14,7 +14,7 @@ import FirebaseStorage
 #endif
 import Foundation
 #if canImport(os)
-import os.log
+import OSLog
 #endif
 
 /// Manages video uploads, metadata, streaming & AI tagging
@@ -129,7 +129,7 @@ final class VideoContentService {
                         id: doc.documentID,
                         uploaderID: uploaderID,
                         title: title,
-                        caption: caption,
+                        description: caption,
                         videoURL: videoURL,
                         thumbnailURL: thumbnailURL,
                         duration: duration,

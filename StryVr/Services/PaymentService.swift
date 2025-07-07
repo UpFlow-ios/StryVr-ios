@@ -6,7 +6,7 @@
 //
 import Combine
 import Foundation
-import os.log
+import OSLog
 import StoreKit
 
 /// Manages in-app purchases and subscriptions for StryVr

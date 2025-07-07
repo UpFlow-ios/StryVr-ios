@@ -8,7 +8,7 @@
 import Foundation
 import LocalAuthentication
 #if canImport(os)
-import os.log
+import OSLog
 #endif
 import Security
 

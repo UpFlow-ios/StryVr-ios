@@ -10,7 +10,7 @@
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Foundation
-import os.log
+import OSLog
 
 final class AIRecommendationService {
     static let shared = AIRecommendationService()

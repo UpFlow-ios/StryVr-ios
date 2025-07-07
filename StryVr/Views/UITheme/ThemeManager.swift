@@ -21,6 +21,7 @@ enum Theme {
         static let textSecondary = Color("TextSecondaryColor")
         static let accent = Color("AccentColor")
         static let whiteText = Color.white // ✅ Add this to fix missing 'whiteText'
+        static let card = Color("Card")
 
         /// Fallbacks (optional)
         enum Fallback {
@@ -29,6 +30,7 @@ enum Theme {
             static let textPrimary = Color.white
             static let textSecondary = Color(hex: "#AAAAAA")
             static let accent = Color(hex: "#FF4081")
+            static let card = Color(hex: "#1A1A1A")
         }
     }
 

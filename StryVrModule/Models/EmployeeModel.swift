@@ -31,15 +31,6 @@ struct FeedbackEntry: Codable, Hashable {
     let date: Date
 }
 
-/// Feedback rating types
-enum FeedbackCategory: String, Codable, CaseIterable {
-    case communication
-    case collaboration
-    case responsiveness
-    case initiative
-    case clarity
-    case leadership
-}
 
 #if DEBUG
     extension EmployeeModel {

@@ -7,7 +7,7 @@
 //
 import Foundation
 import LocalAuthentication
-import os.log
+import OSLog
 import Security
 
 /// Manages secure storage of sensitive data using Apple's Keychain API

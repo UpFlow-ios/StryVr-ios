@@ -9,7 +9,7 @@ import AVFoundation
 import FirebaseFirestore
 import FirebaseStorage
 import Foundation
-import os.log
+import OSLog
 
 /// Manages video uploads, metadata, streaming & AI tagging
 final class VideoContentService {
@@ -123,7 +123,7 @@ final class VideoContentService {
                         id: doc.documentID,
                         uploaderID: uploaderID,
                         title: title,
-                        caption: caption,
+                        description: caption,
                         videoURL: videoURL,
                         thumbnailURL: thumbnailURL,
                         duration: duration,

@@ -12,7 +12,7 @@ import FirebaseCrashlytics
 #endif
 import Foundation
 #if canImport(os)
-import os
+import OSLog
 #endif
 
 final class CrashHandlingService {

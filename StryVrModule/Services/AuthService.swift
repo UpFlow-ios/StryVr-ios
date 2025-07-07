@@ -13,7 +13,7 @@ import FirebaseAuth
 #endif
 import Foundation
 #if canImport(os)
-import os.log
+import OSLog
 #endif
 
 final class AuthService: ObservableObject {

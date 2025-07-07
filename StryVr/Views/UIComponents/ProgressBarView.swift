@@ -52,11 +52,11 @@ struct ProgressBarView: View {
 
 // MARK: - Helper for Preview Bindings
 
-struct StatefulPreviewWrapper<Value: MutablePropertyWrapper & DynamicProperty, Content: View>: View where Value.Value: Equatable {
-    @State private var value: Value.Value
-    var content: (Binding<Value.Value>) -> Content
+struct StatefulPreviewWrapper<Value, Content: View>: View {
+    @State private var value: Value
+    var content: (Binding<Value>) -> Content
 
-    init(_ initialValue: Value.Value, @ViewBuilder content: @escaping (Binding<Value.Value>) -> Content) {
+    init(_ initialValue: Value, @ViewBuilder content: @escaping (Binding<Value>) -> Content) {
         _value = State(initialValue: initialValue)
         self.content = content
     }

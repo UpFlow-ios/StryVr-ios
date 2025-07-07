@@ -7,7 +7,7 @@
 import AVFoundation
 import FirebaseFirestore
 import Foundation
-import os.log
+import OSLog
 
 /// Manages real-time video calls, recording, chat, and screen sharing
 final class ConferenceCallService {

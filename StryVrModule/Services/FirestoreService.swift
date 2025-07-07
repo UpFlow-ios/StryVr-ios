@@ -15,7 +15,7 @@ import FirebaseFirestore
 #endif
 import Foundation
 #if canImport(os)
-import os.log
+import OSLog
 #endif
 
 class FirestoreService {

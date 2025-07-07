@@ -9,7 +9,7 @@
 
 import FirebaseCrashlytics
 import Foundation
-import os
+import OSLog
 
 final class CrashHandlingService {
     static let shared = CrashHandlingService()

@@ -10,7 +10,7 @@ import CryptoKit
 import FirebaseAuth
 import FirebaseFirestore
 import Foundation
-import os.log
+import OSLog
 
 /// Manages authentication, MFA, and session security in StryVr
 final class AuthManager {

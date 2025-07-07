@@ -10,7 +10,7 @@ import FirebaseFirestore
 #endif
 import Foundation
 #if canImport(os)
-import os.log
+import OSLog
 #endif
 
 /// Manages real-time video calls, recording, chat, and screen sharing

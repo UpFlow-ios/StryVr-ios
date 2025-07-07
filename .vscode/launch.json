@@ -24,6 +24,24 @@
             "name": "Release stryvr-app (StryVr/stryvr-app)",
             "program": "${workspaceFolder:StryVr-ios}/StryVr/stryvr-app/.build/release/stryvr-app",
             "preLaunchTask": "swift: Build Release stryvr-app (StryVr/stryvr-app)"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:StryVr-ios}",
+            "name": "Debug stryvr-app",
+            "program": "${workspaceFolder:StryVr-ios}/.build/debug/stryvr-app",
+            "preLaunchTask": "swift: Build Debug stryvr-app"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:StryVr-ios}",
+            "name": "Release stryvr-app",
+            "program": "${workspaceFolder:StryVr-ios}/.build/release/stryvr-app",
+            "preLaunchTask": "swift: Build Release stryvr-app"
         }
     ]
 }

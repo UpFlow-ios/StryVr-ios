@@ -10,7 +10,7 @@
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Foundation
-import os.log
+import OSLog
 
 /// Manages learning challenges, competitions, and streak tracking
 final class ChallengeSystem {

@@ -10,7 +10,7 @@
 import FirebaseAuth
 import FirebaseFirestore
 import Foundation
-import os.log
+import OSLog
 
 class FirestoreService {
     static let shared = FirestoreService()

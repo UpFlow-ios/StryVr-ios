@@ -7,7 +7,7 @@
 import Combine
 import Foundation
 #if canImport(os)
-import os.log
+import OSLog
 #endif
 import StoreKit
 
