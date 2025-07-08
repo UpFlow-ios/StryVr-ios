@@ -11,7 +11,7 @@ import Foundation
 /// Represents an entry in an employee's skill matrix
 struct SkillMatrixEntry: Identifiable, Codable, Hashable {
     /// Unique ID for the skill entry
-    let id: String = UUID().uuidString
+    let id: String
     /// Name of the skill (e.g., Communication, SwiftUI)
     let skillName: String
     /// Numeric rating from 0.0 (no skill) to 1.0 (expert)
@@ -22,6 +22,8 @@ struct SkillMatrixEntry: Identifiable, Codable, Hashable {
     let reviewerID: String?
     /// Date the rating was last updated
     let lastUpdated: Date
+    /// Level of the skill
+    let level: Int
 
     // MARK: - Computed Properties
 
@@ -47,11 +49,13 @@ struct SkillMatrixEntry: Identifiable, Codable, Hashable {
     // MARK: - Placeholder
 
     static let empty = SkillMatrixEntry(
+        id: "",
         skillName: "",
         rating: 0.0,
         category: .technical,
         reviewerID: nil,
-        lastUpdated: Date()
+        lastUpdated: Date(),
+        level: 0
     )
 
     // MARK: - Private Static Date Formatter
@@ -85,7 +89,11 @@ enum PerformanceZone: String, Codable {
 
 extension SkillMatrixEntry {
     static let mockEntries: [SkillMatrixEntry] = [
-        .init(skillName: "SwiftUI", level: 5),
-        .init(skillName: "Firebase", level: 4),
+        .init(
+            id: "s1", skillName: "SwiftUI", rating: 1.0, category: .technical, reviewerID: nil,
+            lastUpdated: Date(), level: 5),
+        .init(
+            id: "s2", skillName: "Firebase", rating: 0.8, category: .technical, reviewerID: nil,
+            lastUpdated: Date(), level: 4),
     ]
 }

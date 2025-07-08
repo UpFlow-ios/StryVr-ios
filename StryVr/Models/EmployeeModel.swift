@@ -10,11 +10,11 @@ import Foundation
 
 /// Represents an employee within the StryVr organization insights system.
 struct EmployeeModel: Identifiable, Codable, Hashable {
-    let id: String = UUID().uuidString
+    let id: String
     let name: String
-    let email: String
     let role: String
     let department: String
+    let email: String
     let joinDate: Date
     var skills: [SkillProgress]
     var feedbackEntries: [FeedbackEntry]
@@ -61,6 +61,6 @@ struct FeedbackEntry: Codable, Hashable {
 
 extension EmployeeModel {
     static let mockData: [EmployeeModel] = [
-        .init(id: "emp1", name: "Alex", role: "Dev", department: "iOS")
+        .init(id: "e1", name: "Tara", role: "iOS Engineer", department: "Mobile")
     ]
 }

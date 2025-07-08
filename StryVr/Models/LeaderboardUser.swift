@@ -11,8 +11,9 @@ import SwiftUI
 
 /// Represents a user on the StryVr leaderboard with performance metrics
 struct LeaderboardUser: Identifiable, Codable, Hashable {
-    let id: String = UUID().uuidString
+    let id: String
     let name: String
+    let score: Int
     let profileImageURL: String?
     let totalPoints: Int
     let rank: Int
@@ -45,6 +46,7 @@ struct LeaderboardUser: Identifiable, Codable, Hashable {
         static let mock: LeaderboardUser = .init(
             id: "mock123",
             name: "Ava Patel",
+            score: 1500,
             profileImageURL: nil,
             totalPoints: 1500,
             rank: 3,
@@ -56,8 +58,8 @@ struct LeaderboardUser: Identifiable, Codable, Hashable {
         )
 
         static let mockLeaderboardUsers: [LeaderboardUser] = [
-            .init(id: "1", name: "Jane", score: 900),
-            .init(id: "2", name: "Kyle", score: 850),
+            .init(id: "1", name: "Alex", score: 920),
+            .init(id: "2", name: "Jamie", score: 850),
         ]
     }
 #endif
