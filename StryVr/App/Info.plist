@@ -18,11 +18,13 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>StryVr needs access to your camera for video calls and content creation.</string>
+	<string>This allows StryVr to access your camera to record your resume video or scan a document.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Used to upload your video resume or company documents from your photo library.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>StryVr needs access to your microphone for voice communication during video calls.</string>
+	<string>Allows StryVr to capture your audio for recording a voice pitch or feedback.</string>
 	<key>NSFaceIDUsageDescription</key>
-	<string>StryVr uses Face ID for secure login and authentication.</string>
+	<string>Used for quick and secure login via Face ID.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
