@@ -58,8 +58,32 @@ struct LeaderboardUser: Identifiable, Codable, Hashable {
         )
 
         static let mockLeaderboardUsers: [LeaderboardUser] = [
-            .init(id: "1", name: "Alex", score: 920),
-            .init(id: "2", name: "Jamie", score: 850),
+            .init(
+                id: "1",
+                name: "Alex",
+                score: 920,
+                profileImageURL: nil,
+                totalPoints: 920,
+                rank: 1,
+                skills: ["SwiftUI", "Firebase"],
+                lastActive: Date(),
+                isVerified: true,
+                completedChallenges: 8,
+                feedbackScore: 4.5
+            ),
+            .init(
+                id: "2",
+                name: "Jamie",
+                score: 850,
+                profileImageURL: nil,
+                totalPoints: 850,
+                rank: 2,
+                skills: ["iOS", "Communication"],
+                lastActive: Date(),
+                isVerified: false,
+                completedChallenges: 6,
+                feedbackScore: 4.2
+            ),
         ]
     }
 #endif
