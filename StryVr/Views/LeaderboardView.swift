@@ -18,6 +18,14 @@ struct LeaderboardView: View {
     private let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier!, category: "LeaderboardView")
 
+    #if DEBUG
+        init(topLearners: [LeaderboardUser]) {
+            _topLearners = State(initialValue: topLearners)
+            _isLoading = State(initialValue: false)
+            _hasError = State(initialValue: false)
+        }
+    #endif
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -112,3 +120,27 @@ struct LeaderboardView: View {
             }
     }
 }
+
+#if DEBUG
+    init(topLearners: [LeaderboardUser]) {
+        _topLearners = State(initialValue: topLearners)
+        _isLoading = State(initialValue: false)
+        _hasError = State(initialValue: false)
+    }
+#endif
+
+#if DEBUG
+    struct LeaderboardView_Previews: PreviewProvider {
+        static var previews: some View {
+            LeaderboardView(topLearners: LeaderboardUser.mockLeaderboardUsers)
+        }
+    }
+
+    private struct LeaderboardViewPreviewWrapper: View {
+        @State private var learners = LeaderboardUser.mockLeaderboardUsers
+        var body: some View {
+            LeaderboardView()
+                .onAppear { learners = LeaderboardUser.mockLeaderboardUsers }
+        }
+    }
+#endif
