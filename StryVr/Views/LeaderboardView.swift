@@ -122,25 +122,19 @@ struct LeaderboardView: View {
 }
 
 #if DEBUG
-    init(topLearners: [LeaderboardUser]) {
-        _topLearners = State(initialValue: topLearners)
-        _isLoading = State(initialValue: false)
-        _hasError = State(initialValue: false)
+    extension LeaderboardView {
+        init(mockTopLearners: [LeaderboardUser]) {
+            self._topLearners = State(initialValue: mockTopLearners)
+            self._isLoading = State(initialValue: false)
+            self._hasError = State(initialValue: false)
+        }
     }
 #endif
 
 #if DEBUG
     struct LeaderboardView_Previews: PreviewProvider {
         static var previews: some View {
-            LeaderboardView(topLearners: LeaderboardUser.mockLeaderboardUsers)
-        }
-    }
-
-    private struct LeaderboardViewPreviewWrapper: View {
-        @State private var learners = LeaderboardUser.mockLeaderboardUsers
-        var body: some View {
-            LeaderboardView()
-                .onAppear { learners = LeaderboardUser.mockLeaderboardUsers }
+            LeaderboardView(mockTopLearners: LeaderboardUser.mockLeaderboardUsers)
         }
     }
 #endif
