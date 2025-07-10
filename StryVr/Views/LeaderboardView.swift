@@ -16,14 +16,16 @@ struct LeaderboardView: View {
     @State private var hasError: Bool = false
 
     private let logger = Logger(
-        subsystem: Bundle.main.bundleIdentifier!, category: "LeaderboardView")
+        subsystem: Bundle.main.bundleIdentifier ?? "StryVr", category: "LeaderboardView"
+    )
 
+    // MARK: - Debug-only initializer for previews
     #if DEBUG
-        init(topLearners: [LeaderboardUser]) {
-            _topLearners = State(initialValue: topLearners)
-            _isLoading = State(initialValue: false)
-            _hasError = State(initialValue: false)
-        }
+    init(mockTopLearners: [LeaderboardUser]) {
+        self._topLearners = State(initialValue: mockTopLearners)
+        self._isLoading = State(initialValue: false)
+        self._hasError = State(initialValue: false)
+    }
     #endif
 
     var body: some View {
@@ -41,6 +43,7 @@ struct LeaderboardView: View {
                             .foregroundColor(.red)
                             .font(.headline)
                             .accessibilityLabel("Failed to load leaderboard data")
+
                         Button("Retry") {
                             fetchLeaderboardData()
                         }
@@ -60,7 +63,6 @@ struct LeaderboardView: View {
                                     LeaderboardRow(user: user)
                                 }
                             }
-
                             .padding(.horizontal, Theme.Spacing.medium)
                         }
                     }
@@ -73,13 +75,14 @@ struct LeaderboardView: View {
         }
     }
 
+    // MARK: - Firestore Data Fetch
     private func fetchLeaderboardData() {
         isLoading = true
         hasError = false
 
         let group = DispatchGroup()
-
         group.enter()
+
         fetchData(collection: "users", orderBy: "skillProgress", limit: 5) { result in
             switch result {
             case .success(let users):
@@ -90,16 +93,20 @@ struct LeaderboardView: View {
             }
             group.leave()
         }
+
         group.notify(queue: .main) {
             self.isLoading = false
         }
     }
 
     private func fetchData(
-        collection: String, orderBy: String, limit: Int,
+        collection: String,
+        orderBy: String,
+        limit: Int,
         completion: @escaping (Result<[LeaderboardUser], Error>) -> Void
     ) {
-        Firestore.firestore().collection(collection)
+        Firestore.firestore()
+            .collection(collection)
             .order(by: orderBy, descending: true)
             .limit(to: limit)
             .getDocuments { snapshot, error in
@@ -121,20 +128,11 @@ struct LeaderboardView: View {
     }
 }
 
+// MARK: - Preview
 #if DEBUG
-    extension LeaderboardView {
-        init(mockTopLearners: [LeaderboardUser]) {
-            self._topLearners = State(initialValue: mockTopLearners)
-            self._isLoading = State(initialValue: false)
-            self._hasError = State(initialValue: false)
-        }
+struct LeaderboardView_Previews: PreviewProvider {
+    static var previews: some View {
+        LeaderboardView(mockTopLearners: LeaderboardUser.mockLeaderboardUsers)
     }
-#endif
-
-#if DEBUG
-    struct LeaderboardView_Previews: PreviewProvider {
-        static var previews: some View {
-            LeaderboardView(mockTopLearners: LeaderboardUser.mockLeaderboardUsers)
-        }
-    }
+}
 #endif
