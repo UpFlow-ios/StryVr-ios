@@ -97,22 +97,3 @@ final class AuthManager {
         }
     }
 }
-
-// MARK: - Local AuthError Enum
-
-enum AuthError: LocalizedError {
-    case userNotAuthenticated
-    case invalidInput
-    case verificationIDNotFound
-
-    var errorDescription: String? {
-        switch self {
-        case .userNotAuthenticated:
-            return "You must be logged in to complete this action."
-        case .invalidInput:
-            return "The input you provided is invalid."
-        case .verificationIDNotFound:
-            return "Verification ID not found. Please request a new code."
-        }
-    }
-}
