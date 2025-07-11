@@ -6,19 +6,20 @@
 //
 //  🔐 Auth Manager – Handles MFA (email & SMS) and secure session management
 //
+
 import CryptoKit
 import FirebaseAuth
 import FirebaseFirestore
 import Foundation
 import OSLog
-import StryVr.Utils.APIError
 
 /// Manages authentication, MFA, and session security in StryVr
 final class AuthManager {
     static let shared = AuthManager()
     private let db = Firestore.firestore()
     private let logger = Logger(
-        subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "AuthManager")
+        subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "AuthManager"
+    )
 
     private init() {}
 
@@ -82,7 +83,8 @@ final class AuthManager {
         }
 
         let credential = PhoneAuthProvider.provider().credential(
-            withVerificationID: verificationID, verificationCode: code)
+            withVerificationID: verificationID, verificationCode: code
+        )
 
         Auth.auth().signIn(with: credential) { _, error in
             if let error = error {
@@ -92,6 +94,25 @@ final class AuthManager {
                 self.logger.info("🔐 MFA login successful")
                 completion(true, nil)
             }
+        }
+    }
+}
+
+// MARK: - Local AuthError Enum
+
+enum AuthError: LocalizedError {
+    case userNotAuthenticated
+    case invalidInput
+    case verificationIDNotFound
+
+    var errorDescription: String? {
+        switch self {
+        case .userNotAuthenticated:
+            return "You must be logged in to complete this action."
+        case .invalidInput:
+            return "The input you provided is invalid."
+        case .verificationIDNotFound:
+            return "Verification ID not found. Please request a new code."
         }
     }
 }
