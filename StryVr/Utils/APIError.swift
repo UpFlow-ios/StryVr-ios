@@ -48,7 +48,7 @@ enum APIError: Error, LocalizedError {
 }
 
 // Shared AuthError for authentication-related errors
-public enum AuthError: LocalizedError {
+public enum AuthError: LocalizedError, Equatable {
     case userNotAuthenticated
     case invalidInput
     case verificationIDNotFound
@@ -56,11 +56,11 @@ public enum AuthError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .userNotAuthenticated:
-            return "User not authenticated."
+            return "You must be logged in to complete this action."
         case .invalidInput:
-            return "Invalid input provided."
+            return "The input you provided is invalid."
         case .verificationIDNotFound:
-            return "Verification ID not found."
+            return "Verification ID not found. Please request a new code."
         }
     }
 }
