@@ -2,11 +2,12 @@
 //  TeamHealthOverviewView.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 5/5/25.
-//  🩺 Team Health Overview – Visual Summary of Wellness & Performance
+//  Created by Joe Dormond on 3/6/25.
+//  📊 Team Health Overview – Wellness & Productivity Metrics
 //
 
 import Charts
+import Foundation
 import SwiftUI
 
 struct TeamHealthOverviewView: View {

@@ -2,9 +2,12 @@
 //  SkillStreaksView.swift
 //  StryVr
 //
-//  🔥 Skill Streak Tracker – Daily Goals, Streaks, and Motivation
+//  Created by Joe Dormond on 3/6/25.
+//  🔥 Skill Streaks View – Track Learning Consistency & Motivation
 //
 
+import Foundation
+import Lottie
 import SwiftUI
 
 struct SkillStreaksView: View {

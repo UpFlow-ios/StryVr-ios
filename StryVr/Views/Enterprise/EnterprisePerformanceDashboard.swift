@@ -2,11 +2,12 @@
 //  EnterprisePerformanceDashboard.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 5/5/25.
-//  📊 Dashboard – Tracks Team Health, Performance Metrics, Goal Progress
+//  Created by Joe Dormond on 3/6/25.
+//  📊 Enterprise Performance Dashboard – Team Analytics & Insights
 //
 
 import Charts
+import Foundation
 import SwiftUI
 
 struct EnterprisePerformanceDashboard: View {

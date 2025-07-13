@@ -1,4 +1,3 @@
-
 //
 //  StryVrChartCard.swift
 //  StryVr
@@ -7,6 +6,7 @@
 //  📊 Skill Progress Chart – Themed Card View with Bar Chart
 //
 
+import Charts
 import Foundation
 import SwiftUI
 

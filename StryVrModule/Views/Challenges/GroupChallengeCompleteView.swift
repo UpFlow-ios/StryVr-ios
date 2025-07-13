@@ -1,3 +1,13 @@
+//
+//  GroupChallengeCompleteView.swift
+//  StryVr
+//
+//  Created by Joe Dormond on 3/6/25.
+//  🎉 Group Challenge Complete View – Celebration & Results
+//
+
+import Foundation
+import Lottie
 import SwiftUI
 
 /// Shown when a group challenge has been completed successfully

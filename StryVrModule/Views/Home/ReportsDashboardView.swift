@@ -2,10 +2,12 @@
 //  ReportsDashboardView.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 4/9/25.
+//  Created by Joe Dormond on 3/6/25.
 //  📊 Skill Reports Dashboard – Progress Charts & Growth Metrics
 //
 
+import Charts
+import Foundation
 import SwiftUI
 
 struct ReportsDashboardView: View {
@@ -41,7 +43,8 @@ struct ReportsDashboardView: View {
                             .accessibilityLabel("No skill data available")
                     } else {
                         StryVrChartCard(data: skillData)
-                            .accessibilityLabel("Skill progress chart with \(skillData.count) skills")
+                            .accessibilityLabel(
+                                "Skill progress chart with \(skillData.count) skills")
                     }
 
                     // MARK: - Circular Progress Grid
@@ -53,11 +56,18 @@ struct ReportsDashboardView: View {
                             .accessibilityLabel("No skills to display")
                     } else {
                         StryVrCardView(title: "Skill Breakdown") {
-                            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: Theme.Spacing.medium) {
+                            LazyVGrid(
+                                columns: [GridItem(.flexible()), GridItem(.flexible())],
+                                spacing: Theme.Spacing.medium
+                            ) {
                                 ForEach(skillData) { skill in
-                                    StryVrProgressCircle(progress: skill.progress, label: skill.skill)
-                                        .accessibilityLabel("\(skill.skill) progress: \(Int(skill.progress * 100)) percent")
-                                        .accessibilityHint("Displays the progress for \(skill.skill)")
+                                    StryVrProgressCircle(
+                                        progress: skill.progress, label: skill.skill
+                                    )
+                                    .accessibilityLabel(
+                                        "\(skill.skill) progress: \(Int(skill.progress * 100)) percent"
+                                    )
+                                    .accessibilityHint("Displays the progress for \(skill.skill)")
                                 }
                             }
                             .padding(.top, Theme.Spacing.small)

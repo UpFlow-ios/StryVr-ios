@@ -2,9 +2,12 @@
 //  AchievementsView.swift
 //  StryVr
 //
-//  🎖 User Achievements Screen – Unlock Badges, Celebrate with Confetti
+//  Created by Joe Dormond on 3/6/25.
+//  🏆 Achievements View – Celebrate User Accomplishments & Milestones
 //
 
+import Foundation
+import Lottie
 import SwiftUI
 
 struct Achievement: Identifiable {

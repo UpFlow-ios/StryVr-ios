@@ -2,11 +2,12 @@
 //  WorkplaceProgressTracker.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 5/5/25.
+//  Created by Joe Dormond on 3/6/25.
 //  📊 Workplace Progress Tracker – Pie Chart of Completed vs Missed Goals
 //
 
 import Charts
+import Foundation
 import SwiftUI
 
 struct GoalProgress: Identifiable {

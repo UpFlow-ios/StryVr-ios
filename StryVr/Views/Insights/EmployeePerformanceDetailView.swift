@@ -2,10 +2,12 @@
 //  EmployeePerformanceDetailView.swift
 //  StryVr
 //
-//  📊 Individual Performance View – Goal tracking, feedback, streaks
+//  Created by Joe Dormond on 3/6/25.
+//  📊 Employee Performance Detail – Comprehensive Performance Analytics
 //
 
 import Charts
+import Foundation
 import SwiftUI
 
 struct EmployeePerformanceDetailView: View {
@@ -36,7 +38,8 @@ struct EmployeePerformanceDetailView: View {
                     ProgressView(value: goalCompletionRate, total: 100)
                         .progressViewStyle(.linear)
                         .tint(.green)
-                        .accessibilityLabel("Goal completion rate: \(Int(goalCompletionRate)) percent")
+                        .accessibilityLabel(
+                            "Goal completion rate: \(Int(goalCompletionRate)) percent")
 
                     Text("\(completedGoals) of \(totalGoals) goals completed")
                         .font(Theme.Typography.caption)
@@ -48,7 +51,8 @@ struct EmployeePerformanceDetailView: View {
 
                 // MARK: - Challenge Participation
 
-                dashboardCard(title: "💪 Challenge Participation", value: "\(challengeParticipation) joined")
+                dashboardCard(
+                    title: "💪 Challenge Participation", value: "\(challengeParticipation) joined")
 
                 // MARK: - Achievements Unlocked
 
@@ -61,7 +65,7 @@ struct EmployeePerformanceDetailView: View {
                         .font(Theme.Typography.subheadline)
 
                     Chart {
-                        ForEach(0 ..< dailyStreaks.count, id: \..self) { index in
+                        ForEach(0..<dailyStreaks.count, id: \ .. self) { index in
                             BarMark(
                                 x: .value("Day", index),
                                 y: .value("Check-ins", dailyStreaks[index])

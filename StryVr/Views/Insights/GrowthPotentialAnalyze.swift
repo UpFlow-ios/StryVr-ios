@@ -2,10 +2,12 @@
 //  GrowthPotentialAnalyze.swift
 //  StryVr
 //
-//  📈 Growth Potential Analyzer – Scores employee growth capacity based on performance & trends
+//  Created by Joe Dormond on 3/6/25.
+//  📊 Growth Potential Analysis – Skill Development & Career Path Insights
 //
 
 import Charts
+import Foundation
 import SwiftUI
 
 struct GrowthPotentialAnalyzer: View {
@@ -59,10 +61,12 @@ struct GrowthPotentialAnalyzer: View {
             Text("\(Int(potentialScore)) / 100")
                 .font(Theme.Typography.largeTitle)
                 .foregroundColor(potentialScore >= 80 ? .green : .orange)
-            Text("Higher scores indicate stronger potential based on feedback, consistency, and goals.")
-                .font(Theme.Typography.caption)
-                .multilineTextAlignment(.center)
-                .foregroundColor(.gray)
+            Text(
+                "Higher scores indicate stronger potential based on feedback, consistency, and goals."
+            )
+            .font(Theme.Typography.caption)
+            .multilineTextAlignment(.center)
+            .foregroundColor(.gray)
         }
         .padding()
         .background(Theme.Colors.card)
@@ -105,16 +109,14 @@ struct GrowthPotentialAnalyzer: View {
 
         // 🔧 Simulated logic (replace with Firestore logic as needed)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
-            feedbackAverage = 4.2 // from feedback service
-            achievementCount = 5 // from achievement model
-            progressConsistency = 75.0 // consistency index
+            feedbackAverage = 4.2  // from feedback service
+            achievementCount = 5  // from achievement model
+            progressConsistency = 75.0  // consistency index
 
             // 🚀 Calculated score logic
-            potentialScore = (
-                (feedbackAverage / 5.0) * 40 +
-                    Double(achievementCount) * 10 +
-                    progressConsistency * 0.5
-            ).rounded()
+            potentialScore =
+                ((feedbackAverage / 5.0) * 40 + Double(achievementCount) * 10 + progressConsistency
+                * 0.5).rounded()
 
             isLoading = false
         }

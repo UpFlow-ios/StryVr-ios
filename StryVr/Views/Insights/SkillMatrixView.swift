@@ -1,10 +1,13 @@
+//
 //  SkillMatrixView.swift
 //  StryVr
 //
-//  🧠 Skill Matrix – Visualize Team Skill Distribution & Strengths
+//  Created by Joe Dormond on 3/6/25.
+//  📊 Skill Matrix View – Visual Skill Assessment & Progress Tracking
 //
 
 import Charts
+import Foundation
 import SwiftUI
 
 struct SkillMatrixView: View {

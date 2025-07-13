@@ -6,9 +6,9 @@
 //  🔐 SecureStorageManager & View – Keychain-backed persistence with MVVM architecture
 //
 
-import os.log
 import Security
 import SwiftUI
+import os.log
 
 // MARK: - SecureStorageError
 
@@ -41,10 +41,11 @@ final class SecureStorageManager {
             throw SecureStorageError.dataConversionFailed
         }
 
-        SecItemDelete([
-            kSecClass: kSecClassGenericPassword,
-            kSecAttrAccount: key,
-        ] as CFDictionary)
+        SecItemDelete(
+            [
+                kSecClass: kSecClassGenericPassword,
+                kSecAttrAccount: key,
+            ] as CFDictionary)
 
         let query: [CFString: Any] = [
             kSecClass: kSecClassGenericPassword,
@@ -56,11 +57,11 @@ final class SecureStorageManager {
         let status = SecItemAdd(query as CFDictionary, nil)
 
         guard status == errSecSuccess else {
-            os_log("🔒 Keychain save error %{public}@ - Status: %{public}d", key, status)
+            os_log("🔒 Keychain save error %@ - Status: %d", key, status)
             throw SecureStorageError.saveFailed(status)
         }
 
-        os_log("🔒 Keychain save succeeded for key: %{public}@", key)
+        os_log("🔒 Keychain save succeeded for key: %@", key)
     }
 
     func load(key: String) throws -> String {
@@ -75,8 +76,8 @@ final class SecureStorageManager {
         let status = SecItemCopyMatching(query as CFDictionary, &result)
 
         guard status == errSecSuccess,
-              let data = result as? Data,
-              let value = String(data: data, encoding: .utf8)
+            let data = result as? Data,
+            let value = String(data: data, encoding: .utf8)
         else {
             os_log("🔒 Keychain load error %{public}@ - Status: %{public}d", key, status)
             throw SecureStorageError.loadFailed(status)

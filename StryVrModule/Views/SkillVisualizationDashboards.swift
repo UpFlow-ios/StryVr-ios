@@ -2,10 +2,11 @@
 //  SkillVisualizationDashboards.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 3/12/25.
-//  📊 Interactive Skill Progress Dashboard with AI-Generated Insights
+//  Created by Joe Dormond on 3/6/25.
+//  📊 Skill Visualization Dashboards – Interactive Charts & AI Insights
 //
 
+import Charts
 import Foundation
 import SwiftUI
 
@@ -14,7 +15,8 @@ struct SkillVisualizationDashboards: View {
     @State private var skillProgress: [SkillProgress] = []
     @State private var hasError: Bool = false
     @State private var errorMessage: String = ""
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "SkillVisualizationDashboards")
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier!, category: "SkillVisualizationDashboards")
 
     var body: some View {
         NavigationStack {
@@ -62,7 +64,8 @@ struct SkillVisualizationDashboards: View {
                                         x: .value("Skill", progress.skillName),
                                         y: .value("Progress", progress.percentage * 100)
                                     )
-                                    .foregroundStyle(progress.percentage > 0.8 ? .green : Theme.Colors.accent)
+                                    .foregroundStyle(
+                                        progress.percentage > 0.8 ? .green : Theme.Colors.accent)
                                 }
                                 .frame(height: 240)
                                 .chartYAxis {
@@ -108,13 +111,15 @@ struct SkillVisualizationDashboards: View {
                 }
 
                 guard let data = snapshot?.data(),
-                      let skills = data["progress"] as? [String: Double]
+                    let skills = data["progress"] as? [String: Double]
                 else {
                     handleError("Invalid or missing skill data in document.")
                     return
                 }
 
-                self.skillProgress = skills.map { SkillProgress(skillName: $0.key, percentage: $0.value) }
+                self.skillProgress = skills.map {
+                    SkillProgress(skillName: $0.key, percentage: $0.value)
+                }
                 logger.info("✅ Skill data loaded: \(self.skillProgress.count) items")
             }
         }
@@ -127,15 +132,18 @@ struct SkillVisualizationDashboards: View {
             return "📘 Keep learning to unlock AI-powered progress insights."
         }
 
-        let improvementAreas = progressData
+        let improvementAreas =
+            progressData
             .filter { $0.percentage < 0.5 }
             .map { $0.skillName }
 
-        let improvementText = improvementAreas.isEmpty
+        let improvementText =
+            improvementAreas.isEmpty
             ? "🚀 You're excelling across all areas!"
             : "🧠 Focus more on: \(improvementAreas.joined(separator: ", "))"
 
-        return "🌟 Your top skill is **\(topSkill.skillName)** at \(Int(topSkill.percentage * 100))% mastery. \(improvementText)"
+        return
+            "🌟 Your top skill is **\(topSkill.skillName)** at \(Int(topSkill.percentage * 100))% mastery. \(improvementText)"
     }
 
     // MARK: - Error Handling

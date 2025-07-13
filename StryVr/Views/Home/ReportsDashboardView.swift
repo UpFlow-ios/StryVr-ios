@@ -2,10 +2,12 @@
 //  ReportsDashboardView.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 4/9/25.
+//  Created by Joe Dormond on 3/6/25.
 //  📊 Skill Reports Dashboard – Progress Charts & Growth Metrics
 //
 
+import Charts
+import Foundation
 import SwiftUI
 
 struct ReportsDashboardView: View {

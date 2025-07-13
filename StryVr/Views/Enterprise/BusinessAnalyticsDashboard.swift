@@ -2,10 +2,12 @@
 //  BusinessAnalyticsDashboard.swift
 //  StryVr
 //
-//  📊 Team Analytics Dashboard – Skill Insights, Top Performers, Skill Gaps
+//  Created by Joe Dormond on 3/6/25.
+//  📊 Business Analytics Dashboard – Team Performance & Skill Insights
 //
 
 import Charts
+import Foundation
 import SwiftUI
 
 struct BusinessAnalyticsDashboard: View {
@@ -64,7 +66,10 @@ struct BusinessAnalyticsDashboard: View {
                                 .padding(.horizontal)
 
                             Chart {
-                                ForEach(averageProgressBySkill.sorted(by: { $0.key < $1.key }), id: \.key) { skill, avg in
+                                ForEach(
+                                    averageProgressBySkill.sorted(by: { $0.key < $1.key }),
+                                    id: \.key
+                                ) { skill, avg in
                                     BarMark(
                                         x: .value("Skill", skill),
                                         y: .value("Average", avg)
@@ -99,15 +104,19 @@ struct BusinessAnalyticsDashboard: View {
                                     VStack(alignment: .leading) {
                                         Text(user.name)
                                             .font(.headline)
-                                        Text("Avg Progress: \(String(format: "%.1f", user.averageProgress))%")
-                                            .font(.caption)
-                                            .foregroundColor(.secondary)
+                                        Text(
+                                            "Avg Progress: \(String(format: "%.1f", user.averageProgress))%"
+                                        )
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
                                     }
                                     Spacer()
                                 }
                                 .padding(.horizontal)
                                 .padding(.vertical, 4)
-                                .accessibilityLabel("Top performer: \(user.name), average progress \(String(format: "%.1f", user.averageProgress)) percent.")
+                                .accessibilityLabel(
+                                    "Top performer: \(user.name), average progress \(String(format: "%.1f", user.averageProgress)) percent."
+                                )
                             }
                         }
                     } else if errorMessage == nil {

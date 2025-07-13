@@ -2,10 +2,12 @@
 //  EmployeeProgressTimelineView.swift
 //  StryVr
 //
-//  🕒 Progress Timeline – View employee milestones, feedback, and achievements over time
+//  Created by Joe Dormond on 3/6/25.
+//  📊 Employee Progress Timeline – Historical Skill Development Tracking
 //
 
 import Charts
+import Foundation
 import SwiftUI
 
 struct EmployeeProgressTimelineView: View {
