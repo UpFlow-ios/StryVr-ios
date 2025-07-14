@@ -6,6 +6,7 @@
 //  🎨 Optimized Color System for Performance & HIG Compliance
 //
 
+import OSLog
 import SwiftUI
 
 extension Color {
@@ -20,7 +21,9 @@ extension Color {
         var int: UInt64 = 0
         Scanner(string: cleanedHex).scanHexInt64(&int)
 
-        let r, g, b: Double
+        let r: Double
+        let g: Double
+        let b: Double
         switch cleanedHex.count {
         case 6:
             r = Double((int >> 16) & 0xFF) / 255.0
@@ -30,7 +33,8 @@ extension Color {
             r = 0.0
             g = 0.0
             b = 0.0
-            os_log("⚠️ Invalid hex string: %{public}@", log: .default, type: .error, hex)
+            let logger = Logger(subsystem: "com.stryvr.app", category: "ColorUtils")
+            logger.error("⚠️ Invalid hex string: \(hex)")
         }
 
         self.init(.sRGB, red: r, green: g, blue: b, opacity: opacity)
@@ -39,7 +43,7 @@ extension Color {
     // MARK: - App Color Palette (HIG & Accessibility Compliant)
 
     /// App-wide color palette using asset catalog colors.
-    static let background = Color("Background") // Use asset catalog colors
+    static let background = Color("Background")  // Use asset catalog colors
     static let card = Color("Card")
     static let neonBlue = Color("NeonBlue")
     static let lightGray = Color("LightGray")
