@@ -7,7 +7,7 @@
 
 import SwiftUI
 import AVKit
-import os.log
+import OSLog
 
 /// Animated splash screen using a short `.mp4` intro video with dark/light mode support
 struct SplashScreenView: View {

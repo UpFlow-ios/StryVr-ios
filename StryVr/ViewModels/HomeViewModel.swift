@@ -8,7 +8,7 @@
 
 import Combine
 import Foundation
-import os.log
+import OSLog
 
 final class HomeViewModel: ObservableObject {
     // MARK: - Published Properties
@@ -21,7 +21,8 @@ final class HomeViewModel: ObservableObject {
 
     private var cancellables = Set<AnyCancellable>()
     private let skillService: SkillServiceProtocol
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr.app", category: "HomeViewModel")
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr.app", category: "HomeViewModel")
 
     // MARK: - Initialization
 
@@ -37,21 +38,24 @@ final class HomeViewModel: ObservableObject {
         isLoading = true
         skillService.fetchSkills()
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { [weak self] completion in
-                guard let self = self else { return }
-                self.isLoading = false
+            .sink(
+                receiveCompletion: { [weak self] completion in
+                    guard let self = self else { return }
+                    self.isLoading = false
 
-                switch completion {
-                case .finished:
-                    self.logger.info("✅ Skills successfully fetched and loaded.")
-                case let .failure(error):
-                    self.handleFetchError(error)
+                    switch completion {
+                    case .finished:
+                        self.logger.info("✅ Skills successfully fetched and loaded.")
+                    case let .failure(error):
+                        self.handleFetchError(error)
+                    }
+                },
+                receiveValue: { [weak self] skills in
+                    guard let self = self else { return }
+                    self.skills = skills
+                    self.logger.info("📦 Skills received: \(skills.count)")
                 }
-            }, receiveValue: { [weak self] skills in
-                guard let self = self else { return }
-                self.skills = skills
-                self.logger.info("📦 Skills received: \(skills.count)")
-            })
+            )
             .store(in: &cancellables)
     }
 

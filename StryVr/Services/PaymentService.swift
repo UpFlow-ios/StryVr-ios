@@ -59,8 +59,11 @@ final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObse
     // MARK: - Restore Past Purchases
 
     /// Restores previously completed purchases
-    func restorePurchases() {
+    func restorePurchases(completion: @escaping (Bool, Error?) -> Void) {
+        // TODO: Implement restoration logic and call completion(true, nil) or completion(false, error)
         SKPaymentQueue.default().restoreCompletedTransactions()
+        // For now, call completion immediately as a placeholder
+        completion(true, nil)
     }
 
     // MARK: - Fetch Product Info

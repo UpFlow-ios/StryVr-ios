@@ -6,9 +6,9 @@
 //  🔐 SecureStorageManager & View – Keychain-backed persistence with MVVM architecture
 //
 
+import OSLog
 import Security
 import SwiftUI
-import os.log
 
 // MARK: - SecureStorageError
 
@@ -36,6 +36,8 @@ final class SecureStorageManager {
 
     private init() {}
 
+    private let logger = Logger(subsystem: "com.stryvr.app", category: "Keychain")
+
     func save(key: String, value: String) throws {
         guard let data = value.data(using: .utf8) else {
             throw SecureStorageError.dataConversionFailed
@@ -57,11 +59,11 @@ final class SecureStorageManager {
         let status = SecItemAdd(query as CFDictionary, nil)
 
         guard status == errSecSuccess else {
-            os_log("🔒 Keychain save error %@ - Status: %d", key, status)
+            logger.error("🔒 Keychain save error \(key) - Status: \(status)")
             throw SecureStorageError.saveFailed(status)
         }
 
-        os_log("🔒 Keychain save succeeded for key: %@", key)
+        logger.info("🔒 Keychain save succeeded for key: \(key)")
     }
 
     func load(key: String) throws -> String {
@@ -79,11 +81,11 @@ final class SecureStorageManager {
             let data = result as? Data,
             let value = String(data: data, encoding: .utf8)
         else {
-            os_log("🔒 Keychain load error %{public}@ - Status: %{public}d", key, status)
+            logger.error("🔒 Keychain load error \(key) - Status: \(status)")
             throw SecureStorageError.loadFailed(status)
         }
 
-        os_log("🔒 Keychain load succeeded for key: %{public}@", key)
+        logger.info("🔒 Keychain load succeeded for key: \(key)")
 
         return value
     }

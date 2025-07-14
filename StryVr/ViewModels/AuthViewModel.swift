@@ -7,7 +7,7 @@
 
 import FirebaseAuth
 import Foundation
-import os.log
+import OSLog
 
 final class AuthViewModel: ObservableObject {
     static let shared = AuthViewModel()
@@ -125,6 +125,25 @@ final class AuthViewModel: ObservableObject {
             }
         } catch {
             processAuthError(error)
+        }
+    }
+
+    // MARK: - Registration (for use in RegisterView)
+    func register(email: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    completion(false, error)
+                } else if result?.user != nil {
+                    completion(true, nil)
+                } else {
+                    completion(
+                        false,
+                        NSError(
+                            domain: "Auth", code: -1,
+                            userInfo: [NSLocalizedDescriptionKey: "Unknown registration error"]))
+                }
+            }
         }
     }
 

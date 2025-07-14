@@ -7,8 +7,8 @@
 //
 
 import FirebaseFirestore
+import OSLog
 import SwiftUI
-import os.log
 
 struct LeaderboardView: View {
     @State private var topLearners: [LeaderboardUser] = []
@@ -21,11 +21,11 @@ struct LeaderboardView: View {
 
     // MARK: - Debug-only initializer for previews
     #if DEBUG
-    init(mockTopLearners: [LeaderboardUser]) {
-        self._topLearners = State(initialValue: mockTopLearners)
-        self._isLoading = State(initialValue: false)
-        self._hasError = State(initialValue: false)
-    }
+        init(mockTopLearners: [LeaderboardUser]) {
+            self._topLearners = State(initialValue: mockTopLearners)
+            self._isLoading = State(initialValue: false)
+            self._hasError = State(initialValue: false)
+        }
     #endif
 
     var body: some View {
@@ -88,7 +88,7 @@ struct LeaderboardView: View {
             case .success(let users):
                 self.topLearners = users
             case .failure(let error):
-                logger.error("Error fetching top learners: \(error.localizedDescription)")
+                logger.error("❌ Failed to cast scene to UIWindowScene")
                 self.hasError = true
             }
             group.leave()
@@ -130,9 +130,9 @@ struct LeaderboardView: View {
 
 // MARK: - Preview
 #if DEBUG
-struct LeaderboardView_Previews: PreviewProvider {
-    static var previews: some View {
-        LeaderboardView(mockTopLearners: LeaderboardUser.mockLeaderboardUsers)
+    struct LeaderboardView_Previews: PreviewProvider {
+        static var previews: some View {
+            LeaderboardView(mockTopLearners: LeaderboardUser.mockLeaderboardUsers)
+        }
     }
-}
 #endif
