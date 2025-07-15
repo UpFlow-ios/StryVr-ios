@@ -46,7 +46,10 @@ struct EnterprisePerformanceDashboard: View {
                                 .padding(.horizontal)
 
                             Chart {
-                                ForEach(averageProgressByCategory.sorted(by: { $0.key < $1.key }), id: \.\u0000.key) { skill, avg in
+                                ForEach(
+                                    averageProgressByCategory.sorted(by: { $0.key < $1.key }),
+                                    id: \.0
+                                ) { skill, avg in
                                     BarMark(
                                         x: .value("Skill", skill),
                                         y: .value("Avg", avg)
@@ -79,9 +82,11 @@ struct EnterprisePerformanceDashboard: View {
                                     VStack(alignment: .leading) {
                                         Text(user.name)
                                             .font(.headline)
-                                        Text("Avg Score: \(String(format: "%.1f", user.averageProgress))%")
-                                            .font(.caption)
-                                            .foregroundColor(.secondary)
+                                        Text(
+                                            "Avg Score: \(String(format: "%.1f", user.averageProgress))%"
+                                        )
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
                                     }
                                     Spacer()
                                 }
