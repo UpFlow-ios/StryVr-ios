@@ -56,30 +56,39 @@ struct DevDebugView: View {
                 // MARK: - Feature Flags
 
                 Section(header: Text("🧪 Feature Flags")) {
-                    Toggle("Enable Mock Data", isOn: Binding(
-                        get: { FeatureFlags.enableMockData },
-                        set: { FeatureFlags.enableMockData = $0 }
-                    ))
+                    Toggle(
+                        "Enable Mock Data",
+                        isOn: Binding(
+                            get: { FeatureFlags.enableMockData },
+                            set: { FeatureFlags.enableMockData = $0 }
+                        ))
 
-                    Toggle("Enable Confetti", isOn: Binding(
-                        get: { FeatureFlags.enableConfetti },
-                        set: { FeatureFlags.enableConfetti = $0 }
-                    ))
+                    Toggle(
+                        "Enable Confetti",
+                        isOn: Binding(
+                            get: { FeatureFlags.enableConfetti },
+                            set: { FeatureFlags.enableConfetti = $0 }
+                        ))
 
-                    Toggle("Enable Deep Linking", isOn: Binding(
-                        get: { FeatureFlags.enableDeepLinks },
-                        set: { FeatureFlags.enableDeepLinks = $0 }
-                    ))
+                    Toggle(
+                        "Enable Deep Linking",
+                        isOn: Binding(
+                            get: { FeatureFlags.enableDeepLinks },
+                            set: { FeatureFlags.enableDeepLinks = $0 }
+                        ))
                 }
 
                 // MARK: - AI Test Section
 
                 Section(header: Text("🤖 AI Recommendations Test")) {
                     Button("Fetch AI Recommendations") {
-                        AIRecommendationService.shared.fetchSkillRecommendations(for: "testUserId123") { suggestions in
+                        AIRecommendationService.shared.fetchSkillRecommendations(
+                            for: "testUserId123"
+                        ) { suggestions in
                             DispatchQueue.main.async {
                                 aiSuggestions = suggestions
-                                logger.info("✅ AI Suggestions: \(suggestions.joined(separator: ", "))")
+                                logger.info(
+                                    "✅ AI Suggestions: \(suggestions.joined(separator: ", "))")
                             }
                         }
                     }
@@ -94,7 +103,9 @@ struct DevDebugView: View {
 
                 Section(header: Text("🌐 APIService Test")) {
                     Button("Test External API") {
-                        APIService.shared.fetchData(from: "https://jsonplaceholder.typicode.com/posts") { result in
+                        APIService.shared.fetchData(
+                            from: "https://jsonplaceholder.typicode.com/posts"
+                        ) { result in
                             DispatchQueue.main.async {
                                 switch result {
                                 case let .success(data):
@@ -127,16 +138,18 @@ struct DevDebugView: View {
 
                 // MARK: - Crash Sim
 
-                Section(header: Text("💥 Crash & Reset")) {
-                    Button("Simulate Crash") {
-                        logger.error("💣 Simulated crash triggered from DevDebugView")
-                        fatalError("💥 Simulated crash")
-                    }
+                #if DEBUG
+                    Section(header: Text("💥 Crash & Reset")) {
+                        Button("Simulate Crash") {
+                            logger.error("💣 Simulated crash triggered from DevDebugView")
+                            fatalError("💥 Simulated crash")
+                        }
 
-                    Button("Clear Logs") {
-                        logger.info("🧹 Logs cleared (manual trigger)")
+                        Button("Clear Logs") {
+                            logger.info("🧹 Logs cleared (manual trigger)")
+                        }
                     }
-                }
+                #endif
             }
             .sheet(isPresented: $showLogs) {
                 NavigationView {

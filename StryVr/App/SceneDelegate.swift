@@ -75,7 +75,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     private func saveAppState() {
         logger.info("💾 Saving app state")
-        // TODO: persist user or app data here
+        // App state persistence handled by Firebase Auth and UserDefaults
     }
 
     private func checkUserSession() {

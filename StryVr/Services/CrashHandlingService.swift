@@ -19,7 +19,9 @@ final class CrashHandlingService {
 
     /// Log a custom error message to FirebaseCrashlytics
     func log(error: Error, context: String? = nil) {
-        let errorDescription = context != nil ? "\(context!): \(error.localizedDescription)" : error.localizedDescription
+        let errorDescription =
+            context != nil
+            ? "\(context!): \(error.localizedDescription)" : error.localizedDescription
         Crashlytics.crashlytics().record(error: error)
         logger.error("🧨 Logged error to Crashlytics: \(errorDescription)")
     }
@@ -31,8 +33,10 @@ final class CrashHandlingService {
     }
 
     /// Force a simulated crash (for testing Crashlytics integration)
-    func simulateCrash() {
-        logger.fault("💥 Simulated crash triggered")
-        fatalError("💥 Simulated crash for testing purposes")
-    }
+    #if DEBUG
+        func simulateCrash() {
+            logger.fault("💥 Simulated crash triggered")
+            fatalError("💥 Simulated crash for testing purposes")
+        }
+    #endif
 }

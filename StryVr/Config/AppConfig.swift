@@ -20,7 +20,7 @@ enum AppConfig {
     // MARK: - Environment
 
     /// Set the current running environment here
-    static let currentEnvironment: AppEnvironment = .development
+    static let currentEnvironment: AppEnvironment = .production
 
     /// Base API URL based on current environment
     static var apiBaseURL: String {
