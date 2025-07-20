@@ -1,3 +1,4 @@
+import OSLog
 //
 //  StryvrProResumeView.swift
 //  StryVr
@@ -9,6 +10,11 @@ import StoreKit
 import SwiftUI
 
 struct StryvrProResumeView: View {
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr.app",
+        category: "StryvrProResumeView"
+    )
+
     @State private var isPurchased = false
     @State private var isGenerating = false
     @State private var resumeURL: URL?
@@ -65,7 +71,7 @@ struct StryvrProResumeView: View {
                         generatePDF()
                     }
                 } catch {
-                    print("Purchase failed: \(error)")
+                    logger.error("Purchase failed: \(error.localizedDescription)")
                 }
             }
         }
@@ -79,11 +85,13 @@ struct StryvrProResumeView: View {
     }
 
     private func blockScreenCapture() {
-        NotificationCenter.default.addObserver(forName: UIScreen.capturedDidChangeNotification, object: nil, queue: .main) { _ in
+        NotificationCenter.default.addObserver(
+            forName: UIScreen.capturedDidChangeNotification, object: nil, queue: .main
+        ) { _ in
             if UIScreen.main.isCaptured {
                 // Trigger security response if screen is being recorded
                 // You can also display a blur overlay here
-                print("Screen recording detected!")
+                logger.warning("Screen recording detected!")
             }
         }
     }

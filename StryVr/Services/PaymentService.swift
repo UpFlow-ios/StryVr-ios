@@ -10,12 +10,17 @@ import OSLog
 import StoreKit
 
 /// Manages in-app purchases and subscriptions for StryVr
-final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObserver, SKProductsRequestDelegate {
+final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObserver,
+    SKProductsRequestDelegate
+{
     static let shared = PaymentService()
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "PaymentService")
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "PaymentService")
 
     @Published var availableProducts: [SKProduct] = []
     @Published var purchasedProducts: Set<String> = []
+
+    private var restorationCompletion: ((Bool, Error?) -> Void)?
 
     override private init() {
         super.init()
@@ -60,10 +65,10 @@ final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObse
 
     /// Restores previously completed purchases
     func restorePurchases(completion: @escaping (Bool, Error?) -> Void) {
-        // TODO: Implement restoration logic and call completion(true, nil) or completion(false, error)
         SKPaymentQueue.default().restoreCompletedTransactions()
-        // For now, call completion immediately as a placeholder
-        completion(true, nil)
+        // Restoration will be handled in paymentQueue(_:updatedTransactions:)
+        // Store completion handler for restoration completion
+        restorationCompletion = completion
     }
 
     // MARK: - Fetch Product Info
@@ -125,5 +130,21 @@ final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObse
         purchasedProducts.insert(productID)
         logger.info("♻️ Purchase restored: \(productID)")
         SKPaymentQueue.default().finishTransaction(transaction)
+    }
+
+    // MARK: - Restoration Completion
+
+    func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+        logger.info("✅ Restoration completed successfully")
+        restorationCompletion?(true, nil)
+        restorationCompletion = nil
+    }
+
+    func paymentQueue(
+        _ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error
+    ) {
+        logger.error("❌ Restoration failed: \(error.localizedDescription)")
+        restorationCompletion?(false, error)
+        restorationCompletion = nil
     }
 }

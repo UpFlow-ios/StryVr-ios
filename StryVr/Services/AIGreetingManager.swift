@@ -97,9 +97,8 @@ final class AIGreetingManager: ObservableObject {
     // MARK: - User Context
 
     private func getUserName() -> String {
-        // TODO: Integrate with user profile system
-        // For now, return empty string to use generic greeting
-        return ""
+        // Get user name from AuthViewModel if available
+        return AuthViewModel.shared.currentUser?.displayName ?? ""
     }
 
     // MARK: - Contextual Updates
