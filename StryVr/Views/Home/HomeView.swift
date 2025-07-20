@@ -2,7 +2,8 @@
 //  HomeView.swift
 //  StryVr
 //
-//  🏡 Clean Home Dashboard – Daily Goals, Streaks, Challenges, Achievements with Confetti Celebrations
+//  🏡 Premium Home Dashboard – Liquid Glass UI, AI Greetings, Goals & Achievements
+//  🌟 Enhanced with ultraThinMaterial, glow effects, and personalized experience
 //
 
 import ConfettiSwiftUI
@@ -17,6 +18,7 @@ struct HomeView: View {
     @State private var recentAchievementsCount = 2
 
     @StateObject private var confettiManager = ConfettiManager.shared
+    @StateObject private var aiGreetingManager = AIGreetingManager.shared
     @EnvironmentObject var authViewModel: AuthViewModel
 
     @Environment(\.isDebug) var isDebug
@@ -27,68 +29,36 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ZStack(alignment: .topLeading) {
+                // MARK: - Liquid Glass Background
+
+                Theme.LiquidGlass.background
+                    .ignoresSafeArea()
+
                 ScrollView {
                     VStack(alignment: .leading, spacing: Theme.Spacing.large) {
-                        // MARK: - Greeting
+                        // MARK: - AI Greeting Card
 
-                        Text("Welcome back to StryVr! 👋")
-                            .font(Theme.Typography.headline)
-                            .foregroundColor(Theme.Colors.textPrimary)
-                            .padding(.top, Theme.Spacing.large)
+                        liquidGlassGreetingCard()
 
                         // MARK: - Today's Goal Card
 
-                        dashboardCard(
-                            title: "Today's Goal",
-                            subtitle: dailyGoalCompleted
-                                ? "✅ Completed" : "🎯 Complete 1 Learning Module",
-                            buttonAction: markGoalCompleted
-                        )
+                        liquidGlassGoalCard()
 
                         // MARK: - Skill Streak Card
 
-                        dashboardCard(
-                            title: "Skill Streak",
-                            subtitle: "\(currentStreak) Days 🔥 | Best: \(bestStreak) Days 🏆")
+                        liquidGlassStreakCard()
 
                         // MARK: - Active Challenges Card
 
-                        dashboardCard(
-                            title: "Active Challenges",
-                            subtitle: "\(activeChallengesCount) Challenges in Progress 🎯")
+                        liquidGlassChallengesCard()
 
                         // MARK: - Recent Achievements Card
 
-                        dashboardCard(
-                            title: "Recent Achievements",
-                            subtitle: "\(recentAchievementsCount) Badges Unlocked 🏅")
+                        liquidGlassAchievementsCard()
 
-                        // MARK: - Manual Badge Unlock (Demo Button)
+                        // MARK: - Action Buttons
 
-                        Button(action: unlockBadge) {
-                            Text("🏅 Unlock New Badge")
-                                .font(Theme.Typography.body)
-                                .foregroundColor(Theme.Colors.whiteText)
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Theme.Colors.accent)
-                                .cornerRadius(Theme.CornerRadius.medium)
-                        }
-
-                        // MARK: - Log Out Button
-
-                        Button(action: {
-                            authViewModel.signOut()
-                        }) {
-                            Text("Log Out")
-                                .font(Theme.Typography.buttonText)
-                                .foregroundColor(.white)
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color.red)
-                                .cornerRadius(Theme.CornerRadius.medium)
-                        }
-                        .padding(.top, Theme.Spacing.large)
+                        liquidGlassActionButtons()
 
                         Spacer()
                     }
@@ -115,47 +85,172 @@ struct HomeView: View {
                         .position(x: 40, y: 40)
                 }
             }
-            .background(Theme.Colors.background.ignoresSafeArea())
+            .background(Theme.LiquidGlass.background.ignoresSafeArea())
             .navigationTitle("Home")
             .navigationBarTitleDisplayMode(.large)
         }
         .sheet(isPresented: $showDevPanel) {
             DevDebugView()
         }
+        .onAppear {
+            aiGreetingManager.generateGreeting()
+        }
     }
 
-    // MARK: - Dashboard Card Component
+    // MARK: - Liquid Glass AI Greeting Card
 
-    private func dashboardCard(title: String, subtitle: String, buttonAction: (() -> Void)? = nil)
-        -> some View
-    {
+    private func liquidGlassGreetingCard() -> some View {
+        VStack(alignment: .leading, spacing: Theme.Spacing.medium) {
+            Text(aiGreetingManager.currentGreeting)
+                .font(Theme.Typography.headline)
+                .foregroundColor(Theme.Colors.textPrimary)
+                .multilineTextAlignment(.leading)
+
+            Text(aiGreetingManager.personalizedGoal)
+                .font(Theme.Typography.subheadline)
+                .foregroundColor(Theme.Colors.textSecondary)
+                .multilineTextAlignment(.leading)
+
+            Text(aiGreetingManager.motivationTip)
+                .font(Theme.Typography.caption)
+                .foregroundColor(Theme.Colors.glassAccent)
+                .multilineTextAlignment(.leading)
+                .padding(.top, Theme.Spacing.small)
+        }
+        .padding(Theme.Spacing.large)
+        .liquidGlassCard()
+        .liquidGlassGlow(color: Theme.Colors.glowPrimary)
+    }
+
+    // MARK: - Liquid Glass Goal Card
+
+    private func liquidGlassGoalCard() -> some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.small) {
             HStack {
-                Text(title)
+                Text("Today's Goal")
                     .font(Theme.Typography.body)
                     .foregroundColor(Theme.Colors.textPrimary)
                 Spacer()
 
-                if let action = buttonAction {
-                    Button(action: {
-                        withAnimation { action() }
-                    }) {
-                        Image(systemName: dailyGoalCompleted ? "checkmark.circle.fill" : "circle")
-                            .foregroundColor(dailyGoalCompleted ? .green : Theme.Colors.accent)
-                            .font(.title2)
+                Button(action: {
+                    withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
+                        markGoalCompleted()
                     }
+                }) {
+                    Image(systemName: dailyGoalCompleted ? "checkmark.circle.fill" : "circle")
+                        .foregroundColor(dailyGoalCompleted ? .green : Theme.Colors.glassAccent)
+                        .font(.title2)
+                        .liquidGlassGlow(
+                            color: dailyGoalCompleted ? .green : Theme.Colors.glowAccent)
                 }
             }
 
-            Text(subtitle)
+            Text(dailyGoalCompleted ? "✅ Completed" : "🎯 Complete 1 Learning Module")
                 .font(Theme.Typography.caption)
                 .foregroundColor(Theme.Colors.textSecondary)
                 .multilineTextAlignment(.leading)
         }
-        .padding()
-        .background(Theme.Colors.card)
-        .cornerRadius(Theme.CornerRadius.medium)
-        .shadow(color: Theme.Colors.accent.opacity(0.05), radius: 4, x: 0, y: 2)
+        .padding(Theme.Spacing.large)
+        .liquidGlassCard()
+        .liquidGlassGlow(color: Theme.Colors.glowSecondary)
+    }
+
+    // MARK: - Liquid Glass Streak Card
+
+    private func liquidGlassStreakCard() -> some View {
+        VStack(alignment: .leading, spacing: Theme.Spacing.small) {
+            Text("Skill Streak")
+                .font(Theme.Typography.body)
+                .foregroundColor(Theme.Colors.textPrimary)
+
+            Text("\(currentStreak) Days 🔥 | Best: \(bestStreak) Days 🏆")
+                .font(Theme.Typography.caption)
+                .foregroundColor(Theme.Colors.textSecondary)
+                .multilineTextAlignment(.leading)
+        }
+        .padding(Theme.Spacing.large)
+        .liquidGlassCard()
+        .liquidGlassGlow(color: Theme.Colors.glowPrimary)
+    }
+
+    // MARK: - Liquid Glass Challenges Card
+
+    private func liquidGlassChallengesCard() -> some View {
+        VStack(alignment: .leading, spacing: Theme.Spacing.small) {
+            Text("Active Challenges")
+                .font(Theme.Typography.body)
+                .foregroundColor(Theme.Colors.textPrimary)
+
+            Text("\(activeChallengesCount) Challenges in Progress 🎯")
+                .font(Theme.Typography.caption)
+                .foregroundColor(Theme.Colors.textSecondary)
+                .multilineTextAlignment(.leading)
+        }
+        .padding(Theme.Spacing.large)
+        .liquidGlassCard()
+        .liquidGlassGlow(color: Theme.Colors.glowSecondary)
+    }
+
+    // MARK: - Liquid Glass Achievements Card
+
+    private func liquidGlassAchievementsCard() -> some View {
+        VStack(alignment: .leading, spacing: Theme.Spacing.small) {
+            Text("Recent Achievements")
+                .font(Theme.Typography.body)
+                .foregroundColor(Theme.Colors.textPrimary)
+
+            Text("\(recentAchievementsCount) Badges Unlocked 🏅")
+                .font(Theme.Typography.caption)
+                .foregroundColor(Theme.Colors.textSecondary)
+                .multilineTextAlignment(.leading)
+        }
+        .padding(Theme.Spacing.large)
+        .liquidGlassCard()
+        .liquidGlassGlow(color: Theme.Colors.glowAccent)
+    }
+
+    // MARK: - Liquid Glass Action Buttons
+
+    private func liquidGlassActionButtons() -> some View {
+        VStack(spacing: Theme.Spacing.medium) {
+            Button(action: unlockBadge) {
+                HStack {
+                    Text("🏅 Unlock New Badge")
+                        .font(Theme.Typography.buttonText)
+                        .foregroundColor(Theme.Colors.whiteText)
+                    Spacer()
+                    Image(systemName: "sparkles")
+                        .foregroundColor(Theme.Colors.whiteText)
+                }
+                .padding(Theme.Spacing.large)
+                .liquidGlassButton()
+                .liquidGlassGlow(color: Theme.Colors.glowAccent)
+            }
+
+            Button(action: {
+                authViewModel.signOut()
+            }) {
+                HStack {
+                    Text("Log Out")
+                        .font(Theme.Typography.buttonText)
+                        .foregroundColor(.white)
+                    Spacer()
+                    Image(systemName: "rectangle.portrait.and.arrow.right")
+                        .foregroundColor(.white)
+                }
+                .padding(Theme.Spacing.large)
+                .background(
+                    RoundedRectangle(cornerRadius: Theme.CornerRadius.medium)
+                        .fill(.ultraThinMaterial)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: Theme.CornerRadius.medium)
+                                .stroke(Color.red.opacity(0.6), lineWidth: 1)
+                        )
+                )
+                .liquidGlassGlow(color: Color.red.opacity(0.3))
+            }
+        }
+        .padding(.top, Theme.Spacing.large)
     }
 
     // MARK: - Handle Daily Goal Completion
@@ -163,6 +258,7 @@ struct HomeView: View {
     private func markGoalCompleted() {
         dailyGoalCompleted = true
         ConfettiManager.shared.triggerConfetti()
+        aiGreetingManager.updateContext(userAction: "goal_completed")
     }
 
     // MARK: - Badge Unlock
@@ -170,6 +266,7 @@ struct HomeView: View {
     private func unlockBadge() {
         recentAchievementsCount += 1
         ConfettiManager.shared.triggerConfetti()
+        aiGreetingManager.updateContext(userAction: "badge_unlocked")
     }
 }
 
