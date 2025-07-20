@@ -44,10 +44,67 @@
 	<key>NSUserNotificationAlertStyle</key>
 	<string>banner</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>StryVr needs access to Bluetooth for connecting to external devices.</string>
+	<string>StryVr uses Bluetooth to connect with wearable devices for enhanced performance tracking and analytics.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>StryVr needs access to your location even when the app is not in use to provide continuous personalized learning.</string>
+	<string>StryVr uses location data to provide context-aware workplace insights and performance analytics.</string>
 	<key>NSMotionUsageDescription</key>
-	<string>StryVr uses motion data to enhance your learning experience.</string>
+	<string>StryVr uses motion data to track workplace activity patterns and provide personalized performance insights.</string>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+		<key>UISceneConfigurations</key>
+		<dict>
+			<key>UIWindowSceneSessionRoleApplication</key>
+			<array>
+				<dict>
+					<key>UISceneConfigurationName</key>
+					<string>Default Configuration</string>
+					<key>UISceneDelegateClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleDefault</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>https</string>
+		<string>http</string>
+	</array>
+	<key>CFBundleDisplayName</key>
+	<string>StryVr</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleResourceSpecification</key>
+	<string>ResourceRules.plist</string>
 </dict>
 </plist>
