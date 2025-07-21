@@ -12,10 +12,12 @@ import FirebaseFirestoreSwift
 import Foundation
 import OSLog
 
-final class AIRecommendationService {
+final class AIRecommendationService: Sendable {
     static let shared = AIRecommendationService()
     private let db: Firestore
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "AIRecommendationService")
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "AIRecommendationService"
+    )
 
     private init(db: Firestore = Firestore.firestore()) {
         self.db = db
@@ -42,7 +44,7 @@ final class AIRecommendationService {
                 }
 
                 guard let data = snapshot?.data(),
-                      let currentSkills = data["skills"] as? [String]
+                    let currentSkills = data["skills"] as? [String]
                 else {
                     self.logger.error("⚠️ No skills found for user.")
                     completion([])
@@ -55,15 +57,21 @@ final class AIRecommendationService {
 
     // MARK: - Private AI Request Method
 
-    private func requestAISuggestions(currentSkills: [String], completion: @escaping ([String]) -> Void) {
-        guard let apiKey = SecureStorageManager.shared.load(key: "huggingFaceAPIKey") else {
+    private func requestAISuggestions(
+        currentSkills: [String], completion: @escaping ([String]) -> Void
+    ) {
+        let apiKey = SecureStorageManager.shared.load(key: "huggingFaceAPIKey")
+        guard let apiKey = apiKey else {
             logger.error("❌ Missing API Key for Hugging Face.")
             completion([])
             return
         }
 
         let headers = ["Authorization": "Bearer \(apiKey)"]
-        let body = ["inputs": "Given skills: \(currentSkills.joined(separator: ", ")). Suggest related professional skills."]
+        let body = [
+            "inputs":
+                "Given skills: \(currentSkills.joined(separator: ", ")). Suggest related professional skills."
+        ]
 
         APIService.shared.postJSON(
             to: "https://api-inference.huggingface.co/models/gpt2",
@@ -75,7 +83,8 @@ final class AIRecommendationService {
                 switch result {
                 case let .success(suggestions):
                     let skillRecommendations = suggestions.flatMap { $0.generatedSkills() }
-                    self.logger.info("✅ AI recommended \(skillRecommendations.count) skills successfully.")
+                    self.logger.info(
+                        "✅ AI recommended \(skillRecommendations.count) skills successfully.")
                     completion(skillRecommendations)
                 case let .failure(error):
                     self.logger.error("❌ AI API call failed: \(error.localizedDescription)")

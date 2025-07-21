@@ -10,14 +10,14 @@
 import Foundation
 
 /// Handles generic API calls throughout StryVr
-final class APIService {
+final class APIService: Sendable {
     static let shared = APIService()
 
     private let session: URLSession
 
     private init() {
         let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = 30 // 30 seconds timeout
+        configuration.timeoutIntervalForRequest = 30  // 30 seconds timeout
         session = URLSession(configuration: configuration)
     }
 
@@ -36,7 +36,7 @@ final class APIService {
             }
 
             guard let httpResponse = response as? HTTPURLResponse,
-                  (200 ... 299).contains(httpResponse.statusCode)
+                (200...299).contains(httpResponse.statusCode)
             else {
                 completion(.failure(.httpStatus((response as? HTTPURLResponse)?.statusCode ?? -1)))
                 return
@@ -54,7 +54,9 @@ final class APIService {
 
     // MARK: - JSON Decoder Utility
 
-    func fetchJSON<T: Decodable>(from urlString: String, as _: T.Type, completion: @escaping (Result<T, APIError>) -> Void) {
+    func fetchJSON<T: Decodable>(
+        from urlString: String, as _: T.Type, completion: @escaping (Result<T, APIError>) -> Void
+    ) {
         fetchData(from: urlString) { result in
             switch result {
             case let .success(data):
@@ -72,7 +74,10 @@ final class APIService {
 
     // MARK: - POST JSON Utility
 
-    func postJSON<T: Decodable>(to urlString: String, body: [String: Any], headers: [String: String]? = nil, as _: T.Type, completion: @escaping (Result<T, APIError>) -> Void) {
+    func postJSON<T: Decodable>(
+        to urlString: String, body: [String: Any], headers: [String: String]? = nil, as _: T.Type,
+        completion: @escaping (Result<T, APIError>) -> Void
+    ) {
         guard let url = URL(string: urlString) else {
             completion(.failure(.invalidURL))
             return
@@ -100,7 +105,7 @@ final class APIService {
             }
 
             guard let httpResponse = response as? HTTPURLResponse,
-                  (200 ... 299).contains(httpResponse.statusCode)
+                (200...299).contains(httpResponse.statusCode)
             else {
                 completion(.failure(.httpStatus((response as? HTTPURLResponse)?.statusCode ?? -1)))
                 return

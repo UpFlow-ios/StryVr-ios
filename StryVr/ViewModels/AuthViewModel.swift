@@ -42,6 +42,11 @@ final class AuthViewModel: ObservableObject {
         }
     }
 
+    func listenToAuthChanges() {
+        // Auth listener is already configured in init(), this method exists for compatibility
+        logger.info("🔁 Auth listener already active")
+    }
+
     private func removeAuthListener() {
         if let handle = authListenerHandle {
             Auth.auth().removeStateDidChangeListener(handle)

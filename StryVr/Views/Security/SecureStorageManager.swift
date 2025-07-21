@@ -31,7 +31,7 @@ enum SecureStorageError: Error, LocalizedError {
 
 // MARK: - SecureStorageManager
 
-final class SecureStorageManager {
+final class SecureStorageManager: Sendable {
     static let shared = SecureStorageManager()
 
     private init() {}
