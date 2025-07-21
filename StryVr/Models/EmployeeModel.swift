@@ -41,8 +41,8 @@ struct FeedbackEntry: Codable, Hashable {
             department: "Product Development",
             joinDate: Date(timeIntervalSince1970: 1_672_531_200),
             skills: [
-                SkillProgress(skillName: "SwiftUI", percentage: 0.88),
-                SkillProgress(skillName: "Teamwork", percentage: 0.92),
+                SkillProgress(skill: "SwiftUI", progress: 0.88),
+                SkillProgress(skill: "Teamwork", progress: 0.92),
             ],
             feedbackEntries: [
                 FeedbackEntry(

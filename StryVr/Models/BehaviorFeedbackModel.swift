@@ -56,6 +56,9 @@ enum FeedbackCategory: String, Codable, CaseIterable, Identifiable {
     case professionalism
     case punctuality
     case teamwork
+    case clarity
+    case collaboration
+    case responsiveness
 
     var id: String { rawValue }
 
@@ -65,6 +68,9 @@ enum FeedbackCategory: String, Codable, CaseIterable, Identifiable {
         .professionalism: "Professionalism",
         .punctuality: "Punctuality",
         .teamwork: "Teamwork",
+        .clarity: "Clarity",
+        .collaboration: "Collaboration",
+        .responsiveness: "Responsiveness",
     ]
 
     var displayName: String {

@@ -118,7 +118,7 @@ struct SkillVisualizationDashboards: View {
                 }
 
                 self.skillProgress = skills.map {
-                    SkillProgress(skillName: $0.key, percentage: $0.value)
+                    SkillProgress(skill: $0.key, progress: $0.value)
                 }
                 logger.info("✅ Skill data loaded: \(self.skillProgress.count) items")
             }

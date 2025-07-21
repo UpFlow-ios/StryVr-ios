@@ -37,4 +37,10 @@ struct SkillProgress: Identifiable, Codable, Hashable {
     var isValid: Bool {
         (0.0...1.0).contains(progress)
     }
+
+    // MARK: - Legacy Initializer Support
+    init(skillName: String, percentage: Double) {
+        self.skill = skillName
+        self.progress = percentage
+    }
 }
