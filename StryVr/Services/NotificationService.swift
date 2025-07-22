@@ -12,10 +12,14 @@ import OSLog
 import UserNotifications
 
 /// Manages push notifications for video engagement, recommendations, and learning reminders
-final class NotificationService: NSObject, ObservableObject, UNUserNotificationCenterDelegate, MessagingDelegate {
+@MainActor
+final class NotificationService: NSObject, ObservableObject, UNUserNotificationCenterDelegate,
+    MessagingDelegate
+{
     static let shared = NotificationService()
     private let db = Firestore.firestore()
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "NotificationService")
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "NotificationService")
 
     override private init() {}
 
@@ -23,36 +27,40 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
 
     /// Requests push notification permissions from the user
     func requestNotificationPermissions() {
-        let center = UNUserNotificationCenter.current()
-        center.delegate = self
-
-        center.requestAuthorization(options: [.alert, .sound, .badge]) { _, error in
-            if let error = error {
-                self.logger.error("❌ Notification permission error: \(error.localizedDescription)")
-            } else {
-                self.logger.info("✅ Notification permissions granted")
-                DispatchQueue.main.async {
-                    UIApplication.shared.registerForRemoteNotifications()
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) {
+            [weak self] granted, error in
+            DispatchQueue.main.async {
+                if granted {
+                    self?.registerForRemoteNotifications()
+                } else {
+                    self?.logger.warning("🔔 Notification permissions denied")
                 }
             }
         }
     }
 
+    private func registerForRemoteNotifications() {
+        UIApplication.shared.registerForRemoteNotifications()
+    }
+
     // MARK: - UNUserNotificationCenterDelegate
 
     /// Handles receiving push notifications while the app is in the foreground
-    func userNotificationCenter(_: UNUserNotificationCenter,
-                                willPresent _: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
-    {
+    func userNotificationCenter(
+        _: UNUserNotificationCenter,
+        willPresent _: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) ->
+            Void
+    ) {
         completionHandler([.banner, .sound])
     }
 
     /// Handles user interactions with notifications
-    func userNotificationCenter(_: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void)
-    {
+    func userNotificationCenter(
+        _: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
         logger.info("🔔 Notification tapped: \(response.notification.request.content.userInfo)")
         completionHandler()
     }
@@ -94,9 +102,12 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
             return
         }
 
-        let message = type == "like" ? "Someone liked your video: \(videoTitle)" :
-            type == "comment" ? "Someone commented on your video: \(videoTitle)" :
-            "Your video is trending: \(videoTitle)"
+        let message =
+            type == "like"
+            ? "Someone liked your video: \(videoTitle)"
+            : type == "comment"
+                ? "Someone commented on your video: \(videoTitle)"
+                : "Your video is trending: \(videoTitle)"
 
         sendPushNotification(to: userID, title: "📢 Video Engagement", body: message)
     }
@@ -119,7 +130,7 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
             }
 
             guard let data = snapshot?.data(),
-                  let deviceToken = data["deviceToken"] as? String
+                let deviceToken = data["deviceToken"] as? String
             else {
                 self.logger.warning("⚠️ No device token found for user \(userID)")
                 return

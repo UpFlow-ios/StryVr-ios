@@ -12,7 +12,8 @@ import FirebaseAuth
 import Foundation
 import OSLog
 
-final class AuthService: ObservableObject {
+@MainActor
+final class AuthService {
     static let shared = AuthService()
     private let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr.app", category: "AuthService")
