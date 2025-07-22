@@ -10,6 +10,7 @@ import OSLog
 import StoreKit
 
 /// Manages in-app purchases and subscriptions for StryVr
+@MainActor
 final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObserver,
     SKProductsRequestDelegate
 {
@@ -87,7 +88,7 @@ final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObse
 
     func productsRequest(_: SKProductsRequest, didReceive response: SKProductsResponse) {
         availableProducts = response.products
-        logger.info("✅ Retrieved \(availableProducts.count) products from App Store")
+        logger.info("✅ Retrieved \(self.availableProducts.count) products from App Store")
         if response.invalidProductIdentifiers.count > 0 {
             logger.warning("⚠️ Invalid Product IDs: \(response.invalidProductIdentifiers)")
         }

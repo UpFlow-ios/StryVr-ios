@@ -97,8 +97,8 @@ struct CareerPathInsightsView: View {
                     }
                 case .failure:
                     self.isLoading = false
+                    self.errorMessage = "Failed to load skill data. Please try again later."
                 }
-                self.errorMessage = "Failed to fetch skill data. Please check your connection."
             }
         }
     }
