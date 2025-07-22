@@ -13,15 +13,16 @@ import Foundation
 
 /// Represents a scheduled conference call within the StryVr platform
 struct ConferenceCallModel: Identifiable, Codable, Hashable {
-    let id: String // Unique call ID
-    var title: String // Conference title
-    var description: String? // Optional session description
-    var participants: [String] // User IDs of attendees
-    var scheduledDate: Date // Scheduled time/date
-    var durationMinutes: Int // Duration in minutes
-    var callStatus: CallStatus // Enum status
-    var recordingURL: String? // Optional recorded video link
-    var engagementMetrics: CallEngagement // Viewer activity stats
+    let id: String  // Unique call ID
+    let hostID: String  // Host user ID
+    var title: String  // Conference title
+    var description: String?  // Optional session description
+    var participants: [String]  // User IDs of attendees
+    var scheduledDate: Date  // Scheduled time/date
+    var durationMinutes: Int  // Duration in minutes
+    var callStatus: CallStatus  // Enum status
+    var recordingURL: String?  // Optional recorded video link
+    var engagementMetrics: CallEngagement  // Viewer activity stats
 
     // MARK: - Computed Properties
 

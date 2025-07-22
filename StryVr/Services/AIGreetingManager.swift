@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OSLog
 import SwiftUI
 
 /// Manages personalized AI greetings and user experience enhancements
@@ -98,18 +99,24 @@ final class AIGreetingManager: ObservableObject {
 
     private func getUserName() -> String {
         // Get user name from AuthViewModel if available
-        return AuthViewModel.shared.currentUser?.displayName ?? ""
+        return AuthViewModel.shared.userSession?.displayName ?? ""
     }
 
-    // MARK: - Contextual Updates
+    // MARK: - Context Updates
 
-    /// Updates greeting based on user actions and context
     func updateContext(userAction: String) {
-        logger.info("🔄 Updating AI context for action: \(userAction)")
+        logger.info("🎯 User action detected: \(userAction)")
 
-        // Future: Integrate with actual AI for contextual responses
-        // For now, just regenerate greeting
-        generateGreeting()
+        // Update greeting based on user action
+        switch userAction {
+        case "goal_completed":
+            currentGreeting = "🎉 Amazing work! You crushed that goal!"
+        case "badge_unlocked":
+            currentGreeting = "🏅 Congratulations! You've earned a new badge!"
+        default:
+            // Keep current greeting
+            break
+        }
     }
 
     // MARK: - Performance Insights

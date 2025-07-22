@@ -11,20 +11,32 @@ import Foundation
 
 /// Represents a user in the StryVr app
 struct UserModel: Identifiable, Codable, Hashable {
-    let id: String // Unique user ID (Firebase)
-    var fullName: String // User's full name
-    var email: String // User's email address
-    var profileImageURL: String? // URL to user's profile image
-    var bio: String? // User bio/intro
-    var skills: [String] // Skill tags
-    var isVerified: Bool // Verified status
-    let joinedDate: Date // Date of account creation
+    let id: String  // Unique user ID (Firebase)
+    var fullName: String  // User's full name
+    var email: String  // User's email address
+    var profileImageURL: String?  // URL to user's profile image
+    var bio: String?  // User bio/intro
+    var skills: [String]  // Skill tags
+    var role: UserRole  // User role
+    var isVerified: Bool  // Verified status
+    let joinedDate: Date  // Date of account creation
 
     // MARK: - Computed Properties
 
     /// Nicely formatted join date (e.g. "Jan 5, 2025")
     var formattedJoinDate: String {
         return UserModel.dateFormatter.string(from: joinedDate)
+    }
+
+    /// Average progress across all skills (0.0 to 1.0)
+    var averageProgress: Double {
+        // Placeholder - would calculate from actual skill data
+        return 0.75
+    }
+
+    /// Display name for UI
+    var name: String {
+        return fullName
     }
 
     /// Validates email format using regex

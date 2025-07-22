@@ -38,7 +38,7 @@ extension EmployeeModel: Decodable {
             location, isMentor, isVerified, isAdmin, isEnterprise, isPro, isOnboarded,
             isProfileComplete, isVisible, isAvailable, isRemote, isManager, isExecutive,
             isContractor, isFullTime, isPartTime, isIntern, isAlumni, isPending, isSuspended,
-            isDeleted
+            isDeleted, performanceRating, goalsAchieved
     }
 
     public init(from decoder: Decoder) throws {

@@ -9,7 +9,7 @@
 import Foundation
 
 /// Represents a pricing tier and features for subscriptions
-struct SubscriptionPlan: Identifiable, Codable, Hashable {
+struct SubscriptionPlan: Identifiable, Codable, Hashable, CaseIterable {
     /// Unique identifier for the subscription plan
     let id: String = UUID().uuidString
     /// Tier of the subscription (e.g., freemium, premium)
@@ -22,6 +22,48 @@ struct SubscriptionPlan: Identifiable, Codable, Hashable {
     let features: [String]
     /// Indicates if this plan is recommended
     let isRecommended: Bool
+
+    // MARK: - Static Cases
+
+    static let freemium = SubscriptionPlan(
+        tier: .freemium,
+        monthlyPrice: 0.0,
+        yearlyPrice: nil,
+        features: ["Basic skill tracking", "Limited reports", "Community access"],
+        isRecommended: false
+    )
+
+    static let plus = SubscriptionPlan(
+        tier: .plus,
+        monthlyPrice: 9.99,
+        yearlyPrice: 99.99,
+        features: ["Advanced analytics", "Priority support", "Custom goals", "Team insights"],
+        isRecommended: false
+    )
+
+    static let premium = SubscriptionPlan(
+        tier: .premium,
+        monthlyPrice: 19.99,
+        yearlyPrice: 199.99,
+        features: [
+            "AI-powered insights", "Advanced reporting", "Mentor matching", "Career coaching",
+        ],
+        isRecommended: true
+    )
+
+    static let enterprise = SubscriptionPlan(
+        tier: .enterprise,
+        monthlyPrice: 49.99,
+        yearlyPrice: 499.99,
+        features: [
+            "Custom integrations", "Dedicated support", "Advanced security", "Team management",
+        ],
+        isRecommended: false
+    )
+
+    static var allCases: [SubscriptionPlan] {
+        return [.freemium, .plus, .premium, .enterprise]
+    }
 
     // MARK: - Pricing Labels
 

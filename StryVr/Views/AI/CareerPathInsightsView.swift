@@ -6,6 +6,7 @@
 //  🧠 AI Career Insights View – Personalized Pathway Suggestions
 //
 
+import OSLog
 import SwiftUI
 
 struct CareerPathInsightsView: View {

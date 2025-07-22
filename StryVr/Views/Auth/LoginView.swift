@@ -12,6 +12,7 @@ struct LoginView: View {
     @State private var password = ""
     @State private var errorMessage: String?
     @State private var isLoading = false
+    @EnvironmentObject var authViewModel: AuthViewModel
 
     var body: some View {
         NavigationStack {
@@ -72,7 +73,8 @@ struct LoginView: View {
                 // MARK: - Divider
                 HStack {
                     Rectangle().frame(height: 1).foregroundColor(Theme.Colors.textSecondary)
-                    Text("or").font(Theme.Typography.caption).foregroundColor(Theme.Colors.textSecondary)
+                    Text("or").font(Theme.Typography.caption).foregroundColor(
+                        Theme.Colors.textSecondary)
                     Rectangle().frame(height: 1).foregroundColor(Theme.Colors.textSecondary)
                 }
 
@@ -103,27 +105,17 @@ struct LoginView: View {
         errorMessage = nil
         isLoading = true
 
-        AuthService.shared.logIn(email: email, password: password) { result in
-            DispatchQueue.main.async {
-                isLoading = false
-                switch result {
-                case .success:
-                    print("✅ Email login successful")
-                case .failure(let error):
-                    errorMessage = error.localizedDescription
-                }
-            }
+        authViewModel.signIn(email: email, password: password)
+
+        // Reset loading state after a delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            isLoading = false
         }
     }
 
     // MARK: - Login with Okta
     private func handleOktaLogin() {
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-              let rootVC = windowScene.windows.first?.rootViewController else {
-            errorMessage = "Unable to access app window."
-            return
-        }
-
-        AuthService.shared.loginWithOkta(presentingViewController: rootVC)
+        // Placeholder for Okta SSO - would integrate with actual Okta service
+        errorMessage = "SSO login coming soon!"
     }
 }

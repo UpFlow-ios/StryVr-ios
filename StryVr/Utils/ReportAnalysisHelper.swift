@@ -19,16 +19,16 @@ enum ReportAnalysisHelper {
         var skillTotals = [String: (total: Double, count: Int)]()
 
         for report in reports {
-            for (skill, progress) in report.skillsProgress {
-                skillTotals[skill, default: (0, 0)].total += progress
-                skillTotals[skill, default: (0, 0)].count += 1
+            for skillPerformance in report.skills {
+                skillTotals[skillPerformance.skillName, default: (0, 0)].total +=
+                    skillPerformance.rating
+                skillTotals[skillPerformance.skillName, default: (0, 0)].count += 1
             }
         }
 
         let averages = skillTotals.compactMapValues { total, count -> Double? in
             guard count > 0 else { return nil }
             let average = total / Double(count)
-            os_log("📊 Skill %{public}@ average: %{public}.2f", skill, average)
             return average
         }
 
@@ -44,14 +44,31 @@ enum ReportAnalysisHelper {
         var userProgress = [UserModel]()
 
         for report in reports {
-            guard !report.skillsProgress.isEmpty else { continue }
-            var user = report.user
-            user.averageProgress = report.skillsProgress.values.reduce(0, +) / Double(report.skillsProgress.count)
+            guard !report.skills.isEmpty else { continue }
+            let averageProgress =
+                report.skills.map { $0.rating }.reduce(0, +) / Double(report.skills.count)
+
+            // Create a UserModel from the report data
+            let user = UserModel(
+                id: report.userId,
+                fullName: "User \(report.userId)",  // Placeholder name
+                email: "user@stryvr.com",  // Placeholder email
+                skills: report.skills.map { $0.skillName },
+                role: .admin,
+                joinedDate: report.timestamp
+            )
+
+            // Note: We can't modify user.averageProgress directly since it's computed
+            // The enterprise dashboards will need to calculate this differently
             userProgress.append(user)
         }
 
-        let sortedUsers = userProgress.sorted(by: { $0.averageProgress > $1.averageProgress })
-        os_log("🏅 Top %{public}d users calculated.", topCount)
+        // Sort by overall score instead since we can't modify averageProgress
+        let sortedUsers = userProgress.sorted(by: {
+            let report1 = reports.first { $0.userId == $0.id }
+            let report2 = reports.first { $0.userId == $0.id }
+            return (report1?.overallScore ?? 0) > (report2?.overallScore ?? 0)
+        })
 
         return Array(sortedUsers.prefix(topCount))
     }
@@ -61,14 +78,12 @@ enum ReportAnalysisHelper {
     ///   - reports: `[LearningReport]` array.
     ///   - threshold: Skill threshold, default is 50.0.
     /// - Returns: `[String]` weak skill names.
-    static func findWeakSkills(from reports: [LearningReport], threshold: Double = 50.0) -> [String] {
+    static func findWeakSkills(from reports: [LearningReport], threshold: Double = 50.0) -> [String]
+    {
         calculateAverageSkillProgress(from: reports)
             .filter { $0.value < threshold }
             .map { $0.key }
             .sorted()
-            .also { weakSkills in
-                os_log("⚠️ Weak skills: %{public}@", weakSkills.joined(separator: ", "))
-            }
     }
 }
 

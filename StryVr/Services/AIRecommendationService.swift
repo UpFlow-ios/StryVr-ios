@@ -76,6 +76,54 @@ final class AIRecommendationService {
             }
     }
 
+    func getCareerRecommendations(
+        from skills: [SkillProgress],
+        completion: @escaping (Result<[String], Error>) -> Void
+    ) {
+        // Extract skill names from SkillProgress objects
+        let skillNames = skills.map { $0.skill }
+
+        // For now, return placeholder career suggestions based on skills
+        let careerSuggestions = generateCareerSuggestions(from: skillNames)
+
+        DispatchQueue.main.async {
+            completion(.success(careerSuggestions))
+        }
+    }
+
+    private func generateCareerSuggestions(from skills: [String]) -> [String] {
+        // Placeholder career suggestions based on common skills
+        var suggestions: [String] = []
+
+        if skills.contains(where: {
+            $0.lowercased().contains("swift") || $0.lowercased().contains("ios")
+        }) {
+            suggestions.append("iOS Developer")
+            suggestions.append("Mobile App Developer")
+        }
+
+        if skills.contains(where: {
+            $0.lowercased().contains("communication") || $0.lowercased().contains("teamwork")
+        }) {
+            suggestions.append("Project Manager")
+            suggestions.append("Team Lead")
+        }
+
+        if skills.contains(where: {
+            $0.lowercased().contains("ai") || $0.lowercased().contains("machine learning")
+        }) {
+            suggestions.append("AI Engineer")
+            suggestions.append("Data Scientist")
+        }
+
+        // Default suggestions if no specific skills match
+        if suggestions.isEmpty {
+            suggestions = ["Software Engineer", "Product Manager", "UX Designer"]
+        }
+
+        return suggestions
+    }
+
     // MARK: - Private AI Request Method
 
     private func requestAISuggestions(

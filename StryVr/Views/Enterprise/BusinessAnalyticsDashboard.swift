@@ -8,6 +8,7 @@
 
 import Charts
 import Foundation
+import OSLog
 import SwiftUI
 
 struct BusinessAnalyticsDashboard: View {
