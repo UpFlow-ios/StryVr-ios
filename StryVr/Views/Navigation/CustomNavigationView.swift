@@ -23,6 +23,9 @@ struct CustomNavigationView: View {
                         LearningPathsView()
                     case .profile:
                         ProfileView()
+                    case .community:
+                        // TODO: Implement community tab view
+                        EmptyView()
                     }
                 }
                 .transition(.opacity)

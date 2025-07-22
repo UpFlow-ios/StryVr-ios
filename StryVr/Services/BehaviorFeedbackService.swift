@@ -11,7 +11,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Foundation
 
-final class BehaviorFeedbackService {
+@MainActor final class BehaviorFeedbackService {
     static let shared = BehaviorFeedbackService()
     private let db = Firestore.firestore()
 
@@ -19,7 +19,9 @@ final class BehaviorFeedbackService {
 
     // MARK: - Submit Feedback
 
-    func submitFeedback(_ feedback: BehaviorFeedback, completion: @escaping (Result<Void, Error>) -> Void) {
+    func submitFeedback(
+        _ feedback: BehaviorFeedback, completion: @escaping (Result<Void, Error>) -> Void
+    ) {
         do {
             let docRef = db.collection("behaviorFeedback").document(feedback.id)
             try docRef.setData(from: feedback) { error in
@@ -36,7 +38,9 @@ final class BehaviorFeedbackService {
 
     // MARK: - Fetch Feedback for Employee
 
-    func fetchFeedback(for employeeId: String, completion: @escaping (Result<[BehaviorFeedback], Error>) -> Void) {
+    func fetchFeedback(
+        for employeeId: String, completion: @escaping (Result<[BehaviorFeedback], Error>) -> Void
+    ) {
         db.collection("behaviorFeedback")
             .whereField("employeeId", isEqualTo: employeeId)
             .order(by: "timestamp", descending: true)

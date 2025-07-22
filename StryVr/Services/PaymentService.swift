@@ -86,7 +86,9 @@ final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObse
         request.start()
     }
 
-    func productsRequest(_: SKProductsRequest, didReceive response: SKProductsResponse) {
+    nonisolated func productsRequest(
+        _ request: SKProductsRequest, didReceive response: SKProductsResponse
+    ) {
         availableProducts = response.products
         logger.info("✅ Retrieved \(self.availableProducts.count) products from App Store")
         if response.invalidProductIdentifiers.count > 0 {
@@ -94,14 +96,16 @@ final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObse
         }
     }
 
-    func request(_: SKRequest, didFailWithError error: Error) {
+    nonisolated func request(_ request: SKRequest, didFailWithError error: Error) {
         logger.error("❌ Product request failed: \(error.localizedDescription)")
     }
 
     // MARK: - Transaction Handling
 
     /// Handles updates to payment transactions
-    func paymentQueue(_: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+    nonisolated func paymentQueue(
+        _ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]
+    ) {
         for transaction in transactions {
             switch transaction.transactionState {
             case .purchased:
@@ -135,13 +139,13 @@ final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObse
 
     // MARK: - Restoration Completion
 
-    func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+    nonisolated func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
         logger.info("✅ Restoration completed successfully")
         restorationCompletion?(true, nil)
         restorationCompletion = nil
     }
 
-    func paymentQueue(
+    nonisolated func paymentQueue(
         _ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error
     ) {
         logger.error("❌ Restoration failed: \(error.localizedDescription)")

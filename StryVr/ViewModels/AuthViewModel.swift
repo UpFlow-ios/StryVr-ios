@@ -9,8 +9,9 @@ import FirebaseAuth
 import Foundation
 import OSLog
 
+@MainActor
 final class AuthViewModel: ObservableObject {
-    static let shared = AuthViewModel()
+    @MainActor static let shared = AuthViewModel()
 
     @Published private(set) var userSession: FirebaseAuth.User?
     @Published private(set) var errorMessage: String?
