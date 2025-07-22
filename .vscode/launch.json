@@ -29,18 +29,18 @@
             "type": "swift",
             "request": "launch",
             "args": [],
-            "cwd": "${workspaceFolder:StryVr-ios}",
+            "cwd": "${workspaceFolder:stryvr-ios}",
             "name": "Debug stryvr-app",
-            "program": "${workspaceFolder:StryVr-ios}/.build/debug/stryvr-app",
+            "program": "${workspaceFolder:stryvr-ios}/.build/debug/stryvr-app",
             "preLaunchTask": "swift: Build Debug stryvr-app"
         },
         {
             "type": "swift",
             "request": "launch",
             "args": [],
-            "cwd": "${workspaceFolder:StryVr-ios}",
+            "cwd": "${workspaceFolder:stryvr-ios}",
             "name": "Release stryvr-app",
-            "program": "${workspaceFolder:StryVr-ios}/.build/release/stryvr-app",
+            "program": "${workspaceFolder:stryvr-ios}/.build/release/stryvr-app",
             "preLaunchTask": "swift: Build Release stryvr-app"
         }
     ]
