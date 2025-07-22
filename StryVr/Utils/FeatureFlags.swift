@@ -7,12 +7,10 @@
 
 import Foundation
 
-enum FeatureFlags {
-    static var enableMockData: Bool = false
-    static var enableConfetti: Bool = true
-    static var enableDeepLinks: Bool = true
-    static var enableAIRecommendations: Bool = true
-    static var enableFirebaseCrashlytics: Bool = true
-    static var enableMentorFeatures: Bool = false
-    static var enableEmployeeDashboard: Bool = true
-}
+@MainActor static var enableMockData: Bool = false
+@MainActor static var enableConfetti: Bool = true
+@MainActor static var enableDeepLinks: Bool = true
+@MainActor static var enableAIRecommendations: Bool = true
+@MainActor static var enableFirebaseCrashlytics: Bool = true
+@MainActor static var enableMentorFeatures: Bool = false
+@MainActor static var enableEmployeeDashboard: Bool = true
