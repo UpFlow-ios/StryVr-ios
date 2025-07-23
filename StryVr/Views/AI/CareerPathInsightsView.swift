@@ -71,35 +71,31 @@ struct CareerPathInsightsView: View {
         errorMessage = nil
 
         FirestoreService.shared.fetchSkillProgress { result in
-            DispatchQueue.main.async {
-                switch result {
-                case let .success(skills):
-                    self.skillData = skills
+            switch result {
+            case let .success(skills):
+                self.skillData = skills
 
-                    guard !skills.isEmpty else {
-                        self.isLoading = false
-                        self.errorMessage =
-                            "No skill data found. Complete a few learning paths to unlock insights."
-                        return
-                    }
-
-                    AIRecommendationService.shared.getCareerRecommendations(from: skills) {
-                        result in
-                        DispatchQueue.main.async {
-                            switch result {
-                            case let .success(careers):
-                                self.suggestedCareers = careers
-                            case .failure:
-                                self.errorMessage =
-                                    "Failed to fetch career recommendations. Please try again later."
-                            }
-                            self.isLoading = false
-                        }
-                    }
-                case .failure:
+                guard !skills.isEmpty else {
                     self.isLoading = false
-                    self.errorMessage = "Failed to load skill data. Please try again later."
+                    self.errorMessage =
+                        "No skill data found. Complete a few learning paths to unlock insights."
+                    return
                 }
+
+                AIRecommendationService.shared.getCareerRecommendations(from: skills) {
+                    result in
+                    switch result {
+                    case let .success(careers):
+                        self.suggestedCareers = careers
+                    case .failure:
+                        self.errorMessage =
+                            "Failed to fetch career recommendations. Please try again later."
+                    }
+                    self.isLoading = false
+                }
+            case .failure:
+                self.isLoading = false
+                self.errorMessage = "Failed to load skill data. Please try again later."
             }
         }
     }

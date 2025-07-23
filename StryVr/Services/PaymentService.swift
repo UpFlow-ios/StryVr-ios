@@ -113,9 +113,13 @@ final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObse
         for transaction in transactions {
             switch transaction.transactionState {
             case .purchased:
-                completeTransaction(transaction)
+                Task { @MainActor in
+                    completeTransaction(transaction)
+                }
             case .restored:
-                restoreTransaction(transaction)
+                Task { @MainActor in
+                    restoreTransaction(transaction)
+                }
             case .failed:
                 if let error = transaction.error {
                     logger.error("❌ Purchase failed: \(error.localizedDescription)")
@@ -144,16 +148,20 @@ final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObse
     // MARK: - Restoration Completion
 
     nonisolated func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
-        logger.info("✅ Restoration completed successfully")
-        restorationCompletion?(true, nil)
-        restorationCompletion = nil
+        Task { @MainActor in
+            logger.info("✅ Restoration completed successfully")
+            restorationCompletion?(true, nil)
+            restorationCompletion = nil
+        }
     }
 
     nonisolated func paymentQueue(
         _ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error
     ) {
-        logger.error("❌ Restoration failed: \(error.localizedDescription)")
-        restorationCompletion?(false, error)
-        restorationCompletion = nil
+        Task { @MainActor in
+            logger.error("❌ Restoration failed: \(error.localizedDescription)")
+            restorationCompletion?(false, error)
+            restorationCompletion = nil
+        }
     }
 }
