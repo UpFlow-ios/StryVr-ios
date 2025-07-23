@@ -13,14 +13,14 @@ struct UserData: Identifiable, Codable, Hashable {
     let id: String
     let fullName: String
     let email: String
-    let role: String // e.g., "employee", "manager"
+    let role: String  // e.g., "employee", "manager"
     let profileImageURL: String?
     let department: String?
     let jobTitle: String?
 
     // Recent performance summary
     let lastReport: LearningReport?
-    let progressScore: Double // 0.0 to 1.0
+    let progressScore: Double  // 0.0 to 1.0
 
     // Optional description or user bio
     let bio: String?
@@ -32,11 +32,11 @@ struct UserData: Identifiable, Codable, Hashable {
         fullName: "N/A",
         email: "noemail@stryvr.app",
         role: "employee",
-        profileImageURL: nil,
-        department: nil,
-        jobTitle: nil,
-        lastReport: nil,
+        profileImageURL: nil as String?,
+        department: nil as String?,
+        jobTitle: nil as String?,
+        lastReport: nil as LearningReport?,
         progressScore: 0.0,
-        bio: nil
+        bio: nil as String?
     )
 }

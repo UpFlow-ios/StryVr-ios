@@ -21,6 +21,24 @@ struct EmployeeModel: Identifiable, Codable, Hashable {
     var performanceRating: Double
     var goalsAchieved: Int
     var isActive: Bool
+
+    init(
+        id: String, name: String, role: String, department: String, email: String, joinDate: Date,
+        skills: [SkillProgress] = [], feedbackEntries: [FeedbackEntry] = [],
+        performanceRating: Double = 0.0, goalsAchieved: Int = 0, isActive: Bool = true
+    ) {
+        self.id = id
+        self.name = name
+        self.role = role
+        self.department = department
+        self.email = email
+        self.joinDate = joinDate
+        self.skills = skills
+        self.feedbackEntries = feedbackEntries
+        self.performanceRating = performanceRating
+        self.goalsAchieved = goalsAchieved
+        self.isActive = isActive
+    }
 }
 
 /// Feedback associated with an employee's behavior or performance.
@@ -31,65 +49,6 @@ struct FeedbackEntry: Codable, Hashable {
     let date: Date
 }
 
-extension EmployeeModel: Decodable {
-    enum CodingKeys: String, CodingKey {
-        case id, name, email, role, skills, feedback, timeline, avatarURL, isActive, joinDate,
-            department, position, reportsTo, badges, achievements, team, phoneNumber, linkedIn, bio,
-            location, isMentor, isVerified, isAdmin, isEnterprise, isPro, isOnboarded,
-            isProfileComplete, isVisible, isAvailable, isRemote, isManager, isExecutive,
-            isContractor, isFullTime, isPartTime, isIntern, isAlumni, isPending, isSuspended,
-            isDeleted, performanceRating, goalsAchieved
-    }
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        name = try container.decode(String.self, forKey: .name)
-        email = try container.decode(String.self, forKey: .email)
-        role = try container.decodeIfPresent(String.self, forKey: .role)
-        skills = try container.decodeIfPresent([SkillProgress].self, forKey: .skills) ?? []
-        feedbackEntries =
-            try container.decodeIfPresent([FeedbackEntry].self, forKey: .feedback) ?? []
-        performanceRating =
-            try container.decodeIfPresent(Double.self, forKey: .performanceRating) ?? 0.0
-        goalsAchieved = try container.decodeIfPresent(Int.self, forKey: .goalsAchieved) ?? 0
-        isActive = try container.decodeIfPresent(Bool.self, forKey: .isActive) ?? true
-        joinDate = try container.decodeIfPresent(Date.self, forKey: .joinDate)
-        department = try container.decodeIfPresent(String.self, forKey: .department)
-        // The following properties are not directly mapped from the original EmployeeModel struct
-        // and are not included in the new_code, so they will be defaulted or handled elsewhere.
-        // position = try container.decodeIfPresent(String.self, forKey: .position)
-        // reportsTo = try container.decodeIfPresent(String.self, forKey: .reportsTo)
-        // badges = try container.decodeIfPresent([String].self, forKey: .badges) ?? []
-        // achievements = try container.decodeIfPresent([String].self, forKey: .achievements) ?? []
-        // team = try container.decodeIfPresent([String].self, forKey: .team) ?? []
-        // phoneNumber = try container.decodeIfPresent(String.self, forKey: .phoneNumber)
-        // linkedIn = try container.decodeIfPresent(String.self, forKey: .linkedIn)
-        // bio = try container.decodeIfPresent(String.self, forKey: .bio)
-        // location = try container.decodeIfPresent(String.self, forKey: .location)
-        // isMentor = try container.decodeIfPresent(Bool.self, forKey: .isMentor) ?? false
-        // isVerified = try container.decodeIfPresent(Bool.self, forKey: .isVerified) ?? false
-        // isAdmin = try container.decodeIfPresent(Bool.self, forKey: .isAdmin) ?? false
-        // isEnterprise = try container.decodeIfPresent(Bool.self, forKey: .isEnterprise) ?? false
-        // isPro = try container.decodeIfPresent(Bool.self, forKey: .isPro) ?? false
-        // isOnboarded = try container.decodeIfPresent(Bool.self, forKey: .isOnboarded) ?? false
-        // isProfileComplete = try container.decodeIfPresent(Bool.self, forKey: .isProfileComplete) ?? false
-        // isVisible = try container.decodeIfPresent(Bool.self, forKey: .isVisible) ?? true
-        // isAvailable = try container.decodeIfPresent(Bool.self, forKey: .isAvailable) ?? true
-        // isRemote = try container.decodeIfPresent(Bool.self, forKey: .isRemote) ?? false
-        // isManager = try container.decodeIfPresent(Bool.self, forKey: .isManager) ?? false
-        // isExecutive = try container.decodeIfPresent(Bool.self, forKey: .isExecutive) ?? false
-        // isContractor = try container.decodeIfPresent(Bool.self, forKey: .isContractor) ?? false
-        // isFullTime = try container.decodeIfPresent(Bool.self, forKey: .isFullTime) ?? false
-        // isPartTime = try container.decodeIfPresent(Bool.self, forKey: .isPartTime) ?? false
-        // isIntern = try container.decodeIfPresent(Bool.self, forKey: .isIntern) ?? false
-        // isAlumni = try container.decodeIfPresent(Bool.self, forKey: .isAlumni) ?? false
-        // isPending = try container.decodeIfPresent(Bool.self, forKey: .isPending) ?? false
-        // isSuspended = try container.decodeIfPresent(Bool.self, forKey: .isSuspended) ?? false
-        // isDeleted = try container.decodeIfPresent(Bool.self, forKey: .isDeleted) ?? false
-    }
-}
-
 #if DEBUG
     extension EmployeeModel {
         static let mock: EmployeeModel = .init(
@@ -98,21 +57,28 @@ extension EmployeeModel: Decodable {
             email: "jordan.rivera@stryvr.com",
             role: "iOS Engineer",
             department: "Product Development",
-            joinDate: Date(timeIntervalSince1970: 1_672_531_200),
+            joinDate: Date(),
             skills: [
-                SkillProgress(skill: "SwiftUI", progress: 0.88),
-                SkillProgress(skill: "Teamwork", progress: 0.92),
+                SkillProgress(skill: "SwiftUI", progress: 0.85),
+                SkillProgress(skill: "Leadership", progress: 0.72),
+                SkillProgress(skill: "Communication", progress: 0.68),
             ],
             feedbackEntries: [
                 FeedbackEntry(
-                    category: .collaboration, comment: "Always helpful in team tasks.", rating: 5,
-                    date: .now),
+                    category: .collaboration,
+                    comment: "Excellent team player, always willing to help others",
+                    rating: 5,
+                    date: Date()
+                ),
                 FeedbackEntry(
-                    category: .clarity, comment: "Could communicate more clearly during standups.",
-                    rating: 3, date: .now),
+                    category: .clarity,
+                    comment: "Clear communication in meetings and documentation",
+                    rating: 4,
+                    date: Date()
+                ),
             ],
-            performanceRating: 4.6,
-            goalsAchieved: 12,
+            performanceRating: 0.85,
+            goalsAchieved: 8,
             isActive: true
         )
     }

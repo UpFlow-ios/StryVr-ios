@@ -1,3 +1,4 @@
+import OSLog
 import SwiftUI
 
 struct LearningPathsView: View {
@@ -34,14 +35,6 @@ struct LearningPathsView: View {
     }
 }
 
-// MARK: - Models
-
-struct LearningPath: Identifiable {
-    let id = UUID()
-    let title: String
-    let progress: Int
-}
-
 // MARK: - Card UI
 
 struct LearningPathCard: View {
@@ -66,8 +59,6 @@ struct LearningPathCard: View {
 
 // MARK: - Preview
 
-struct LearningPathsView_Previews: PreviewProvider {
-    static var previews: some View {
-        LearningPathsView()
-    }
+#Preview {
+    LearningPathsView()
 }

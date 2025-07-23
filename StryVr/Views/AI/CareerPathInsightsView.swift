@@ -6,9 +6,9 @@
 //  🧠 AI Career Insights View – Personalized Pathway Suggestions
 //
 
+import Foundation
 import OSLog
 import SwiftUI
-import Foundation
 
 struct CareerPathInsightsView: View {
     @State private var skillData: [SkillProgress] = []
