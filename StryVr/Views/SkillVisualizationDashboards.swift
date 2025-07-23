@@ -8,6 +8,7 @@
 
 import Charts
 import Foundation
+import OSLog
 import SwiftUI
 
 /// Displays a user's learning progress with interactive skill visualization charts
