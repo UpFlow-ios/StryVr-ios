@@ -10,9 +10,45 @@ import SwiftUI
 
 struct EmployeeRecognitionBoard: View {
     let topEmployees: [EmployeeModel] = [
-        EmployeeModel(name: "Alex Johnson", role: "Developer", avatar: "avatar_1", completedGoals: 18),
-        EmployeeModel(name: "Briana Lee", role: "UX Designer", avatar: "avatar_2", completedGoals: 16),
-        EmployeeModel(name: "Carlos Wang", role: "Marketing Lead", avatar: "avatar_3", completedGoals: 14),
+        EmployeeModel(
+            id: "emp001",
+            name: "Alex Johnson",
+            role: "Developer",
+            department: "Engineering",
+            email: "alex@stryvr.com",
+            joinDate: Date(),
+            skills: [],
+            feedbackEntries: [],
+            performanceRating: 4.8,
+            goalsAchieved: 18,
+            isActive: true
+        ),
+        EmployeeModel(
+            id: "emp002",
+            name: "Briana Lee",
+            role: "UX Designer",
+            department: "Design",
+            email: "briana@stryvr.com",
+            joinDate: Date(),
+            skills: [],
+            feedbackEntries: [],
+            performanceRating: 4.6,
+            goalsAchieved: 16,
+            isActive: true
+        ),
+        EmployeeModel(
+            id: "emp003",
+            name: "Carlos Wang",
+            role: "Marketing Lead",
+            department: "Marketing",
+            email: "carlos@stryvr.com",
+            joinDate: Date(),
+            skills: [],
+            feedbackEntries: [],
+            performanceRating: 4.4,
+            goalsAchieved: 14,
+            isActive: true
+        ),
     ]
 
     var body: some View {
@@ -26,11 +62,16 @@ struct EmployeeRecognitionBoard: View {
                 ForEach(topEmployees.indices, id: \._self) { index in
                     let employee = topEmployees[index]
                     HStack(spacing: Theme.Spacing.medium) {
-                        Image(employee.avatar)
-                            .resizable()
-                            .scaledToFill()
+                        // Placeholder avatar
+                        Circle()
+                            .fill(Theme.Colors.accent.opacity(0.3))
                             .frame(width: 48, height: 48)
-                            .clipShape(Circle())
+                            .overlay(
+                                Text(String(employee.name.prefix(1)))
+                                    .font(.title2)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(Theme.Colors.accent)
+                            )
 
                         VStack(alignment: .leading) {
                             Text(employee.name)
@@ -41,13 +82,13 @@ struct EmployeeRecognitionBoard: View {
                                 .font(Theme.Typography.caption)
                                 .foregroundColor(Theme.Colors.textSecondary)
 
-                            ProgressView(value: Double(employee.completedGoals), total: 20)
+                            ProgressView(value: Double(employee.goalsAchieved), total: 20)
                                 .tint(Theme.Colors.accent)
                         }
 
                         Spacer()
 
-                        Text("\(employee.completedGoals) Goals")
+                        Text("\(employee.goalsAchieved) Goals")
                             .font(Theme.Typography.caption)
                             .foregroundColor(Theme.Colors.accent)
                     }

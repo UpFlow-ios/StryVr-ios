@@ -46,6 +46,11 @@ struct SkillMatrixEntry: Identifiable, Codable, Hashable {
         rating >= 0.7
     }
 
+    /// Average score for chart display (same as rating for individual entries)
+    var averageScore: Double {
+        return rating
+    }
+
     // MARK: - Placeholder
 
     static let empty = SkillMatrixEntry(

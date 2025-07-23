@@ -15,6 +15,9 @@ struct TeamHealthStat: Identifiable, Codable {
     let wellnessScore: Double // 0–100
     let checkInMood: String // "😊", "😐", "😞"
     let lastActiveDate: Date
+    let week: String // Week identifier
+    let overallHealthScore: Double // 0–100
+    let categories: [HealthCategory] // Health categories
 
     var isRecentlyActive: Bool {
         Calendar.current.isDateInToday(lastActiveDate)
@@ -26,6 +29,19 @@ struct TeamHealthStat: Identifiable, Codable {
         productivityScore: 88.0,
         wellnessScore: 91.0,
         checkInMood: "😊",
-        lastActiveDate: Date()
+        lastActiveDate: Date(),
+        week: "Week 1",
+        overallHealthScore: 89.5,
+        categories: [
+            HealthCategory(name: "Productivity", score: 88.0),
+            HealthCategory(name: "Wellness", score: 91.0),
+            HealthCategory(name: "Collaboration", score: 85.0)
+        ]
     )
+}
+
+struct HealthCategory: Identifiable, Codable {
+    let id = UUID()
+    let name: String
+    let score: Double // 0–100
 }

@@ -45,11 +45,14 @@ struct EmployeeBehaviorFeedbackView: View {
                     VStack(alignment: .leading, spacing: 8) {
                         Text("Rating: \(rating) / 5")
                             .font(Theme.Typography.caption)
-                        Slider(value: Binding(get: {
-                            Double(rating)
-                        }, set: { newValue in
-                            rating = Int(newValue)
-                        }), in: 1 ... 5, step: 1)
+                        Slider(
+                            value: Binding(
+                                get: {
+                                    Double(rating)
+                                },
+                                set: { newValue in
+                                    rating = Int(newValue)
+                                }), in: 1...5, step: 1)
                     }
 
                     // MARK: - Comment Field
@@ -100,23 +103,24 @@ struct EmployeeBehaviorFeedbackView: View {
     private func submitFeedback() {
         let newFeedback = BehaviorFeedback(
             employeeId: employeeId,
-            reviewerId: isAnonymous ? nil : "currentUserId", // TODO: Inject actual user ID from auth
+            reviewerId: isAnonymous ? nil : "currentUserId",  // TODO: Inject actual user ID from auth
             category: selectedCategory,
             rating: rating,
             comment: comment,
             isAnonymous: isAnonymous
         )
 
-        Employee.Behavior.Feedback.shared.submitFeedback(newFeedback) { result in
+        BehaviorFeedbackService.shared.submitFeedback(newFeedback) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success:
-                    print("✅ Feedback submitted to Firestore.")
+                    logger.info("✅ Feedback submitted to Firestore.")
                     showConfirmation = true
                     resetForm()
                 case let .failure(error):
-                    print("❌ Failed to submit feedback: \(error.localizedDescription)")
-                    errorMessage = "Could not submit feedback. Please try again."
+                    logger.error("❌ Failed to submit feedback: \(error.localizedDescription)")
+                    showAlert = true
+                    alertMessage = "Failed to submit feedback. Please try again."
                 }
             }
         }

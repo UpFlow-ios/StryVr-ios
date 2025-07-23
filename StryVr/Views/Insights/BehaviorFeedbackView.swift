@@ -115,7 +115,7 @@ struct EmployeeBehaviorFeedbackView: View {
             isAnonymous: isAnonymous
         )
 
-        Employee.Behavior.Feedback.shared.submitFeedback(newFeedback) { result in
+        BehaviorFeedbackService.shared.submitFeedback(newFeedback) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success:

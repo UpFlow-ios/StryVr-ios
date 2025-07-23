@@ -89,15 +89,19 @@ final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObse
     nonisolated func productsRequest(
         _ request: SKProductsRequest, didReceive response: SKProductsResponse
     ) {
-        availableProducts = response.products
-        logger.info("✅ Retrieved \(self.availableProducts.count) products from App Store")
-        if response.invalidProductIdentifiers.count > 0 {
-            logger.warning("⚠️ Invalid Product IDs: \(response.invalidProductIdentifiers)")
+        Task { @MainActor in
+            availableProducts = response.products
+            logger.info("✅ Retrieved \(self.availableProducts.count) products from App Store")
+            if response.invalidProductIdentifiers.count > 0 {
+                logger.warning("⚠️ Invalid Product IDs: \(response.invalidProductIdentifiers)")
+            }
         }
     }
 
     nonisolated func request(_ request: SKRequest, didFailWithError error: Error) {
-        logger.error("❌ Product request failed: \(error.localizedDescription)")
+        Task { @MainActor in
+            logger.error("❌ Product request failed: \(error.localizedDescription)")
+        }
     }
 
     // MARK: - Transaction Handling

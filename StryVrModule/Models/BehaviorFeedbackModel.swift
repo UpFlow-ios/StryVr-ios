@@ -49,25 +49,3 @@ struct BehaviorFeedback: Identifiable, Codable {
         isAnonymous: true
     )
 }
-
-enum FeedbackCategory: String, Codable, CaseIterable, Identifiable {
-    case attitude
-    case communication
-    case professionalism
-    case punctuality
-    case teamwork
-
-    var id: String { rawValue }
-
-    static var displayNameMap: [FeedbackCategory: String] = [
-        .attitude: "Attitude",
-        .communication: "Communication",
-        .professionalism: "Professionalism",
-        .punctuality: "Punctuality",
-        .teamwork: "Teamwork",
-    ]
-
-    var displayName: String {
-        return FeedbackCategory.displayNameMap[self] ?? rawValue.capitalized
-    }
-}
