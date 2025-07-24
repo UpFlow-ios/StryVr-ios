@@ -6,6 +6,7 @@
 //  📊 Unified Dashboard – Team Health, Behavior, Goals, Feedback Access
 //
 
+import StryVr.Utils.SymbolAnimator
 import SwiftUI
 
 struct EmployeeInsightsDashboard: View {
@@ -43,7 +44,9 @@ struct EmployeeInsightsDashboard: View {
 
                     // MARK: - Feedback History
 
-                    NavigationLink(destination: FeedbackHistoryView(employeeId: "example_employee_id")) {
+                    NavigationLink(
+                        destination: FeedbackHistoryView(employeeId: "example_employee_id")
+                    ) {
                         insightsCard(
                             title: "🧾 Feedback History",
                             description: "View recent feedback submitted for employees",
@@ -53,7 +56,9 @@ struct EmployeeInsightsDashboard: View {
 
                     // MARK: - Progress Timeline
 
-                    NavigationLink(destination: EmployeeProgressTimelineView(employeeId: "example_employee_id")) {
+                    NavigationLink(
+                        destination: EmployeeProgressTimelineView(employeeId: "example_employee_id")
+                    ) {
                         insightsCard(
                             title: "🕒 Progress Timeline",
                             description: "View employee milestones, feedback & achievements",
@@ -84,9 +89,17 @@ struct EmployeeInsightsDashboard: View {
 
             Spacer()
 
-            Image(systemName: systemIcon)
-                .foregroundColor(Theme.Colors.accent)
-                .font(.title2)
+            if systemIcon == "target" {
+                Image(systemName: systemIcon)
+                    .foregroundColor(Theme.Colors.accent)
+                    .font(.title2)
+                    .animateSymbol(true, type: .bounce)
+                    .shadow(color: .blue.opacity(0.5), radius: 10)
+            } else {
+                Image(systemName: systemIcon)
+                    .foregroundColor(Theme.Colors.accent)
+                    .font(.title2)
+            }
         }
         .padding()
         .background(Theme.Colors.card)

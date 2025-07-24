@@ -22,12 +22,20 @@ struct AISkillCoachView: View {
                 VStack(alignment: .leading, spacing: Theme.Spacing.large) {
                     // MARK: - Header
 
-                    Text("AI Skill Coach")
-                        .font(Theme.Typography.headline)
-                        .foregroundColor(Theme.Colors.textPrimary)
-                        .padding(.top, Theme.Spacing.large)
-                        .accessibilityLabel("AI Skill Coach")
-                        .accessibilityHint("Provides personalized skill recommendations and growth insights")
+                    HStack(spacing: 8) {
+                        Image(systemName: "lightbulb.fill")
+                            .foregroundColor(.yellow)
+                            .font(.title2)
+                            .animateSymbol(true, type: .variableColor)
+                            .shadow(color: .yellow.opacity(0.5), radius: 8)
+                        Text("AI Skill Coach")
+                            .font(Theme.Typography.headline)
+                            .foregroundColor(Theme.Colors.textPrimary)
+                    }
+                    .padding(.top, Theme.Spacing.large)
+                    .accessibilityLabel("AI Skill Coach")
+                    .accessibilityHint(
+                        "Provides personalized skill recommendations and growth insights")
 
                     // MARK: - Recommendations
 
@@ -65,7 +73,9 @@ struct AISkillCoachView: View {
                     StryVrCardView(title: "📈 Growth Insights") {
                         if isLoading {
                             ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle(tint: Theme.Colors.accent))
+                                .progressViewStyle(
+                                    CircularProgressViewStyle(tint: Theme.Colors.accent)
+                                )
                                 .accessibilityLabel("Loading progress insights")
                         } else {
                             Text(progressInsights)
@@ -97,7 +107,8 @@ struct AISkillCoachView: View {
                         self.recommendedSkills = skills
                         self.hasError = false
                     case let .failure(error):
-                        print("🔴 Error fetching skill recommendations: \(error.localizedDescription)")
+                        print(
+                            "🔴 Error fetching skill recommendations: \(error.localizedDescription)")
                         self.hasError = true
                     }
                 }
@@ -110,7 +121,8 @@ struct AISkillCoachView: View {
     private func fetchProgressInsights() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             withAnimation {
-                self.progressInsights = "Your coding efficiency has improved by 18% this month. Keep up the great work!"
+                self.progressInsights =
+                    "Your coding efficiency has improved by 18% this month. Keep up the great work!"
                 self.isLoading = false
             }
         }

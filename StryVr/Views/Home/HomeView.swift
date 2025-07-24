@@ -8,6 +8,7 @@
 
 import ConfettiSwiftUI
 import OSLog
+import StryVr.Utils.SymbolAnimator
 import SwiftUI
 
 struct HomeView: View {
@@ -141,7 +142,12 @@ struct HomeView: View {
                         .foregroundColor(dailyGoalCompleted ? .green : Theme.Colors.glassAccent)
                         .font(.title2)
                         .liquidGlassGlow(
-                            color: dailyGoalCompleted ? .green : Theme.Colors.glowAccent)
+                            color: dailyGoalCompleted ? .green : Theme.Colors.glowAccent
+                        )
+                        .animateSymbol(dailyGoalCompleted, type: .bounce)
+                        .shadow(
+                            color: .green.opacity(dailyGoalCompleted ? 0.5 : 0),
+                            radius: dailyGoalCompleted ? 10 : 0)
                 }
             }
 
@@ -163,10 +169,19 @@ struct HomeView: View {
                 .font(Theme.Typography.body)
                 .foregroundColor(Theme.Colors.textPrimary)
 
-            Text("\(currentStreak) Days 🔥 | Best: \(bestStreak) Days 🏆")
-                .font(Theme.Typography.caption)
-                .foregroundColor(Theme.Colors.textSecondary)
-                .multilineTextAlignment(.leading)
+            HStack(spacing: 8) {
+                Text("\(currentStreak) Days")
+                    .font(Theme.Typography.caption)
+                    .foregroundColor(Theme.Colors.textSecondary)
+                Image(systemName: "flame.fill")
+                    .foregroundColor(.orange)
+                    .font(.title3)
+                    .animateSymbol(true, type: .variableColor)
+                    .shadow(color: .orange.opacity(0.5), radius: 8)
+                Text("| Best: \(bestStreak) Days 🏆")
+                    .font(Theme.Typography.caption)
+                    .foregroundColor(Theme.Colors.textSecondary)
+            }
         }
         .padding(Theme.Spacing.large)
         .liquidGlassCard()
@@ -199,10 +214,16 @@ struct HomeView: View {
                 .font(Theme.Typography.body)
                 .foregroundColor(Theme.Colors.textPrimary)
 
-            Text("\(recentAchievementsCount) Badges Unlocked 🏅")
-                .font(Theme.Typography.caption)
-                .foregroundColor(Theme.Colors.textSecondary)
-                .multilineTextAlignment(.leading)
+            HStack(spacing: 8) {
+                Image(systemName: "star.fill")
+                    .foregroundColor(.yellow)
+                    .font(.title3)
+                    .animateSymbol(true, type: .pulse)
+                    .shadow(color: .yellow.opacity(0.5), radius: 8)
+                Text("\(recentAchievementsCount) Badges Unlocked 🏅")
+                    .font(Theme.Typography.caption)
+                    .foregroundColor(Theme.Colors.textSecondary)
+            }
         }
         .padding(Theme.Spacing.large)
         .liquidGlassCard()

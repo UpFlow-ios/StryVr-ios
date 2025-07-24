@@ -128,6 +128,42 @@ struct LeaderboardView: View {
     }
 }
 
+struct LeaderboardRow: View {
+    let user: LeaderboardUser
+    var isTopUser: Bool { user.rank == 1 }
+    var body: some View {
+        HStack(spacing: 12) {
+            if isTopUser {
+                Image(systemName: "crown.fill")
+                    .foregroundColor(.yellow)
+                    .font(.title2)
+                    .animateSymbol(true, type: .bounce)
+                    .shadow(color: .yellow.opacity(0.5), radius: 8)
+            }
+            user.profileImage
+                .resizable()
+                .frame(width: 40, height: 40)
+                .clipShape(Circle())
+                .overlay(Circle().stroke(Theme.Colors.accent, lineWidth: isTopUser ? 3 : 1))
+            VStack(alignment: .leading) {
+                Text(user.name)
+                    .font(.headline)
+                    .foregroundColor(Theme.Colors.textPrimary)
+                Text("Points: \(user.totalPoints)")
+                    .font(.caption)
+                    .foregroundColor(Theme.Colors.textSecondary)
+            }
+            Spacer()
+            Text("#\(user.rank)")
+                .font(.title3.bold())
+                .foregroundColor(isTopUser ? .yellow : Theme.Colors.textSecondary)
+        }
+        .padding(.vertical, 8)
+        .background(isTopUser ? Theme.Colors.glassAccent.opacity(0.2) : Color.clear)
+        .cornerRadius(12)
+    }
+}
+
 // MARK: - Preview
 #if DEBUG
     struct LeaderboardView_Previews: PreviewProvider {
