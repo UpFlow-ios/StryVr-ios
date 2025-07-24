@@ -9,6 +9,7 @@
 import Combine
 import Foundation
 import OSLog
+import StryVr.Services
 
 final class HomeViewModel: ObservableObject {
     // MARK: - Published Properties

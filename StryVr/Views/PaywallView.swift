@@ -5,9 +5,12 @@
 //  Created by Joe Dormond on 3/12/25.
 //
 
-import os.log
 import StoreKit
+import StryVr.Models
+import StryVr.Views.UITheme
 import SwiftUI
+import ThemeManager
+import os.log
 
 /// Displays the paywall with AI-based trial recommendations and premium offers
 struct PaywallView: View {
@@ -23,32 +26,32 @@ struct PaywallView: View {
             Color.background.ignoresSafeArea()
 
             ScrollView {
-                VStack(spacing: Spacing.large) {
+                VStack(spacing: Theme.Spacing.large) {
                     // MARK: - Header
 
-                    VStack(spacing: Spacing.small) {
+                    VStack(spacing: Theme.Spacing.small) {
                         Text("🔓 Unlock Your Full Potential!")
-                            .font(FontStyle.title)
+                            .font(Font.Style.title)
                             .foregroundColor(.whiteText)
                             .multilineTextAlignment(.center)
 
                         Text("Upgrade to premium and access exclusive learning features.")
-                            .font(FontStyle.body)
+                            .font(Font.Style.body)
                             .foregroundColor(.lightGray)
                             .multilineTextAlignment(.center)
 
                         if let offer = limitedTimeOffer {
                             Text("🔥 Special Offer: \(offer)")
-                                .font(FontStyle.caption)
+                                .font(Font.Style.caption)
                                 .foregroundColor(.red)
                         }
                     }
-                    .padding(.top, Spacing.large)
+                    .padding(.top, Theme.Spacing.large)
                     .accessibilityElement(children: .combine)
 
                     // MARK: - Plan Selector
 
-                    VStack(spacing: Spacing.medium) {
+                    VStack(spacing: Theme.Spacing.medium) {
                         ForEach(SubscriptionPlan.allCases, id: \.self) { plan in
                             SubscriptionOption(plan: plan, selectedPlan: $selectedPlan)
                         }
@@ -56,14 +59,14 @@ struct PaywallView: View {
 
                     // MARK: - Action Button
 
-                    VStack(spacing: Spacing.medium) {
+                    VStack(spacing: Theme.Spacing.medium) {
                         Button(action: purchaseSubscription) {
                             if isProcessingPayment {
                                 ProgressView()
                                     .progressViewStyle(CircularProgressViewStyle(tint: .white))
                             } else {
                                 Text("Upgrade to \(selectedPlan.rawValue.capitalized)")
-                                    .font(FontStyle.buttonText)
+                                    .font(Font.Style.buttonText)
                                     .foregroundColor(.white)
                                     .frame(maxWidth: .infinity)
                                     .padding()
@@ -75,13 +78,13 @@ struct PaywallView: View {
                         .accessibilityLabel("Upgrade to \(selectedPlan.rawValue)")
 
                         Button("Restore Purchase", action: restorePurchases)
-                            .font(FontStyle.caption)
+                            .font(Font.Style.caption)
                             .foregroundColor(.lightGray)
                     }
 
                     Spacer()
                 }
-                .padding(.horizontal, Spacing.large)
+                .padding(.horizontal, Theme.Spacing.large)
             }
         }
         .onAppear {
@@ -89,7 +92,9 @@ struct PaywallView: View {
             checkLimitedTimeOffers()
         }
         .alert(isPresented: $showAlert) {
-            Alert(title: Text("Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+            Alert(
+                title: Text("Error"), message: Text(alertMessage),
+                dismissButton: .default(Text("OK")))
         }
     }
 
@@ -127,7 +132,7 @@ struct PaywallView: View {
         DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
             DispatchQueue.main.async {
                 self.selectedPlan = recommended
-                let recommended: SubscriptionPlan = .premium // Replace with AI logic later
+                let recommended: SubscriptionPlan = .premium  // Replace with AI logic later
                 logger.info("🧠 AI Recommended Plan: \(recommended.rawValue)")
             }
         }
