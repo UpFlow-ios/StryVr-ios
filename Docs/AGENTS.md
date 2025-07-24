@@ -213,4 +213,9 @@ index 0000000000000000000000000000000000000000..edecf2286d3fc5bba702e6d2a1e396d3
 +
 +**Triggered When:**  
 +User opens personalized learning feeds
-+
+
+### Future Enhancements
+- Consider adding a global animation toggle in SettingsView to allow users to enable/disable animated SF Symbols for accessibility or battery savings.
+
+## UI/UX Guidelines
+- All system icons (SF Symbols) must use the `.animateSymbol()` modifier for stateful or on-appear animation, per July 2025 Apple HIG. See Utils/SymbolAnimator.swift for implementation.

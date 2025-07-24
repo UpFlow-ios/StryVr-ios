@@ -6,6 +6,8 @@
 //  🎨 Centralized Theme Config for Layout, Fonts, Colors & Shadows
 //  🌟 Enhanced with Liquid Glass UI & Premium Visual Effects
 //
+//  🌀 Animated SF Symbols: All SF Symbol icons should use the .animateSymbol() modifier from Utils/SymbolAnimator.swift for stateful or on-appear animation, per July 2025 Apple HIG. See AGENTS.md for details.
+//
 
 import SwiftUI
 

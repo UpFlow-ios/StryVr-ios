@@ -198,3 +198,21 @@ StryVr/
 **Architecture**: SwiftUI MVVM with Liquid Glass UI  
 **Target**: Professional-grade, market-dominating iOS app
 
+## 🌀 Animated SF Symbols (July 2025 HIG Compliance)
+
+All system icons (SF Symbols) in StryVr should use the `.animateSymbol()` modifier from `Utils/SymbolAnimator.swift` for stateful or on-appear animations, in line with July 2025 Apple HIG updates.
+
+- Use `.animateSymbol(_:, type:)` for animating SF Symbols in SwiftUI.
+- Prefer `.bounce`, `.pulse`, or `.variableColor` for expressive, context-appropriate feedback.
+- See `HomeView`, `ProfileView`, `LeaderboardView`, and `EmployeeInsightsDashboard` for implementation examples.
+- Do **not** animate icons on every frame—only on state change, .onAppear, or user interaction.
+- Maintain all visual styling via `ThemeManager.swift` and global view modifiers.
+
+**Reference:**
+```swift
+Image(systemName: "checkmark.circle.fill")
+    .animateSymbol(isCompleted, type: .bounce)
+```
+
+> This is a required UI/UX standard for all new features and code reviews as of July 2025.
+
