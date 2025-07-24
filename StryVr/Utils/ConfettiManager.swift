@@ -14,6 +14,7 @@ import SwiftUI
 /// Call `ConfettiManager.shared.triggerConfetti()` to trigger the animation.
 
 /// Singleton manager to trigger confetti from anywhere in the app
+@MainActor
 final class ConfettiManager: ObservableObject {
     static let shared = ConfettiManager()
 
@@ -30,11 +31,9 @@ final class ConfettiManager: ObservableObject {
 
     /// Call this to launch a confetti burst
     func triggerConfetti(particles: Int? = nil) {
-        DispatchQueue.main.async {
-            if let particles = particles {
-                self.numberOfParticles = particles
-            }
-            self.counter += 1
+        if let particles = particles {
+            self.numberOfParticles = particles
         }
+        self.counter += 1
     }
 }

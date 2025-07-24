@@ -62,11 +62,11 @@ struct SkillVisualizationDashboards: View {
                             StryVrCardView(title: "Skill Growth Overview") {
                                 Chart(skillProgress) { progress in
                                     BarMark(
-                                        x: .value("Skill", progress.skillName),
-                                        y: .value("Progress", progress.percentage * 100)
+                                        x: .value("Skill", progress.skill),
+                                        y: .value("Progress", progress.progress * 100)
                                     )
                                     .foregroundStyle(
-                                        progress.percentage > 0.8 ? .green : Theme.Colors.accent)
+                                        progress.progress > 0.8 ? .green : Theme.Colors.accent)
                                 }
                                 .frame(height: 240)
                                 .chartYAxis {
@@ -129,14 +129,14 @@ struct SkillVisualizationDashboards: View {
     // MARK: - AI Insight Logic
 
     private func generateAIInsights(from progressData: [SkillProgress]) -> String {
-        guard let topSkill = progressData.max(by: { $0.percentage < $1.percentage }) else {
+        guard let topSkill = progressData.max(by: { $0.progress < $1.progress }) else {
             return "📘 Keep learning to unlock AI-powered progress insights."
         }
 
         let improvementAreas =
             progressData
-            .filter { $0.percentage < 0.5 }
-            .map { $0.skillName }
+            .filter { $0.progress < 0.5 }
+            .map { $0.skill }
 
         let improvementText =
             improvementAreas.isEmpty
@@ -144,7 +144,7 @@ struct SkillVisualizationDashboards: View {
             : "🧠 Focus more on: \(improvementAreas.joined(separator: ", "))"
 
         return
-            "🌟 Your top skill is **\(topSkill.skillName)** at \(Int(topSkill.percentage * 100))% mastery. \(improvementText)"
+            "🌟 Your top skill is **\(topSkill.skill)** at \(Int(topSkill.progress * 100))% mastery. \(improvementText)"
     }
 
     // MARK: - Error Handling
