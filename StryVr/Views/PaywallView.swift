@@ -6,7 +6,6 @@
 //
 
 import StoreKit
-import StryVr.Views.UITheme
 import SwiftUI
 import ThemeManager
 import os.log
