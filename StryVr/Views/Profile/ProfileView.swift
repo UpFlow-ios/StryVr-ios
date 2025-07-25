@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SymbolAnimator
 
 struct ProfileView: View {
     @EnvironmentObject var authViewModel: AuthViewModel

@@ -59,9 +59,15 @@ struct FeedbackEntry: Codable, Hashable {
             department: "Product Development",
             joinDate: Date(),
             skills: [
-                SkillProgress(skill: "SwiftUI", progress: 0.85),
-                SkillProgress(skill: "Leadership", progress: 0.72),
-                SkillProgress(skill: "Communication", progress: 0.68),
+                SkillProgress(
+                    skillId: "swiftui", skillName: "SwiftUI", currentLevel: 4,
+                    progressPercentage: 0.85),
+                SkillProgress(
+                    skillId: "leadership", skillName: "Leadership", currentLevel: 3,
+                    progressPercentage: 0.72),
+                SkillProgress(
+                    skillId: "communication", skillName: "Communication", currentLevel: 3,
+                    progressPercentage: 0.68),
             ],
             feedbackEntries: [
                 FeedbackEntry(
@@ -86,6 +92,18 @@ struct FeedbackEntry: Codable, Hashable {
 
 extension EmployeeModel {
     static let mockData: [EmployeeModel] = [
-        .init(id: "e1", name: "Tara", role: "iOS Engineer", department: "Mobile")
+        .init(
+            id: "e1",
+            name: "Tara",
+            role: "iOS Engineer",
+            department: "Mobile",
+            email: "tara@stryvr.com",
+            joinDate: Date(),
+            skills: [],
+            feedbackEntries: [],
+            performanceRating: 0.8,
+            goalsAchieved: 5,
+            isActive: true
+        )
     ]
 }

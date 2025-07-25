@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SymbolAnimator
 
 struct EmployeeInsightsDashboard: View {
     var body: some View {

@@ -2,45 +2,56 @@
 //  SkillProgress.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 3/26/25
-//
-//  📈 Skill Progress Model – Tracks user's progress and proficiency level per skill
+//  Created for StryVr iOS app.
+//  Defines the SkillProgress model used throughout the app for tracking skill development.
 //
 
 import Foundation
 
-/// Represents progress made on a specific skill
-struct SkillProgress: Identifiable, Codable, Hashable {
-    /// Unique identifier for the skill progress
-    let id = UUID()
-    /// Name of the skill
-    var skill: String
-    /// Progress level (0.0 = no progress, 1.0 = fully mastered)
-    var progress: Double
+struct SkillProgress: Codable, Identifiable {
+    let id: String
+    let skillId: String
+    let skillName: String
+    let currentLevel: Int
+    let maxLevel: Int
+    let progressPercentage: Double
+    let experiencePoints: Int
+    let lastUpdated: Date
+    let isCompleted: Bool
 
-    // MARK: - Computed Properties
+    init(
+        id: String = UUID().uuidString,
+        skillId: String,
+        skillName: String,
+        currentLevel: Int = 1,
+        maxLevel: Int = 5,
+        progressPercentage: Double = 0.0,
+        experiencePoints: Int = 0,
+        lastUpdated: Date = Date(),
+        isCompleted: Bool = false
+    ) {
+        self.id = id
+        self.skillId = skillId
+        self.skillName = skillName
+        self.currentLevel = currentLevel
+        self.maxLevel = maxLevel
+        self.progressPercentage = progressPercentage
+        self.experiencePoints = experiencePoints
+        self.lastUpdated = lastUpdated
+        self.isCompleted = isCompleted
+    }
+}
 
-    /// Converts progress to a readable string
-    var progressLabel: String {
-        switch progress {
-        case 0.8...1.0: return "Excellent"
-        case 0.6..<0.8: return "Good"
-        case 0.4..<0.6: return "Average"
-        case 0.2..<0.4: return "Below Average"
-        default: return "Needs Improvement"
-        }
+extension SkillProgress {
+    var levelDisplay: String {
+        return "Level \(currentLevel)/\(maxLevel)"
     }
 
-    // MARK: - Validation
-
-    /// Validates that the progress is within the valid range
-    var isValid: Bool {
-        (0.0...1.0).contains(progress)
+    var progressDisplay: String {
+        return "\(Int(progressPercentage * 100))%"
     }
 
-    // MARK: - Legacy Initializer Support
-    init(skillName: String, percentage: Double) {
-        self.skill = skillName
-        self.progress = percentage
+    var isMaxLevel: Bool {
+        return currentLevel >= maxLevel
     }
 }

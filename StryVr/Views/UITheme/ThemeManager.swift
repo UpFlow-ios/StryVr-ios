@@ -23,7 +23,15 @@ struct Theme {
         static let textPrimary = Color.primary
         static let textSecondary = Color.secondary
         static let whiteText = Color.white
-        // Add any other used colors here
+        static let lightGray = Color(.systemGray3)
+
+        // Liquid Glass UI Colors
+        static let glowPrimary = Color.blue.opacity(0.3)
+        static let glowSecondary = Color.purple.opacity(0.3)
+        static let glowAccent = Color.blue.opacity(0.4)
+        static let glassPrimary = Color.white.opacity(0.1)
+        static let glassSecondary = Color.white.opacity(0.05)
+        static let glassAccent = Color.blue.opacity(0.1)
     }
 
     // MARK: - Typography (Apple HIG + Rounded)
@@ -34,7 +42,8 @@ struct Theme {
         static let body = Font.system(size: 16)
         static let caption = Font.system(size: 13)
         static let subheadline = Font.system(size: 17, weight: .medium)
-        // Add any other used fonts here
+        static let buttonText = Font.system(size: 16, weight: .semibold)
+        static let title = Font.system(size: 24, weight: .bold)
     }
 
     // MARK: - Corner Radius (UI Layout Tokens)

@@ -9,6 +9,7 @@
 import FirebaseFirestore
 import OSLog
 import SwiftUI
+import SymbolAnimator
 
 struct LeaderboardView: View {
     @State private var topLearners: [LeaderboardUser] = []
