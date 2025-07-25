@@ -7,7 +7,6 @@
 
 import StoreKit
 import SwiftUI
-import ThemeManager
 import os.log
 
 /// Displays the paywall with AI-based trial recommendations and premium offers
