@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import SymbolAnimator
 
 struct AISkillCoachView: View {
     @State private var recommendedSkills: [String] = []

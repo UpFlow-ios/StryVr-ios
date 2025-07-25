@@ -9,7 +9,6 @@
 import ConfettiSwiftUI
 import OSLog
 import SwiftUI
-import SymbolAnimator
 
 struct HomeView: View {
     @State private var dailyGoalCompleted = false
