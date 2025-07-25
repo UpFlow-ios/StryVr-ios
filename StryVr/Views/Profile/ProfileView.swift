@@ -5,7 +5,6 @@
 //  👤 Connected Profile View with AuthViewModel Integration
 //
 
-import StryVr.Utils.SymbolAnimator
 import SwiftUI
 
 struct ProfileView: View {
@@ -94,5 +93,5 @@ struct ProfileView: View {
 
 #Preview {
     ProfileView()
-        .environmentObject(AuthViewModel.shared)
+        .environmentObject(AuthViewModel.previewMock)
 }

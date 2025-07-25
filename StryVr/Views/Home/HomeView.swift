@@ -8,7 +8,6 @@
 
 import ConfettiSwiftUI
 import OSLog
-import StryVr.Utils.SymbolAnimator
 import SwiftUI
 
 struct HomeView: View {
@@ -22,7 +21,6 @@ struct HomeView: View {
     @StateObject private var aiGreetingManager = AIGreetingManager.shared
     @EnvironmentObject var authViewModel: AuthViewModel
 
-    @Environment(\.isDebug) var isDebug
     @State private var showDevPanel = false
 
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "HomeView")
@@ -76,7 +74,7 @@ struct HomeView: View {
 
                 // MARK: - Hidden Long-Press Dev Trigger (Debug Only)
 
-                if isDebug {
+                #if DEBUG
                     Color.clear
                         .frame(width: 44, height: 44)
                         .contentShape(Rectangle())
@@ -84,7 +82,7 @@ struct HomeView: View {
                             showDevPanel = true
                         }
                         .position(x: 40, y: 40)
-                }
+                #endif
             }
             .background(Theme.LiquidGlass.background.ignoresSafeArea())
             .navigationTitle("Home")
@@ -293,5 +291,5 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
-        .environmentObject(AuthViewModel.shared)
+        .environmentObject(AuthViewModel.previewMock)
 }

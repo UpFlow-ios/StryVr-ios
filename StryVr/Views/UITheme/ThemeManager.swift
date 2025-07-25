@@ -12,48 +12,29 @@
 import SwiftUI
 
 /// Global Theme Configuration used throughout StryVr
-enum Theme {
+struct Theme {
     // MARK: - Color Palette (Asset-based)
 
     /// Defines the app's primary color palette, with optional fallbacks.
-    enum Colors {
-        static let safeTextPrimary = Color("TextPrimaryColor")
-        static let safeTextSecondary = Color("TextSecondaryColor")
-        static let background = Color("BackgroundColor")
-        static let textPrimary = Color("TextPrimaryColor")
-        static let textSecondary = Color("TextSecondaryColor")
-        static let accent = Color("AccentColor")
-        static let whiteText = Color.white  // ✅ Add this to fix missing 'whiteText'
-        static let card = Color("Card")
-
-        // MARK: - Liquid Glass UI Colors
-        static let glassPrimary = Color.blue.opacity(0.8)
-        static let glassSecondary = Color.purple.opacity(0.6)
-        static let glassAccent = Color.cyan.opacity(0.7)
-        static let glowPrimary = Color.blue.opacity(0.3)
-        static let glowSecondary = Color.purple.opacity(0.2)
-        static let glowAccent = Color.cyan.opacity(0.25)
-
-        /// Fallbacks (optional)
-        enum Fallback {
-            static let primary = Color(hex: "#4FC3F7")
-            static let background = Color(hex: "#0D0D0D")
-            static let textPrimary = Color.white
-            static let textSecondary = Color(hex: "#AAAAAA")
-            static let accent = Color(hex: "#FF4081")
-            static let card = Color(hex: "#1A1A1A")
-        }
+    struct Colors {
+        static let card = Color(.systemGray6)
+        static let background = Color(.systemBackground)
+        static let accent = Color.blue
+        static let textPrimary = Color.primary
+        static let textSecondary = Color.secondary
+        static let whiteText = Color.white
+        // Add any other used colors here
     }
 
     // MARK: - Typography (Apple HIG + Rounded)
 
     /// Defines the app's typography styles for consistent text appearance.
-    enum Typography {
-        static let headline = Font.system(size: 24, weight: .bold, design: .rounded)
-        static let subheadline = Font.system(size: 20, weight: .medium, design: .rounded)
-        static let body = Font.system(size: 16, weight: .regular, design: .default)
-        static let caption = Font.system(size: 14, weight: .light, design: .default)
-        static let buttonText = Font.system(size: 18, weight: .semibold, design: .rounded)
+    struct Typography {
+        static let headline = Font.system(size: 20, weight: .bold)
+        static let body = Font.system(size: 16)
+        static let caption = Font.system(size: 13)
+        static let subheadline = Font.system(size: 17, weight: .medium)
+        // Add any other used fonts here
     }
 
     // MARK: - Corner Radius (UI Layout Tokens)

@@ -6,7 +6,6 @@
 //  📊 Unified Dashboard – Team Health, Behavior, Goals, Feedback Access
 //
 
-import StryVr.Utils.SymbolAnimator
 import SwiftUI
 
 struct EmployeeInsightsDashboard: View {
@@ -110,4 +109,5 @@ struct EmployeeInsightsDashboard: View {
 
 #Preview {
     EmployeeInsightsDashboard()
+        .environmentObject(AuthViewModel.previewMock)
 }

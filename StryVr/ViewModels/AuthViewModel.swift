@@ -196,3 +196,17 @@ final class AuthViewModel: ObservableObject {
         logger.error("❌ FirebaseAuth detailed error: \(error.localizedDescription)")
     }
 }
+
+extension AuthViewModel {
+    static var previewMock: AuthViewModel {
+        let vm = AuthViewModel()
+        // Set up a mock user session or any preview data here
+        vm.userSession = UserSession(
+            id: "preview-user",
+            displayName: "Preview User",
+            email: "preview@stryvr.com",
+            photoURL: nil
+        )
+        return vm
+    }
+}
