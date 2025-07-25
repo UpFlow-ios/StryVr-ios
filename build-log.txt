@@ -1,0 +1,12 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild clean build -scheme StryVr -destination "platform=iOS Simulator,name=iPhone 15 Pro"
+
+User defaults from command line:
+    IDEPackageSupportUseBuiltinSCM = YES
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  stryvr-ios: /Users/joedormond/Documents/stryvr-ios
+
