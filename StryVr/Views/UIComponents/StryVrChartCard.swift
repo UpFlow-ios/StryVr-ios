@@ -28,8 +28,8 @@ struct StryVrChartCard: View {
             } else {
                 Chart(data) {
                     BarMark(
-                        x: .value("Skill", $0.skill),
-                        y: .value("Progress", $0.progress)
+                        x: .value("Skill", $0.skillName),
+                        y: .value("Progress", $0.progressPercentage)
                     )
                     .foregroundStyle(barColor)
                 }

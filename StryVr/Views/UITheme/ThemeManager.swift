@@ -172,22 +172,24 @@ struct Theme {
 
 extension View {
     /// Apply Liquid Glass card styling
-    func liquidGlassCard() -> some View {
+    func liquidGlassCard() -> ModifiedContent<Self, Theme.LiquidGlass.CardStyle> {
         self.modifier(Theme.LiquidGlass.CardStyle())
     }
 
     /// Apply Liquid Glass button styling
-    func liquidGlassButton() -> some View {
+    func liquidGlassButton() -> ModifiedContent<Self, Theme.LiquidGlass.ButtonStyle> {
         self.modifier(Theme.LiquidGlass.ButtonStyle())
     }
 
     /// Apply glow effect
-    func liquidGlassGlow(color: Color = Theme.Colors.glowPrimary) -> some View {
+    func liquidGlassGlow(color: Color = Theme.Colors.glowPrimary) -> ModifiedContent<
+        Self, Theme.LiquidGlass.GlowEffect
+    > {
         self.modifier(Theme.LiquidGlass.GlowEffect(color: color))
     }
 
     /// Apply depth blur background
-    func liquidGlassDepth() -> some View {
+    func liquidGlassDepth() -> ModifiedContent<Self, Theme.LiquidGlass.DepthBlur> {
         self.modifier(Theme.LiquidGlass.DepthBlur())
     }
 }

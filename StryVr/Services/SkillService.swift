@@ -14,6 +14,12 @@ import OSLog
 final class SkillService: SkillServiceProtocol {
     static let shared = SkillService()
 
+    // MARK: - Concurrency Safety
+    @MainActor
+    static func getShared() -> SkillService {
+        return shared
+    }
+
     private let logger = Logger(subsystem: "com.stryvr.app", category: "SkillService")
 
     private init() {}
