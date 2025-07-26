@@ -137,14 +137,16 @@ struct HomeView: View {
                     }
                 }) {
                     Image(systemName: dailyGoalCompleted ? "checkmark.circle.fill" : "circle")
-                        .foregroundColor(dailyGoalCompleted ? .green : Theme.Colors.glassAccent)
+                        .foregroundColor(
+                            dailyGoalCompleted ? Color.green : Theme.Colors.glassAccent
+                        )
                         .font(.title2)
                         .liquidGlassGlow(
-                            color: dailyGoalCompleted ? .green : Theme.Colors.glowAccent
+                            color: dailyGoalCompleted ? Color.green : Theme.Colors.glowAccent
                         )
                         .animateSymbol(dailyGoalCompleted, type: "bounce")
                         .shadow(
-                            color: .green.opacity(dailyGoalCompleted ? 0.5 : 0),
+                            color: Color.green.opacity(dailyGoalCompleted ? 0.5 : 0),
                             radius: dailyGoalCompleted ? 10 : 0)
                 }
             }
