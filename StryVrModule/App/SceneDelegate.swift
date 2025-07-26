@@ -5,17 +5,18 @@
 //  🌐 Manages App Window & Session Routing
 //
 
-#if canImport(FirebaseAuth)
-import FirebaseAuth
-#endif
-#if canImport(FirebaseCore)
-import FirebaseCore
-#endif
-#if canImport(os)
-import os.log
-#endif
+import OSLog
 import SwiftUI
 import UIKit
+
+#if canImport(FirebaseAuth)
+    import FirebaseAuth
+#endif
+#if canImport(FirebaseCore)
+    import FirebaseCore
+#endif
+
+private let logger = Logger(subsystem: "com.stryvr.app", category: "SceneDelegate")
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -26,18 +27,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         options _: UIScene.ConnectionOptions
     ) {
         guard let windowScene = (scene as? UIWindowScene) else {
-            os_log("❌ Failed to cast scene to UIWindowScene", log: .default, type: .error)
+            logger.error("❌ Failed to cast scene to UIWindowScene")
             return
         }
 
         // ✅ Initialize Firebase if not already done
         if FirebaseApp.app() == nil {
             FirebaseApp.configure()
-            os_log("🔥 Firebase configured in SceneDelegate", log: .default, type: .info)
+            logger.info("🔥 Firebase configured in SceneDelegate")
         }
 
         // ✅ Determine initial view
-        let contentView: some View = Auth.auth().currentUser != nil
+        let contentView: some View =
+            Auth.auth().currentUser != nil
             ? AnyView(HomeView())
             : AnyView(LoginView())
 
@@ -47,15 +49,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = window
         window.makeKeyAndVisible()
 
-        os_log("✅ UIWindow attached to root view", log: .default, type: .info)
+        logger.info("✅ UIWindow attached to root view")
     }
 
     func sceneDidBecomeActive(_: UIScene) {
-        os_log("🔄 Scene became active", log: .default, type: .info)
+        logger.info("🔄 Scene became active")
     }
 
     func sceneWillResignActive(_: UIScene) {
-        os_log("⏸️ Scene will resign active", log: .default, type: .info)
+        logger.info("⏸️ Scene will resign active")
     }
 
     func sceneDidEnterBackground(_: UIScene) {
@@ -69,7 +71,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // MARK: - Session Management
 
     private func saveAppState() {
-        os_log("💾 Saving app state", log: .default, type: .info)
+        logger.info("💾 Saving app state")
         // Placeholder: persist user or app data here
     }
 
@@ -77,7 +79,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let window = window else { return }
 
         if Auth.auth().currentUser == nil {
-            os_log("🔐 No active user session. Redirecting to LoginView.", log: .default, type: .info)
+            logger.info("🔐 No active user session. Redirecting to LoginView.")
             DispatchQueue.main.async {
                 window.rootViewController = UIHostingController(rootView: LoginView())
             }

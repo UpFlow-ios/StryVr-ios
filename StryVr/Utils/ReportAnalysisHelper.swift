@@ -7,7 +7,9 @@
 //
 
 import Foundation
-import os.log
+import OSLog
+
+private let logger = Logger(subsystem: "com.stryvr.app", category: "ReportAnalysis")
 
 // MARK: - ReportAnalysisHelper
 
@@ -29,6 +31,8 @@ enum ReportAnalysisHelper {
         let averages = skillTotals.compactMapValues { total, count -> Double? in
             guard count > 0 else { return nil }
             let average = total / Double(count)
+            logger.info(
+                "📊 Skill \($0) average: \(average, format: .number.precision(.fractionLength(2)))")
             return average
         }
 
@@ -70,6 +74,7 @@ enum ReportAnalysisHelper {
             return (report1?.overallScore ?? 0) > (report2?.overallScore ?? 0)
         })
 
+        logger.info("🏅 Top \(topCount) users calculated.")
         return Array(sortedUsers.prefix(topCount))
     }
 
@@ -80,10 +85,13 @@ enum ReportAnalysisHelper {
     /// - Returns: `[String]` weak skill names.
     static func findWeakSkills(from reports: [LearningReport], threshold: Double = 50.0) -> [String]
     {
-        calculateAverageSkillProgress(from: reports)
+        let weakSkills = calculateAverageSkillProgress(from: reports)
             .filter { $0.value < threshold }
             .map { $0.key }
             .sorted()
+
+        logger.warning("⚠️ Weak skills: \(weakSkills.joined(separator: ", "))")
+        return weakSkills
     }
 }
 

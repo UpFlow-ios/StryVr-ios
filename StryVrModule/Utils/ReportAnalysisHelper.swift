@@ -7,9 +7,9 @@
 //
 
 import Foundation
-#if canImport(os)
-import os.log
-#endif
+import OSLog
+
+private let logger = Logger(subsystem: "com.stryvr.app", category: "ReportAnalysis")
 
 // MARK: - ReportAnalysisHelper
 
@@ -30,7 +30,8 @@ enum ReportAnalysisHelper {
         let averages = skillTotals.compactMapValues { total, count -> Double? in
             guard count > 0 else { return nil }
             let average = total / Double(count)
-            os_log("📊 Skill %{public}@ average: %{public}.2f", skill, average)
+            logger.info(
+                "📊 Skill \($0) average: \(average, format: .number.precision(.fractionLength(2)))")
             return average
         }
 
@@ -48,12 +49,13 @@ enum ReportAnalysisHelper {
         for report in reports {
             guard !report.skillsProgress.isEmpty else { continue }
             var user = report.user
-            user.averageProgress = report.skillsProgress.values.reduce(0, +) / Double(report.skillsProgress.count)
+            user.averageProgress =
+                report.skillsProgress.values.reduce(0, +) / Double(report.skillsProgress.count)
             userProgress.append(user)
         }
 
         let sortedUsers = userProgress.sorted(by: { $0.averageProgress > $1.averageProgress })
-        os_log("🏅 Top %{public}d users calculated.", topCount)
+        logger.info("🏅 Top \(topCount) users calculated.")
 
         return Array(sortedUsers.prefix(topCount))
     }
@@ -63,14 +65,15 @@ enum ReportAnalysisHelper {
     ///   - reports: `[LearningReport]` array.
     ///   - threshold: Skill threshold, default is 50.0.
     /// - Returns: `[String]` weak skill names.
-    static func findWeakSkills(from reports: [LearningReport], threshold: Double = 50.0) -> [String] {
-        calculateAverageSkillProgress(from: reports)
+    static func findWeakSkills(from reports: [LearningReport], threshold: Double = 50.0) -> [String]
+    {
+        let weakSkills = calculateAverageSkillProgress(from: reports)
             .filter { $0.value < threshold }
             .map { $0.key }
             .sorted()
-            .also { weakSkills in
-                os_log("⚠️ Weak skills: %{public}@", weakSkills.joined(separator: ", "))
-            }
+
+        logger.warning("⚠️ Weak skills: \(weakSkills.joined(separator: ", "))")
+        return weakSkills
     }
 }
 

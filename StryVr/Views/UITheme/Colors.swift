@@ -9,6 +9,8 @@
 import OSLog
 import SwiftUI
 
+private let logger = Logger(subsystem: "com.stryvr.app", category: "Colors")
+
 extension Color {
     // MARK: - Hex initializer with optional opacity
 
@@ -33,7 +35,7 @@ extension Color {
             r = 0.0
             g = 0.0
             b = 0.0
-            os_log("⚠️ Invalid hex string: %{public}@", log: .default, type: .error, hex)
+            logger.error("⚠️ Invalid hex string: \(hex)")
         }
 
         self.init(.sRGB, red: r, green: g, blue: b, opacity: opacity)

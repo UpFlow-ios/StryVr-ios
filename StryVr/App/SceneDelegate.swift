@@ -9,6 +9,8 @@ import OSLog
 import SwiftUI
 import UIKit
 
+private let logger = Logger(subsystem: "com.stryvr.app", category: "SceneDelegate")
+
 #if !DEBUG_TESTING
     import FirebaseCore
     import FirebaseAuth

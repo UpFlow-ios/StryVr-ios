@@ -6,11 +6,11 @@
 //  🔐 SecureStorageManager & View – Keychain-backed persistence with MVVM architecture
 //
 
-#if canImport(os)
-import os.log
-#endif
+import OSLog
 import Security
 import SwiftUI
+
+private let logger = Logger(subsystem: "com.stryvr.app", category: "SecureStorage")
 
 // MARK: - SecureStorageError
 
@@ -43,10 +43,11 @@ final class SecureStorageManager {
             throw SecureStorageError.dataConversionFailed
         }
 
-        SecItemDelete([
-            kSecClass: kSecClassGenericPassword,
-            kSecAttrAccount: key,
-        ] as CFDictionary)
+        SecItemDelete(
+            [
+                kSecClass: kSecClassGenericPassword,
+                kSecAttrAccount: key,
+            ] as CFDictionary)
 
         let query: [CFString: Any] = [
             kSecClass: kSecClassGenericPassword,
@@ -58,11 +59,11 @@ final class SecureStorageManager {
         let status = SecItemAdd(query as CFDictionary, nil)
 
         guard status == errSecSuccess else {
-            os_log("🔒 Keychain save error %{public}@ - Status: %{public}d", key, status)
+            logger.error("🔒 Keychain save error \(key) - Status: \(status)")
             throw SecureStorageError.saveFailed(status)
         }
 
-        os_log("🔒 Keychain save succeeded for key: %{public}@", key)
+        logger.info("🔒 Keychain save succeeded for key: \(key)")
     }
 
     func load(key: String) throws -> String {
@@ -77,14 +78,14 @@ final class SecureStorageManager {
         let status = SecItemCopyMatching(query as CFDictionary, &result)
 
         guard status == errSecSuccess,
-              let data = result as? Data,
-              let value = String(data: data, encoding: .utf8)
+            let data = result as? Data,
+            let value = String(data: data, encoding: .utf8)
         else {
-            os_log("🔒 Keychain load error %{public}@ - Status: %{public}d", key, status)
+            logger.error("🔒 Keychain load error \(key) - Status: \(status)")
             throw SecureStorageError.loadFailed(status)
         }
 
-        os_log("🔒 Keychain load succeeded for key: %{public}@", key)
+        logger.info("🔒 Keychain load succeeded for key: \(key)")
 
         return value
     }
