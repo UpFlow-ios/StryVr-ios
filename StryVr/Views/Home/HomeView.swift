@@ -2,14 +2,11 @@
 //  HomeView.swift
 //  StryVr
 //
-//  🏡 Premium Home Dashboard – Liquid Glass UI, AI Greetings, Goals & Achievements
-//  🌟 Enhanced with ultraThinMaterial, glow effects, and personalized experience
+//  🏠 Main Home Screen with AI Greeting & Quick Actions
 //
 
 import ConfettiSwiftUI
 import Foundation
-import OSLog
-import StryVr.Services.AIGreetingManager
 import SwiftUI
 
 struct HomeView: View {

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import StryVr.Models.LearningReport
 
 /// Represents user-level data for reports and analytics
 struct UserData: Identifiable, Codable, Hashable {

@@ -3,14 +3,12 @@
 //  StryVr
 //
 //  Created by Joe Dormond on 3/6/25.
-//  📊 Business Analytics Dashboard – Team Performance & Skill Insights
+//  📈 Business Analytics & Performance Metrics
 //
 
-import Charts
 import Foundation
-import OSLog
-import StryVr.Models.LearningReport
 import SwiftUI
+import Charts
 
 struct BusinessAnalyticsDashboard: View {
     @State private var teamReports: [LearningReport] = []

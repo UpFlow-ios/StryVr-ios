@@ -1,7 +1,12 @@
+//
+//  LearningPathsView.swift
+//  StryVr
+//
+//  📚 Learning Paths & Skill Development
+//
+
 import Foundation
-import OSLog
 import SwiftUI
-import StryVr.Models.LearningPath
 
 struct LearningPathsView: View {
     @State private var learningPaths: [LearningPath] = [

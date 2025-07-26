@@ -2,13 +2,11 @@
 //  CareerPathInsightsView.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 4/1/25.
-//  🧠 AI Career Insights View – Personalized Pathway Suggestions
+//  🧠 AI Career Path Insights & Recommendations
 //
 
+import Charts
 import Foundation
-import OSLog
-import StryVr.Models.SkillProgress
 import SwiftUI
 
 struct CareerPathInsightsView: View {

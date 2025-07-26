@@ -2,15 +2,12 @@
 //  EnterprisePerformanceDashboard.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 3/6/25.
-//  📊 Enterprise Performance Dashboard – Team Analytics & Insights
+//  🏢 Enterprise Performance & Analytics
 //
 
-import Charts
 import Foundation
-import OSLog
-import StryVr.Models.LearningReport
 import SwiftUI
+import Charts
 
 struct EnterprisePerformanceDashboard: View {
     @State private var employeeReports: [LearningReport] = []

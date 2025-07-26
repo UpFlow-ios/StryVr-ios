@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import StryVr.Utils.SymbolAnimator
 import SwiftUI
 
 struct ProfileView: View {
