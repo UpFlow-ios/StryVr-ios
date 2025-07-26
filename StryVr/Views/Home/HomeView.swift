@@ -7,6 +7,7 @@
 
 import ConfettiSwiftUI
 import Foundation
+import OSLog
 import SwiftUI
 
 struct HomeView: View {
@@ -141,7 +142,7 @@ struct HomeView: View {
                         .liquidGlassGlow(
                             color: dailyGoalCompleted ? .green : Theme.Colors.glowAccent
                         )
-                        .animateSymbol(dailyGoalCompleted, type: .bounce)
+                        .animateSymbol(dailyGoalCompleted, type: "bounce")
                         .shadow(
                             color: .green.opacity(dailyGoalCompleted ? 0.5 : 0),
                             radius: dailyGoalCompleted ? 10 : 0)
@@ -171,10 +172,10 @@ struct HomeView: View {
                     .font(Theme.Typography.caption)
                     .foregroundColor(Theme.Colors.textSecondary)
                 Image(systemName: "flame.fill")
-                    .foregroundColor(.orange)
+                    .foregroundColor(Color.orange)
                     .font(.title3)
-                    .animateSymbol(true, type: .variableColor)
-                    .shadow(color: .orange.opacity(0.5), radius: 8)
+                    .animateSymbol(true, type: "bounce")
+                    .shadow(color: Color.orange.opacity(0.5), radius: 8)
                 Text("| Best: \(bestStreak) Days 🏆")
                     .font(Theme.Typography.caption)
                     .foregroundColor(Theme.Colors.textSecondary)
@@ -213,10 +214,10 @@ struct HomeView: View {
 
             HStack(spacing: 8) {
                 Image(systemName: "star.fill")
-                    .foregroundColor(.yellow)
+                    .foregroundColor(Color.yellow)
                     .font(.title3)
-                    .animateSymbol(true, type: .pulse)
-                    .shadow(color: .yellow.opacity(0.5), radius: 8)
+                    .animateSymbol(true, type: "bounce")
+                    .shadow(color: Color.yellow.opacity(0.5), radius: 8)
                 Text("\(recentAchievementsCount) Badges Unlocked 🏅")
                     .font(Theme.Typography.caption)
                     .foregroundColor(Theme.Colors.textSecondary)

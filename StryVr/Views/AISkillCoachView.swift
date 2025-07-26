@@ -26,7 +26,7 @@ struct AISkillCoachView: View {
                         Image(systemName: "lightbulb.fill")
                             .foregroundColor(.yellow)
                             .font(.title2)
-                            .animateSymbol(true, type: .variableColor)
+                            .animateSymbol(true, type: "variableColor")
                             .shadow(color: .yellow.opacity(0.5), radius: 8)
                         Text("AI Skill Coach")
                             .font(Theme.Typography.headline)

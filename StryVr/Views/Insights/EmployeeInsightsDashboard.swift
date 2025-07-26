@@ -92,7 +92,7 @@ struct EmployeeInsightsDashboard: View {
                 Image(systemName: systemIcon)
                     .foregroundColor(Theme.Colors.accent)
                     .font(.title2)
-                    .animateSymbol(true, type: .bounce)
+                    .animateSymbol(true, type: "bounce")
                     .shadow(color: .blue.opacity(0.5), radius: 10)
             } else {
                 Image(systemName: systemIcon)

@@ -11,13 +11,22 @@ import SwiftUI
 
 struct SymbolAnimator: ViewModifier {
     var animate: Bool
-    var type: SymbolEffect
+    var type: String
 
     func body(content: Content) -> some View {
         if animate {
-            content
-                .symbolEffect(type)
-                .animation(.easeInOut(duration: 0.4), value: animate)
+            switch type {
+            case "bounce":
+                content.symbolEffect(.bounce)
+            case "pulse":
+                content.symbolEffect(.pulse)
+            case "variableColor":
+                content.symbolEffect(.variableColor)
+            case "replace":
+                content.symbolEffect(.replace)
+            default:
+                content.symbolEffect(.bounce)
+            }
         } else {
             content
         }
@@ -25,7 +34,7 @@ struct SymbolAnimator: ViewModifier {
 }
 
 extension View {
-    func animateSymbol(_ animate: Bool, type: SymbolEffect = .bounce) -> some View {
+    func animateSymbol(_ animate: Bool, type: String = "bounce") -> some View {
         self.modifier(SymbolAnimator(animate: animate, type: type))
     }
 }

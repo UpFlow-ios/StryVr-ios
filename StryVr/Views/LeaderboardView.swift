@@ -137,7 +137,7 @@ struct LeaderboardRow: View {
                 Image(systemName: "crown.fill")
                     .foregroundColor(.yellow)
                     .font(.title2)
-                    .animateSymbol(true, type: .bounce)
+                    .animateSymbol(true, type: "bounce")
                     .shadow(color: .yellow.opacity(0.5), radius: 8)
             }
             user.profileImage
