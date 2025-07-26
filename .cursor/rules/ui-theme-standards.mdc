@@ -1,0 +1,292 @@
+# StryVr Liquid Glass UI Theme Standards
+
+## 🧊 Liquid Glass Design System
+
+### Core Visual Elements
+- **Ultra-thin materials** for glass effects
+- **Soft shadows** with depth and layering
+- **Gradient backgrounds** for premium feel
+- **Rounded corners** (16px standard)
+- **Subtle animations** with spring physics
+
+## 🎨 Color System
+
+### Primary Colors
+```swift
+// From StryVr/Views/UITheme/Colors.swift
+extension Color {
+    static let stryvrPrimary = Color("PrimaryColor")
+    static let stryvrSecondary = Color("SecondaryColor")
+    static let stryvrAccent = Color("AccentColor")
+    static let stryvrBackground = Color("BackgroundColor")
+    static let stryvrSurface = Color("SurfaceColor")
+}
+```
+
+### Glass Effects
+```swift
+// ✅ CORRECT - Glass card background
+.background(.ultraThinMaterial)
+.background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16))
+
+// ✅ CORRECT - Glass with blur
+.background(.ultraThinMaterial)
+.blur(radius: 0.5)
+```
+
+## 🃏 Card Components
+
+### Standard Glass Card
+```swift
+struct GlassCardView<Content: View>: View {
+    let content: Content
+    
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    var body: some View {
+        content
+            .padding()
+            .background(.ultraThinMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
+    }
+}
+```
+
+### Elevated Glass Card
+```swift
+struct ElevatedGlassCardView<Content: View>: View {
+    let content: Content
+    
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    var body: some View {
+        content
+            .padding()
+            .background(.ultraThinMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .shadow(color: .black.opacity(0.15), radius: 15, x: 0, y: 8)
+            .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
+    }
+}
+```
+
+## 🌊 Background Patterns
+
+### Gradient Backgrounds
+```swift
+// ✅ CORRECT - Subtle gradient background
+LinearGradient(
+    colors: [Color.stryvrBackground, Color.stryvrBackground.opacity(0.8)],
+    startPoint: .topLeading,
+    endPoint: .bottomTrailing
+)
+
+// ✅ CORRECT - Glass overlay on gradient
+ZStack {
+    LinearGradient(/* gradient */)
+    
+    VStack {
+        // Content
+    }
+    .background(.ultraThinMaterial)
+    .clipShape(RoundedRectangle(cornerRadius: 16))
+}
+```
+
+## 🎭 Animation Standards
+
+### Smooth Transitions
+```swift
+// ✅ CORRECT - Spring animations
+.animation(.spring(response: 0.6, dampingFraction: 0.8), value: isVisible)
+
+// ✅ CORRECT - Ease in/out for UI changes
+.animation(.easeInOut(duration: 0.3), value: isLoading)
+
+// ✅ CORRECT - Combined transitions
+.transition(.opacity.combined(with: .scale))
+```
+
+### Loading States
+```swift
+// ✅ CORRECT - Shimmer effect
+struct ShimmerView: View {
+    @State private var isAnimating = false
+    
+    var body: some View {
+        Rectangle()
+            .fill(LinearGradient(
+                colors: [.gray.opacity(0.3), .gray.opacity(0.1), .gray.opacity(0.3)],
+                startPoint: .leading,
+                endPoint: .trailing
+            ))
+            .offset(x: isAnimating ? 200 : -200)
+            .animation(.linear(duration: 1.5).repeatForever(autoreverses: false), value: isAnimating)
+            .onAppear {
+                isAnimating = true
+            }
+    }
+}
+```
+
+## 📱 Component Standards
+
+### Buttons
+```swift
+struct StryvrButton: View {
+    let title: String
+    let action: () -> Void
+    let style: ButtonStyle
+    
+    enum ButtonStyle {
+        case primary, secondary, outline
+    }
+    
+    var body: some View {
+        Button(action: action) {
+            Text(title)
+                .font(.headline)
+                .foregroundColor(style == .outline ? .stryvrPrimary : .white)
+                .padding(.horizontal, 24)
+                .padding(.vertical, 12)
+                .background(buttonBackground)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+    
+    @ViewBuilder
+    private var buttonBackground: some View {
+        switch style {
+        case .primary:
+            LinearGradient(colors: [.stryvrPrimary, .stryvrPrimary.opacity(0.8)], startPoint: .top, endPoint: .bottom)
+        case .secondary:
+            .ultraThinMaterial
+        case .outline:
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.stryvrPrimary, lineWidth: 2)
+        }
+    }
+}
+```
+
+### Text Fields
+```swift
+struct StryvrTextField: View {
+    let placeholder: String
+    @Binding var text: String
+    
+    var body: some View {
+        TextField(placeholder, text: $text)
+            .textFieldStyle(PlainTextFieldStyle())
+            .padding()
+            .background(.ultraThinMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+            )
+    }
+}
+```
+
+## 🎯 Layout Guidelines
+
+### Spacing System
+```swift
+// From StryVr/Views/UITheme/Spacing.swift
+extension CGFloat {
+    static let spacingXS: CGFloat = 4
+    static let spacingS: CGFloat = 8
+    static let spacingM: CGFloat = 16
+    static let spacingL: CGFloat = 24
+    static let spacingXL: CGFloat = 32
+    static let spacingXXL: CGFloat = 48
+}
+```
+
+### Padding Patterns
+```swift
+// ✅ CORRECT - Consistent padding
+.padding(.horizontal, .spacingM)
+.padding(.vertical, .spacingS)
+
+// ✅ CORRECT - Edge-specific padding
+.padding(.top, .spacingL)
+.padding(.bottom, .spacingM)
+```
+
+## 🔤 Typography
+
+### Font System
+```swift
+// From StryVr/Views/UITheme/FontStyle.swift
+extension Font {
+    static let stryvrTitle = Font.system(size: 28, weight: .bold, design: .rounded)
+    static let stryvrHeadline = Font.system(size: 20, weight: .semibold, design: .rounded)
+    static let stryvrBody = Font.system(size: 16, weight: .regular, design: .rounded)
+    static let stryvrCaption = Font.system(size: 14, weight: .medium, design: .rounded)
+}
+```
+
+### Text Styling
+```swift
+// ✅ CORRECT - Consistent text styling
+Text("Welcome to StryVr")
+    .font(.stryvrTitle)
+    .foregroundColor(.primary)
+    .multilineTextAlignment(.center)
+
+// ✅ CORRECT - Glass text effect
+Text("Premium Feature")
+    .font(.stryvrHeadline)
+    .foregroundStyle(.ultraThinMaterial)
+    .background(.ultraThinMaterial)
+    .clipShape(RoundedRectangle(cornerRadius: 8))
+```
+
+## 🎨 Dark Mode Support
+
+### Color Adaptation
+```swift
+// ✅ CORRECT - Dark mode aware colors
+Color.primary // Automatically adapts
+Color(.systemBackground) // System background
+Color(.systemGray) // System gray
+
+// ✅ CORRECT - Custom dark mode colors
+@Environment(\.colorScheme) var colorScheme
+
+var backgroundColor: Color {
+    colorScheme == .dark ? Color.black.opacity(0.8) : Color.white.opacity(0.9)
+}
+```
+
+## 🚨 Common Mistakes to Avoid
+
+### ❌ WRONG - Default backgrounds
+.background(Color(.systemBackground))
+
+### ❌ WRONG - Hard shadows
+.shadow(radius: 20)
+
+### ❌ WRONG - Sharp corners
+.clipShape(Rectangle())
+
+### ❌ WRONG - No animations
+// Missing smooth transitions
+
+### ✅ CORRECT - Glass styling
+.background(.ultraThinMaterial)
+.shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
+.clipShape(RoundedRectangle(cornerRadius: 16))
+.animation(.easeInOut(duration: 0.3), value: isVisible)
+description:
+globs:
+alwaysApply: false
+---

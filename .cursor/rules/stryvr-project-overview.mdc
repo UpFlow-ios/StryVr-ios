@@ -1,0 +1,187 @@
+# StryVr iOS App - Project Overview
+
+## 🎯 What is StryVr?
+
+StryVr is a **next-generation iOS app** built in SwiftUI that helps entrepreneurs monitor employee performance and helps employees track their workplace growth, skills, and behavior. This is **NOT** a prototype or hobby project - it's designed to be an **App Store winner** and future Apple-featured product.
+
+## 🏗️ Architecture
+
+### Technology Stack
+- **Swift 6.1.2** with modern syntax
+- **SwiftUI** for 100% of UI components
+- **Firebase** for authentication, storage, and real-time database
+- **Swift Charts** for data visualization
+- **Lottie** for animations
+- **ConfettiSwiftUI** for gamification effects
+
+### Project Structure
+```
+StryVr/
+├── App/                    # App entry point and lifecycle
+├── Views/                  # All SwiftUI views and UI components
+│   ├── Home/              # Main dashboard views
+│   ├── Insights/          # Analytics and reporting
+│   ├── Challenges/        # Gamified learning
+│   ├── Profile/           # User profile management
+│   ├── Auth/              # Authentication flows
+│   ├── UIComponents/      # Reusable UI components
+│   └── UITheme/           # Design system and theming
+├── Models/                 # Data models and enums
+├── Services/               # Business logic and external integrations
+├── ViewModels/             # MVVM view models
+├── Utils/                  # Helper functions and utilities
+└── Config/                 # App configuration and constants
+```
+
+## 🔥 Core Features
+
+### 1. Skill Dashboards
+- **Real-time analytics** with Swift Charts
+- **Performance tracking** and progress visualization
+- **Skill matrix** and competency mapping
+
+### 2. AI-Powered Insights
+- **Personalized career coaching** via AI
+- **Behavior feedback** and workplace analytics
+- **Learning path recommendations**
+
+### 3. Team Health Overview
+- **Employee performance** monitoring
+- **Team dynamics** analysis
+- **Growth potential** assessment
+
+### 4. Gamified Learning
+- **Challenge system** with achievements
+- **Progress tracking** with confetti effects
+- **Skill verification** and certification
+
+### 5. Enterprise Features
+- **Founder analytics** dashboard
+- **Company-wide insights** and reporting
+- **Secure data management**
+
+## 🧊 Design System
+
+### Liquid Glass UI
+- **Ultra-thin materials** for glass effects
+- **Soft shadows** and depth layering
+- **Gradient backgrounds** for premium feel
+- **Smooth animations** with spring physics
+
+### Color Palette
+- **Primary colors** from centralized theme
+- **Dark mode** support throughout
+- **Accessibility** compliant contrast ratios
+
+## 🚨 Development Rules
+
+### Non-Negotiable Principles
+1. **Preserve working features** - Never remove functioning code
+2. **Liquid Glass styling** - Maintain premium visual design
+3. **Respect AIGreetingManager** - Core to app identity
+4. **Architecture preservation** - Maintain folder structure
+5. **SwiftUI only** - No UIKit conversions
+6. **App Store compliance** - Production-ready code only
+
+### Code Standards
+- **Swift 6.1.2** compatibility
+- **Modern Logger** instead of os_log
+- **Explicit optionals** and type safety
+- **Clean error handling** with proper logging
+- **Memory management** best practices
+
+## 🔧 Current Development Focus
+
+### Immediate Priorities
+1. **Fix build errors** - Ensure clean compilation
+2. **Modernize syntax** - Update to Swift 6 standards
+3. **Performance optimization** - Smooth user experience
+4. **App Store preparation** - Submission-ready quality
+
+### Quality Assurance
+- **No experimental APIs** - Production stability
+- **Comprehensive testing** - Feature preservation
+- **Performance monitoring** - User experience
+- **Security compliance** - Data protection
+
+## 🎯 Success Vision
+
+### App Store Goals
+- **Featured app** potential
+- **High user ratings** and reviews
+- **Enterprise adoption** by companies
+- **Industry recognition** for innovation
+
+### Technical Excellence
+- **Clean architecture** for scalability
+- **Modern iOS development** practices
+- **Performance optimization** for smooth UX
+- **Security best practices** for enterprise use
+
+## 📱 Target Audience
+
+### Primary Users
+- **Entrepreneurs** monitoring team performance
+- **Employees** tracking career growth
+- **HR professionals** managing talent development
+- **Team leaders** optimizing productivity
+
+### Use Cases
+- **Performance tracking** and analytics
+- **Skill development** and certification
+- **Team health** monitoring
+- **Career growth** planning
+- **Workplace behavior** insights
+
+## 🔐 Security & Privacy
+
+### Data Protection
+- **Secure storage** with Keychain integration
+- **Biometric authentication** support
+- **Encrypted data transmission**
+- **Privacy-compliant** analytics
+
+### Enterprise Features
+- **Company verification** systems
+- **Role-based access** control
+- **Audit logging** for compliance
+- **Data retention** policies
+
+## 🚀 Future Roadmap
+
+### Planned Features
+- **Live Activities** integration
+- **Lock Screen widgets**
+- **Advanced AI insights**
+- **Team collaboration** tools
+- **Integration APIs** for enterprise
+
+### Technical Evolution
+- **Swift 6.2** adoption when available
+- **iOS 18** feature integration
+- **Performance enhancements**
+- **Scalability improvements**
+
+## 🎯 Development Philosophy
+
+### StryVr Principles
+1. **User-centric design** - Every feature serves a purpose
+2. **Performance excellence** - Smooth, responsive experience
+3. **Security first** - Enterprise-grade protection
+4. **Innovation leadership** - Cutting-edge technology
+5. **Quality craftsmanship** - App Store submission ready
+
+### Success Metrics
+- **User engagement** and retention
+- **Performance benchmarks** met
+- **Security compliance** maintained
+- **App Store approval** achieved
+- **Enterprise adoption** growth
+
+---
+
+**Remember**: StryVr is not just an app - it's a future App Store legend. Every line of code, every design decision, and every feature implementation contributes to this vision of excellence.
+description:
+globs:
+alwaysApply: false
+---

@@ -1,0 +1,250 @@
+# Feature Preservation Rules for StryVr
+
+## 🚨 CRITICAL: Do Not Remove Working Features
+
+### Core Features to Preserve
+- **AIGreetingManager** - Personalized greetings system
+- **Skill Dashboards** - Charts and analytics
+- **Team Health Overview** - Employee insights
+- **Behavior Feedback** - Workplace performance tracking
+- **Learning Challenges** - Gamified progress system
+- **Resume Builder** - Secure report generation
+- **Enterprise Analytics** - Founder dashboard
+- **Push Notifications** - User engagement system
+
+## 🔒 Protected Files
+
+### AIGreetingManager.swift
+```swift
+// 🚨 DO NOT MODIFY - Core to StryVr's identity
+// Location: StryVr/Services/AIGreetingManager.swift
+// Purpose: Powers personalized greetings and user experience
+// Status: WORKING - Do not refactor or simplify
+```
+
+### Core Service Files
+```swift
+// 🚨 PROTECTED - Essential business logic
+// StryVr/Services/AIRecommendationService.swift
+// StryVr/Services/AIProfileValidator.swift
+// StryVr/Services/SkillService.swift
+// StryVr/Services/NotificationService.swift
+// StryVr/Services/PaymentService.swift
+```
+
+### Key View Files
+```swift
+// 🚨 PROTECTED - Core user interfaces
+// StryVr/Views/Home/HomeView.swift
+// StryVr/Views/Insights/EmployeeInsightsDashboard.swift
+// StryVr/Views/Challenges/ChallengeTrackerView.swift
+// StryVr/Views/Profile/ProfileBadgesView.swift
+```
+
+## 🛡️ Preservation Guidelines
+
+### Before Making Changes
+1. **Identify the feature** you're working with
+2. **Check if it's working** - don't fix what isn't broken
+3. **Understand the purpose** - why was it built this way?
+4. **Test the impact** - will your change break other features?
+
+### When Refactoring
+```swift
+// ✅ CORRECT - Preserve existing behavior
+func existingWorkingFunction() {
+    // Keep the original logic
+    let result = performOriginalCalculation()
+    
+    // Add improvements without breaking existing functionality
+    if let enhancedResult = enhanceResult(result) {
+        return enhancedResult
+    }
+    
+    // Fallback to original behavior
+    return result
+}
+
+// ❌ WRONG - Replacing working logic
+func existingWorkingFunction() {
+    // Don't completely rewrite working functions
+    return newImplementation() // This might break existing features
+}
+```
+
+### Code Comments Strategy
+```swift
+// ✅ CORRECT - Comment out instead of delete
+// TODO: Review this feature for potential improvements
+// func oldFeature() {
+//     // Original implementation
+// }
+
+// ✅ CORRECT - Mark for future review
+// MARK: - Legacy Feature (Working - Do Not Remove)
+func workingLegacyFeature() {
+    // This feature works and is used by other parts of the app
+    // Do not remove or simplify without thorough testing
+}
+```
+
+## 🔍 Feature Dependencies
+
+### Interconnected Features
+```swift
+// 🚨 DEPENDENCY CHAIN - These features work together
+// 1. AIGreetingManager → HomeView → User Experience
+// 2. SkillService → SkillDashboards → Analytics
+// 3. NotificationService → PushNotifications → Engagement
+// 4. PaymentService → PaywallView → Revenue
+// 5. ChallengeService → ChallengeTrackerView → Gamification
+```
+
+### Data Flow Preservation
+```swift
+// 🚨 PRESERVE - Data flow between services
+class HomeViewModel: ObservableObject {
+    // These dependencies must remain intact
+    @Published var greeting: String = ""
+    @Published var skills: [Skill] = []
+    @Published var challenges: [Challenge] = []
+    
+    // Don't change these service calls
+    func loadData() {
+        greeting = aiGreetingManager.getGreeting()
+        skills = skillService.getUserSkills()
+        challenges = challengeService.getActiveChallenges()
+    }
+}
+```
+
+## 🎯 Safe Modification Areas
+
+### UI Improvements (Safe)
+```swift
+// ✅ SAFE - Visual enhancements
+.background(.ultraThinMaterial) // Add glass effect
+.animation(.easeInOut(duration: 0.3), value: isVisible) // Add animation
+.shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5) // Add depth
+```
+
+### Performance Optimizations (Safe)
+```swift
+// ✅ SAFE - Performance improvements
+// Add caching
+// Optimize image loading
+// Reduce network calls
+// Improve memory management
+```
+
+### Code Quality (Safe)
+```swift
+// ✅ SAFE - Code improvements
+// Add proper error handling
+// Improve type safety
+// Add logging
+// Fix Swift 6 compatibility
+```
+
+## 🚫 Forbidden Actions
+
+### Never Do These
+- ❌ **Delete working functions** without thorough testing
+- ❌ **Simplify complex logic** that serves a purpose
+- ❌ **Remove error handling** that prevents crashes
+- ❌ **Change data models** without migration strategy
+- ❌ **Modify service interfaces** without updating all consumers
+- ❌ **Remove UI components** that users interact with
+
+### High-Risk Changes
+```swift
+// 🚨 HIGH RISK - These changes require extensive testing
+// 1. Modifying AIGreetingManager logic
+// 2. Changing data model structures
+// 3. Updating service method signatures
+// 4. Removing authentication flows
+// 5. Changing payment processing logic
+```
+
+## 🔧 Safe Refactoring Patterns
+
+### Extract Method (Safe)
+```swift
+// ✅ SAFE - Extract reusable logic
+func complexCalculation() -> Double {
+    let result = performCalculation()
+    return formatResult(result)
+}
+
+// Extract into smaller functions
+private func performCalculation() -> Double {
+    // Original calculation logic
+}
+
+private func formatResult(_ value: Double) -> Double {
+    // Format logic
+}
+```
+
+### Add Features (Safe)
+```swift
+// ✅ SAFE - Add new functionality
+extension ExistingService {
+    func newFeature() {
+        // New feature that doesn't break existing functionality
+    }
+}
+```
+
+### Improve Error Handling (Safe)
+```swift
+// ✅ SAFE - Better error handling
+func existingFunction() {
+    do {
+        let result = try performOperation()
+        handleSuccess(result)
+    } catch {
+        logger.error("Operation failed: \(error.localizedDescription)")
+        handleError(error)
+    }
+}
+```
+
+## 📋 Feature Inventory
+
+### Core Features Status
+- ✅ **AIGreetingManager** - Working, do not modify
+- ✅ **Skill Dashboards** - Working, enhance carefully
+- ✅ **Team Health** - Working, preserve functionality
+- ✅ **Behavior Feedback** - Working, maintain data flow
+- ✅ **Learning Challenges** - Working, keep gamification
+- ✅ **Resume Builder** - Working, preserve security
+- ✅ **Enterprise Analytics** - Working, maintain insights
+- ✅ **Push Notifications** - Working, keep engagement
+
+### Enhancement Priority
+1. **Bug fixes** - Fix actual issues
+2. **Performance** - Optimize without breaking
+3. **UI polish** - Visual improvements
+4. **New features** - Add without removing existing
+5. **Code quality** - Improve maintainability
+
+## 🎯 Development Philosophy
+
+### StryVr Development Principles
+1. **Preserve working features** - If it works, don't break it
+2. **Enhance carefully** - Add value without removing value
+3. **Test thoroughly** - Every change affects user experience
+4. **Document changes** - Future developers need to understand
+5. **Respect the vision** - StryVr is building toward App Store success
+
+### Success Metrics
+- ✅ **No broken features** after changes
+- ✅ **Improved performance** without regression
+- ✅ **Better user experience** without disruption
+- ✅ **Cleaner code** without functionality loss
+- ✅ **App Store ready** - submission quality maintained
+description:
+globs:
+alwaysApply: false
+---

@@ -1,0 +1,189 @@
+# Swift Coding Standards for StryVr
+
+## 🚀 Swift 6.1.2 Modernization
+
+### Logger Usage
+```swift
+// ✅ CORRECT - Modern Logger
+import OSLog
+private let logger = Logger(subsystem: "com.stryvr.app", category: "HomeView")
+
+logger.info("User logged in successfully")
+logger.error("Failed to fetch data: \(error.localizedDescription)")
+
+// ❌ WRONG - Old os_log
+os_log("User logged in", log: .default, type: .info)
+```
+
+### Optional Handling
+```swift
+// ✅ CORRECT - Explicit optionals
+let userName: String? = user?.name
+guard let userName = userName else { return }
+
+// ❌ WRONG - Implicit optionals
+let userName = user?.name
+```
+
+### Type Safety
+```swift
+// ✅ CORRECT - Explicit types
+let items: [String] = []
+var count: Int = 0
+
+// ❌ WRONG - Type inference where unclear
+let items = []
+var count = 0
+```
+
+## 📦 Required Imports
+
+### Core Frameworks
+```swift
+import SwiftUI
+import OSLog
+import Charts
+import FirebaseFirestore
+import FirebaseAuth
+import Lottie
+import ConfettiSwiftUI
+```
+
+### Conditional Imports
+```swift
+#if DEBUG
+import SwiftUI
+#endif
+```
+
+## 🏗️ Architecture Patterns
+
+### ViewModels
+```swift
+@MainActor
+class HomeViewModel: ObservableObject {
+    @Published var isLoading: Bool = false
+    @Published var data: [String] = []
+    
+    private let logger = Logger(subsystem: "com.stryvr.app", category: "HomeViewModel")
+    
+    func fetchData() async {
+        isLoading = true
+        defer { isLoading = false }
+        
+        do {
+            data = try await service.fetchData()
+            logger.info("Data fetched successfully")
+        } catch {
+            logger.error("Failed to fetch data: \(error.localizedDescription)")
+        }
+    }
+}
+```
+
+### Services
+```swift
+protocol DataServiceProtocol {
+    func fetchData() async throws -> [String]
+}
+
+class DataService: DataServiceProtocol {
+    private let logger = Logger(subsystem: "com.stryvr.app", category: "DataService")
+    
+    func fetchData() async throws -> [String] {
+        logger.info("Fetching data from API")
+        // Implementation
+    }
+}
+```
+
+## 🎨 UI Components
+
+### Glass Card Style
+```swift
+struct GlassCardView: View {
+    var body: some View {
+        VStack {
+            // Content
+        }
+        .padding()
+        .background(.ultraThinMaterial)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
+    }
+}
+```
+
+### Smooth Transitions
+```swift
+.animation(.easeInOut(duration: 0.3), value: isVisible)
+.transition(.opacity.combined(with: .scale))
+```
+
+## 🔧 Error Handling
+
+### Async/Await Error Handling
+```swift
+func performAsyncOperation() async {
+    do {
+        let result = try await someAsyncCall()
+        await MainActor.run {
+            self.result = result
+        }
+    } catch {
+        await MainActor.run {
+            self.error = error
+        }
+    }
+}
+```
+
+### Result Type Usage
+```swift
+func fetchData() async -> Result<[String], Error> {
+    do {
+        let data = try await service.fetchData()
+        return .success(data)
+    } catch {
+        return .failure(error)
+    }
+}
+```
+
+## 📱 SwiftUI Best Practices
+
+### View Modifiers
+```swift
+// ✅ CORRECT - Chain modifiers logically
+Text("Hello")
+    .font(.title)
+    .foregroundColor(.primary)
+    .padding()
+    .background(.ultraThinMaterial)
+    .clipShape(RoundedRectangle(cornerRadius: 8))
+
+// ❌ WRONG - Inconsistent ordering
+Text("Hello")
+    .padding()
+    .font(.title)
+    .clipShape(RoundedRectangle(cornerRadius: 8))
+    .foregroundColor(.primary)
+    .background(.ultraThinMaterial)
+```
+
+### State Management
+```swift
+// ✅ CORRECT - Use @State for local view state
+@State private var isShowingDetail: Bool = false
+@State private var searchText: String = ""
+
+// ✅ CORRECT - Use @StateObject for view models
+@StateObject private var viewModel = HomeViewModel()
+
+// ✅ CORRECT - Use @ObservedObject for injected dependencies
+@ObservedObject var authViewModel: AuthViewModel
+```
+description:
+globs:
+alwaysApply: false
+---

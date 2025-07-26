@@ -1,0 +1,263 @@
+# App Store Compliance Guidelines for StryVr
+
+## 🏪 App Store Submission Requirements
+
+### Build Requirements
+- **Swift 6.1.2** compatibility
+- **iOS 17.0+** minimum deployment target
+- **Clean build** with no warnings or errors
+- **Archive-ready** configuration
+- **Code signing** properly configured
+
+### Code Quality Standards
+```swift
+// ✅ REQUIRED - No experimental APIs
+// Use stable, production-ready APIs only
+
+// ✅ REQUIRED - Proper error handling
+func fetchData() async throws -> [String] {
+    guard let url = URL(string: "https://api.stryvr.com/data") else {
+        throw URLError(.badURL)
+    }
+    
+    let (data, response) = try await URLSession.shared.data(from: url)
+    
+    guard let httpResponse = response as? HTTPURLResponse,
+          httpResponse.statusCode == 200 else {
+        throw URLError(.badServerResponse)
+    }
+    
+    return try JSONDecoder().decode([String].self, from: data)
+}
+
+// ✅ REQUIRED - Memory management
+class DataManager: ObservableObject {
+    private var cancellables = Set<AnyCancellable>()
+    
+    deinit {
+        cancellables.removeAll()
+    }
+}
+```
+
+## 🔒 Privacy & Security
+
+### Privacy Policy Requirements
+- **Data collection** transparency
+- **User consent** for analytics
+- **Data retention** policies
+- **Third-party** service disclosure
+
+### Secure Data Handling
+```swift
+// ✅ REQUIRED - Secure storage
+class SecureStorageManager {
+    private let keychain = KeychainWrapper.standard
+    
+    func storeSecureData(_ data: Data, forKey key: String) throws {
+        try keychain.set(data, forKey: key)
+    }
+    
+    func retrieveSecureData(forKey key: String) -> Data? {
+        return keychain.data(forKey: key)
+    }
+}
+
+// ✅ REQUIRED - Input validation
+func validateEmail(_ email: String) -> Bool {
+    let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+    let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+    return emailPredicate.evaluate(with: email)
+}
+```
+
+## 📱 Human Interface Guidelines
+
+### Design Standards
+- **Apple HIG** compliance
+- **Accessibility** support
+- **Dark mode** support
+- **Dynamic Type** support
+
+### Accessibility Implementation
+```swift
+// ✅ REQUIRED - Accessibility labels
+Button("Save") {
+    saveData()
+}
+.accessibilityLabel("Save user data")
+.accessibilityHint("Double tap to save your progress")
+
+// ✅ REQUIRED - VoiceOver support
+Text("Welcome to StryVr")
+.accessibilityAddTraits(.isHeader)
+
+// ✅ REQUIRED - Dynamic Type
+Text("Large Title")
+.font(.largeTitle)
+.dynamicTypeSize(.large ... .accessibility3)
+```
+
+## 🚫 Prohibited Content
+
+### Content Restrictions
+- **No adult content** or inappropriate material
+- **No violence** or harmful content
+- **No copyright infringement**
+- **No misleading information**
+
+### API Usage Guidelines
+```swift
+// ✅ REQUIRED - Rate limiting
+class APIManager {
+    private let rateLimiter = RateLimiter(maxRequests: 100, per: 60)
+    
+    func makeRequest() async throws {
+        guard rateLimiter.canMakeRequest() else {
+            throw APIError.rateLimitExceeded
+        }
+        
+        // Make API request
+        rateLimiter.recordRequest()
+    }
+}
+
+// ✅ REQUIRED - Error handling for external APIs
+func fetchExternalData() async throws -> Data {
+    do {
+        return try await externalAPI.fetch()
+    } catch {
+        logger.error("External API failed: \(error.localizedDescription)")
+        throw APIError.externalServiceUnavailable
+    }
+}
+```
+
+## 📊 Analytics & Tracking
+
+### Privacy-Compliant Analytics
+```swift
+// ✅ REQUIRED - User consent for analytics
+class AnalyticsManager: ObservableObject {
+    @Published var analyticsEnabled: Bool = false
+    
+    func trackEvent(_ event: AnalyticsEvent) {
+        guard analyticsEnabled else { return }
+        
+        // Track event with user consent
+        Analytics.logEvent(event.name, parameters: event.parameters)
+    }
+}
+
+// ✅ REQUIRED - No personal data in analytics
+struct AnalyticsEvent {
+    let name: String
+    let parameters: [String: Any]
+    
+    // Never include personal information
+    static func userAction(_ action: String) -> AnalyticsEvent {
+        return AnalyticsEvent(name: "user_action", parameters: ["action": action])
+    }
+}
+```
+
+## 🔧 Build Configuration
+
+### Release Configuration
+```swift
+// ✅ REQUIRED - Release build settings
+#if DEBUG
+    static let apiBaseURL = "https://dev-api.stryvr.com"
+    static let enableLogging = true
+#else
+    static let apiBaseURL = "https://api.stryvr.com"
+    static let enableLogging = false
+#endif
+
+// ✅ REQUIRED - Proper logging levels
+private let logger = Logger(subsystem: "com.stryvr.app", category: "API")
+
+#if DEBUG
+logger.debug("Debug information")
+#endif
+
+logger.info("User action completed")
+logger.error("Error occurred: \(error.localizedDescription)")
+```
+
+### Performance Optimization
+```swift
+// ✅ REQUIRED - Efficient data loading
+class DataLoader: ObservableObject {
+    @Published var data: [String] = []
+    private var isLoading = false
+    
+    func loadData() async {
+        guard !isLoading else { return }
+        isLoading = true
+        defer { isLoading = false }
+        
+        // Load data efficiently
+        data = await performAsyncLoad()
+    }
+}
+
+// ✅ REQUIRED - Memory-efficient image loading
+AsyncImage(url: imageURL) { image in
+    image
+        .resizable()
+        .aspectRatio(contentMode: .fit)
+} placeholder: {
+    ProgressView()
+}
+```
+
+## 📋 Pre-Submission Checklist
+
+### Code Review Items
+- [ ] No experimental APIs used
+- [ ] All warnings resolved
+- [ ] Memory leaks eliminated
+- [ ] Error handling implemented
+- [ ] Accessibility features added
+- [ ] Privacy policy updated
+- [ ] Terms of service updated
+
+### Build Verification
+- [ ] Clean build in Release mode
+- [ ] Archive builds successfully
+- [ ] Code signing configured
+- [ ] App icons included
+- [ ] Launch screen configured
+- [ ] Required device capabilities set
+
+### Content Review
+- [ ] App description accurate
+- [ ] Screenshots current
+- [ ] Keywords appropriate
+- [ ] Age rating correct
+- [ ] Category selection appropriate
+
+## 🚨 Common Rejection Reasons
+
+### Technical Issues
+- **Crash on launch** - Test thoroughly
+- **Memory issues** - Monitor memory usage
+- **Performance problems** - Optimize for speed
+- **Network errors** - Handle offline states
+
+### Content Issues
+- **Misleading information** - Be accurate
+- **Inappropriate content** - Follow guidelines
+- **Copyright violations** - Use original content
+- **Privacy violations** - Respect user data
+
+### Policy Violations
+- **In-app purchase issues** - Follow IAP guidelines
+- **Subscription problems** - Clear pricing
+- **Data collection** - Transparent policies
+- **Third-party services** - Disclose usage
+description:
+globs:
+alwaysApply: false
+---

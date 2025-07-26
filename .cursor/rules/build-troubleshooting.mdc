@@ -1,0 +1,278 @@
+# Build Troubleshooting for StryVr
+
+## 🔧 Common Build Issues & Solutions
+
+### Swift 6.1.2 Compatibility Issues
+
+#### Logger Migration
+```swift
+// ❌ OLD - os_log (causes build errors)
+import os.log
+os_log("Message", log: .default, type: .info)
+
+// ✅ NEW - Swift 6 Logger
+import OSLog
+private let logger = Logger(subsystem: "com.stryvr.app", category: "ComponentName")
+logger.info("Message")
+logger.error("Error: \(error.localizedDescription)")
+```
+
+#### Optional Type Safety
+```swift
+// ❌ OLD - Implicit optionals
+let userName = user?.name
+let count = items?.count
+
+// ✅ NEW - Explicit optionals
+let userName: String? = user?.name
+let count: Int? = items?.count
+```
+
+#### Preview Errors
+```swift
+// ❌ OLD - Preview blocking production
+#Preview {
+    ContentView()
+        .environmentObject(DataManager()) // Missing dependency
+}
+
+// ✅ NEW - Safe previews
+#Preview {
+    ContentView()
+        .environmentObject(MockDataManager()) // Use mock data
+}
+
+// Or disable previews for production builds
+#if DEBUG
+#Preview {
+    ContentView()
+}
+#endif
+```
+
+## 🚨 Critical Build Fixes
+
+### Missing Imports
+```swift
+// ✅ REQUIRED - Add these imports where needed
+import SwiftUI
+import OSLog
+import Charts
+import FirebaseFirestore
+import FirebaseAuth
+import Lottie
+import ConfettiSwiftUI
+```
+
+### Target Membership Issues
+```swift
+// Check that all Swift files are added to the correct target:
+// 1. Select file in Xcode
+// 2. File Inspector (right panel)
+// 3. Target Membership section
+// 4. Ensure "StryVr" target is checked
+```
+
+### Build Configuration
+```swift
+// ✅ REQUIRED - Swift 6.1.2 settings
+// In Xcode project settings:
+// - Swift Language Version: Swift 6.1.2
+// - iOS Deployment Target: 17.0+
+// - Enable Bitcode: NO
+// - Swift Compilation Mode: Incremental
+```
+
+## 🔍 Build Error Patterns
+
+### Type Inference Errors
+```swift
+// ❌ ERROR - Ambiguous type
+let items = [] // Swift 6 requires explicit type
+
+// ✅ FIX - Explicit type
+let items: [String] = []
+let items = [String]()
+```
+
+### Protocol Conformance Issues
+```swift
+// ❌ ERROR - Missing protocol requirements
+struct MyView: View {
+    // Missing body property
+}
+
+// ✅ FIX - Complete protocol implementation
+struct MyView: View {
+    var body: some View {
+        Text("Hello")
+    }
+}
+```
+
+### Async/Await Issues
+```swift
+// ❌ ERROR - Missing async context
+func fetchData() {
+    let data = try await api.fetch() // Error: await in non-async context
+}
+
+// ✅ FIX - Proper async context
+func fetchData() async throws {
+    let data = try await api.fetch()
+}
+```
+
+## 🛠️ Build Commands
+
+### Clean Build
+```bash
+# Clean previous build artifacts
+xcodebuild clean -project StryVr.xcodeproj -scheme StryVr
+
+# Build for simulator
+xcodebuild -project StryVr.xcodeproj -scheme StryVr -destination 'platform=iOS Simulator,name=iPhone 15 Pro' build
+
+# Build for device
+xcodebuild -project StryVr.xcodeproj -scheme StryVr -destination 'platform=iOS,id=DEVICE_ID' build
+```
+
+### Archive Build (App Store)
+```bash
+# Archive for App Store submission
+xcodebuild -project StryVr.xcodeproj -scheme StryVr -configuration Release -sdk iphoneos archive -archivePath ./build/StryVr.xcarchive
+```
+
+## 📋 Build Checklist
+
+### Pre-Build Checks
+- [ ] All Swift files have correct target membership
+- [ ] All required imports are present
+- [ ] No experimental APIs used
+- [ ] Swift 6.1.2 compatibility verified
+- [ ] Preview errors resolved
+
+### Build Process
+- [ ] Clean build directory
+- [ ] Check for missing dependencies
+- [ ] Verify Swift version compatibility
+- [ ] Test on simulator
+- [ ] Test on device (if available)
+
+### Post-Build Verification
+- [ ] No warnings in build log
+- [ ] All features working correctly
+- [ ] Performance acceptable
+- [ ] Memory usage normal
+- [ ] App launches without crashes
+
+## 🚨 Emergency Fixes
+
+### Quick Build Fixes
+```swift
+// 1. Add missing imports
+import OSLog
+import Charts
+import FirebaseFirestore
+
+// 2. Fix optional types
+let value: String? = optionalValue
+
+// 3. Add async context
+func asyncFunction() async {
+    // async code here
+}
+
+// 4. Fix preview issues
+#if DEBUG
+#Preview {
+    ContentView()
+}
+#endif
+```
+
+### Common Error Messages & Solutions
+
+#### "Cannot find type in scope"
+```swift
+// Solution: Add missing import
+import MissingFramework
+```
+
+#### "Value of optional type must be unwrapped"
+```swift
+// Solution: Explicit optional handling
+guard let value = optionalValue else { return }
+// or
+let value = optionalValue ?? defaultValue
+```
+
+#### "Function is unavailable"
+```swift
+// Solution: Use Swift 6 compatible API
+// Replace os_log with Logger
+// Replace deprecated methods with current ones
+```
+
+## 🎯 Build Success Indicators
+
+### Successful Build Signs
+- ✅ "Build Succeeded" message
+- ✅ No red error messages
+- ✅ App launches in simulator
+- ✅ All features functional
+- ✅ No memory leaks
+- ✅ Smooth performance
+
+### Build Quality Metrics
+- **Compilation time**: < 2 minutes
+- **Warning count**: 0
+- **Error count**: 0
+- **Memory usage**: Stable
+- **Launch time**: < 3 seconds
+
+## 🔧 Advanced Troubleshooting
+
+### Dependency Issues
+```bash
+# Reset package dependencies
+rm -rf ~/Library/Developer/Xcode/DerivedData
+xcodebuild -resolvePackageDependencies
+```
+
+### Swift Package Manager Issues
+```bash
+# Clean and rebuild packages
+rm -rf .build
+swift package resolve
+swift package update
+```
+
+### Xcode Cache Issues
+```bash
+# Clear Xcode caches
+rm -rf ~/Library/Developer/Xcode/DerivedData
+rm -rf ~/Library/Caches/com.apple.dt.Xcode
+```
+
+## 📱 App Store Preparation
+
+### Archive Requirements
+- [ ] Release configuration
+- [ ] Proper code signing
+- [ ] App icons included
+- [ ] Launch screen configured
+- [ ] Privacy policy updated
+- [ ] App Store metadata ready
+
+### Submission Checklist
+- [ ] Archive builds successfully
+- [ ] No experimental APIs
+- [ ] Privacy compliance verified
+- [ ] Performance optimized
+- [ ] Accessibility features added
+- [ ] Error handling implemented
+description:
+globs:
+alwaysApply: false
+---

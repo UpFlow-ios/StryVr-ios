@@ -1,0 +1,75 @@
+# StryVr Core Architecture & Development Rules
+
+## 🏗️ Project Structure
+StryVr follows a clean SwiftUI architecture with these key directories:
+- `StryVr/Views/` - All SwiftUI views and UI components
+- `StryVr/Models/` - Data models and enums
+- `StryVr/Services/` - Business logic, API calls, and external integrations
+- `StryVr/ViewModels/` - MVVM view models
+- `StryVr/Utils/` - Helper functions and utilities
+- `StryVr/Config/` - App configuration and constants
+- `StryVr/App/` - App entry point and lifecycle
+
+## 🚨 NON-NEGOTIABLE RULES
+
+### 1. Preserve Working Features
+- **NEVER** remove or simplify working features
+- If logic works, do not change it unless explicitly instructed
+- Refactors must preserve behavior and architecture
+
+### 2. Liquid Glass UI Styling
+- All views must use `.ultraThinMaterial` for glass effects
+- Use soft shadows, glow effects, and depth
+- Avoid default `Color(.systemBackground)` or generic SwiftUI backgrounds
+- Use centralized colors and gradients from `StryVr/Views/UITheme/Colors.swift`
+
+### 3. Respect AIGreetingManager
+- Do not delete or override logic in `StryVr/Services/AIGreetingManager.swift`
+- This file powers personalized greetings — core to StryVr's identity
+
+### 4. Architecture Preservation
+- Maintain exact file/folder structure
+- Do not flatten, rename, or auto-reorganize folders unless explicitly instructed
+- Follow the established patterns in each directory
+
+### 5. No Global Refactors Without Confirmation
+- Ask before changing method signatures, model structures, or service logic
+- Never auto-refactor full files unless specifically requested
+
+### 6. SwiftUI Only
+- StryVr is 100% SwiftUI
+- Do not convert any files to UIKit or suggest UIKit replacements
+
+### 7. App Store Compliance
+- No experimental packages, beta-only APIs, or unstable features
+- All code must build clean, follow Apple HIG, and not block submission
+
+## 🎯 Development Guidelines
+
+### Swift 6.1.2 Compatibility
+- Use modern `Logger` instead of `os_log`
+- Ensure all optionals are explicitly typed
+- Use Swift 6-compatible syntax everywhere
+- Fix Preview errors that block production builds
+
+### Code Quality
+- Follow clean code practices and proper Swift formatting
+- Add proper imports: `import Charts`, `import OSLog`, `import FirebaseFirestore`, `import Lottie`
+- Ensure all types/modules are added to correct targets
+- No implicit nils - explicit optional handling
+
+### UI/UX Standards
+- Use `.glassCardStyle()` or similar modifiers on all cards
+- Keep transitions fluid: `.easeInOut`, `.spring()`, `.opacity`, `.scaleEffect`
+- Reuse shared components from `ThemeManager.swift` and global view modifiers
+- Follow Apple Human Interface Guidelines (iOS 17/18 ready)
+
+## 🔧 Current Focus
+- Fix all errors in build log
+- Modernize old syntax
+- Ensure build passes on Swift 6.1.2
+- Finalize archive and App Store-ready version
+description:
+globs:
+alwaysApply: false
+---

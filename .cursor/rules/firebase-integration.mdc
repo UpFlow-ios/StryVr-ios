@@ -1,0 +1,285 @@
+# Firebase Integration Standards for StryVr
+
+## 🔥 Firebase Services Used
+
+### Core Services
+- **Firebase Auth** - User authentication and management
+- **Firestore** - Real-time database for user data and analytics
+- **Firebase Storage** - File uploads and media storage
+- **Firebase Functions** - Backend logic and API endpoints
+
+## 📦 Required Imports
+
+```swift
+import FirebaseFirestore
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseFirestoreSwift
+```
+
+## 🏗️ Firestore Patterns
+
+### Document Models
+```swift
+struct UserProfile: Codable, Identifiable {
+    @DocumentID var id: String?
+    let email: String
+    let displayName: String
+    let createdAt: Date
+    let lastLoginAt: Date
+    let subscriptionTier: SubscriptionTier
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case email
+        case displayName
+        case createdAt
+        case lastLoginAt
+        case subscriptionTier
+    }
+}
+```
+
+### Collection References
+```swift
+class FirestoreService {
+    private let db = Firestore.firestore()
+    
+    // Collection references
+    private var usersCollection: CollectionReference {
+        db.collection("users")
+    }
+    
+    private var skillsCollection: CollectionReference {
+        db.collection("skills")
+    }
+    
+    private var challengesCollection: CollectionReference {
+        db.collection("challenges")
+    }
+}
+```
+
+### CRUD Operations
+```swift
+// ✅ CORRECT - Create with error handling
+func createUser(_ user: UserProfile) async throws {
+    do {
+        try await usersCollection.document(user.id ?? "").setData(from: user)
+        logger.info("User created successfully: \(user.id ?? "unknown")")
+    } catch {
+        logger.error("Failed to create user: \(error.localizedDescription)")
+        throw error
+    }
+}
+
+// ✅ CORRECT - Read with type safety
+func fetchUser(id: String) async throws -> UserProfile {
+    let document = try await usersCollection.document(id).getDocument()
+    return try document.data(as: UserProfile.self)
+}
+
+// ✅ CORRECT - Update with merge
+func updateUser(_ user: UserProfile) async throws {
+    try await usersCollection.document(user.id ?? "").setData(from: user, merge: true)
+}
+
+// ✅ CORRECT - Delete with confirmation
+func deleteUser(id: String) async throws {
+    try await usersCollection.document(id).delete()
+}
+```
+
+## 🔐 Authentication Patterns
+
+### Auth State Management
+```swift
+class AuthViewModel: ObservableObject {
+    @Published var user: User?
+    @Published var isAuthenticated: Bool = false
+    
+    private let auth = Auth.auth()
+    private let logger = Logger(subsystem: "com.stryvr.app", category: "AuthViewModel")
+    
+    init() {
+        setupAuthStateListener()
+    }
+    
+    private func setupAuthStateListener() {
+        auth.addStateDidChangeListener { [weak self] _, user in
+            DispatchQueue.main.async {
+                self?.user = user
+                self?.isAuthenticated = user != nil
+            }
+        }
+    }
+}
+```
+
+### Sign In/Out Operations
+```swift
+// ✅ CORRECT - Sign in with error handling
+func signIn(email: String, password: String) async throws {
+    do {
+        let result = try await auth.signIn(withEmail: email, password: password)
+        logger.info("User signed in: \(result.user.email ?? "unknown")")
+    } catch {
+        logger.error("Sign in failed: \(error.localizedDescription)")
+        throw error
+    }
+}
+
+// ✅ CORRECT - Sign out
+func signOut() throws {
+    do {
+        try auth.signOut()
+        logger.info("User signed out successfully")
+    } catch {
+        logger.error("Sign out failed: \(error.localizedDescription)")
+        throw error
+    }
+}
+```
+
+## 📊 Real-time Listeners
+
+### Collection Listeners
+```swift
+class SkillsViewModel: ObservableObject {
+    @Published var skills: [Skill] = []
+    private var listenerRegistration: ListenerRegistration?
+    
+    func startListening() {
+        listenerRegistration = skillsCollection
+            .whereField("userId", isEqualTo: currentUserId)
+            .addSnapshotListener { [weak self] snapshot, error in
+                guard let self = self else { return }
+                
+                if let error = error {
+                    self.logger.error("Skills listener error: \(error.localizedDescription)")
+                    return
+                }
+                
+                guard let documents = snapshot?.documents else {
+                    self.logger.warning("No skills documents found")
+                    return
+                }
+                
+                self.skills = documents.compactMap { document in
+                    try? document.data(as: Skill.self)
+                }
+            }
+    }
+    
+    func stopListening() {
+        listenerRegistration?.remove()
+    }
+}
+```
+
+## 🗄️ Data Validation
+
+### Input Sanitization
+```swift
+extension String {
+    func sanitizedForFirestore() -> String {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines)
+            .replacingOccurrences(of: "/", with: "_")
+            .replacingOccurrences(of: ".", with: "_")
+    }
+}
+```
+
+### Document ID Generation
+```swift
+func generateDocumentId() -> String {
+    return UUID().uuidString
+}
+
+func generateUserDocumentId(email: String) -> String {
+    return email.sanitizedForFirestore()
+}
+```
+
+## 🔒 Security Rules
+
+### Firestore Security
+```javascript
+// Example security rules (in firestore.rules)
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Users can only access their own data
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Skills belong to users
+    match /skills/{skillId} {
+      allow read, write: if request.auth != null && 
+        resource.data.userId == request.auth.uid;
+    }
+  }
+}
+```
+
+## 🚨 Error Handling
+
+### Firebase Error Types
+```swift
+enum FirebaseError: LocalizedError {
+    case userNotFound
+    case invalidCredentials
+    case networkError
+    case permissionDenied
+    case documentNotFound
+    
+    var errorDescription: String? {
+        switch self {
+        case .userNotFound:
+            return "User not found"
+        case .invalidCredentials:
+            return "Invalid email or password"
+        case .networkError:
+            return "Network connection error"
+        case .permissionDenied:
+            return "Permission denied"
+        case .documentNotFound:
+            return "Document not found"
+        }
+    }
+}
+```
+
+### Error Mapping
+```swift
+func mapFirebaseError(_ error: Error) -> FirebaseError {
+    if let authError = error as? AuthErrorCode {
+        switch authError.code {
+        case .userNotFound:
+            return .userNotFound
+        case .wrongPassword, .invalidEmail:
+            return .invalidCredentials
+        default:
+            return .networkError
+        }
+    }
+    
+    if let firestoreError = error as? FirestoreErrorCode {
+        switch firestoreError.code {
+        case .permissionDenied:
+            return .permissionDenied
+        case .notFound:
+            return .documentNotFound
+        default:
+            return .networkError
+        }
+    }
+    
+    return .networkError
+}
+```
+description:
+globs:
+alwaysApply: false
+---
