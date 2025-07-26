@@ -6,20 +6,20 @@
 //  🧠 Real-Time Friend Skill Feed – Firebase-Powered Social Learning UI
 //
 
-#if canImport(FirebaseFirestore)
-import FirebaseFirestore
-#endif
-#if canImport(os)
-import os.log
-#endif
+import OSLog
 import SwiftUI
+
+#if canImport(FirebaseFirestore)
+    import FirebaseFirestore
+#endif
 
 /// Displays a real-time social feed showing what friends are learning
 struct FriendLearningFeed: View {
     @State private var feedItems: [LearningFeedItem] = []
     @State private var isError: Bool = false
     @State private var isLoading: Bool = true
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "FriendLearningFeed")
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier!, category: "FriendLearningFeed")
 
     var body: some View {
         NavigationStack {
@@ -99,7 +99,7 @@ struct FriendLearningFeed: View {
     private func fetchLearningFeed() {
         isLoading = true
         isError = false
-        let userID = "currentUserID" // 🔐 Replace with AuthManager.userID
+        let userID = "currentUserID"  // 🔐 Replace with AuthManager.userID
         Firestore.firestore().collection("friendLearningFeed")
             .whereField("followers", arrayContains: userID)
             .order(by: "timestamp", descending: true)

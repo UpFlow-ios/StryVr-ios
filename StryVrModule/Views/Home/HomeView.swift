@@ -6,9 +6,7 @@
 //
 
 import ConfettiSwiftUI
-#if canImport(os)
-import os.log
-#endif
+import OSLog
 import SwiftUI
 
 struct HomeView: View {
@@ -42,21 +40,28 @@ struct HomeView: View {
 
                         dashboardCard(
                             title: "Today's Goal",
-                            subtitle: dailyGoalCompleted ? "✅ Completed" : "🎯 Complete 1 Learning Module",
+                            subtitle: dailyGoalCompleted
+                                ? "✅ Completed" : "🎯 Complete 1 Learning Module",
                             buttonAction: markGoalCompleted
                         )
 
                         // MARK: - Skill Streak Card
 
-                        dashboardCard(title: "Skill Streak", subtitle: "\(currentStreak) Days 🔥 | Best: \(bestStreak) Days 🏆")
+                        dashboardCard(
+                            title: "Skill Streak",
+                            subtitle: "\(currentStreak) Days 🔥 | Best: \(bestStreak) Days 🏆")
 
                         // MARK: - Active Challenges Card
 
-                        dashboardCard(title: "Active Challenges", subtitle: "\(activeChallengesCount) Challenges in Progress 🎯")
+                        dashboardCard(
+                            title: "Active Challenges",
+                            subtitle: "\(activeChallengesCount) Challenges in Progress 🎯")
 
                         // MARK: - Recent Achievements Card
 
-                        dashboardCard(title: "Recent Achievements", subtitle: "\(recentAchievementsCount) Badges Unlocked 🏅")
+                        dashboardCard(
+                            title: "Recent Achievements",
+                            subtitle: "\(recentAchievementsCount) Badges Unlocked 🏅")
 
                         // MARK: - Manual Badge Unlock (Demo Button)
 
@@ -121,7 +126,9 @@ struct HomeView: View {
 
     // MARK: - Dashboard Card Component
 
-    private func dashboardCard(title: String, subtitle: String, buttonAction: (() -> Void)? = nil) -> some View {
+    private func dashboardCard(title: String, subtitle: String, buttonAction: (() -> Void)? = nil)
+        -> some View
+    {
         VStack(alignment: .leading, spacing: Theme.Spacing.small) {
             HStack {
                 Text(title)

@@ -5,9 +5,7 @@
 //  Created by Joe Dormond on 3/12/25.
 //
 
-#if canImport(os)
-import os.log
-#endif
+import OSLog
 import StoreKit
 import SwiftUI
 
@@ -91,7 +89,9 @@ struct PaywallView: View {
             checkLimitedTimeOffers()
         }
         .alert(isPresented: $showAlert) {
-            Alert(title: Text("Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+            Alert(
+                title: Text("Error"), message: Text(alertMessage),
+                dismissButton: .default(Text("OK")))
         }
     }
 
@@ -129,7 +129,7 @@ struct PaywallView: View {
         DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
             DispatchQueue.main.async {
                 self.selectedPlan = recommended
-                let recommended: SubscriptionPlan = .premium // Replace with AI logic later
+                let recommended: SubscriptionPlan = .premium  // Replace with AI logic later
                 logger.info("🧠 AI Recommended Plan: \(recommended.rawValue)")
             }
         }

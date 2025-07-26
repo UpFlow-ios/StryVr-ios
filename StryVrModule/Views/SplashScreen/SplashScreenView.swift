@@ -5,9 +5,7 @@
 //  Created by Joe Dormond on 4/17/25.
 //
 
-#if canImport(os)
-import os.log
-#endif
+import OSLog
 import SwiftUI
 
 /// Animated splash screen that adapts to Light & Dark Mode with StryVr branding
@@ -16,7 +14,8 @@ struct SplashScreenView: View {
     @Environment(\.colorScheme) var colorScheme
 
     private let splashDuration: TimeInterval = 2.0
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "StryVr", category: "SplashScreenView")
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier ?? "StryVr", category: "SplashScreenView")
 
     var body: some View {
         ZStack {

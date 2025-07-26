@@ -5,9 +5,9 @@
 //  Created by Joe Dormond on 3/12/25.
 //
 
+import OSLog
 import StoreKit
 import SwiftUI
-import os.log
 
 /// Displays the paywall with AI-based trial recommendations and premium offers
 struct PaywallView: View {

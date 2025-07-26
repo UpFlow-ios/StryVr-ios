@@ -7,7 +7,7 @@
 //
 
 import FirebaseFirestore
-import os.log
+import OSLog
 import SwiftUI
 
 /// Displays a real-time social feed showing what friends are learning
@@ -15,7 +15,8 @@ struct FriendLearningFeed: View {
     @State private var feedItems: [LearningFeedItem] = []
     @State private var isError: Bool = false
     @State private var isLoading: Bool = true
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "FriendLearningFeed")
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier!, category: "FriendLearningFeed")
 
     var body: some View {
         NavigationStack {
@@ -95,7 +96,7 @@ struct FriendLearningFeed: View {
     private func fetchLearningFeed() {
         isLoading = true
         isError = false
-        let userID = "currentUserID" // 🔐 Replace with AuthManager.userID
+        let userID = "currentUserID"  // 🔐 Replace with AuthManager.userID
         Firestore.firestore().collection("friendLearningFeed")
             .whereField("followers", arrayContains: userID)
             .order(by: "timestamp", descending: true)
