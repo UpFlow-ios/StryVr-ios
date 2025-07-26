@@ -12,11 +12,13 @@ import Foundation
 import OSLog
 
 /// Manages video uploads, metadata, streaming & AI tagging
+@MainActor
 final class VideoContentService {
     static let shared = VideoContentService()
     private let storage = Storage.storage().reference()
     private let db = Firestore.firestore()
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "VideoContentService")
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier!, category: "VideoContentService")
 
     private init() {}
 
@@ -45,7 +47,8 @@ final class VideoContentService {
 
             videoRef.downloadURL { url, error in
                 guard let downloadURL = url else {
-                    self.logger.error("Download URL failed: \(error?.localizedDescription ?? "Unknown")")
+                    self.logger.error(
+                        "Download URL failed: \(error?.localizedDescription ?? "Unknown")")
                     completion(nil)
                     return
                 }
@@ -71,7 +74,8 @@ final class VideoContentService {
 
                     self.db.collection("Videos").document(videoID).setData(metadata) { error in
                         if let error = error {
-                            self.logger.error("Metadata write failed: \(error.localizedDescription)")
+                            self.logger.error(
+                                "Metadata write failed: \(error.localizedDescription)")
                         } else {
                             self.logger.info("Video metadata saved successfully.")
                         }
@@ -94,45 +98,46 @@ final class VideoContentService {
                     return
                 }
 
-                let videos: [VideoPostModel] = snapshot?.documents.compactMap { doc in
-                    let data = doc.data()
+                let videos: [VideoPostModel] =
+                    snapshot?.documents.compactMap { doc in
+                        let data = doc.data()
 
-                    guard
-                        let uploaderID = data["uploaderID"] as? String,
-                        let title = data["title"] as? String,
-                        let videoURL = data["videoURL"] as? String,
-                        let duration = data["duration"] as? Int,
-                        let categoryRaw = data["category"] as? String,
-                        let uploadDate = (data["uploadDate"] as? Timestamp)?.dateValue()
-                    else { return nil }
+                        guard
+                            let uploaderID = data["uploaderID"] as? String,
+                            let title = data["title"] as? String,
+                            let videoURL = data["videoURL"] as? String,
+                            let duration = data["duration"] as? Int,
+                            let categoryRaw = data["category"] as? String,
+                            let uploadDate = (data["uploadDate"] as? Timestamp)?.dateValue()
+                        else { return nil }
 
-                    let caption = data["caption"] as? String
-                    let thumbnailURL = data["thumbnailURL"] as? String
-                    let isFeatured = data["isFeatured"] as? Bool ?? false
+                        let caption = data["caption"] as? String
+                        let thumbnailURL = data["thumbnailURL"] as? String
+                        let isFeatured = data["isFeatured"] as? Bool ?? false
 
-                    let engagement = VideoEngagement(
-                        likes: data["likes"] as? Int ?? 0,
-                        comments: data["comments"] as? Int ?? 0,
-                        shares: data["shares"] as? Int ?? 0,
-                        views: data["views"] as? Int ?? 0
-                    )
+                        let engagement = VideoEngagement(
+                            likes: data["likes"] as? Int ?? 0,
+                            comments: data["comments"] as? Int ?? 0,
+                            shares: data["shares"] as? Int ?? 0,
+                            views: data["views"] as? Int ?? 0
+                        )
 
-                    let category = VideoCategory(rawValue: categoryRaw) ?? .other
+                        let category = VideoCategory(rawValue: categoryRaw) ?? .other
 
-                    return VideoPostModel(
-                        id: doc.documentID,
-                        uploaderID: uploaderID,
-                        title: title,
-                        description: caption,
-                        videoURL: videoURL,
-                        thumbnailURL: thumbnailURL,
-                        duration: duration,
-                        category: category,
-                        uploadDate: uploadDate,
-                        engagement: engagement,
-                        isFeatured: isFeatured
-                    )
-                } ?? []
+                        return VideoPostModel(
+                            id: doc.documentID,
+                            uploaderID: uploaderID,
+                            title: title,
+                            description: caption,
+                            videoURL: videoURL,
+                            thumbnailURL: thumbnailURL,
+                            duration: duration,
+                            category: category,
+                            uploadDate: uploadDate,
+                            engagement: engagement,
+                            isFeatured: isFeatured
+                        )
+                    } ?? []
 
                 completion(videos)
             }

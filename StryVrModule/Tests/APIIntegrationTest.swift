@@ -5,8 +5,9 @@
 //  ✅ Live Endpoint Test – Validates /api/recommendations endpoint
 //
 
-@testable import StryVr
 import XCTest
+
+@testable import StryVrModule
 
 final class APIIntegrationTest: XCTestCase {
     func testFetchRecommendationsEndpoint() {

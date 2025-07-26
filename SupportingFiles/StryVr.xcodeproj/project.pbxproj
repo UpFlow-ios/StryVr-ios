@@ -179,6 +179,7 @@
 		85CC69C92E34B26100AF835D /* AIGreetingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC69C82E34B26100AF835D /* AIGreetingManager.swift */; };
 		85CC69CB2E34B28400AF835D /* SkillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC69CA2E34B28400AF835D /* SkillService.swift */; };
 		85CC69CD2E34B4DF00AF835D /* LearningPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC69CC2E34B4DF00AF835D /* LearningPath.swift */; };
+		85CC69CF2E34E30400AF835D /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 85CC69CE2E34E30400AF835D /* ConfettiSwiftUI */; };
 		85DDE81C2DD6BA20009C1D19 /* CryptoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DDE81B2DD6BA07009C1D19 /* CryptoHelper.swift */; };
 		85DDE81E2DE8F79E009C1D19 /* AISuggestionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DDE81D2DE8F78D009C1D19 /* AISuggestionResponse.swift */; };
 		85EA1C342DD3D65E001C992A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854ECFD32D701D5F00D0B0AC /* CoreTelephony.framework */; };
@@ -582,6 +583,7 @@
 				D21669752DD47103001DAE95 /* FirebaseMLModelDownloader in Frameworks */,
 				854ECFDF2D701D5F00D0B0AC /* SafariServices.framework in Frameworks */,
 				D21669BB2DD48DB8001DAE95 /* FirebaseDatabase in Frameworks */,
+				85CC69CF2E34E30400AF835D /* ConfettiSwiftUI in Frameworks */,
 				D216698E2DD472BE001DAE95 /* FirebaseStorage in Frameworks */,
 				85BE23342DD3E53600298EDF /* FirebaseAuth in Frameworks */,
 				D21669DB2DD48DB8001DAE95 /* FirebaseStorage in Frameworks */,
@@ -2057,6 +2059,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 85BE235A2DD3EA5F00298EDF /* XCRemoteSwiftPackageReference "netfox" */;
 			productName = netfox;
+		};
+		85CC69CE2E34E30400AF835D /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85BE23462DD3E62300298EDF /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
 		};
 		D216694C2DD47103001DAE95 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

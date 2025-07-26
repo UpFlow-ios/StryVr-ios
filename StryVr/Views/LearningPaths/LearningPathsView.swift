@@ -10,9 +10,21 @@ import SwiftUI
 
 struct LearningPathsView: View {
     @State private var learningPaths: [LearningPath] = [
-        LearningPath(title: "iOS Development", progress: 70),
-        LearningPath(title: "SwiftUI Mastery", progress: 50),
-        LearningPath(title: "AI & Machine Learning", progress: 30),
+        LearningPath(
+            title: "iOS Development",
+            description: "Master iOS development with Swift and SwiftUI",
+            category: "Programming"
+        ),
+        LearningPath(
+            title: "SwiftUI Mastery",
+            description: "Learn modern UI development with SwiftUI",
+            category: "UI/UX"
+        ),
+        LearningPath(
+            title: "AI & Machine Learning",
+            description: "Explore AI and machine learning concepts",
+            category: "Technology"
+        ),
     ]
 
     var body: some View {
@@ -54,10 +66,10 @@ struct LearningPathCard: View {
                 .font(.headline)
                 .accessibilityLabel("Learning path title: \(path.title)")
 
-            ProgressBarView(progress: .constant(Double(path.progress) / 100.0))
+            ProgressBarView(progress: .constant(path.progressPercentage))
                 .frame(height: 10)
                 .accessibilityLabel("Progress bar for \(path.title)")
-                .accessibilityValue("\(path.progress)% completed")
+                .accessibilityValue("\(Int(path.progressPercentage * 100))% completed")
         }
         .padding()
         .background(RoundedRectangle(cornerRadius: 12).fill(cardColor).shadow(radius: 2))

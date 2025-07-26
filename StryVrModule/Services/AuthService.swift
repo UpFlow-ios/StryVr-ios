@@ -7,7 +7,7 @@
 //  🔐 Auth Service – Handles Firebase Email/Password Auth and Okta OIDC Integration
 //
 
-import AppAuth
+// import AppAuth  // Temporarily commented out - AppAuth not available as SPM dependency
 import Foundation
 
 #if canImport(FirebaseAuth)
@@ -124,8 +124,10 @@ final class AuthService: ObservableObject {
         return password.count >= 6
     }
 
-    // MARK: - Okta OIDC via AppAuth
+    // MARK: - Okta OIDC via AppAuth (Temporarily disabled)
 
+    // TODO: Re-enable when AppAuth is properly integrated as a dependency
+    /*
     private var currentAuthorizationFlow: OIDExternalUserAgentSession?
     private var authState: OIDAuthState?
 
@@ -194,4 +196,5 @@ final class AuthService: ObservableObject {
         }
         return false
     }
+    */
 }

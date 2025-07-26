@@ -86,8 +86,8 @@ struct Theme {
             .background(.ultraThinMaterial)
 
         /// Card styling with glass effect and glow
-        static func cardStyle() -> some ViewModifier {
-            return ViewModifier { content in
+        struct CardStyle: ViewModifier {
+            func body(content: Content) -> some View {
                 content
                     .background(.ultraThinMaterial)
                     .background(
@@ -114,8 +114,8 @@ struct Theme {
         }
 
         /// Button styling with glass effect and glow
-        static func buttonStyle() -> some ViewModifier {
-            return ViewModifier { content in
+        struct ButtonStyle: ViewModifier {
+            func body(content: Content) -> some View {
                 content
                     .background(.ultraThinMaterial)
                     .background(
@@ -139,8 +139,14 @@ struct Theme {
         }
 
         /// Glow effect for interactive elements
-        static func glowEffect(color: Color = Theme.Colors.glowPrimary) -> some ViewModifier {
-            return ViewModifier { content in
+        struct GlowEffect: ViewModifier {
+            let color: Color
+
+            init(color: Color = Theme.Colors.glowPrimary) {
+                self.color = color
+            }
+
+            func body(content: Content) -> some View {
                 content
                     .shadow(color: color, radius: 8, x: 0, y: 4)
                     .shadow(color: color.opacity(0.5), radius: 16, x: 0, y: 8)
@@ -148,8 +154,8 @@ struct Theme {
         }
 
         /// Depth blur background
-        static func depthBlur() -> some ViewModifier {
-            return ViewModifier { content in
+        struct DepthBlur: ViewModifier {
+            func body(content: Content) -> some View {
                 content
                     .background(.ultraThinMaterial)
                     .background(
@@ -167,21 +173,21 @@ struct Theme {
 extension View {
     /// Apply Liquid Glass card styling
     func liquidGlassCard() -> some View {
-        self.modifier(Theme.LiquidGlass.cardStyle())
+        self.modifier(Theme.LiquidGlass.CardStyle())
     }
 
     /// Apply Liquid Glass button styling
     func liquidGlassButton() -> some View {
-        self.modifier(Theme.LiquidGlass.buttonStyle())
+        self.modifier(Theme.LiquidGlass.ButtonStyle())
     }
 
     /// Apply glow effect
     func liquidGlassGlow(color: Color = Theme.Colors.glowPrimary) -> some View {
-        self.modifier(Theme.LiquidGlass.glowEffect(color: color))
+        self.modifier(Theme.LiquidGlass.GlowEffect(color: color))
     }
 
     /// Apply depth blur background
     func liquidGlassDepth() -> some View {
-        self.modifier(Theme.LiquidGlass.depthBlur())
+        self.modifier(Theme.LiquidGlass.DepthBlur())
     }
 }
