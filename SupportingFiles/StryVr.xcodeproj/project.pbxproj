@@ -175,6 +175,10 @@
 		85C8B3C02E1309CF00CEDEEE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C8B3BF2E1309CF00CEDEEE /* LoginView.swift */; };
 		85CB82D92DAE2E83002AA544 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB82D82DAE2E7B002AA544 /* UserRole.swift */; };
 		85CB83042DAE5D60002AA544 /* AIProfileValidatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB83032DAE5D5B002AA544 /* AIProfileValidatorView.swift */; };
+		85CC69C72E34B16200AF835D /* SymbolAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC69C62E34B16200AF835D /* SymbolAnimator.swift */; };
+		85CC69C92E34B26100AF835D /* AIGreetingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC69C82E34B26100AF835D /* AIGreetingManager.swift */; };
+		85CC69CB2E34B28400AF835D /* SkillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC69CA2E34B28400AF835D /* SkillService.swift */; };
+		85CC69CD2E34B4DF00AF835D /* LearningPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC69CC2E34B4DF00AF835D /* LearningPath.swift */; };
 		85DDE81C2DD6BA20009C1D19 /* CryptoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DDE81B2DD6BA07009C1D19 /* CryptoHelper.swift */; };
 		85DDE81E2DE8F79E009C1D19 /* AISuggestionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DDE81D2DE8F78D009C1D19 /* AISuggestionResponse.swift */; };
 		85EA1C342DD3D65E001C992A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854ECFD32D701D5F00D0B0AC /* CoreTelephony.framework */; };
@@ -383,6 +387,10 @@
 		85C8B3BF2E1309CF00CEDEEE /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		85CB82D82DAE2E7B002AA544 /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
 		85CB83032DAE5D5B002AA544 /* AIProfileValidatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIProfileValidatorView.swift; sourceTree = "<group>"; };
+		85CC69C62E34B16200AF835D /* SymbolAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolAnimator.swift; sourceTree = "<group>"; };
+		85CC69C82E34B26100AF835D /* AIGreetingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIGreetingManager.swift; sourceTree = "<group>"; };
+		85CC69CA2E34B28400AF835D /* SkillService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillService.swift; sourceTree = "<group>"; };
+		85CC69CC2E34B4DF00AF835D /* LearningPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningPath.swift; sourceTree = "<group>"; };
 		85DDE81B2DD6BA07009C1D19 /* CryptoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoHelper.swift; sourceTree = "<group>"; };
 		85DDE81D2DE8F78D009C1D19 /* AISuggestionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AISuggestionResponse.swift; sourceTree = "<group>"; };
 		D21669A52DD485C9001DAE95 /* CrashHandlingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashHandlingService.swift; sourceTree = "<group>"; };
@@ -704,6 +712,7 @@
 		856AA5F32D9164E900402F84 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				85CC69CC2E34B4DF00AF835D /* LearningPath.swift */,
 				850D50F02DF21C65008097DF /* UserData.swift */,
 				850D50E92DF2103D008097DF /* SkillMatrixEntry.swift */,
 				850D50E62DF20AAB008097DF /* EmployeeModel.swift */,
@@ -733,6 +742,8 @@
 		856AA6032D9164E900402F84 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				85CC69CA2E34B28400AF835D /* SkillService.swift */,
+				85CC69C82E34B26100AF835D /* AIGreetingManager.swift */,
 				85DDE81D2DE8F78D009C1D19 /* AISuggestionResponse.swift */,
 				D21669A52DD485C9001DAE95 /* CrashHandlingService.swift */,
 				859947AC2DCBC87000EB6818 /* EmployeeProgressService.swift */,
@@ -757,6 +768,7 @@
 		856AA6062D9164E900402F84 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				85CC69C62E34B16200AF835D /* SymbolAnimator.swift */,
 				85DDE81B2DD6BA07009C1D19 /* CryptoHelper.swift */,
 				85BE23892DD3F40F00298EDF /* FeatureFlags.swift */,
 				8588F0C62DC97CAA00D04995 /* ConfettiManager.swift */,
@@ -1099,7 +1111,9 @@
 				8588F0BB2DC26B5100D04995 /* ProfileBadgesView.swift in Sources */,
 				856AA66D2D91692E00402F84 /* StryVrApp.swift in Sources */,
 				856AA66F2D9169A900402F84 /* AIProfileValidator.swift in Sources */,
+				85CC69C92E34B26100AF835D /* AIGreetingManager.swift in Sources */,
 				856AA68B2D916EC600402F84 /* PaymentService.swift in Sources */,
+				85CC69C72E34B16200AF835D /* SymbolAnimator.swift in Sources */,
 				8599479D2DCB200B00EB6818 /* BehaviorFeedbackService.swift in Sources */,
 				85BE238A2DD3F41500298EDF /* FeatureFlags.swift in Sources */,
 				856AA6312D9164E900402F84 /* CompanySecurityVerificationView.swift in Sources */,
@@ -1109,6 +1123,7 @@
 				851966062DA6D782004264AE /* FontStyle.swift in Sources */,
 				851966072DA6D782004264AE /* Colors.swift in Sources */,
 				8588F0A12DC068C600D04995 /* SettingsView.swift in Sources */,
+				85CC69CB2E34B28400AF835D /* SkillService.swift in Sources */,
 				851966112DA6D8A7004264AE /* StryVrChartCard.swift in Sources */,
 				851966082DA6D782004264AE /* ThemeManager.swift in Sources */,
 				851966092DA6D782004264AE /* Spacing.swift in Sources */,
@@ -1118,6 +1133,7 @@
 				859947AD2DCBC87700EB6818 /* EmployeeProgressService.swift in Sources */,
 				856AA6392D9164E900402F84 /* ProgressBarView.swift in Sources */,
 				856AA63B2D9164E900402F84 /* CustomTabBar.swift in Sources */,
+				85CC69CD2E34B4DF00AF835D /* LearningPath.swift in Sources */,
 				856AA6992D91733900402F84 /* AISkillCoachView.swift in Sources */,
 				856AA63D2D9164E900402F84 /* UserModel.swift in Sources */,
 				856AA6872D916E4300402F84 /* NotificationService.swift in Sources */,
