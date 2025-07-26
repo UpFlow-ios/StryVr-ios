@@ -8,6 +8,7 @@
 
 import Charts
 import Foundation
+import StryVr.Models.SkillProgress
 import SwiftUI
 
 struct ReportsDashboardView: View {

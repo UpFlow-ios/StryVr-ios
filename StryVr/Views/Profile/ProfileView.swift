@@ -5,6 +5,8 @@
 //  👤 Connected Profile View with AuthViewModel Integration
 //
 
+import Foundation
+import StryVr.Utils.SymbolAnimator
 import SwiftUI
 
 struct ProfileView: View {
@@ -80,9 +82,7 @@ struct ProfileView: View {
             .scaledToFit()
             .frame(width: 100, height: 100)
             .clipShape(Circle())
-            .foregroundColor(.gray.opacity(0.5))
-            .animateSymbol(true, type: .bounce)
-            .shadow(color: .blue.opacity(0.5), radius: 10)
+            .shadow(color: Color.blue.opacity(0.5), radius: 10)
     }
 
     private func simpleHaptic() {

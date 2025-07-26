@@ -2,67 +2,85 @@
 //  LottieAnimationManager.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 5/14/25.
-//  🎞️ Lottie Wrapper – SwiftUI-Compatible View for Confetti & Animations
+//  Created for StryVr iOS app.
+//  Provides SwiftUI wrapper for Lottie animations.
 //
+
 import Lottie
+import OSLog
 import SwiftUI
 
-/// SwiftUI-compatible wrapper for displaying Lottie animations
+/// SwiftUI wrapper for Lottie animations
 struct LottieAnimationView: UIViewRepresentable {
     let animationName: String
     let loopMode: LottieLoopMode
-    var onComplete: (() -> Void)? = nil
+    let speed: CGFloat
 
-    func makeUIView(context: Context) -> UIView {
-        let containerView = UIView(frame: .zero)
-
-        guard let animation = Animation.named(animationName) else {
-            assertionFailure("⚠️ Lottie animation not found: \(animationName)")
-            return containerView
-        }
-
-        let animationView = AnimationView(animation: animation)
-        animationView.contentMode = .scaleAspectFit
-        animationView.loopMode = loopMode
-        animationView.translatesAutoresizingMaskIntoConstraints = false
-        animationView.isAccessibilityElement = true
-        animationView.accessibilityLabel = "Lottie animation: \(animationName)"
-
-        containerView.addSubview(animationView)
-
-        NSLayoutConstraint.activate([
-            animationView.topAnchor.constraint(equalTo: containerView.topAnchor),
-            animationView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-            animationView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            animationView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-        ])
-
-        // Auto-play animation
-        animationView.play { finished in
-            if finished {
-                onComplete?()
-            }
-        }
-
-        context.coordinator.animationView = animationView
-        return containerView
+    init(
+        animationName: String,
+        loopMode: LottieLoopMode = .playOnce,
+        speed: CGFloat = 1.0
+    ) {
+        self.animationName = animationName
+        self.loopMode = loopMode
+        self.speed = speed
     }
 
-    func updateUIView(_: UIView, context: Context) {
-        guard let animationView = context.coordinator.animationView else { return }
-        animationView.play { finished in
-            if finished {
-                onComplete?()
-            }
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView()
+        view.backgroundColor = .clear
+
+        // Load animation from bundle
+        guard let animation = LottieAnimation.named(animationName) else {
+            logger.error("❌ Failed to load Lottie animation: \(animationName)")
+            return view
         }
+
+        let animationView = LottieAnimationView(animation: animation)
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = loopMode
+        animationView.animationSpeed = speed
+
+        // Add to view hierarchy
+        animationView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(animationView)
+
+        NSLayoutConstraint.activate([
+            animationView.topAnchor.constraint(equalTo: view.topAnchor),
+            animationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            animationView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            animationView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+
+        // Store reference for later use
+        context.coordinator.animationView = animationView
+
+        return view
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {
+        // Update animation if needed
+        context.coordinator.animationView?.play()
     }
 
     func makeCoordinator() -> Coordinator {
         Coordinator()
     }
 
-    final class Coordinator {
-        var animationView: AnimationView?
+    class Coordinator: NSObject {
+        var animationView: LottieAnimationView?
+
+        deinit {
+            animationView?.stop()
+        }
     }
+}
+
+// MARK: - Logger
+private let logger = Logger(subsystem: "com.stryvr.app", category: "LottieAnimationManager")
+
+// MARK: - Preview
+#Preview {
+    LottieAnimationView(animationName: "confetti", loopMode: .playOnce)
+        .frame(width: 200, height: 200)
 }

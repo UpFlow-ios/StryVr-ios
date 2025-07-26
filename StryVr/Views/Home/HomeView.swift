@@ -7,7 +7,9 @@
 //
 
 import ConfettiSwiftUI
+import Foundation
 import OSLog
+import StryVr.Services.AIGreetingManager
 import SwiftUI
 
 struct HomeView: View {

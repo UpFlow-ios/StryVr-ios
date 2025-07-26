@@ -9,6 +9,7 @@
 import Charts
 import Foundation
 import OSLog
+import StryVr.Models.LearningReport
 import SwiftUI
 
 struct BusinessAnalyticsDashboard: View {

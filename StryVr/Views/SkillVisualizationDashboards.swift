@@ -7,6 +7,7 @@
 //
 
 import Charts
+import FirebaseFirestore
 import Foundation
 import OSLog
 import SwiftUI
@@ -62,11 +63,12 @@ struct SkillVisualizationDashboards: View {
                             StryVrCardView(title: "Skill Growth Overview") {
                                 Chart(skillProgress) { progress in
                                     BarMark(
-                                        x: .value("Skill", progress.skill),
-                                        y: .value("Progress", progress.progress * 100)
+                                        x: .value("Skill", progress.skillName),
+                                        y: .value("Progress", progress.progressPercentage * 100)
                                     )
                                     .foregroundStyle(
-                                        progress.progress > 0.8 ? .green : Theme.Colors.accent)
+                                        progress.progressPercentage > 0.8
+                                            ? .green : Theme.Colors.accent)
                                 }
                                 .frame(height: 240)
                                 .chartYAxis {
@@ -119,7 +121,11 @@ struct SkillVisualizationDashboards: View {
                 }
 
                 self.skillProgress = skills.map {
-                    SkillProgress(skill: $0.key, progress: $0.value)
+                    SkillProgress(
+                        skillId: $0.key,
+                        skillName: $0.key,
+                        progressPercentage: $0.value
+                    )
                 }
                 logger.info("✅ Skill data loaded: \(self.skillProgress.count) items")
             }
@@ -129,14 +135,15 @@ struct SkillVisualizationDashboards: View {
     // MARK: - AI Insight Logic
 
     private func generateAIInsights(from progressData: [SkillProgress]) -> String {
-        guard let topSkill = progressData.max(by: { $0.progress < $1.progress }) else {
+        guard let topSkill = progressData.max(by: { $0.progressPercentage < $1.progressPercentage })
+        else {
             return "📘 Keep learning to unlock AI-powered progress insights."
         }
 
         let improvementAreas =
             progressData
-            .filter { $0.progress < 0.5 }
-            .map { $0.skill }
+            .filter { $0.progressPercentage < 0.5 }
+            .map { $0.skillName }
 
         let improvementText =
             improvementAreas.isEmpty
@@ -144,7 +151,7 @@ struct SkillVisualizationDashboards: View {
             : "🧠 Focus more on: \(improvementAreas.joined(separator: ", "))"
 
         return
-            "🌟 Your top skill is **\(topSkill.skill)** at \(Int(topSkill.progress * 100))% mastery. \(improvementText)"
+            "🌟 Your top skill is **\(topSkill.skillName)** at \(Int(topSkill.progressPercentage * 100))% mastery. \(improvementText)"
     }
 
     // MARK: - Error Handling

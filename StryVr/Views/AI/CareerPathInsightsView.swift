@@ -8,6 +8,7 @@
 
 import Foundation
 import OSLog
+import StryVr.Models.SkillProgress
 import SwiftUI
 
 struct CareerPathInsightsView: View {

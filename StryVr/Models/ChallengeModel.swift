@@ -2,103 +2,81 @@
 //  ChallengeModel.swift
 //  StryVr
 //
-//  Created by Joe Dormond on 4/15/25
+//  Created for StryVr iOS app.
+//  Defines the ChallengeModel used for gamified learning challenges.
 //
-//  🏆 Challenge Model – Represents user-driven skill-building challenges
-//
+
 import Foundation
 
-/// Represents a skill-building challenge within StryVr
-struct ChallengeModel: Identifiable, Codable, Hashable {
-    /// Unique identifier for the challenge
-    let id: String = UUID().uuidString
-    /// Title of the challenge
+struct ChallengeModel: Codable, Identifiable {
+    let id: String
     let title: String
-    /// Description of the challenge
     let description: String
-    /// Type of the challenge (e.g., solo or group)
     let type: ChallengeType
-    /// Start date of the challenge
-    let startDate: Date
-    /// End date of the challenge
-    let endDate: Date
-    /// List of participant IDs
-    let participants: [String]
-    /// Whether the challenge is currently active
-    let isActive: Bool
-
-    // MARK: - Computed Properties
-
-    /// Formatted start date
-    var formattedStartDate: String {
-        ChallengeModel.dateFormatter.string(from: startDate)
-    }
-
-    /// Formatted end date
-    var formattedEndDate: String {
-        ChallengeModel.dateFormatter.string(from: endDate)
-    }
-
-    /// Percentage complete relative to the current date
-    var progressPercentage: Double {
-        let now = Date()
-        guard now >= startDate else { return 0.0 }
-        let total = endDate.timeIntervalSince(startDate)
-        let elapsed = now.timeIntervalSince(startDate)
-        return min(1.0, max(0.0, elapsed / total))
-    }
-
-    /// Checks if the challenge is currently ongoing
-    var isOngoing: Bool {
-        let now = Date()
-        return now >= startDate && now <= endDate
-    }
-
-    // MARK: - Static Formatter
-
-    private static let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        return formatter
-    }()
-
-    // MARK: - Validation
-
-    /// Validates that the start date is before the end date
-    var isValid: Bool {
-        startDate < endDate
-    }
-
-    // MARK: - Init
+    let difficulty: Int  // 1-5 scale
+    let points: Int
+    let deadline: Date?
+    let isCompleted: Bool
+    let progress: Double  // 0.0 to 1.0
+    let createdAt: Date
+    let completedAt: Date?
 
     init(
-        id: String,
+        id: String = UUID().uuidString,
         title: String,
         description: String,
-        type: ChallengeType,
-        startDate: Date,
-        endDate: Date,
-        participants: [String] = [],
-        isActive: Bool = true
+        type: ChallengeType = .skill,
+        difficulty: Int = 1,
+        points: Int = 10,
+        deadline: Date? = nil,
+        isCompleted: Bool = false,
+        progress: Double = 0.0,
+        createdAt: Date = Date(),
+        completedAt: Date? = nil
     ) {
         self.id = id
         self.title = title
         self.description = description
         self.type = type
-        self.startDate = startDate
-        self.endDate = endDate
-        self.participants = participants
-        self.isActive = isActive
+        self.difficulty = max(1, min(5, difficulty))
+        self.points = points
+        self.deadline = deadline
+        self.isCompleted = isCompleted
+        self.progress = max(0.0, min(1.0, progress))
+        self.createdAt = createdAt
+        self.completedAt = completedAt
+    }
+}
+
+extension ChallengeModel {
+    var isOverdue: Bool {
+        guard let deadline = deadline else { return false }
+        return !isCompleted && Date() > deadline
     }
 
-    // MARK: - Placeholder
+    var progressPercentage: String {
+        return "\(Int(progress * 100))%"
+    }
 
-    static let empty = ChallengeModel(
-        id: UUID().uuidString,
-        title: "",
-        description: "",
-        type: .solo,
-        startDate: Date(),
-        endDate: Calendar.current.date(byAdding: .day, value: 7, to: Date())!
-    )
+    var difficultyStars: String {
+        return String(repeating: "⭐", count: difficulty)
+    }
+
+    var timeRemaining: TimeInterval? {
+        guard let deadline = deadline, !isCompleted else { return nil }
+        return deadline.timeIntervalSince(Date())
+    }
+
+    var timeRemainingText: String? {
+        guard let remaining = timeRemaining, remaining > 0 else { return nil }
+
+        let days = Int(remaining) / 86400
+        let hours = Int(remaining) % 86400 / 3600
+
+        if days > 0 {
+            return "\(days)d \(hours)h remaining"
+        } else {
+            return "\(hours)h remaining"
+        }
+    }
 }

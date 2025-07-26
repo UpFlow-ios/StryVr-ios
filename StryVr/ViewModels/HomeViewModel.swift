@@ -36,6 +36,16 @@ final class HomeViewModel: ObservableObject {
     /// Fetches skills using `SkillService` with structured logging and error handling.
     func fetchSkills() {
         isLoading = true
+
+        // Cast to SkillService to access the Combine method
+        guard let skillService = skillService as? SkillService else {
+            handleFetchError(
+                NSError(
+                    domain: "HomeViewModel", code: -1,
+                    userInfo: [NSLocalizedDescriptionKey: "Invalid skill service"]))
+            return
+        }
+
         skillService.fetchSkills()
             .receive(on: DispatchQueue.main)
             .sink(
