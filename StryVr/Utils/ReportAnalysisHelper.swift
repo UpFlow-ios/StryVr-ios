@@ -14,84 +14,58 @@ private let logger = Logger(subsystem: "com.stryvr.app", category: "ReportAnalys
 // MARK: - ReportAnalysisHelper
 
 enum ReportAnalysisHelper {
-    /// Calculates average progress for each skill across reports.
+    /// Calculates average performance score across reports.
     /// - Parameter reports: `[LearningReport]` array.
-    /// - Returns: `[String: Double]` skills dictionary with average progress.
-    static func calculateAverageSkillProgress(from reports: [LearningReport]) -> [String: Double] {
-        var skillTotals = [String: (total: Double, count: Int)]()
+    /// - Returns: `Double` average performance score.
+    static func calculateAveragePerformanceScore(from reports: [LearningReport]) -> Double {
+        guard !reports.isEmpty else { return 0.0 }
 
-        for report in reports {
-            for skillPerformance in report.skills {
-                skillTotals[skillPerformance.skillName, default: (0, 0)].total +=
-                    skillPerformance.rating
-                skillTotals[skillPerformance.skillName, default: (0, 0)].count += 1
-            }
-        }
+        let totalScore = reports.reduce(0.0) { $0 + $1.performanceScore }
+        let average = totalScore / Double(reports.count)
 
-        let averages = skillTotals.compactMapValues { total, count -> Double? in
-            guard count > 0 else { return nil }
-            let average = total / Double(count)
-            logger.info(
-                "📊 Skill \($0) average: \(average, format: .number.precision(.fractionLength(2)))")
-            return average
-        }
-
-        return averages
+        logger.info(
+            "📊 Average performance score: \(average, format: .number.precision(.fractionLength(2)))"
+        )
+        return average
     }
 
-    /// Identifies top N users based on average skill progress.
+    /// Identifies top N employees based on performance score.
     /// - Parameters:
     ///   - reports: `[LearningReport]` array.
-    ///   - topCount: Number of top users, default is 5.
-    /// - Returns: `[UserModel]` top users array.
-    static func findTopUsers(from reports: [LearningReport], topCount: Int = 5) -> [UserModel] {
-        var userProgress = [UserModel]()
-
-        for report in reports {
-            guard !report.skills.isEmpty else { continue }
-            let averageProgress =
-                report.skills.map { $0.rating }.reduce(0, +) / Double(report.skills.count)
-
-            // Create a UserModel from the report data
-            let user = UserModel(
-                id: report.userId,
-                fullName: "User \(report.userId)",  // Placeholder name
-                email: "user@stryvr.com",  // Placeholder email
-                skills: report.skills.map { $0.skillName },
-                role: .admin,
-                joinedDate: report.timestamp
-            )
-
-            // Note: We can't modify user.averageProgress directly since it's computed
-            // The enterprise dashboards will need to calculate this differently
-            userProgress.append(user)
-        }
-
-        // Sort by overall score instead since we can't modify averageProgress
-        let sortedUsers = userProgress.sorted(by: {
-            let report1 = reports.first { $0.userId == $0.id }
-            let report2 = reports.first { $0.userId == $0.id }
-            return (report1?.overallScore ?? 0) > (report2?.overallScore ?? 0)
-        })
-
-        logger.info("🏅 Top \(topCount) users calculated.")
-        return Array(sortedUsers.prefix(topCount))
-    }
-
-    /// Identifies weak skills below a specified threshold.
-    /// - Parameters:
-    ///   - reports: `[LearningReport]` array.
-    ///   - threshold: Skill threshold, default is 50.0.
-    /// - Returns: `[String]` weak skill names.
-    static func findWeakSkills(from reports: [LearningReport], threshold: Double = 50.0) -> [String]
+    ///   - topCount: Number of top employees, default is 5.
+    /// - Returns: `[LearningReport]` top employees array.
+    static func getTopPerformers(from reports: [LearningReport], topCount: Int = 5)
+        -> [LearningReport]
     {
-        let weakSkills = calculateAverageSkillProgress(from: reports)
-            .filter { $0.value < threshold }
-            .map { $0.key }
-            .sorted()
+        return
+            reports
+            .sorted { $0.performanceScore > $1.performanceScore }
+            .prefix(topCount)
+            .map { $0 }
+    }
 
-        logger.warning("⚠️ Weak skills: \(weakSkills.joined(separator: ", "))")
-        return weakSkills
+    /// Calculates total learning hours across all reports.
+    /// - Parameter reports: `[LearningReport]` array.
+    /// - Returns: `Double` total learning hours.
+    static func calculateTotalLearningHours(from reports: [LearningReport]) -> Double {
+        let totalHours = reports.reduce(0.0) { $0 + $1.learningHours }
+        logger.info(
+            "📊 Total learning hours: \(totalHours, format: .number.precision(.fractionLength(1)))")
+        return totalHours
+    }
+
+    /// Calculates average completion rate across reports.
+    /// - Parameter reports: `[LearningReport]` array.
+    /// - Returns: `Double` average completion rate (0.0 to 1.0).
+    static func calculateAverageCompletionRate(from reports: [LearningReport]) -> Double {
+        guard !reports.isEmpty else { return 0.0 }
+
+        let totalCompletionRate = reports.reduce(0.0) { $0 + $1.completionRate }
+        let average = totalCompletionRate / Double(reports.count)
+
+        logger.info(
+            "📊 Average completion rate: \(average, format: .number.precision(.fractionLength(2)))")
+        return average
     }
 }
 

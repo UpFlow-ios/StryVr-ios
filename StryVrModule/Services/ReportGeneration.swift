@@ -22,47 +22,45 @@ final class ReportGeneration {
     static let mockTeamReports: [LearningReport] = [
         LearningReport(
             id: UUID().uuidString,
-            userID: "user_001",
-            createdAt: Date(),
-            skills: [
-                SkillPerformance(skillName: "SwiftUI", rating: 0.9),
-                SkillPerformance(skillName: "Communication", rating: 0.8),
-                SkillPerformance(skillName: "AI Literacy", rating: 0.6),
-            ],
-            strengths: ["SwiftUI", "Communication"],
-            weaknesses: ["AI Literacy"],
-            summary: "Strong progress in SwiftUI and communication. Focus more on AI concepts.",
-            overallScore: 0.77
+            employeeId: "emp_001",
+            employeeName: "John Doe",
+            reportDate: Date(),
+            period: .monthly,
+            skillsCompleted: 5,
+            totalSkills: 8,
+            learningHours: 24.5,
+            certificationsEarned: 2,
+            performanceScore: 85.0,
+            recommendations: ["Focus on advanced SwiftUI", "Improve team collaboration"],
+            nextSteps: ["Complete advanced courses", "Join team projects"]
         ),
         LearningReport(
             id: UUID().uuidString,
-            userID: "user_002",
-            createdAt: Date(),
-            skills: [
-                SkillPerformance(skillName: "Leadership", rating: 0.7),
-                SkillPerformance(skillName: "Project Management", rating: 0.8),
-                SkillPerformance(skillName: "Technical Skills", rating: 0.5),
-            ],
-            strengths: ["Leadership", "Project Management"],
-            weaknesses: ["Technical Skills"],
-            summary:
-                "Excellent leadership and project management skills. Technical skills need improvement.",
-            overallScore: 0.67
+            employeeId: "emp_002",
+            employeeName: "Jane Smith",
+            reportDate: Date(),
+            period: .monthly,
+            skillsCompleted: 3,
+            totalSkills: 6,
+            learningHours: 18.0,
+            certificationsEarned: 1,
+            performanceScore: 75.0,
+            recommendations: ["Enhance leadership skills", "Focus on project management"],
+            nextSteps: ["Take leadership courses", "Lead small projects"]
         ),
         LearningReport(
             id: UUID().uuidString,
-            userID: "user_003",
-            createdAt: Date(),
-            skills: [
-                SkillPerformance(skillName: "Design", rating: 0.9),
-                SkillPerformance(skillName: "Creativity", rating: 0.8),
-                SkillPerformance(skillName: "Analytics", rating: 0.4),
-            ],
-            strengths: ["Design", "Creativity"],
-            weaknesses: ["Analytics"],
-            summary:
-                "Outstanding design and creativity skills. Analytics skills require development.",
-            overallScore: 0.70
+            employeeId: "emp_003",
+            employeeName: "Mike Johnson",
+            reportDate: Date(),
+            period: .monthly,
+            skillsCompleted: 7,
+            totalSkills: 10,
+            learningHours: 32.0,
+            certificationsEarned: 3,
+            performanceScore: 92.0,
+            recommendations: ["Mentor junior developers", "Share knowledge with team"],
+            nextSteps: ["Become a mentor", "Create knowledge sharing sessions"]
         ),
     ]
 }
