@@ -100,7 +100,7 @@ struct AISkillCoachView: View {
 
     private func fetchSkillRecommendations() {
         AIRecommendationService.shared.fetchSkillRecommendations(for: "currentUserID") { result in
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 withAnimation {
                     switch result {
                     case let .success(skills):

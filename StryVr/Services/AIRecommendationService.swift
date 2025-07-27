@@ -12,6 +12,7 @@ import FirebaseFirestoreSwift
 import Foundation
 import OSLog
 
+@MainActor
 final class AIRecommendationService {
     static let shared = AIRecommendationService()
     private let db: Firestore
@@ -76,12 +77,38 @@ final class AIRecommendationService {
             }
     }
 
+    func fetchSkillRecommendations(
+        for userID: String,
+        completion: @escaping (Result<[String], Error>) -> Void
+    ) {
+        // Fetch skill recommendations for the given user
+        db.collection("users").document(userID).collection("recommendations").getDocuments {
+            [weak self] snapshot, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    self?.logger.error(
+                        "❌ Failed to fetch skill recommendations: \(error.localizedDescription)")
+                    completion(.failure(error))
+                    return
+                }
+
+                let recommendations =
+                    snapshot?.documents.compactMap { doc -> String? in
+                        return doc.data()["skill"] as? String
+                    } ?? []
+
+                self?.logger.info("📊 Fetched \(recommendations.count) skill recommendations")
+                completion(.success(recommendations))
+            }
+        }
+    }
+
     func getCareerRecommendations(
         from skills: [SkillProgress],
         completion: @escaping (Result<[String], Error>) -> Void
     ) {
         // Extract skill names from SkillProgress objects
-        let skillNames = skills.map { $0.skill }
+        let skillNames = skills.map { $0.skillName }
 
         // For now, return placeholder career suggestions based on skills
         let careerSuggestions = generateCareerSuggestions(from: skillNames)

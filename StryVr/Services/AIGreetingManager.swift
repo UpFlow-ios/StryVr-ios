@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 
+@MainActor
 class AIGreetingManager: ObservableObject {
     static let shared = AIGreetingManager()
 

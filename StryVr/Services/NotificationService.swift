@@ -13,6 +13,7 @@ import UserNotifications
 
 /// Manages push notifications for video engagement, recommendations, and learning reminders
 @MainActor
+@preconcurrency
 final class NotificationService: NSObject, ObservableObject, UNUserNotificationCenterDelegate,
     MessagingDelegate
 {
@@ -46,7 +47,7 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
     // MARK: - UNUserNotificationCenterDelegate
 
     /// Handles receiving push notifications while the app is in the foreground
-    func userNotificationCenter(
+    nonisolated func userNotificationCenter(
         _: UNUserNotificationCenter,
         willPresent _: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) ->
@@ -56,7 +57,7 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
     }
 
     /// Handles user interactions with notifications
-    func userNotificationCenter(
+    nonisolated func userNotificationCenter(
         _: UNUserNotificationCenter,
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void
@@ -74,7 +75,7 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
     }
 
     /// Handles updating the Firebase FCM token
-    func messaging(_: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+    nonisolated func messaging(_: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         guard let token = fcmToken else { return }
         logger.info("📱 Firebase FCM Token received")
         saveDeviceTokenToDatabase(token)

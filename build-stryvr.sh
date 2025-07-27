@@ -1,34 +1,45 @@
 #!/bin/bash
 
-# ✅ STEP 1: Define variables
-SCHEME="StryVr"
-PROJECT_PATH="./SupportingFiles/StryVr.xcodeproj"
-CONFIGURATION="Release"
-ARCHIVE_PATH="./build/StryVr.xcarchive"
-TOOLCHAIN_PATH="$HOME/Library/Developer/Toolchains/swift-6.1.2.xctoolchain"
+# StryVr Single Build Manager
+# Ensures only one build runs at a time
 
-# ✅ STEP 2: Clean build
-echo "🧹 Cleaning previous build..."
-xcodebuild clean \
-  -scheme "$SCHEME" \
-  -project "$PROJECT_PATH"
+BUILD_LOCK_FILE="/tmp/stryvr_build.lock"
+BUILD_LOG_FILE="current-build.log"
 
-# ✅ STEP 3: Build and Archive with Swift 6.1.2
-echo "📦 Building and archiving with Swift 6.1.2..."
-xcodebuild \
-  -scheme "$SCHEME" \
-  -project "$PROJECT_PATH" \
-  -configuration "$CONFIGURATION" \
-  -sdk iphoneos \
-  -toolchain "$TOOLCHAIN_PATH" \
-  -archivePath "$ARCHIVE_PATH" \
-  archive | tee build.log
-
-# ✅ STEP 4: Final result
-if [ -d "$ARCHIVE_PATH" ]; then
-  echo "✅ Archive completed successfully: $ARCHIVE_PATH"
-else
-  echo "❌ Archive failed. Check build.log for details."
+# Check if build is already running
+if [ -f "$BUILD_LOCK_FILE" ]; then
+    echo "🚫 Build already in progress. PID: $(cat $BUILD_LOCK_FILE)"
+    echo "   If this is incorrect, run: rm $BUILD_LOCK_FILE"
+    exit 1
 fi
+
+# Create lock file
+echo $$ > "$BUILD_LOCK_FILE"
+
+echo "🔨 Starting StryVr build..."
+echo "📝 Build log: $BUILD_LOG_FILE"
+echo "🔒 Build lock: $BUILD_LOCK_FILE"
+
+# Clean up function
+trap 'rm -f "$BUILD_LOCK_FILE"; echo "✅ Build completed. Lock removed."' EXIT
+
+# Run the build
+xcodebuild -project SupportingFiles/StryVr.xcodeproj \
+    -scheme StryVr \
+    -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=18.3.1' \
+    build 2>&1 | tee "$BUILD_LOG_FILE"
+
+BUILD_EXIT_CODE=${PIPESTATUS[0]}
+
+echo ""
+echo "📊 Build completed with exit code: $BUILD_EXIT_CODE"
+
+if [ $BUILD_EXIT_CODE -eq 0 ]; then
+    echo "✅ Build successful!"
+else
+    echo "❌ Build failed. Check $BUILD_LOG_FILE for details."
+fi
+
+exit $BUILD_EXIT_CODE
 
 
