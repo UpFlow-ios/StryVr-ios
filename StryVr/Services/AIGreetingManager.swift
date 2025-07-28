@@ -11,7 +11,7 @@ import SwiftUI
 
 @MainActor
 class AIGreetingManager: ObservableObject {
-    static let shared = AIGreetingManager()
+    @MainActor static let shared = AIGreetingManager()
 
     @Published var currentGreeting: String = ""
     @Published var isLoading: Bool = false

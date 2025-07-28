@@ -13,7 +13,7 @@ import Foundation
 
 @MainActor
 final class EmployeeProgressService {
-    static let shared = EmployeeProgressService()
+    @MainActor static let shared = EmployeeProgressService()
     private let db = Firestore.firestore()
 
     private init() {}

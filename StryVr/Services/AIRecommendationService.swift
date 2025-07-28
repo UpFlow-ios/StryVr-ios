@@ -14,7 +14,7 @@ import OSLog
 
 @MainActor
 final class AIRecommendationService {
-    static let shared = AIRecommendationService()
+    @MainActor static let shared = AIRecommendationService()
     private let db: Firestore
     private let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "AIRecommendationService"
