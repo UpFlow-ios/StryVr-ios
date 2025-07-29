@@ -19,7 +19,8 @@ struct UserData: Identifiable, Codable, Hashable {
     let jobTitle: String?
 
     // Recent performance summary
-    let lastReport: LearningReport?
+    // TODO: Fix LearningReport import issue - temporarily commented out
+    // let lastReport: LearningReport?
     let progressScore: Double  // 0.0 to 1.0
 
     // Optional description or user bio
@@ -35,7 +36,7 @@ struct UserData: Identifiable, Codable, Hashable {
         profileImageURL: nil as String?,
         department: nil as String?,
         jobTitle: nil as String?,
-        lastReport: nil as LearningReport?,
+        // lastReport: nil as LearningReport?,
         progressScore: 0.0,
         bio: nil as String?
     )
