@@ -1,0 +1,80 @@
+# Quick Commit Decision Guide
+
+## 🚀 IMMEDIATE COMMIT - Do This Now
+
+### ✅ Commit When You Have:
+- **Working Feature** - Complete, tested functionality
+- **Bug Fix** - Resolved critical issue
+- **Build Fix** - Compilation errors fixed
+- **UI Enhancement** - Improved Liquid Glass styling
+- **Performance Gain** - Faster, smoother experience
+- **Security Update** - Authentication/data protection fix
+- **App Store Prep** - Submission-ready improvements
+
+### 📝 Quick Commit Template:
+```bash
+git add .
+git commit -m "type(scope): brief description"
+git push origin feature/your-branch
+```
+
+## 🛑 WAIT - Don't Commit Yet
+
+### ❌ Hold Off If You Have:
+- **Incomplete Code** - Feature not fully implemented
+- **Broken Build** - Won't compile or crashes
+- **Debug Code** - Print statements or test UI
+- **Experimental Features** - Untested functionality
+- **Unrelated Changes** - Outside current task scope
+
+### 🔧 Fix First Checklist:
+- [ ] Code compiles without errors
+- [ ] Feature works as intended
+- [ ] No debug code or print statements
+- [ ] Liquid Glass UI preserved
+- [ ] No breaking changes to existing features
+
+## 🎯 StryVr-Specific Rules
+
+### ALWAYS Preserve:
+- **AIGreetingManager.swift** - Core app identity
+- **Liquid Glass styling** - Premium visual design
+- **Working features** - Don't remove functioning code
+- **Folder structure** - Maintain current architecture
+
+### NEVER Commit:
+- **API keys** or sensitive data
+- **Personal test data**
+- **Build artifacts** (.build/, derived data)
+- **Temporary files** (.DS_Store, etc.)
+
+## ⚡ Quick Decision Flow
+
+1. **Does it build?** → No = Fix first
+2. **Does it work?** → No = Complete the feature
+3. **Is it tested?** → No = Test thoroughly
+4. **Is it clean?** → No = Remove debug code
+5. **Is it ready?** → Yes = Commit now!
+
+## 🚨 Emergency Commits
+
+### Only for Critical Issues:
+- **Security vulnerabilities**
+- **App crashes**
+- **Data loss prevention**
+- **Build-breaking changes**
+
+### Emergency Template:
+```bash
+git add .
+git commit -m "hotfix(critical): emergency fix for [issue]"
+git push origin main
+```
+
+---
+
+**Remember**: When in doubt, ask yourself: "Does this make StryVr better for App Store success?" If yes, commit. If no, wait.
+description:
+globs:
+alwaysApply: false
+---

@@ -1,0 +1,172 @@
+# Git Workflow & Project Management for StryVr
+
+## 🚨 When to Commit Changes
+
+### ✅ ALWAYS Commit When:
+1. **Feature Completion** - A complete feature is implemented and tested
+2. **Bug Fixes** - Critical bugs are resolved and verified
+3. **Build Fixes** - Compilation errors are resolved
+4. **UI Improvements** - Visual enhancements that maintain Liquid Glass styling
+5. **Performance Optimizations** - Code that improves app performance
+6. **Security Updates** - Authentication or data protection improvements
+7. **App Store Preparation** - Changes that make the app submission-ready
+
+### ❌ DO NOT Commit When:
+1. **Incomplete Features** - Partial implementations that break functionality
+2. **Experimental Code** - Untested or unstable changes
+3. **Personal Debugging** - Temporary debug code or print statements
+4. **Unrelated Changes** - Modifications outside the current task scope
+5. **Broken Builds** - Code that doesn't compile or causes crashes
+
+## 📝 Commit Message Standards
+
+### Format
+```
+type(scope): brief description
+
+Detailed description if needed
+```
+
+### Types
+- **feat**: New features
+- **fix**: Bug fixes
+- **refactor**: Code refactoring
+- **perf**: Performance improvements
+- **style**: UI/UX improvements
+- **docs**: Documentation updates
+- **build**: Build system changes
+- **test**: Test additions/modifications
+
+### Examples
+```
+feat(home): add real-time skill analytics dashboard
+fix(auth): resolve Firebase authentication timeout issue
+refactor(ui): modernize glass card styling components
+perf(charts): optimize Swift Charts rendering performance
+style(theme): enhance Liquid Glass visual effects
+```
+
+## 🔄 Branch Strategy
+
+### Main Branches
+- **main**: Production-ready code, App Store submission quality
+- **develop**: Integration branch for features
+- **feature/***: Individual feature development
+- **hotfix/***: Critical production fixes
+
+### Branch Naming
+```
+feature/skill-analytics-dashboard
+feature/ai-greeting-manager
+hotfix/firebase-auth-crash
+refactor/glass-card-components
+```
+
+## 🧪 Pre-Commit Checklist
+
+### Code Quality
+- [ ] **Builds Successfully** - No compilation errors
+- [ ] **Tests Pass** - All existing tests continue to pass
+- [ ] **No Warnings** - Clean build without warnings
+- [ ] **Swift 6.1.2 Compatible** - Uses modern syntax
+- [ ] **Liquid Glass Preserved** - UI styling maintained
+
+### Feature Completeness
+- [ ] **Functionality Works** - Feature operates as intended
+- [ ] **Error Handling** - Proper error states implemented
+- [ ] **User Experience** - Smooth interactions and animations
+- [ ] **Accessibility** - VoiceOver and accessibility features work
+- [ ] **Dark Mode** - Supports both light and dark themes
+
+### App Store Compliance
+- [ ] **No Experimental APIs** - Only production-ready features
+- [ ] **Privacy Compliant** - Data handling follows guidelines
+- [ ] **Performance Optimized** - No memory leaks or performance issues
+- [ ] **Security Verified** - Authentication and data protection intact
+
+## 🚀 Deployment Workflow
+
+### Development Phase
+1. **Feature Branch** - Work on feature/feature-name
+2. **Local Testing** - Verify functionality and performance
+3. **Code Review** - Self-review against StryVr standards
+4. **Merge to Develop** - Integrate with other features
+
+### Pre-Release Phase
+1. **Integration Testing** - Test all features together
+2. **Performance Testing** - Verify smooth user experience
+3. **App Store Validation** - Ensure submission readiness
+4. **Merge to Main** - Deploy to production
+
+### Release Phase
+1. **Tag Release** - Create version tag
+2. **Archive Build** - Generate App Store build
+3. **Submit Review** - App Store submission
+4. **Monitor Feedback** - Track user reviews and crashes
+
+## 🔍 Code Review Standards
+
+### What to Review
+- **Architecture Compliance** - Follows StryVr folder structure
+- **SwiftUI Standards** - Modern SwiftUI patterns
+- **Performance Impact** - No performance regressions
+- **Security Implications** - Data protection maintained
+- **UI Consistency** - Liquid Glass styling preserved
+
+### Review Checklist
+- [ ] **No Breaking Changes** - Existing features still work
+- [ ] **Clean Architecture** - Follows MVVM pattern
+- [ ] **Error Handling** - Proper async/await error handling
+- [ ] **Memory Management** - No retain cycles or leaks
+- [ ] **Documentation** - Code is self-documenting
+
+## 🛡️ Protection Rules
+
+### Never Commit
+- **API Keys** - Keep in secure configuration
+- **Debug Code** - Remove print statements and debug UI
+- **Personal Data** - No test user data or personal information
+- **Build Artifacts** - Don't commit .build/ or derived data
+- **Temporary Files** - No .DS_Store or temporary files
+
+### Always Include
+- **Meaningful Messages** - Clear commit descriptions
+- **Related Changes** - Group related modifications
+- **Test Coverage** - Include tests for new features
+- **Documentation** - Update relevant documentation
+
+## 🎯 StryVr-Specific Guidelines
+
+### Feature Preservation
+- **Never remove working features** unless explicitly requested
+- **Preserve AIGreetingManager** - Core to app identity
+- **Maintain Liquid Glass UI** - Premium visual design
+- **Respect folder structure** - Don't reorganize without permission
+
+### App Store Focus
+- **Production Quality** - Every commit should be App Store ready
+- **Performance First** - Optimize for smooth user experience
+- **Security Priority** - Enterprise-grade data protection
+- **User Experience** - Intuitive and engaging interactions
+
+## 📊 Commit Frequency
+
+### Recommended Pattern
+- **Small, Frequent Commits** - Easier to review and revert
+- **Feature-Based Commits** - Group related changes together
+- **Logical Separation** - Separate UI, logic, and data changes
+- **Meaningful Milestones** - Commit at natural breakpoints
+
+### When to Push
+- **Feature Complete** - Push when feature is fully implemented
+- **Integration Ready** - Push when ready for code review
+- **Build Success** - Push after successful local build
+- **Test Pass** - Push after all tests pass
+
+---
+
+**Remember**: Every commit to StryVr should move the project closer to App Store success. Quality over quantity, and always prioritize the user experience and app performance.
+description:
+globs:
+alwaysApply: false
+---
