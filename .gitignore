@@ -9,11 +9,35 @@ build/
 .build/
 
 # macOS Files
-.DS_Storestryvr-firebase-adminsdk*.json
+.DS_Store
 node_modules/
-stryvr-firebase-adminsdk*.json
-stryvr-firebase-adminsdk*.json
 Package.resolved
 build.log
 .vscode/
 codex-fix.patch
+
+# Firebase Security Files
+firebase-adminsdk*.json
+*firebase-adminsdk*.json
+GoogleService-Info.plist
+GoogleService-info.plist
+
+# API Keys and Secrets
+*.key
+*.pem
+*.p12
+secrets/
+.env
+.env.local
+.env.production
+
+# Build and Log Files
+*.log
+logs/
+current-build.log
+build-log.txt
+
+# Temporary Files
+*.tmp
+*.temp
+nohup.out
