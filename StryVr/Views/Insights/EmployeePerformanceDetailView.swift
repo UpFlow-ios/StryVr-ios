@@ -65,7 +65,7 @@ struct EmployeePerformanceDetailView: View {
                         .font(Theme.Typography.subheadline)
 
                     Chart {
-                        ForEach(0..<dailyStreaks.count, id: \ .. self) { index in
+                        ForEach(0..<dailyStreaks.count, id: \ .self) { index in
                             BarMark(
                                 x: .value("Day", index),
                                 y: .value("Check-ins", dailyStreaks[index])

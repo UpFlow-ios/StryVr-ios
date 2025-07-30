@@ -78,7 +78,9 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
     nonisolated func messaging(_: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         guard let token = fcmToken else { return }
         logger.info("📱 Firebase FCM Token received")
-        saveDeviceTokenToDatabase(token)
+        Task { @MainActor in
+            saveDeviceTokenToDatabase(token)
+        }
     }
 
     /// Stores the FCM device token in Firestore for targeted notifications

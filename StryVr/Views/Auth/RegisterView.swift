@@ -104,7 +104,8 @@ struct RegisterView: View {
             // MARK: - Confetti Animation
 
             if FeatureFlags.enableConfetti {
-                ConfettiCannon(counter: $showConfetti, confettiSize: 12, repetitions: 1, rainHeight: 800)
+                ConfettiCannon(
+                    counter: $showConfetti, confettiSize: 12, rainHeight: 800, repetitions: 1)
             }
         }
     }

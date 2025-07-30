@@ -9,7 +9,7 @@
 import Foundation
 
 /// Represents user-level data for reports and analytics
-struct UserData: Identifiable, Codable, Hashable {
+struct UserData: Identifiable, Codable, Hashable, Equatable {
     let id: String
     let fullName: String
     let email: String
@@ -39,4 +39,29 @@ struct UserData: Identifiable, Codable, Hashable {
         progressScore: 0.0,
         bio: nil as String?
     )
+
+    static func == (lhs: UserData, rhs: UserData) -> Bool {
+        lhs.id == rhs.id &&
+        lhs.fullName == rhs.fullName &&
+        lhs.email == rhs.email &&
+        lhs.role == rhs.role &&
+        lhs.profileImageURL == rhs.profileImageURL &&
+        lhs.department == rhs.department &&
+        lhs.jobTitle == rhs.jobTitle &&
+        lhs.lastReport == rhs.lastReport &&
+        lhs.progressScore == rhs.progressScore &&
+        lhs.bio == rhs.bio
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(fullName)
+        hasher.combine(email)
+        hasher.combine(role)
+        hasher.combine(profileImageURL)
+        hasher.combine(department)
+        hasher.combine(jobTitle)
+        hasher.combine(lastReport)
+        hasher.combine(progressScore)
+        hasher.combine(bio)
+    }
 }

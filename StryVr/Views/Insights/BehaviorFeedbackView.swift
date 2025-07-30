@@ -6,6 +6,8 @@
 //  🧾 Feedback Submission View – Structured, Anonymous, Themed + Firestore Integrated
 //
 
+import FirebaseAuth
+import FirebaseFirestore
 import OSLog
 import SwiftUI
 
@@ -108,7 +110,7 @@ struct EmployeeBehaviorFeedbackView: View {
     private func submitFeedback() {
         let newFeedback = BehaviorFeedback(
             employeeId: employeeId,
-            reviewerId: isAnonymous ? nil : AuthViewModel.shared.currentUser?.uid,
+            reviewerId: isAnonymous ? nil : AuthViewModel.shared.userSession?.uid,
             category: selectedCategory,
             rating: rating,
             comment: comment,

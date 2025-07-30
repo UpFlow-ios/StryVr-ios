@@ -36,25 +36,25 @@ struct LottieAnimationView: UIViewRepresentable {
             return view
         }
 
-        let animationView = LottieAnimationView()
-        animationView.animation = animation
-        animationView.contentMode = .scaleAspectFit
-        animationView.loopMode = loopMode
-        animationView.animationSpeed = speed
+        let lottieView = LottieAnimationView()
+        lottieView.animation = animation
+        lottieView.contentMode = UIView.ContentMode.scaleAspectFit
+        lottieView.loopMode = loopMode
+        lottieView.animationSpeed = speed
 
         // Add to view hierarchy
-        animationView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(animationView)
+        lottieView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(lottieView)
 
         NSLayoutConstraint.activate([
-            animationView.topAnchor.constraint(equalTo: view.topAnchor),
-            animationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            animationView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            animationView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            lottieView.topAnchor.constraint(equalTo: view.topAnchor),
+            lottieView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            lottieView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            lottieView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
 
         // Store reference for later use
-        context.coordinator.animationView = animationView
+        context.coordinator.animationView = lottieView
 
         return view
     }

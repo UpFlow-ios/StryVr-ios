@@ -5,18 +5,18 @@
 //  📊 Reports Dashboard & Analytics
 //
 
+import Charts
 import Foundation
 import SwiftUI
-import Charts
 
 struct ReportsDashboardView: View {
     // MARK: - Mock Data
 
     var skillData: [SkillProgress] = [
-        .init(skill: "Leadership", progress: 0.72),
-        .init(skill: "UI/UX", progress: 0.64),
-        .init(skill: "iOS Dev", progress: 0.89),
-        .init(skill: "Problem Solving", progress: 0.58),
+        .init(skillId: "leadership", skillName: "Leadership", progressPercentage: 0.72),
+        .init(skillId: "uiux", skillName: "UI/UX", progressPercentage: 0.64),
+        .init(skillId: "iosdev", skillName: "iOS Dev", progressPercentage: 0.89),
+        .init(skillId: "problemsolving", skillName: "Problem Solving", progressPercentage: 0.58),
     ]
 
     var body: some View {
@@ -61,12 +61,13 @@ struct ReportsDashboardView: View {
                             ) {
                                 ForEach(skillData) { skill in
                                     StryVrProgressCircle(
-                                        progress: skill.progress, label: skill.skill
+                                        progress: skill.progressPercentage, label: skill.skillName
                                     )
                                     .accessibilityLabel(
-                                        "\(skill.skill) progress: \(Int(skill.progress * 100)) percent"
+                                        "\(skill.skillName) progress: \(Int(skill.progressPercentage * 100)) percent"
                                     )
-                                    .accessibilityHint("Displays the progress for \(skill.skill)")
+                                    .accessibilityHint(
+                                        "Displays the progress for \(skill.skillName)")
                                 }
                             }
                             .padding(.top, Theme.Spacing.small)

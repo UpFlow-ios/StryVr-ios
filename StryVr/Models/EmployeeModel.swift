@@ -9,7 +9,7 @@
 import Foundation
 
 /// Represents an employee within the StryVr organization insights system.
-struct EmployeeModel: Identifiable, Codable, Hashable {
+struct EmployeeModel: Identifiable, Codable, Hashable, Equatable {
     let id: String
     let name: String
     let role: String
@@ -39,6 +39,33 @@ struct EmployeeModel: Identifiable, Codable, Hashable {
         self.goalsAchieved = goalsAchieved
         self.isActive = isActive
     }
+
+    static func == (lhs: EmployeeModel, rhs: EmployeeModel) -> Bool {
+        lhs.id == rhs.id &&
+        lhs.name == rhs.name &&
+        lhs.role == rhs.role &&
+        lhs.department == rhs.department &&
+        lhs.email == rhs.email &&
+        lhs.joinDate == rhs.joinDate &&
+        lhs.skills == rhs.skills &&
+        lhs.feedbackEntries == rhs.feedbackEntries &&
+        lhs.performanceRating == rhs.performanceRating &&
+        lhs.goalsAchieved == rhs.goalsAchieved &&
+        lhs.isActive == rhs.isActive
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(name)
+        hasher.combine(role)
+        hasher.combine(department)
+        hasher.combine(email)
+        hasher.combine(joinDate)
+        hasher.combine(skills)
+        hasher.combine(feedbackEntries)
+        hasher.combine(performanceRating)
+        hasher.combine(goalsAchieved)
+        hasher.combine(isActive)
+    }
 }
 
 /// Feedback associated with an employee's behavior or performance.
@@ -54,9 +81,9 @@ struct FeedbackEntry: Codable, Hashable {
         static let mock: EmployeeModel = .init(
             id: "emp001",
             name: "Jordan Rivera",
-            email: "jordan.rivera@stryvr.com",
             role: "iOS Engineer",
             department: "Product Development",
+            email: "jordan.rivera@stryvr.com",
             joinDate: Date(),
             skills: [
                 SkillProgress(
