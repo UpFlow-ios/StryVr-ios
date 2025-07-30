@@ -36,6 +36,7 @@ StryVr is currently in final preparation for App Store submission with:
 - **[STRYVR_DEV_RULES.md](./STRYVR_DEV_RULES.md)**: Development guidelines and best practices
 - **[API_REFERENCE.md](./API_REFERENCE.md)**: API documentation and integration guides
 - **[FIREBASE_SWIFT6_FIX.md](./FIREBASE_SWIFT6_FIX.md)**: Firebase integration troubleshooting
+- **[APP_STORE_DEPLOYMENT.md](./APP_STORE_DEPLOYMENT.md)**: Complete App Store deployment guide and configuration
 
 ## 🎯 **Development Guidelines**
 
