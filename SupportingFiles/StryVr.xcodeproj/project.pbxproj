@@ -139,6 +139,10 @@
 		85ABD5802E0DD7560031CD96 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 85ABD57F2E0DD7560031CD96 /* FirebaseStorageCombine-Community */; };
 		85ABD5822E0DD7560031CD96 /* FirebaseVertexAI-Preview in Frameworks */ = {isa = PBXBuildFile; productRef = 85ABD5812E0DD7560031CD96 /* FirebaseVertexAI-Preview */; };
 		85AD56A22D94BA79007B6542 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AD56A12D94BA79007B6542 /* Skill.swift */; };
+		85AD56A42D94BA97007B6542 /* LearningReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AD56A32D94BA97007B6542 /* LearningReport.swift */; };
+		85AD56A62D94BAE8007B6542 /* SkillProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AD56A42D94BAE8007B6542 /* SkillProgress.swift */; };
+		85AD56A82D94B9EA007B6542 /* SubscriptionPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AD56A02D94B9EA007B6542 /* SubscriptionPlan.swift */; };
+		85AD56AA2D94B931007B6542 /* ChallengeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AD569D2D94B931007B6542 /* ChallengeModel.swift */; };
 		85BE23322DD3E53600298EDF /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE23312DD3E53600298EDF /* FirebaseAppCheck */; };
 		85BE23342DD3E53600298EDF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE23332DD3E53600298EDF /* FirebaseAuth */; };
 		85BE23382DD3E53600298EDF /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE23372DD3E53600298EDF /* FirebaseFirestore */; };
@@ -1108,6 +1112,10 @@
 				8588F0A32DC0698A00D04995 /* EditProfileView.swift in Sources */,
 				856AA62E2D9164E900402F84 /* CustomNavigationView.swift in Sources */,
 				85AD56A22D94BA79007B6542 /* Skill.swift in Sources */,
+				85AD56A42D94BA97007B6542 /* LearningReport.swift in Sources */,
+				85AD56A62D94BAE8007B6542 /* SkillProgress.swift in Sources */,
+				85AD56A82D94B9EA007B6542 /* SubscriptionPlan.swift in Sources */,
+				85AD56AA2D94B931007B6542 /* ChallengeModel.swift in Sources */,
 				855E96092D9D0ED0002173EF /* CareerPathInsightsView.swift in Sources */,
 				8519660B2DA6D836004264AE /* StryVrCardView.swift in Sources */,
 				8588F0BB2DC26B5100D04995 /* ProfileBadgesView.swift in Sources */,
