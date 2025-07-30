@@ -13,7 +13,7 @@
 
 With a focus on Swift/SwiftUI, Firebase, and cutting-edge AI technologies, Joe is building the future of workplace analytics and skill development. StryVr provides real-time skill assessment, personalized learning paths, and comprehensive team health insights to drive measurable career growth.
 
-**Technologies**: Swift 6.1.2, SwiftUI, Firebase, OpenAI API, HuggingFace, Core Data, Keychain Security
+**Technologies**: Swift 6.0, SwiftUI, Firebase, OpenAI API, HuggingFace, Core Data, Keychain Security
 
 **Connect**: [stryvr.app](https://stryvr.app) | [@josephdormond](https://twitter.com/josephdormond) | [LinkedIn](https://linkedin.com/in/joedormond)
 
@@ -24,7 +24,7 @@ With a focus on Swift/SwiftUI, Firebase, and cutting-edge AI technologies, Joe i
 StryVr emerged from Joe's recognition that traditional professional development lacks measurable, actionable insights. The platform combines real-time AI analysis, gamified learning experiences, and comprehensive analytics to help both individuals and teams understand their strengths, identify growth opportunities, and track progress toward career goals.
 
 ### **Technical Expertise**
-Joe specializes in modern iOS development with Swift 6.1.2 and SwiftUI, creating intuitive, performant applications that leverage the latest Apple technologies. His expertise extends to:
+Joe specializes in modern iOS development with Swift 6.0 and SwiftUI, creating intuitive, performant applications that leverage the latest Apple technologies. His expertise extends to:
 - **Frontend Development**: SwiftUI, Core Data, Charts, Lottie animations
 - **Backend Integration**: Firebase (Auth, Firestore, Storage), Node.js
 - **AI/ML Integration**: OpenAI API, HuggingFace, custom machine learning models

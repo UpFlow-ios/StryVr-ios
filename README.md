@@ -36,7 +36,7 @@ stryvr is an iOS app that revolutionizes professional development by providing r
 ### Prerequisites
 
 - Xcode 16.0+
-- iOS 18.0+
+- iOS 16.0+
 - Swift 6.0
 - Node.js 18+ (for backend)
 
@@ -194,8 +194,8 @@ We take security seriously. StryVr implements:
 ### **Resources**
 
 - **📚 Documentation**: [Docs/](Docs/)
-- **🐛 Bug Reports**: [GitHub Issues](https://github.com/UpFlow-ios/StryVr-ios/issues)
-- **💡 Feature Requests**: [GitHub Discussions](https://github.com/UpFlow-ios/StryVr-ios/discussions)
+- **🐛 Bug Reports**: [GitHub Issues](https://github.com/upflow-ios/stryvr-ios/issues)
+- **💡 Feature Requests**: [GitHub Discussions](https://github.com/upflow-ios/stryvr-ios/discussions)
 - **🌐 Website**: [stryvr.app](https://stryvr.app)
 
 ## 📄 License

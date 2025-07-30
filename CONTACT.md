@@ -31,8 +31,8 @@
 
 ### **Technical Support**
 - **📧 Email**: [support@stryvr.app](mailto:support@stryvr.app)
-- **🐛 GitHub Issues**: [Report Bugs](https://github.com/yourusername/stryvr-ios/issues)
-- **💡 GitHub Discussions**: [Feature Requests](https://github.com/yourusername/stryvr-ios/discussions)
+- **🐛 GitHub Issues**: [Report Bugs](https://github.com/upflow-ios/stryvr-ios/issues)
+- **💡 GitHub Discussions**: [Feature Requests](https://github.com/upflow-ios/stryvr-ios/discussions)
 
 ## 🎯 **What I'm Looking For**
 

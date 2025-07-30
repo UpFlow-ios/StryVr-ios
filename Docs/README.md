@@ -17,7 +17,7 @@ StryVr is currently in final preparation for App Store submission with:
 ## 🏗️ **Architecture**
 
 ### **Technology Stack**
-- **Framework**: SwiftUI (iOS 15+)
+- **Framework**: SwiftUI (iOS 16+)
 - **Architecture**: MVVM with ObservableObject
 - **Authentication**: Firebase Auth
 - **Styling**: Custom Liquid Glass UI with `.ultraThinMaterial`

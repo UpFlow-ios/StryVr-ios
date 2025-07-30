@@ -72,7 +72,7 @@ Requirements:
 • Passion for professional development and learning
 
 Tech Stack:
-• Swift 6.1.2, SwiftUI, Core Data
+• Swift 6.0, SwiftUI, Core Data
 • Firebase (Auth, Firestore, Storage)
 • CryptoKit for encryption
 • AI/ML frameworks

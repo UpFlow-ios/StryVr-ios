@@ -6,7 +6,7 @@ GitGuardian is a code security platform that monitors repositories for exposed s
 
 ## ✅ **Current Status**
 
-### **Repository**: UpFlow-ios/StryVr-ios
+### **Repository**: upflow-ios/stryvr-ios
 - **Monitoring**: ✅ **ACTIVE**
 - **Last Scan**: July 29th, 2025 22:26-22:28
 - **Status**: ✅ **SUCCESSFUL** (Green)
@@ -23,12 +23,12 @@ GitGuardian is a code security platform that monitors repositories for exposed s
 
 ### **1. Account Creation**
 - **Sign up**: https://dashboard.gitguardian.com
-- **Organization**: UpFlow-ios
-- **Repository**: StryVr-ios
+- **Organization**: upflow-ios
+- **Repository**: stryvr-ios
 
 ### **2. Repository Integration**
 - **Connect GitHub**: Link your GitHub account
-- **Select Repository**: Choose UpFlow-ios/StryVr-ios
+- **Select Repository**: Choose upflow-ios/stryvr-ios
 - **Permissions**: Grant necessary access for scanning
 
 ### **3. Initial Configuration**
