@@ -41,7 +41,7 @@ echo "   Expected name: firebase-adminsdk-new.json (or similar)"
 echo ""
 
 # Check for new Firebase key file
-FIREBASE_KEY_FILE=$(find backend/ -name "*firebase*adminsdk*.json" -not -name "*old*" -not -name "*backup*" 2>/dev/null | head -1)
+FIREBASE_KEY_FILE=$(find backend/ -name "*firebase*adminsdk*.json" -o -name "*stryvr*1eb15a282abd*.json" -not -name "*old*" -not -name "*backup*" 2>/dev/null | head -1)
 
 if [ -z "$FIREBASE_KEY_FILE" ]; then
     echo -e "${RED}❌ No new Firebase Admin SDK JSON file found in backend/ directory${NC}"
