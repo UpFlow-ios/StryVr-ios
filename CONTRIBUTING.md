@@ -18,9 +18,9 @@ Thank you for your interest in contributing to StryVr! We're building the future
 
 ### **1. Fork the Repository**
 ```bash
-git clone https://github.com/yourusername/stryvr-ios.git
-cd stryvr-ios
-git remote add upstream https://github.com/joedormond/stryvr-ios.git
+git clone https://github.com/yourusername/StryVr-ios.git
+cd StryVr-ios
+git remote add upstream https://github.com/UpFlow-ios/StryVr-ios.git
 ```
 
 ### **2. Set Up Development Environment**
@@ -242,8 +242,8 @@ We'll feature top contributors in our README and documentation.
 ### **Before Asking**
 
 1. **Check Documentation** - [Docs/](Docs/)
-2. **Search Issues** - [GitHub Issues](https://github.com/joedormond/stryvr-ios/issues)
-3. **Read Discussions** - [GitHub Discussions](https://github.com/joedormond/stryvr-ios/discussions)
+2. **Search Issues** - [GitHub Issues](https://github.com/UpFlow-ios/StryVr-ios/issues)
+3. **Read Discussions** - [GitHub Discussions](https://github.com/UpFlow-ios/StryVr-ios/discussions)
 
 ### **Contact Options**
 
@@ -275,4 +275,4 @@ By contributing to StryVr, you agree that your contributions will be licensed un
 
 **🚀 Thank you for helping build the future of professional development!**
 
-[Back to README](README.md) • [Documentation](Docs/) • [Issues](https://github.com/joedormond/stryvr-ios/issues) 
+[Back to README](README.md) • [Documentation](Docs/) • [Issues](https://github.com/UpFlow-ios/StryVr-ios/issues) 

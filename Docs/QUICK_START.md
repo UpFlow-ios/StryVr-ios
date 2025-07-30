@@ -10,7 +10,7 @@
 
 ### 1. Clone & Setup
 ```bash
-git clone https://github.com/joedormond/stryvr-ios.git
+git clone https://github.com/UpFlow-ios/StryVr-ios.git
 cd stryvr-ios
 ```
 
@@ -103,8 +103,8 @@ npm start
 
 ## 📞 Need Help?
 
-- **🐛 Bugs**: [GitHub Issues](https://github.com/joedormond/stryvr-ios/issues)
-- **💡 Ideas**: [GitHub Discussions](https://github.com/joedormond/stryvr-ios/discussions)
+- **🐛 Bugs**: [GitHub Issues](https://github.com/UpFlow-ios/StryVr-ios/issues)
+- **💡 Ideas**: [GitHub Discussions](https://github.com/UpFlow-ios/StryVr-ios/discussions)
 - **📧 Email**: upflowapp@gmail.com
 - **💼 LinkedIn**: [Joe Dormond](https://linkedin.com/in/joedormond)
 

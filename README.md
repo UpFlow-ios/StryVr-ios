@@ -44,8 +44,8 @@ stryvr is an iOS app that revolutionizes professional development by providing r
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/stryvr-ios.git
-   cd stryvr-ios
+   git clone https://github.com/UpFlow-ios/StryVr-ios.git
+   cd StryVr-ios
    ```
 
 2. **Setup iOS App**
@@ -180,8 +180,8 @@ We take security seriously. StryVr implements:
 ### **Resources**
 
 - **📚 Documentation**: [Docs/](Docs/)
-- **🐛 Bug Reports**: [GitHub Issues](https://github.com/yourusername/stryvr-ios/issues)
-- **💡 Feature Requests**: [GitHub Discussions](https://github.com/yourusername/stryvr-ios/discussions)
+- **🐛 Bug Reports**: [GitHub Issues](https://github.com/UpFlow-ios/StryVr-ios/issues)
+- **💡 Feature Requests**: [GitHub Discussions](https://github.com/UpFlow-ios/StryVr-ios/discussions)
 - **🌐 Website**: [stryvr.app](https://stryvr.app)
 
 ## 📄 License
