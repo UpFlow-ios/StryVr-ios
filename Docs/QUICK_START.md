@@ -105,7 +105,7 @@ npm start
 
 - **🐛 Bugs**: [GitHub Issues](https://github.com/UpFlow-ios/StryVr-ios/issues)
 - **💡 Ideas**: [GitHub Discussions](https://github.com/UpFlow-ios/StryVr-ios/discussions)
-- **📧 Email**: upflowapp@gmail.com
+- **📧 Email**: joedormond@stryvr.app
 - **💼 LinkedIn**: [Joe Dormond](https://linkedin.com/in/joedormond)
 
 ---

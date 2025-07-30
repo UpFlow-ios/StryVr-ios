@@ -228,7 +228,7 @@ Set up cron jobs for automated agent execution:
 
 ## 📞 **SUPPORT & RESOURCES**
 
-- **Technical Support**: upflowapp@gmail.com
+- **Technical Support**: joedormond@stryvr.app
 - **Agent Documentation**: `Docs/AGENT_MANAGEMENT.md`
 - **Quick Access**: `npm run [agent-name]`
 - **Comprehensive Guide**: This document

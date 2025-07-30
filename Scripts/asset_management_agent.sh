@@ -408,7 +408,7 @@ cat > Marketing/Assets/email_signature.md << 'EOF'
 ```
 Joseph Dormond
 Founder & CEO, StryVr
-📧 upflowapp@gmail.com
+📧 joedormond@stryvr.app
 💼 linkedin.com/in/joedormond
 🌐 stryvr.app
 📱 iOS App Store: StryVr
@@ -469,4 +469,4 @@ echo "   - Create templates for repeatable content"
 echo ""
 print_status "🎉 Asset management agent completed successfully!"
 echo ""
-echo "📞 Need help? Contact: upflowapp@gmail.com" 
+echo "📞 Need help? Contact: joedormond@stryvr.app" 

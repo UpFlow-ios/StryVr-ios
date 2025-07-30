@@ -247,7 +247,7 @@ We'll feature top contributors in our README and documentation.
 
 ### **Contact Options**
 
-- **📧 Email**: upflowapp@gmail.com
+- **📧 Email**: joedormond@stryvr.app
 - **💼 LinkedIn**: [Joe Dormond](https://linkedin.com/in/joedormond)
 - **🐙 GitHub**: [@joedormond](https://github.com/joedormond)
 

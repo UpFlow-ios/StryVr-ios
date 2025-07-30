@@ -241,7 +241,7 @@ actions:
 
 ## 📞 **Support & Resources**
 
-- **Technical Support**: upflowapp@gmail.com
+- **Technical Support**: joedormond@stryvr.app
 - **Agent Documentation**: `Docs/AGENT_MANAGEMENT.md`
 - **Weekly Maintenance**: `Scripts/weekly_maintenance.sh`
 - **Daily Monitoring**: `Scripts/daily_maintenance.sh`

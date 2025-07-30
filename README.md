@@ -164,7 +164,7 @@ We take security seriously. StryVr implements:
 
 ### **Get in Touch**
 
-- **📧 Email**: [upflowapp@gmail.com](mailto:upflowapp@gmail.com)
+- **📧 Email**: [joedormond@stryvr.app](mailto:joedormond@stryvr.app)
 - **💼 LinkedIn**: [Joe Dormond](https://linkedin.com/in/joedormond)
 - **🐙 GitHub**: [@joedormond](https://github.com/joedormond)
 - **🐦 Twitter/X**: [@josephdormond](https://twitter.com/josephdormond)

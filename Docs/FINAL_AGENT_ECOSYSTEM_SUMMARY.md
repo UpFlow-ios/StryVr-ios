@@ -286,7 +286,7 @@
 
 ---
 
-**📞 Support**: upflowapp@gmail.com  
+**📞 Support**: joedormond@stryvr.app  
 **📚 Documentation**: `Docs/` directory  
 **🎛️ Dashboard**: `npm run dashboard`  
 **🔄 Updates**: All agents operational and ready 

@@ -237,7 +237,7 @@ Track these metrics for each agent:
 ## 📞 Agent Support
 
 ### **Getting Help**
-- **Technical Issues**: upflowapp@gmail.com
+- **Technical Issues**: joedormond@stryvr.app
 - **Agent Training**: Review agent documentation
 - **Performance Issues**: Check weekly maintenance logs
 - **New Agent Requests**: Submit through GitHub issues

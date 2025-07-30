@@ -3,7 +3,7 @@
 ## 👨‍💻 **Joe Dormond** - Founder & Developer
 
 ### **Primary Contact**
-- **📧 Email**: [upflowapp@gmail.com](mailto:upflowapp@gmail.com)
+- **📧 Email**: [joedormond@stryvr.app](mailto:joedormond@stryvr.app)
 - **💼 LinkedIn**: [Joe Dormond](https://linkedin.com/in/joedormond)
 - **🐙 GitHub**: [@joedormond](https://github.com/joedormond)
 
@@ -105,11 +105,11 @@
 - **🤝 Partnerships**: partnerships@stryvr.app
 - **💼 Enterprise**: enterprise@stryvr.app
 - **💰 Investment**: investors@stryvr.app
-- **📞 General**: upflowapp@gmail.com
+- **📞 General**: joedormond@stryvr.app
 
 ### **For Media**
-- **📰 Press Inquiries**: upflowapp@gmail.com
-- **🎤 Speaking**: upflowapp@gmail.com
+- **📰 Press Inquiries**: joedormond@stryvr.app
+- **🎤 Speaking**: joedormond@stryvr.app
 - **📸 Social Media**: @stryvr_app on Instagram
 
 ---

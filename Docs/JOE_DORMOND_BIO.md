@@ -53,7 +53,7 @@ Joe is always open to connecting with fellow developers, entrepreneurs, and prof
 - **Twitter**: [@josephdormond](https://twitter.com/josephdormond)
 - **LinkedIn**: [Joe Dormond](https://linkedin.com/in/joedormond)
 - **GitHub**: [@joedormond](https://github.com/joedormond)
-- **Email**: upflowapp@gmail.com
+- **Email**: joedormond@stryvr.app
 
 ---
 
