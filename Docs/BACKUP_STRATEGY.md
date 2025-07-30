@@ -35,8 +35,8 @@ cp backend/.env.backup.20250729_030823 backend/.env
 ### API Keys Status (as of 2025-07-29)
 
 #### ✅ Configured Keys
-- **HuggingFace**: `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`
-- **OpenAI**: `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`
+- **HuggingFace**: `hf_***[REDACTED]***` (Configured)
+- **OpenAI**: `sk-proj-***[REDACTED]***` (Configured)
 - **Firebase**: Configured with project `stryvr`
 
 #### 🔄 Key Rotation Schedule
@@ -46,11 +46,18 @@ cp backend/.env.backup.20250729_030823 backend/.env
 
 ### Security Considerations
 
+#### ⚠️ **CRITICAL SECURITY WARNING**
+- **NEVER** include actual API keys in documentation
+- **NEVER** commit API keys to Git repositories
+- **ALWAYS** use placeholder values in documentation
+- **ALWAYS** keep API keys in secure environment files only
+
 #### ✅ Current Security Measures
 - All `.env*` files in `.gitignore`
 - API keys encrypted in iOS app
 - Environment variables used in backend
 - Comprehensive security documentation
+- API keys redacted in all documentation
 
 #### 🚨 Emergency Procedures
 1. **Key Compromise**: Immediately rotate all API keys
