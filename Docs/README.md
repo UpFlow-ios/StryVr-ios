@@ -32,11 +32,21 @@ StryVr is currently in final preparation for App Store submission with:
 
 ## 📁 **Documentation Structure**
 
+### **Core Documentation**
 - **[AGENTS.md](./AGENTS.md)**: Comprehensive system architecture and AI features
 - **[STRYVR_DEV_RULES.md](./STRYVR_DEV_RULES.md)**: Development guidelines and best practices
 - **[API_REFERENCE.md](./API_REFERENCE.md)**: API documentation and integration guides
+- **[QUICK_START.md](./QUICK_START.md)**: Quick start guide for new developers
+
+### **Build & Development**
+- **[BUILD_STATUS.md](./BUILD_STATUS.md)**: Current build status and recent fixes
 - **[FIREBASE_SWIFT6_FIX.md](./FIREBASE_SWIFT6_FIX.md)**: Firebase integration troubleshooting
-- **[APP_STORE_DEPLOYMENT.md](./APP_STORE_DEPLOYMENT.md)**: Complete App Store deployment guide and configuration
+- **[CHANGELOG.md](./CHANGELOG.md)**: Recent changes and updates
+
+### **Deployment & Security**
+- **[APP_STORE_DEPLOYMENT.md](./APP_STORE_DEPLOYMENT.md)**: Complete App Store deployment guide
+- **[SECURITY.md](./SECURITY.md)**: Security guidelines and best practices
+- **[GITGUARDIAN_SETUP.md](./GITGUARDIAN_SETUP.md)**: GitGuardian security setup
 
 ## 🎯 **Development Guidelines**
 
@@ -51,8 +61,13 @@ StryVr is currently in final preparation for App Store submission with:
 1. **Clone the repository**
 2. **Open in Xcode**: Use the project in `SupportingFiles/StryVr.xcodeproj`
 3. **Configure Firebase**: Ensure Firebase configuration is set up
-4. **Build and Run**: Test on simulator or device
+4. **Build and Run**: Use `./build-stryvr.sh` or build in Xcode
 5. **Verify Features**: Check Liquid Glass UI and AI greetings
+
+### **Quick Build Command**
+```bash
+./build-stryvr.sh
+```
 
 ## 📞 **Support**
 

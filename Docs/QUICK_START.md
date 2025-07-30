@@ -4,8 +4,8 @@
 
 ### Prerequisites
 - Xcode 16.0+ 
-- iOS 18.0+ Simulator
-- Swift 6.1.2
+- iOS 16.0+ Simulator
+- Swift 6.0
 - Git
 
 ### 1. Clone & Setup
@@ -20,8 +20,13 @@ open SupportingFiles/StryVr.xcodeproj
 ```
 
 ### 3. Build & Run
-- Select iOS Simulator (iPhone 15 Pro recommended)
-- Press `Cmd+R` to build and run
+- **Option A**: Use our safe build script
+  ```bash
+  ./build-stryvr.sh
+  ```
+- **Option B**: Build in Xcode
+  - Select iOS Simulator (iPhone 15 Pro recommended)
+  - Press `Cmd+R` to build and run
 - App should launch with onboarding flow
 
 ### 4. Backend (Optional)
@@ -54,9 +59,11 @@ npm start
 ## 🐛 Common Issues
 
 ### **Build Errors**
+- **Use safe build script**: `./build-stryvr.sh` (prevents multiple builds)
 - Clean build folder: `Cmd+Shift+K`
 - Reset package caches: `File > Packages > Reset Package Caches`
-- Check Swift version: Ensure Xcode uses Swift 6.1.2
+- Check Swift version: Ensure Xcode uses Swift 6.0
+- Check build logs: `build-YYYYMMDD-HHMMSS.log` files
 
 ### **Firebase Issues**
 - Verify `GoogleService-Info.plist` is in project

@@ -47,10 +47,11 @@ git checkout -b fix/bug-description
 
 ### **Swift/SwiftUI Standards**
 
-- **Swift Version**: 6.1.2
-- **iOS Target**: 18.0+
+- **Swift Version**: 6.0
+- **iOS Target**: 16.0+
 - **Architecture**: MVVM with SwiftUI
 - **Logging**: Use Swift's `Logger` (not `os_log`)
+- **Build Process**: Use `./build-stryvr.sh` for safe builds
 
 ### **Code Style**
 
@@ -112,7 +113,10 @@ StryVr/
 # Run backend tests
 cd backend && npm test
 
-# Build iOS app in Xcode
+# Build iOS app using safe build script
+./build-stryvr.sh
+
+# Or build in Xcode
 # Test on simulator and device
 # Verify all features work
 ```

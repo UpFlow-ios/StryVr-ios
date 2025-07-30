@@ -1,6 +1,6 @@
 # stryvr - AI-Powered Professional Development
 
-[![Swift](https://img.shields.io/badge/Swift-6.1.2-orange.svg)](https://swift.org)
+[![Swift](https://img.shields.io/badge/Swift-6.0-orange.svg)](https://swift.org)
 [![iOS](https://img.shields.io/badge/iOS-18.0+-blue.svg)](https://developer.apple.com/ios/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
@@ -20,7 +20,7 @@ stryvr is an iOS app that revolutionizes professional development by providing r
 
 ### 🛠 Tech Stack
 
-- **Frontend**: Swift 6.1.2, SwiftUI, Core Data
+- **Frontend**: Swift 6.0, SwiftUI, Core Data
 - **Backend**: Node.js, Express.js, Firebase
 - **AI/ML**: OpenAI API, HuggingFace, Custom ML models
 - **Security**: AES-GCM 256-bit encryption, Keychain integration
@@ -37,15 +37,15 @@ stryvr is an iOS app that revolutionizes professional development by providing r
 
 - Xcode 16.0+
 - iOS 18.0+
-- Swift 6.1.2
+- Swift 6.0
 - Node.js 18+ (for backend)
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/UpFlow-ios/StryVr-ios.git
-   cd StryVr-ios
+   git clone https://github.com/upflow-ios/stryvr-ios.git
+   cd stryvr-ios
    ```
 
 2. **Setup iOS App**
@@ -67,6 +67,7 @@ stryvr is an iOS app that revolutionizes professional development by providing r
    - Open Xcode
    - Select your target device/simulator
    - Press Cmd+R to build and run
+   - Or use our build script: `./build-stryvr.sh`
 
 ## 🔧 Configuration
 
@@ -112,8 +113,21 @@ stryvr-ios/
 │   └── package.json          # Dependencies
 ├── Marketing/                # Marketing assets and guides
 ├── Scripts/                  # Automation scripts
-└── Docs/                     # Documentation
+├── Docs/                     # Documentation
+└── build-stryvr.sh           # Safe build script
 ```
+
+## 🔧 Build & Development
+
+### **Quick Build**
+```bash
+./build-stryvr.sh
+```
+
+### **Build Documentation**
+- [Build Status & Recent Fixes](Docs/BUILD_STATUS.md)
+- [Quick Start Guide](Docs/QUICK_START.md)
+- [Contributing Guidelines](CONTRIBUTING.md)
 
 ## 🤝 Contributing
 
