@@ -1,4 +1,4 @@
-# StryVr - AI-Powered Professional Development
+# stryvr - AI-Powered Professional Development
 
 [![Swift](https://img.shields.io/badge/Swift-6.1.2-orange.svg)](https://swift.org)
 [![iOS](https://img.shields.io/badge/iOS-18.0+-blue.svg)](https://developer.apple.com/ios/)
@@ -6,9 +6,9 @@
 
 > Real-time skill assessment during video calls. Track progress, earn achievements, and accelerate your career with AI-driven insights.
 
-## 🚀 About StryVr
+## 🚀 About stryvr
 
-StryVr is an iOS app that revolutionizes professional development by providing real-time AI-powered skill assessment during video calls. Our mission is to make learning measurable, engaging, and effective.
+stryvr is an iOS app that revolutionizes professional development by providing real-time AI-powered skill assessment during video calls. Our mission is to make learning measurable, engaging, and effective.
 
 ### ✨ Key Features
 
