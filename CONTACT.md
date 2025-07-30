@@ -8,7 +8,7 @@
 - **🐙 GitHub**: [@joedormond](https://github.com/joedormond)
 
 ### **Social Media**
-- **📱 Twitter/X**: [@joedormond](https://twitter.com/joedormond)
+- **🐦 Twitter/X**: [@josephdormond](https://twitter.com/josephdormond)
 - **📸 Instagram**: [@stryvr_app](https://instagram.com/stryvr_app)
 - **💼 LinkedIn Company**: [StryVr](https://linkedin.com/company/stryvr-ios)
 
@@ -58,7 +58,7 @@
 ### **Meeting Preferences**
 - **🌍 Time Zone**: Pacific Time (PT)
 - **📅 Schedule**: Flexible, prefer advance notice
-- **🎥 Platform**: Zoom, Google Meet, or in-person (SF Bay Area)
+- **🎥 Platform**: Zoom, Google Meet, or in-person (Los Angeles)
 
 ### **Response Time**
 - **📧 Email**: Within 24 hours
@@ -84,7 +84,7 @@
 ## 📍 **Location**
 
 ### **Primary Location**
-- **🌍 Region**: San Francisco Bay Area, CA
+- **🌍 Region**: Los Angeles, CA
 - **🏢 Office**: Remote-first, occasional in-person meetings
 - **✈️ Travel**: Available for key meetings and events
 

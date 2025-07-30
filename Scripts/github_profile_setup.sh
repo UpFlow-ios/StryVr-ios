@@ -38,22 +38,22 @@ print_info "1. Update your GitHub profile bio with:"
 echo "   🚀 Building StryVr - AI-powered professional development platform"
 echo "   📱 iOS Developer | Swift/SwiftUI | Firebase | AI/ML"
 echo "   🏢 Helping teams track performance & accelerate career growth"
-echo "   🔗 stryvr.app | @stryvr_app"
+echo "   🌴 Los Angeles, CA | 🔗 stryvr.app | 🐦 @josephdormond"
 
 # 2. Profile Picture
 print_info "2. Ensure you have a professional profile picture"
 
 # 3. Location
-print_info "3. Add your location (San Francisco Bay Area, CA)"
+print_info "3. Add your location (Los Angeles, CA)"
 
 # 4. Website
 print_info "4. Add website: https://stryvr.app"
 
 # 5. Twitter/X
-print_info "5. Add Twitter/X: @joedormond"
+print_info "5. Add Twitter/X: @josephdormond"
 
 # 6. Company
-print_info "6. Add company: StryVr"
+print_info "6. Add company: StryVr (Los Angeles)"
 
 # 7. Pin Repository
 print_info "7. Pin the stryvr-ios repository to your profile"

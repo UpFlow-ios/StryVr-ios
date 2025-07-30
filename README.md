@@ -167,7 +167,7 @@ We take security seriously. StryVr implements:
 - **📧 Email**: [upflowapp@gmail.com](mailto:upflowapp@gmail.com)
 - **💼 LinkedIn**: [Joe Dormond](https://linkedin.com/in/joedormond)
 - **🐙 GitHub**: [@joedormond](https://github.com/joedormond)
-- **📱 Twitter/X**: [@joedormond](https://twitter.com/joedormond)
+- **🐦 Twitter/X**: [@josephdormond](https://twitter.com/josephdormond)
 - **📋 Full Contact Info**: [CONTACT.md](CONTACT.md) - Detailed contact information and availability
 
 ### **Business Inquiries**
@@ -199,4 +199,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Built with ❤️ for the future of professional development**
 
-[Website](https://stryvr.app) • [LinkedIn](https://linkedin.com/company/stryvr-ios) • [Instagram](https://instagram.com/stryvr_app) 
+[Website](https://stryvr.app) • [LinkedIn](https://linkedin.com/company/stryvr-ios) • [Instagram](https://instagram.com/stryvr_app) • [Twitter](https://twitter.com/josephdormond) 
