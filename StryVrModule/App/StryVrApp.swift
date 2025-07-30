@@ -5,13 +5,14 @@
 //  🌱 Entry Point with Firebase Setup, Splash Screen, Auth Routing
 //
 
+import SwiftUI
+
 #if canImport(Firebase)
-import Firebase
+    import Firebase
 #endif
 #if canImport(os)
-import os
+    import OSLog
 #endif
-import SwiftUI
 
 @main
 struct StryVrApp: App {

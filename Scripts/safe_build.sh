@@ -54,7 +54,7 @@ echo -e "${BLUE}📝 Log: $BUILD_LOG${NC}"
 # Run the build
 xcodebuild -project SupportingFiles/StryVr.xcodeproj \
     -scheme StryVr \
-    -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=18.3.1' \
+    -destination 'platform=iOS Simulator,id=100CCA36-46ED-4520-977A-E5686C88BBBD' \
     build 2>&1 | tee "$BUILD_LOG"
 
 BUILD_EXIT_CODE=${PIPESTATUS[0]}

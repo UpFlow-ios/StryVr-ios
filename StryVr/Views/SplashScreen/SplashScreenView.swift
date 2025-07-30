@@ -5,21 +5,28 @@
 //  Created by Joe Dormond on 4/17/25.
 //
 
-import SwiftUI
 import AVKit
 import OSLog
+import SwiftUI
 
 /// Animated splash screen using a short `.mp4` intro video with dark/light mode support
 struct SplashScreenView: View {
     @State private var isFinished = false
     @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var authViewModel: AuthViewModel
 
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "StryVr", category: "SplashScreenView")
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier ?? "StryVr", category: "SplashScreenView")
 
     var body: some View {
         Group {
             if isFinished {
-                StryVrAppEntryPoint()
+                // Show main app content based on authentication state
+                if authViewModel.isAuthenticated {
+                    HomeView()
+                } else {
+                    LoginView()
+                }
             } else {
                 SplashVideoPlayer(videoName: "stryvr2", videoExtension: "mp4") {
                     logger.info("🎬 Splash video finished")
@@ -54,9 +61,11 @@ struct SplashVideoPlayer: UIViewControllerRepresentable {
             controller.player = player
 
             // Auto-detect when video finishes
-            NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
-                                                   object: player.currentItem,
-                                                   queue: .main) { _ in
+            NotificationCenter.default.addObserver(
+                forName: .AVPlayerItemDidPlayToEndTime,
+                object: player.currentItem,
+                queue: .main
+            ) { _ in
                 onFinished()
             }
 
@@ -69,18 +78,4 @@ struct SplashVideoPlayer: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Context) {}
 }
 
-// MARK: - Entry Point
 
-struct StryVrAppEntryPoint: View {
-    @EnvironmentObject var authViewModel: AuthViewModel
-
-    var body: some View {
-        Group {
-            if authViewModel.userSession != nil {
-                HomeView()
-            } else {
-                LoginView()
-            }
-        }
-    }
-}

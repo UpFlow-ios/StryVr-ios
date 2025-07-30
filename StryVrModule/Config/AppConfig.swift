@@ -6,8 +6,9 @@
 //
 
 import Foundation
+
 #if canImport(os)
-import os.log
+    import OSLog
 #endif
 
 /// Defines app environments
@@ -28,7 +29,7 @@ enum AppConfig {
     static var apiBaseURL: String {
         switch currentEnvironment {
         case .development:
-            return "http://192.168.1.234:3000" // 🔧 ← Replace with your current local IP
+            return "http://192.168.1.234:3000"  // 🔧 ← Replace with your current local IP
         case .staging:
             return "https://staging.stryvr.app"
         case .production:
@@ -37,7 +38,8 @@ enum AppConfig {
     }
 
     /// Optional: Unified logger (for debug-only prints)
-    static let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "AppConfig")
+    static let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "AppConfig")
 
     // MARK: - Feature Flags
 
@@ -66,7 +68,8 @@ enum AppConfig {
     /// Logs current environment
     static func logCurrentEnvironment() {
         #if DEBUG
-            logger.info("🚀 Running in \(currentEnvironment.rawValue) environment. Base URL: \(apiBaseURL)")
+            logger.info(
+                "🚀 Running in \(currentEnvironment.rawValue) environment. Base URL: \(apiBaseURL)")
         #endif
     }
 }

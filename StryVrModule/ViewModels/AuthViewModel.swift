@@ -5,12 +5,13 @@
 //  🔒 Fully Optimized Auth ViewModel with Enhanced Error Handling, Firebase Auth Integration, Real-Time Updates
 //
 
-#if canImport(FirebaseAuth)
-import FirebaseAuth
-#endif
 import Foundation
+
+#if canImport(FirebaseAuth)
+    import FirebaseAuth
+#endif
 #if canImport(os)
-import os.log
+    import OSLog
 #endif
 
 final class AuthViewModel: ObservableObject {
@@ -20,7 +21,8 @@ final class AuthViewModel: ObservableObject {
     @Published private(set) var errorMessage: String?
     @Published private(set) var isAuthenticated: Bool = false
 
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr.app", category: "AuthViewModel")
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr.app", category: "AuthViewModel")
     private var authListenerHandle: AuthStateDidChangeListenerHandle?
 
     private init() {
@@ -38,7 +40,9 @@ final class AuthViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self?.userSession = user
                 self?.isAuthenticated = (user != nil)
-                self?.logger.info("🔁 Auth state changed: \(self?.isAuthenticated == true ? "✅ Logged In" : "🚪 Logged Out")")
+                self?.logger.info(
+                    "🔁 Auth state changed: \(self?.isAuthenticated == true ? "✅ Logged In" : "🚪 Logged Out")"
+                )
             }
         }
     }

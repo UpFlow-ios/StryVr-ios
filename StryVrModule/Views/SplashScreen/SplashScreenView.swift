@@ -12,6 +12,7 @@ import SwiftUI
 struct SplashScreenView: View {
     @State private var isActive = false
     @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var authViewModel: AuthViewModel
 
     private let splashDuration: TimeInterval = 2.0
     private let logger = Logger(
@@ -52,7 +53,12 @@ struct SplashScreenView: View {
             }
         }
         .fullScreenCover(isPresented: $isActive) {
-            StryVrAppEntryPoint()
+            // Show main app content based on authentication state
+            if authViewModel.isAuthenticated {
+                HomeView()
+            } else {
+                LoginView()
+            }
         }
     }
 
@@ -72,20 +78,5 @@ struct SplashScreenView: View {
 
     private var loaderColor: Color {
         colorScheme == .dark ? .white : .black
-    }
-}
-
-/// Entry point that determines whether to show Home or Login
-struct StryVrAppEntryPoint: View {
-    @EnvironmentObject var authViewModel: AuthViewModel
-
-    var body: some View {
-        Group {
-            if authViewModel.userSession != nil {
-                HomeView()
-            } else {
-                LoginView()
-            }
-        }
     }
 }

@@ -5,16 +5,19 @@
 //  🔒 Secure App Lifecycle Setup with Firebase & Push Notifications
 //
 
-#if canImport(Firebase)
-import Firebase
-#endif
-#if canImport(os)
-import os
-#endif
 import UIKit
 import UserNotifications
 
-class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
+#if canImport(Firebase)
+    import Firebase
+#endif
+#if canImport(os)
+    import OSLog
+#endif
+
+class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate,
+    UNUserNotificationCenterDelegate
+{
     var window: UIWindow?
     private let logger = Logger(subsystem: "com.stryvr.app", category: "AppDelegate")
 
@@ -118,9 +121,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     func userNotificationCenter(
         _: UNUserNotificationCenter,
         willPresent notification: UNNotification,
-        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) ->
+            Void
     ) {
-        logger.info("📩 Received notification in foreground: \(notification.request.content.userInfo)")
+        logger.info(
+            "📩 Received notification in foreground: \(notification.request.content.userInfo)")
         completionHandler([.banner, .sound, .badge])
     }
 
@@ -131,7 +136,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
-        logger.info("🛎️ User interacted with notification: \(response.notification.request.content.userInfo)")
+        logger.info(
+            "🛎️ User interacted with notification: \(response.notification.request.content.userInfo)"
+        )
         completionHandler()
     }
 }

@@ -6,7 +6,7 @@
 //
 
 import Firebase
-import os
+import OSLog
 import SwiftUI
 
 @main

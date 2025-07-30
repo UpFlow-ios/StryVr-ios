@@ -7,8 +7,9 @@
 //
 
 import Foundation
+
 #if canImport(os)
-import os.log
+    import OSLog
 #endif
 
 final class NetworkManager {
@@ -61,7 +62,7 @@ final class NetworkManager {
             }
 
             guard let httpResponse = response as? HTTPURLResponse,
-                  (200 ... 299).contains(httpResponse.statusCode)
+                (200...299).contains(httpResponse.statusCode)
             else {
                 let statusCode = (response as? HTTPURLResponse)?.statusCode ?? -1
                 self.logger.error("🚨 Invalid Response: \(statusCode)")
@@ -86,7 +87,9 @@ final class NetworkManager {
                     completion(.success(decodedData))
                 }
             } catch {
-                self.logger.error("🚨 Decoding Error: \(error.localizedDescription)\nRaw Response: \(String(data: data, encoding: .utf8) ?? "N/A")")
+                self.logger.error(
+                    "🚨 Decoding Error: \(error.localizedDescription)\nRaw Response: \(String(data: data, encoding: .utf8) ?? "N/A")"
+                )
                 DispatchQueue.main.async {
                     completion(.failure(.decodingError(error)))
                 }
@@ -117,7 +120,8 @@ enum NetworkError: LocalizedError {
         switch self {
         case .invalidURL: return "Invalid URL."
         case let .requestFailed(error): return "Request failed: \(error.localizedDescription)"
-        case let .invalidResponse(statusCode): return "Invalid response with status code \(statusCode)."
+        case let .invalidResponse(statusCode):
+            return "Invalid response with status code \(statusCode)."
         case .noData: return "No data received."
         case let .decodingError(error): return "Decoding error: \(error.localizedDescription)"
         }
