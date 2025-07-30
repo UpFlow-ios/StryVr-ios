@@ -215,9 +215,34 @@ DOCS_COUNT=$(find Docs/ -name "*.md" | wc -l)
 print_info "Documentation files: $DOCS_COUNT"
 echo "Documentation files: $DOCS_COUNT" >> "$WEEKLY_LOG"
 
-print_section "6. MARKETING & OUTREACH"
+print_section "6. APP STORE & CONSUMER OPTIMIZATION"
 echo "" >> "$WEEKLY_LOG"
-echo "6. MARKETING & OUTREACH" >> "$WEEKLY_LOG"
+echo "6. APP STORE & CONSUMER OPTIMIZATION" >> "$WEEKLY_LOG"
+
+# Run App Store optimization
+print_subsection "Running App Store optimization..."
+echo "Running App Store optimization..." >> "$WEEKLY_LOG"
+if ./Scripts/app_store_optimizer.sh; then
+    print_status "App Store optimization completed successfully"
+    echo "✅ App Store optimization completed successfully" >> "$WEEKLY_LOG"
+else
+    print_warning "App Store optimization had issues - check manually"
+    echo "⚠️ App Store optimization had issues - check manually" >> "$WEEKLY_LOG"
+fi
+
+print_subsection "Consumer feature testing..."
+echo "Consumer feature testing..." >> "$WEEKLY_LOG"
+if ./Scripts/test_consumer_features.sh; then
+    print_status "Consumer feature testing completed"
+    echo "✅ Consumer feature testing completed" >> "$WEEKLY_LOG"
+else
+    print_warning "Consumer feature testing had issues"
+    echo "⚠️ Consumer feature testing had issues" >> "$WEEKLY_LOG"
+fi
+
+print_section "7. MARKETING & OUTREACH"
+echo "" >> "$WEEKLY_LOG"
+echo "7. MARKETING & OUTREACH" >> "$WEEKLY_LOG"
 
 print_subsection "Social media tasks..."
 echo "Social media tasks..." >> "$WEEKLY_LOG"
@@ -238,9 +263,9 @@ echo "2. Create 2-3 social media graphics" >> "$WEEKLY_LOG"
 echo "3. Record 1 short demo video" >> "$WEEKLY_LOG"
 echo "4. Update website content" >> "$WEEKLY_LOG"
 
-print_section "7. NEXT WEEK PLANNING"
+print_section "8. NEXT WEEK PLANNING"
 echo "" >> "$WEEKLY_LOG"
-echo "7. NEXT WEEK PLANNING" >> "$WEEKLY_LOG"
+echo "8. NEXT WEEK PLANNING" >> "$WEEKLY_LOG"
 
 print_subsection "Priority tasks for next week..."
 echo "Priority tasks for next week..." >> "$WEEKLY_LOG"
@@ -257,9 +282,9 @@ echo "2. Reach out to potential users" >> "$WEEKLY_LOG"
 echo "3. Create demo videos" >> "$WEEKLY_LOG"
 echo "4. Prepare press release" >> "$WEEKLY_LOG"
 
-print_section "8. SUMMARY & RECOMMENDATIONS"
+print_section "9. SUMMARY & RECOMMENDATIONS"
 echo "" >> "$WEEKLY_LOG"
-echo "8. SUMMARY & RECOMMENDATIONS" >> "$WEEKLY_LOG"
+echo "9. SUMMARY & RECOMMENDATIONS" >> "$WEEKLY_LOG"
 
 print_status "Weekly maintenance completed!"
 echo "✅ Weekly maintenance completed!" >> "$WEEKLY_LOG"
