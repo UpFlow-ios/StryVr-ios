@@ -2,6 +2,27 @@
 
 ## 🔗 **Current API Integrations**
 
+### **Backend API Endpoints**
+- **Health Check**: `GET /api/test` - API connectivity testing
+- **Storage Test**: `GET /api/test-storage` - Firebase Storage connectivity
+- **Video Retrieval**: `GET /videos/:userId` - User video recordings
+- **Video Upload**: `POST /upload` - Video file upload for analysis
+
+### **Authentication**
+All endpoints require Firebase Auth token in Authorization header:
+```
+Authorization: Bearer <firebase_token>
+```
+
+### **Error Responses**
+```json
+{
+  "error": "error_code",
+  "message": "Human readable error message",
+  "timestamp": "2025-07-30T14:30:00Z"
+}
+```
+
 ### **Firebase Authentication**
 - **Service**: `AuthViewModel`
 - **Location**: `StryVr/ViewModels/AuthViewModel.swift`
