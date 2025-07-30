@@ -8,7 +8,7 @@
 
 ## 🚀 About StryVr
 
-StryVr is an iOS app that revolutionizes professional development by providing real-time AI-powered skill assessment during video calls. Our mission is to make learning measurable, engaging, and effective.
+stryvr is an iOS app that revolutionizes professional development by providing real-time AI-powered skill assessment during video calls. Our mission is to make learning measurable, engaging, and effective.
 
 ### ✨ Key Features
 
