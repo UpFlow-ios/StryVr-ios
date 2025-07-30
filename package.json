@@ -17,7 +17,11 @@
     "ai": "./Scripts/ai_service_monitor.sh",
     "enterprise": "./Scripts/enterprise_analytics.sh",
     "appstore": "./Scripts/app_store_optimizer.sh",
-    "ios": "./Scripts/ios_build_optimizer.sh"
+    "ios": "./Scripts/ios_build_optimizer.sh",
+    "backend": "./Scripts/backend_health_agent.sh",
+    "docs": "./Scripts/documentation_agent.sh",
+    "assets": "./Scripts/asset_management_agent.sh",
+    "dashboard": "./Scripts/agent_dashboard.sh"
   },
   "keywords": [
     "ios",
