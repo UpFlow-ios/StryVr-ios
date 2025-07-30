@@ -4,17 +4,29 @@
 project.xcworkspace/
 DerivedData/
 build/
+*.xcworkspace/xcuserdata/
+*.xcworkspace/xcshareddata/
 
 # Swift Package Manager
 .build/
+Package.resolved
+.swiftpm/
 
 # macOS Files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Node.js
 node_modules/
-Package.resolved
-build.log
-.vscode/
-codex-fix.patch
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
 
 # Firebase Security Files
 firebase-adminsdk*.json
@@ -26,18 +38,70 @@ GoogleService-info.plist
 *.key
 *.pem
 *.p12
+*.p8
 secrets/
 .env
 .env.local
 .env.production
+.env.staging
+.env.development
 
 # Build and Log Files
 *.log
 logs/
 current-build.log
 build-log.txt
+deployment_*.log
+marketing_*.log
+ai_service_*.log
+enterprise_*.log
+app_store_*.log
+daily_maintenance_*.log
+weekly_maintenance_*.log
+automated_monitoring_*.log
+marketing_metrics_*.log
 
 # Temporary Files
 *.tmp
 *.temp
 nohup.out
+*.swp
+*.swo
+*~
+
+# IDE Files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS Generated Files
+.DocumentRevisions-V100
+.fseventsd
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Backup Files
+*.bak
+*.backup
+*.old
+
+# Test Files
+coverage/
+.nyc_output/
+test-results/
+
+# Documentation Build
+docs/_build/
+site/
+
+# Large Files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Development Files
+codex-fix.patch
+swiftly.pkg

@@ -1,18 +1,51 @@
 {
-  "name": "ios",
+  "name": "stryvr-ios",
   "version": "1.0.0",
+  "description": "AI-Powered Professional Development iOS App",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd backend && npm start",
+    "dev": "cd backend && npm run dev",
+    "build": "cd backend && npm run build",
+    "deploy": "./Scripts/deployment_agent.sh",
+    "monitor": "./Scripts/automated_monitoring.sh",
+    "daily": "./Scripts/daily_maintenance.sh",
+    "weekly": "./Scripts/weekly_maintenance.sh",
+    "security": "./Scripts/security_update.sh",
+    "marketing": "./Scripts/marketing_automation_agent.sh",
+    "ai": "./Scripts/ai_service_monitor.sh",
+    "enterprise": "./Scripts/enterprise_analytics.sh",
+    "appstore": "./Scripts/app_store_optimizer.sh",
+    "ios": "./Scripts/ios_build_optimizer.sh"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": [
+    "ios",
+    "swift",
+    "swiftui",
+    "ai",
+    "professional-development",
+    "workplace",
+    "firebase",
+    "huggingface"
+  ],
+  "author": "Joseph Dormond",
+  "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "firebase-admin": "^13.1.0"
-  }
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UpFlow-ios/StryVr-ios.git"
+  },
+  "bugs": {
+    "url": "https://github.com/UpFlow-ios/StryVr-ios/issues"
+  },
+  "homepage": "https://stryvr.app"
 }
