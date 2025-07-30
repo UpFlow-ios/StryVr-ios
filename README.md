@@ -1,4 +1,4 @@
-# StryVr - AI-Powered Professional Development
+# stryvr - AI-Powered Professional Development
 
 [![Swift](https://img.shields.io/badge/Swift-6.1.2-orange.svg)](https://swift.org)
 [![iOS](https://img.shields.io/badge/iOS-18.0+-blue.svg)](https://developer.apple.com/ios/)
