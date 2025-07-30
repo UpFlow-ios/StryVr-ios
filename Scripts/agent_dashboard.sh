@@ -57,164 +57,145 @@ echo "=========================================" >> "$DASHBOARD_LOG"
 print_section "AGENT STATUS OVERVIEW"
 echo "AGENT STATUS OVERVIEW" >> "$DASHBOARD_LOG"
 
-# Define all agents
-declare -A AGENTS=(
-    ["daily"]="Daily Maintenance Agent"
-    ["weekly"]="Weekly Maintenance Agent"
-    ["monitor"]="Automated Monitoring Agent"
-    ["security"]="Security Update Agent"
-    ["ios"]="iOS Build Optimizer Agent"
-    ["ai"]="AI Service Monitor Agent"
-    ["enterprise"]="Enterprise Analytics Agent"
-    ["appstore"]="App Store Optimizer Agent"
-    ["deploy"]="Deployment Agent"
-    ["marketing"]="Marketing Automation Agent"
-    ["backend"]="Backend Health Agent"
-    ["docs"]="Documentation Agent"
-    ["assets"]="Asset Management Agent"
-)
+# Define all agents (compatible with older bash versions)
+AGENTS_DAILY="Daily Maintenance Agent"
+AGENTS_WEEKLY="Weekly Maintenance Agent"
+AGENTS_MONITOR="Automated Monitoring Agent"
+AGENTS_SECURITY="Security Update Agent"
+AGENTS_IOS="iOS Build Optimizer Agent"
+AGENTS_AI="AI Service Monitor Agent"
+AGENTS_ENTERPRISE="Enterprise Analytics Agent"
+AGENTS_APPSTORE="App Store Optimizer Agent"
+AGENTS_DEPLOY="Deployment Agent"
+AGENTS_MARKETING="Marketing Automation Agent"
+AGENTS_BACKEND="Backend Health Agent"
+AGENTS_DOCS="Documentation Agent"
+AGENTS_ASSETS="Asset Management Agent"
 
 # Check agent availability
 print_subsection "Checking agent availability..."
 echo "Checking agent availability..." >> "$DASHBOARD_LOG"
 
 AVAILABLE_AGENTS=0
-TOTAL_AGENTS=${#AGENTS[@]}
+TOTAL_AGENTS=13
 
-for script in "${!AGENTS[@]}"; do
-    case $script in
-        "daily")
-            if [ -f "Scripts/daily_maintenance.sh" ]; then
-                print_status "✅ ${AGENTS[$script]}"
-                echo "✅ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-                ((AVAILABLE_AGENTS++))
-            else
-                print_error "❌ ${AGENTS[$script]}"
-                echo "❌ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-            fi
-            ;;
-        "weekly")
-            if [ -f "Scripts/weekly_maintenance.sh" ]; then
-                print_status "✅ ${AGENTS[$script]}"
-                echo "✅ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-                ((AVAILABLE_AGENTS++))
-            else
-                print_error "❌ ${AGENTS[$script]}"
-                echo "❌ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-            fi
-            ;;
-        "monitor")
-            if [ -f "Scripts/automated_monitoring.sh" ]; then
-                print_status "✅ ${AGENTS[$script]}"
-                echo "✅ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-                ((AVAILABLE_AGENTS++))
-            else
-                print_error "❌ ${AGENTS[$script]}"
-                echo "❌ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-            fi
-            ;;
-        "security")
-            if [ -f "Scripts/security_update.sh" ]; then
-                print_status "✅ ${AGENTS[$script]}"
-                echo "✅ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-                ((AVAILABLE_AGENTS++))
-            else
-                print_error "❌ ${AGENTS[$script]}"
-                echo "❌ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-            fi
-            ;;
-        "ios")
-            if [ -f "Scripts/ios_build_optimizer.sh" ]; then
-                print_status "✅ ${AGENTS[$script]}"
-                echo "✅ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-                ((AVAILABLE_AGENTS++))
-            else
-                print_error "❌ ${AGENTS[$script]}"
-                echo "❌ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-            fi
-            ;;
-        "ai")
-            if [ -f "Scripts/ai_service_monitor.sh" ]; then
-                print_status "✅ ${AGENTS[$script]}"
-                echo "✅ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-                ((AVAILABLE_AGENTS++))
-            else
-                print_error "❌ ${AGENTS[$script]}"
-                echo "❌ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-            fi
-            ;;
-        "enterprise")
-            if [ -f "Scripts/enterprise_analytics.sh" ]; then
-                print_status "✅ ${AGENTS[$script]}"
-                echo "✅ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-                ((AVAILABLE_AGENTS++))
-            else
-                print_error "❌ ${AGENTS[$script]}"
-                echo "❌ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-            fi
-            ;;
-        "appstore")
-            if [ -f "Scripts/app_store_optimizer.sh" ]; then
-                print_status "✅ ${AGENTS[$script]}"
-                echo "✅ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-                ((AVAILABLE_AGENTS++))
-            else
-                print_error "❌ ${AGENTS[$script]}"
-                echo "❌ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-            fi
-            ;;
-        "deploy")
-            if [ -f "Scripts/deployment_agent.sh" ]; then
-                print_status "✅ ${AGENTS[$script]}"
-                echo "✅ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-                ((AVAILABLE_AGENTS++))
-            else
-                print_error "❌ ${AGENTS[$script]}"
-                echo "❌ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-            fi
-            ;;
-        "marketing")
-            if [ -f "Scripts/marketing_automation_agent.sh" ]; then
-                print_status "✅ ${AGENTS[$script]}"
-                echo "✅ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-                ((AVAILABLE_AGENTS++))
-            else
-                print_error "❌ ${AGENTS[$script]}"
-                echo "❌ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-            fi
-            ;;
-        "backend")
-            if [ -f "Scripts/backend_health_agent.sh" ]; then
-                print_status "✅ ${AGENTS[$script]}"
-                echo "✅ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-                ((AVAILABLE_AGENTS++))
-            else
-                print_error "❌ ${AGENTS[$script]}"
-                echo "❌ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-            fi
-            ;;
-        "docs")
-            if [ -f "Scripts/documentation_agent.sh" ]; then
-                print_status "✅ ${AGENTS[$script]}"
-                echo "✅ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-                ((AVAILABLE_AGENTS++))
-            else
-                print_error "❌ ${AGENTS[$script]}"
-                echo "❌ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-            fi
-            ;;
-        "assets")
-            if [ -f "Scripts/asset_management_agent.sh" ]; then
-                print_status "✅ ${AGENTS[$script]}"
-                echo "✅ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-                ((AVAILABLE_AGENTS++))
-            else
-                print_error "❌ ${AGENTS[$script]}"
-                echo "❌ ${AGENTS[$script]}" >> "$DASHBOARD_LOG"
-            fi
-            ;;
-    esac
-done
+# Check each agent individually
+if [ -f "Scripts/daily_maintenance.sh" ]; then
+    print_status "✅ $AGENTS_DAILY"
+    echo "✅ $AGENTS_DAILY" >> "$DASHBOARD_LOG"
+    ((AVAILABLE_AGENTS++))
+else
+    print_error "❌ $AGENTS_DAILY"
+    echo "❌ $AGENTS_DAILY" >> "$DASHBOARD_LOG"
+fi
+
+if [ -f "Scripts/weekly_maintenance.sh" ]; then
+    print_status "✅ $AGENTS_WEEKLY"
+    echo "✅ $AGENTS_WEEKLY" >> "$DASHBOARD_LOG"
+    ((AVAILABLE_AGENTS++))
+else
+    print_error "❌ $AGENTS_WEEKLY"
+    echo "❌ $AGENTS_WEEKLY" >> "$DASHBOARD_LOG"
+fi
+
+if [ -f "Scripts/automated_monitoring.sh" ]; then
+    print_status "✅ $AGENTS_MONITOR"
+    echo "✅ $AGENTS_MONITOR" >> "$DASHBOARD_LOG"
+    ((AVAILABLE_AGENTS++))
+else
+    print_error "❌ $AGENTS_MONITOR"
+    echo "❌ $AGENTS_MONITOR" >> "$DASHBOARD_LOG"
+fi
+
+if [ -f "Scripts/security_update.sh" ]; then
+    print_status "✅ $AGENTS_SECURITY"
+    echo "✅ $AGENTS_SECURITY" >> "$DASHBOARD_LOG"
+    ((AVAILABLE_AGENTS++))
+else
+    print_error "❌ $AGENTS_SECURITY"
+    echo "❌ $AGENTS_SECURITY" >> "$DASHBOARD_LOG"
+fi
+
+if [ -f "Scripts/ios_build_optimizer.sh" ]; then
+    print_status "✅ $AGENTS_IOS"
+    echo "✅ $AGENTS_IOS" >> "$DASHBOARD_LOG"
+    ((AVAILABLE_AGENTS++))
+else
+    print_error "❌ $AGENTS_IOS"
+    echo "❌ $AGENTS_IOS" >> "$DASHBOARD_LOG"
+fi
+
+if [ -f "Scripts/ai_service_monitor.sh" ]; then
+    print_status "✅ $AGENTS_AI"
+    echo "✅ $AGENTS_AI" >> "$DASHBOARD_LOG"
+    ((AVAILABLE_AGENTS++))
+else
+    print_error "❌ $AGENTS_AI"
+    echo "❌ $AGENTS_AI" >> "$DASHBOARD_LOG"
+fi
+
+if [ -f "Scripts/enterprise_analytics.sh" ]; then
+    print_status "✅ $AGENTS_ENTERPRISE"
+    echo "✅ $AGENTS_ENTERPRISE" >> "$DASHBOARD_LOG"
+    ((AVAILABLE_AGENTS++))
+else
+    print_error "❌ $AGENTS_ENTERPRISE"
+    echo "❌ $AGENTS_ENTERPRISE" >> "$DASHBOARD_LOG"
+fi
+
+if [ -f "Scripts/app_store_optimizer.sh" ]; then
+    print_status "✅ $AGENTS_APPSTORE"
+    echo "✅ $AGENTS_APPSTORE" >> "$DASHBOARD_LOG"
+    ((AVAILABLE_AGENTS++))
+else
+    print_error "❌ $AGENTS_APPSTORE"
+    echo "❌ $AGENTS_APPSTORE" >> "$DASHBOARD_LOG"
+fi
+
+if [ -f "Scripts/deployment_agent.sh" ]; then
+    print_status "✅ $AGENTS_DEPLOY"
+    echo "✅ $AGENTS_DEPLOY" >> "$DASHBOARD_LOG"
+    ((AVAILABLE_AGENTS++))
+else
+    print_error "❌ $AGENTS_DEPLOY"
+    echo "❌ $AGENTS_DEPLOY" >> "$DASHBOARD_LOG"
+fi
+
+if [ -f "Scripts/marketing_automation_agent.sh" ]; then
+    print_status "✅ $AGENTS_MARKETING"
+    echo "✅ $AGENTS_MARKETING" >> "$DASHBOARD_LOG"
+    ((AVAILABLE_AGENTS++))
+else
+    print_error "❌ $AGENTS_MARKETING"
+    echo "❌ $AGENTS_MARKETING" >> "$DASHBOARD_LOG"
+fi
+
+if [ -f "Scripts/backend_health_agent.sh" ]; then
+    print_status "✅ $AGENTS_BACKEND"
+    echo "✅ $AGENTS_BACKEND" >> "$DASHBOARD_LOG"
+    ((AVAILABLE_AGENTS++))
+else
+    print_error "❌ $AGENTS_BACKEND"
+    echo "❌ $AGENTS_BACKEND" >> "$DASHBOARD_LOG"
+fi
+
+if [ -f "Scripts/documentation_agent.sh" ]; then
+    print_status "✅ $AGENTS_DOCS"
+    echo "✅ $AGENTS_DOCS" >> "$DASHBOARD_LOG"
+    ((AVAILABLE_AGENTS++))
+else
+    print_error "❌ $AGENTS_DOCS"
+    echo "❌ $AGENTS_DOCS" >> "$DASHBOARD_LOG"
+fi
+
+if [ -f "Scripts/asset_management_agent.sh" ]; then
+    print_status "✅ $AGENTS_ASSETS"
+    echo "✅ $AGENTS_ASSETS" >> "$DASHBOARD_LOG"
+    ((AVAILABLE_AGENTS++))
+else
+    print_error "❌ $AGENTS_ASSETS"
+    echo "❌ $AGENTS_ASSETS" >> "$DASHBOARD_LOG"
+fi
 
 print_section "AGENT COVERAGE"
 echo "" >> "$DASHBOARD_LOG"
