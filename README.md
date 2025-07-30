@@ -160,12 +160,29 @@ We take security seriously. StryVr implements:
 - **🤖 AI-Powered** - Cutting-edge machine learning
 - **🎯 User-Centric** - Designed for real user needs
 
-## 📞 Support
+## 📞 Support & Contact
 
-- **Email**: support@stryvr.app
-- **Documentation**: [Docs/](Docs/)
-- **Issues**: [GitHub Issues](https://github.com/yourusername/stryvr-ios/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/stryvr-ios/discussions)
+### **Get in Touch**
+
+- **📧 Email**: [upflowapp@gmail.com](mailto:upflowapp@gmail.com)
+- **💼 LinkedIn**: [Joe Dormond](https://linkedin.com/in/joedormond)
+- **🐙 GitHub**: [@joedormond](https://github.com/joedormond)
+- **📱 Twitter/X**: [@joedormond](https://twitter.com/joedormond)
+- **📋 Full Contact Info**: [CONTACT.md](CONTACT.md) - Detailed contact information and availability
+
+### **Business Inquiries**
+
+- **🤝 Partnerships**: [partnerships@stryvr.app](mailto:partnerships@stryvr.app)
+- **💼 Enterprise Sales**: [enterprise@stryvr.app](mailto:enterprise@stryvr.app)
+- **📊 Investor Relations**: [investors@stryvr.app](mailto:investors@stryvr.app)
+- **🔧 Technical Support**: [support@stryvr.app](mailto:support@stryvr.app)
+
+### **Resources**
+
+- **📚 Documentation**: [Docs/](Docs/)
+- **🐛 Bug Reports**: [GitHub Issues](https://github.com/yourusername/stryvr-ios/issues)
+- **💡 Feature Requests**: [GitHub Discussions](https://github.com/yourusername/stryvr-ios/discussions)
+- **🌐 Website**: [stryvr.app](https://stryvr.app)
 
 ## 📄 License
 
