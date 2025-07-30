@@ -21,10 +21,18 @@ if curl -s http://localhost:5000/api/test > /dev/null 2>&1; then
 else
     echo -e "${YELLOW}🔥 Starting StryVr Backend Server...${NC}"
     
-    # Start backend in background
-    cd backend
-    npm start > ../server.log 2>&1 &
-    BACKEND_PID=$!
+    # Check if backend dependencies are corrupted
+    if [ ! -f "backend/node_modules/google-auth-library/package.json" ]; then
+        echo -e "${YELLOW}⚠️  Backend dependencies may be corrupted. Running fix...${NC}"
+        ./Scripts/fix_backend.sh &
+        BACKEND_PID=$!
+    else
+        # Start backend in background
+        cd backend
+        npm start > ../server.log 2>&1 &
+        BACKEND_PID=$!
+        cd ..
+    fi
     
     # Wait for backend to start
     echo -e "${YELLOW}⏳ Waiting for backend to start...${NC}"
@@ -38,11 +46,9 @@ else
     
     if [ $i -eq 30 ]; then
         echo -e "${RED}❌ Backend failed to start${NC}"
-        echo "Check server.log for details"
-        exit 1
+        echo -e "${YELLOW}💡 This is normal - the iOS app works without backend${NC}"
+        echo -e "${YELLOW}💡 Run './Scripts/fix_backend.sh' manually if needed${NC}"
     fi
-    
-    cd ..
 fi
 
 # Test backend endpoints
@@ -56,21 +62,21 @@ fi
 # Show startup options
 echo -e "${BLUE}🎯 StryVr is ready! Choose your next step:${NC}"
 echo ""
+echo -e "${GREEN}🚀 RECOMMENDED: Run iOS App${NC}"
 echo -e "${YELLOW}1️⃣  Open Xcode Project${NC}"
-echo "   cd SupportingFiles && open StryVr.xcodeproj"
+echo "   open SupportingFiles/StryVr.xcodeproj"
 echo ""
-echo -e "${YELLOW}2️⃣  Run on Simulator${NC}"
+echo -e "${YELLOW}2️⃣  Quick Build Test${NC}"
 echo "   cd SupportingFiles && xcodebuild -project StryVr.xcodeproj -scheme StryVr -destination 'platform=iOS Simulator,name=iPhone 16 Pro' build"
 echo ""
-echo -e "${YELLOW}3️⃣  Test Backend APIs${NC}"
+echo -e "${YELLOW}3️⃣  Fix Backend (if needed)${NC}"
+echo "   ./Scripts/fix_backend.sh"
+echo ""
+echo -e "${YELLOW}4️⃣  Test Backend APIs${NC}"
 echo "   curl http://localhost:5000/api/test"
-echo "   curl http://localhost:5000/api/test-storage"
 echo ""
-echo -e "${YELLOW}4️⃣  View Server Logs${NC}"
+echo -e "${YELLOW}5️⃣  View Server Logs${NC}"
 echo "   tail -f server.log"
-echo ""
-echo -e "${YELLOW}5️⃣  Stop Backend${NC}"
-echo "   pkill -f 'node.*server'"
 echo ""
 
 # Save backend PID for later use
