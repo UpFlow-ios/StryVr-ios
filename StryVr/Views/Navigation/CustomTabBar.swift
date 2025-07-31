@@ -76,19 +76,4 @@ struct CustomTabBar: View {
     }
 }
 
-// MARK: - TabItem Extension for System Icons
 
-extension TabItem {
-    var systemIcon: String {
-        switch self {
-        case .home:
-            return "house.fill"
-        case .feed:
-            return "list.bullet"
-        case .profile:
-            return "person.fill"
-        case .reports:
-            return "chart.bar.fill"
-        }
-    }
-}

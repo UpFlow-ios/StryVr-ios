@@ -23,11 +23,15 @@ enum TabItem: Int, CaseIterable {
 
     var icon: String {
         switch self {
-        case .home: return "icon_home"
-        case .feed: return "icon_feed"
-        case .profile: return "icon_profile"
-        case .reports: return "icon_reports"
+        case .home: return "house.fill"
+        case .feed: return "list.bullet"
+        case .profile: return "person.fill"
+        case .reports: return "chart.bar.fill"
         }
+    }
+
+    var systemIcon: String {
+        return icon  // Use the same SF Symbol names
     }
 
     var colorCode: String {
