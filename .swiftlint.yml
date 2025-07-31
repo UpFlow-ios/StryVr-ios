@@ -1,0 +1,97 @@
+# SwiftLint Configuration for StryVr iOS App
+# Professional-grade code quality standards for App Store 
+
+disabled_rules:
+  - trailing_whitespace
+  - line_length
+  - function_body_length
+  - type_body_length
+  - file_length
+  - cyclomatic_complexity
+
+opt_in_rules:
+  - array_init
+  - closure_end_indentation
+  - closure_spacing
+  - collection_alignment
+  - contains_over_filter_count
+  - contains_over_filter_is_empty
+  - contains_over_range_nil_comparison
+  - empty_count
+  - empty_string
+  - enum_case_associated_values_count
+  - fatal_error_message
+  - first_where
+  - force_unwrapping
+  - implicitly_unwrapped_optional
+  - last_where
+  - legacy_random
+  - literal_expression_end_indentation
+  - multiline_arguments
+  - multiline_parameters
+  - operator_usage_whitespace
+  - overridden_super_call
+  - pattern_matching_keywords
+  - prefer_self_type_over_type_of_self
+  - redundant_nil_coalescing
+  - redundant_type_annotation
+  - sorted_first_last
+  - static_operator
+  - toggle_bool
+  - unneeded_parentheses_in_closure_argument
+  - vertical_parameter_alignment_on_call
+  - yoda_condition
+
+included:
+  - StryVr
+  - StryVrModule
+  - Sources
+
+excluded:
+  - Pods
+  - .build
+  - DerivedData
+  - Tests
+  - SupportingFiles
+
+# Custom rules for professional code
+custom_rules:
+  # Ensure proper documentation
+  documentation_comment:
+    name: "Documentation Comment"
+    regex: '^\\s*///.*$'
+    message: "Use /// for documentation comments"
+    severity: warning
+
+  # Enforce consistent naming
+  naming_convention:
+    name: "Naming Convention"
+    regex: '^[A-Z][a-zA-Z0-9]*$'
+    message: "Use PascalCase for type names"
+    severity: warning
+
+# Performance rules
+performance_rules:
+  - unused_import
+  - unused_private_declaration
+
+# SwiftUI specific rules
+swiftui_rules:
+  - prefer_self_in_static_references
+  - prefer_self_type_over_type_of_self
+
+# Security rules
+security_rules:
+  - force_unwrapping
+  - implicitly_unwrapped_optional
+
+# Accessibility rules
+accessibility_rules:
+  - accessibility_label_for_image
+  - accessibility_trait_for_button
+
+# App Store compliance
+appstore_rules:
+  - unused_import
+  - unused_private_declaration
+  - redundant_type_annotation 
