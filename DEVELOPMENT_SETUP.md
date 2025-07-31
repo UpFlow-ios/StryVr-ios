@@ -12,6 +12,7 @@ This document outlines the complete professional development environment setup f
 - **iTerm2** - Advanced terminal emulator with color schemes
 - **Syntax Highlighting** - Code colors and auto-suggestions
 - **FZF Integration** - Fuzzy file finding and command history
+- **Professional Prompt** - Git status, time, directory, and command success indicators
 
 ### **🔧 Code Quality Tools**
 - **SwiftLint** - Code style enforcement and quality checks
@@ -52,6 +53,15 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 ### **3. Install Powerlevel10k Theme**
 ```bash
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+```
+
+### **4. Configure Powerlevel10k**
+```bash
+# Run the configuration script
+source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
+
+# This will create ~/.p10k.zsh with your preferences
+# You can customize further by editing this file
 ```
 
 ### **4. Install Development Tools**
@@ -142,6 +152,34 @@ Quick commit and push workflow:
 ```bash
 stryvr-commit "Add new feature"
 ```
+
+---
+
+## 🎨 **Powerlevel10k Features**
+
+### **Professional Prompt Display**
+Your terminal prompt now shows:
+- **Directory**: Smart path shortening (`~/Doc/stryvr-ios`)
+- **Git Status**: Branch, commits ahead/behind, modified files
+- **Time**: Current time display
+- **Status Indicators**: Success (✔) and error (✘) indicators
+- **Beautiful Icons**: File types and git status with icons
+
+### **Example Prompt**
+```
+~/Doc/stryvr-ios  main ⇡2 *1 ▓▒░                    ░▒▓ ✔  12:57:02 AM
+```
+- `~/Doc/stryvr-ios` - Shortened directory path
+- `main` - Current git branch
+- `⇡2` - 2 commits ahead of remote
+- `*1` - 1 modified file
+- `✔` - Last command succeeded
+- `12:57:02 AM` - Current time
+
+### **Customization**
+- **Location**: `~/.p10k.zsh`
+- **Reconfigure**: Run `source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme`
+- **Manual Edit**: Edit `~/.p10k.zsh` for advanced customization
 
 ---
 

@@ -74,9 +74,15 @@ stryvr is an iOS app that provides professional development tools for workplace 
    # Install terminal enhancements
    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
    
+   # Install Powerlevel10k theme
+   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+   
    # Install VS Code extensions
    code --install-extension ms-vscode.vscode-swift
    code --install-extension vknabel.vscode-swift-development-environment
+   
+   # Configure Powerlevel10k (run this after installation)
+   source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
    ```
 
 5. **Run the App**
@@ -96,6 +102,7 @@ StryVr comes with a complete professional development environment setup that inc
 - **Oh My Zsh** + **Powerlevel10k** theme for a beautiful terminal experience
 - **iTerm2** with syntax highlighting and auto-suggestions
 - **FZF** for fuzzy file finding and command history
+- **Professional Prompt**: Git status, time, directory, and command success indicators
 
 #### **Code Quality Tools**
 - **SwiftLint** for code style enforcement
@@ -123,6 +130,13 @@ format              # Run SwiftFormat
 test                # Run tests
 stryvr-commit "msg" # Quick commit and push
 ```
+
+#### **Powerlevel10k Features**
+- **Git Integration**: Shows branch, commits ahead/behind, and file status
+- **Time Display**: Current time in the prompt
+- **Status Indicators**: Success (✔) and error (✘) indicators
+- **Directory Shortening**: Smart path display
+- **Professional Appearance**: Beautiful icons and colors
 
 ### **Quick Setup**
 ```bash
