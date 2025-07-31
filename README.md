@@ -27,6 +27,7 @@ stryvr is an iOS app that provides professional development tools for workplace 
 - **Security**: AES-GCM 256-bit encryption, Keychain integration
 - **Database**: Firebase Firestore, Core Data
 - **Authentication**: Firebase Auth, SecureStorageManager
+- **Development**: Oh My Zsh, SwiftLint, SwiftFormat, VS Code
 
 ## 📱 Screenshots
 
@@ -40,6 +41,7 @@ stryvr is an iOS app that provides professional development tools for workplace 
 - iOS 16.0+
 - Swift 6.0
 - Node.js 18+ (for backend)
+- Homebrew (for development tools)
 
 ### Installation
 
@@ -64,11 +66,73 @@ stryvr is an iOS app that provides professional development tools for workplace 
    npm start
    ```
 
-4. **Run the App**
+4. **Setup Development Environment (Optional but Recommended)**
+   ```bash
+   # Install development tools
+   brew install swiftlint swiftformat fzf ripgrep bat eza git-delta lazygit
+   
+   # Install terminal enhancements
+   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+   
+   # Install VS Code extensions
+   code --install-extension ms-vscode.vscode-swift
+   code --install-extension vknabel.vscode-swift-development-environment
+   ```
+
+5. **Run the App**
    - Open Xcode
    - Select your target device/simulator
    - Press Cmd+R to build and run
    - Or use our build script: `./build-stryvr.sh`
+   - Or use our custom commands: `build`, `clean`, `lint`, `format`
+
+## 🛠️ Development Environment
+
+### **Professional Setup** ✅ **RECOMMENDED**
+
+StryVr comes with a complete professional development environment setup that includes:
+
+#### **Terminal Enhancement**
+- **Oh My Zsh** + **Powerlevel10k** theme for a beautiful terminal experience
+- **iTerm2** with syntax highlighting and auto-suggestions
+- **FZF** for fuzzy file finding and command history
+
+#### **Code Quality Tools**
+- **SwiftLint** for code style enforcement
+- **SwiftFormat** for automatic code formatting
+- **Custom aliases** for streamlined development workflow
+
+#### **Enhanced File Management**
+- **Bat** for syntax-highlighted file viewing
+- **Eza** for modern file listing with icons
+- **Ripgrep** for fast text search across the codebase
+
+#### **Git Workflow Optimization**
+- **Git Delta** for enhanced diff viewing
+- **LazyGit** for terminal-based Git GUI
+- **Custom shortcuts**: `gs`, `ga`, `gc`, `gp`, `gl`, `gd`
+
+#### **StryVr-Specific Commands**
+```bash
+stryvr-dev          # Show all development commands
+stryvr              # Navigate to project directory
+build               # Build the iOS app
+clean               # Clean build folder
+lint                # Run SwiftLint
+format              # Run SwiftFormat
+test                # Run tests
+stryvr-commit "msg" # Quick commit and push
+```
+
+### **Quick Setup**
+```bash
+# Install all development tools at once
+curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+brew install swiftlint swiftformat fzf ripgrep bat eza git-delta lazygit
+```
+
+---
 
 ## 🔧 Configuration
 
