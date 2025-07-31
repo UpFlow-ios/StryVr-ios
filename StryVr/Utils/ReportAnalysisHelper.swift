@@ -34,9 +34,7 @@ enum ReportAnalysisHelper {
     ///   - reports: `[LearningReport]` array.
     ///   - topCount: Number of top employees, default is 5.
     /// - Returns: `[LearningReport]` top employees array.
-    static func getTopPerformers(from reports: [LearningReport], topCount: Int = 5)
-        -> [LearningReport]
-    {
+    static func getTopPerformers(from reports: [LearningReport], topCount: Int = 5) -> [LearningReport] {
         return
             reports
             .sorted { $0.performanceScore > $1.performanceScore }

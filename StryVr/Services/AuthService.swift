@@ -123,8 +123,8 @@ final class AuthService {
 
     // ✅ Replace with your Okta values:
     private let clientID = "YOUR_OKTA_CLIENT_ID"
-    private let issuer = URL(string: "https://YOUR_OKTA_DOMAIN.okta.com/oauth2/default")!
-    private let redirectURI = URL(string: "stryvr://callback")!
+    private let issuer = URL(string: "https://YOUR_OKTA_DOMAIN.okta.com/oauth2/default") ?? URL(string: "https://example.com")!
+    private let redirectURI = URL(string: "stryvr://callback") ?? URL(string: "https://example.com")!
 
     func loginWithOkta(presentingViewController: UIViewController) {
         OIDAuthorizationService.discoverConfiguration(forIssuer: issuer) { config, error in

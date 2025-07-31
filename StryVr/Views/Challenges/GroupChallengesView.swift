@@ -12,8 +12,7 @@ import SwiftUI
 
 class GroupChallengesViewModel: ObservableObject {
     @Published var challenges: [String] = [
-        "Hackathon",
-        "AI Challenge",
+        "Design Sprint",
         "Startup Pitch",
     ]
 }
@@ -51,14 +50,15 @@ struct GroupChallengesView: View {
                             .font(Theme.Typography.body)
                             .foregroundColor(Theme.Colors.textPrimary)
                             .accessibilityLabel("\(challenge) Challenge")
-                            .accessibilityHint("Tap to view details about the \(challenge) challenge")
+                            .accessibilityHint(
+                                "Tap to view details about the \(challenge) challenge")
                     }
                     .padding(.vertical, Theme.Spacing.small)
                 }
                 .listStyle(.insetGrouped)
             }
             .navigationTitle("Group Challenges")
-            .background(Theme.Colors.background)
+                .background(Theme.Colors.background)
         }
     }
 }

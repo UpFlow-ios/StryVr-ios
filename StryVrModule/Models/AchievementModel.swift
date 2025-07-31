@@ -14,7 +14,7 @@ struct AchievementModel: Identifiable, Codable, Equatable {
     let id: AchievementID
     var title: String
     var description: String
-    var iconName: String // SF Symbol or custom icon name
+    var iconName: String  // SF Symbol or custom icon name
     var dateEarned: Date
     var isNew: Bool
 
@@ -51,7 +51,7 @@ struct AchievementModel: Identifiable, Codable, Equatable {
                 title: "Skill Pro",
                 description: "Verified 5 new skills",
                 iconName: "checkmark.seal.fill",
-                dateEarned: Calendar.current.date(byAdding: .day, value: -3, to: Date())!,
+                dateEarned: Calendar.current.date(byAdding: .day, value: -3, to: Date()) ?? Date(),
                 isNew: false
             ),
             AchievementModel(
@@ -59,7 +59,7 @@ struct AchievementModel: Identifiable, Codable, Equatable {
                 title: "Team Contributor",
                 description: "Completed 3 team challenges",
                 iconName: "person.3.fill",
-                dateEarned: Calendar.current.date(byAdding: .day, value: -7, to: Date())!,
+                dateEarned: Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date(),
                 isNew: false
             ),
         ]

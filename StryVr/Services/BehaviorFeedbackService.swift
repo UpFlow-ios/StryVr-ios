@@ -13,7 +13,7 @@ import Foundation
 
 @MainActor final class BehaviorFeedbackService {
     static let shared = BehaviorFeedbackService()
-    private let db = Firestore.firestore()
+    private let firestore = Firestore.firestore()
 
     private init() {}
 
@@ -23,7 +23,7 @@ import Foundation
         _ feedback: BehaviorFeedback, completion: @escaping (Result<Void, Error>) -> Void
     ) {
         do {
-            let docRef = db.collection("behaviorFeedback").document(feedback.id)
+            let docRef = firestore.collection("behaviorFeedback").document(feedback.id)
             try docRef.setData(from: feedback) { error in
                 if let error = error {
                     completion(.failure(error))
@@ -41,7 +41,7 @@ import Foundation
     func fetchFeedback(
         for employeeId: String, completion: @escaping (Result<[BehaviorFeedback], Error>) -> Void
     ) {
-        db.collection("behaviorFeedback")
+        firestore.collection("behaviorFeedback")
             .whereField("employeeId", isEqualTo: employeeId)
             .order(by: "timestamp", descending: true)
             .getDocuments { snapshot, error in

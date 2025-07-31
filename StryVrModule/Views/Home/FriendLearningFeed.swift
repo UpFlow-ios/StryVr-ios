@@ -19,7 +19,7 @@ struct FriendLearningFeed: View {
     @State private var isError: Bool = false
     @State private var isLoading: Bool = true
     private let logger = Logger(
-        subsystem: Bundle.main.bundleIdentifier!, category: "FriendLearningFeed")
+        subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "FriendLearningFeed")
 
     var body: some View {
         NavigationStack {

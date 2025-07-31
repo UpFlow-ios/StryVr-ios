@@ -7,22 +7,24 @@
 //  🔐 Auth Manager – Handles MFA (email & SMS) and secure session management
 //
 import CryptoKit
+import Foundation
+
 #if canImport(FirebaseAuth)
-import FirebaseAuth
+    import FirebaseAuth
 #endif
 #if canImport(FirebaseFirestore)
-import FirebaseFirestore
+    import FirebaseFirestore
 #endif
-import Foundation
 #if canImport(os)
-import OSLog
+    import OSLog
 #endif
 
 /// Manages authentication, MFA, and session security in StryVr
 final class AuthManager {
     static let shared = AuthManager()
-    private let db = Firestore.firestore()
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "AuthManager")
+    private let firestore = Firestore.firestore()
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "AuthManager")
 
     private init() {}
 
@@ -56,7 +58,8 @@ final class AuthManager {
             return
         }
 
-        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) {
+            verificationID, error in
             if let error = error {
                 self.logger.error("📲 MFA SMS error: \(error.localizedDescription)")
                 completion(false, error)
@@ -84,7 +87,8 @@ final class AuthManager {
             return
         }
 
-        let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: code)
+        let credential = PhoneAuthProvider.provider().credential(
+            withVerificationID: verificationID, verificationCode: code)
 
         Auth.auth().signIn(with: credential) { _, error in
             if let error = error {

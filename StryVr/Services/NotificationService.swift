@@ -18,7 +18,7 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
     MessagingDelegate
 {
     static let shared = NotificationService()
-    private let db = Firestore.firestore()
+    private let firestore = Firestore.firestore()
     private let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "NotificationService")
 
@@ -87,7 +87,7 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
     private func saveDeviceTokenToDatabase(_ token: String) {
         guard let userID = AuthService.shared.getCurrentUser()?.uid else { return }
 
-        db.collection("users").document(userID).updateData(["deviceToken": token]) { error in
+        firestore.collection("users").document(userID).updateData(["deviceToken": token]) { error in
             if let error = error {
                 self.logger.error("❌ Failed to save device token: \(error.localizedDescription)")
             } else {
@@ -124,7 +124,7 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
             return
         }
 
-        db.collection("users").document(userID).getDocument { [weak self] snapshot, error in
+        firestore.collection("users").document(userID).getDocument { [weak self] snapshot, error in
             guard let self = self else { return }
 
             if let error = error {

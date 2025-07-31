@@ -7,21 +7,23 @@
 //  📡 FirestoreService – Centralized Firestore access layer for user data, skills, and history
 //
 
+import Foundation
+
 #if canImport(FirebaseAuth)
-import FirebaseAuth
+    import FirebaseAuth
 #endif
 #if canImport(FirebaseFirestore)
-import FirebaseFirestore
+    import FirebaseFirestore
 #endif
-import Foundation
 #if canImport(os)
-import OSLog
+    import OSLog
 #endif
 
 class FirestoreService {
     static let shared = FirestoreService()
-    private let db = Firestore.firestore()
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "FirestoreService")
+    private let firestore = Firestore.firestore()
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "FirestoreService")
     private init() {}
 
     func fetchUserData(userID: String, completion: @escaping (Result<UserData, Error>) -> Void) {
@@ -42,7 +44,7 @@ class FirestoreService {
             }
 
             guard let document = document, document.exists,
-                  let data = try? document.data(as: UserData.self)
+                let data = try? document.data(as: UserData.self)
             else {
                 self.logger.warning("⚠️ Document missing or malformed")
                 completion(.failure(FirestoreServiceError.invalidInput))
@@ -54,7 +56,9 @@ class FirestoreService {
         }
     }
 
-    func updateUserData(userID: String, fields: [String: Any], completion: @escaping (Result<Void, Error>) -> Void) {
+    func updateUserData(
+        userID: String, fields: [String: Any], completion: @escaping (Result<Void, Error>) -> Void
+    ) {
         guard Auth.auth().currentUser != nil else {
             logger.error("⛔ No authenticated user session")
             completion(.failure(FirestoreServiceError.invalidInput))

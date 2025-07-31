@@ -10,10 +10,10 @@
 import Foundation
 
 struct AISuggestionResponse: Decodable {
-    let generated_text: String
+    let generatedText: String
 
     func generatedSkills() -> [String] {
-        generated_text
+        generatedText
             .components(separatedBy: ",")
             .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
     }

@@ -44,8 +44,10 @@ struct Skill: Identifiable, Codable, Hashable {
     /// Determines if the skill was practiced recently
     func isRecent(within days: Int = 7) -> Bool {
         guard let lastDate = lastPracticed else { return false }
-        return Calendar.current.isDateInToday(lastDate) ||
-            lastDate >= Calendar.current.date(byAdding: .day, value: -days, to: Date())!
+        guard let pastDate = Calendar.current.date(byAdding: .day, value: -days, to: Date()) else {
+            return false
+        }
+        return Calendar.current.isDateInToday(lastDate) || lastDate >= pastDate
     }
 
     /// Checks if the skill is at an expert level

@@ -23,7 +23,8 @@ struct HomeView: View {
 
     @State private var showDevPanel = false
 
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "HomeView")
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "HomeView")
 
     var body: some View {
         NavigationStack {

@@ -7,15 +7,17 @@
 //
 import Foundation
 import LocalAuthentication
-#if canImport(os)
-import OSLog
-#endif
 import Security
+
+#if canImport(os)
+    import OSLog
+#endif
 
 /// Manages secure storage of sensitive data using Apple's Keychain API
 final class SecureStorageService {
     static let shared = SecureStorageService()
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "SecureStorageService")
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "SecureStorageService")
 
     private init() {}
 
@@ -81,8 +83,8 @@ final class SecureStorageService {
         let status = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
 
         if status == errSecSuccess,
-           let retrievedData = dataTypeRef as? Data,
-           let result = String(data: retrievedData, encoding: .utf8)
+            let retrievedData = dataTypeRef as? Data,
+            let result = String(data: retrievedData, encoding: .utf8)
         {
             logger.info("✅ Retrieved key securely")
             return result
@@ -120,19 +122,24 @@ final class SecureStorageService {
         context.localizedReason = "Authenticate to access StryVr securely"
 
         var error: NSError?
-        guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
-            logger.error("🔴 Biometrics unavailable: \(error?.localizedDescription ?? "Unknown error")")
+        guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
+        else {
+            logger.error(
+                "🔴 Biometrics unavailable: \(error?.localizedDescription ?? "Unknown error")")
             completion(false)
             return
         }
 
-        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: context.localizedReason) { success, error in
+        context.evaluatePolicy(
+            .deviceOwnerAuthenticationWithBiometrics, localizedReason: context.localizedReason
+        ) { success, error in
             DispatchQueue.main.async {
                 if success {
                     self.logger.info("✅ Biometric authentication succeeded")
                     completion(true)
                 } else {
-                    self.logger.error("❌ Biometric failed: \(error?.localizedDescription ?? "Unknown reason")")
+                    self.logger.error(
+                        "❌ Biometric failed: \(error?.localizedDescription ?? "Unknown reason")")
                     completion(false)
                 }
             }

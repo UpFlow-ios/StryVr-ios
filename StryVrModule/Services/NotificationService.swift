@@ -1,3 +1,6 @@
+import Foundation
+import UserNotifications
+
 //
 //  NotificationService.swift
 //  StryVr
@@ -5,25 +8,26 @@
 //  Created by Joe Dormond on 3/12/25.
 //
 #if canImport(FirebaseAuth)
-import FirebaseAuth
+    import FirebaseAuth
 #endif
 #if canImport(FirebaseFirestore)
-import FirebaseFirestore
+    import FirebaseFirestore
 #endif
 #if canImport(FirebaseMessaging)
-import FirebaseMessaging
+    import FirebaseMessaging
 #endif
-import Foundation
 #if canImport(os)
-import OSLog
+    import OSLog
 #endif
-import UserNotifications
 
 /// Manages push notifications for video engagement, recommendations, and learning reminders
-final class NotificationService: NSObject, ObservableObject, UNUserNotificationCenterDelegate, MessagingDelegate {
+final class NotificationService: NSObject, ObservableObject, UNUserNotificationCenterDelegate,
+    MessagingDelegate
+{
     static let shared = NotificationService()
-    private let db = Firestore.firestore()
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "NotificationService")
+    private let firestore = Firestore.firestore()
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "NotificationService")
 
     override private init() {}
 
@@ -49,18 +53,21 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
     // MARK: - UNUserNotificationCenterDelegate
 
     /// Handles receiving push notifications while the app is in the foreground
-    func userNotificationCenter(_: UNUserNotificationCenter,
-                                willPresent _: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
-    {
+    func userNotificationCenter(
+        _: UNUserNotificationCenter,
+        willPresent _: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) ->
+            Void
+    ) {
         completionHandler([.banner, .sound])
     }
 
     /// Handles user interactions with notifications
-    func userNotificationCenter(_: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void)
-    {
+    func userNotificationCenter(
+        _: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
         logger.info("🔔 Notification tapped: \(response.notification.request.content.userInfo)")
         completionHandler()
     }
@@ -84,7 +91,7 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
     private func saveDeviceTokenToDatabase(_ token: String) {
         guard let userID = AuthService.shared.getCurrentUser()?.uid else { return }
 
-        db.collection("users").document(userID).updateData(["deviceToken": token]) { error in
+        firestore.collection("users").document(userID).updateData(["deviceToken": token]) { error in
             if let error = error {
                 self.logger.error("❌ Failed to save device token: \(error.localizedDescription)")
             } else {
@@ -102,9 +109,12 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
             return
         }
 
-        let message = type == "like" ? "Someone liked your video: \(videoTitle)" :
-            type == "comment" ? "Someone commented on your video: \(videoTitle)" :
-            "Your video is trending: \(videoTitle)"
+        let message =
+            type == "like"
+            ? "Someone liked your video: \(videoTitle)"
+            : type == "comment"
+                ? "Someone commented on your video: \(videoTitle)"
+                : "Your video is trending: \(videoTitle)"
 
         sendPushNotification(to: userID, title: "📢 Video Engagement", body: message)
     }
@@ -118,7 +128,7 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
             return
         }
 
-        db.collection("users").document(userID).getDocument { [weak self] snapshot, error in
+        firestore.collection("users").document(userID).getDocument { [weak self] snapshot, error in
             guard let self = self else { return }
 
             if let error = error {
@@ -127,7 +137,7 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
             }
 
             guard let data = snapshot?.data(),
-                  let deviceToken = data["deviceToken"] as? String
+                let deviceToken = data["deviceToken"] as? String
             else {
                 self.logger.warning("⚠️ No device token found for user \(userID)")
                 return

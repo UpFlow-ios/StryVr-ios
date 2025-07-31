@@ -99,6 +99,6 @@ struct ChallengeModel: Identifiable, Codable, Hashable {
         description: "",
         type: .solo,
         startDate: Date(),
-        endDate: Calendar.current.date(byAdding: .day, value: 7, to: Date())!
+        endDate: Calendar.current.date(byAdding: .day, value: 7, to: Date()) ?? Date().addingTimeInterval(7 * 24 * 60 * 60)
     )
 }

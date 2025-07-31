@@ -19,7 +19,7 @@ struct ProfileBadgesView: View {
     @State private var badges: [Badge] = [
         Badge(title: "Skill Verified", description: "Passed a skill verification quiz", imageName: "checkmark.shield", isUnlocked: true),
         Badge(title: "Top Learner", description: "Completed 3+ learning paths", imageName: "bolt.fill", isUnlocked: true),
-        Badge(title: "Challenge Champion", description: "Won a weekly skill challenge", imageName: "trophy.fill", isUnlocked: false),
+        Badge(title: "Challenge Champion", description: "Won a weekly skill challenge", imageName: "trophy.fill", isUnlocked: false)
     ]
 
     var body: some View {

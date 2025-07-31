@@ -16,7 +16,8 @@ struct PaywallView: View {
     @State private var limitedTimeOffer: String?
     @State private var showAlert = false
     @State private var alertMessage = ""
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "PaywallView")
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "PaywallView")
 
     var body: some View {
         ZStack {

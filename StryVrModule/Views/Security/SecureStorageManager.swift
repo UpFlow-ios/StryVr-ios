@@ -52,7 +52,7 @@ final class SecureStorageManager {
         let query: [CFString: Any] = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrAccount: key,
-            kSecValueData: data,
+            kSecValueData: key.withUnsafeBytes { Data($0) },
             kSecAttrAccessible: kSecAttrAccessibleWhenUnlocked,
         ]
 

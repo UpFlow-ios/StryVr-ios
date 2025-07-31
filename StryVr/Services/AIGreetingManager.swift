@@ -43,13 +43,13 @@ class AIGreetingManager: ObservableObject {
             "🏆 Every step forward is a victory!",
             "✨ Your future self is thanking you!",
             "🎨 Creativity flows through you!",
-            "🚀 Time to level up your skills!",
+            "🚀 Time to level up your skills!"
         ]
 
         let timeBasedGreetings = [
             "Good morning! ☀️",
             "Good afternoon! 🌤️",
-            "Good evening! 🌙",
+            "Good evening! 🌙"
         ]
 
         let hour = Calendar.current.component(.hour, from: Date())

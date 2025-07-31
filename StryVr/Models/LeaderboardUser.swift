@@ -34,7 +34,12 @@ struct LeaderboardUser: Identifiable, Codable, Hashable {
 
     var profileImage: Image {
         if let urlString = profileImageURL, let url = URL(string: urlString) {
-            return Image(uiImage: UIImage(data: try! Data(contentsOf: url)) ?? UIImage())
+            do {
+                let imageData = try Data(contentsOf: url)
+                return Image(uiImage: UIImage(data: imageData) ?? UIImage())
+            } catch {
+                return Image(systemName: "person.crop.circle.fill")
+            }
         } else {
             return Image(systemName: "person.crop.circle.fill")
         }
@@ -42,61 +47,61 @@ struct LeaderboardUser: Identifiable, Codable, Hashable {
 }
 
 #if DEBUG
-extension LeaderboardUser {
-    static let mock: LeaderboardUser = .init(
-        id: "mock123",
-        name: "Ava Patel",
-        score: 1500,
-        profileImageURL: nil,
-        totalPoints: 1500,
-        rank: 3,
-        skills: ["Swift", "Leadership"],
-        lastActive: Date(),
-        isVerified: true,
-        completedChallenges: 12,
-        feedbackScore: 4.8
-    )
-
-    static let mockLeaderboardUsers: [LeaderboardUser] = [
-        .init(
-            id: "1",
-            name: "Alex Johnson",
-            score: 920,
+    extension LeaderboardUser {
+        static let mock: LeaderboardUser = .init(
+            id: "mock123",
+            name: "Ava Patel",
+            score: 1500,
             profileImageURL: nil,
-            totalPoints: 1200,
-            rank: 1,
-            skills: ["SwiftUI", "Firebase"],
-            lastActive: Date(),
-            isVerified: true,
-            completedChallenges: 8,
-            feedbackScore: 4.5
-        ),
-        .init(
-            id: "2",
-            name: "Jamie Rivera",
-            score: 850,
-            profileImageURL: nil,
-            totalPoints: 1080,
-            rank: 2,
-            skills: ["iOS", "Communication"],
-            lastActive: Date(),
-            isVerified: false,
-            completedChallenges: 6,
-            feedbackScore: 4.2
-        ),
-        .init(
-            id: "3",
-            name: "Luna Chen",
-            score: 790,
-            profileImageURL: nil,
-            totalPoints: 990,
+            totalPoints: 1500,
             rank: 3,
-            skills: ["UI Design", "Swift"],
+            skills: ["Swift", "Leadership"],
             lastActive: Date(),
             isVerified: true,
-            completedChallenges: 7,
-            feedbackScore: 4.6
+            completedChallenges: 12,
+            feedbackScore: 4.8
         )
-    ]
-}
+
+        static let mockLeaderboardUsers: [LeaderboardUser] = [
+            .init(
+                id: "1",
+                name: "Alex Johnson",
+                score: 920,
+                profileImageURL: nil,
+                totalPoints: 1200,
+                rank: 1,
+                skills: ["SwiftUI", "Firebase"],
+                lastActive: Date(),
+                isVerified: true,
+                completedChallenges: 8,
+                feedbackScore: 4.5
+            ),
+            .init(
+                id: "2",
+                name: "Jamie Rivera",
+                score: 850,
+                profileImageURL: nil,
+                totalPoints: 1080,
+                rank: 2,
+                skills: ["iOS", "Communication"],
+                lastActive: Date(),
+                isVerified: false,
+                completedChallenges: 6,
+                feedbackScore: 4.2
+            ),
+            .init(
+                id: "3",
+                name: "Luna Chen",
+                score: 790,
+                profileImageURL: nil,
+                totalPoints: 990,
+                rank: 3,
+                skills: ["UI Design", "Swift"],
+                lastActive: Date(),
+                isVerified: true,
+                completedChallenges: 7,
+                feedbackScore: 4.6
+            ),
+        ]
+    }
 #endif

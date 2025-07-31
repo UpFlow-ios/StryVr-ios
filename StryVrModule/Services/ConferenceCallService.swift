@@ -5,26 +5,31 @@
 //  Created by Joe Dormond on 3/12/25.
 //
 import AVFoundation
-#if canImport(FirebaseFirestore)
-import FirebaseFirestore
-#endif
 import Foundation
+
+#if canImport(FirebaseFirestore)
+    import FirebaseFirestore
+#endif
 #if canImport(os)
-import OSLog
+    import OSLog
 #endif
 
 /// Manages real-time video calls, recording, chat, and screen sharing
 final class ConferenceCallService {
     static let shared = ConferenceCallService()
-    private let db = Firestore.firestore()
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "ConferenceCallService")
+    private let firestore = Firestore.firestore()
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "ConferenceCallService")
 
     private init() {}
 
     // MARK: - Schedule Call
 
     /// Schedules a new conference call
-    func scheduleConferenceCall(title: String, hostID: String, scheduledDate: Date, completion: @escaping (Bool, Error?) -> Void) {
+    func scheduleConferenceCall(
+        title: String, hostID: String, scheduledDate: Date,
+        completion: @escaping (Bool, Error?) -> Void
+    ) {
         guard !title.isEmpty, !hostID.isEmpty else {
             logger.error("❌ Invalid input for scheduling call")
             completion(false, ConferenceCallError.invalidInput)
@@ -44,7 +49,7 @@ final class ConferenceCallService {
             "screenSharingEnabled": false,
         ]
 
-        db.collection("conferenceCalls").document(callID).setData(callData) { error in
+        firestore.collection("conferenceCalls").document(callID).setData(callData) { error in
             if let error = error {
                 self.logger.error("❌ Error scheduling call: \(error.localizedDescription)")
                 completion(false, error)
@@ -58,15 +63,17 @@ final class ConferenceCallService {
     // MARK: - Update Status
 
     /// Updates the status of a conference call
-    func updateCallStatus(callID: String, status: String, completion: @escaping (Bool, Error?) -> Void) {
+    func updateCallStatus(
+        callID: String, status: String, completion: @escaping (Bool, Error?) -> Void
+    ) {
         guard !callID.isEmpty, !status.isEmpty else {
             logger.error("❌ Invalid input for updating call status")
             completion(false, ConferenceCallError.invalidInput)
             return
         }
 
-        db.collection("conferenceCalls").document(callID).updateData([
-            "status": status,
+        firestore.collection("conferenceCalls").document(callID).updateData([
+            "status": status
         ]) { error in
             if let error = error {
                 self.logger.error("❌ Error updating status: \(error.localizedDescription)")
@@ -81,15 +88,17 @@ final class ConferenceCallService {
     // MARK: - Screen Sharing
 
     /// Enables or disables screen sharing for a conference call
-    func enableScreenSharing(callID: String, isEnabled: Bool, completion: @escaping (Bool, Error?) -> Void) {
+    func enableScreenSharing(
+        callID: String, isEnabled: Bool, completion: @escaping (Bool, Error?) -> Void
+    ) {
         guard !callID.isEmpty else {
             logger.error("❌ Invalid input for screen sharing")
             completion(false, ConferenceCallError.invalidInput)
             return
         }
 
-        db.collection("conferenceCalls").document(callID).updateData([
-            "screenSharingEnabled": isEnabled,
+        firestore.collection("conferenceCalls").document(callID).updateData([
+            "screenSharingEnabled": isEnabled
         ]) { error in
             if let error = error {
                 self.logger.error("❌ Screen sharing update error: \(error.localizedDescription)")
@@ -104,7 +113,10 @@ final class ConferenceCallService {
     // MARK: - Add Chat Message
 
     /// Adds a chat message to a conference call
-    func addChatMessage(callID: String, senderID: String, message: String, timestamp: Date, completion: @escaping (Bool, Error?) -> Void) {
+    func addChatMessage(
+        callID: String, senderID: String, message: String, timestamp: Date,
+        completion: @escaping (Bool, Error?) -> Void
+    ) {
         guard !callID.isEmpty, !senderID.isEmpty, !message.isEmpty else {
             logger.error("❌ Invalid input for adding chat message")
             completion(false, ConferenceCallError.invalidInput)
@@ -117,8 +129,8 @@ final class ConferenceCallService {
             "timestamp": timestamp,
         ]
 
-        db.collection("conferenceCalls").document(callID).updateData([
-            "chatMessages": FieldValue.arrayUnion([messageData]),
+        firestore.collection("conferenceCalls").document(callID).updateData([
+            "chatMessages": FieldValue.arrayUnion([messageData])
         ]) { error in
             if let error = error {
                 self.logger.error("❌ Chat message failed: \(error.localizedDescription)")

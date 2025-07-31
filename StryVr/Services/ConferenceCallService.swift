@@ -12,7 +12,7 @@ import OSLog
 @MainActor
 final class ConferenceCallService {
     static let shared = ConferenceCallService()
-    private let db = Firestore.firestore()
+    private let firestore = Firestore.firestore()
     private let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "ConferenceCallService")
 
@@ -44,7 +44,7 @@ final class ConferenceCallService {
             "screenSharingEnabled": false,
         ]
 
-        db.collection("conferenceCalls").document(callID).setData(callData) { error in
+        firestore.collection("conferenceCalls").document(callID).setData(callData) { error in
             if let error = error {
                 self.logger.error("❌ Error scheduling call: \(error.localizedDescription)")
                 completion(false, error)
@@ -67,7 +67,7 @@ final class ConferenceCallService {
             return
         }
 
-        db.collection("conferenceCalls").document(callID).updateData([
+        firestore.collection("conferenceCalls").document(callID).updateData([
             "status": status
         ]) { error in
             if let error = error {
@@ -92,7 +92,7 @@ final class ConferenceCallService {
             return
         }
 
-        db.collection("conferenceCalls").document(callID).updateData([
+        firestore.collection("conferenceCalls").document(callID).updateData([
             "screenSharingEnabled": isEnabled
         ]) { error in
             if let error = error {
@@ -124,7 +124,7 @@ final class ConferenceCallService {
             "timestamp": timestamp,
         ]
 
-        db.collection("conferenceCalls").document(callID).updateData([
+        firestore.collection("conferenceCalls").document(callID).updateData([
             "chatMessages": FieldValue.arrayUnion([messageData])
         ]) { error in
             if let error = error {

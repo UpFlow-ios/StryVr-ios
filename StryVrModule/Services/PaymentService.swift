@@ -6,15 +6,19 @@
 //
 import Combine
 import Foundation
-#if canImport(os)
-import OSLog
-#endif
 import StoreKit
 
+#if canImport(os)
+    import OSLog
+#endif
+
 /// Manages in-app purchases and subscriptions for StryVr
-final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObserver, SKProductsRequestDelegate {
+final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObserver,
+    SKProductsRequestDelegate
+{
     static let shared = PaymentService()
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "PaymentService")
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "PaymentService")
 
     @Published var availableProducts: [SKProduct] = []
     @Published var purchasedProducts: Set<String> = []
@@ -82,7 +86,7 @@ final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObse
     func productsRequest(_: SKProductsRequest, didReceive response: SKProductsResponse) {
         availableProducts = response.products
         logger.info("✅ Retrieved \(availableProducts.count) products from App Store")
-        if response.invalidProductIdentifiers.count > 0 {
+        if !response.invalidProductIdentifiers.isEmpty {
             logger.warning("⚠️ Invalid Product IDs: \(response.invalidProductIdentifiers)")
         }
     }

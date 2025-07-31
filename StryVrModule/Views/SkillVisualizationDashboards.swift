@@ -16,7 +16,8 @@ struct SkillVisualizationDashboards: View {
     @State private var hasError: Bool = false
     @State private var errorMessage: String = ""
     private let logger = Logger(
-        subsystem: Bundle.main.bundleIdentifier!, category: "SkillVisualizationDashboards")
+        subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr",
+        category: "SkillVisualizationDashboards")
 
     var body: some View {
         NavigationStack {

@@ -16,9 +16,9 @@ import OSLog
 final class VideoContentService {
     static let shared = VideoContentService()
     private let storage = Storage.storage().reference()
-    private let db = Firestore.firestore()
+    private let firestore = Firestore.firestore()
     private let logger = Logger(
-        subsystem: Bundle.main.bundleIdentifier!, category: "VideoContentService")
+        subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "VideoContentService")
 
     private init() {}
 
@@ -72,7 +72,8 @@ final class VideoContentService {
                         "tags": tags,
                     ]
 
-                    self.db.collection("Videos").document(videoID).setData(metadata) { error in
+                    self.firestore.collection("Videos").document(videoID).setData(metadata) {
+                        error in
                         if let error = error {
                             self.logger.error(
                                 "Metadata write failed: \(error.localizedDescription)")
@@ -89,7 +90,7 @@ final class VideoContentService {
     // MARK: - Fetch Videos (Streaming)
 
     func fetchVideos(completion: @escaping ([VideoPostModel]) -> Void) {
-        db.collection("Videos")
+        firestore.collection("Videos")
             .order(by: "uploadDate", descending: true)
             .getDocuments { snapshot, error in
                 if let error = error {

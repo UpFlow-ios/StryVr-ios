@@ -21,23 +21,23 @@ extension Color {
         var int: UInt64 = 0
         Scanner(string: cleanedHex).scanHexInt64(&int)
 
-        let r: Double
-        let g: Double
-        let b: Double
+        let red: Double
+        let green: Double
+        let blue: Double
         switch cleanedHex.count {
         case 6:
-            r = Double((int >> 16) & 0xFF) / 255.0
-            g = Double((int >> 8) & 0xFF) / 255.0
-            b = Double(int & 0xFF) / 255.0
+            red = Double((int >> 16) & 0xFF) / 255.0
+            green = Double((int >> 8) & 0xFF) / 255.0
+            blue = Double(int & 0xFF) / 255.0
         default:
-            r = 0.0
-            g = 0.0
-            b = 0.0
+            red = 0.0
+            green = 0.0
+            blue = 0.0
             let logger = Logger(subsystem: "com.stryvr.app", category: "ColorUtils")
             logger.error("⚠️ Invalid hex string: \(hex)")
         }
 
-        self.init(.sRGB, red: r, green: g, blue: b, opacity: opacity)
+        self.init(.sRGB, red: red, green: green, blue: blue, opacity: opacity)
     }
 
     // MARK: - App Color Palette (HIG & Accessibility Compliant)

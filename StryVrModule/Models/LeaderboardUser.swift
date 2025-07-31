@@ -33,7 +33,12 @@ struct LeaderboardUser: Identifiable, Codable, Hashable {
 
     var profileImage: Image {
         if let urlString = profileImageURL, let url = URL(string: urlString) {
-            return Image(uiImage: UIImage(data: try! Data(contentsOf: url)) ?? UIImage())
+            do {
+                let imageData = try Data(contentsOf: url)
+                return Image(uiImage: UIImage(data: imageData) ?? UIImage())
+            } catch {
+                return Image(systemName: "person.crop.circle.fill")
+            }
         } else {
             return Image(systemName: "person.crop.circle.fill")
         }

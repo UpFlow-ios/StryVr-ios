@@ -46,8 +46,8 @@ struct SubscriptionPlan: Identifiable, Codable, Hashable, CaseIterable {
         monthlyPrice: 19.99,
         yearlyPrice: 199.99,
         features: [
-            "AI-powered insights", "Advanced reporting", "Mentor matching", "Career coaching",
-        ],
+            "AI-powered insights", "Advanced reporting", "Mentor matching", "Career coaching"
+        ]
         isRecommended: true
     )
 
@@ -56,8 +56,8 @@ struct SubscriptionPlan: Identifiable, Codable, Hashable, CaseIterable {
         monthlyPrice: 49.99,
         yearlyPrice: 499.99,
         features: [
-            "Custom integrations", "Dedicated support", "Advanced security", "Team management",
-        ],
+            "Custom integrations", "Dedicated support", "Advanced security", "Team management"
+        ]
         isRecommended: false
     )
 

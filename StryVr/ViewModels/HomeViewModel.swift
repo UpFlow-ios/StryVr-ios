@@ -39,10 +39,7 @@ final class HomeViewModel: ObservableObject {
 
         // Cast to SkillService to access the Combine method
         guard let skillService = skillService as? SkillService else {
-            handleFetchError(
-                NSError(
-                    domain: "HomeViewModel", code: -1,
-                    userInfo: [NSLocalizedDescriptionKey: "Invalid skill service"]))
+            handleFetchError(NSError(domain: "HomeViewModel", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid skill service"]))
             return
         }
 

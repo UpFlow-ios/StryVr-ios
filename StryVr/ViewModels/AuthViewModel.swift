@@ -143,11 +143,7 @@ final class AuthViewModel: ObservableObject {
                 } else if result?.user != nil {
                     completion(true, nil)
                 } else {
-                    completion(
-                        false,
-                        NSError(
-                            domain: "Auth", code: -1,
-                            userInfo: [NSLocalizedDescriptionKey: "Unknown registration error"]))
+                    completion(false, NSError(domain: "Auth", code: -1, userInfo: [NSLocalizedDescriptionKey: "Unknown registration error"]))
                 }
             }
         }
@@ -199,14 +195,14 @@ final class AuthViewModel: ObservableObject {
 
 extension AuthViewModel {
     static var previewMock: AuthViewModel {
-        let vm = AuthViewModel()
+        let viewModel = AuthViewModel()
         // Set up a mock user session or any preview data here
-        vm.userSession = UserSession(
+        viewModel.userSession = UserSession(
             id: "preview-user",
             displayName: "Preview User",
             email: "preview@stryvr.com",
             photoURL: nil
         )
-        return vm
+        return viewModel
     }
 }

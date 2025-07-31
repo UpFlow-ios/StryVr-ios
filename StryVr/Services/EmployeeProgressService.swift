@@ -14,7 +14,7 @@ import Foundation
 @MainActor
 final class EmployeeProgressService {
     @MainActor static let shared = EmployeeProgressService()
-    private let db = Firestore.firestore()
+    private let firestore = Firestore.firestore()
 
     private init() {}
 
@@ -22,7 +22,7 @@ final class EmployeeProgressService {
         for employeeId: String,
         completion: @escaping (Result<[EmployeeTimelineEvent], Error>) -> Void
     ) {
-        db.collection("employeeTimeline")
+        firestore.collection("employeeTimeline")
             .whereField("employeeId", isEqualTo: employeeId)
             .order(by: "timestamp", descending: true)
             .getDocuments { snapshot, error in

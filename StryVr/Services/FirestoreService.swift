@@ -14,7 +14,7 @@ import OSLog
 
 class FirestoreService {
     static let shared = FirestoreService()
-    private let db = Firestore.firestore()
+    private let firestore = Firestore.firestore()
     private let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "FirestoreService")
     private init() {}

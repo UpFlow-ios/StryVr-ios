@@ -25,9 +25,9 @@ struct WorkplaceGoalTrackerView: View {
     ]
 
     private var dateFormatter: DateFormatter {
-        let df = DateFormatter()
-        df.dateStyle = .medium
-        return df
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        return dateFormatter
     }
 
     var body: some View {

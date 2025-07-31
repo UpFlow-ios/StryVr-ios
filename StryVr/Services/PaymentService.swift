@@ -11,9 +11,7 @@ import StoreKit
 
 /// Manages in-app purchases and subscriptions for StryVr
 @MainActor
-final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObserver,
-    SKProductsRequestDelegate
-{
+final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObserver, SKProductsRequestDelegate {
     static let shared = PaymentService()
     private let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "PaymentService")
@@ -92,7 +90,7 @@ final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObse
         Task { @MainActor in
             availableProducts = response.products
             logger.info("✅ Retrieved \(self.availableProducts.count) products from App Store")
-            if response.invalidProductIdentifiers.count > 0 {
+            if !response.invalidProductIdentifiers.isEmpty {
                 logger.warning("⚠️ Invalid Product IDs: \(response.invalidProductIdentifiers)")
             }
         }

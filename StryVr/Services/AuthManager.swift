@@ -16,7 +16,7 @@ import OSLog
 /// Manages authentication, MFA, and session security in StryVr
 final class AuthManager {
     static let shared = AuthManager()
-    private let db = Firestore.firestore()
+    private let firestore = Firestore.firestore()
     private let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "AuthManager"
     )
@@ -97,4 +97,3 @@ final class AuthManager {
         }
     }
 }
-     

@@ -41,17 +41,12 @@ struct EmployeeModel: Identifiable, Codable, Hashable, Equatable {
     }
 
     static func == (lhs: EmployeeModel, rhs: EmployeeModel) -> Bool {
-        lhs.id == rhs.id &&
-        lhs.name == rhs.name &&
-        lhs.role == rhs.role &&
-        lhs.department == rhs.department &&
-        lhs.email == rhs.email &&
-        lhs.joinDate == rhs.joinDate &&
-        lhs.skills == rhs.skills &&
-        lhs.feedbackEntries == rhs.feedbackEntries &&
-        lhs.performanceRating == rhs.performanceRating &&
-        lhs.goalsAchieved == rhs.goalsAchieved &&
-        lhs.isActive == rhs.isActive
+        lhs.id == rhs.id && lhs.name == rhs.name && lhs.role == rhs.role
+            && lhs.department == rhs.department && lhs.email == rhs.email
+            && lhs.joinDate == rhs.joinDate && lhs.skills == rhs.skills
+            && lhs.feedbackEntries == rhs.feedbackEntries
+            && lhs.performanceRating == rhs.performanceRating
+            && lhs.goalsAchieved == rhs.goalsAchieved && lhs.isActive == rhs.isActive
     }
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
@@ -99,16 +94,12 @@ struct FeedbackEntry: Codable, Hashable {
             feedbackEntries: [
                 FeedbackEntry(
                     category: .collaboration,
-                    comment: "Excellent team player, always willing to help others",
-                    rating: 5,
-                    date: Date()
-                ),
+                    comment: "Excellent team player, always willing to help others", rating: 5,
+                    date: Date()),
                 FeedbackEntry(
                     category: .clarity,
-                    comment: "Clear communication in meetings and documentation",
-                    rating: 4,
-                    date: Date()
-                ),
+                    comment: "Clear communication in meetings and documentation", rating: 4,
+                    date: Date()),
             ],
             performanceRating: 0.85,
             goalsAchieved: 8,

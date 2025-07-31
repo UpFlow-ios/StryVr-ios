@@ -13,12 +13,24 @@ struct FeedbackTrendsView: View {
     // MARK: - Sample Data (replace with Firestore fetch later)
 
     private let sampleFeedback: [BehaviorFeedback] = [
-        .init(employeeId: "1", reviewerId: "x", category: .communication, rating: 4, comment: "", isAnonymous: false),
-        .init(employeeId: "2", reviewerId: "y", category: .clarity, rating: 2, comment: "", isAnonymous: true),
-        .init(employeeId: "3", reviewerId: "z", category: .collaboration, rating: 5, comment: "", isAnonymous: false),
-        .init(employeeId: "4", reviewerId: "x", category: .communication, rating: 3, comment: "", isAnonymous: true),
-        .init(employeeId: "5", reviewerId: "y", category: .responsiveness, rating: 2, comment: "", isAnonymous: false),
-        .init(employeeId: "6", reviewerId: "z", category: .clarity, rating: 1, comment: "", isAnonymous: true),
+        .init(
+            employeeId: "1", reviewerId: "x", category: .communication, rating: 4, comment: "",
+            isAnonymous: false),
+        .init(
+            employeeId: "2", reviewerId: "y", category: .clarity, rating: 2, comment: "",
+            isAnonymous: true),
+        .init(
+            employeeId: "3", reviewerId: "z", category: .collaboration, rating: 5, comment: "",
+            isAnonymous: false),
+        .init(
+            employeeId: "4", reviewerId: "x", category: .communication, rating: 3, comment: "",
+            isAnonymous: true),
+        .init(
+            employeeId: "5", reviewerId: "y", category: .responsiveness, rating: 2, comment: "",
+            isAnonymous: false),
+        .init(
+            employeeId: "6", reviewerId: "z", category: .clarity, rating: 1, comment: "",
+            isAnonymous: true),
     ]
 
     private var averageRatings: [(category: FeedbackCategory, average: Double)] {
@@ -28,7 +40,7 @@ struct FeedbackTrendsView: View {
             let avg = entries.map { Double($0.rating) }.reduce(0, +) / Double(entries.count)
             return (category, avg)
         }
-        .sorted { $0.average < $1.average } // Show weakest areas first
+        .sorted { $0.average < $1.average }  // Show weakest areas first
     }
 
     var body: some View {

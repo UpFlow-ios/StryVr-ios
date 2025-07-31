@@ -16,7 +16,7 @@ import OSLog
 @MainActor
 final class ChallengeSystem {
     static let shared = ChallengeSystem()
-    private let db = Firestore.firestore()
+    private let firestore = Firestore.firestore()
     private let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "ChallengeSystem")
 
@@ -40,7 +40,6 @@ final class ChallengeSystem {
             Calendar.current.date(byAdding: .day, value: durationDays, to: Date()) ?? Date()
 
         let challengeData: [String: Any] = [
-            "id": challengeID,
             "title": title,
             "description": description,
             "reward": reward,
@@ -50,7 +49,7 @@ final class ChallengeSystem {
             "completedUsers": [],
         ]
 
-        db.collection("challenges").document(challengeID).setData(challengeData) { error in
+        firestore.collection("challenges").document(challengeID).setData(challengeData) { error in
             if let error = error {
                 self.logger.error("❌ Error creating challenge: \(error.localizedDescription)")
                 completion(false, error)
@@ -73,7 +72,7 @@ final class ChallengeSystem {
             return
         }
 
-        let ref = db.collection("challenges").document(challengeID)
+        let ref = firestore.collection("challenges").document(challengeID)
 
         ref.updateData([
             "participants": FieldValue.arrayUnion([userID])
@@ -100,7 +99,7 @@ final class ChallengeSystem {
             return
         }
 
-        let ref = db.collection("challenges").document(challengeID)
+        let ref = firestore.collection("challenges").document(challengeID)
 
         ref.updateData([
             "completedUsers": FieldValue.arrayUnion([userID])
@@ -119,7 +118,7 @@ final class ChallengeSystem {
 
     /// Fetches all active challenges
     func fetchActiveChallenges(completion: @escaping ([ChallengeModel]) -> Void) {
-        db.collection("challenges")
+        firestore.collection("challenges")
             .whereField("endDate", isGreaterThan: Date())
             .getDocuments { [weak self] snapshot, error in
                 guard let self = self else { return }
