@@ -10,32 +10,32 @@
 import SwiftUI
 
 enum TabItem: Int, CaseIterable {
-    case home, learning, community, profile
+    case home, feed, profile, reports
 
     var title: String {
         switch self {
         case .home: return "Home"
-        case .learning: return "Learn"
-        case .community: return "Community"
+        case .feed: return "Feed"
         case .profile: return "Profile"
+        case .reports: return "Reports"
         }
     }
 
     var icon: String {
         switch self {
         case .home: return "icon_home"
-        case .learning: return "icon_learning"
-        case .community: return "icon_community"
+        case .feed: return "icon_feed"
         case .profile: return "icon_profile"
+        case .reports: return "icon_reports"
         }
     }
 
     var colorCode: String {
         switch self {
         case .home: return "blue"
-        case .learning: return "orange"
-        case .community: return "green"
+        case .feed: return "orange"
         case .profile: return "purple"
+        case .reports: return "green"
         }
     }
 

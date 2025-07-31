@@ -3,6 +3,7 @@
 //  StryVr
 //
 //  🏠 Main Home Screen with AI Greeting & Quick Actions
+//  🌟 Liquid Glass + Apple Glow UI Implementation
 //
 
 import ConfettiSwiftUI
@@ -28,41 +29,42 @@ struct HomeView: View {
 
     var body: some View {
         NavigationStack {
-            ZStack(alignment: .topLeading) {
-                // MARK: - Liquid Glass Background
-
+            ZStack {
+                // MARK: - Dark Gradient Background (from mockup)
+                
                 Theme.LiquidGlass.background
                     .ignoresSafeArea()
 
                 ScrollView {
                     VStack(alignment: .leading, spacing: Theme.Spacing.large) {
-                        // MARK: - AI Greeting Card
-
-                        liquidGlassGreetingCard()
-
-                        // MARK: - Today's Goal Card
-
-                        liquidGlassGoalCard()
-
-                        // MARK: - Skill Streak Card
-
-                        liquidGlassStreakCard()
-
-                        // MARK: - Active Challenges Card
-
-                        liquidGlassChallengesCard()
-
-                        // MARK: - Recent Achievements Card
-
-                        liquidGlassAchievementsCard()
-
-                        // MARK: - Action Buttons
-
-                        liquidGlassActionButtons()
-
-                        Spacer()
+                        // MARK: - App Title & Greeting
+                        
+                        appTitleAndGreeting()
+                        
+                        // MARK: - Today's Goal Card (from mockup)
+                        
+                        todaysGoalCard()
+                        
+                        // MARK: - Skill Streak Card (from mockup)
+                        
+                        skillStreakCard()
+                        
+                        // MARK: - Active Challenges Card (from mockup)
+                        
+                        activeChallengesCard()
+                        
+                        // MARK: - Recent Achievements Card (from mockup)
+                        
+                        recentAchievementsCard()
+                        
+                        // MARK: - Unlock New Badge Button (from mockup)
+                        
+                        unlockNewBadgeButton()
+                        
+                        Spacer(minLength: 100)
                     }
-                    .padding()
+                    .padding(.horizontal, Theme.Spacing.large)
+                    .padding(.top, Theme.Spacing.large)
                     .confettiCannon(
                         counter: $confettiManager.counter,
                         num: 30,
@@ -85,9 +87,9 @@ struct HomeView: View {
                         .position(x: 40, y: 40)
                 #endif
             }
-            .background(Theme.LiquidGlass.background.ignoresSafeArea())
-            .navigationTitle("Home")
-            .navigationBarTitleDisplayMode(.large)
+            .navigationTitle("stryvr")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarHidden(true)
         }
         .sheet(isPresented: $showDevPanel) {
             DevDebugView()
@@ -97,188 +99,186 @@ struct HomeView: View {
         }
     }
 
-    // MARK: - Liquid Glass AI Greeting Card
-
-    private func liquidGlassGreetingCard() -> some View {
+    // MARK: - App Title & Greeting (from mockup)
+    
+    private func appTitleAndGreeting() -> some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.medium) {
-            Text(aiGreetingManager.currentGreeting)
-                .font(Theme.Typography.headline)
-                .foregroundColor(Theme.Colors.textPrimary)
-                .multilineTextAlignment(.leading)
-
-            Text(aiGreetingManager.personalizedGoal)
-                .font(Theme.Typography.subheadline)
-                .foregroundColor(Theme.Colors.textSecondary)
-                .multilineTextAlignment(.leading)
-
-            Text(aiGreetingManager.motivationTip)
-                .font(Theme.Typography.caption)
-                .foregroundColor(Theme.Colors.glassAccent)
-                .multilineTextAlignment(.leading)
-                .padding(.top, Theme.Spacing.small)
-        }
-        .padding(Theme.Spacing.large)
-        .liquidGlassCard()
-        .liquidGlassGlow(color: Theme.Colors.glowPrimary)
-    }
-
-    // MARK: - Liquid Glass Goal Card
-
-    private func liquidGlassGoalCard() -> some View {
-        VStack(alignment: .leading, spacing: Theme.Spacing.small) {
-            HStack {
-                Text("Today's Goal")
-                    .font(Theme.Typography.body)
-                    .foregroundColor(Theme.Colors.textPrimary)
-                Spacer()
-
-                Button(action: {
-                    withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
-                        markGoalCompleted()
-                    }
-                }) {
-                    Image(systemName: dailyGoalCompleted ? "checkmark.circle.fill" : "circle")
-                        .foregroundColor(
-                            dailyGoalCompleted ? Color.green : Theme.Colors.glassAccent
-                        )
-                        .font(.title2)
-                        .liquidGlassGlow(
-                            color: dailyGoalCompleted ? Color.green : Theme.Colors.glowAccent
-                        )
-                        .animateSymbol(dailyGoalCompleted, type: "bounce")
-                        .shadow(
-                            color: Color.green.opacity(dailyGoalCompleted ? 0.5 : 0),
-                            radius: dailyGoalCompleted ? 10 : 0)
-                }
-            }
-
-            Text(dailyGoalCompleted ? "✅ Completed" : "🎯 Complete 1 Learning Module")
-                .font(Theme.Typography.caption)
-                .foregroundColor(Theme.Colors.textSecondary)
-                .multilineTextAlignment(.leading)
-        }
-        .padding(Theme.Spacing.large)
-        .liquidGlassCard()
-        .liquidGlassGlow(color: Theme.Colors.glowSecondary)
-    }
-
-    // MARK: - Liquid Glass Streak Card
-
-    private func liquidGlassStreakCard() -> some View {
-        VStack(alignment: .leading, spacing: Theme.Spacing.small) {
-            Text("Skill Streak")
+            Text("stryvr")
                 .font(Theme.Typography.body)
                 .foregroundColor(Theme.Colors.textPrimary)
+                .fontWeight(.medium)
+            
+            Text(aiGreetingManager.currentGreeting)
+                .font(Theme.Typography.largeTitle)
+                .foregroundColor(Theme.Colors.textPrimary)
+                .fontWeight(.bold)
+                .multilineTextAlignment(.leading)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.bottom, Theme.Spacing.medium)
+    }
 
-            HStack(spacing: 8) {
+    // MARK: - Today's Goal Card (from mockup)
+
+    private func todaysGoalCard() -> some View {
+        HStack(spacing: Theme.Spacing.large) {
+            // Left side: Green checkmark with glow
+            ZStack {
+                Circle()
+                    .fill(Color.green)
+                    .frame(width: 60, height: 60)
+                    .neonGlow(color: Theme.Colors.glowGreen, pulse: dailyGoalCompleted)
+                
+                Image(systemName: "checkmark")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+            }
+            
+            // Center: Goal content
+            VStack(alignment: .leading, spacing: Theme.Spacing.small) {
+                Text("Today's Goal")
+                    .font(Theme.Typography.body)
+                    .fontWeight(.semibold)
+                    .foregroundColor(Theme.Colors.textPrimary)
+                
+                Text(dailyGoalCompleted ? "Completed" : "Complete 1 Learning Module")
+                    .font(Theme.Typography.caption)
+                    .foregroundColor(Theme.Colors.textSecondary)
+                    .multilineTextAlignment(.leading)
+            }
+            
+            Spacer()
+            
+            // Right side: Small checkmark indicator
+            if dailyGoalCompleted {
+                ZStack {
+                    Circle()
+                        .fill(Theme.Colors.neonBlue)
+                        .frame(width: 30, height: 30)
+                        .neonGlow(color: Theme.Colors.glowPrimary)
+                    
+                    Image(systemName: "checkmark")
+                        .font(.caption)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                }
+            }
+        }
+        .padding(Theme.Spacing.large)
+        .liquidGlassCard()
+        .liquidGlassGlow(color: Theme.Colors.glowGreen, radius: 10, intensity: 0.8)
+    }
+
+    // MARK: - Skill Streak Card (from mockup)
+
+    private func skillStreakCard() -> some View {
+        HStack(spacing: Theme.Spacing.large) {
+            // Left side: Content
+            VStack(alignment: .leading, spacing: Theme.Spacing.small) {
+                Text("Skill Streak")
+                    .font(Theme.Typography.body)
+                    .fontWeight(.semibold)
+                    .foregroundColor(Theme.Colors.textPrimary)
+                
                 Text("\(currentStreak) Days")
                     .font(Theme.Typography.caption)
                     .foregroundColor(Theme.Colors.textSecondary)
-                Image(systemName: "flame.fill")
-                    .foregroundColor(Color.orange)
-                    .font(.title3)
-                    .animateSymbol(true, type: "bounce")
-                    .shadow(color: Color.orange.opacity(0.5), radius: 8)
-                Text("| Best: \(bestStreak) Days 🏆")
+            }
+            
+            Spacer()
+            
+            // Right side: Blue flame with glow
+            Image(systemName: "flame.fill")
+                .font(.title)
+                .foregroundColor(Theme.Colors.neonBlue)
+                .neonGlow(color: Theme.Colors.glowPrimary, pulse: true)
+        }
+        .padding(Theme.Spacing.large)
+        .liquidGlassCard()
+        .liquidGlassGlow(color: Theme.Colors.glowPrimary, radius: 10, intensity: 0.8)
+    }
+
+    // MARK: - Active Challenges Card (from mockup)
+
+    private func activeChallengesCard() -> some View {
+        HStack(spacing: Theme.Spacing.large) {
+            // Left side: Content
+            VStack(alignment: .leading, spacing: Theme.Spacing.small) {
+                Text("Active Challenges")
+                    .font(Theme.Typography.body)
+                    .fontWeight(.semibold)
+                    .foregroundColor(Theme.Colors.textPrimary)
+                
+                Text("\(activeChallengesCount) in Progress")
                     .font(Theme.Typography.caption)
                     .foregroundColor(Theme.Colors.textSecondary)
             }
+            
+            Spacer()
+            
+            // Right side: Orange target with glow
+            Image(systemName: "target")
+                .font(.title)
+                .foregroundColor(Theme.Colors.neonOrange)
+                .neonGlow(color: Theme.Colors.glowOrange, pulse: true)
         }
         .padding(Theme.Spacing.large)
         .liquidGlassCard()
-        .liquidGlassGlow(color: Theme.Colors.glowPrimary)
+        .liquidGlassGlow(color: Theme.Colors.glowOrange, radius: 10, intensity: 0.8)
     }
 
-    // MARK: - Liquid Glass Challenges Card
+    // MARK: - Recent Achievements Card (from mockup)
 
-    private func liquidGlassChallengesCard() -> some View {
-        VStack(alignment: .leading, spacing: Theme.Spacing.small) {
-            Text("Active Challenges")
-                .font(Theme.Typography.body)
-                .foregroundColor(Theme.Colors.textPrimary)
-
-            Text("\(activeChallengesCount) Challenges in Progress 🎯")
-                .font(Theme.Typography.caption)
-                .foregroundColor(Theme.Colors.textSecondary)
-                .multilineTextAlignment(.leading)
-        }
-        .padding(Theme.Spacing.large)
-        .liquidGlassCard()
-        .liquidGlassGlow(color: Theme.Colors.glowSecondary)
-    }
-
-    // MARK: - Liquid Glass Achievements Card
-
-    private func liquidGlassAchievementsCard() -> some View {
-        VStack(alignment: .leading, spacing: Theme.Spacing.small) {
-            Text("Recent Achievements")
-                .font(Theme.Typography.body)
-                .foregroundColor(Theme.Colors.textPrimary)
-
-            HStack(spacing: 8) {
-                Image(systemName: "star.fill")
-                    .foregroundColor(Color.yellow)
-                    .font(.title3)
-                    .animateSymbol(true, type: "bounce")
-                    .shadow(color: Color.yellow.opacity(0.5), radius: 8)
-                Text("\(recentAchievementsCount) Badges Unlocked 🏅")
+    private func recentAchievementsCard() -> some View {
+        HStack(spacing: Theme.Spacing.large) {
+            // Left side: Content
+            VStack(alignment: .leading, spacing: Theme.Spacing.small) {
+                Text("Recent Achievements")
+                    .font(Theme.Typography.body)
+                    .fontWeight(.semibold)
+                    .foregroundColor(Theme.Colors.textPrimary)
+                
+                Text("\(recentAchievementsCount) Badges")
                     .font(Theme.Typography.caption)
                     .foregroundColor(Theme.Colors.textSecondary)
             }
+            
+            Spacer()
+            
+            // Right side: Yellow badge with glow
+            Image(systemName: "shield.fill")
+                .font(.title)
+                .foregroundColor(Theme.Colors.neonYellow)
+                .neonGlow(color: Theme.Colors.glowYellow, pulse: true)
         }
         .padding(Theme.Spacing.large)
         .liquidGlassCard()
-        .liquidGlassGlow(color: Theme.Colors.glowAccent)
+        .liquidGlassGlow(color: Theme.Colors.glowYellow, radius: 10, intensity: 0.8)
     }
 
-    // MARK: - Liquid Glass Action Buttons
+    // MARK: - Unlock New Badge Button (from mockup)
 
-    private func liquidGlassActionButtons() -> some View {
-        VStack(spacing: Theme.Spacing.medium) {
-            Button(action: unlockBadge) {
-                HStack {
-                    Text("🏅 Unlock New Badge")
-                        .font(Theme.Typography.buttonText)
-                        .foregroundColor(Theme.Colors.whiteText)
-                    Spacer()
-                    Image(systemName: "sparkles")
-                        .foregroundColor(Theme.Colors.whiteText)
-                }
+    private func unlockNewBadgeButton() -> some View {
+        Button(action: unlockBadge) {
+            Text("Unlock New Badge")
+                .font(Theme.Typography.buttonText)
+                .fontWeight(.semibold)
+                .foregroundColor(Theme.Colors.textPrimary)
+                .frame(maxWidth: .infinity)
                 .padding(Theme.Spacing.large)
-                .liquidGlassButton()
-                .liquidGlassGlow(color: Theme.Colors.glowAccent)
-            }
-
-            Button(action: {
-                authViewModel.signOut()
-            }) {
-                HStack {
-                    Text("Log Out")
-                        .font(Theme.Typography.buttonText)
-                        .foregroundColor(.white)
-                    Spacer()
-                    Image(systemName: "rectangle.portrait.and.arrow.right")
-                        .foregroundColor(.white)
-                }
-                .padding(Theme.Spacing.large)
-                .background(
-                    RoundedRectangle(cornerRadius: Theme.CornerRadius.medium)
-                        .fill(.ultraThinMaterial)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: Theme.CornerRadius.medium)
-                                .stroke(Color.red.opacity(0.6), lineWidth: 1)
-                        )
-                )
-                .liquidGlassGlow(color: Color.red.opacity(0.3))
-            }
+                .liquidGlassCard()
+                .liquidGlassGlow(color: Theme.Colors.glowAccent, radius: 12, intensity: 1.0)
         }
-        .padding(.top, Theme.Spacing.large)
+        .buttonStyle(PlainButtonStyle())
     }
 
     // MARK: - Handle Daily Goal Completion
 
     private func markGoalCompleted() {
-        dailyGoalCompleted = true
+        withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
+            dailyGoalCompleted = true
+        }
         ConfettiManager.shared.triggerConfetti()
         aiGreetingManager.updateContext(userAction: "goal_completed")
     }
@@ -286,7 +286,9 @@ struct HomeView: View {
     // MARK: - Badge Unlock
 
     private func unlockBadge() {
-        recentAchievementsCount += 1
+        withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
+            recentAchievementsCount += 1
+        }
         ConfettiManager.shared.triggerConfetti()
         aiGreetingManager.updateContext(userAction: "badge_unlocked")
     }

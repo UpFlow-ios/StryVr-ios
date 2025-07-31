@@ -29,7 +29,7 @@ enum FeedbackCategory: String, Codable, CaseIterable, Identifiable {
         .teamwork: "Teamwork",
         .clarity: "Clarity",
         .collaboration: "Collaboration",
-        .responsiveness: "Responsiveness",
+        .responsiveness: "Responsiveness"
     ]
 
     var displayName: String {

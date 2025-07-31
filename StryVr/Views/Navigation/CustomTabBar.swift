@@ -3,7 +3,7 @@
 //  StryVr
 //
 //  Created by Joe Dormond on 4/28/25.
-//  🧭 Custom tab bar with theme integration and tab switching.
+//  🧭 Custom tab bar with Liquid Glass + Apple Glow UI
 //
 
 import SwiftUI
@@ -18,41 +18,77 @@ struct CustomTabBar: View {
                 tabButton(for: tab)
             }
         }
+        .padding(.horizontal, Theme.Spacing.large)
+        .padding(.vertical, Theme.Spacing.medium)
+        .navigationGlass()
+        .clipShape(RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
         .padding(.horizontal, Theme.Spacing.medium)
         .padding(.bottom, Theme.Spacing.small)
-        .background(colorScheme == .dark ? Color.black : Theme.Colors.background)
-        .cornerRadius(24)
-        .shadow(color: Theme.Colors.accent.opacity(0.1), radius: 8, x: 0, y: -2)
     }
 
     private func tabButton(for tab: TabItem) -> some View {
-        VStack(spacing: 4) {
+        VStack(spacing: Theme.Spacing.small) {
+            // Icon with enhanced glow for selected state
             if let iconImage = UIImage(named: tab.icon) {
                 Image(uiImage: iconImage)
                     .resizable()
                     .renderingMode(.template)
                     .frame(width: 24, height: 24)
-                    .foregroundColor(selectedTab == tab ? Theme.Colors.accent : Theme.Colors.textSecondary)
+                    .foregroundColor(selectedTab == tab ? Theme.Colors.textPrimary : Theme.Colors.textSecondary)
+                    .scaleEffect(selectedTab == tab ? 1.2 : 1.0)
+                    .liquidGlassGlow(
+                        color: selectedTab == tab ? Theme.Colors.glowPrimary : Color.clear,
+                        radius: selectedTab == tab ? 8 : 0,
+                        intensity: selectedTab == tab ? 1.0 : 0.0
+                    )
+                    .animation(.spring(response: 0.3, dampingFraction: 0.7), value: selectedTab == tab)
             } else {
-                Image(systemName: "questionmark.circle")
-                    .resizable()
-                    .renderingMode(.template)
-                    .frame(width: 24, height: 24)
-                    .foregroundColor(.red)
+                Image(systemName: tab.systemIcon)
+                    .font(.title2)
+                    .foregroundColor(selectedTab == tab ? Theme.Colors.textPrimary : Theme.Colors.textSecondary)
+                    .scaleEffect(selectedTab == tab ? 1.2 : 1.0)
+                    .liquidGlassGlow(
+                        color: selectedTab == tab ? Theme.Colors.glowPrimary : Color.clear,
+                        radius: selectedTab == tab ? 8 : 0,
+                        intensity: selectedTab == tab ? 1.0 : 0.0
+                    )
+                    .animation(.spring(response: 0.3, dampingFraction: 0.7), value: selectedTab == tab)
             }
 
+            // Tab title
             Text(tab.title)
                 .font(Theme.Typography.caption)
-                .foregroundColor(selectedTab == tab ? Theme.Colors.accent : Theme.Colors.textSecondary)
+                .fontWeight(selectedTab == tab ? .semibold : .medium)
+                .foregroundColor(selectedTab == tab ? Theme.Colors.textPrimary : Theme.Colors.textSecondary)
+                .scaleEffect(selectedTab == tab ? 1.1 : 1.0)
+                .animation(.spring(response: 0.3, dampingFraction: 0.7), value: selectedTab == tab)
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, Theme.Spacing.small)
+        .contentShape(Rectangle())
         .onTapGesture {
-            withAnimation(.easeInOut) {
+            withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
                 selectedTab = tab
             }
         }
         .accessibilityLabel("\(tab.title) Tab")
         .accessibilityHint("Switches to the \(tab.title) section")
+    }
+}
+
+// MARK: - TabItem Extension for System Icons
+
+extension TabItem {
+    var systemIcon: String {
+        switch self {
+        case .home:
+            return "house.fill"
+        case .feed:
+            return "list.bullet"
+        case .profile:
+            return "person.fill"
+        case .reports:
+            return "chart.bar.fill"
+        }
     }
 }

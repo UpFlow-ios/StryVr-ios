@@ -3,7 +3,7 @@
 //  StryVr
 //
 //  Created by Joe Dormond on 4/17/25.
-//  🧭 Main App Shell with Tab Navigation & Dynamic Routing
+//  🧭 Main App Shell with Liquid Glass + Apple Glow UI
 //
 
 import SwiftUI
@@ -16,7 +16,10 @@ struct AppShellView: View {
 
     var body: some View {
         ZStack {
-            Theme.Colors.background.ignoresSafeArea()
+            // MARK: - Dark Gradient Background
+            
+            Theme.LiquidGlass.background
+                .ignoresSafeArea()
 
             VStack(spacing: 0) {
                 // MARK: - Active View
@@ -25,20 +28,19 @@ struct AppShellView: View {
                     switch selectedTab {
                     case .home:
                         HomeView()
+                            .environmentObject(authViewModel)
 
-                    case .learning:
-                        LearningPathsView()
-
-                    case .community:
+                    case .feed:
                         FriendLearningFeed()
+                            .environmentObject(authViewModel)
 
                     case .profile:
-                        if let user = authViewModel.currentUser {
-                            ProfileView(user: user)
-                        } else {
-                            Text("Loading Profile...")
-                                .foregroundColor(.gray)
-                        }
+                        ProfileView()
+                            .environmentObject(authViewModel)
+
+                    case .reports:
+                        ReportsDashboardView()
+                            .environmentObject(authViewModel)
                     }
                 }
                 .transition(.opacity)

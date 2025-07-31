@@ -2,7 +2,7 @@
 //  ReportsDashboardView.swift
 //  StryVr
 //
-//  📊 Reports Dashboard & Analytics
+//  📊 Reports Dashboard & Analytics with Liquid Glass UI
 //
 
 import Charts
@@ -21,93 +21,171 @@ struct ReportsDashboardView: View {
 
     var body: some View {
         ZStack {
-            Theme.Colors.background.ignoresSafeArea()
+            // MARK: - Dark Gradient Background
+            
+            Theme.LiquidGlass.background
+                .ignoresSafeArea()
 
             ScrollView {
                 VStack(alignment: .leading, spacing: Theme.Spacing.large) {
-                    // MARK: - Title
-
-                    Text("Reports")
-                        .font(Theme.Typography.headline)
-                        .foregroundColor(Theme.Colors.textPrimary)
-                        .accessibilityLabel("Reports Dashboard")
-                        .padding(.top, Theme.Spacing.large)
-
+                    // MARK: - Header
+                    
+                    headerSection()
+                    
                     // MARK: - Skill Progress Chart
 
                     if skillData.isEmpty {
-                        Text("No skill data available")
-                            .font(Theme.Typography.caption)
-                            .foregroundColor(Theme.Colors.textSecondary)
-                            .accessibilityLabel("No skill data available")
+                        emptyStateCard(title: "No skill data available")
                     } else {
-                        StryVrChartCard(data: skillData)
-                            .accessibilityLabel(
-                                "Skill progress chart with \(skillData.count) skills")
+                        skillProgressCard()
                     }
 
                     // MARK: - Circular Progress Grid
 
                     if skillData.isEmpty {
-                        Text("No skills to display")
-                            .font(Theme.Typography.caption)
-                            .foregroundColor(Theme.Colors.textSecondary)
-                            .accessibilityLabel("No skills to display")
+                        emptyStateCard(title: "No skills to display")
                     } else {
-                        StryVrCardView(title: "Skill Breakdown") {
-                            LazyVGrid(
-                                columns: [GridItem(.flexible()), GridItem(.flexible())],
-                                spacing: Theme.Spacing.medium
-                            ) {
-                                ForEach(skillData) { skill in
-                                    StryVrProgressCircle(
-                                        progress: skill.progressPercentage, label: skill.skillName
-                                    )
-                                    .accessibilityLabel(
-                                        "\(skill.skillName) progress: \(Int(skill.progressPercentage * 100)) percent"
-                                    )
-                                    .accessibilityHint(
-                                        "Displays the progress for \(skill.skillName)")
-                                }
-                            }
-                            .padding(.top, Theme.Spacing.small)
-                        }
+                        skillBreakdownCard()
                     }
 
                     // MARK: - Daily Learning Metrics
 
-                    StryVrCardView(title: "Learning Metrics") {
-                        VStack(alignment: .leading, spacing: Theme.Spacing.medium) {
-                            HStack {
-                                Text("Streak")
-                                Spacer()
-                                Text("12 Days")
-                            }
-                            .accessibilityLabel("Learning streak: 12 days")
-
-                            HStack {
-                                Text("Last Activity")
-                                Spacer()
-                                Text("Today at 08:42")
-                            }
-                            .accessibilityLabel("Last activity: Today at 8:42 AM")
-
-                            HStack {
-                                Text("Monthly Growth")
-                                Spacer()
-                                Text("22% ↑")
-                            }
-                            .accessibilityLabel("Monthly growth: 22 percent increase")
-                        }
-                        .font(Theme.Typography.body)
-                        .foregroundColor(Theme.Colors.textPrimary)
-                    }
-
-                    Spacer()
+                    learningMetricsCard()
+                    
+                    Spacer(minLength: 100)
                 }
                 .padding(.horizontal, Theme.Spacing.large)
+                .padding(.top, Theme.Spacing.large)
             }
         }
+        .navigationBarHidden(true)
+    }
+    
+    // MARK: - Header Section
+    
+    private func headerSection() -> some View {
+        VStack(alignment: .leading, spacing: Theme.Spacing.medium) {
+            Text("Reports")
+                .font(Theme.Typography.largeTitle)
+                .fontWeight(.bold)
+                .foregroundColor(Theme.Colors.textPrimary)
+            
+            Text("Your performance analytics and insights")
+                .font(Theme.Typography.body)
+                .foregroundColor(Theme.Colors.textSecondary)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.bottom, Theme.Spacing.medium)
+    }
+    
+    // MARK: - Skill Progress Card
+    
+    private func skillProgressCard() -> some View {
+        VStack(alignment: .leading, spacing: Theme.Spacing.medium) {
+            Text("Skill Progress")
+                .font(Theme.Typography.headline)
+                .fontWeight(.semibold)
+                .foregroundColor(Theme.Colors.textPrimary)
+            
+            StryVrChartCard(data: skillData)
+                .accessibilityLabel("Skill progress chart with \(skillData.count) skills")
+        }
+        .padding(Theme.Spacing.large)
+        .liquidGlassCard()
+        .liquidGlassGlow(color: Theme.Colors.glowPrimary, radius: 12, intensity: 0.6)
+    }
+    
+    // MARK: - Skill Breakdown Card
+    
+    private func skillBreakdownCard() -> some View {
+        VStack(alignment: .leading, spacing: Theme.Spacing.medium) {
+            Text("Skill Breakdown")
+                .font(Theme.Typography.headline)
+                .fontWeight(.semibold)
+                .foregroundColor(Theme.Colors.textPrimary)
+            
+            LazyVGrid(
+                columns: [GridItem(.flexible()), GridItem(.flexible())],
+                spacing: Theme.Spacing.medium
+            ) {
+                ForEach(skillData) { skill in
+                    StryVrProgressCircle(
+                        progress: skill.progressPercentage, label: skill.skillName
+                    )
+                    .accessibilityLabel(
+                        "\(skill.skillName) progress: \(Int(skill.progressPercentage * 100)) percent"
+                    )
+                    .accessibilityHint(
+                        "Displays the progress for \(skill.skillName)")
+                }
+            }
+            .padding(.top, Theme.Spacing.small)
+        }
+        .padding(Theme.Spacing.large)
+        .liquidGlassCard()
+        .liquidGlassGlow(color: Theme.Colors.glowSecondary, radius: 12, intensity: 0.6)
+    }
+    
+    // MARK: - Learning Metrics Card
+    
+    private func learningMetricsCard() -> some View {
+        VStack(alignment: .leading, spacing: Theme.Spacing.medium) {
+            Text("Learning Metrics")
+                .font(Theme.Typography.headline)
+                .fontWeight(.semibold)
+                .foregroundColor(Theme.Colors.textPrimary)
+            
+            VStack(alignment: .leading, spacing: Theme.Spacing.medium) {
+                metricRow(title: "Streak", value: "12 Days", icon: "flame.fill", color: Theme.Colors.neonOrange)
+                metricRow(title: "Last Activity", value: "Today at 08:42", icon: "clock.fill", color: Theme.Colors.neonBlue)
+                metricRow(title: "Monthly Growth", value: "22% ↑", icon: "chart.line.uptrend.xyaxis", color: Theme.Colors.neonGreen)
+            }
+        }
+        .padding(Theme.Spacing.large)
+        .liquidGlassCard()
+        .liquidGlassGlow(color: Theme.Colors.glowAccent, radius: 12, intensity: 0.6)
+    }
+    
+    // MARK: - Metric Row
+    
+    private func metricRow(title: String, value: String, icon: String, color: Color) -> some View {
+        HStack {
+            Image(systemName: icon)
+                .font(.title3)
+                .foregroundColor(color)
+                .neonGlow(color: color.opacity(0.6), pulse: false)
+                .frame(width: 24)
+            
+            Text(title)
+                .font(Theme.Typography.body)
+                .foregroundColor(Theme.Colors.textSecondary)
+            
+            Spacer()
+            
+            Text(value)
+                .font(Theme.Typography.body)
+                .fontWeight(.semibold)
+                .foregroundColor(Theme.Colors.textPrimary)
+        }
+    }
+    
+    // MARK: - Empty State Card
+    
+    private func emptyStateCard(title: String) -> some View {
+        VStack(spacing: Theme.Spacing.medium) {
+            Image(systemName: "chart.bar.doc.horizontal")
+                .font(.largeTitle)
+                .foregroundColor(Theme.Colors.textSecondary)
+            
+            Text(title)
+                .font(Theme.Typography.body)
+                .foregroundColor(Theme.Colors.textSecondary)
+                .multilineTextAlignment(.center)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(Theme.Spacing.large)
+        .liquidGlassCard()
+        .liquidGlassGlow(color: Theme.Colors.glowSecondary, radius: 12, intensity: 0.4)
     }
 }
 

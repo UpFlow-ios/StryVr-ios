@@ -101,7 +101,7 @@ struct LeaderboardUser: Identifiable, Codable, Hashable {
                 isVerified: true,
                 completedChallenges: 7,
                 feedbackScore: 4.6
-            ),
+            )
         ]
     }
 #endif

@@ -61,7 +61,7 @@ struct AchievementModel: Identifiable, Codable, Equatable {
                 iconName: "person.3.fill",
                 dateEarned: Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date(),
                 isNew: false
-            ),
+            )
         ]
     }
 }

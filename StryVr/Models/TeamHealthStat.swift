@@ -35,7 +35,7 @@ struct TeamHealthStat: Identifiable, Codable {
         categories: [
             HealthCategory(name: "Productivity", score: 88.0),
             HealthCategory(name: "Wellness", score: 91.0),
-            HealthCategory(name: "Collaboration", score: 85.0),
+            HealthCategory(name: "Collaboration", score: 85.0)
         ]
     )
 }

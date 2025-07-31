@@ -8,7 +8,7 @@
 
 ## 🚀 About stryvr
 
-stryvr is an iOS app that provides professional development tools for workplace performance tracking and skill analytics. Our mission is to help users track their progress and improve their professional skills.
+stryvr is an iOS app that provides professional development tools for workplace performance tracking and skill analytics. Our mission is to help users track their progress and improve their professional skills. The app features a modern Liquid Glass + Apple Glow UI design with premium visual effects and Apple-native aesthetics.
 
 ### ✨ Key Features
 
@@ -17,6 +17,7 @@ stryvr is an iOS app that provides professional development tools for workplace 
 - **🏆 Gamified Learning** - Complete challenges to earn badges
 - **📊 Enterprise Analytics** - Team performance insights and skill gap identification
 - **🔒 Secure & Private** - Enterprise-grade encryption and data protection
+- **🎨 Liquid Glass UI** - Modern Apple-native design with premium visual effects
 
 ### 🛠 Tech Stack
 
