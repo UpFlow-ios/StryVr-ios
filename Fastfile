@@ -1,5 +1,5 @@
 # Fastlane Configuration for StryVr iOS App
-# Automated App Store deployment pipeline
+# Automated deployment pipeline
 
 default_platform(:ios)
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # App Store Workflow for StryVr iOS App
-# Professional development pipeline for App Store 
+# Professional development pipeline
 
 set -e
 

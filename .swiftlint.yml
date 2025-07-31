@@ -1,5 +1,5 @@
 # SwiftLint Configuration for StryVr iOS App
-# Professional-grade code quality standards for App Store 
+# Professional code quality standards
 
 disabled_rules:
   - trailing_whitespace

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Professional Development Setup for StryVr iOS App
-# App Store Award-Winning Development Environment
+# Professional development environment
 
 echo "🚀 Setting up professional development environment for StryVr..."
 
@@ -41,4 +41,4 @@ brew install --cask google-analytics
 brew install --cask mixpanel
 
 echo "✅ Professional development environment setup complete!"
-echo "🎯 StryVr is now ready for App Store success!" 
+echo "🎯 StryVr development environment ready!" 
