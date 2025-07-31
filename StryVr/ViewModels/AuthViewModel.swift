@@ -196,13 +196,9 @@ final class AuthViewModel: ObservableObject {
 extension AuthViewModel {
     static var previewMock: AuthViewModel {
         let viewModel = AuthViewModel()
-        // Set up a mock user session or any preview data here
-        viewModel.userSession = UserSession(
-            id: "preview-user",
-            displayName: "Preview User",
-            email: "preview@stryvr.com",
-            photoURL: nil
-        )
+        // Note: In a real preview, we would need to mock FirebaseAuth.User
+        // For now, we'll just return the viewModel without setting userSession
+        // as FirebaseAuth.User cannot be easily mocked in previews
         return viewModel
     }
 }

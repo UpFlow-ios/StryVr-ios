@@ -82,8 +82,7 @@ struct CareerPathInsightsView: View {
                     return
                 }
 
-                AIRecommendationService.shared.getCareerRecommendations(from: skills) {
-                    result in
+                AIRecommendationService.shared.getCareerRecommendations(from: skills) { result in
                     switch result {
                     case let .success(careers):
                         self.suggestedCareers = careers

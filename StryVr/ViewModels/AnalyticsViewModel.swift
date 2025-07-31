@@ -81,6 +81,4 @@ struct ActivityItem: Identifiable {
     let icon: String
     let color: Color
     let timeAgo: String
-} 
-
-
+}

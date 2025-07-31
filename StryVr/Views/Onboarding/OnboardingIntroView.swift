@@ -44,7 +44,7 @@ struct OnboardingIntroView: View {
                         .multilineTextAlignment(.center)
                         .accessibilityLabel("Welcome to StryVr")
 
-                    Text("A smarter way to grow your skills, and dominate your career path.")
+                    Text("A smarter way to grow your skills and advance your career path.")
                         .font(Theme.Typography.body)
                         .foregroundColor(Theme.Colors.textSecondary)
                         .multilineTextAlignment(.center)

@@ -2,7 +2,7 @@
 
 ## 🚀 **App Overview**
 
-**StryVr** is a premium iOS app built with SwiftUI, designed to dominate the App Store in the workplace performance and skill analytics category. The app features Liquid Glass UI, personalized AI greetings, and professional-grade architecture.
+**StryVr** is a premium iOS app built with SwiftUI, designed to lead the workplace performance and skill analytics category. The app features Liquid Glass UI, personalized AI greetings, and professional-grade architecture.
 
 ## 📱 **Current Status: App Store Ready**
 

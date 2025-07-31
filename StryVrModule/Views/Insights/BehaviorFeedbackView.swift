@@ -99,7 +99,7 @@ struct EmployeeBehaviorFeedbackView: View {
     private func submitFeedback() {
         let newFeedback = BehaviorFeedback(
             employeeId: employeeId,
-            reviewerId: isAnonymous ? nil : "currentUserId",  // TODO: Inject actual user ID from auth
+            reviewerId: isAnonymous ? nil : AuthViewModel.shared.userSession?.uid,
             category: selectedCategory,
             rating: rating,
             comment: comment,

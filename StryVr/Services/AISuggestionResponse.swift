@@ -10,7 +10,11 @@
 import Foundation
 
 struct AISuggestionResponse: Decodable {
-    let generatedText: String
+    let generated_text: String
+    
+    var generatedText: String {
+        return generated_text
+    }
 
     func generatedSkills() -> [String] {
         generatedText

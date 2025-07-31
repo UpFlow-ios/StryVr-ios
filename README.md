@@ -4,15 +4,15 @@
 [![iOS](https://img.shields.io/badge/iOS-18.0+-blue.svg)](https://developer.apple.com/ios/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-> Real-time skill assessment during video calls. Track progress, earn achievements, and accelerate your career with AI-driven insights.
+> Professional development platform for workplace performance tracking and skill analytics.
 
 ## 🚀 About stryvr
 
-stryvr is an iOS app that revolutionizes professional development by providing real-time AI-powered skill assessment during video calls. Our mission is to make learning measurable, engaging, and effective.
+stryvr is an iOS app that provides professional development tools for workplace performance tracking and skill analytics. Our mission is to help users track their progress and improve their professional skills.
 
 ### ✨ Key Features
 
-- **🎯 Real-Time Assessment** - AI analyzes communication skills during calls
+- **🎯 Skill Tracking** - Monitor and track professional skill development
 - **🚀 Career Path Guidance** - Personalized skill recommendations
 - **🏆 Gamified Learning** - Complete challenges to earn badges
 - **📊 Enterprise Analytics** - Team performance insights and skill gap identification
@@ -171,7 +171,7 @@ We take security seriously. StryVr implements:
 - **🏗️ Built in Public** - Transparent development process
 - **🔒 Enterprise Security** - Bank-level encryption
 - **📱 Native iOS** - Optimized for Apple ecosystem
-- **🤖 AI-Powered** - Cutting-edge machine learning
+- **🤖 AI-Powered** - Machine learning integration
 - **🎯 User-Centric** - Designed for real user needs
 
 ## 📞 Support & Contact
@@ -211,6 +211,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Built with ❤️ for the future of professional development**
+**Built with ❤️ for professional development**
 
 [Website](https://stryvr.app) • [LinkedIn](https://linkedin.com/company/stryvr-ios) • [Instagram](https://instagram.com/stryvr_app) • [Twitter](https://twitter.com/josephdormond) 

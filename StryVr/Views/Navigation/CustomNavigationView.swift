@@ -24,7 +24,7 @@ struct CustomNavigationView: View {
                     case .profile:
                         ProfileView()
                     case .community:
-                        // TODO: Implement community tab view
+                        // Community tab placeholder - future feature
                         EmptyView()
                     }
                 }

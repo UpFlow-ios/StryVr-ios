@@ -9,19 +9,19 @@
 ```
 
 ## 📝 **Medium Bio (GitHub/Professional)**
-**Joe Dormond** is the founder and lead developer of **StryVr**, an AI-powered professional development platform that revolutionizes workplace performance tracking and career growth. Based in Los Angeles, Joe combines expertise in iOS development, AI/ML integration, and enterprise software to help teams and individuals accelerate their professional development.
+**Joe Dormond** is the founder and lead developer of **StryVr**, an AI-powered professional development platform for workplace performance tracking and career growth. Based in Los Angeles, Joe combines expertise in iOS development, AI/ML integration, and enterprise software to help teams and individuals accelerate their professional development.
 
-With a focus on Swift/SwiftUI, Firebase, and cutting-edge AI technologies, Joe is building the future of workplace analytics and skill development. StryVr provides real-time skill assessment, personalized learning paths, and comprehensive team health insights to drive measurable career growth.
+With a focus on Swift/SwiftUI, Firebase, and AI technologies, Joe is building workplace analytics and skill development tools. StryVr provides real-time skill assessment, personalized learning paths, and comprehensive team health insights to drive measurable career growth.
 
 **Technologies**: Swift 6.0, SwiftUI, Firebase, OpenAI API, HuggingFace, Core Data, Keychain Security
 
 **Connect**: [stryvr.app](https://stryvr.app) | [@josephdormond](https://twitter.com/josephdormond) | [LinkedIn](https://linkedin.com/in/joedormond)
 
 ## 📖 **Long Bio (Website/About)**
-**Joe Dormond** is a passionate iOS developer and entrepreneur based in Los Angeles, California, dedicated to transforming how professionals develop and track their career growth. As the founder of **StryVr**, Joe is building an AI-powered platform that brings unprecedented insights to workplace performance and professional development.
+**Joe Dormond** is a passionate iOS developer and entrepreneur based in Los Angeles, California, dedicated to helping professionals develop and track their career growth. As the founder of **StryVr**, Joe is building an AI-powered platform that provides insights to workplace performance and professional development.
 
 ### **The StryVr Vision**
-StryVr emerged from Joe's recognition that traditional professional development lacks measurable, actionable insights. The platform combines real-time AI analysis, gamified learning experiences, and comprehensive analytics to help both individuals and teams understand their strengths, identify growth opportunities, and track progress toward career goals.
+StryVr emerged from Joe's recognition that professional development could benefit from more measurable, actionable insights. The platform combines AI analysis, gamified learning experiences, and analytics to help both individuals and teams understand their strengths, identify growth opportunities, and track progress toward career goals.
 
 ### **Technical Expertise**
 Joe specializes in modern iOS development with Swift 6.0 and SwiftUI, creating intuitive, performant applications that leverage the latest Apple technologies. His expertise extends to:
@@ -34,8 +34,8 @@ Joe specializes in modern iOS development with Swift 6.0 and SwiftUI, creating i
 ### **Building in Public**
 Joe believes in the power of transparency and community in software development. StryVr is built in public, with open documentation, regular updates, and a commitment to sharing knowledge with the developer community. This approach not only builds trust but also creates opportunities for collaboration and feedback from peers and potential users.
 
-### **The Future of Professional Development**
-StryVr represents Joe's vision for a future where professional growth is:
+### **Professional Development Approach**
+StryVr represents Joe's approach to professional growth where:
 - **Measurable**: Real-time analytics and progress tracking
 - **Personalized**: AI-driven recommendations and learning paths
 - **Engaging**: Gamified experiences that motivate continued learning
@@ -57,7 +57,7 @@ Joe is always open to connecting with fellow developers, entrepreneurs, and prof
 
 ---
 
-*"Building the future of professional development, one line of code at a time."* 🚀
+*"Building professional development tools, one line of code at a time."* 🚀
 
 ## 🎯 **Platform-Specific Versions**
 

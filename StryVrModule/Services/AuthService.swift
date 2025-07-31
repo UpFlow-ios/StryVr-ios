@@ -126,7 +126,7 @@ final class AuthService: ObservableObject {
 
     // MARK: - Okta OIDC via AppAuth (Temporarily disabled)
 
-    // TODO: Re-enable when AppAuth is properly integrated as a dependency
+    // Note: AppAuth integration will be enabled when properly configured as a dependency
     /*
     private var currentAuthorizationFlow: OIDExternalUserAgentSession?
     private var authState: OIDAuthState?

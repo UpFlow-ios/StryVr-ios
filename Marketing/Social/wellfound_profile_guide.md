@@ -27,7 +27,7 @@ Key Features:
 
 We're looking for passionate individuals who want to shape the future of professional development and AI-powered learning.
 
-Join us in building the next generation of HR technology!
+Join us in building professional development technology.
 ```
 
 #### **3. Company Values**
@@ -42,7 +42,7 @@ Join us in building the next generation of HR technology!
 - **Equity ownership**: Share in the company's success
 - **Professional development**: Use our own product for growth
 - **Flexible hours**: Work when you're most productive
-- **Latest tech stack**: Work with cutting-edge AI and iOS technologies
+- **Latest tech stack**: Work with modern AI and iOS technologies
 - **Impact**: Help millions of professionals grow their careers
 
 ## 🚀 **Job Postings Strategy**

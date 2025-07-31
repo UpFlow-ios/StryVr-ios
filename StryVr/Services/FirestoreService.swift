@@ -29,7 +29,7 @@ class FirestoreService {
             completion(.failure(FirestoreServiceError.invalidInput))
             return
         }
-        db.collection("users").document(userID).getDocument { document, error in
+        firestore.collection("users").document(userID).getDocument { document, error in
             if let error = error {
                 self.logger.error("❌ Firestore fetch error: \(error.localizedDescription)")
                 completion(.failure(error))
@@ -61,7 +61,7 @@ class FirestoreService {
             completion(.failure(FirestoreServiceError.invalidInput))
             return
         }
-        db.collection("users").document(userID).updateData(fields) { error in
+        firestore.collection("users").document(userID).updateData(fields) { error in
             if let error = error {
                 self.logger.error("❌ Failed to update user data: \(error.localizedDescription)")
                 completion(.failure(error))
@@ -79,7 +79,7 @@ class FirestoreService {
             return
         }
 
-        db.collection("users").document(userID).collection("skills").getDocuments {
+        firestore.collection("users").document(userID).collection("skills").getDocuments {
             snapshot, error in
             if let error = error {
                 self.logger.error("❌ Failed to fetch skill progress: \(error.localizedDescription)")
