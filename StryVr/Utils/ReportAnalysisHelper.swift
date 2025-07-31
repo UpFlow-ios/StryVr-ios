@@ -35,11 +35,11 @@ enum ReportAnalysisHelper {
     ///   - topCount: Number of top employees, default is 5.
     /// - Returns: `[LearningReport]` top employees array.
     static func getTopPerformers(from reports: [LearningReport], topCount: Int = 5) -> [LearningReport] {
-        return
+        return Array(
             reports
             .sorted { $0.performanceScore > $1.performanceScore }
             .prefix(topCount)
-            .map { $0 }
+        )
     }
 
     /// Calculates total learning hours across all reports.

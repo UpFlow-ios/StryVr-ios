@@ -50,7 +50,7 @@ struct LottieAnimationView: UIViewRepresentable {
             lottieView.topAnchor.constraint(equalTo: view.topAnchor),
             lottieView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             lottieView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            lottieView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            lottieView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
 
         // Store reference for later use

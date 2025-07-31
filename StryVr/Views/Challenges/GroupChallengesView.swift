@@ -13,7 +13,7 @@ import SwiftUI
 class GroupChallengesViewModel: ObservableObject {
     @Published var challenges: [String] = [
         "Design Sprint",
-        "Startup Pitch",
+        "Startup Pitch"
     ]
 }
 

@@ -1,0 +1,1 @@
+Linting Swift files in current working directory

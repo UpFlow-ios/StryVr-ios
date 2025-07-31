@@ -54,12 +54,8 @@ struct EmployeeBehaviorFeedbackView: View {
                             .font(Theme.Typography.caption)
                         Slider(
                             value: Binding(
-                                get: {
-                                    Double(rating)
-                                },
-                                set: { newValue in
-                                    rating = Int(newValue)
-                                }), in: 1...5, step: 1)
+                                get: { Double(rating) }, set: { newValue in rating = Int(newValue) }
+                            ), in: 1...5, step: 1)
                     }
 
                     // MARK: - Comment Field

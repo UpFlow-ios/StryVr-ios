@@ -27,10 +27,9 @@ struct EmployeeModel: Identifiable, Codable, Hashable {
 struct FeedbackEntry: Codable, Hashable {
     let category: FeedbackCategory
     let comment: String
-    let rating: Int // 1 to 5
+    let rating: Int  // 1 to 5
     let date: Date
 }
-
 
 #if DEBUG
     extension EmployeeModel {
@@ -42,12 +41,23 @@ struct FeedbackEntry: Codable, Hashable {
             department: "Product Development",
             joinDate: Date(timeIntervalSince1970: 1_672_531_200),
             skills: [
-                SkillProgress(skillName: "SwiftUI", percentage: 0.88),
-                SkillProgress(skillName: "Teamwork", percentage: 0.92),
+                SkillProgress(
+                    skillId: "swiftui", skillName: "SwiftUI", currentLevel: 4,
+                    progressPercentage: 0.85),
+                SkillProgress(
+                    skillId: "leadership", skillName: "Leadership", currentLevel: 3,
+                    progressPercentage: 0.72),
+                SkillProgress(
+                    skillId: "communication", skillName: "Communication", currentLevel: 3,
+                    progressPercentage: 0.68),
             ],
             feedbackEntries: [
-                FeedbackEntry(category: .collaboration, comment: "Always helpful in team tasks.", rating: 5, date: .now),
-                FeedbackEntry(category: .clarity, comment: "Could communicate more clearly during standups.", rating: 3, date: .now),
+                FeedbackEntry(
+                    category: .collaboration, comment: "Always helpful in team tasks.", rating: 5,
+                    date: .now),
+                FeedbackEntry(
+                    category: .clarity, comment: "Could communicate more clearly during standups.",
+                    rating: 3, date: .now),
             ],
             performanceRating: 4.6,
             goalsAchieved: 12,

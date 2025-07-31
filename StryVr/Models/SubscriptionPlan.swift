@@ -47,7 +47,7 @@ struct SubscriptionPlan: Identifiable, Codable, Hashable, CaseIterable {
         yearlyPrice: 199.99,
         features: [
             "AI-powered insights", "Advanced reporting", "Mentor matching", "Career coaching"
-        ]
+        ],
         isRecommended: true
     )
 
@@ -56,8 +56,8 @@ struct SubscriptionPlan: Identifiable, Codable, Hashable, CaseIterable {
         monthlyPrice: 49.99,
         yearlyPrice: 499.99,
         features: [
-            "Custom integrations", "Dedicated support", "Advanced security", "Team management"
-        ]
+            "Custom integrations", "Dedicated support", "Advanced security", "Team management",
+        ],
         isRecommended: false
     )
 
@@ -85,7 +85,7 @@ struct SubscriptionPlan: Identifiable, Codable, Hashable, CaseIterable {
 
     /// Validates that the prices are non-negative
     var isValid: Bool {
-        monthlyPrice >= 0 && (yearlyPrice == nil || yearlyPrice! >= 0)
+        monthlyPrice >= 0 && (yearlyPrice == nil || (yearlyPrice ?? 0) >= 0)
     }
 
     // MARK: - Placeholder Plan

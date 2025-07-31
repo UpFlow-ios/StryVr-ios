@@ -43,7 +43,7 @@ struct SubscriptionPlan: Identifiable, Codable, Hashable {
 
     /// Validates that the prices are non-negative
     var isValid: Bool {
-        monthlyPrice >= 0 && (yearlyPrice == nil || yearlyPrice! >= 0)
+        monthlyPrice >= 0 && (yearlyPrice == nil || (yearlyPrice ?? 0) >= 0)
     }
 
     // MARK: - Placeholder Plan

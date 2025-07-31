@@ -30,8 +30,8 @@ final class TeamHealthService {
             categories: [
                 HealthCategory(name: "Productivity", score: 89.5),
                 HealthCategory(name: "Wellness", score: 94.0),
-                HealthCategory(name: "Collaboration", score: 92.0)
-            ])
+                HealthCategory(name: "Collaboration", score: 92.0),
+            ]),
         TeamHealthStat(
             id: "2", employeeName: "Marcus Li", productivityScore: 72.0, wellnessScore: 68.0,
             checkInMood: "😐",
@@ -40,8 +40,8 @@ final class TeamHealthService {
             categories: [
                 HealthCategory(name: "Productivity", score: 72.0),
                 HealthCategory(name: "Wellness", score: 68.0),
-                HealthCategory(name: "Collaboration", score: 70.0)
-            ])
+                HealthCategory(name: "Collaboration", score: 70.0),
+            ]),
         TeamHealthStat(
             id: "3", employeeName: "Kara Smith", productivityScore: 58.0, wellnessScore: 50.0,
             checkInMood: "😞",
@@ -50,7 +50,7 @@ final class TeamHealthService {
             categories: [
                 HealthCategory(name: "Productivity", score: 58.0),
                 HealthCategory(name: "Wellness", score: 50.0),
-                HealthCategory(name: "Collaboration", score: 54.0)
-            ])
+                HealthCategory(name: "Collaboration", score: 54.0),
+            ]),
     ]
 }

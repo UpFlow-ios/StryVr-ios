@@ -21,7 +21,7 @@ struct AchievementsView: View {
     @State private var achievements: [Achievement] = [
         Achievement(title: "First Challenge Completed", isUnlocked: true, imageName: "star.fill"),
         Achievement(title: "Profile Verified", isUnlocked: true, imageName: "checkmark.shield"),
-        Achievement(title: "Learning Streak - 7 Days", isUnlocked: false, imageName: "flame.fill"),
+        Achievement(title: "Learning Streak - 7 Days", isUnlocked: false, imageName: "flame.fill")
     ]
 
     @State private var showConfetti = false
