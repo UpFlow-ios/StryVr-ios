@@ -32,17 +32,20 @@ struct StryvrProResumeView: View {
             if isGenerating {
                 ProgressView("Generating Résumé...")
             } else {
-                Button(action: {
-                    handlePurchase()
-                }) {
-                    Text(isPurchased ? "Download Résumé" : "Buy for $2.00")
-                        .fontWeight(.bold)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(12)
-                }
+                Button(
+                    action: {
+                        handlePurchase()
+                    },
+                    label: {
+                        Text(isPurchased ? "Download Résumé" : "Buy for $2.00")
+                            .fontWeight(.bold)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(12)
+                    }
+                )
                 .padding(.horizontal)
             }
 

@@ -69,13 +69,16 @@ struct OnboardingOptionsView: View {
                     .accessibilityLabel("Sign Up Button")
                     .accessibilityHint("Navigates to the registration screen")
 
-                    Button(action: {
-                        navigateTo(.skip)
-                    }) {
-                        Text("Continue without an account")
-                            .font(Theme.Typography.caption)
-                            .foregroundColor(Theme.Colors.textSecondary)
-                    }
+                    Button(
+                        action: {
+                            navigateTo(.skip)
+                        },
+                        label: {
+                            Text("Continue without an account")
+                                .font(Theme.Typography.caption)
+                                .foregroundColor(Theme.Colors.textSecondary)
+                        }
+                    )
                     .accessibilityLabel("Continue without an account Button")
                     .accessibilityHint("Skips login and navigates to the app")
                 }

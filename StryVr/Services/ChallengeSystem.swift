@@ -26,7 +26,10 @@ final class ChallengeSystem {
 
     /// Creates a new learning challenge
     func createChallenge(
-        title: String, description: String, reward: String, durationDays: Int,
+        title: String,
+        description: String,
+        reward: String,
+        durationDays: Int,
         completion: @escaping (Bool, Error?) -> Void
     ) {
         guard !title.isEmpty, !description.isEmpty, !reward.isEmpty else {

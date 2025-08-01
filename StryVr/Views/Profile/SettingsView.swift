@@ -50,8 +50,10 @@ struct SettingsView: View {
                             .font(.caption)
                     }
 
-                    Link(destination: URL(string: "https://yourprivacyurl.com")!) {
-                        Label("Privacy Policy", systemImage: "lock.shield")
+                                        if let privacyURL = URL(string: "https://yourprivacyurl.com") {
+                        Link(destination: privacyURL) {
+                            Label("Privacy Policy", systemImage: "lock.shield")
+                        }
                     }
                 }
 

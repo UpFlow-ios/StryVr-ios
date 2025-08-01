@@ -75,7 +75,10 @@ final class APIService: Sendable {
     // MARK: - POST JSON Utility
 
     func postJSON<T: Decodable>(
-        to urlString: String, body: [String: Any], headers: [String: String]? = nil, as _: T.Type,
+        to urlString: String,
+        body: [String: Any],
+        headers: [String: String]? = nil,
+        as _: T.Type,
         completion: @escaping (Result<T, APIError>) -> Void
     ) {
         guard let url = URL(string: urlString) else {

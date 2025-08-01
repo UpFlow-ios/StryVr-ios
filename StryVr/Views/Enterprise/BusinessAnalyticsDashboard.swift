@@ -1,4 +1,4 @@
-///
+//
 //  BusinessAnalyticsDashboard.swift
 //  StryVr
 //
@@ -48,13 +48,16 @@ struct BusinessAnalyticsDashboard: View {
 
                     // MARK: - Export Button (Placeholder)
 
-                    Button(action: {
-                        // Future: export as PDF/CSV
-                    }) {
-                        Label("Export Summary", systemImage: "square.and.arrow.up")
-                            .font(Theme.Typography.caption)
-                            .foregroundColor(Theme.Colors.accent)
-                    }
+                    Button(
+                        action: {
+                            // Future: export as PDF/CSV
+                        },
+                        label: {
+                            Label("Export Summary", systemImage: "square.and.arrow.up")
+                                .font(Theme.Typography.caption)
+                                .foregroundColor(Theme.Colors.accent)
+                        }
+                    )
                     .padding(.horizontal)
 
                     // MARK: - Skill Progress Chart

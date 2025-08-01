@@ -58,8 +58,9 @@ final class SecureStorageManager: Sendable {
         if let existingKey = try? loadEncryptionKey() {
             encryptionKey = existingKey
         } else {
-            encryptionKey = SymmetricKey(size: .bits256)
-            try? saveEncryptionKey(encryptionKey!)
+            let newKey = SymmetricKey(size: .bits256)
+            encryptionKey = newKey
+            try? saveEncryptionKey(newKey)
         }
     }
 
@@ -68,7 +69,7 @@ final class SecureStorageManager: Sendable {
             kSecClass: kSecClassGenericPassword,
             kSecAttrAccount: "StryVrEncryptionKey",
             kSecReturnData: true,
-            kSecMatchLimit: kSecMatchLimitOne,
+            kSecMatchLimit: kSecMatchLimitOne
         ]
 
         var result: AnyObject?
@@ -88,7 +89,7 @@ final class SecureStorageManager: Sendable {
             kSecClass: kSecClassGenericPassword,
             kSecAttrAccount: "StryVrEncryptionKey",
             kSecValueData: key.withUnsafeBytes { Data($0) },
-            kSecAttrAccessible: kSecAttrAccessibleWhenUnlockedThisDeviceOnly,
+            kSecAttrAccessible: kSecAttrAccessibleWhenUnlockedThisDeviceOnly
         ]
 
         let status = SecItemAdd(query as CFDictionary, nil)
@@ -104,7 +105,7 @@ final class SecureStorageManager: Sendable {
         SecItemDelete(
             [
                 kSecClass: kSecClassGenericPassword,
-                kSecAttrAccount: key,
+                kSecAttrAccount: key
             ] as CFDictionary)
 
         let query: [CFString: Any] = [
@@ -112,7 +113,7 @@ final class SecureStorageManager: Sendable {
             kSecAttrAccount: key,
             kSecValueData: encryptedData,
             kSecAttrAccessible: kSecAttrAccessibleWhenUnlockedThisDeviceOnly,
-            kSecAttrSynchronizable: false,  // 🔐 Enhanced: Prevent iCloud sync for sensitive data
+            kSecAttrSynchronizable: false  // 🔐 Enhanced: Prevent iCloud sync for sensitive data
         ]
 
         let status = SecItemAdd(query as CFDictionary, nil)
@@ -133,7 +134,7 @@ final class SecureStorageManager: Sendable {
             kSecClass: kSecClassGenericPassword,
             kSecAttrAccount: key,
             kSecReturnData: true,
-            kSecMatchLimit: kSecMatchLimitOne,
+            kSecMatchLimit: kSecMatchLimitOne
         ]
 
         var result: AnyObject?
@@ -217,7 +218,7 @@ final class SecureStorageManager: Sendable {
     func secureDelete(key: String) throws {
         let query: [CFString: Any] = [
             kSecClass: kSecClassGenericPassword,
-            kSecAttrAccount: key,
+            kSecAttrAccount: key
         ]
 
         let status = SecItemDelete(query as CFDictionary)
@@ -286,21 +287,27 @@ struct SecureStorageView: View {
                 .padding(.horizontal)
                 .accessibilityLabel("Secure data input field")
 
-            Button(action: {
-                viewModel.saveToSecureStorage()
-            }) {
-                Label("Save to Secure Storage", systemImage: "lock.fill")
-                    .frame(maxWidth: .infinity)
-            }
+            Button(
+                action: {
+                    viewModel.saveToSecureStorage()
+                },
+                label: {
+                    Label("Save to Secure Storage", systemImage: "lock.fill")
+                        .frame(maxWidth: .infinity)
+                }
+            )
             .buttonStyle(.borderedProminent)
             .accessibilityLabel("Save secure data")
 
-            Button(action: {
-                viewModel.retrieveFromSecureStorage()
-            }) {
-                Label("Retrieve from Secure Storage", systemImage: "arrow.clockwise")
-                    .frame(maxWidth: .infinity)
-            }
+            Button(
+                action: {
+                    viewModel.retrieveFromSecureStorage()
+                },
+                label: {
+                    Label("Retrieve from Secure Storage", systemImage: "arrow.clockwise")
+                        .frame(maxWidth: .infinity)
+                }
+            )
             .buttonStyle(.bordered)
             .accessibilityLabel("Retrieve secure data")
 

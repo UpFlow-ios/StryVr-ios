@@ -75,5 +75,3 @@ struct CustomTabBar: View {
         .accessibilityHint("Switches to the \(tab.title) section")
     }
 }
-
-

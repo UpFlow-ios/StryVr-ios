@@ -18,24 +18,24 @@ struct ProfileView: View {
         NavigationStack {
             ZStack {
                 // MARK: - Dark Gradient Background
-                
+
                 Theme.LiquidGlass.background
                     .ignoresSafeArea()
-                
+
                 ScrollView {
                     VStack(spacing: Theme.Spacing.large) {
                         // MARK: - Header with Back Button
-                        
+
                         headerSection()
-                        
+
                         // MARK: - Profile Section
-                        
+
                         profileSection()
-                        
+
                         // MARK: - Skills/Badges/Goals Metrics
-                        
+
                         metricsSection()
-                        
+
                         Spacer(minLength: 100)
                     }
                     .padding(.horizontal, Theme.Spacing.large)
@@ -45,38 +45,41 @@ struct ProfileView: View {
             .navigationBarHidden(true)
         }
     }
-    
+
     // MARK: - Header Section
-    
+
     private func headerSection() -> some View {
         HStack {
-            Button(action: {
-                // Navigation back action
-            }) {
-                Image(systemName: "chevron.left")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .foregroundColor(Theme.Colors.textPrimary)
-            }
-            
+            Button(
+                action: {
+                    // Navigation back action
+                },
+                label: {
+                    Image(systemName: "chevron.left")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .foregroundColor(Theme.Colors.textPrimary)
+                }
+            )
+
             Spacer()
-            
+
             Text("stryvr")
                 .font(Theme.Typography.body)
                 .fontWeight(.medium)
                 .foregroundColor(Theme.Colors.textPrimary)
-            
+
             Spacer()
-            
+
             // Invisible spacer for balance
             Color.clear
                 .frame(width: 24, height: 24)
         }
         .padding(.bottom, Theme.Spacing.medium)
     }
-    
+
     // MARK: - Profile Section
-    
+
     private func profileSection() -> some View {
         VStack(spacing: Theme.Spacing.large) {
             // Profile Image
@@ -105,42 +108,46 @@ struct ProfileView: View {
             } else {
                 fallbackImage
             }
-            
+
             // Name and Title
             VStack(spacing: Theme.Spacing.small) {
                 Text(authViewModel.userSession?.displayName ?? "John Doe")
                     .font(Theme.Typography.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(Theme.Colors.textPrimary)
-                
+
                 Text("Professional")
                     .font(Theme.Typography.body)
                     .foregroundColor(Theme.Colors.textSecondary)
             }
-            
+
             // Edit Profile Button
-            Button(action: {
-                simpleHaptic()
-                // Navigate to edit profile
-            }) {
-                Text("Edit Profile")
-                    .font(Theme.Typography.buttonText)
-                    .fontWeight(.semibold)
-                    .foregroundColor(Theme.Colors.textPrimary)
-                    .frame(maxWidth: .infinity)
-                    .padding(Theme.Spacing.large)
-                    .liquidGlassCard()
-                    .liquidGlassGlow(color: Theme.Colors.glowPrimary, radius: 10, intensity: 0.8)
-            }
+            Button(
+                action: {
+                    simpleHaptic()
+                    // Navigate to edit profile
+                },
+                label: {
+                    Text("Edit Profile")
+                        .font(Theme.Typography.buttonText)
+                        .fontWeight(.semibold)
+                        .foregroundColor(Theme.Colors.textPrimary)
+                        .frame(maxWidth: .infinity)
+                        .padding(Theme.Spacing.large)
+                        .liquidGlassCard()
+                        .liquidGlassGlow(
+                            color: Theme.Colors.glowPrimary, radius: 10, intensity: 0.8)
+                }
+            )
             .buttonStyle(PlainButtonStyle())
         }
         .padding(Theme.Spacing.large)
         .liquidGlassCard()
         .liquidGlassGlow(color: Theme.Colors.glowPrimary, radius: 12, intensity: 0.6)
     }
-    
+
     // MARK: - Metrics Section
-    
+
     private func metricsSection() -> some View {
         HStack(spacing: 0) {
             // Skills
@@ -151,13 +158,13 @@ struct ProfileView: View {
                 color: Theme.Colors.neonYellow,
                 glowColor: Theme.Colors.glowYellow
             )
-            
+
             // Divider
             Rectangle()
                 .fill(Theme.Colors.glassPrimary)
                 .frame(width: 1, height: 60)
                 .padding(.vertical, Theme.Spacing.medium)
-            
+
             // Badges
             metricItem(
                 icon: "shield.fill",
@@ -166,13 +173,13 @@ struct ProfileView: View {
                 color: Theme.Colors.neonBlue,
                 glowColor: Theme.Colors.glowPrimary
             )
-            
+
             // Divider
             Rectangle()
                 .fill(Theme.Colors.glassPrimary)
                 .frame(width: 1, height: 60)
                 .padding(.vertical, Theme.Spacing.medium)
-            
+
             // Goals
             metricItem(
                 icon: "flag.fill",
@@ -186,21 +193,23 @@ struct ProfileView: View {
         .liquidGlassCard()
         .liquidGlassGlow(color: Theme.Colors.glowSecondary, radius: 12, intensity: 0.6)
     }
-    
+
     // MARK: - Metric Item
-    
-    private func metricItem(icon: String, title: String, value: String, color: Color, glowColor: Color) -> some View {
+
+    private func metricItem(
+        icon: String, title: String, value: String, color: Color, glowColor: Color
+    ) -> some View {
         VStack(spacing: Theme.Spacing.small) {
             Image(systemName: icon)
                 .font(.title2)
                 .foregroundColor(color)
                 .neonGlow(color: glowColor, pulse: true)
-            
+
             Text(title)
                 .font(Theme.Typography.caption)
                 .fontWeight(.medium)
                 .foregroundColor(Theme.Colors.textPrimary)
-            
+
             Text(value)
                 .font(Theme.Typography.title)
                 .fontWeight(.bold)

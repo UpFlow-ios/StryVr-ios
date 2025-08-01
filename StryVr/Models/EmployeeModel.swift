@@ -23,9 +23,17 @@ struct EmployeeModel: Identifiable, Codable, Hashable, Equatable {
     var isActive: Bool
 
     init(
-        id: String, name: String, role: String, department: String, email: String, joinDate: Date,
-        skills: [SkillProgress] = [], feedbackEntries: [FeedbackEntry] = [],
-        performanceRating: Double = 0.0, goalsAchieved: Int = 0, isActive: Bool = true
+        id: String,
+        name: String,
+        role: String,
+        department: String,
+        email: String,
+        joinDate: Date,
+        skills: [SkillProgress] = [],
+        feedbackEntries: [FeedbackEntry] = [],
+        performanceRating: Double = 0.0,
+        goalsAchieved: Int = 0,
+        isActive: Bool = true
     ) {
         self.id = id
         self.name = name

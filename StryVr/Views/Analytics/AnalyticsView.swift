@@ -198,4 +198,4 @@ struct RecentActivityCard: View {
 
 #Preview {
     AnalyticsView()
-} 
+}

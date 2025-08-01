@@ -22,7 +22,7 @@ struct LearningPathDetailView: View {
         LearningMilestone(title: "Learn Swift Basics", description: "Understand variables, control flow, functions, and basic syntax.", isCompleted: true),
         LearningMilestone(title: "Master SwiftUI", description: "Build beautiful, scalable UI using SwiftUI best practices.", isCompleted: false),
         LearningMilestone(title: "Connect to Firebase", description: "Integrate real-time databases and authentication.", isCompleted: false),
-        LearningMilestone(title: "Publish to App Store", description: "Prepare your app for review and submission.", isCompleted: false),
+        LearningMilestone(title: "Publish to App Store", description: "Prepare your app for review and submission.", isCompleted: false)
     ]
 
     var body: some View {

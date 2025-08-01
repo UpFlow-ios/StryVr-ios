@@ -77,5 +77,3 @@ struct SplashVideoPlayer: UIViewControllerRepresentable {
 
     func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Context) {}
 }
-
-

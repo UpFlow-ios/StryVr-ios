@@ -16,7 +16,7 @@ struct ReportsDashboardView: View {
         .init(skillId: "leadership", skillName: "Leadership", progressPercentage: 0.72),
         .init(skillId: "uiux", skillName: "UI/UX", progressPercentage: 0.64),
         .init(skillId: "iosdev", skillName: "iOS Dev", progressPercentage: 0.89),
-        .init(skillId: "problemsolving", skillName: "Problem Solving", progressPercentage: 0.58),
+        .init(skillId: "problemsolving", skillName: "Problem Solving", progressPercentage: 0.58)
     ]
 
     var body: some View {
@@ -137,14 +137,23 @@ struct ReportsDashboardView: View {
 
             VStack(alignment: .leading, spacing: Theme.Spacing.medium) {
                 metricRow(
-                    title: "Streak", value: "12 Days", icon: "flame.fill",
-                    color: Theme.Colors.neonOrange)
+                    title: "Streak",
+                    value: "12 Days",
+                    icon: "flame.fill",
+                    color: Theme.Colors.neonOrange
+                )
                 metricRow(
-                    title: "Last Activity", value: "Today at 08:42", icon: "clock.fill",
-                    color: Theme.Colors.neonBlue)
+                    title: "Last Activity",
+                    value: "Today at 08:42",
+                    icon: "clock.fill",
+                    color: Theme.Colors.neonBlue
+                )
                 metricRow(
-                    title: "Monthly Growth", value: "22% ↑", icon: "chart.line.uptrend.xyaxis",
-                    color: Theme.Colors.neonGreen)
+                    title: "Monthly Growth",
+                    value: "22% ↑",
+                    icon: "chart.line.uptrend.xyaxis",
+                    color: Theme.Colors.neonGreen
+                )
             }
         }
         .padding(Theme.Spacing.large)

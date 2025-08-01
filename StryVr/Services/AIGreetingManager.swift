@@ -57,7 +57,7 @@ class AIGreetingManager: ObservableObject {
         ]
 
         let hour = Calendar.current.component(.hour, from: Date())
-        let timeGreeting: String
+        let timeGreeting
 
         switch hour {
         case 5..<12:

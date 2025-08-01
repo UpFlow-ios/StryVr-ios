@@ -40,8 +40,11 @@ struct CustomButton: View {
             .frame(maxWidth: fullWidth ? .infinity : nil)
             .cornerRadius(cornerRadius)
             .shadow(
-                color: shadowColor, radius: shadowRadius, x: shadowOffset.width,
-                y: shadowOffset.height)
+                color: shadowColor,
+                radius: shadowRadius,
+                x: shadowOffset.width,
+                y: shadowOffset.height
+            )
         }
         .buttonStyle(.plain)
         .accessibilityLabel("\(title) button")

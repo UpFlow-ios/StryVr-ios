@@ -57,7 +57,7 @@ final class SkillService: SkillServiceProtocol {
                 reviewerID: nil,
                 lastUpdated: Date(),
                 level: 3
-            ),
+            )
         ]
 
         DispatchQueue.main.async {
@@ -66,7 +66,9 @@ final class SkillService: SkillServiceProtocol {
     }
 
     func updateSkillRating(
-        userID: String, skillID: String, newRating: Double,
+        userID: String,
+        skillID: String,
+        newRating: Double,
         completion: @escaping (Result<Void, Error>) -> Void
     ) {
         // Placeholder implementation

@@ -9,7 +9,9 @@ struct SubscriptionOption: View {
     var isSelected: Bool { plan == selectedPlan }
 
     var body: some View {
-        Button(action: { selectedPlan = plan }) {
+        Button(
+            action: { selectedPlan = plan },
+            label: {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(plan.displayName)
@@ -35,7 +37,8 @@ struct SubscriptionOption: View {
                     .stroke(isSelected ? Theme.Colors.accent : Color.clear, lineWidth: 2)
             )
             .shadow(color: Theme.Colors.glowPrimary, radius: isSelected ? 10 : 4)
-        }
+            }
+        )
         .buttonStyle(.plain)
         .animation(.easeInOut, value: isSelected)
         .accessibilityLabel("Select \(plan.displayName) plan")

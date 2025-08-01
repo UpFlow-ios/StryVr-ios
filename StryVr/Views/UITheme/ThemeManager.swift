@@ -149,7 +149,7 @@ struct Theme {
                                 LinearGradient(
                                     colors: [
                                         Theme.Colors.glassPrimary,
-                                        Theme.Colors.glassSecondary,
+                                        Theme.Colors.glassSecondary
                                     ],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
@@ -182,7 +182,7 @@ struct Theme {
                                 LinearGradient(
                                     colors: [
                                         Theme.Colors.glassAccent,
-                                        Theme.Colors.glassPrimary,
+                                        Theme.Colors.glassPrimary
                                     ],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
@@ -201,7 +201,8 @@ struct Theme {
             let intensity: Double
 
             init(
-                color: Color = Theme.Colors.glowPrimary, radius: CGFloat = 8,
+                color: Color = Theme.Colors.glowPrimary,
+                radius: CGFloat = 8,
                 intensity: Double = 1.0
             ) {
                 self.color = color
@@ -288,7 +289,9 @@ extension View {
 
     /// Apply enhanced glow effect
     func liquidGlassGlow(
-        color: Color = Theme.Colors.glowPrimary, radius: CGFloat = 8, intensity: Double = 1.0
+        color: Color = Theme.Colors.glowPrimary,
+        radius: CGFloat = 8,
+        intensity: Double = 1.0
     ) -> ModifiedContent<Self, Theme.LiquidGlass.GlowEffect> {
         self.modifier(
             Theme.LiquidGlass.GlowEffect(color: color, radius: radius, intensity: intensity))
