@@ -14,7 +14,7 @@ struct CustomButton: View {
     var action: () -> Void
     var backgroundColor: Color = Theme.Colors.accent
     var textColor: Color = Theme.Colors.whiteText
-    var icon: String? = nil
+    var icon: String?
     var cornerRadius: CGFloat = Theme.CornerRadius.medium
     var font: Font = Theme.Typography.body
     var fullWidth: Bool = true

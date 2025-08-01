@@ -16,8 +16,7 @@ import UserNotifications
 #endif
 
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate,
-    UNUserNotificationCenterDelegate
-{
+    UNUserNotificationCenterDelegate {
     var window: UIWindow?
     private let logger = Logger(subsystem: "com.stryvr.app", category: "AppDelegate")
 

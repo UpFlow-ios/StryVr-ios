@@ -53,8 +53,7 @@ final class AuthManager {
             return
         }
 
-        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) {
-            verificationID, error in
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
             if let error = error {
                 self.logger.error("📲 MFA SMS error: \(error.localizedDescription)")
                 completion(false, error)

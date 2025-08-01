@@ -49,7 +49,7 @@ final class ChallengeSystem {
             "startDate": Date(),
             "endDate": endDate,
             "participants": [],
-            "completedUsers": [],
+            "completedUsers": []
         ]
 
         firestore.collection("challenges").document(challengeID).setData(challengeData) { error in

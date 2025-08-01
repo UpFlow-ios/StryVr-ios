@@ -12,7 +12,7 @@ import SwiftUI
 struct LottieAnimationView: UIViewRepresentable {
     let animationName: String
     let loopMode: LottieLoopMode
-    var onComplete: (() -> Void)? = nil
+    var onComplete: (() -> Void)?
 
     func makeUIView(context: Context) -> UIView {
         let containerView = UIView(frame: .zero)
@@ -35,7 +35,7 @@ struct LottieAnimationView: UIViewRepresentable {
             animationView.topAnchor.constraint(equalTo: containerView.topAnchor),
             animationView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
             animationView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            animationView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            animationView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
         ])
 
         // Auto-play animation

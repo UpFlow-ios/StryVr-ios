@@ -56,29 +56,33 @@ class ResumePDFGenerator {
             ]
 
             let companiesText = companies.map { "• \($0)" }.joined(separator: "\n")
-            let skillsText = skills.map { "• \($0.name) – \($0.percentage)%" }.joined(separator: "\n")
+            let skillsText = skills.map { "• \($0.name) – \($0.percentage)%" }.joined(
+                separator: "\n")
 
             let resumeText = """
-            Name: \(name)
-            Location: \(location)
+                Name: \(name)
+                Location: \(location)
 
-            — Verified Companies —
-            \(companiesText)
+                — Verified Companies —
+                \(companiesText)
 
-            — Top Skills —
-            \(skillsText)
+                — Top Skills —
+                \(skillsText)
 
-            — Work Impact —
-            \(workImpact)
+                — Work Impact —
+                \(workImpact)
 
-            — Team Feedback —
-            \(teamFeedback)
-            """
+                — Team Feedback —
+                \(teamFeedback)
+                """
 
-            resumeText.draw(in: CGRect(x: 36, y: 50, width: pageWidth - 72, height: pageHeight - 100), withAttributes: attributes)
+            resumeText.draw(
+                in: CGRect(x: 36, y: 50, width: pageWidth - 72, height: pageHeight - 100),
+                withAttributes: attributes)
         }
 
-        let url = FileManager.default.temporaryDirectory.appendingPathComponent("Verified_Resume_Stryvr.pdf")
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent(
+            "Verified_Resume_Stryvr.pdf")
         try? data.write(to: url)
         return url
     }

@@ -19,9 +19,11 @@ final class CrashHandlingService {
 
     /// Log a custom error message to FirebaseCrashlytics
     func log(error: Error, context: String? = nil) {
-        let errorDescription =
-            context != nil
-            ? "\(context!): \(error.localizedDescription)" : error.localizedDescription
+        let errorDescription = if let context = context {
+            "\(context): \(error.localizedDescription)"
+        } else {
+            error.localizedDescription
+        }
         Crashlytics.crashlytics().record(error: error)
         logger.error("🧨 Logged error to Crashlytics: \(errorDescription)")
     }

@@ -84,8 +84,7 @@ final class SecureStorageService {
 
         if status == errSecSuccess,
             let retrievedData = dataTypeRef as? Data,
-            let result = String(data: retrievedData, encoding: .utf8)
-        {
+            let result = String(data: retrievedData, encoding: .utf8) {
             logger.info("✅ Retrieved key securely")
             return result
         } else {

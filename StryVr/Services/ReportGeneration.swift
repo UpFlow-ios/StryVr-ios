@@ -61,6 +61,6 @@ final class ReportGeneration {
             performanceScore: 92.0,
             recommendations: ["Mentor junior developers", "Share knowledge with team"],
             nextSteps: ["Become a mentor", "Create knowledge sharing sessions"]
-        ),
+        )
     ]
 }

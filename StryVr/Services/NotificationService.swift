@@ -15,8 +15,7 @@ import UserNotifications
 @MainActor
 @preconcurrency
 final class NotificationService: NSObject, ObservableObject, UNUserNotificationCenterDelegate,
-    MessagingDelegate
-{
+    MessagingDelegate {
     static let shared = NotificationService()
     private let firestore = Firestore.firestore()
     private let logger = Logger(
@@ -28,8 +27,7 @@ final class NotificationService: NSObject, ObservableObject, UNUserNotificationC
 
     /// Requests push notification permissions from the user
     func requestNotificationPermissions() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) {
-            [weak self] granted, error in
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { [weak self] granted, _ in
             DispatchQueue.main.async {
                 if granted {
                     self?.registerForRemoteNotifications()

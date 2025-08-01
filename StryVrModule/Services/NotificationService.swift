@@ -22,8 +22,7 @@ import UserNotifications
 
 /// Manages push notifications for video engagement, recommendations, and learning reminders
 final class NotificationService: NSObject, ObservableObject, UNUserNotificationCenterDelegate,
-    MessagingDelegate
-{
+    MessagingDelegate {
     static let shared = NotificationService()
     private let firestore = Firestore.firestore()
     private let logger = Logger(

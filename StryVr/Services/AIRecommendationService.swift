@@ -15,13 +15,13 @@ import OSLog
 @MainActor
 final class AIRecommendationService {
     @MainActor static let shared = AIRecommendationService()
-    private let db: Firestore
+    private let firestore: Firestore
     private let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "AIRecommendationService"
     )
 
     private init() {
-        self.db = Firestore.firestore()
+        self.firestore = Firestore.firestore()
     }
 
     // MARK: - Public Methods
@@ -38,11 +38,10 @@ final class AIRecommendationService {
                 "skill": skill,
                 "userId": userId,
                 "timestamp": FieldValue.serverTimestamp(),
-                "source": "ai_recommendation",
+                "source": "ai_recommendation"
             ] as [String: Any]
 
-        db.collection("skill_recommendations").addDocument(data: recommendation) {
-            [weak self] error in
+        firestore.collection("skill_recommendations").addDocument(data: recommendation) { [weak self] error in
             if let error = error {
                 self?.logger.error(
                     "❌ Failed to save skill recommendation: \(error.localizedDescription)")
@@ -55,7 +54,7 @@ final class AIRecommendationService {
     func getPersonalizedRecommendations(
         for userId: String, completion: @escaping ([String]) -> Void
     ) {
-        db.collection("skill_recommendations")
+        firestore.collection("skill_recommendations")
             .whereField("userId", isEqualTo: userId)
             .order(by: "timestamp", descending: true)
             .limit(to: 10)
@@ -82,8 +81,7 @@ final class AIRecommendationService {
         completion: @escaping (Result<[String], Error>) -> Void
     ) {
         // Fetch skill recommendations for the given user
-        db.collection("users").document(userID).collection("recommendations").getDocuments {
-            [weak self] snapshot, error in
+        firestore.collection("users").document(userID).collection("recommendations").getDocuments { [weak self] snapshot, error in
             DispatchQueue.main.async {
                 if let error = error {
                     self?.logger.error(

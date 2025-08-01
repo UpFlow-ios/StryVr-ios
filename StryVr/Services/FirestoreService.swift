@@ -79,8 +79,7 @@ class FirestoreService {
             return
         }
 
-        firestore.collection("users").document(userID).collection("skills").getDocuments {
-            snapshot, error in
+        firestore.collection("users").document(userID).collection("skills").getDocuments { snapshot, error in
             if let error = error {
                 self.logger.error("❌ Failed to fetch skill progress: \(error.localizedDescription)")
                 completion(.failure(error))

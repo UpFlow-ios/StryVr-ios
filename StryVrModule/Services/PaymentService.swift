@@ -14,8 +14,7 @@ import StoreKit
 
 /// Manages in-app purchases and subscriptions for StryVr
 final class PaymentService: NSObject, ObservableObject, SKPaymentTransactionObserver,
-    SKProductsRequestDelegate
-{
+    SKProductsRequestDelegate {
     static let shared = PaymentService()
     private let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "PaymentService")

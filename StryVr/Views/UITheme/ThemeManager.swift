@@ -116,7 +116,7 @@ struct Theme {
                 colors: [
                     Theme.Colors.deepNavyBlue,
                     Theme.Colors.softCharcoalGray,
-                    Theme.Colors.subtleLightGray,
+                    Theme.Colors.subtleLightGray
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing

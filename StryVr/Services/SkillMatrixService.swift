@@ -64,6 +64,6 @@ final class SkillMatrixService {
             reviewerID: nil,
             lastUpdated: Date(),
             level: 4
-        ),
+        )
     ]
 }

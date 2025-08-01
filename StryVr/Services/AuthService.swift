@@ -22,10 +22,7 @@ final class AuthService {
 
     private init() {}
 
-    func signUp(
-        email: String, password: String,
-        completion: @escaping (Result<AuthDataResult, Error>) -> Void
-    ) {
+    func signUp(email: String, password: String, completion: @escaping (Result<AuthDataResult, Error>) -> Void) {
         guard isValidEmail(email), isValidPassword(password) else {
             logger.error("❌ Invalid email or password format: Signup input validation failed")
             completion(.failure(AuthError.invalidInput))
@@ -43,10 +40,7 @@ final class AuthService {
         }
     }
 
-    func logIn(
-        email: String, password: String,
-        completion: @escaping (Result<AuthDataResult, Error>) -> Void
-    ) {
+    func logIn(email: String, password: String, completion: @escaping (Result<AuthDataResult, Error>) -> Void) {
         guard isValidEmail(email), isValidPassword(password) else {
             logger.error("❌ Invalid email or password format: Login input validation failed")
             completion(.failure(AuthError.invalidInput))
@@ -177,8 +171,7 @@ final class AuthService {
 
     func resumeAuthFlow(_ url: URL) -> Bool {
         if let flow = currentAuthorizationFlow,
-            flow.resumeExternalUserAgentFlow(with: url)
-        {
+            flow.resumeExternalUserAgentFlow(with: url) {
             currentAuthorizationFlow = nil
             return true
         }

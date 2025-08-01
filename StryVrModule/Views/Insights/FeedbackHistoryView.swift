@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FeedbackHistoryView: View {
     @State private var feedbacks: [BehaviorFeedback] = []
-    @State private var selectedCategory: FeedbackCategory? = nil
+    @State private var selectedCategory: FeedbackCategory?
     @State private var isLoading: Bool = true
     @State private var errorMessage: String?
 

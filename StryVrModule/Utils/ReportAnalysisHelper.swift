@@ -65,8 +65,7 @@ enum ReportAnalysisHelper {
     ///   - reports: `[LearningReport]` array.
     ///   - threshold: Skill threshold, default is 50.0.
     /// - Returns: `[String]` weak skill names.
-    static func findWeakSkills(from reports: [LearningReport], threshold: Double = 50.0) -> [String]
-    {
+    static func findWeakSkills(from reports: [LearningReport], threshold: Double = 50.0) -> [String] {
         let weakSkills = calculateAverageSkillProgress(from: reports)
             .filter { $0.value < threshold }
             .map { $0.key }
