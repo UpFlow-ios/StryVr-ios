@@ -15,7 +15,7 @@ let package = Package(
         .library(
             name: "stryvr-app",
             targets: ["stryvr-app"]
-        ),
+        )
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -27,6 +27,6 @@ let package = Package(
         .target(
             name: "stryvr-app",
             dependencies: []
-        ),
+        )
     ]
 )

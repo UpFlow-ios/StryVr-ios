@@ -48,7 +48,7 @@ struct EmployeeRecognitionBoard: View {
             performanceRating: 4.4,
             goalsAchieved: 14,
             isActive: true
-        ),
+        )
     ]
 
     var body: some View {

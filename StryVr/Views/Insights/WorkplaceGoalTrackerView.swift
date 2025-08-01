@@ -21,7 +21,7 @@ struct WorkplaceGoalTrackerView: View {
     @State private var goals: [WorkplaceGoal] = [
         WorkplaceGoal(title: "Submit Project Report", progress: 0.9, dueDate: .now.addingTimeInterval(86400)),
         WorkplaceGoal(title: "Complete Compliance Training", progress: 0.4, dueDate: .now.addingTimeInterval(-86400 * 2)),
-        WorkplaceGoal(title: "Meet Quarterly Sales Target", progress: 0.7, dueDate: .now.addingTimeInterval(86400 * 10)),
+        WorkplaceGoal(title: "Meet Quarterly Sales Target", progress: 0.7, dueDate: .now.addingTimeInterval(86400 * 10))
     ]
 
     private var dateFormatter: DateFormatter {

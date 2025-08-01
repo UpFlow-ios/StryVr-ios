@@ -56,7 +56,7 @@ struct SubscriptionPlan: Identifiable, Codable, Hashable {
         monthlyPrice: 49.99,
         yearlyPrice: 499.99,
         features: [
-            "Custom integrations", "Dedicated support", "Advanced security", "Team management",
+            "Custom integrations", "Dedicated support", "Advanced security", "Team management"
         ],
         isRecommended: false
     )

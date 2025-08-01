@@ -31,36 +31,36 @@ struct HomeView: View {
         NavigationStack {
             ZStack {
                 // MARK: - Dark Gradient Background (from mockup)
-                
+
                 Theme.LiquidGlass.background
                     .ignoresSafeArea()
 
                 ScrollView {
                     VStack(alignment: .leading, spacing: Theme.Spacing.large) {
                         // MARK: - App Title & Greeting
-                        
+
                         appTitleAndGreeting()
-                        
+
                         // MARK: - Today's Goal Card (from mockup)
-                        
+
                         todaysGoalCard()
-                        
+
                         // MARK: - Skill Streak Card (from mockup)
-                        
+
                         skillStreakCard()
-                        
+
                         // MARK: - Active Challenges Card (from mockup)
-                        
+
                         activeChallengesCard()
-                        
+
                         // MARK: - Recent Achievements Card (from mockup)
-                        
+
                         recentAchievementsCard()
-                        
+
                         // MARK: - Unlock New Badge Button (from mockup)
-                        
+
                         unlockNewBadgeButton()
-                        
+
                         Spacer(minLength: 100)
                     }
                     .padding(.horizontal, Theme.Spacing.large)
@@ -68,7 +68,13 @@ struct HomeView: View {
                     .confettiCannon(
                         counter: $confettiManager.counter,
                         num: 30,
-                        colors: [.green, .blue, .purple, .pink, .orange],
+                        colors: [
+                            .green,
+                            .blue,
+                            .purple,
+                            .pink,
+                            .orange
+                        ],
                         radius: 350,
                         repetitions: 1,
                         repetitionInterval: 0.2
@@ -100,14 +106,14 @@ struct HomeView: View {
     }
 
     // MARK: - App Title & Greeting (from mockup)
-    
+
     private func appTitleAndGreeting() -> some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.medium) {
             Text("stryvr")
                 .font(Theme.Typography.body)
                 .foregroundColor(Theme.Colors.textPrimary)
                 .fontWeight(.medium)
-            
+
             Text(aiGreetingManager.currentGreeting)
                 .font(Theme.Typography.largeTitle)
                 .foregroundColor(Theme.Colors.textPrimary)
@@ -128,28 +134,28 @@ struct HomeView: View {
                     .fill(Color.green)
                     .frame(width: 60, height: 60)
                     .neonGlow(color: Theme.Colors.glowGreen, pulse: dailyGoalCompleted)
-                
+
                 Image(systemName: "checkmark")
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
             }
-            
+
             // Center: Goal content
             VStack(alignment: .leading, spacing: Theme.Spacing.small) {
                 Text("Today's Goal")
                     .font(Theme.Typography.body)
                     .fontWeight(.semibold)
                     .foregroundColor(Theme.Colors.textPrimary)
-                
+
                 Text(dailyGoalCompleted ? "Completed" : "Complete 1 Learning Module")
                     .font(Theme.Typography.caption)
                     .foregroundColor(Theme.Colors.textSecondary)
                     .multilineTextAlignment(.leading)
             }
-            
+
             Spacer()
-            
+
             // Right side: Small checkmark indicator
             if dailyGoalCompleted {
                 ZStack {
@@ -157,7 +163,7 @@ struct HomeView: View {
                         .fill(Theme.Colors.neonBlue)
                         .frame(width: 30, height: 30)
                         .neonGlow(color: Theme.Colors.glowPrimary)
-                    
+
                     Image(systemName: "checkmark")
                         .font(.caption)
                         .fontWeight(.bold)
@@ -180,14 +186,14 @@ struct HomeView: View {
                     .font(Theme.Typography.body)
                     .fontWeight(.semibold)
                     .foregroundColor(Theme.Colors.textPrimary)
-                
+
                 Text("\(currentStreak) Days")
                     .font(Theme.Typography.caption)
                     .foregroundColor(Theme.Colors.textSecondary)
             }
-            
+
             Spacer()
-            
+
             // Right side: Blue flame with glow
             Image(systemName: "flame.fill")
                 .font(.title)
@@ -209,14 +215,14 @@ struct HomeView: View {
                     .font(Theme.Typography.body)
                     .fontWeight(.semibold)
                     .foregroundColor(Theme.Colors.textPrimary)
-                
+
                 Text("\(activeChallengesCount) in Progress")
                     .font(Theme.Typography.caption)
                     .foregroundColor(Theme.Colors.textSecondary)
             }
-            
+
             Spacer()
-            
+
             // Right side: Orange target with glow
             Image(systemName: "target")
                 .font(.title)
@@ -238,14 +244,14 @@ struct HomeView: View {
                     .font(Theme.Typography.body)
                     .fontWeight(.semibold)
                     .foregroundColor(Theme.Colors.textPrimary)
-                
+
                 Text("\(recentAchievementsCount) Badges")
                     .font(Theme.Typography.caption)
                     .foregroundColor(Theme.Colors.textSecondary)
             }
-            
+
             Spacer()
-            
+
             // Right side: Yellow badge with glow
             Image(systemName: "shield.fill")
                 .font(.title)

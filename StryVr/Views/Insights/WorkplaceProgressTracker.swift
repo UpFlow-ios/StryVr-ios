@@ -23,7 +23,7 @@ struct WorkplaceProgressTracker: View {
     let goalData: [GoalProgress] = [
         GoalProgress(category: "Completed", count: 42, color: .green),
         GoalProgress(category: "In Progress", count: 18, color: .orange),
-        GoalProgress(category: "Missed", count: 10, color: .red),
+        GoalProgress(category: "Missed", count: 10, color: .red)
     ]
 
     var body: some View {

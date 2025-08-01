@@ -24,7 +24,7 @@ struct LearningPathsView: View {
             title: "AI & Machine Learning",
             description: "Explore AI and machine learning concepts",
             category: "Technology"
-        ),
+        )
     ]
 
     var body: some View {

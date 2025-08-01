@@ -14,7 +14,7 @@ struct CustomButton: View {
     var action: () -> Void
     var backgroundColor: Color = Theme.Colors.accent
     var textColor: Color = Theme.Colors.whiteText
-    var icon: String? = nil
+    var icon: String?
     var cornerRadius: CGFloat = Theme.CornerRadius.medium
     var font: Font = Theme.Typography.body
     var fullWidth: Bool = true
@@ -39,7 +39,9 @@ struct CustomButton: View {
             .foregroundColor(textColor)
             .frame(maxWidth: fullWidth ? .infinity : nil)
             .cornerRadius(cornerRadius)
-            .shadow(color: shadowColor, radius: shadowRadius, x: shadowOffset.width, y: shadowOffset.height)
+            .shadow(
+                color: shadowColor, radius: shadowRadius, x: shadowOffset.width,
+                y: shadowOffset.height)
         }
         .buttonStyle(.plain)
         .accessibilityLabel("\(title) button")
@@ -50,7 +52,8 @@ struct CustomButton: View {
 #Preview {
     VStack(spacing: 20) {
         CustomButton(title: "Get Started", action: {})
-        CustomButton(title: "Dark Mode", action: {}, backgroundColor: .black, icon: "moon.stars.fill")
+        CustomButton(
+            title: "Dark Mode", action: {}, backgroundColor: .black, icon: "moon.stars.fill")
     }
     .padding()
     .background(Theme.Colors.background)

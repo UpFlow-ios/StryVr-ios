@@ -28,7 +28,7 @@ enum ReportAnalysisHelper {
         }
 
         let averages = skillTotals.compactMapValues { total, count -> Double? in
-            guard count > 0 else { return nil }
+            guard !count.isZero else { return nil }
             let average = total / Double(count)
             logger.info(
                 "📊 Skill \($0) average: \(average, format: .number.precision(.fractionLength(2)))")

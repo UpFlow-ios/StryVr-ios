@@ -1,0 +1,2432 @@
+[
+  {
+    "character" : 5,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Utils/ResumePDFGenerator.swift",
+    "line" : 24,
+    "reason" : "Function should have 5 parameters or less: it currently has 6",
+    "rule_id" : "function_parameter_count",
+    "severity" : "Warning",
+    "type" : "Function Parameter Count"
+  },
+  {
+    "character" : 22,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/TeamHealthService.swift",
+    "line" : 28,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 53,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/TeamHealthService.swift",
+    "line" : 28,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 78,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/TeamHealthService.swift",
+    "line" : 28,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 32,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/TeamHealthService.swift",
+    "line" : 29,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 56,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/TeamHealthService.swift",
+    "line" : 29,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 72,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/TeamHealthService.swift",
+    "line" : 29,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 22,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/TeamHealthService.swift",
+    "line" : 36,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 49,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/TeamHealthService.swift",
+    "line" : 36,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 74,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/TeamHealthService.swift",
+    "line" : 36,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 29,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/TeamHealthService.swift",
+    "line" : 39,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 22,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/TeamHealthService.swift",
+    "line" : 46,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 50,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/TeamHealthService.swift",
+    "line" : 46,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 75,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/TeamHealthService.swift",
+    "line" : 46,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 29,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/TeamHealthService.swift",
+    "line" : 49,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 67,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/TeamHealthService.swift",
+    "line" : 33,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 67,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/TeamHealthService.swift",
+    "line" : 43,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 67,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/TeamHealthService.swift",
+    "line" : 53,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 15,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/TeamHealthService.swift",
+    "line" : 54,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 95,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/SubscriptionPlan.swift",
+    "line" : 59,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 23,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/SkillMatrixEntry.swift",
+    "line" : 98,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 45,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/SkillMatrixEntry.swift",
+    "line" : 98,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 58,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/SkillMatrixEntry.swift",
+    "line" : 98,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 80,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/SkillMatrixEntry.swift",
+    "line" : 98,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 34,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/SkillMatrixEntry.swift",
+    "line" : 99,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 23,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/SkillMatrixEntry.swift",
+    "line" : 101,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 46,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/SkillMatrixEntry.swift",
+    "line" : 101,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 59,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/SkillMatrixEntry.swift",
+    "line" : 101,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 81,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/SkillMatrixEntry.swift",
+    "line" : 101,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 34,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/SkillMatrixEntry.swift",
+    "line" : 102,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 43,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/SkillMatrixEntry.swift",
+    "line" : 102,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 41,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/EmployeeModel.swift",
+    "line" : 85,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 63,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/EmployeeModel.swift",
+    "line" : 85,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 44,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/EmployeeModel.swift",
+    "line" : 88,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 69,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/EmployeeModel.swift",
+    "line" : 88,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 47,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/EmployeeModel.swift",
+    "line" : 91,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 75,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/EmployeeModel.swift",
+    "line" : 91,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 86,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/EmployeeModel.swift",
+    "line" : 97,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 83,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/EmployeeModel.swift",
+    "line" : 101,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 5,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/EmployeeModel.swift",
+    "line" : 25,
+    "reason" : "Functions and methods parameters should be either on the same line, or one per line",
+    "rule_id" : "multiline_parameters",
+    "severity" : "Warning",
+    "type" : "Multiline Parameters"
+  },
+  {
+    "character" : 46,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/EmployeeModel.swift",
+    "line" : 92,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 34,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Models/EmployeeModel.swift",
+    "line" : 102,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/stryvr-app/Package.swift",
+    "line" : 18,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/stryvr-app/Package.swift",
+    "line" : 30,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 65,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/WorkplaceProgressTracker.swift",
+    "line" : 26,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 59,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackHistoryView.swift",
+    "line" : 12,
+    "reason" : "Initializing an optional variable with nil is redundant",
+    "rule_id" : "redundant_optional_initialization",
+    "severity" : "Warning",
+    "type" : "Redundant Optional Initialization"
+  },
+  {
+    "character" : 30,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 18,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 47,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 18,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 73,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 18,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 84,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 18,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 30,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 21,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 47,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 21,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 67,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 21,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 78,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 21,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 30,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 24,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 47,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 24,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 73,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 24,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 84,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 24,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 30,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 27,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 47,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 27,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 73,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 27,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 84,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 27,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 30,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 30,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 47,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 30,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 74,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 30,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 85,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 30,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 30,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 33,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 47,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 33,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 67,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 33,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 78,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 33,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 31,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 34,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/EmployeeRecognitionBoard.swift",
+    "line" : 51,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 43,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/BehaviorFeedbackView.swift",
+    "line" : 58,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 121,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Insights/WorkplaceGoalTrackerView.swift",
+    "line" : 24,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 97,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Home/ReportsDashboardView.swift",
+    "line" : 19,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 137,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/LearningPaths/LearningPathDetailView.swift",
+    "line" : 25,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/LearningPaths/LearningPathsView.swift",
+    "line" : 27,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 24,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Enterprise/BusinessAnalyticsDashboard.swift",
+    "line" : 53,
+    "reason" : "Trailing closure syntax should not be used when passing more than one closure argument",
+    "rule_id" : "multiple_closures_with_trailing_closure",
+    "severity" : "Warning",
+    "type" : "Multiple Closures with Trailing Closure"
+  },
+  {
+    "character" : 1,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Enterprise/BusinessAnalyticsDashboard.swift",
+    "line" : 1,
+    "reason" : "A doc comment should be attached to a declaration",
+    "rule_id" : "orphaned_doc_comment",
+    "severity" : "Warning",
+    "type" : "Orphaned Doc Comment"
+  },
+  {
+    "character" : 49,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Security/SecureStorageManager.swift",
+    "line" : 62,
+    "reason" : "Force unwrapping should be avoided",
+    "rule_id" : "force_unwrapping",
+    "severity" : "Warning",
+    "type" : "Force Unwrapping"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Security/SecureStorageManager.swift",
+    "line" : 291,
+    "reason" : "Trailing closure syntax should not be used when passing more than one closure argument",
+    "rule_id" : "multiple_closures_with_trailing_closure",
+    "severity" : "Warning",
+    "type" : "Multiple Closures with Trailing Closure"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Security/SecureStorageManager.swift",
+    "line" : 300,
+    "reason" : "Trailing closure syntax should not be used when passing more than one closure argument",
+    "rule_id" : "multiple_closures_with_trailing_closure",
+    "severity" : "Warning",
+    "type" : "Multiple Closures with Trailing Closure"
+  },
+  {
+    "character" : 46,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Security/SecureStorageManager.swift",
+    "line" : 71,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 77,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Security/SecureStorageManager.swift",
+    "line" : 91,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 37,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Security/SecureStorageManager.swift",
+    "line" : 107,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 42,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Security/SecureStorageManager.swift",
+    "line" : 115,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 46,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Security/SecureStorageManager.swift",
+    "line" : 136,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 33,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Security/SecureStorageManager.swift",
+    "line" : 220,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 39,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/PaywallView.swift",
+    "line" : 94,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 77,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Challenges/ChallengeTrackerView.swift",
+    "line" : 22,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 75,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Challenges/ChallengeTrackerView.swift",
+    "line" : 26,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 70,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Challenges/ChallengeTrackerView.swift",
+    "line" : 30,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 90,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Challenges/ChallengeTrackerView.swift",
+    "line" : 30,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 98,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Challenges/ChallengeTrackerView.swift",
+    "line" : 30,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Navigation/CustomTabBar.swift",
+    "line" : 79,
+    "reason" : "Files should have a single trailing newline",
+    "rule_id" : "trailing_newline",
+    "severity" : "Warning",
+    "type" : "Trailing Newline"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Navigation/CustomTabBar.swift",
+    "line" : 79,
+    "reason" : "Limit vertical whitespace to a single empty line; currently 2",
+    "rule_id" : "vertical_whitespace",
+    "severity" : "Warning",
+    "type" : "Vertical Whitespace"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/SplashScreen/SplashScreenView.swift",
+    "line" : 81,
+    "reason" : "Files should have a single trailing newline",
+    "rule_id" : "trailing_newline",
+    "severity" : "Warning",
+    "type" : "Trailing Newline"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/SplashScreen/SplashScreenView.swift",
+    "line" : 81,
+    "reason" : "Limit vertical whitespace to a single empty line; currently 2",
+    "rule_id" : "vertical_whitespace",
+    "severity" : "Warning",
+    "type" : "Vertical Whitespace"
+  },
+  {
+    "character" : 49,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/UIComponents/SubscriptionOption.swift",
+    "line" : 12,
+    "reason" : "Trailing closure syntax should not be used when passing more than one closure argument",
+    "rule_id" : "multiple_closures_with_trailing_closure",
+    "severity" : "Warning",
+    "type" : "Multiple Closures with Trailing Closure"
+  },
+  {
+    "character" : 22,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/UIComponents/CustomButton.swift",
+    "line" : 17,
+    "reason" : "Initializing an optional variable with nil is redundant",
+    "rule_id" : "redundant_optional_initialization",
+    "severity" : "Warning",
+    "type" : "Redundant Optional Initialization"
+  },
+  {
+    "character" : 80,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Profile/SettingsView.swift",
+    "line" : 53,
+    "reason" : "Force unwrapping should be avoided",
+    "rule_id" : "force_unwrapping",
+    "severity" : "Warning",
+    "type" : "Force Unwrapping"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Profile/ProfileView.swift",
+    "line" : 55,
+    "reason" : "Trailing closure syntax should not be used when passing more than one closure argument",
+    "rule_id" : "multiple_closures_with_trailing_closure",
+    "severity" : "Warning",
+    "type" : "Multiple Closures with Trailing Closure"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Profile/ProfileView.swift",
+    "line" : 125,
+    "reason" : "Trailing closure syntax should not be used when passing more than one closure argument",
+    "rule_id" : "multiple_closures_with_trailing_closure",
+    "severity" : "Warning",
+    "type" : "Multiple Closures with Trailing Closure"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/UITheme/ThemeManager.swift",
+    "line" : 203,
+    "reason" : "Functions and methods parameters should be either on the same line, or one per line",
+    "rule_id" : "multiline_parameters",
+    "severity" : "Warning",
+    "type" : "Multiline Parameters"
+  },
+  {
+    "character" : 9,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/UITheme/ThemeManager.swift",
+    "line" : 132,
+    "reason" : "Types should be nested at most 1 level deep",
+    "rule_id" : "nesting",
+    "severity" : "Warning",
+    "type" : "Nesting"
+  },
+  {
+    "character" : 9,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/UITheme/ThemeManager.swift",
+    "line" : 165,
+    "reason" : "Types should be nested at most 1 level deep",
+    "rule_id" : "nesting",
+    "severity" : "Warning",
+    "type" : "Nesting"
+  },
+  {
+    "character" : 9,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/UITheme/ThemeManager.swift",
+    "line" : 198,
+    "reason" : "Types should be nested at most 1 level deep",
+    "rule_id" : "nesting",
+    "severity" : "Warning",
+    "type" : "Nesting"
+  },
+  {
+    "character" : 9,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/UITheme/ThemeManager.swift",
+    "line" : 220,
+    "reason" : "Types should be nested at most 1 level deep",
+    "rule_id" : "nesting",
+    "severity" : "Warning",
+    "type" : "Nesting"
+  },
+  {
+    "character" : 9,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/UITheme/ThemeManager.swift",
+    "line" : 243,
+    "reason" : "Types should be nested at most 1 level deep",
+    "rule_id" : "nesting",
+    "severity" : "Warning",
+    "type" : "Nesting"
+  },
+  {
+    "character" : 9,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/UITheme/ThemeManager.swift",
+    "line" : 256,
+    "reason" : "Types should be nested at most 1 level deep",
+    "rule_id" : "nesting",
+    "severity" : "Warning",
+    "type" : "Nesting"
+  },
+  {
+    "character" : 49,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/UITheme/ThemeManager.swift",
+    "line" : 119,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 68,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/UITheme/ThemeManager.swift",
+    "line" : 152,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 66,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/UITheme/ThemeManager.swift",
+    "line" : 185,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Analytics/AnalyticsView.swift",
+    "line" : 201,
+    "reason" : "Files should have a single trailing newline",
+    "rule_id" : "trailing_newline",
+    "severity" : "Warning",
+    "type" : "Trailing Newline"
+  },
+  {
+    "character" : 24,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Onboarding/OnboardingOptionsView.swift",
+    "line" : 74,
+    "reason" : "Trailing closure syntax should not be used when passing more than one closure argument",
+    "rule_id" : "multiple_closures_with_trailing_closure",
+    "severity" : "Warning",
+    "type" : "Multiple Closures with Trailing Closure"
+  },
+  {
+    "character" : 20,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Views/Reports/StryvrProResumeView.swift",
+    "line" : 37,
+    "reason" : "Trailing closure syntax should not be used when passing more than one closure argument",
+    "rule_id" : "multiple_closures_with_trailing_closure",
+    "severity" : "Warning",
+    "type" : "Multiple Closures with Trailing Closure"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/SkillService.swift",
+    "line" : 68,
+    "reason" : "Functions and methods parameters should be either on the same line, or one per line",
+    "rule_id" : "multiline_parameters",
+    "severity" : "Warning",
+    "type" : "Multiline Parameters"
+  },
+  {
+    "character" : 14,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/SkillService.swift",
+    "line" : 60,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/APIService.swift",
+    "line" : 77,
+    "reason" : "Functions and methods parameters should be either on the same line, or one per line",
+    "rule_id" : "multiline_parameters",
+    "severity" : "Warning",
+    "type" : "Multiline Parameters"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/ChallengeSystem.swift",
+    "line" : 28,
+    "reason" : "Functions and methods parameters should be either on the same line, or one per line",
+    "rule_id" : "multiline_parameters",
+    "severity" : "Warning",
+    "type" : "Multiline Parameters"
+  },
+  {
+    "character" : 33,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/ChallengeSystem.swift",
+    "line" : 49,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 31,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/AIGreetingManager.swift",
+    "line" : 20,
+    "reason" : "Variables should not have redundant type annotation",
+    "rule_id" : "redundant_type_annotation",
+    "severity" : "Warning",
+    "type" : "Redundant Type Annotation"
+  },
+  {
+    "character" : 25,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/CrashHandlingService.swift",
+    "line" : 24,
+    "reason" : "Force unwrapping should be avoided",
+    "rule_id" : "force_unwrapping",
+    "severity" : "Warning",
+    "type" : "Force Unwrapping"
+  },
+  {
+    "character" : 19,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/AIRecommendationService.swift",
+    "line" : 45,
+    "reason" : "Closure parameters should be on the same line as opening brace",
+    "rule_id" : "closure_parameter_position",
+    "severity" : "Warning",
+    "type" : "Closure Parameter Position"
+  },
+  {
+    "character" : 25,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/AIRecommendationService.swift",
+    "line" : 45,
+    "reason" : "Closure parameters should be on the same line as opening brace",
+    "rule_id" : "closure_parameter_position",
+    "severity" : "Warning",
+    "type" : "Closure Parameter Position"
+  },
+  {
+    "character" : 19,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/AIRecommendationService.swift",
+    "line" : 86,
+    "reason" : "Closure parameters should be on the same line as opening brace",
+    "rule_id" : "closure_parameter_position",
+    "severity" : "Warning",
+    "type" : "Closure Parameter Position"
+  },
+  {
+    "character" : 25,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/AIRecommendationService.swift",
+    "line" : 86,
+    "reason" : "Closure parameters should be on the same line as opening brace",
+    "rule_id" : "closure_parameter_position",
+    "severity" : "Warning",
+    "type" : "Closure Parameter Position"
+  },
+  {
+    "character" : 35,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/AIRecommendationService.swift",
+    "line" : 86,
+    "reason" : "Closure parameters should be on the same line as opening brace",
+    "rule_id" : "closure_parameter_position",
+    "severity" : "Warning",
+    "type" : "Closure Parameter Position"
+  },
+  {
+    "character" : 17,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/AIRecommendationService.swift",
+    "line" : 18,
+    "reason" : "Variable name 'db' should be between 3 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Warning",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 46,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/AIRecommendationService.swift",
+    "line" : 41,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 19,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/NotificationService.swift",
+    "line" : 32,
+    "reason" : "Closure parameters should be on the same line as opening brace",
+    "rule_id" : "closure_parameter_position",
+    "severity" : "Warning",
+    "type" : "Closure Parameter Position"
+  },
+  {
+    "character" : 25,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/NotificationService.swift",
+    "line" : 32,
+    "reason" : "Closure parameters should be on the same line as opening brace",
+    "rule_id" : "closure_parameter_position",
+    "severity" : "Warning",
+    "type" : "Closure Parameter Position"
+  },
+  {
+    "character" : 34,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/NotificationService.swift",
+    "line" : 32,
+    "reason" : "Closure parameters should be on the same line as opening brace",
+    "rule_id" : "closure_parameter_position",
+    "severity" : "Warning",
+    "type" : "Closure Parameter Position"
+  },
+  {
+    "character" : 1,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/NotificationService.swift",
+    "line" : 19,
+    "reason" : "Opening braces should be preceded by a single space and on the same line as the declaration",
+    "rule_id" : "opening_brace",
+    "severity" : "Warning",
+    "type" : "Opening Brace Spacing"
+  },
+  {
+    "character" : 34,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/NotificationService.swift",
+    "line" : 32,
+    "reason" : "Unused parameter in a closure should be replaced with _",
+    "rule_id" : "unused_closure_parameter",
+    "severity" : "Warning",
+    "type" : "Unused Closure Parameter"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/ReportGeneration.swift",
+    "line" : 64,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 127,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/AuthService.swift",
+    "line" : 126,
+    "reason" : "Force unwrapping should be avoided",
+    "rule_id" : "force_unwrapping",
+    "severity" : "Warning",
+    "type" : "Force Unwrapping"
+  },
+  {
+    "character" : 101,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/AuthService.swift",
+    "line" : 127,
+    "reason" : "Force unwrapping should be avoided",
+    "rule_id" : "force_unwrapping",
+    "severity" : "Warning",
+    "type" : "Force Unwrapping"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/AuthService.swift",
+    "line" : 25,
+    "reason" : "Functions and methods parameters should be either on the same line, or one per line",
+    "rule_id" : "multiline_parameters",
+    "severity" : "Warning",
+    "type" : "Multiline Parameters"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/AuthService.swift",
+    "line" : 46,
+    "reason" : "Functions and methods parameters should be either on the same line, or one per line",
+    "rule_id" : "multiline_parameters",
+    "severity" : "Warning",
+    "type" : "Multiline Parameters"
+  },
+  {
+    "character" : 9,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/AuthService.swift",
+    "line" : 181,
+    "reason" : "Opening braces should be preceded by a single space and on the same line as the declaration",
+    "rule_id" : "opening_brace",
+    "severity" : "Warning",
+    "type" : "Opening Brace Spacing"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/SkillMatrixService.swift",
+    "line" : 67,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/AuthManager.swift",
+    "line" : 57,
+    "reason" : "Closure parameters should be on the same line as opening brace",
+    "rule_id" : "closure_parameter_position",
+    "severity" : "Warning",
+    "type" : "Closure Parameter Position"
+  },
+  {
+    "character" : 29,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/AuthManager.swift",
+    "line" : 57,
+    "reason" : "Closure parameters should be on the same line as opening brace",
+    "rule_id" : "closure_parameter_position",
+    "severity" : "Warning",
+    "type" : "Closure Parameter Position"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/FirestoreService.swift",
+    "line" : 83,
+    "reason" : "Closure parameters should be on the same line as opening brace",
+    "rule_id" : "closure_parameter_position",
+    "severity" : "Warning",
+    "type" : "Closure Parameter Position"
+  },
+  {
+    "character" : 23,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/FirestoreService.swift",
+    "line" : 83,
+    "reason" : "Closure parameters should be on the same line as opening brace",
+    "rule_id" : "closure_parameter_position",
+    "severity" : "Warning",
+    "type" : "Closure Parameter Position"
+  },
+  {
+    "character" : 25,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/VideoContentService.swift",
+    "line" : 76,
+    "reason" : "Closure parameters should be on the same line as opening brace",
+    "rule_id" : "closure_parameter_position",
+    "severity" : "Warning",
+    "type" : "Closure Parameter Position"
+  },
+  {
+    "character" : 5,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/VideoContentService.swift",
+    "line" : 27,
+    "reason" : "Function should have 5 parameters or less: it currently has 7",
+    "rule_id" : "function_parameter_count",
+    "severity" : "Warning",
+    "type" : "Function Parameter Count"
+  },
+  {
+    "character" : 37,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/VideoContentService.swift",
+    "line" : 72,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 9,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/SecureStorageService.swift",
+    "line" : 85,
+    "reason" : "Opening braces should be preceded by a single space and on the same line as the declaration",
+    "rule_id" : "opening_brace",
+    "severity" : "Warning",
+    "type" : "Opening Brace Spacing"
+  },
+  {
+    "character" : 43,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/SecureStorageService.swift",
+    "line" : 37,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 87,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/SecureStorageService.swift",
+    "line" : 42,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 56,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/SecureStorageService.swift",
+    "line" : 76,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 43,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/SecureStorageService.swift",
+    "line" : 103,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/ConferenceCallService.swift",
+    "line" : 24,
+    "reason" : "Functions and methods parameters should be either on the same line, or one per line",
+    "rule_id" : "multiline_parameters",
+    "severity" : "Warning",
+    "type" : "Multiline Parameters"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/ConferenceCallService.swift",
+    "line" : 111,
+    "reason" : "Functions and methods parameters should be either on the same line, or one per line",
+    "rule_id" : "multiline_parameters",
+    "severity" : "Warning",
+    "type" : "Multiline Parameters"
+  },
+  {
+    "character" : 42,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/ConferenceCallService.swift",
+    "line" : 44,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 35,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVr/Services/ConferenceCallService.swift",
+    "line" : 124,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 1,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/App/AppDelegate.swift",
+    "line" : 20,
+    "reason" : "Opening braces should be preceded by a single space and on the same line as the declaration",
+    "rule_id" : "opening_brace",
+    "severity" : "Warning",
+    "type" : "Opening Brace Spacing"
+  },
+  {
+    "character" : 34,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Utils/LottieAnimationManager.swift",
+    "line" : 15,
+    "reason" : "Initializing an optional variable with nil is redundant",
+    "rule_id" : "redundant_optional_initialization",
+    "severity" : "Warning",
+    "type" : "Redundant Optional Initialization"
+  },
+  {
+    "character" : 91,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Utils/LottieAnimationManager.swift",
+    "line" : 38,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 5,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Utils/ResumePDFGenerator.swift",
+    "line" : 24,
+    "reason" : "Function should have 5 parameters or less: it currently has 6",
+    "rule_id" : "function_parameter_count",
+    "severity" : "Warning",
+    "type" : "Function Parameter Count"
+  },
+  {
+    "character" : 50,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Utils/ResumePDFGenerator.swift",
+    "line" : 35,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 48,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Utils/ResumePDFGenerator.swift",
+    "line" : 55,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 22,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/TeamHealthService.swift",
+    "line" : 29,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 49,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/TeamHealthService.swift",
+    "line" : 29,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 74,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/TeamHealthService.swift",
+    "line" : 29,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 29,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/TeamHealthService.swift",
+    "line" : 32,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 14,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/AchievementModel.swift",
+    "line" : 64,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 23,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/SkillMatrixEntry.swift",
+    "line" : 65,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 45,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/SkillMatrixEntry.swift",
+    "line" : 65,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 58,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/SkillMatrixEntry.swift",
+    "line" : 65,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 80,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/SkillMatrixEntry.swift",
+    "line" : 65,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 34,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/SkillMatrixEntry.swift",
+    "line" : 66,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 23,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/SkillMatrixEntry.swift",
+    "line" : 68,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 46,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/SkillMatrixEntry.swift",
+    "line" : 68,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 59,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/SkillMatrixEntry.swift",
+    "line" : 68,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 81,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/SkillMatrixEntry.swift",
+    "line" : 68,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 34,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/SkillMatrixEntry.swift",
+    "line" : 69,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 43,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/SkillMatrixEntry.swift",
+    "line" : 69,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 41,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/EmployeeModel.swift",
+    "line" : 45,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 63,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/EmployeeModel.swift",
+    "line" : 45,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 44,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/EmployeeModel.swift",
+    "line" : 48,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 69,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/EmployeeModel.swift",
+    "line" : 48,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 47,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/EmployeeModel.swift",
+    "line" : 51,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 75,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/EmployeeModel.swift",
+    "line" : 51,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 47,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/EmployeeModel.swift",
+    "line" : 56,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 89,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/EmployeeModel.swift",
+    "line" : 56,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 41,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/EmployeeModel.swift",
+    "line" : 59,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 32,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/EmployeeModel.swift",
+    "line" : 60,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 46,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/EmployeeModel.swift",
+    "line" : 52,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 43,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Models/EmployeeModel.swift",
+    "line" : 60,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 64,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/EmployeePerformanceDetailView.swift",
+    "line" : 64,
+    "reason" : "Operators should be surrounded by a single whitespace when they are being used",
+    "rule_id" : "operator_usage_whitespace",
+    "severity" : "Warning",
+    "type" : "Operator Usage Whitespace"
+  },
+  {
+    "character" : 59,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackHistoryView.swift",
+    "line" : 12,
+    "reason" : "Initializing an optional variable with nil is redundant",
+    "rule_id" : "redundant_optional_initialization",
+    "severity" : "Warning",
+    "type" : "Redundant Optional Initialization"
+  },
+  {
+    "character" : 65,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/WorkplaceProgressTracker.swift",
+    "line" : 25,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 30,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 17,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 47,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 17,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 73,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 17,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 84,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 17,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 30,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 20,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 47,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 20,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 67,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 20,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 78,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 20,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 30,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 23,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 47,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 23,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 73,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 23,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 84,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 23,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 30,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 26,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 47,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 26,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 73,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 26,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 84,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 26,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 30,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 29,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 47,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 29,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 74,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 29,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 85,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 29,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 30,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 32,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 47,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 32,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 67,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 32,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 78,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 32,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 31,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/FeedbackTrendsView.swift",
+    "line" : 33,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 107,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/EmployeeRecognitionBoard.swift",
+    "line" : 15,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 121,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/WorkplaceGoalTrackerView.swift",
+    "line" : 24,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 43,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Insights/BehaviorFeedbackView.swift",
+    "line" : 51,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 28,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Home/HomeView.swift",
+    "line" : 83,
+    "reason" : "Trailing closure syntax should not be used when passing more than one closure argument",
+    "rule_id" : "multiple_closures_with_trailing_closure",
+    "severity" : "Warning",
+    "type" : "Multiple Closures with Trailing Closure"
+  },
+  {
+    "character" : 24,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Home/HomeView.swift",
+    "line" : 143,
+    "reason" : "Trailing closure syntax should not be used when passing more than one closure argument",
+    "rule_id" : "multiple_closures_with_trailing_closure",
+    "severity" : "Warning",
+    "type" : "Multiple Closures with Trailing Closure"
+  },
+  {
+    "character" : 5,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Home/HomeView.swift",
+    "line" : 132,
+    "reason" : "Opening braces should be preceded by a single space and on the same line as the declaration",
+    "rule_id" : "opening_brace",
+    "severity" : "Warning",
+    "type" : "Opening Brace Spacing"
+  },
+  {
+    "character" : 56,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Home/ReportsDashboardView.swift",
+    "line" : 20,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 137,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/LearningPaths/LearningPathDetailView.swift",
+    "line" : 25,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 24,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Enterprise/BusinessAnalyticsDashboard.swift",
+    "line" : 51,
+    "reason" : "Trailing closure syntax should not be used when passing more than one closure argument",
+    "rule_id" : "multiple_closures_with_trailing_closure",
+    "severity" : "Warning",
+    "type" : "Multiple Closures with Trailing Closure"
+  },
+  {
+    "character" : 1,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Enterprise/BusinessAnalyticsDashboard.swift",
+    "line" : 1,
+    "reason" : "A doc comment should be attached to a declaration",
+    "rule_id" : "orphaned_doc_comment",
+    "severity" : "Warning",
+    "type" : "Orphaned Doc Comment"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Security/SecureStorageManager.swift",
+    "line" : 150,
+    "reason" : "Trailing closure syntax should not be used when passing more than one closure argument",
+    "rule_id" : "multiple_closures_with_trailing_closure",
+    "severity" : "Warning",
+    "type" : "Multiple Closures with Trailing Closure"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Security/SecureStorageManager.swift",
+    "line" : 159,
+    "reason" : "Trailing closure syntax should not be used when passing more than one closure argument",
+    "rule_id" : "multiple_closures_with_trailing_closure",
+    "severity" : "Warning",
+    "type" : "Multiple Closures with Trailing Closure"
+  },
+  {
+    "character" : 37,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Security/SecureStorageManager.swift",
+    "line" : 49,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 63,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Security/SecureStorageManager.swift",
+    "line" : 56,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 46,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Security/SecureStorageManager.swift",
+    "line" : 74,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 39,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/PaywallView.swift",
+    "line" : 94,
+    "reason" : "Arguments should be either on the same line, or one per line",
+    "rule_id" : "multiline_arguments",
+    "severity" : "Warning",
+    "type" : "Multiline Arguments"
+  },
+  {
+    "character" : 24,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Challenges/GroupChallengesView.swift",
+    "line" : 16,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 138,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Challenges/ChallengeTrackerView.swift",
+    "line" : 22,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 22,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/UIComponents/CustomButton.swift",
+    "line" : 17,
+    "reason" : "Initializing an optional variable with nil is redundant",
+    "rule_id" : "redundant_optional_initialization",
+    "severity" : "Warning",
+    "type" : "Redundant Optional Initialization"
+  },
+  {
+    "character" : 80,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Profile/SettingsView.swift",
+    "line" : 53,
+    "reason" : "Force unwrapping should be avoided",
+    "rule_id" : "force_unwrapping",
+    "severity" : "Warning",
+    "type" : "Force Unwrapping"
+  },
+  {
+    "character" : 24,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Profile/ProfileView.swift",
+    "line" : 57,
+    "reason" : "Trailing closure syntax should not be used when passing more than one closure argument",
+    "rule_id" : "multiple_closures_with_trailing_closure",
+    "severity" : "Warning",
+    "type" : "Multiple Closures with Trailing Closure"
+  },
+  {
+    "character" : 9,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/UITheme/ThemeManager.swift",
+    "line" : 27,
+    "reason" : "Types should be nested at most 1 level deep",
+    "rule_id" : "nesting",
+    "severity" : "Warning",
+    "type" : "Nesting"
+  },
+  {
+    "character" : 24,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Onboarding/OnboardingOptionsView.swift",
+    "line" : 74,
+    "reason" : "Trailing closure syntax should not be used when passing more than one closure argument",
+    "rule_id" : "multiple_closures_with_trailing_closure",
+    "severity" : "Warning",
+    "type" : "Multiple Closures with Trailing Closure"
+  },
+  {
+    "character" : 20,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Views/Reports/StryvrProResumeView.swift",
+    "line" : 31,
+    "reason" : "Trailing closure syntax should not be used when passing more than one closure argument",
+    "rule_id" : "multiple_closures_with_trailing_closure",
+    "severity" : "Warning",
+    "type" : "Multiple Closures with Trailing Closure"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/ChallengeSystem.swift",
+    "line" : 32,
+    "reason" : "Functions and methods parameters should be either on the same line, or one per line",
+    "rule_id" : "multiline_parameters",
+    "severity" : "Warning",
+    "type" : "Multiline Parameters"
+  },
+  {
+    "character" : 33,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/ChallengeSystem.swift",
+    "line" : 53,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 17,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/AIRecommendationService.swift",
+    "line" : 21,
+    "reason" : "Variable name 'db' should be between 3 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Warning",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 18,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/AIRecommendationService.swift",
+    "line" : 24,
+    "reason" : "Variable name 'db' should be between 3 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Warning",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 59,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/CrashHandlingService.swift",
+    "line" : 26,
+    "reason" : "Force unwrapping should be avoided",
+    "rule_id" : "force_unwrapping",
+    "severity" : "Warning",
+    "type" : "Force Unwrapping"
+  },
+  {
+    "character" : 1,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/NotificationService.swift",
+    "line" : 26,
+    "reason" : "Opening braces should be preceded by a single space and on the same line as the declaration",
+    "rule_id" : "opening_brace",
+    "severity" : "Warning",
+    "type" : "Opening Brace Spacing"
+  },
+  {
+    "character" : 1,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/PaymentService.swift",
+    "line" : 18,
+    "reason" : "Opening braces should be preceded by a single space and on the same line as the declaration",
+    "rule_id" : "opening_brace",
+    "severity" : "Warning",
+    "type" : "Opening Brace Spacing"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/ReportGeneration.swift",
+    "line" : 64,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/AuthService.swift",
+    "line" : 29,
+    "reason" : "Functions and methods parameters should be either on the same line, or one per line",
+    "rule_id" : "multiline_parameters",
+    "severity" : "Warning",
+    "type" : "Multiline Parameters"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/AuthService.swift",
+    "line" : 51,
+    "reason" : "Functions and methods parameters should be either on the same line, or one per line",
+    "rule_id" : "multiline_parameters",
+    "severity" : "Warning",
+    "type" : "Multiline Parameters"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/SkillMatrixService.swift",
+    "line" : 67,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/AuthManager.swift",
+    "line" : 62,
+    "reason" : "Closure parameters should be on the same line as opening brace",
+    "rule_id" : "closure_parameter_position",
+    "severity" : "Warning",
+    "type" : "Closure Parameter Position"
+  },
+  {
+    "character" : 29,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/AuthManager.swift",
+    "line" : 62,
+    "reason" : "Closure parameters should be on the same line as opening brace",
+    "rule_id" : "closure_parameter_position",
+    "severity" : "Warning",
+    "type" : "Closure Parameter Position"
+  },
+  {
+    "character" : 25,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/VideoContentService.swift",
+    "line" : 82,
+    "reason" : "Closure parameters should be on the same line as opening brace",
+    "rule_id" : "closure_parameter_position",
+    "severity" : "Warning",
+    "type" : "Closure Parameter Position"
+  },
+  {
+    "character" : 5,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/VideoContentService.swift",
+    "line" : 33,
+    "reason" : "Function should have 5 parameters or less: it currently has 7",
+    "rule_id" : "function_parameter_count",
+    "severity" : "Warning",
+    "type" : "Function Parameter Count"
+  },
+  {
+    "character" : 37,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/VideoContentService.swift",
+    "line" : 78,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 9,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/SecureStorageService.swift",
+    "line" : 88,
+    "reason" : "Opening braces should be preceded by a single space and on the same line as the declaration",
+    "rule_id" : "opening_brace",
+    "severity" : "Warning",
+    "type" : "Opening Brace Spacing"
+  },
+  {
+    "character" : 43,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/SecureStorageService.swift",
+    "line" : 40,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 87,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/SecureStorageService.swift",
+    "line" : 45,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 56,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/SecureStorageService.swift",
+    "line" : 79,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 43,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/SecureStorageService.swift",
+    "line" : 106,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/ConferenceCallService.swift",
+    "line" : 29,
+    "reason" : "Functions and methods parameters should be either on the same line, or one per line",
+    "rule_id" : "multiline_parameters",
+    "severity" : "Warning",
+    "type" : "Multiline Parameters"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/ConferenceCallService.swift",
+    "line" : 116,
+    "reason" : "Functions and methods parameters should be either on the same line, or one per line",
+    "rule_id" : "multiline_parameters",
+    "severity" : "Warning",
+    "type" : "Multiline Parameters"
+  },
+  {
+    "character" : 42,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/ConferenceCallService.swift",
+    "line" : 49,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 35,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Services/ConferenceCallService.swift",
+    "line" : 129,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 5,
+    "file" : "/Users/joedormond/Documents/stryvr-ios/StryVrModule/Utils/ReportAnalysisHelper.swift",
+    "line" : 69,
+    "reason" : "Opening braces should be preceded by a single space and on the same line as the declaration",
+    "rule_id" : "opening_brace",
+    "severity" : "Warning",
+    "type" : "Opening Brace Spacing"
+  }
+]

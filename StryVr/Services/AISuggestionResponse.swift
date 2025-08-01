@@ -10,10 +10,10 @@
 import Foundation
 
 struct AISuggestionResponse: Decodable {
-    let generated_text: String
+    let generatedText: String
     
-    var generatedText: String {
-        return generated_text
+    private enum CodingKeys: String, CodingKey {
+        case generatedText = "generated_text"
     }
 
     func generatedSkills() -> [String] {

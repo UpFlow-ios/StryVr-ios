@@ -82,24 +82,37 @@ struct FeedbackEntry: Codable, Hashable {
             joinDate: Date(),
             skills: [
                 SkillProgress(
-                    skillId: "swiftui", skillName: "SwiftUI", currentLevel: 4,
-                    progressPercentage: 0.85),
+                    skillId: "swiftui",
+                    skillName: "SwiftUI",
+                    currentLevel: 4,
+                    progressPercentage: 0.85
+                ),
                 SkillProgress(
-                    skillId: "leadership", skillName: "Leadership", currentLevel: 3,
-                    progressPercentage: 0.72),
+                    skillId: "leadership",
+                    skillName: "Leadership",
+                    currentLevel: 3,
+                    progressPercentage: 0.72
+                ),
                 SkillProgress(
-                    skillId: "communication", skillName: "Communication", currentLevel: 3,
-                    progressPercentage: 0.68),
+                    skillId: "communication",
+                    skillName: "Communication",
+                    currentLevel: 3,
+                    progressPercentage: 0.68
+                )
             ],
             feedbackEntries: [
                 FeedbackEntry(
                     category: .collaboration,
-                    comment: "Excellent team player, always willing to help others", rating: 5,
-                    date: Date()),
+                    comment: "Excellent team player, always willing to help others",
+                    rating: 5,
+                    date: Date()
+                ),
                 FeedbackEntry(
                     category: .clarity,
-                    comment: "Clear communication in meetings and documentation", rating: 4,
-                    date: Date()),
+                    comment: "Clear communication in meetings and documentation",
+                    rating: 4,
+                    date: Date()
+                )
             ],
             performanceRating: 0.85,
             goalsAchieved: 8,

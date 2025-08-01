@@ -95,10 +95,22 @@ enum PerformanceZone: String, Codable {
 extension SkillMatrixEntry {
     static let mockEntries: [SkillMatrixEntry] = [
         .init(
-            id: "s1", skillName: "SwiftUI", rating: 1.0, category: .technical, reviewerID: nil,
-            lastUpdated: Date(), level: 5),
+            id: "s1",
+            skillName: "SwiftUI",
+            rating: 1.0,
+            category: .technical,
+            reviewerID: nil,
+            lastUpdated: Date(),
+            level: 5
+        ),
         .init(
-            id: "s2", skillName: "Firebase", rating: 0.8, category: .technical, reviewerID: nil,
-            lastUpdated: Date(), level: 4),
+            id: "s2",
+            skillName: "Firebase",
+            rating: 0.8,
+            category: .technical,
+            reviewerID: nil,
+            lastUpdated: Date(),
+            level: 4
+        )
     ]
 }
