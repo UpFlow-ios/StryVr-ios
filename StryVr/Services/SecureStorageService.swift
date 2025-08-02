@@ -34,12 +34,12 @@ final class SecureStorageService {
 
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: key,
+            kSecAttrAccount as String: key
         ]
 
         let attributes: [String: Any] = [
             kSecValueData as String: data,
-            kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlockedThisDeviceOnly,
+            kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlockedThisDeviceOnly
         ]
 
         let status = SecItemCopyMatching(query as CFDictionary, nil)
@@ -73,7 +73,7 @@ final class SecureStorageService {
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key,
             kSecReturnData as String: true,
-            kSecMatchLimit as String: kSecMatchLimitOne,
+            kSecMatchLimit as String: kSecMatchLimitOne
         ]
 
         var dataTypeRef: AnyObject?
@@ -81,8 +81,7 @@ final class SecureStorageService {
 
         if status == errSecSuccess,
             let retrievedData = dataTypeRef as? Data,
-            let result = String(data: retrievedData, encoding: .utf8)
-        {
+            let result = String(data: retrievedData, encoding: .utf8) {
             logger.info("✅ Retrieved key securely")
             return result
         } else {
@@ -100,7 +99,7 @@ final class SecureStorageService {
 
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: key,
+            kSecAttrAccount as String: key
         ]
 
         let status = SecItemDelete(query as CFDictionary)

@@ -21,10 +21,7 @@ final class ConferenceCallService {
     // MARK: - Schedule Call
 
     /// Schedules a new conference call
-    func scheduleConferenceCall(
-        title: String, hostID: String, scheduledDate: Date,
-        completion: @escaping (Bool, Error?) -> Void
-    ) {
+    func scheduleConferenceCall(title: String, hostID: String, scheduledDate: Date, completion: @escaping (Bool, Error?) -> Void) {
         guard !title.isEmpty, !hostID.isEmpty else {
             logger.error("❌ Invalid input for scheduling call")
             completion(false, ConferenceCallError.invalidInput)
@@ -41,7 +38,7 @@ final class ConferenceCallService {
             "status": "upcoming",
             "chatMessages": [],
             "recordingURL": "",
-            "screenSharingEnabled": false,
+            "screenSharingEnabled": false
         ]
 
         firestore.collection("conferenceCalls").document(callID).setData(callData) { error in
@@ -108,10 +105,7 @@ final class ConferenceCallService {
     // MARK: - Add Chat Message
 
     /// Adds a chat message to a conference call
-    func addChatMessage(
-        callID: String, senderID: String, message: String, timestamp: Date,
-        completion: @escaping (Bool, Error?) -> Void
-    ) {
+    func addChatMessage(callID: String, senderID: String, message: String, timestamp: Date, completion: @escaping (Bool, Error?) -> Void) {
         guard !callID.isEmpty, !senderID.isEmpty, !message.isEmpty else {
             logger.error("❌ Invalid input for adding chat message")
             completion(false, ConferenceCallError.invalidInput)
@@ -121,7 +115,7 @@ final class ConferenceCallService {
         let messageData: [String: Any] = [
             "senderID": senderID,
             "message": message,
-            "timestamp": timestamp,
+            "timestamp": timestamp
         ]
 
         firestore.collection("conferenceCalls").document(callID).updateData([

@@ -176,7 +176,7 @@ final class AIRecommendationService {
             ) { [weak self] result in
                 switch result {
                 case .success(let responses):
-                    let suggestions = responses.compactMap { $0.generated_text }
+                    let suggestions = responses.compactMap { $0.generatedText }
                     self?.logger.info("🤖 AI generated \(suggestions.count) skill suggestions")
                     completion(suggestions)
                 case .failure(let error):

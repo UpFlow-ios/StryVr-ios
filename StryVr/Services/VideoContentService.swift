@@ -11,6 +11,17 @@ import FirebaseStorage
 import Foundation
 import OSLog
 
+struct VideoUploadData {
+    let fileURL: URL
+    let uploaderID: String
+    let title: String
+    let caption: String?
+    let thumbnailURL: String?
+    let duration: Int
+    let category: VideoCategory
+    let isFeatured: Bool
+}
+
 /// Manages video uploads, metadata, streaming & AI tagging
 @MainActor
 final class VideoContentService {
@@ -25,20 +36,13 @@ final class VideoContentService {
     // MARK: - Upload Video
 
     func uploadVideo(
-        fileURL: URL,
-        uploaderID: String,
-        title: String,
-        caption: String?,
-        thumbnailURL: String? = nil,
-        duration: Int,
-        category: VideoCategory,
-        isFeatured: Bool = false,
+        data: VideoUploadData,
         completion: @escaping (String?) -> Void
     ) {
         let videoID = UUID().uuidString
-        let videoRef = storage.child("videos/\(uploaderID)/\(videoID).mp4")
+        let videoRef = storage.child("videos/\(data.uploaderID)/\(videoID).mp4")
 
-        videoRef.putFile(from: fileURL, metadata: nil) { _, error in
+        videoRef.putFile(from: data.fileURL, metadata: nil) { _, error in
             if let error = error {
                 self.logger.error("Upload failed: \(error.localizedDescription)")
                 completion(nil)
@@ -56,20 +60,20 @@ final class VideoContentService {
                 self.generateAITags(for: downloadURL.absoluteString) { tags in
                     let metadata: [String: Any] = [
                         "id": videoID,
-                        "uploaderID": uploaderID,
-                        "title": title,
-                        "caption": caption ?? "",
+                        "uploaderID": data.uploaderID,
+                        "title": data.title,
+                        "caption": data.caption ?? "",
                         "videoURL": downloadURL.absoluteString,
-                        "thumbnailURL": thumbnailURL ?? "",
-                        "duration": duration,
-                        "category": category.rawValue,
+                        "thumbnailURL": data.thumbnailURL ?? "",
+                        "duration": data.duration,
+                        "category": data.category.rawValue,
                         "uploadDate": Timestamp(date: Date()),
-                        "isFeatured": isFeatured,
+                        "isFeatured": data.isFeatured,
                         "likes": 0,
                         "comments": 0,
                         "shares": 0,
                         "views": 0,
-                        "tags": tags,
+                        "tags": tags
                     ]
 
                     self.firestore.collection("Videos").document(videoID).setData(metadata) {

@@ -22,7 +22,10 @@ final class AuthService {
 
     private init() {}
 
-    func signUp(email: String, password: String, completion: @escaping (Result<AuthDataResult, Error>) -> Void) {
+    func signUp(
+        email: String, password: String,
+        completion: @escaping (Result<AuthDataResult, Error>) -> Void
+    ) {
         guard isValidEmail(email), isValidPassword(password) else {
             logger.error("❌ Invalid email or password format: Signup input validation failed")
             completion(.failure(AuthError.invalidInput))
@@ -40,7 +43,10 @@ final class AuthService {
         }
     }
 
-    func logIn(email: String, password: String, completion: @escaping (Result<AuthDataResult, Error>) -> Void) {
+    func logIn(
+        email: String, password: String,
+        completion: @escaping (Result<AuthDataResult, Error>) -> Void
+    ) {
         guard isValidEmail(email), isValidPassword(password) else {
             logger.error("❌ Invalid email or password format: Login input validation failed")
             completion(.failure(AuthError.invalidInput))
@@ -117,10 +123,19 @@ final class AuthService {
 
     // ✅ Replace with your Okta values:
     private let clientID = "YOUR_OKTA_CLIENT_ID"
-    private let issuer = URL(string: "https://YOUR_OKTA_DOMAIN.okta.com/oauth2/default") ?? URL(string: "https://example.com")!
-    private let redirectURI = URL(string: "stryvr://callback") ?? URL(string: "https://example.com")!
+    private var issuer: URL? {
+        return URL(string: "https://YOUR_OKTA_DOMAIN.okta.com/oauth2/default")
+    }
+    private var redirectURI: URL? {
+        return URL(string: "stryvr://callback")
+    }
 
     func loginWithOkta(presentingViewController: UIViewController) {
+        guard let issuer = issuer else {
+            logger.error("❌ Invalid issuer URL")
+            return
+        }
+
         OIDAuthorizationService.discoverConfiguration(forIssuer: issuer) { config, error in
             guard let config = config else {
                 self.logger.error(
@@ -128,11 +143,16 @@ final class AuthService {
                 return
             }
 
+            guard let redirectURI = self.redirectURI else {
+                self.logger.error("❌ Invalid redirect URI")
+                return
+            }
+
             let request = OIDAuthorizationRequest(
                 configuration: config,
                 clientId: self.clientID,
                 scopes: [OIDScopeOpenID, OIDScopeProfile, "email"],
-                redirectURL: self.redirectURI,
+                redirectURL: redirectURI,
                 responseType: OIDResponseTypeCode,
                 additionalParameters: nil
             )
@@ -171,7 +191,8 @@ final class AuthService {
 
     func resumeAuthFlow(_ url: URL) -> Bool {
         if let flow = currentAuthorizationFlow,
-            flow.resumeExternalUserAgentFlow(with: url) {
+            flow.resumeExternalUserAgentFlow(with: url)
+        {
             currentAuthorizationFlow = nil
             return true
         }

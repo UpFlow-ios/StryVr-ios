@@ -57,7 +57,7 @@ class AIGreetingManager: ObservableObject {
         ]
 
         let hour = Calendar.current.component(.hour, from: Date())
-        let timeGreeting: String
+        let timeGreeting
 
         switch hour {
         case 5..<12:
@@ -75,7 +75,7 @@ class AIGreetingManager: ObservableObject {
     func refreshGreeting() {
         generateGreeting()
     }
-    
+
     func updateContext(userAction: String) {
         // Update context based on user action
         switch userAction {
@@ -86,11 +86,11 @@ class AIGreetingManager: ObservableObject {
         default:
             motivationTip = "💪 Every action brings you closer to your goals!"
         }
-        
+
         // Regenerate personalized goal
         generatePersonalizedGoal()
     }
-    
+
     private func generatePersonalizedGoal() {
         let goals = [
             "🎯 Complete 3 skill assessments today",
@@ -99,10 +99,10 @@ class AIGreetingManager: ObservableObject {
             "📊 Review your progress dashboard",
             "🎨 Explore new skill categories"
         ]
-        
+
         personalizedGoal = goals.randomElement() ?? goals[0]
     }
-    
+
     private func generateMotivationTip() {
         let tips = [
             "💡 Remember: Progress over perfection!",
@@ -114,7 +114,7 @@ class AIGreetingManager: ObservableObject {
             "💪 Challenges make you stronger!",
             "🎨 Innovation happens outside your comfort zone!"
         ]
-        
+
         motivationTip = tips.randomElement() ?? tips[0]
     }
 }

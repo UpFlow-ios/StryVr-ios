@@ -9,30 +9,26 @@ import Foundation
 import PDFKit
 import UIKit
 
+struct ResumeData {
+    let name: String
+    let location: String
+    let companies: [String]
+    let skills: [(name: String, percentage: Int)]
+    let workImpact: String
+    let teamFeedback: String
+}
+
 class ResumePDFGenerator {
     static let shared = ResumePDFGenerator()
 
     /// Generates a PDF resume with the given details.
-    /// - Parameters:
-    ///   - name: The name of the individual.
-    ///   - location: The location/address of the individual.
-    ///   - companies: An array of verified companies with role and dates.
-    ///   - skills: An array of tuples containing skill name and proficiency percentage.
-    ///   - workImpact: A description of the work impact.
-    ///   - teamFeedback: Feedback from the team.
+    /// - Parameter resumeData: The resume data containing all necessary information.
     /// - Returns: A URL pointing to the generated PDF file.
-    func createPDF(
-        name: String,
-        location: String,
-        companies: [String],
-        skills: [(name: String, percentage: Int)],
-        workImpact: String,
-        teamFeedback: String
-    ) -> URL {
+    func createPDF(resumeData: ResumeData) -> URL {
         let pdfMetaData = [
             kCGPDFContextCreator: "Stryvr",
             kCGPDFContextAuthor: "Stryvr AI Engine",
-            kCGPDFContextTitle: "Verified Résumé",
+            kCGPDFContextTitle: "Verified Résumé"
         ]
         let format = UIGraphicsPDFRendererFormat()
         format.documentInfo = pdfMetaData as [String: Any]
@@ -52,16 +48,16 @@ class ResumePDFGenerator {
 
             let attributes: [NSAttributedString.Key: Any] = [
                 .font: UIFont.systemFont(ofSize: 12),
-                .paragraphStyle: paragraphStyle,
+                .paragraphStyle: paragraphStyle
             ]
 
-            let companiesText = companies.map { "• \($0)" }.joined(separator: "\n")
-            let skillsText = skills.map { "• \($0.name) – \($0.percentage)%" }.joined(
+            let companiesText = resumeData.companies.map { "• \($0)" }.joined(separator: "\n")
+            let skillsText = resumeData.skills.map { "• \($0.name) – \($0.percentage)%" }.joined(
                 separator: "\n")
 
             let resumeText = """
-                Name: \(name)
-                Location: \(location)
+                Name: \(resumeData.name)
+                Location: \(resumeData.location)
 
                 — Verified Companies —
                 \(companiesText)
@@ -70,10 +66,10 @@ class ResumePDFGenerator {
                 \(skillsText)
 
                 — Work Impact —
-                \(workImpact)
+                \(resumeData.workImpact)
 
                 — Team Feedback —
-                \(teamFeedback)
+                \(resumeData.teamFeedback)
                 """
 
             resumeText.draw(
