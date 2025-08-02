@@ -23,8 +23,7 @@ struct CustomNavigationView: View {
                 case .profile:
                     ProfileView()
                 case .reports:
-                    // Reports tab placeholder - future feature
-                    EmptyView()
+                    ReportsView()
                 }
             }
             .transition(.opacity)
