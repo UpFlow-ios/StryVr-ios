@@ -46,6 +46,10 @@ secrets/
 .env.staging
 .env.development
 
+# Okta Configuration (Production)
+StryVr/Config/OktaConfig-Production.swift
+StryVr/Config/OktaSecrets.swift
+
 # Build and Log Files
 *.log
 logs/
