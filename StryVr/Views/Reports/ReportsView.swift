@@ -41,6 +41,9 @@ struct ReportsView: View {
 
                     // Verification Status
                     verificationStatusSection
+
+                    // Verification Dashboard Link
+                    verificationDashboardLink
                 }
                 .padding()
             }
@@ -308,7 +311,43 @@ struct ReportsView: View {
                     status: .pending,
                     date: "In Progress"
                 )
+
+                VerificationRow(
+                    item: "Identity Verification",
+                    status: .verified,
+                    date: "ClearMe Verified"
+                )
+
+                VerificationRow(
+                    item: "Company Verification",
+                    status: .verified,
+                    date: "HR Verified"
+                )
             }
+
+            // Verification Dashboard Link
+            NavigationLink(destination: VerificationDashboardView(userID: "current_user_id")) {
+                HStack {
+                    VStack(alignment: .leading, spacing: Theme.Spacing.small) {
+                        Text("Verification Dashboard")
+                            .font(Theme.Fonts.subheadline)
+                            .foregroundColor(Theme.Colors.primary)
+
+                        Text("Manage ClearMe integration and verification status")
+                            .font(Theme.Fonts.caption)
+                            .foregroundColor(Theme.Colors.textSecondary)
+                    }
+
+                    Spacer()
+
+                    Image(systemName: "chevron.right")
+                        .foregroundColor(Theme.Colors.primary)
+                }
+                .padding()
+                .background(Theme.Colors.primary.opacity(0.1))
+                .cornerRadius(Theme.Spacing.small)
+            }
+            .buttonStyle(PlainButtonStyle())
         }
         .padding()
         .background(Theme.Colors.surface)

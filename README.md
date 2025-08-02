@@ -23,6 +23,8 @@ StryVr was born from a simple yet revolutionary idea: **What if resumes could be
 - **Skills Assessment** - Proven competencies with verification badges
 - **Privacy Control** - Users can hide weak points while maintaining employer trust
 - **Professional Sharing** - PDF generation for job applications and networking
+- **ClearMe Integration** - Biometric identity verification for complete transparency
+- **Company Verification** - HR-verified company associations and employment history
 
 #### **🤖 AI-Powered Professional Development**
 - **Real-Time Skill Assessment** - AI analyzes workplace interactions
@@ -70,6 +72,8 @@ StryVr was born from a simple yet revolutionary idea: **What if resumes could be
 - **Skills & Competencies** - Verified skill assessments
 - **Earnings History** - Year-by-year verified salary data
 - **Verification Status** - Real-time verification tracking
+- **ClearMe Integration** - Biometric identity verification dashboard
+- **Company Verification** - HR-verified company associations
 
 ### **👤 Profile Management**
 - Glass profile section with circular image
@@ -316,6 +320,7 @@ We take security seriously. StryVr implements:
 - **Regular security audits** and updates
 - **GDPR compliance** for data privacy
 - **HR verification system** for data integrity
+- **ClearMe biometric verification** for identity transparency
 
 ## 📈 Analytics & Privacy
 
@@ -333,6 +338,7 @@ We take security seriously. StryVr implements:
 - **🤖 AI-Powered** - Machine learning integration
 - **🎯 User-Centric** - Designed for real user needs
 - **✅ HR-Verified** - Revolutionary resume verification system
+- **🔐 ClearMe-Integrated** - Biometric identity verification for complete transparency
 
 ## 📞 Support & Contact
 
