@@ -22,6 +22,8 @@
 		851966132DA6DACE004264AE /* ReportsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851966122DA6DAC6004264AE /* ReportsDashboardView.swift */; };
 		851966152DACF9C7004264AE /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851966142DACF9C2004264AE /* RegisterView.swift */; };
 		851966172DACFB1C004264AE /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851966162DACFB12004264AE /* ForgotPasswordView.swift */; };
+		851D524A2E3DB53D00322D16 /* PerformanceMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851D52492E3DB53D00322D16 /* PerformanceMonitor.swift */; };
+		851D524C2E3DB5B800322D16 /* ErrorRecoveryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851D524B2E3DB5B800322D16 /* ErrorRecoveryManager.swift */; };
 		8540F0AA2DD38E1100B43444 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8540F0A92DD38E0800B43444 /* MainRouter.swift */; };
 		854826732D83B55B0078A0F9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 854826722D83B55B0078A0F9 /* FirebaseAuth */; };
 		854826792D83B55B0078A0F9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 854826782D83B55B0078A0F9 /* FirebaseFirestore */; };
@@ -308,6 +310,8 @@
 		851966122DA6DAC6004264AE /* ReportsDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsDashboardView.swift; sourceTree = "<group>"; };
 		851966142DACF9C2004264AE /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		851966162DACFB12004264AE /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		851D52492E3DB53D00322D16 /* PerformanceMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceMonitor.swift; sourceTree = "<group>"; };
+		851D524B2E3DB5B800322D16 /* ErrorRecoveryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorRecoveryManager.swift; sourceTree = "<group>"; };
 		8540F0A92DD38E0800B43444 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 		854ECFD32D701D5F00D0B0AC /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
 		854ECFD42D701D5F00D0B0AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -774,6 +778,8 @@
 		856AA6062D9164E900402F84 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				851D524B2E3DB5B800322D16 /* ErrorRecoveryManager.swift */,
+				851D52492E3DB53D00322D16 /* PerformanceMonitor.swift */,
 				85CC69C62E34B16200AF835D /* SymbolAnimator.swift */,
 				85DDE81B2DD6BA07009C1D19 /* CryptoHelper.swift */,
 				85BE23892DD3F40F00298EDF /* FeatureFlags.swift */,
@@ -1117,6 +1123,7 @@
 				85AD56A82D94B9EA007B6542 /* SubscriptionPlan.swift in Sources */,
 				85AD56AA2D94B931007B6542 /* ChallengeModel.swift in Sources */,
 				855E96092D9D0ED0002173EF /* CareerPathInsightsView.swift in Sources */,
+				851D524C2E3DB5B800322D16 /* ErrorRecoveryManager.swift in Sources */,
 				8519660B2DA6D836004264AE /* StryVrCardView.swift in Sources */,
 				8588F0BB2DC26B5100D04995 /* ProfileBadgesView.swift in Sources */,
 				856AA66D2D91692E00402F84 /* StryVrApp.swift in Sources */,
@@ -1187,6 +1194,7 @@
 				8595B1842DB36722001D831E /* AppShellView.swift in Sources */,
 				856AA6572D9164E900402F84 /* GroupChallengesView.swift in Sources */,
 				8588F0C42DC2F8D000D04995 /* ResumePDFGenerator.swift in Sources */,
+				851D524A2E3DB53D00322D16 /* PerformanceMonitor.swift in Sources */,
 				850D50EA2DF21054008097DF /* SkillMatrixEntry.swift in Sources */,
 				856AA6812D916D7700402F84 /* FirestoreService.swift in Sources */,
 				856AA66A2D91686B00402F84 /* SceneDelegate.swift in Sources */,
