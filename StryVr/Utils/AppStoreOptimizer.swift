@@ -131,7 +131,7 @@ final class AppStoreOptimizer: ObservableObject {
             "retention_rate": retentionRate,
             "engagement_score": calculateEngagementScore(),
             "days_since_first_open": getDaysSinceFirstOpen(),
-            "feature_usage": getTopUsedFeatures(),
+            "feature_usage": getTopUsedFeatures()
         ]
 
         logger.info("📈 App Store insights generated: \(insights)")

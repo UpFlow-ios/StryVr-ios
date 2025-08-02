@@ -24,6 +24,7 @@
 		851966172DACFB1C004264AE /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851966162DACFB12004264AE /* ForgotPasswordView.swift */; };
 		851D524A2E3DB53D00322D16 /* PerformanceMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851D52492E3DB53D00322D16 /* PerformanceMonitor.swift */; };
 		851D524C2E3DB5B800322D16 /* ErrorRecoveryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851D524B2E3DB5B800322D16 /* ErrorRecoveryManager.swift */; };
+		851D524E2E3DB74C00322D16 /* AppStoreOptimizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851D524D2E3DB74C00322D16 /* AppStoreOptimizer.swift */; };
 		8540F0AA2DD38E1100B43444 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8540F0A92DD38E0800B43444 /* MainRouter.swift */; };
 		854826732D83B55B0078A0F9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 854826722D83B55B0078A0F9 /* FirebaseAuth */; };
 		854826792D83B55B0078A0F9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 854826782D83B55B0078A0F9 /* FirebaseFirestore */; };
@@ -312,6 +313,7 @@
 		851966162DACFB12004264AE /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		851D52492E3DB53D00322D16 /* PerformanceMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceMonitor.swift; sourceTree = "<group>"; };
 		851D524B2E3DB5B800322D16 /* ErrorRecoveryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorRecoveryManager.swift; sourceTree = "<group>"; };
+		851D524D2E3DB74C00322D16 /* AppStoreOptimizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreOptimizer.swift; sourceTree = "<group>"; };
 		8540F0A92DD38E0800B43444 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 		854ECFD32D701D5F00D0B0AC /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
 		854ECFD42D701D5F00D0B0AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -778,6 +780,7 @@
 		856AA6062D9164E900402F84 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				851D524D2E3DB74C00322D16 /* AppStoreOptimizer.swift */,
 				851D524B2E3DB5B800322D16 /* ErrorRecoveryManager.swift */,
 				851D52492E3DB53D00322D16 /* PerformanceMonitor.swift */,
 				85CC69C62E34B16200AF835D /* SymbolAnimator.swift */,
@@ -1163,6 +1166,7 @@
 				85CB82D92DAE2E83002AA544 /* UserRole.swift in Sources */,
 				851966152DACF9C7004264AE /* RegisterView.swift in Sources */,
 				856AA67D2D916CB900402F84 /* ChallengeSystem.swift in Sources */,
+				851D524E2E3DB74C00322D16 /* AppStoreOptimizer.swift in Sources */,
 				856AA6412D9164E900402F84 /* LottieAnimationManager.swift in Sources */,
 				850D50F12DF21C72008097DF /* UserData.swift in Sources */,
 				856AA6452D9164E900402F84 /* ProfileView.swift in Sources */,
