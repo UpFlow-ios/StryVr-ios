@@ -50,6 +50,11 @@ secrets/
 StryVr/Config/OktaConfig-Production.swift
 StryVr/Config/OktaSecrets.swift
 
+# Private Development Files
+TODO_APP_STORE_READY.md
+PRIVACY_POLICY.md
+TERMS_OF_SERVICE.md
+
 # Build and Log Files
 *.log
 logs/
