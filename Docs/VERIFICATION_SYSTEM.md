@@ -25,7 +25,7 @@ A comprehensive verification system that:
 
 ---
 
-## 🔗 **ClearMe Integration**
+## 🔗 **ClearMe & Okta Integration**
 
 ### **What is ClearMe?**
 ClearMe is a leading biometric identity verification service that provides:
@@ -34,11 +34,22 @@ ClearMe is a leading biometric identity verification service that provides:
 - **Real-time identity checks** against trusted databases
 - **Secure verification tokens** for ongoing authentication
 
+### **What is Okta?**
+Okta is the leading identity and access management platform that provides:
+- **Enterprise SSO** (Single Sign-On) for seamless authentication
+- **HR data integration** for automatic employment verification
+- **OIDC/OAuth 2.0** standards for secure data exchange
+- **Workforce Identity** for employee lifecycle management
+
 ### **Integration Benefits**
 - **Instant identity verification** for new users
 - **Ongoing authentication** to prevent fake accounts
 - **Trusted verification** recognized by employers
 - **Secure biometric data** with enterprise-grade encryption
+- **Seamless HR data sync** for enterprise employers
+- **Automatic employment verification** through Okta integration
+- **Enterprise SSO** for corporate users
+- **Real-time HR updates** for employment changes
 
 ### **Implementation**
 ```swift
@@ -50,11 +61,20 @@ func initiateClearMeVerification(for userID: String) async throws -> UserVerific
     // 4. Generate verification token
     // 5. Update user verification status
 }
+
+// Okta HR data integration
+func syncOktaHRData(for userID: String) async throws -> EmploymentVerificationData {
+    // 1. Authenticate with Okta OIDC
+    // 2. Fetch HR data from Okta Workforce Identity
+    // 3. Verify employment status and performance
+    // 4. Update verification status automatically
+    // 5. Sync real-time employment changes
+}
 ```
 
 ---
 
-## 🏢 **Company Verification System**
+## 🏢 **Company Verification System with Okta Integration**
 
 ### **HR Verification Process**
 1. **Company Existence Check** - Verify company exists in database
@@ -63,6 +83,13 @@ func initiateClearMeVerification(for userID: String) async throws -> UserVerific
 4. **Supervisor Confirmation** - Get supervisor verification of responsibilities
 5. **Documentation Review** - Review employment contracts and records
 
+### **Okta HR Data Sync Process**
+1. **Okta OIDC Authentication** - Secure enterprise authentication
+2. **Workforce Identity Integration** - Access to HR data systems
+3. **Automatic Employment Sync** - Real-time employment status updates
+4. **Performance Data Integration** - Sync performance metrics and reviews
+5. **Role and Permission Sync** - Automatic role verification and updates
+
 ### **Verification Levels**
 - **Basic** - Company existence and employment dates
 - **Standard** - Position, responsibilities, and basic performance
@@ -70,6 +97,8 @@ func initiateClearMeVerification(for userID: String) async throws -> UserVerific
 - **Enterprise** - Comprehensive background and reference checks
 
 ### **Trusted Verification Providers**
+- **ClearMe** - Biometric identity verification
+- **Okta** - Enterprise HR data sync and authentication (dev-72949354.okta.com)
 - **Equifax** - Background check services
 - **Experian** - Employment verification
 - **HireRight** - Comprehensive screening
@@ -273,11 +302,19 @@ struct UserVerificationModel {
 ### **Verification Support**
 - **Technical Support**: verification@stryvr.app
 - **ClearMe Integration**: clearme@stryvr.app
+- **Okta Integration**: okta@stryvr.app
 - **Enterprise Sales**: enterprise@stryvr.app
 - **Documentation**: docs.stryvr.app/verification
 
+### **Okta Configuration**
+- **Okta Domain**: dev-72949354.okta.com
+- **Admin Email**: joedormond@stryvr.app
+- **Integration Type**: OIDC/OAuth 2.0
+- **Use Case**: HR data sync and enterprise authentication
+
 ### **Provider Partnerships**
 - **ClearMe**: https://clearme.com
+- **Okta**: https://dev-72949354.okta.com
 - **Equifax**: https://equifax.com
 - **HireRight**: https://hireright.com
 - **Sterling**: https://sterling.com

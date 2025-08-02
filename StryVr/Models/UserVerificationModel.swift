@@ -21,26 +21,26 @@ struct UserVerificationModel: Identifiable, Codable {
     var expirationDate: Date?
     var verificationScore: Double?
     var notes: String?
-    
+
     // MARK: - Computed Properties
-    
+
     var isVerified: Bool {
         return status == .approved && (expirationDate == nil || expirationDate! > Date())
     }
-    
+
     var isExpired: Bool {
         guard let expirationDate = expirationDate else { return false }
         return expirationDate < Date()
     }
-    
+
     var daysUntilExpiration: Int? {
         guard let expirationDate = expirationDate else { return nil }
         let calendar = Calendar.current
         return calendar.dateComponents([.day], from: Date(), to: expirationDate).day
     }
-    
+
     // MARK: - Validation
-    
+
     func isValid() -> Bool {
         guard !userID.isEmpty else { return false }
         guard verificationData.isValid() else { return false }
@@ -57,10 +57,11 @@ enum VerificationType: String, Codable, CaseIterable {
     case skills = "Skills Verification"
     case education = "Education Verification"
     case background = "Background Check"
-    
+
     var description: String {
         switch self {
-        case .identity: return "Verify user's real identity using biometric and document verification"
+        case .identity:
+            return "Verify user's real identity using biometric and document verification"
         case .company: return "Verify company exists and user has legitimate association"
         case .employment: return "Verify employment history and performance metrics"
         case .skills: return "Verify professional skills and competencies"
@@ -68,7 +69,7 @@ enum VerificationType: String, Codable, CaseIterable {
         case .background: return "Comprehensive background and reference check"
         }
     }
-    
+
     var iconName: String {
         switch self {
         case .identity: return "person.crop.circle.badge.checkmark"
@@ -79,7 +80,7 @@ enum VerificationType: String, Codable, CaseIterable {
         case .background: return "shield.checkered"
         }
     }
-    
+
     var colorCode: String {
         switch self {
         case .identity: return "blue"
@@ -103,7 +104,7 @@ enum VerificationMethod: String, Codable, CaseIterable {
     case socialMedia = "Social Media Verification"
     case thirdPartyAPI = "Third-Party API"
     case manualReview = "Manual Review"
-    
+
     var description: String {
         switch self {
         case .clearMe: return "Biometric identity verification through ClearMe"
@@ -116,7 +117,7 @@ enum VerificationMethod: String, Codable, CaseIterable {
         case .manualReview: return "Manual review by verification team"
         }
     }
-    
+
     var iconName: String {
         switch self {
         case .clearMe: return "faceid"
@@ -129,7 +130,7 @@ enum VerificationMethod: String, Codable, CaseIterable {
         case .manualReview: return "person.crop.rectangle"
         }
     }
-    
+
     var isAutomated: Bool {
         switch self {
         case .clearMe, .thirdPartyAPI, .emailVerification: return true
@@ -142,6 +143,7 @@ enum VerificationMethod: String, Codable, CaseIterable {
 
 enum VerificationProvider: String, Codable, CaseIterable {
     case clearMe = "ClearMe"
+    case okta = "Okta"
     case stryVr = "StryVr Internal"
     case equifax = "Equifax"
     case experian = "Experian"
@@ -150,10 +152,11 @@ enum VerificationProvider: String, Codable, CaseIterable {
     case sterling = "Sterling"
     case checkr = "Checkr"
     case custom = "Custom Provider"
-    
+
     var description: String {
         switch self {
         case .clearMe: return "ClearMe biometric identity verification"
+        case .okta: return "Okta enterprise HR data sync and authentication"
         case .stryVr: return "StryVr internal verification system"
         case .equifax: return "Equifax background check services"
         case .experian: return "Experian employment verification"
@@ -164,11 +167,12 @@ enum VerificationProvider: String, Codable, CaseIterable {
         case .custom: return "Custom verification provider"
         }
     }
-    
+
     var logoURL: String? {
         switch self {
         case .clearMe: return "https://clearme.com/logo.png"
-        case .stryVr: return nil // Use app icon
+        case .okta: return "https://dev-72949354.okta.com/logo.png"
+        case .stryVr: return nil  // Use app icon
         case .equifax: return "https://equifax.com/logo.png"
         case .experian: return "https://experian.com/logo.png"
         case .transunion: return "https://transunion.com/logo.png"
@@ -178,10 +182,10 @@ enum VerificationProvider: String, Codable, CaseIterable {
         case .custom: return nil
         }
     }
-    
+
     var isTrusted: Bool {
         switch self {
-        case .clearMe, .equifax, .experian, .transunion, .hireright, .sterling, .checkr: return true
+        case .clearMe, .okta, .equifax, .experian, .transunion, .hireright, .sterling, .checkr: return true
         case .stryVr, .custom: return false
         }
     }
@@ -196,21 +200,21 @@ struct VerificationData: Codable {
     var skillsData: SkillsVerificationData?
     var educationData: EducationVerificationData?
     var backgroundData: BackgroundCheckData?
-    
+
     // ClearMe specific data
     var clearMeData: ClearMeVerificationData?
-    
+
     // Generic verification data
     var documentURLs: [String]?
     var verificationNotes: String?
     var verificationScore: Double?
     var metadata: [String: String]?
-    
+
     func isValid() -> Bool {
         // At least one verification data type must be present
-        return identityData != nil || companyData != nil || employmentData != nil || 
-               skillsData != nil || educationData != nil || backgroundData != nil ||
-               clearMeData != nil
+        return identityData != nil || companyData != nil || employmentData != nil
+            || skillsData != nil || educationData != nil || backgroundData != nil
+            || clearMeData != nil
     }
 }
 
@@ -220,12 +224,12 @@ struct IdentityVerificationData: Codable {
     var firstName: String
     var lastName: String
     var dateOfBirth: Date
-    var governmentID: String? // Encrypted
-    var passportNumber: String? // Encrypted
-    var address: String? // Encrypted
-    var phoneNumber: String? // Encrypted
-    var emailAddress: String? // Encrypted
-    
+    var governmentID: String?  // Encrypted
+    var passportNumber: String?  // Encrypted
+    var address: String?  // Encrypted
+    var phoneNumber: String?  // Encrypted
+    var emailAddress: String?  // Encrypted
+
     var isComplete: Bool {
         return !firstName.isEmpty && !lastName.isEmpty && dateOfBirth < Date()
     }
@@ -244,7 +248,7 @@ struct CompanyVerificationData: Codable {
     var endDate: Date?
     var verificationContact: String?
     var verificationMethod: String?
-    
+
     var isComplete: Bool {
         return !companyName.isEmpty
     }
@@ -265,7 +269,7 @@ struct EmploymentVerificationData: Codable {
     var achievements: [String]?
     var salary: Double?
     var verificationStatus: String?
-    
+
     var isComplete: Bool {
         return !companyName.isEmpty && !position.isEmpty
     }
@@ -281,7 +285,7 @@ struct SkillsVerificationData: Codable {
     var assessmentScore: Double?
     var verifiedBy: String?
     var verificationDate: Date?
-    
+
     var isComplete: Bool {
         return !skillName.isEmpty && !skillLevel.isEmpty
     }
@@ -298,7 +302,7 @@ struct EducationVerificationData: Codable {
     var transcriptURL: String?
     var diplomaURL: String?
     var verificationStatus: String?
-    
+
     var isComplete: Bool {
         return !institutionName.isEmpty && !degree.isEmpty && !fieldOfStudy.isEmpty
     }
@@ -313,7 +317,7 @@ struct BackgroundCheckData: Codable {
     var reportURL: String?
     var findings: [String]?
     var recommendations: [String]?
-    
+
     var isComplete: Bool {
         return !checkType.isEmpty && !results.isEmpty
     }
@@ -324,12 +328,12 @@ struct BackgroundCheckData: Codable {
 struct ClearMeVerificationData: Codable {
     var clearMeID: String
     var verificationToken: String
-    var biometricData: String? // Encrypted
+    var biometricData: String?  // Encrypted
     var verificationLevel: ClearMeVerificationLevel
     var verificationDate: Date
     var expirationDate: Date?
     var verificationScore: Double?
-    
+
     var isActive: Bool {
         guard let expirationDate = expirationDate else { return true }
         return expirationDate > Date()
@@ -341,7 +345,7 @@ enum ClearMeVerificationLevel: String, Codable, CaseIterable {
     case standard = "Standard"
     case premium = "Premium"
     case enterprise = "Enterprise"
-    
+
     var description: String {
         switch self {
         case .basic: return "Basic identity verification"
@@ -350,7 +354,7 @@ enum ClearMeVerificationLevel: String, Codable, CaseIterable {
         case .enterprise: return "Enterprise-level comprehensive verification"
         }
     }
-    
+
     var verificationScore: Double {
         switch self {
         case .basic: return 0.7
@@ -371,7 +375,7 @@ enum VerificationStatus: String, Codable, CaseIterable {
     case rejected = "Rejected"
     case expired = "Expired"
     case cancelled = "Cancelled"
-    
+
     var description: String {
         switch self {
         case .pending: return "Verification request submitted and awaiting processing"
@@ -383,7 +387,7 @@ enum VerificationStatus: String, Codable, CaseIterable {
         case .cancelled: return "Verification request was cancelled"
         }
     }
-    
+
     var iconName: String {
         switch self {
         case .pending: return "clock"
@@ -395,7 +399,7 @@ enum VerificationStatus: String, Codable, CaseIterable {
         case .cancelled: return "xmark.circle"
         }
     }
-    
+
     var colorCode: String {
         switch self {
         case .pending: return "gray"
@@ -407,4 +411,4 @@ enum VerificationStatus: String, Codable, CaseIterable {
         case .cancelled: return "gray"
         }
     }
-} 
+}

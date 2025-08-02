@@ -22,6 +22,7 @@ The **ReportsView** is the heart and soul of StryVr - the feature that started i
 - **ClearMe Integration** - Biometric identity verification for complete transparency
 - **Company Verification** - HR-verified company associations and employment history
 - **Multi-Provider Verification** - Integration with trusted verification services
+- **Okta OIDC Integration** - Enterprise HR data sync and authentication
 
 ### **Key Features of ReportsView:**
 - **Professional Profile Header** - Name, title, verification badge
@@ -281,6 +282,7 @@ gd                  # git diff
 - **Weak Points Toggle** - User control over sensitive information
 - **ClearMe Dashboard** - Biometric verification management
 - **Company Verification** - HR-verified company associations
+- **Okta HR Sync** - Enterprise HR data integration
   - **Professional Sharing** - PDF generation for job applications
 
 ### **Profile View** ✅ **REDESIGNED**

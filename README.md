@@ -25,6 +25,7 @@ StryVr was born from a simple yet revolutionary idea: **What if resumes could be
 - **Professional Sharing** - PDF generation for job applications and networking
 - **ClearMe Integration** - Biometric identity verification for complete transparency
 - **Company Verification** - HR-verified company associations and employment history
+- **Okta Integration** - Seamless HR data sync for enterprise employers
 
 #### **🤖 AI-Powered Professional Development**
 - **Real-Time Skill Assessment** - AI analyzes workplace interactions
@@ -74,6 +75,7 @@ StryVr was born from a simple yet revolutionary idea: **What if resumes could be
 - **Verification Status** - Real-time verification tracking
 - **ClearMe Integration** - Biometric identity verification dashboard
 - **Company Verification** - HR-verified company associations
+- **Okta HR Sync** - Enterprise HR data integration
 
 ### **👤 Profile Management**
 - Glass profile section with circular image
@@ -321,6 +323,7 @@ We take security seriously. StryVr implements:
 - **GDPR compliance** for data privacy
 - **HR verification system** for data integrity
 - **ClearMe biometric verification** for identity transparency
+- **Okta OIDC integration** for enterprise HR data sync
 
 ## 📈 Analytics & Privacy
 
@@ -339,6 +342,7 @@ We take security seriously. StryVr implements:
 - **🎯 User-Centric** - Designed for real user needs
 - **✅ HR-Verified** - Revolutionary resume verification system
 - **🔐 ClearMe-Integrated** - Biometric identity verification for complete transparency
+- **🔗 Okta-Connected** - Enterprise HR data integration for seamless verification
 
 ## 📞 Support & Contact
 
