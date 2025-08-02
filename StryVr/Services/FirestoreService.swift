@@ -12,6 +12,7 @@ import FirebaseFirestore
 import Foundation
 import OSLog
 
+@MainActor
 class FirestoreService {
     static let shared = FirestoreService()
     private let firestore = Firestore.firestore()

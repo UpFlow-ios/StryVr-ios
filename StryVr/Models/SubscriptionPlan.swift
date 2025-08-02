@@ -92,7 +92,6 @@ struct SubscriptionPlan: Identifiable, Codable, Hashable {
 
     /// A placeholder subscription plan
     static let empty = SubscriptionPlan(
-        id: UUID().uuidString,
         tier: .freemium,
         monthlyPrice: 0.0,
         yearlyPrice: nil,

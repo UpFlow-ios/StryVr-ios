@@ -25,7 +25,7 @@ struct ChallengeModel: Codable, Identifiable {
         id: String = UUID().uuidString,
         title: String,
         description: String,
-        type: ChallengeType = .skill,
+        type: ChallengeType = .solo,
         difficulty: Int = 1,
         points: Int = 10,
         deadline: Date? = nil,

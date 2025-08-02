@@ -16,7 +16,7 @@ struct SymbolAnimator: ViewModifier {
     func body(content: Content) -> some View {
         if animate {
             #if os(iOS)
-                if #available(iOS 17.0, *) {
+                if #available(iOS 18.0, *) {
                     switch type {
                     case "bounce":
                         content.symbolEffect(.bounce)
@@ -25,7 +25,7 @@ struct SymbolAnimator: ViewModifier {
                     case "variableColor":
                         content.symbolEffect(.variableColor)
                     case "replace":
-                        content.symbolEffect(.replace)
+                        content.symbolEffect(.bounce)
                     default:
                         content.symbolEffect(.bounce)
                     }

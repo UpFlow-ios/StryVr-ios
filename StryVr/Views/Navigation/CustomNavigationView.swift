@@ -11,31 +11,28 @@ struct CustomNavigationView: View {
     @State private var selectedTab: TabItem = .home
 
     var body: some View {
-        NavigationStack {
-            ZStack(alignment: .bottom) {
-                Theme.Colors.background.ignoresSafeArea()
+        ZStack(alignment: .bottom) {
+            Theme.Colors.background.ignoresSafeArea()
 
-                Group {
-                    switch selectedTab {
-                    case .home:
-                        HomeView()
-                    case .learning:
-                        LearningPathsView()
-                    case .profile:
-                        ProfileView()
-                    case .community:
-                        // Community tab placeholder - future feature
-                        EmptyView()
-                    }
+            Group {
+                switch selectedTab {
+                case .home:
+                    HomeView()
+                case .feed:
+                    LearningPathsView()
+                case .profile:
+                    ProfileView()
+                case .reports:
+                    // Reports tab placeholder - future feature
+                    EmptyView()
                 }
-                .transition(.opacity)
-                .animation(.easeInOut, value: selectedTab)
-
-                CustomTabBar(selectedTab: $selectedTab)
-                    .padding(.horizontal, Theme.Spacing.large)
-                    .padding(.bottom, Theme.Spacing.small)
             }
-            .navigationBarHidden(true)
+            .transition(.opacity)
+            .animation(.easeInOut, value: selectedTab)
+
+            CustomTabBar(selectedTab: $selectedTab)
+                .padding(.horizontal, Theme.Spacing.large)
+                .padding(.bottom, Theme.Spacing.small)
         }
     }
 }
