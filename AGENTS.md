@@ -378,6 +378,8 @@ gd                  # git diff
 
 ### **✅ App Store Connect Setup Complete** 🎉
 - **App Store Connect Account**: Fully configured and ready
+- **App ID Assigned**: `69y49kn8kd` (public identifier)
+- **Bundle Identifier**: `com.stryvr.app` (public identifier)
 - **App Metadata**: Professional description, keywords, and promotional text
 - **Test Information**: Complete testing instructions and contact details
 - **Helm Integration**: Automated metadata management configured

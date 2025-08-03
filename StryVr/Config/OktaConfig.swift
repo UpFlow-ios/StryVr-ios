@@ -31,8 +31,8 @@ struct OktaConfig {
     /// Okta OAuth client ID
     static var clientId: String {
         #if DEBUG
-        // Development client ID - replace with your actual dev client ID
-        return "YOUR_DEV_CLIENT_ID"
+        // Development client ID - your actual dev client ID
+        return "0oapwakxg7155usbd5d7"
         #else
         // Production client ID - must be set via environment variable
         guard let clientId = ProcessInfo.processInfo.environment["OKTA_CLIENT_ID"] else {
@@ -54,7 +54,7 @@ struct OktaConfig {
     // MARK: - OAuth Configuration
     
     /// Redirect URI for OAuth callback
-    static let redirectUri = "stryvr://okta-callback"
+    static let redirectUri = "com.stryvr.app://oauth/callback"
     
     /// OAuth scopes for authentication
     static let scopes = [
