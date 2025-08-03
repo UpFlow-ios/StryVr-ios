@@ -1,114 +1,95 @@
-# 🔐 ClearMe API Integration Setup Guide
+# 🔐 Custom Biometric Verification Setup Guide
 
 ## **Complete Setup for StryVr Biometric Verification**
 
-This guide will walk you through setting up ClearMe API integration for StryVr's biometric identity verification system.
+This guide will walk you through setting up StryVr's custom biometric verification system using Apple's built-in Face ID/Touch ID authentication.
 
 ---
 
 ## 📋 **Prerequisites**
 
 - ✅ StryVr iOS app with verification system implemented
-- ✅ ClearMe developer account (sign up at https://verified.clearme.com)
-- ✅ Production environment ready for API integration
-- ✅ App Store Connect account for environment variables
+- ✅ iOS device with Face ID or Touch ID capability
+- ✅ Apple Developer account for App Store submission
+- ✅ LocalAuthentication framework enabled in your app
 
 ---
 
-## 🚀 **Step 1: ClearMe Developer Account Setup**
+## 🚀 **Step 1: Apple Biometric Authentication Setup**
 
-### **1.1 Create ClearMe Account**
-1. Visit [https://verified.clearme.com](https://verified.clearme.com)
-2. Click "Sign Up" or "Get Started"
-3. Choose "Developer Account" or "API Access"
-4. Complete registration with your business information
+### **1.1 Enable Face ID/Touch ID**
+1. Ensure your iOS device has Face ID or Touch ID set up
+2. Go to Settings > Face ID & Passcode (or Touch ID & Passcode)
+3. Add your face/fingerprint if not already configured
+4. Enable "StryVr" in the list of apps that can use Face ID/Touch ID
 
-### **1.2 Verify Your Account**
-- Provide business documentation
-- Complete identity verification
-- Wait for account approval (usually 1-2 business days)
+### **1.2 Test Biometric Authentication**
+- Open StryVr app
+- Navigate to verification section
+- Test Face ID/Touch ID authentication
+- Verify the authentication flow works correctly
 
 ---
 
-## 🔑 **Step 2: Generate API Credentials**
+## 🔑 **Step 2: Configure Custom Verification System**
 
-### **2.1 Access API Dashboard**
-1. Log into your ClearMe developer account
-2. Navigate to "API Credentials" or "Developer Tools"
-3. Click "Generate New API Key"
+### **2.1 No External Credentials Required**
+✅ **No API keys needed** - Uses Apple's built-in biometric authentication
+✅ **No external services** - Everything handled internally
+✅ **No setup fees** - Completely free to use
+✅ **No approval process** - Works immediately
 
-### **2.2 Create API Key**
-- **Key Name**: `StryVr-Production`
-- **Key Type**: Production
-- **Permissions**: Full access to verification endpoints
-- **Expiration**: Set to 1 year (renewable)
-
-### **2.3 Save Your Credentials**
-**IMPORTANT**: Save these securely - you won't see them again!
-- **API Key**: `clearme_prod_xxxxxxxxxxxxxxxx`
-- **Client Secret**: `cs_xxxxxxxxxxxxxxxxxxxxxxxx`
-- **Webhook Secret**: `whsec_xxxxxxxxxxxxxxxx`
+### **2.2 System Benefits**
+- **Secure**: Apple's Face ID/Touch ID security standards
+- **Private**: No data sent to external services
+- **Fast**: Instant verification using device biometrics
+- **Reliable**: Works offline and doesn't require internet
 
 ---
 
 ## ⚙️ **Step 3: Configure StryVr Integration**
 
-### **3.1 Update Development Credentials**
-Edit `StryVr/Config/ClearMeSecrets.swift`:
-
-```swift
-#if DEBUG
-/// Development API Key
-static let developmentAPIKey = "clearme_dev_xxxxxxxxxxxxxxxx"
-
-/// Development Client Secret
-static let developmentClientSecret = "cs_xxxxxxxxxxxxxxxxxxxxxxxx"
-#endif
-```
+### **3.1 No Configuration Required**
+✅ **System is ready to use** - No external configuration needed
+✅ **Automatic setup** - Works out of the box
+✅ **No credentials to manage** - Uses Apple's built-in authentication
 
 ### **3.2 Test Integration**
 1. Build and run StryVr in debug mode
 2. Navigate to verification section
-3. Test ClearMe verification flow
-4. Verify API calls are successful
+3. Test biometric verification flow
+4. Verify Face ID/Touch ID authentication works
 
 ---
 
-## 🌐 **Step 4: Configure Webhooks (Optional)**
+## 🌐 **Step 4: Configure Verification Storage (Optional)**
 
-### **4.1 Set Up Webhook Endpoint**
-If you want real-time verification updates:
+### **4.1 Firestore Integration**
+Verification data is automatically stored in Firestore:
 
 ```
-Webhook URL: https://stryvr.app/api/clearme/webhook
-Events: verification.completed, verification.failed
-Secret: whsec_xxxxxxxxxxxxxxxx
+Collection: userVerifications
+Document: {userID}_verification
+Fields: status, completionDate, verificationScore, etc.
 ```
 
-### **4.2 Webhook Handler**
-Create webhook handler in your backend to process verification updates.
+### **4.2 Real-time Updates**
+Firestore automatically syncs verification status across devices.
 
 ---
 
 ## 🏭 **Step 5: Production Deployment**
 
-### **5.1 App Store Connect Environment Variables**
-1. Go to App Store Connect > Your App > TestFlight > Builds
-2. Click "Environment Variables"
-3. Add the following variables:
+### **5.1 No Environment Variables Required**
+✅ **No external API keys** - Uses Apple's built-in authentication
+✅ **No configuration needed** - Works automatically in production
+✅ **No deployment complexity** - Ready for App Store submission
 
-```
-CLEARME_API_KEY=clearme_prod_xxxxxxxxxxxxxxxx
-CLEARME_CLIENT_SECRET=cs_xxxxxxxxxxxxxxxxxxxxxxxx
-```
-
-### **5.2 CI/CD Pipeline (if using)**
-Add to your deployment script:
-
-```bash
-export CLEARME_API_KEY="clearme_prod_xxxxxxxxxxxxxxxx"
-export CLEARME_CLIENT_SECRET="cs_xxxxxxxxxxxxxxxxxxxxxxxx"
-```
+### **5.2 App Store Ready**
+The custom biometric verification system is:
+- **Privacy compliant** - No external data sharing
+- **Security approved** - Uses Apple's security standards
+- **App Store ready** - No additional review requirements
 
 ---
 

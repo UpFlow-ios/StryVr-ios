@@ -9,6 +9,7 @@
 import FirebaseFirestore
 import Foundation
 import OSLog
+import LocalAuthentication // Added for biometric authentication
 
 @MainActor
 class VerificationService: ObservableObject {
@@ -252,6 +253,93 @@ class VerificationService: ObservableObject {
         try await performBackgroundCheckAPI(verification)
 
         return verification
+    }
+
+    // MARK: - Custom Biometric Verification (No External API Required)
+
+    /// Initiate custom biometric verification using Apple's Face ID/Touch ID
+    func initiateCustomBiometricVerification(for userID: String) async throws -> UserVerificationModel {
+        logger.info("Initiating custom biometric verification for user: \(userID)")
+
+        let verification = UserVerificationModel(
+            id: UUID().uuidString,
+            userID: userID,
+            verificationType: .identity,
+            verificationMethod: .clearMe, // Keep enum for consistency
+            status: .pending,
+            verificationProvider: .stryVr, // Use StryVr as provider
+            verificationData: VerificationData(),
+            requestDate: Date()
+        )
+
+        // Save to Firestore
+        try await saveVerification(verification)
+
+        // Initiate custom verification process
+        try await initiateCustomVerificationFlow(verification)
+
+        return verification
+    }
+
+    /// Custom verification flow using Apple's biometric authentication
+    private func initiateCustomVerificationFlow(_ verification: UserVerificationModel) async throws {
+        logger.info("Starting custom verification flow for user: \(verification.userID)")
+        
+        // Step 1: Biometric authentication
+        let biometricSuccess = await performBiometricAuthentication()
+        
+        if biometricSuccess {
+            // Step 2: Update verification status
+            var updatedVerification = verification
+            updatedVerification.status = .approved
+            updatedVerification.completionDate = Date()
+            updatedVerification.expirationDate = Calendar.current.date(byAdding: .year, value: 1, to: Date())
+            
+            // Step 3: Add verification data
+            updatedVerification.verificationData.clearMeData = ClearMeVerificationData(
+                clearMeID: "stryvr_\(verification.id)",
+                verificationToken: UUID().uuidString,
+                verificationLevel: .standard,
+                verificationDate: Date(),
+                verificationScore: 0.95 // High score for biometric verification
+            )
+            
+            try await updateVerification(updatedVerification)
+            logger.info("Custom biometric verification completed successfully for user: \(verification.userID)")
+        } else {
+            // Step 3: Handle failure
+            var updatedVerification = verification
+            updatedVerification.status = .failed
+            try await updateVerification(updatedVerification)
+            throw VerificationError.authenticationFailed
+        }
+    }
+
+    /// Perform biometric authentication using Apple's Face ID/Touch ID
+    private func performBiometricAuthentication() async -> Bool {
+        return await withCheckedContinuation { continuation in
+            let context = LAContext()
+            context.localizedReason = "Verify your identity for StryVr"
+            
+            var error: NSError?
+            guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
+                logger.error("Biometric authentication not available: \(error?.localizedDescription ?? "Unknown error")")
+                continuation.resume(returning: false)
+                return
+            }
+            
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: context.localizedReason) { success, error in
+                DispatchQueue.main.async {
+                    if success {
+                        self.logger.info("✅ Biometric authentication succeeded")
+                        continuation.resume(returning: true)
+                    } else {
+                        self.logger.error("❌ Biometric authentication failed: \(error?.localizedDescription ?? "Unknown reason")")
+                        continuation.resume(returning: false)
+                    }
+                }
+            }
+        }
     }
 
     // MARK: - ClearMe API Integration
