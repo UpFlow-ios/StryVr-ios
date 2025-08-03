@@ -46,7 +46,9 @@ This guide will walk you through setting up ClearMe API integration for StryVr's
 ### **2.3 Save Your Credentials**
 **IMPORTANT**: Save these securely - you won't see them again!
 - **Sandbox API Key**: `clearme_sandbox_xxxxxxxxxxxxxxxx`
+- **Sandbox Project ID**: `proj_xxxxxxxxxxxxxxxx`
 - **Production API Key**: Contact ClearMe support when ready
+- **Production Project ID**: Contact ClearMe support when ready
 
 ---
 
@@ -59,6 +61,9 @@ Edit `StryVr/Config/ClearMeSecrets.swift`:
 #if DEBUG
 /// Sandbox API Key
 static let developmentAPIKey = "clearme_sandbox_xxxxxxxxxxxxxxxx"
+
+/// Sandbox Project ID
+static let developmentProjectId = "proj_xxxxxxxxxxxxxxxx"
 #endif
 ```
 
@@ -95,6 +100,7 @@ Create webhook handler in your backend to process verification updates.
 
 ```
 CLEARME_API_KEY=clearme_prod_xxxxxxxxxxxxxxxx
+CLEARME_PROJECT_ID=proj_xxxxxxxxxxxxxxxx
 ```
 
 ### **5.2 CI/CD Pipeline (if using)**
@@ -102,6 +108,7 @@ Add to your deployment script:
 
 ```bash
 export CLEARME_API_KEY="clearme_prod_xxxxxxxxxxxxxxxx"
+export CLEARME_PROJECT_ID="proj_xxxxxxxxxxxxxxxx"
 ```
 
 ---

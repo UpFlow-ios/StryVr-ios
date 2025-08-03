@@ -344,8 +344,9 @@ class VerificationService: ObservableObject {
 
     // MARK: - ClearMe API Integration
 
-    private func initiateClearMeAPI(_ verification: UserVerificationModel) async throws {
-        guard let url = ClearMeConfig.buildURL(for: ClearMeConfig.initiateEndpoint) else {
+    /// Create a new ClearMe verification session
+    private func createClearMeSession(for userID: String) async throws -> ClearMeVerificationSession {
+        guard let url = ClearMeConfig.buildURL(for: ClearMeConfig.createSessionEndpoint) else {
             throw VerificationError.invalidURL
         }
 
@@ -357,37 +358,65 @@ class VerificationService: ObservableObject {
             request.setValue(value, forHTTPHeaderField: key)
         }
 
-        let requestBody = ClearMeRequest(
-            userID: verification.userID,
-            verificationID: verification.id,
-            verificationLevel: ClearMeConfig.defaultVerificationLevel
+        // Create request body based on ClearMe API documentation
+        let requestBody = ClearMeCreateSessionRequest(
+            projectId: ClearMeConfig.projectId,
+            redirectUrl: ClearMeConfig.redirectUrl,
+            phone: nil, // Will be collected during verification
+            email: nil, // Will be collected during verification
+            locale: "en_US",
+            customFields: ["user_id": userID],
+            clearMemberId: nil
         )
 
         request.httpBody = try JSONEncoder().encode(requestBody)
 
         let (data, response) = try await URLSession.shared.data(for: request)
 
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw VerificationError.apiError("ClearMe API request failed - no response")
+        }
+
+        if httpResponse.statusCode != 200 {
+            // Try to decode error response
+            if let errorResponse = try? JSONDecoder().decode(ClearMeError.self, from: data) {
+                throw VerificationError.apiError("ClearMe API error: \(errorResponse.error.message)")
+            } else {
+                throw VerificationError.apiError("ClearMe API request failed with status: \(httpResponse.statusCode)")
+            }
+        }
+
+        let session = try JSONDecoder().decode(ClearMeVerificationSession.self, from: data)
+        logger.info("ClearMe verification session created successfully: \(session.id)")
+        
+        return session
+    }
+
+    /// Get ClearMe verification session status
+    private func getClearMeSessionStatus(sessionId: String) async throws -> ClearMeVerificationSession {
+        let endpoint = ClearMeConfig.getSessionEndpoint.replacingOccurrences(of: "{session_id}", with: sessionId)
+        guard let url = ClearMeConfig.buildURL(for: endpoint) else {
+            throw VerificationError.invalidURL
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        // Set headers using secure configuration
+        for (key, value) in ClearMeConfig.defaultHeaders() {
+            request.setValue(value, forHTTPHeaderField: key)
+        }
+
+        let (data, response) = try await URLSession.shared.data(for: request)
+
         guard let httpResponse = response as? HTTPURLResponse,
             httpResponse.statusCode == 200
         else {
-            throw VerificationError.apiError("ClearMe API request failed")
+            throw VerificationError.apiError("ClearMe status check failed")
         }
 
-        let clearMeResponse = try JSONDecoder().decode(ClearMeResponse.self, from: data)
-
-        // Update verification with ClearMe data
-        var updatedVerification = verification
-        updatedVerification.verificationData.clearMeData = ClearMeVerificationData(
-            clearMeID: clearMeResponse.clearMeID,
-            verificationToken: clearMeResponse.verificationToken,
-            verificationLevel: clearMeResponse.verificationLevel,
-            verificationDate: Date()
-        )
-        updatedVerification.status = .inProgress
-
-        try await updateVerification(updatedVerification)
-
-        logger.info("ClearMe verification initiated successfully for user: \(verification.userID)")
+        let session = try JSONDecoder().decode(ClearMeVerificationSession.self, from: data)
+        return session
     }
 
     /// Check ClearMe verification status

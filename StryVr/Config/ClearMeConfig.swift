@@ -14,7 +14,20 @@ struct ClearMeConfig {
     // MARK: - ClearMe API Configuration
     
     /// ClearMe Identity API base URL
-    static let baseURL = "https://api.clearme.com/v1"
+    static let baseURL = "https://verified.clearme.com/v1"
+    
+    /// ClearMe Project ID (required for verification sessions)
+    static var projectId: String {
+        guard let projectId = ClearMeSecrets.projectId else {
+            fatalError("ClearMe Project ID not configured")
+        }
+        return projectId
+    }
+    
+    /// Redirect URL after verification completion
+    static var redirectUrl: String? {
+        return "https://stryvr.app/verification/complete"
+    }
     
     /// ClearMe API key (development)
     static var apiKey: String {
@@ -51,17 +64,17 @@ struct ClearMeConfig {
     
     // MARK: - ClearMe API Endpoints
     
-    /// Initiate verification endpoint
-    static let initiateEndpoint = "/verification/initiate"
+    /// Create verification session endpoint
+    static let createSessionEndpoint = "/verification_sessions"
     
-    /// Check status endpoint
-    static let statusEndpoint = "/verification/status"
+    /// Get verification session endpoint
+    static let getSessionEndpoint = "/verification_sessions/{session_id}"
     
-    /// Complete verification endpoint
-    static let completeEndpoint = "/verification/complete"
+    /// Update verification session endpoint
+    static let updateSessionEndpoint = "/verification_sessions/{session_id}"
     
-    /// Cancel verification endpoint
-    static let cancelEndpoint = "/verification/cancel"
+    /// Cancel verification session endpoint
+    static let cancelSessionEndpoint = "/verification_sessions/{session_id}/cancel"
     
     // MARK: - Security Settings
     
