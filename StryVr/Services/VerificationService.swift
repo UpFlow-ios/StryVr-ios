@@ -21,8 +21,7 @@ class VerificationService: ObservableObject {
 
     // MARK: - ClearMe Integration
 
-    private let clearMeAPIKey = "YOUR_CLEARME_API_KEY"  // Store securely
-    private let clearMeBaseURL = "https://api.clearme.com/v1"
+    private let clearMeConfig = ClearMeConfig.self
 
     // MARK: - Okta Integration
 
@@ -258,19 +257,22 @@ class VerificationService: ObservableObject {
     // MARK: - ClearMe API Integration
 
     private func initiateClearMeAPI(_ verification: UserVerificationModel) async throws {
-        guard let url = URL(string: "\(clearMeBaseURL)/verification/initiate") else {
+        guard let url = ClearMeConfig.buildURL(for: ClearMeConfig.initiateEndpoint) else {
             throw VerificationError.invalidURL
         }
 
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.setValue("Bearer \(clearMeAPIKey)", forHTTPHeaderField: "Authorization")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        // Set headers using secure configuration
+        for (key, value) in ClearMeConfig.defaultHeaders() {
+            request.setValue(value, forHTTPHeaderField: key)
+        }
 
         let requestBody = ClearMeRequest(
             userID: verification.userID,
             verificationID: verification.id,
-            verificationLevel: .standard
+            verificationLevel: ClearMeConfig.defaultVerificationLevel
         )
 
         request.httpBody = try JSONEncoder().encode(requestBody)
@@ -302,13 +304,13 @@ class VerificationService: ObservableObject {
 
     /// Check ClearMe verification status
     func checkClearMeStatus(verificationID: String) async throws -> VerificationStatus {
-        guard let url = URL(string: "\(clearMeBaseURL)/verification/status/\(verificationID)")
+        guard let url = ClearMeConfig.buildURL(for: "\(ClearMeConfig.statusEndpoint)/\(verificationID)")
         else {
             throw VerificationError.invalidURL
         }
 
         var request = URLRequest(url: url)
-        request.setValue("Bearer \(clearMeAPIKey)", forHTTPHeaderField: "Authorization")
+        request.setValue(ClearMeConfig.authorizationHeader(), forHTTPHeaderField: "Authorization")
 
         let (data, response) = try await URLSession.shared.data(for: request)
 

@@ -50,6 +50,10 @@ secrets/
 StryVr/Config/OktaConfig-Production.swift
 StryVr/Config/OktaSecrets.swift
 
+# ClearMe Configuration (Production)
+StryVr/Config/ClearMeConfig-Production.swift
+StryVr/Config/ClearMeSecrets.swift
+
 # Private Development Files
 TODO_APP_STORE_READY.md
 PRIVACY_POLICY.md
