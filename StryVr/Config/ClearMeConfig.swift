@@ -7,23 +7,32 @@
 
 import Foundation
 
-/// Secure Custom Biometric Verification Configuration
-/// Uses Apple's built-in Face ID/Touch ID for identity verification
+/// Secure ClearMe API Configuration
+/// ClearMe Identity API for biometric verification
 struct ClearMeConfig {
     
-    // MARK: - Custom Verification Configuration
+    // MARK: - ClearMe API Configuration
     
-    /// Custom verification system (no external API required)
-    static let verificationSystem = "StryVr Custom Biometric"
+    /// ClearMe Identity API base URL
+    static let baseURL = "https://api.clearme.com/v1"
     
-    /// Custom verification key (not needed for Apple biometric auth)
+    /// ClearMe API key (development)
     static var apiKey: String {
-        return "stryvr_custom_biometric_verification"
+        #if DEBUG
+        // Development API key - replace with your actual sandbox key
+        return "YOUR_CLEARME_SANDBOX_API_KEY"
+        #else
+        // Production API key - must be set via environment variable
+        guard let apiKey = ProcessInfo.processInfo.environment["CLEARME_API_KEY"] else {
+            fatalError("CLEARME_API_KEY environment variable not set for production")
+        }
+        return apiKey
+        #endif
     }
     
-    /// Custom verification secret (not needed for Apple biometric auth)
+    /// ClearMe client secret (if required)
     static var clientSecret: String? {
-        return nil // Not needed for Apple's built-in biometric authentication
+        return ClearMeSecrets.clientSecret
     }
     
     // MARK: - Verification Settings
@@ -40,19 +49,19 @@ struct ClearMeConfig {
     /// Verification timeout (in seconds)
     static let verificationTimeout: TimeInterval = 300 // 5 minutes
     
-    // MARK: - Custom Verification Endpoints
+    // MARK: - ClearMe API Endpoints
     
-    /// Custom verification flow (handled internally)
-    static let initiateEndpoint = "custom_biometric_verification"
+    /// Initiate verification endpoint
+    static let initiateEndpoint = "/verification/initiate"
     
-    /// Verification status (stored in Firestore)
-    static let statusEndpoint = "verification_status"
+    /// Check status endpoint
+    static let statusEndpoint = "/verification/status"
     
-    /// Verification completion (handled internally)
-    static let completeEndpoint = "verification_complete"
+    /// Complete verification endpoint
+    static let completeEndpoint = "/verification/complete"
     
-    /// Verification cancellation (handled internally)
-    static let cancelEndpoint = "verification_cancel"
+    /// Cancel verification endpoint
+    static let cancelEndpoint = "/verification/cancel"
     
     // MARK: - Security Settings
     
@@ -70,28 +79,33 @@ struct ClearMeConfig {
     
     // MARK: - Helper Methods
     
-    /// Build verification identifier
-    static func buildVerificationID(for endpoint: String) -> String {
-        return "stryvr_\(endpoint)_\(UUID().uuidString)"
+    /// Build full URL for endpoint
+    static func buildURL(for endpoint: String) -> URL? {
+        return URL(string: "\(baseURL)\(endpoint)")
     }
     
-    /// Get verification header
+    /// Get authorization header
     static func authorizationHeader() -> String {
-        return "StryVr-Custom-Biometric"
+        return "Bearer \(apiKey)"
     }
     
-    /// Get default verification headers
+    /// Get default headers for API requests
     static func defaultHeaders() -> [String: String] {
         return [
-            "Verification-Type": "Custom-Biometric",
-            "App-Version": "1.0",
-            "Platform": "iOS"
+            "Authorization": authorizationHeader(),
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "User-Agent": "StryVr-iOS/1.0"
         ]
     }
     
-    /// Validate custom verification configuration
+    /// Validate ClearMe API configuration
     static func validateConfiguration() -> Bool {
-        return true // Always valid since we use Apple's built-in biometric authentication
+        #if DEBUG
+        return !apiKey.isEmpty && apiKey != "YOUR_CLEARME_SANDBOX_API_KEY"
+        #else
+        return !apiKey.isEmpty
+        #endif
     }
 }
 
@@ -99,27 +113,38 @@ struct ClearMeConfig {
  
  🔐 SECURITY IMPORTANT:
  
- 1. This file contains configuration for custom biometric verification
- 2. Uses Apple's built-in Face ID/Touch ID authentication
- 3. No external API keys required
- 4. Secure and privacy-compliant
- 5. Works offline and doesn't require internet connection
+ 1. This file contains configuration, not secrets
+ 2. API keys are stored securely via environment variables
+ 3. Development keys should be replaced with actual sandbox keys
+ 4. Production keys must be set via CI/CD environment variables
+ 5. Never commit actual API keys to version control
  
- CUSTOM VERIFICATION SYSTEM:
+ PRODUCTION DEPLOYMENT:
  
- This system uses Apple's LocalAuthentication framework to:
- - Verify user identity using Face ID or Touch ID
- - Store verification status in Firestore
- - Create verification certificates
- - Track verification history
+ Set the environment variable in your CI/CD pipeline:
+ CLEARME_API_KEY=your_production_api_key_here
  
- BENEFITS:
+ APP STORE CONNECT:
  
- ✅ No external dependencies
- ✅ No API keys to manage
- ✅ Works offline
- ✅ Apple's security standards
- ✅ Privacy-compliant
- ✅ App Store ready
+ Add the environment variable in App Store Connect:
+ - Go to App Store Connect > Your App > TestFlight > Builds
+ - Add environment variable: CLEARME_API_KEY
+ - Set the value to your production API key
+ 
+ CLEARME SETUP:
+ 
+ 1. Sign up at https://verified.clearme.com
+ 2. Create a developer account
+ 3. Generate sandbox API key for testing
+ 4. Contact ClearMe support for production API key
+ 5. Configure webhook endpoints (optional)
+ 6. Set up verification levels
+ 
+ SANDBOX TESTING:
+ 
+ - Use sandbox API key for development
+ - Magic OTP code: 123456 for testing
+ - All verifications succeed by default in sandbox
+ - Check "Reject verification" to test failure scenarios
  
  */ 
