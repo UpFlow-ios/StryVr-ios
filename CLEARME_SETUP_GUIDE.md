@@ -36,6 +36,7 @@ This guide will walk you through setting up ClearMe API integration for StryVr's
 1. Log into your ClearMe developer account
 2. Navigate to "API Credentials" or "Developer Tools"
 3. Click "Generate New API Key"
+4. Note: ClearMe API uses GET requests to list verification sessions
 
 ### **2.2 Create Sandbox API Key**
 - **Key Name**: `StryVr-Sandbox`
@@ -198,6 +199,13 @@ Track the following metrics:
 - **Technical Issues**: Check the verification service logs
 - **Configuration Help**: Review ClearMeConfig.swift
 - **Testing Assistance**: Use sandbox environment first
+
+### **API Documentation**
+- **Base URL**: https://verified.clearme.com/v1
+- **Authentication**: Bearer token
+- **Method**: GET for listing verification sessions
+- **Rate Limits**: Check ClearMe documentation
+- **Webhooks**: Configure for real-time verification updates
 
 ---
 

@@ -33,7 +33,32 @@ struct ClearMeCreateSessionRequest: Codable {
 
 // MARK: - ClearMe API Response Models
 
-/// Main verification session response
+/// Main verification sessions list response
+struct ClearMeVerificationSessionsResponse: Codable {
+    let verifications: [ClearMeVerificationSession]
+    let links: ClearMePaginationLinks
+}
+
+/// Pagination links for verification sessions
+struct ClearMePaginationLinks: Codable {
+    let current: String?
+    let first: String?
+    let next: String?
+    let prev: String?
+    let last: String?
+    let totalResults: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case current
+        case first
+        case next
+        case prev
+        case last
+        case totalResults = "total_results"
+    }
+}
+
+/// Individual verification session
 struct ClearMeVerificationSession: Codable {
     let id: String
     let objectName: String

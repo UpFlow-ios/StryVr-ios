@@ -346,30 +346,20 @@ class VerificationService: ObservableObject {
 
     /// Create a new ClearMe verification session
     private func createClearMeSession(for userID: String) async throws -> ClearMeVerificationSession {
-        guard let url = ClearMeConfig.buildURL(for: ClearMeConfig.createSessionEndpoint) else {
+        guard let url = ClearMeConfig.buildURL(for: ClearMeConfig.listSessionsEndpoint) else {
             throw VerificationError.invalidURL
         }
 
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"
+        request.httpMethod = "GET"
         
         // Set headers using secure configuration
         for (key, value) in ClearMeConfig.defaultHeaders() {
             request.setValue(value, forHTTPHeaderField: key)
         }
 
-        // Create request body based on ClearMe API documentation
-        let requestBody = ClearMeCreateSessionRequest(
-            projectId: ClearMeConfig.projectId,
-            redirectUrl: ClearMeConfig.redirectUrl,
-            phone: nil, // Will be collected during verification
-            email: nil, // Will be collected during verification
-            locale: "en_US",
-            customFields: ["user_id": userID],
-            clearMemberId: nil
-        )
-
-        request.httpBody = try JSONEncoder().encode(requestBody)
+        // For listing sessions, we don't need a request body
+        // The API will return existing sessions for the project
 
         let (data, response) = try await URLSession.shared.data(for: request)
 
@@ -386,7 +376,12 @@ class VerificationService: ObservableObject {
             }
         }
 
-        let session = try JSONDecoder().decode(ClearMeVerificationSession.self, from: data)
+        let sessionsResponse = try JSONDecoder().decode(ClearMeVerificationSessionsResponse.self, from: data)
+        
+        guard let session = sessionsResponse.verifications.first else {
+            throw VerificationError.apiError("No verification sessions returned from ClearMe API")
+        }
+        
         logger.info("ClearMe verification session created successfully: \(session.id)")
         
         return session
@@ -394,8 +389,7 @@ class VerificationService: ObservableObject {
 
     /// Get ClearMe verification session status
     private func getClearMeSessionStatus(sessionId: String) async throws -> ClearMeVerificationSession {
-        let endpoint = ClearMeConfig.getSessionEndpoint.replacingOccurrences(of: "{session_id}", with: sessionId)
-        guard let url = ClearMeConfig.buildURL(for: endpoint) else {
+        guard let url = ClearMeConfig.buildURL(for: ClearMeConfig.listSessionsEndpoint) else {
             throw VerificationError.invalidURL
         }
 
@@ -415,7 +409,12 @@ class VerificationService: ObservableObject {
             throw VerificationError.apiError("ClearMe status check failed")
         }
 
-        let session = try JSONDecoder().decode(ClearMeVerificationSession.self, from: data)
+        let sessionsResponse = try JSONDecoder().decode(ClearMeVerificationSessionsResponse.self, from: data)
+        
+        guard let session = sessionsResponse.verifications.first else {
+            throw VerificationError.apiError("No verification sessions found for session ID: \(sessionId)")
+        }
+        
         return session
     }
 

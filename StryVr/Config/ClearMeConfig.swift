@@ -64,6 +64,9 @@ struct ClearMeConfig {
     
     // MARK: - ClearMe API Endpoints
     
+    /// List verification sessions endpoint
+    static let listSessionsEndpoint = "/verification_sessions"
+    
     /// Create verification session endpoint
     static let createSessionEndpoint = "/verification_sessions"
     
