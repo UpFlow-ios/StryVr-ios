@@ -44,11 +44,7 @@ struct OktaConfig {
     
     /// Okta client secret (if required)
     static var clientSecret: String? {
-        #if DEBUG
-        return nil // Not needed for public client
-        #else
-        return ProcessInfo.processInfo.environment["OKTA_CLIENT_SECRET"]
-        #endif
+        return OktaSecrets.clientSecret
     }
     
     // MARK: - OAuth Configuration
