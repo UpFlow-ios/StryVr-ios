@@ -389,8 +389,20 @@ class VerificationService: ObservableObject {
 
     /// Get ClearMe verification session status
     private func getClearMeSessionStatus(sessionId: String) async throws -> ClearMeVerificationSession {
-        guard let url = ClearMeConfig.buildURL(for: ClearMeConfig.listSessionsEndpoint) else {
-            throw VerificationError.invalidURL
+        let endpoint = ClearMeConfig.getSessionEndpoint.replacingOccurrences(of: "{session_id}", with: sessionId)
+        
+        // Use secure URL for getting specific session data (contains PII)
+        let url: URL
+        if ClearMeConfig.requiresSecureURL(endpoint) {
+            guard let secureURL = ClearMeConfig.buildSecureURL(for: endpoint) else {
+                throw VerificationError.invalidURL
+            }
+            url = secureURL
+        } else {
+            guard let regularURL = ClearMeConfig.buildURL(for: endpoint) else {
+                throw VerificationError.invalidURL
+            }
+            url = regularURL
         }
 
         var request = URLRequest(url: url)
@@ -409,11 +421,8 @@ class VerificationService: ObservableObject {
             throw VerificationError.apiError("ClearMe status check failed")
         }
 
-        let sessionsResponse = try JSONDecoder().decode(ClearMeVerificationSessionsResponse.self, from: data)
-        
-        guard let session = sessionsResponse.verifications.first else {
-            throw VerificationError.apiError("No verification sessions found for session ID: \(sessionId)")
-        }
+        // For getting a specific session, the response is a single session object, not an array
+        let session = try JSONDecoder().decode(ClearMeVerificationSession.self, from: data)
         
         return session
     }

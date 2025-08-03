@@ -138,6 +138,16 @@ Test various error scenarios:
 
 ## 🔐 **Step 7: Security & Compliance**
 
+### **7.0 Dual URL System**
+ClearMe uses two different base URLs for security:
+- **General Operations**: `https://verified.clearme.com/v1`
+- **Sensitive PII Data**: `https://secure.verified.clearme.com/v1`
+
+**Automatic URL Selection:**
+- StryVr automatically uses the secure URL for endpoints that return sensitive data
+- No manual configuration required
+- Ensures compliance with data protection regulations
+
 ### **7.1 Data Protection**
 - All API calls use HTTPS
 - API keys are stored securely
@@ -201,11 +211,13 @@ Track the following metrics:
 - **Testing Assistance**: Use sandbox environment first
 
 ### **API Documentation**
-- **Base URL**: https://verified.clearme.com/v1
+- **Base URL**: https://verified.clearme.com/v1 (general operations)
+- **Secure Base URL**: https://secure.verified.clearme.com/v1 (sensitive PII data)
 - **Authentication**: Bearer token
 - **Method**: GET for listing verification sessions
 - **Rate Limits**: Check ClearMe documentation
 - **Webhooks**: Configure for real-time verification updates
+- **Security**: Sensitive endpoints automatically use secure URL
 
 ---
 

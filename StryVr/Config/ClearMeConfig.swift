@@ -13,8 +13,11 @@ struct ClearMeConfig {
     
     // MARK: - ClearMe API Configuration
     
-    /// ClearMe Identity API base URL
+    /// ClearMe Identity API base URL for general operations
     static let baseURL = "https://verified.clearme.com/v1"
+    
+    /// Secure base URL for sensitive PII data (SSNs, government IDs)
+    static let secureBaseURL = "https://secure.verified.clearme.com/v1"
     
     /// ClearMe Project ID (required for verification sessions)
     static var projectId: String {
@@ -98,6 +101,25 @@ struct ClearMeConfig {
     /// Build full URL for endpoint
     static func buildURL(for endpoint: String) -> URL? {
         return URL(string: "\(baseURL)\(endpoint)")
+    }
+    
+    /// Build secure URL for sensitive PII endpoints
+    static func buildSecureURL(for endpoint: String) -> URL? {
+        return URL(string: "\(secureBaseURL)\(endpoint)")
+    }
+    
+    /// Determine if endpoint requires secure URL
+    static func requiresSecureURL(_ endpoint: String) -> Bool {
+        // Endpoints that return sensitive PII data
+        let secureEndpoints = [
+            "/verification_sessions/{session_id}", // Get specific session with PII
+            "/verification_sessions/{id}" // Alternative format
+        ]
+        
+        return secureEndpoints.contains { secureEndpoint in
+            endpoint.contains(secureEndpoint.replacingOccurrences(of: "{session_id}", with: ""))
+                || endpoint.contains(secureEndpoint.replacingOccurrences(of: "{id}", with: ""))
+        }
     }
     
     /// Get authorization header
