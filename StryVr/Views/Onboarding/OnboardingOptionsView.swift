@@ -3,7 +3,7 @@
 //  StryVr
 //
 //  Created by Joe Dormond on 4/17/25.
-//  🧭 Entry Point: Login, Register or Continue Without Account
+//  🧭 Entry Point: Login, Register or Continue Without Account with iOS 18 Liquid Glass
 //
 
 import SwiftUI
@@ -13,6 +13,7 @@ struct OnboardingOptionsView: View {
     @State private var showLogin = false
     @State private var showRegister = false
     @State private var skipToApp = false
+    @Namespace private var glassNamespace
 
     var body: some View {
         ZStack {
@@ -22,29 +23,59 @@ struct OnboardingOptionsView: View {
                 // MARK: - Branding
 
                 if let logo = UIImage(named: "LogoDark") {
-                    Image(uiImage: logo)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 120, height: 120)
-                        .accessibilityLabel("StryVr Logo")
-                        .accessibilityHint("Displays the app logo")
+                    if #available(iOS 18.0, *) {
+                        Image(uiImage: logo)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 120, height: 120)
+                            .glassEffect(.regular.tint(Theme.Colors.accent.opacity(0.2)), in: RoundedRectangle(cornerRadius: 16))
+                            .glassEffectID("options-logo", in: glassNamespace)
+                            .accessibilityLabel("StryVr Logo")
+                            .accessibilityHint("Displays the app logo")
+                    } else {
+                        Image(uiImage: logo)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 120, height: 120)
+                            .accessibilityLabel("StryVr Logo")
+                            .accessibilityHint("Displays the app logo")
+                    }
                 } else {
-                    Text("StryVr")
-                        .font(Theme.Typography.headline)
-                        .foregroundColor(Theme.Colors.textPrimary)
-                        .accessibilityLabel("StryVr Text Logo")
+                    if #available(iOS 18.0, *) {
+                        Text("StryVr")
+                            .font(Theme.Typography.headline)
+                            .foregroundColor(Theme.Colors.textPrimary)
+                            .glassEffect(.regular.tint(Theme.Colors.accent.opacity(0.1)), in: RoundedRectangle(cornerRadius: 12))
+                            .glassEffectID("options-text-logo", in: glassNamespace)
+                            .accessibilityLabel("StryVr Text Logo")
+                    } else {
+                        Text("StryVr")
+                            .font(Theme.Typography.headline)
+                            .foregroundColor(Theme.Colors.textPrimary)
+                            .accessibilityLabel("StryVr Text Logo")
+                    }
                 }
 
-                Text("Welcome to StryVr")
-                    .font(Theme.Typography.headline)
-                    .foregroundColor(Theme.Colors.textPrimary)
-                    .accessibilityLabel("Welcome to StryVr")
+                if #available(iOS 18.0, *) {
+                    Text("Welcome to StryVr")
+                        .font(Theme.Typography.headline)
+                        .foregroundColor(Theme.Colors.textPrimary)
+                        .glassEffect(.regular.tint(Theme.Colors.textPrimary.opacity(0.05)), in: RoundedRectangle(cornerRadius: 8))
+                        .glassEffectID("options-welcome-title", in: glassNamespace)
+                        .accessibilityLabel("Welcome to StryVr")
+                } else {
+                    Text("Welcome to StryVr")
+                        .font(Theme.Typography.headline)
+                        .foregroundColor(Theme.Colors.textPrimary)
+                        .accessibilityLabel("Welcome to StryVr")
+                }
 
                 Text("Your personalized skill journey starts here.")
                     .font(Theme.Typography.caption)
                     .foregroundColor(Theme.Colors.textSecondary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, Theme.Spacing.medium)
+                    .applyOptionsMessageGlassEffect()
 
                 Spacer()
 
@@ -79,6 +110,7 @@ struct OnboardingOptionsView: View {
                                 .foregroundColor(Theme.Colors.textSecondary)
                         }
                     )
+                    .applySkipButtonGlassEffect()
                     .accessibilityLabel("Continue without an account Button")
                     .accessibilityHint("Skips login and navigates to the app")
                 }
@@ -119,5 +151,27 @@ struct OnboardingOptionsView: View {
 
     private enum Destination {
         case login, register, skip
+    }
+}
+
+// MARK: - iOS 18 Liquid Glass Helper Extensions
+
+extension View {
+    /// Apply options message glass effect with iOS 18 Liquid Glass
+    func applyOptionsMessageGlassEffect() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular.tint(Theme.Colors.textSecondary.opacity(0.05)), in: RoundedRectangle(cornerRadius: 8))
+        } else {
+            return self
+        }
+    }
+    
+    /// Apply skip button glass effect with iOS 18 Liquid Glass
+    func applySkipButtonGlassEffect() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular.tint(Theme.Colors.textSecondary.opacity(0.1)), in: RoundedRectangle(cornerRadius: 6))
+        } else {
+            return self
+        }
     }
 }

@@ -3,7 +3,7 @@
 //  StryVr
 //
 //  Created by Joe Dormond on 3/12/25.
-//  🤖 AI-Powered Skill Coach – Learning Insights + Personalized Suggestions
+//  🤖 AI-Powered Skill Coach – Learning Insights + Personalized Suggestions with iOS 18 Liquid Glass
 //
 
 import SwiftUI
@@ -12,8 +12,9 @@ struct AISkillCoachView: View {
     @State private var recommendedSkills: [String] = []
     @State private var progressInsights: String = "Loading insights..."
     @State private var hasError: Bool = false
-
     @State private var isLoading: Bool = true
+    @Namespace private var glassNamespace
+
     var body: some View {
         ZStack {
             Theme.Colors.background.ignoresSafeArea()
@@ -23,11 +24,22 @@ struct AISkillCoachView: View {
                     // MARK: - Header
 
                     HStack(spacing: 8) {
-                        Image(systemName: "lightbulb.fill")
-                            .foregroundColor(.yellow)
-                            .font(.title2)
-                            .animateSymbol(true, type: "variableColor")
-                            .shadow(color: .yellow.opacity(0.5), radius: 8)
+                        if #available(iOS 18.0, *) {
+                            Image(systemName: "lightbulb.fill")
+                                .foregroundColor(.yellow)
+                                .font(.title2)
+                                .animateSymbol(true, type: "variableColor")
+                                .glassEffect(.regular.tint(.yellow.opacity(0.3)), in: Circle())
+                                .glassEffectID("ai-coach-icon", in: glassNamespace)
+                                .shadow(color: .yellow.opacity(0.5), radius: 8)
+                        } else {
+                            Image(systemName: "lightbulb.fill")
+                                .foregroundColor(.yellow)
+                                .font(.title2)
+                                .animateSymbol(true, type: "variableColor")
+                                .shadow(color: .yellow.opacity(0.5), radius: 8)
+                        }
+                        
                         Text("AI Skill Coach")
                             .font(Theme.Typography.headline)
                             .foregroundColor(Theme.Colors.textPrimary)
@@ -45,12 +57,14 @@ struct AISkillCoachView: View {
                                 Text("Failed to load recommendations. Please try again later.")
                                     .font(Theme.Typography.caption)
                                     .foregroundColor(.red)
+                                    .applyErrorGlassEffect()
                                     .accessibilityLabel("Error: Failed to load recommendations")
                                 Button("Retry") {
                                     fetchSkillRecommendations()
                                 }
                                 .font(Theme.Typography.caption)
                                 .foregroundColor(Theme.Colors.accent)
+                                .applyRetryButtonGlassEffect()
                                 .accessibilityLabel("Retry button")
                             }
                         } else if recommendedSkills.isEmpty {
@@ -72,15 +86,26 @@ struct AISkillCoachView: View {
 
                     StryVrCardView(title: "📈 Growth Insights") {
                         if isLoading {
-                            ProgressView()
-                                .progressViewStyle(
-                                    CircularProgressViewStyle(tint: Theme.Colors.accent)
-                                )
-                                .accessibilityLabel("Loading progress insights")
+                            if #available(iOS 18.0, *) {
+                                ProgressView()
+                                    .progressViewStyle(
+                                        CircularProgressViewStyle(tint: Theme.Colors.accent)
+                                    )
+                                    .glassEffect(.regular.tint(Theme.Colors.accent.opacity(0.2)), in: Circle())
+                                    .glassEffectID("progress-loader", in: glassNamespace)
+                                    .accessibilityLabel("Loading progress insights")
+                            } else {
+                                ProgressView()
+                                    .progressViewStyle(
+                                        CircularProgressViewStyle(tint: Theme.Colors.accent)
+                                    )
+                                    .accessibilityLabel("Loading progress insights")
+                            }
                         } else {
                             Text(progressInsights)
                                 .font(Theme.Typography.body)
                                 .foregroundColor(Theme.Colors.textSecondary)
+                                .applyInsightTextGlassEffect()
                                 .accessibilityLabel("Progress insight: \(progressInsights)")
                         }
                     }
@@ -125,6 +150,37 @@ struct AISkillCoachView: View {
                     "Your coding efficiency has improved by 18% this month. Keep up the great work!"
                 self.isLoading = false
             }
+        }
+    }
+}
+
+// MARK: - iOS 18 Liquid Glass Helper Extensions
+
+extension View {
+    /// Apply error glass effect with iOS 18 Liquid Glass
+    func applyErrorGlassEffect() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular.tint(.red.opacity(0.1)), in: RoundedRectangle(cornerRadius: 8))
+        } else {
+            return self
+        }
+    }
+    
+    /// Apply retry button glass effect with iOS 18 Liquid Glass
+    func applyRetryButtonGlassEffect() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular.tint(Theme.Colors.accent.opacity(0.1)), in: RoundedRectangle(cornerRadius: 6))
+        } else {
+            return self
+        }
+    }
+    
+    /// Apply insight text glass effect with iOS 18 Liquid Glass
+    func applyInsightTextGlassEffect() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular.tint(Theme.Colors.textSecondary.opacity(0.05)), in: RoundedRectangle(cornerRadius: 8))
+        } else {
+            return self
         }
     }
 }

@@ -3,7 +3,7 @@
 //  StryVr
 //
 //  Created by Joe Dormond on 3/6/25.
-//  📊 Skill Visualization Dashboards – Interactive Charts & AI Insights
+//  📊 Skill Visualization Dashboards – Interactive Charts & AI Insights with iOS 18 Liquid Glass
 //
 
 import Charts
@@ -17,6 +17,7 @@ struct SkillVisualizationDashboards: View {
     @State private var skillProgress: [SkillProgress] = []
     @State private var hasError: Bool = false
     @State private var errorMessage: String = ""
+    @Namespace private var glassNamespace
     private let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr",
         category: "SkillVisualizationDashboards")
@@ -28,24 +29,47 @@ struct SkillVisualizationDashboards: View {
 
                 if hasError {
                     VStack {
-                        Text("⚠️ Failed to load skill data.")
-                            .foregroundColor(.red)
-                            .font(Theme.Typography.body)
-                            .multilineTextAlignment(.center)
-                            .padding()
-                            .accessibilityLabel("Error: Failed to load skill data")
+                        if #available(iOS 18.0, *) {
+                            Text("⚠️ Failed to load skill data.")
+                                .foregroundColor(.red)
+                                .font(Theme.Typography.body)
+                                .multilineTextAlignment(.center)
+                                .padding()
+                                .glassEffect(
+                                    .regular.tint(.red.opacity(0.1)),
+                                    in: RoundedRectangle(cornerRadius: 8)
+                                )
+                                .glassEffectID("error-message", in: glassNamespace)
+                                .accessibilityLabel("Error: Failed to load skill data")
+                        } else {
+                            Text("⚠️ Failed to load skill data.")
+                                .foregroundColor(.red)
+                                .font(Theme.Typography.body)
+                                .multilineTextAlignment(.center)
+                                .padding()
+                                .accessibilityLabel("Error: Failed to load skill data")
+                        }
                         Button("Retry") {
                             fetchSkillProgress()
                         }
                         .font(Theme.Typography.buttonText)
                         .foregroundColor(Theme.Colors.accent)
+                        .applyRetryButtonGlassEffect()
                         .accessibilityLabel("Retry button")
                     }
                 } else if skillProgress.isEmpty {
                     VStack {
-                        ProgressView("Loading skill data...")
-                            .progressViewStyle(CircularProgressViewStyle(tint: Theme.Colors.accent))
-                            .accessibilityLabel("Loading skill data")
+                        if #available(iOS 18.0, *) {
+                            ProgressView("Loading skill data...")
+                                .progressViewStyle(CircularProgressViewStyle(tint: Theme.Colors.accent))
+                                .glassEffect(.regular.tint(Theme.Colors.accent.opacity(0.2)), in: Circle())
+                                .glassEffectID("loading-progress", in: glassNamespace)
+                                .accessibilityLabel("Loading skill data")
+                        } else {
+                            ProgressView("Loading skill data...")
+                                .progressViewStyle(CircularProgressViewStyle(tint: Theme.Colors.accent))
+                                .accessibilityLabel("Loading skill data")
+                        }
                         Spacer()
                     }
                     .padding()
@@ -54,10 +78,19 @@ struct SkillVisualizationDashboards: View {
                         VStack(alignment: .leading, spacing: Theme.Spacing.large) {
                             // MARK: - Header
 
-                            Text("📊 Skill Progress Dashboard")
-                                .font(Theme.Typography.headline)
-                                .foregroundColor(Theme.Colors.textPrimary)
-                                .padding(.top, Theme.Spacing.large)
+                            if #available(iOS 18.0, *) {
+                                Text("📊 Skill Progress Dashboard")
+                                    .font(Theme.Typography.headline)
+                                    .foregroundColor(Theme.Colors.textPrimary)
+                                    .padding(.top, Theme.Spacing.large)
+                                    .glassEffect(.regular.tint(Theme.Colors.textPrimary.opacity(0.05)), in: RoundedRectangle(cornerRadius: 8))
+                                    .glassEffectID("dashboard-title", in: glassNamespace)
+                            } else {
+                                Text("📊 Skill Progress Dashboard")
+                                    .font(Theme.Typography.headline)
+                                    .foregroundColor(Theme.Colors.textPrimary)
+                                    .padding(.top, Theme.Spacing.large)
+                            }
 
                             // MARK: - Chart
 

@@ -2,7 +2,7 @@
 //  WorkplaceBehaviorFeedbackView.swift
 //  StryVr
 //
-//  📋 Structured Workplace Behavior Feedback System
+//  📋 Structured Workplace Behavior Feedback System with iOS 18 Liquid Glass
 //
 
 import SwiftUI
@@ -14,15 +14,25 @@ struct WorkplaceBehaviorFeedbackView: View {
     @State private var comments: String = ""
     @State private var isAnonymous: Bool = true
     @State private var submissionSuccess: Bool = false
+    @Namespace private var glassNamespace
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: Theme.Spacing.large) {
-                    Text("🧠 Worplace Behavior Feedback")
-                        .font(Theme.Typography.headline)
-                        .foregroundColor(Theme.Colors.textPrimary)
-                        .padding(.top)
+                    if #available(iOS 18.0, *) {
+                        Text("🧠 Worplace Behavior Feedback")
+                            .font(Theme.Typography.headline)
+                            .foregroundColor(Theme.Colors.textPrimary)
+                            .padding(.top)
+                            .glassEffect(.regular.tint(Theme.Colors.textPrimary.opacity(0.05)), in: RoundedRectangle(cornerRadius: 8))
+                            .glassEffectID("feedback-title", in: glassNamespace)
+                    } else {
+                        Text("🧠 Worplace Behavior Feedback")
+                            .font(Theme.Typography.headline)
+                            .foregroundColor(Theme.Colors.textPrimary)
+                            .padding(.top)
+                    }
 
                     Group {
                         behaviorRatingRow(title: "Collaboration", rating: $collaborationRating)
@@ -36,8 +46,7 @@ struct WorkplaceBehaviorFeedbackView: View {
                         TextEditor(text: $comments)
                             .frame(height: 120)
                             .padding(8)
-                            .background(Theme.Colors.card)
-                            .cornerRadius(Theme.CornerRadius.medium)
+                            .applyCommentsGlassEffect()
                     }
 
                     Toggle(isOn: $isAnonymous) {
@@ -52,10 +61,19 @@ struct WorkplaceBehaviorFeedbackView: View {
                     .padding(.top)
 
                     if submissionSuccess {
-                        Text("✅ Feedback submitted successfully!")
-                            .font(Theme.Typography.caption)
-                            .foregroundColor(.green)
-                            .transition(.opacity)
+                        if #available(iOS 18.0, *) {
+                            Text("✅ Feedback submitted successfully!")
+                                .font(Theme.Typography.caption)
+                                .foregroundColor(.green)
+                                .glassEffect(.regular.tint(.green.opacity(0.1)), in: RoundedRectangle(cornerRadius: 8))
+                                .glassEffectID("success-message", in: glassNamespace)
+                                .transition(.opacity)
+                        } else {
+                            Text("✅ Feedback submitted successfully!")
+                                .font(Theme.Typography.caption)
+                                .foregroundColor(.green)
+                                .transition(.opacity)
+                        }
                     }
 
                     Spacer()
@@ -77,13 +95,25 @@ struct WorkplaceBehaviorFeedbackView: View {
                 .foregroundColor(Theme.Colors.textPrimary)
             HStack(spacing: 8) {
                 ForEach(1 ... 5, id: \ .self) { value in
-                    Image(systemName: value <= rating.wrappedValue ? "star.fill" : "star")
-                        .resizable()
-                        .frame(width: 24, height: 24)
-                        .foregroundColor(value <= rating.wrappedValue ? .yellow : .gray)
-                        .onTapGesture {
-                            rating.wrappedValue = value
-                        }
+                    if #available(iOS 18.0, *) {
+                        Image(systemName: value <= rating.wrappedValue ? "star.fill" : "star")
+                            .resizable()
+                            .frame(width: 24, height: 24)
+                            .foregroundColor(value <= rating.wrappedValue ? .yellow : .gray)
+                            .glassEffect(.regular.tint(value <= rating.wrappedValue ? .yellow.opacity(0.2) : .gray.opacity(0.1)), in: Circle())
+                            .glassEffectID("star-\(value)", in: glassNamespace)
+                            .onTapGesture {
+                                rating.wrappedValue = value
+                            }
+                    } else {
+                        Image(systemName: value <= rating.wrappedValue ? "star.fill" : "star")
+                            .resizable()
+                            .frame(width: 24, height: 24)
+                            .foregroundColor(value <= rating.wrappedValue ? .yellow : .gray)
+                            .onTapGesture {
+                                rating.wrappedValue = value
+                            }
+                    }
                 }
             }
         }
@@ -105,4 +135,18 @@ struct WorkplaceBehaviorFeedbackView: View {
 
 #Preview {
     WorkplaceBehaviorFeedbackView()
+}
+
+// MARK: - iOS 18 Liquid Glass Helper Extensions
+
+extension View {
+    /// Apply comments glass effect with iOS 18 Liquid Glass
+    func applyCommentsGlassEffect() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular.tint(Theme.Colors.card.opacity(0.3)), in: RoundedRectangle(cornerRadius: Theme.CornerRadius.medium))
+        } else {
+            return self.background(Theme.Colors.card)
+                .cornerRadius(Theme.CornerRadius.medium)
+        }
+    }
 }

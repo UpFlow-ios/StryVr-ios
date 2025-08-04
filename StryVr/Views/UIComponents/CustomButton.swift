@@ -3,12 +3,12 @@
 //  StryVr
 //
 //  Created by Joe Dormond on 3/6/25.
-//  🌱 Themed Minimalist Button with Icon & Customization Support
+//  🌱 Themed Minimalist Button with iOS 18 Liquid Glass & Customization Support
 //
 
 import SwiftUI
 
-/// A reusable, minimalist StryVr button with optional icon and theming
+/// A reusable, minimalist StryVr button with optional icon and iOS 18 Liquid Glass theming
 struct CustomButton: View {
     var title: String
     var action: () -> Void
@@ -22,20 +22,29 @@ struct CustomButton: View {
     var shadowColor: Color = Theme.Colors.accent.opacity(0.15)
     var shadowRadius: CGFloat = 4
     var shadowOffset: CGSize = .init(width: 0, height: 2)
+    var useLiquidGlass: Bool = true
+    @Namespace private var glassNamespace
 
     var body: some View {
         Button(action: action) {
             HStack(spacing: Theme.Spacing.small) {
                 if let icon = icon {
-                    Image(systemName: icon)
-                        .font(font)
+                    if #available(iOS 18.0, *), useLiquidGlass {
+                        Image(systemName: icon)
+                            .font(font)
+                            .glassEffect(.regular.tint(textColor.opacity(0.3)), in: Circle())
+                            .glassEffectID("button-icon-\(title)", in: glassNamespace)
+                    } else {
+                        Image(systemName: icon)
+                            .font(font)
+                    }
                 }
                 Text(title)
                     .font(font)
                     .fontWeight(.semibold)
             }
             .padding(padding)
-            .background(backgroundColor)
+            .applyCustomButtonGlassEffect()
             .foregroundColor(textColor)
             .frame(maxWidth: fullWidth ? .infinity : nil)
             .cornerRadius(cornerRadius)
@@ -49,6 +58,21 @@ struct CustomButton: View {
         .buttonStyle(.plain)
         .accessibilityLabel("\(title) button")
         .accessibilityHint("Tap to \(title.lowercased())")
+    }
+}
+
+// MARK: - iOS 18 Liquid Glass Helper Extensions
+
+extension View {
+    /// Apply custom button glass effect with iOS 18 Liquid Glass
+    func applyCustomButtonGlassEffect() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(
+                .regular.tint(Theme.Colors.accent.opacity(0.3)),
+                in: RoundedRectangle(cornerRadius: Theme.CornerRadius.medium))
+        } else {
+            return self.background(Theme.Colors.accent)
+        }
     }
 }
 

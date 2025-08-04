@@ -2,7 +2,7 @@
 //  RegisterView.swift
 //  StryVr
 //
-//  🔐 Secure, Firebase-integrated Account Creation with Optional Confetti Celebration
+//  🔐 Secure, Firebase-integrated Account Creation with iOS 18 Liquid Glass
 //
 
 import ConfettiSwiftUI
@@ -17,6 +17,7 @@ struct RegisterView: View {
     @State private var errorMessage: String?
     @State private var isLoading: Bool = false
     @State private var showConfetti: Int = 0
+    @Namespace private var glassNamespace
 
     private let authViewModel = AuthViewModel.shared
 
@@ -38,20 +39,17 @@ struct RegisterView: View {
                         .keyboardType(.emailAddress)
                         .autocapitalization(.none)
                         .padding()
-                        .background(Theme.Colors.card)
-                        .cornerRadius(Theme.CornerRadius.medium)
+                        .applyRegisterFieldGlassEffect()
 
                     SecureField("Password", text: $password)
                         .textContentType(.newPassword)
                         .padding()
-                        .background(Theme.Colors.card)
-                        .cornerRadius(Theme.CornerRadius.medium)
+                        .applyRegisterFieldGlassEffect()
 
                     SecureField("Confirm Password", text: $confirmPassword)
                         .textContentType(.password)
                         .padding()
-                        .background(Theme.Colors.card)
-                        .cornerRadius(Theme.CornerRadius.medium)
+                        .applyRegisterFieldGlassEffect()
                 }
 
                 // MARK: - Error Message
@@ -62,6 +60,7 @@ struct RegisterView: View {
                         .foregroundColor(.red)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, Theme.Spacing.medium)
+                        .applyErrorGlassEffect()
                 }
 
                 // MARK: - Register Button
@@ -76,8 +75,7 @@ struct RegisterView: View {
                             .foregroundColor(Theme.Colors.whiteText)
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Theme.Colors.accent)
-                            .cornerRadius(Theme.CornerRadius.medium)
+                            .applyRegisterButtonGlassEffect()
                     }
                 }
                 .disabled(isLoading)
@@ -95,6 +93,7 @@ struct RegisterView: View {
                     }
                     .font(Theme.Typography.caption)
                     .foregroundColor(Theme.Colors.accent)
+                    .applyLinkButtonGlassEffect()
                 }
 
                 Spacer()
@@ -167,5 +166,47 @@ struct RegisterView: View {
     private func simpleHaptic() {
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
+    }
+}
+
+// MARK: - iOS 18 Liquid Glass Helper Extensions
+
+extension View {
+    /// Apply register field glass effect with iOS 18 Liquid Glass
+    func applyRegisterFieldGlassEffect() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular.tint(Theme.Colors.card.opacity(0.3)), in: RoundedRectangle(cornerRadius: Theme.CornerRadius.medium))
+        } else {
+            return self.background(Theme.Colors.card)
+                .cornerRadius(Theme.CornerRadius.medium)
+        }
+    }
+    
+    /// Apply register button glass effect with iOS 18 Liquid Glass
+    func applyRegisterButtonGlassEffect() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular.tint(Theme.Colors.accent.opacity(0.3)), in: RoundedRectangle(cornerRadius: Theme.CornerRadius.medium))
+        } else {
+            return self.background(Theme.Colors.accent)
+                .cornerRadius(Theme.CornerRadius.medium)
+        }
+    }
+    
+    /// Apply link button glass effect with iOS 18 Liquid Glass
+    func applyLinkButtonGlassEffect() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular.tint(Theme.Colors.accent.opacity(0.1)), in: RoundedRectangle(cornerRadius: 6))
+        } else {
+            return self
+        }
+    }
+    
+    /// Apply error glass effect with iOS 18 Liquid Glass
+    func applyErrorGlassEffect() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular.tint(.red.opacity(0.1)), in: RoundedRectangle(cornerRadius: 8))
+        } else {
+            return self
+        }
     }
 }

@@ -3,16 +3,17 @@
 //  StryVr
 //
 //  Created by Joe Dormond on 3/6/25.
-//  📈 Business Analytics & Performance Metrics
+//  📈 Business Analytics & Performance Metrics with iOS 18 Liquid Glass
 //
 
+import Charts
 import Foundation
 import SwiftUI
-import Charts
 
 struct BusinessAnalyticsDashboard: View {
     @State private var teamReports: [LearningReport] = []
     @State private var errorMessage: String?
+    @Namespace private var glassNamespace
 
     // MARK: - Computed Analytics
 
@@ -34,10 +35,22 @@ struct BusinessAnalyticsDashboard: View {
                 VStack(alignment: .leading, spacing: Theme.Spacing.large) {
                     // MARK: - Dashboard Title
 
-                    Text("📈 Business Analytics")
-                        .font(Theme.Typography.headline)
-                        .padding(.top, Theme.Spacing.medium)
-                        .padding(.horizontal)
+                    if #available(iOS 18.0, *) {
+                        Text("📈 Business Analytics")
+                            .font(Theme.Typography.headline)
+                            .padding(.top, Theme.Spacing.medium)
+                            .padding(.horizontal)
+                            .glassEffect(
+                                .regular.tint(Theme.Colors.textPrimary.opacity(0.05)),
+                                in: RoundedRectangle(cornerRadius: 8)
+                            )
+                            .glassEffectID("dashboard-title", in: glassNamespace)
+                    } else {
+                        Text("📈 Business Analytics")
+                            .font(Theme.Typography.headline)
+                            .padding(.top, Theme.Spacing.medium)
+                            .padding(.horizontal)
+                    }
 
                     // MARK: - Company Info (Optional)
 
@@ -53,9 +66,20 @@ struct BusinessAnalyticsDashboard: View {
                             // Future: export as PDF/CSV
                         },
                         label: {
-                            Label("Export Summary", systemImage: "square.and.arrow.up")
-                                .font(Theme.Typography.caption)
-                                .foregroundColor(Theme.Colors.accent)
+                            if #available(iOS 18.0, *) {
+                                Label("Export Summary", systemImage: "square.and.arrow.up")
+                                    .font(Theme.Typography.caption)
+                                    .foregroundColor(Theme.Colors.accent)
+                                    .glassEffect(
+                                        .regular.tint(Theme.Colors.accent.opacity(0.1)),
+                                        in: RoundedRectangle(cornerRadius: 6)
+                                    )
+                                    .glassEffectID("export-button", in: glassNamespace)
+                            } else {
+                                Label("Export Summary", systemImage: "square.and.arrow.up")
+                                    .font(Theme.Typography.caption)
+                                    .foregroundColor(Theme.Colors.accent)
+                            }
                         }
                     )
                     .padding(.horizontal)
@@ -82,9 +106,7 @@ struct BusinessAnalyticsDashboard: View {
                             }
                             .frame(height: 240)
                             .padding(.horizontal)
-                            .background(Theme.Colors.card)
-                            .cornerRadius(Theme.CornerRadius.medium)
-                            .shadow(radius: 2)
+                            .applyChartGlassEffect()
                             .accessibilityLabel("Average skill progress chart")
                         }
                     } else if errorMessage == nil {
@@ -98,9 +120,20 @@ struct BusinessAnalyticsDashboard: View {
 
                     if !topPerformers.isEmpty {
                         Group {
-                            Text("🏅 Top Performers")
-                                .font(Theme.Typography.subheadline)
-                                .padding(.horizontal)
+                            if #available(iOS 18.0, *) {
+                                Text("🏅 Top Performers")
+                                    .font(Theme.Typography.subheadline)
+                                    .padding(.horizontal)
+                                    .glassEffect(
+                                        .regular.tint(Theme.Colors.textPrimary.opacity(0.05)),
+                                        in: RoundedRectangle(cornerRadius: 6)
+                                    )
+                                    .glassEffectID("top-performers-title", in: glassNamespace)
+                            } else {
+                                Text("🏅 Top Performers")
+                                    .font(Theme.Typography.subheadline)
+                                    .padding(.horizontal)
+                            }
 
                             ForEach(topPerformers.prefix(3)) { user in
                                 HStack {
@@ -133,9 +166,17 @@ struct BusinessAnalyticsDashboard: View {
 
                     if !lowPerformingSkills.isEmpty {
                         Group {
-                            Text("⚠️ Skills Needing Attention")
-                                .font(Theme.Typography.subheadline)
-                                .padding(.horizontal)
+                            if #available(iOS 18.0, *) {
+                                Text("⚠️ Skills Needing Attention")
+                                    .font(Theme.Typography.subheadline)
+                                    .padding(.horizontal)
+                                    .glassEffect(.regular.tint(.orange.opacity(0.1)), in: RoundedRectangle(cornerRadius: 6))
+                                    .glassEffectID("skills-attention-title", in: glassNamespace)
+                            } else {
+                                Text("⚠️ Skills Needing Attention")
+                                    .font(Theme.Typography.subheadline)
+                                    .padding(.horizontal)
+                            }
 
                             VStack(alignment: .leading, spacing: 6) {
                                 ForEach(lowPerformingSkills, id: \.self) { skill in
@@ -161,6 +202,7 @@ struct BusinessAnalyticsDashboard: View {
                             .foregroundColor(.red)
                             .multilineTextAlignment(.center)
                             .padding()
+                            .applyErrorGlassEffect()
                             .accessibilityLabel("Error: \(errorMessage)")
                     }
                 }
@@ -171,7 +213,13 @@ struct BusinessAnalyticsDashboard: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: loadData) {
-                        Image(systemName: "arrow.clockwise")
+                        if #available(iOS 18.0, *) {
+                            Image(systemName: "arrow.clockwise")
+                                .glassEffect(.regular.tint(Theme.Colors.accent.opacity(0.2)), in: Circle())
+                                .glassEffectID("refresh-button", in: glassNamespace)
+                        } else {
+                            Image(systemName: "arrow.clockwise")
+                        }
                     }
                     .accessibilityLabel("Refresh dashboard data")
                 }
@@ -199,4 +247,29 @@ struct BusinessAnalyticsDashboard: View {
 
 #Preview {
     BusinessAnalyticsDashboard()
+}
+
+// MARK: - iOS 18 Liquid Glass Helper Extensions
+
+extension View {
+    /// Apply chart glass effect with iOS 18 Liquid Glass
+    func applyChartGlassEffect() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular.tint(Theme.Colors.card.opacity(0.3)), in: RoundedRectangle(cornerRadius: Theme.CornerRadius.medium))
+                .shadow(radius: 2)
+        } else {
+            return self.background(Theme.Colors.card)
+                .cornerRadius(Theme.CornerRadius.medium)
+                .shadow(radius: 2)
+        }
+    }
+    
+    /// Apply error glass effect with iOS 18 Liquid Glass
+    func applyErrorGlassEffect() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular.tint(.red.opacity(0.1)), in: RoundedRectangle(cornerRadius: 8))
+        } else {
+            return self
+        }
+    }
 }
