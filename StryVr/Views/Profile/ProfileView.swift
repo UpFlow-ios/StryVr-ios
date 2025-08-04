@@ -2,7 +2,7 @@
 //  ProfileView.swift
 //  StryVr
 //
-//  👤 Profile View with Liquid Glass + Apple Glow UI
+//  👤 Profile View with iOS 18 Liquid Glass + Apple Glow UI
 //
 
 import Foundation
@@ -13,6 +13,7 @@ struct ProfileView: View {
     @State private var skillsCount = 12
     @State private var badgesCount = 5
     @State private var goalsCount = 8
+    @Namespace private var glassNamespace
 
     var body: some View {
         NavigationStack {
@@ -99,6 +100,7 @@ struct ProfileView: View {
                                 Circle()
                                     .stroke(Theme.Colors.glassPrimary, lineWidth: 2)
                             )
+                            .applyProfileImageGlassEffect()
                     case .failure:
                         fallbackImage
                     @unknown default:
@@ -134,7 +136,7 @@ struct ProfileView: View {
                         .foregroundColor(Theme.Colors.textPrimary)
                         .frame(maxWidth: .infinity)
                         .padding(Theme.Spacing.large)
-                        .liquidGlassCard()
+                        .applyInteractiveLiquidGlassCard()
                         .liquidGlassGlow(
                             color: Theme.Colors.glowPrimary, radius: 10, intensity: 0.8)
                 }
@@ -142,7 +144,7 @@ struct ProfileView: View {
             .buttonStyle(PlainButtonStyle())
         }
         .padding(Theme.Spacing.large)
-        .liquidGlassCard()
+        .applyLiquidGlassCard()
         .liquidGlassGlow(color: Theme.Colors.glowPrimary, radius: 12, intensity: 0.6)
     }
 
@@ -190,7 +192,7 @@ struct ProfileView: View {
             )
         }
         .padding(Theme.Spacing.large)
-        .liquidGlassCard()
+        .applyLiquidGlassCard()
         .liquidGlassGlow(color: Theme.Colors.glowSecondary, radius: 12, intensity: 0.6)
     }
 
@@ -200,10 +202,19 @@ struct ProfileView: View {
         icon: String, title: String, value: String, color: Color, glowColor: Color
     ) -> some View {
         VStack(spacing: Theme.Spacing.small) {
-            Image(systemName: icon)
-                .font(.title2)
-                .foregroundColor(color)
-                .neonGlow(color: glowColor, pulse: true)
+            if #available(iOS 18.0, *) {
+                Image(systemName: icon)
+                    .font(.title2)
+                    .foregroundColor(color)
+                    .glassEffect(.regular.tint(color.opacity(0.3)), in: Circle())
+                    .glassEffectID("metric-\(title)", in: glassNamespace)
+                    .neonGlow(color: glowColor, pulse: true)
+            } else {
+                Image(systemName: icon)
+                    .font(.title2)
+                    .foregroundColor(color)
+                    .neonGlow(color: glowColor, pulse: true)
+            }
 
             Text(title)
                 .font(Theme.Typography.caption)
@@ -228,11 +239,43 @@ struct ProfileView: View {
                 Circle()
                     .stroke(Theme.Colors.glassPrimary, lineWidth: 2)
             )
+            .applyProfileImageGlassEffect()
     }
 
     private func simpleHaptic() {
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
+    }
+}
+
+// MARK: - iOS 18 Liquid Glass Helper Extensions
+
+extension View {
+    /// Apply iOS 18 Liquid Glass card with fallback
+    func applyLiquidGlassCard() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular, in: RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
+        } else {
+            return self.liquidGlassCard()
+        }
+    }
+    
+    /// Apply iOS 18 Interactive Liquid Glass card with fallback
+    func applyInteractiveLiquidGlassCard() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular.interactive(), in: RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
+        } else {
+            return self.liquidGlassCard()
+        }
+    }
+    
+    /// Apply profile image glass effect
+    func applyProfileImageGlassEffect() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular.tint(Theme.Colors.glassPrimary.opacity(0.2)), in: Circle())
+        } else {
+            return self
+        }
     }
 }
 

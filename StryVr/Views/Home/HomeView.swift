@@ -3,7 +3,7 @@
 //  StryVr
 //
 //  🏠 Main Home Screen with AI Greeting & Quick Actions
-//  🌟 Liquid Glass + Apple Glow UI Implementation
+//  🌟 iOS 18 Liquid Glass + Apple Glow UI Implementation
 //
 
 import ConfettiSwiftUI
@@ -23,6 +23,7 @@ struct HomeView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
 
     @State private var showDevPanel = false
+    @Namespace private var glassNamespace
 
     private let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "HomeView")
@@ -130,6 +131,17 @@ struct HomeView: View {
         HStack(spacing: Theme.Spacing.large) {
             // Left side: Green checkmark with glow
             ZStack {
+                if #available(iOS 18.0, *) {
+                    Circle()
+                        .glassEffect(.regular.tint(Theme.Colors.neonGreen.opacity(0.3)), in: Circle())
+                        .frame(width: 60, height: 60)
+                        .glassEffectID("goal-checkmark", in: glassNamespace)
+                } else {
+                    Circle()
+                        .fill(Color.green)
+                        .frame(width: 60, height: 60)
+                }
+                
                 Circle()
                     .fill(Color.green)
                     .frame(width: 60, height: 60)
@@ -159,6 +171,17 @@ struct HomeView: View {
             // Right side: Small checkmark indicator
             if dailyGoalCompleted {
                 ZStack {
+                    if #available(iOS 18.0, *) {
+                        Circle()
+                            .glassEffect(.regular.tint(Theme.Colors.neonBlue.opacity(0.3)), in: Circle())
+                            .frame(width: 30, height: 30)
+                            .glassEffectID("goal-indicator", in: glassNamespace)
+                    } else {
+                        Circle()
+                            .fill(Theme.Colors.neonBlue)
+                            .frame(width: 30, height: 30)
+                    }
+                    
                     Circle()
                         .fill(Theme.Colors.neonBlue)
                         .frame(width: 30, height: 30)
@@ -172,7 +195,7 @@ struct HomeView: View {
             }
         }
         .padding(Theme.Spacing.large)
-        .liquidGlassCard()
+        .applyLiquidGlassCard()
         .liquidGlassGlow(color: Theme.Colors.glowGreen, radius: 10, intensity: 0.8)
     }
 
@@ -201,7 +224,7 @@ struct HomeView: View {
                 .neonGlow(color: Theme.Colors.glowPrimary, pulse: true)
         }
         .padding(Theme.Spacing.large)
-        .liquidGlassCard()
+        .applyLiquidGlassCard()
         .liquidGlassGlow(color: Theme.Colors.glowPrimary, radius: 10, intensity: 0.8)
     }
 
@@ -230,7 +253,7 @@ struct HomeView: View {
                 .neonGlow(color: Theme.Colors.glowOrange, pulse: true)
         }
         .padding(Theme.Spacing.large)
-        .liquidGlassCard()
+        .applyLiquidGlassCard()
         .liquidGlassGlow(color: Theme.Colors.glowOrange, radius: 10, intensity: 0.8)
     }
 
@@ -259,7 +282,7 @@ struct HomeView: View {
                 .neonGlow(color: Theme.Colors.glowYellow, pulse: true)
         }
         .padding(Theme.Spacing.large)
-        .liquidGlassCard()
+        .applyLiquidGlassCard()
         .liquidGlassGlow(color: Theme.Colors.glowYellow, radius: 10, intensity: 0.8)
     }
 
@@ -273,7 +296,7 @@ struct HomeView: View {
                 .foregroundColor(Theme.Colors.textPrimary)
                 .frame(maxWidth: .infinity)
                 .padding(Theme.Spacing.large)
-                .liquidGlassCard()
+                .applyInteractiveLiquidGlassCard()
                 .liquidGlassGlow(color: Theme.Colors.glowAccent, radius: 12, intensity: 1.0)
         }
         .buttonStyle(PlainButtonStyle())
@@ -297,6 +320,28 @@ struct HomeView: View {
         }
         ConfettiManager.shared.triggerConfetti()
         aiGreetingManager.updateContext(userAction: "badge_unlocked")
+    }
+}
+
+// MARK: - iOS 18 Liquid Glass Helper Extensions
+
+extension View {
+    /// Apply iOS 18 Liquid Glass card with fallback
+    func applyLiquidGlassCard() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular, in: RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
+        } else {
+            return self.liquidGlassCard()
+        }
+    }
+    
+    /// Apply iOS 18 Interactive Liquid Glass card with fallback
+    func applyInteractiveLiquidGlassCard() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular.interactive(), in: RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
+        } else {
+            return self.liquidGlassCard()
+        }
     }
 }
 

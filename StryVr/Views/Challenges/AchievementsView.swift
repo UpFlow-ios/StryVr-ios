@@ -4,6 +4,7 @@
 //
 //  Created by Joe Dormond on 3/6/25.
 //  🏆 Achievements View – Celebrate User Accomplishments & Milestones
+//  🌟 iOS 18 Liquid Glass Implementation
 //
 
 import Foundation
@@ -26,6 +27,7 @@ struct AchievementsView: View {
 
     @State private var showConfetti = false
     @State private var recentlyUnlockedAchievement: Achievement?
+    @Namespace private var glassNamespace
 
     var body: some View {
         ZStack {
@@ -74,11 +76,26 @@ struct AchievementsView: View {
 
     private func achievementCard(for achievement: Achievement) -> some View {
         VStack(spacing: Theme.Spacing.small) {
-            Image(systemName: achievement.imageName)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 50, height: 50)
-                .foregroundColor(achievement.isUnlocked ? Theme.Colors.accent : .gray.opacity(0.4))
+            if #available(iOS 18.0, *) {
+                Image(systemName: achievement.imageName)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 50, height: 50)
+                    .foregroundColor(achievement.isUnlocked ? Theme.Colors.accent : .gray.opacity(0.4))
+                    .glassEffect(
+                        achievement.isUnlocked ? 
+                        .regular.tint(Theme.Colors.accent.opacity(0.3)) : 
+                        .regular.tint(.gray.opacity(0.2)), 
+                        in: Circle()
+                    )
+                    .glassEffectID("achievement-\(achievement.id)", in: glassNamespace)
+            } else {
+                Image(systemName: achievement.imageName)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 50, height: 50)
+                    .foregroundColor(achievement.isUnlocked ? Theme.Colors.accent : .gray.opacity(0.4))
+            }
 
             Text(achievement.title)
                 .font(Theme.Typography.caption)
@@ -88,8 +105,7 @@ struct AchievementsView: View {
         }
         .padding()
         .frame(maxWidth: .infinity)
-        .background(Theme.Colors.card)
-        .cornerRadius(Theme.CornerRadius.medium)
+        .applyAchievementCardStyle(isUnlocked: achievement.isUnlocked)
         .opacity(achievement.isUnlocked ? 1 : 0.5)
     }
 
@@ -101,6 +117,25 @@ struct AchievementsView: View {
             withAnimation {
                 showConfetti = true
             }
+        }
+    }
+}
+
+// MARK: - iOS 18 Liquid Glass Helper Extensions
+
+extension View {
+    /// Apply achievement card style with iOS 18 Liquid Glass
+    func applyAchievementCardStyle(isUnlocked: Bool) -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(
+                isUnlocked ? 
+                .regular.tint(Theme.Colors.accent.opacity(0.1)) : 
+                .regular.tint(.gray.opacity(0.05)), 
+                in: RoundedRectangle(cornerRadius: Theme.CornerRadius.medium)
+            )
+        } else {
+            return self.background(Theme.Colors.card)
+                .cornerRadius(Theme.CornerRadius.medium)
         }
     }
 }

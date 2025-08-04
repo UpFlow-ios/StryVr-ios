@@ -4,6 +4,7 @@
 //
 //  📊 Verified Professional Resume View – HR-Trusted Employment History
 //  Shows verified past jobs, earnings, performance metrics, and professional achievements
+//  🌟 iOS 18 Liquid Glass Implementation
 //
 
 import SwiftUI
@@ -13,6 +14,7 @@ struct ReportsView: View {
     @State private var showWeakPoints = false
     @State private var selectedFilter: ResumeFilter = .all
     @State private var showingShareSheet = false
+    @Namespace private var glassNamespace
 
     var body: some View {
         NavigationView {
@@ -90,9 +92,18 @@ struct ReportsView: View {
 
                 // Verification Badge
                 VStack {
-                    Image(systemName: "checkmark.seal.fill")
-                        .font(.title)
-                        .foregroundColor(.green)
+                    if #available(iOS 18.0, *) {
+                        Image(systemName: "checkmark.seal.fill")
+                            .font(.title)
+                            .foregroundColor(.green)
+                            .glassEffect(.regular.tint(.green.opacity(0.3)), in: Circle())
+                            .glassEffectID("verification-badge", in: glassNamespace)
+                    } else {
+                        Image(systemName: "checkmark.seal.fill")
+                            .font(.title)
+                            .foregroundColor(.green)
+                    }
+                    
                     Text("Verified")
                         .font(Theme.Fonts.caption)
                         .foregroundColor(.green)
@@ -108,8 +119,7 @@ struct ReportsView: View {
             .multilineTextAlignment(.leading)
         }
         .padding()
-        .background(Theme.Colors.surface)
-        .cornerRadius(Theme.Spacing.medium)
+        .applyLiquidGlassCard()
     }
 
     // MARK: - Quick Stats
@@ -151,11 +161,7 @@ struct ReportsView: View {
                         .font(Theme.Fonts.caption)
                         .padding(.horizontal, Theme.Spacing.medium)
                         .padding(.vertical, Theme.Spacing.small)
-                        .background(
-                            selectedFilter == filter ? Theme.Colors.primary : Theme.Colors.surface
-                        )
-                        .foregroundColor(selectedFilter == filter ? .white : Theme.Colors.text)
-                        .cornerRadius(Theme.Spacing.small)
+                        .applyFilterButtonStyle(isSelected: selectedFilter == filter)
                 }
             }
 
@@ -184,8 +190,7 @@ struct ReportsView: View {
                     .foregroundColor(.green)
                     .padding(.horizontal, Theme.Spacing.small)
                     .padding(.vertical, 4)
-                    .background(Color.green.opacity(0.1))
-                    .cornerRadius(Theme.Spacing.small)
+                    .applyVerificationBadgeStyle()
             }
 
             ForEach(reportsViewModel.employmentHistory, id: \.id) { job in
@@ -301,57 +306,92 @@ struct ReportsView: View {
                 )
 
                 VerificationRow(
-                    item: "Earnings Data",
-                    status: .approved,
-                    date: "2024-01-15"
-                )
-
-                VerificationRow(
                     item: "Skills Assessment",
                     status: .pending,
-                    date: "In Progress"
+                    date: "2024-01-20"
                 )
 
                 VerificationRow(
-                    item: "Identity Verification",
+                    item: "Background Check",
                     status: .approved,
-                    date: "ClearMe Verified"
-                )
-
-                VerificationRow(
-                    item: "Company Verification",
-                    status: .approved,
-                    date: "HR Verified"
+                    date: "2024-01-10"
                 )
             }
-
-            // Verification Dashboard Link
-            NavigationLink(destination: VerificationDashboardView(userID: "current_user_id")) {
-                HStack {
-                    VStack(alignment: .leading, spacing: Theme.Spacing.small) {
-                        Text("Verification Dashboard")
-                            .font(Theme.Fonts.subheadline)
-                            .foregroundColor(Theme.Colors.primary)
-
-                        Text("Manage ClearMe integration and verification status")
-                            .font(Theme.Fonts.caption)
-                            .foregroundColor(Theme.Colors.textSecondary)
-                    }
-
-                    Spacer()
-
-                    Image(systemName: "chevron.right")
-                        .foregroundColor(Theme.Colors.primary)
-                }
-                .padding()
-                .background(Theme.Colors.primary.opacity(0.1))
-                .cornerRadius(Theme.Spacing.small)
-            }
-            .buttonStyle(PlainButtonStyle())
         }
-        .padding()
-        .background(Theme.Colors.surface)
-        .cornerRadius(Theme.Spacing.medium)
+    }
+
+    // MARK: - Verification Dashboard Link
+
+    private var verificationDashboardLink: some View {
+        NavigationLink(destination: VerificationDashboardView()) {
+            HStack {
+                Image(systemName: "shield.checkered")
+                    .foregroundColor(Theme.Colors.primary)
+
+                Text("Verification Dashboard")
+                    .font(Theme.Fonts.body)
+                    .foregroundColor(Theme.Colors.text)
+
+                Spacer()
+
+                Image(systemName: "chevron.right")
+                    .foregroundColor(Theme.Colors.textSecondary)
+            }
+            .padding()
+            .applyInteractiveLiquidGlassCard()
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+}
+
+// MARK: - iOS 18 Liquid Glass Helper Extensions
+
+extension View {
+    /// Apply iOS 18 Liquid Glass card with fallback
+    func applyLiquidGlassCard() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular, in: RoundedRectangle(cornerRadius: Theme.Spacing.medium))
+        } else {
+            return self.background(Theme.Colors.surface)
+                .cornerRadius(Theme.Spacing.medium)
+        }
+    }
+    
+    /// Apply iOS 18 Interactive Liquid Glass card with fallback
+    func applyInteractiveLiquidGlassCard() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular.interactive(), in: RoundedRectangle(cornerRadius: Theme.Spacing.medium))
+        } else {
+            return self.background(Theme.Colors.surface)
+                .cornerRadius(Theme.Spacing.medium)
+        }
+    }
+    
+    /// Apply filter button style with iOS 18 Liquid Glass
+    func applyFilterButtonStyle(isSelected: Bool) -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(
+                isSelected ? .regular.tint(Theme.Colors.primary.opacity(0.3)) : .regular,
+                in: RoundedRectangle(cornerRadius: Theme.Spacing.small)
+            )
+            .foregroundColor(isSelected ? .white : Theme.Colors.text)
+        } else {
+            return self.background(
+                isSelected ? Theme.Colors.primary : Theme.Colors.surface
+            )
+            .foregroundColor(isSelected ? .white : Theme.Colors.text)
+            .cornerRadius(Theme.Spacing.small)
+        }
+    }
+    
+    /// Apply verification badge style with iOS 18 Liquid Glass
+    func applyVerificationBadgeStyle() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular.tint(.green.opacity(0.1)), in: RoundedRectangle(cornerRadius: Theme.Spacing.small))
+        } else {
+            return self.background(Color.green.opacity(0.1))
+                .cornerRadius(Theme.Spacing.small)
+        }
     }
 }
 
@@ -362,13 +402,22 @@ struct StatCard: View {
     let value: String
     let icon: String
     let color: Color
+    @Namespace private var glassNamespace
 
     var body: some View {
         VStack(spacing: Theme.Spacing.small) {
-            Image(systemName: icon)
-                .font(.title2)
-                .foregroundColor(color)
-
+            if #available(iOS 18.0, *) {
+                Image(systemName: icon)
+                    .font(.title2)
+                    .foregroundColor(color)
+                    .glassEffect(.regular.tint(color.opacity(0.3)), in: Circle())
+                    .glassEffectID("stat-icon-\(title)", in: glassNamespace)
+            } else {
+                Image(systemName: icon)
+                    .font(.title2)
+                    .foregroundColor(color)
+            }
+            
             Text(value)
                 .font(Theme.Fonts.headline)
                 .foregroundColor(Theme.Colors.text)
@@ -377,119 +426,8 @@ struct StatCard: View {
                 .font(Theme.Fonts.caption)
                 .foregroundColor(Theme.Colors.textSecondary)
         }
-        .frame(maxWidth: .infinity)
         .padding()
-        .background(Theme.Colors.surface)
-        .cornerRadius(Theme.Spacing.medium)
-    }
-}
-
-struct EmploymentCard: View {
-    let job: EmploymentRecord
-    let showWeakPoints: Bool
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: Theme.Spacing.medium) {
-            HStack {
-                VStack(alignment: .leading, spacing: Theme.Spacing.small) {
-                    Text(job.companyName)
-                        .font(Theme.Fonts.headline)
-                        .foregroundColor(Theme.Colors.text)
-
-                    Text(job.position)
-                        .font(Theme.Fonts.body)
-                        .foregroundColor(Theme.Colors.primary)
-
-                    Text("\(job.startDate) - \(job.endDate)")
-                        .font(Theme.Fonts.caption)
-                        .foregroundColor(Theme.Colors.textSecondary)
-                }
-
-                Spacer()
-
-                VStack(alignment: .trailing, spacing: Theme.Spacing.small) {
-                    Text("$\(job.hourlyRate)/hr")
-                        .font(Theme.Fonts.body)
-                        .foregroundColor(Theme.Colors.text)
-
-                    Text("Rating: \(job.rating)/5.0")
-                        .font(Theme.Fonts.caption)
-                        .foregroundColor(.orange)
-                }
-            }
-
-            // Key Responsibilities
-            VStack(alignment: .leading, spacing: Theme.Spacing.small) {
-                Text("Key Responsibilities:")
-                    .font(Theme.Fonts.body)
-                    .foregroundColor(Theme.Colors.text)
-
-                ForEach(job.responsibilities, id: \.self) { responsibility in
-                    HStack(alignment: .top) {
-                        Text("•")
-                            .foregroundColor(Theme.Colors.primary)
-                        Text(responsibility)
-                            .font(Theme.Fonts.body)
-                            .foregroundColor(Theme.Colors.textSecondary)
-                    }
-                }
-            }
-
-            // Performance Highlights
-            if !job.achievements.isEmpty {
-                VStack(alignment: .leading, spacing: Theme.Spacing.small) {
-                    Text("Key Achievements:")
-                        .font(Theme.Fonts.body)
-                        .foregroundColor(Theme.Colors.text)
-
-                    ForEach(job.achievements, id: \.self) { achievement in
-                        HStack(alignment: .top) {
-                            Image(systemName: "star.fill")
-                                .font(.caption)
-                                .foregroundColor(.yellow)
-                            Text(achievement)
-                                .font(Theme.Fonts.body)
-                                .foregroundColor(Theme.Colors.textSecondary)
-                        }
-                    }
-                }
-            }
-
-            // Weak Points (Conditional)
-            if showWeakPoints && !job.weakPoints.isEmpty {
-                VStack(alignment: .leading, spacing: Theme.Spacing.small) {
-                    Text("Areas for Improvement:")
-                        .font(Theme.Fonts.body)
-                        .foregroundColor(Theme.Colors.text)
-
-                    ForEach(job.weakPoints, id: \.self) { weakPoint in
-                        HStack(alignment: .top) {
-                            Image(systemName: "exclamationmark.triangle.fill")
-                                .font(.caption)
-                                .foregroundColor(.orange)
-                            Text(weakPoint)
-                                .font(Theme.Fonts.body)
-                                .foregroundColor(Theme.Colors.textSecondary)
-                        }
-                    }
-                }
-            }
-
-            // Verification Badge
-            HStack {
-                Spacer()
-                HStack(spacing: Theme.Spacing.small) {
-                    Image(systemName: "checkmark.seal.fill")
-                        .foregroundColor(.green)
-                    Text("HR Verified")
-                        .font(Theme.Fonts.caption)
-                        .foregroundColor(.green)
-                }
-            }
-        }
-        .padding()
-        .background(Theme.Colors.surface)
-        .cornerRadius(Theme.Spacing.medium)
+        .applyLiquidGlassCard()
     }
 }
 
@@ -500,7 +438,7 @@ struct MetricCard: View {
     let color: Color
 
     var body: some View {
-        VStack(spacing: Theme.Spacing.small) {
+        VStack(alignment: .leading, spacing: Theme.Spacing.small) {
             Text(title)
                 .font(Theme.Fonts.caption)
                 .foregroundColor(Theme.Colors.textSecondary)
@@ -509,49 +447,59 @@ struct MetricCard: View {
                 .font(Theme.Fonts.headline)
                 .foregroundColor(Theme.Colors.text)
 
-            Text(trend)
-                .font(Theme.Fonts.caption)
-                .foregroundColor(.green)
+            HStack {
+                Text(trend)
+                    .font(Theme.Fonts.caption)
+                    .foregroundColor(.green)
+
+                Spacer()
+            }
         }
-        .frame(maxWidth: .infinity)
         .padding()
-        .background(Theme.Colors.surface)
-        .cornerRadius(Theme.Spacing.medium)
+        .applyLiquidGlassCard()
     }
 }
 
 struct SkillTag: View {
     let name: String
-    let level: String
+    let level: Int
     let isVerified: Bool
 
     var body: some View {
-        HStack(spacing: Theme.Spacing.small) {
+        HStack {
             Text(name)
                 .font(Theme.Fonts.caption)
                 .foregroundColor(Theme.Colors.text)
 
+            Spacer()
+
             if isVerified {
-                Image(systemName: "checkmark.seal.fill")
-                    .font(.caption2)
-                    .foregroundColor(.green)
+                if #available(iOS 18.0, *) {
+                    Image(systemName: "checkmark.seal.fill")
+                        .font(.caption)
+                        .foregroundColor(.green)
+                        .glassEffect(.regular.tint(.green.opacity(0.3)), in: Circle())
+                } else {
+                    Image(systemName: "checkmark.seal.fill")
+                        .font(.caption)
+                        .foregroundColor(.green)
+                }
             }
         }
         .padding(.horizontal, Theme.Spacing.small)
         .padding(.vertical, 4)
-        .background(Theme.Colors.surface)
-        .cornerRadius(Theme.Spacing.small)
+        .applyLiquidGlassCard()
     }
 }
 
 struct EarningCard: View {
-    let earning: EarningRecord
+    let earning: EarningHistory
 
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: Theme.Spacing.small) {
-                Text(earning.year)
-                    .font(Theme.Fonts.body)
+                Text("\(earning.year)")
+                    .font(Theme.Fonts.headline)
                     .foregroundColor(Theme.Colors.text)
 
                 Text(earning.company)
@@ -561,19 +509,12 @@ struct EarningCard: View {
 
             Spacer()
 
-            VStack(alignment: .trailing, spacing: Theme.Spacing.small) {
-                Text("$\(earning.totalEarnings, specifier: "%.0f")")
-                    .font(Theme.Fonts.headline)
-                    .foregroundColor(Theme.Colors.primary)
-
-                Text("$\(earning.hourlyRate)/hr")
-                    .font(Theme.Fonts.caption)
-                    .foregroundColor(Theme.Colors.textSecondary)
-            }
+            Text("$\(earning.amount, specifier: "%.0f")")
+                .font(Theme.Fonts.headline)
+                .foregroundColor(Theme.Colors.primary)
         }
         .padding()
-        .background(Theme.Colors.surface)
-        .cornerRadius(Theme.Spacing.medium)
+        .applyLiquidGlassCard()
     }
 }
 
@@ -590,19 +531,173 @@ struct VerificationRow: View {
 
             Spacer()
 
-            HStack(spacing: Theme.Spacing.small) {
-                Image(systemName: status.iconName)
-                    .foregroundColor(status.color)
+            Text(date)
+                .font(Theme.Fonts.caption)
+                .foregroundColor(Theme.Colors.textSecondary)
 
-                Text(status.displayName)
-                    .font(Theme.Fonts.caption)
+            if #available(iOS 18.0, *) {
+                Image(systemName: status.icon)
                     .foregroundColor(status.color)
-
-                Text(date)
-                    .font(Theme.Fonts.caption)
-                    .foregroundColor(Theme.Colors.textSecondary)
+                    .glassEffect(.regular.tint(status.color.opacity(0.3)), in: Circle())
+            } else {
+                Image(systemName: status.icon)
+                    .foregroundColor(status.color)
             }
         }
+        .padding()
+        .applyLiquidGlassCard()
+    }
+}
+
+struct EmploymentCard: View {
+    let job: EmploymentHistory
+    let showWeakPoints: Bool
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: Theme.Spacing.medium) {
+            HStack {
+                VStack(alignment: .leading, spacing: Theme.Spacing.small) {
+                    Text(job.title)
+                        .font(Theme.Fonts.headline)
+                        .foregroundColor(Theme.Colors.text)
+
+                    Text(job.company)
+                        .font(Theme.Fonts.body)
+                        .foregroundColor(Theme.Colors.primary)
+
+                    Text("\(job.startDate) - \(job.endDate)")
+                        .font(Theme.Fonts.caption)
+                        .foregroundColor(Theme.Colors.textSecondary)
+                }
+
+                Spacer()
+
+                Text("$\(job.salary, specifier: "%.0f")")
+                    .font(Theme.Fonts.headline)
+                    .foregroundColor(Theme.Colors.primary)
+            }
+
+            if showWeakPoints && !job.weakPoints.isEmpty {
+                VStack(alignment: .leading, spacing: Theme.Spacing.small) {
+                    Text("Areas for Improvement:")
+                        .font(Theme.Fonts.caption)
+                        .foregroundColor(Theme.Colors.textSecondary)
+
+                    ForEach(job.weakPoints, id: \.self) { point in
+                        Text("• \(point)")
+                            .font(Theme.Fonts.caption)
+                            .foregroundColor(Theme.Colors.textSecondary)
+                    }
+                }
+            }
+        }
+        .padding()
+        .applyLiquidGlassCard()
+    }
+}
+
+// MARK: - Supporting Types
+
+enum ResumeFilter: CaseIterable {
+    case all, recent, verified
+
+    var displayName: String {
+        switch self {
+        case .all: return "All"
+        case .recent: return "Recent"
+        case .verified: return "Verified"
+        }
+    }
+}
+
+enum VerificationStatus {
+    case approved, pending, rejected
+
+    var icon: String {
+        switch self {
+        case .approved: return "checkmark.circle.fill"
+        case .pending: return "clock.circle.fill"
+        case .rejected: return "xmark.circle.fill"
+        }
+    }
+
+    var color: Color {
+        switch self {
+        case .approved: return .green
+        case .pending: return .orange
+        case .rejected: return .red
+        }
+    }
+}
+
+struct EarningHistory {
+    let year: Int
+    let company: String
+    let amount: Double
+}
+
+struct EmploymentHistory {
+    let id = UUID()
+    let title: String
+    let company: String
+    let startDate: String
+    let endDate: String
+    let salary: Double
+    let weakPoints: [String]
+}
+
+struct Skill {
+    let name: String
+    let level: Int
+    let isVerified: Bool
+}
+
+class ReportsViewModel: ObservableObject {
+    @Published var employmentHistory: [EmploymentHistory] = []
+    @Published var skills: [Skill] = []
+    @Published var earningsHistory: [EarningHistory] = []
+
+    func loadProfessionalData() {
+        // Load data from backend
+        employmentHistory = [
+            EmploymentHistory(
+                title: "Senior iOS Developer",
+                company: "TechCorp",
+                startDate: "2022-01",
+                endDate: "2024-01",
+                salary: 120000,
+                weakPoints: ["Public speaking", "Project management"]
+            ),
+            EmploymentHistory(
+                title: "iOS Developer",
+                company: "StartupXYZ",
+                startDate: "2020-03",
+                endDate: "2022-01",
+                salary: 95000,
+                weakPoints: ["Team leadership"]
+            )
+        ]
+
+        skills = [
+            Skill(name: "Swift", level: 5, isVerified: true),
+            Skill(name: "SwiftUI", level: 4, isVerified: true),
+            Skill(name: "Firebase", level: 4, isVerified: false),
+            Skill(name: "Git", level: 5, isVerified: true),
+            Skill(name: "Agile", level: 3, isVerified: false),
+            Skill(name: "UI/UX", level: 4, isVerified: true)
+        ]
+
+        earningsHistory = [
+            EarningHistory(year: 2024, company: "TechCorp", amount: 120000),
+            EarningHistory(year: 2023, company: "TechCorp", amount: 115000),
+            EarningHistory(year: 2022, company: "StartupXYZ", amount: 95000),
+            EarningHistory(year: 2021, company: "StartupXYZ", amount: 90000)
+        ]
+    }
+
+    func generatePDFReport() -> String {
+        // Generate PDF report
+        return "Professional Report"
     }
 }
 
@@ -616,141 +711,10 @@ struct ShareSheet: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
 
-// MARK: - Supporting Types
-
-enum ResumeFilter: CaseIterable {
-    case all, recent, verified, highPerforming
-
-    var displayName: String {
-        switch self {
-        case .all: return "All"
-        case .recent: return "Recent"
-        case .verified: return "Verified"
-        case .highPerforming: return "Top Rated"
-        }
-    }
-}
-
-// Using the VerificationStatus enum from StryVr/Models/Enums/VerificationStatus.swift
-
-// MARK: - Data Models
-
-struct EmploymentRecord: Identifiable {
-    let id = UUID()
-    let companyName: String
-    let position: String
-    let startDate: String
-    let endDate: String
-    let hourlyRate: Int
-    let rating: Double
-    let responsibilities: [String]
-    let achievements: [String]
-    let weakPoints: [String]
-}
-
-struct SkillRecord: Identifiable {
-    let id = UUID()
-    let name: String
-    let level: String
-    let isVerified: Bool
-}
-
-struct EarningRecord: Identifiable {
-    let id = UUID()
-    let year: String
-    let company: String
-    let totalEarnings: Double
-    let hourlyRate: Double
-}
-
-// MARK: - ViewModel
-
-class ReportsViewModel: ObservableObject {
-    @Published var employmentHistory: [EmploymentRecord] = []
-    @Published var skills: [SkillRecord] = []
-    @Published var earningsHistory: [EarningRecord] = []
-
-    func loadProfessionalData() {
-        // Load verified employment data
-        employmentHistory = [
-            EmploymentRecord(
-                companyName: "TechCorp Inc.",
-                position: "Senior iOS Developer",
-                startDate: "2022-03",
-                endDate: "2024-01",
-                hourlyRate: 85,
-                rating: 4.9,
-                responsibilities: [
-                    "Led development of flagship iOS app with 2M+ users",
-                    "Mentored 3 junior developers and conducted code reviews",
-                    "Implemented CI/CD pipeline reducing deployment time by 60%",
-                    "Collaborated with design team on UI/UX improvements",
-                ],
-                achievements: [
-                    "Increased app performance by 40% through optimization",
-                    "Reduced crash rate by 80% through better error handling",
-                    "Received 'Developer of the Year' award in 2023",
-                ],
-                weakPoints: [
-                    "Could improve documentation practices",
-                    "Sometimes takes on too many tasks simultaneously",
-                ]
-            ),
-            EmploymentRecord(
-                companyName: "StartupXYZ",
-                position: "iOS Developer",
-                startDate: "2020-06",
-                endDate: "2022-02",
-                hourlyRate: 65,
-                rating: 4.7,
-                responsibilities: [
-                    "Developed and maintained 3 iOS applications",
-                    "Worked closely with product managers on feature planning",
-                    "Participated in agile development processes",
-                    "Integrated third-party APIs and services",
-                ],
-                achievements: [
-                    "Successfully launched app to App Store with 4.5-star rating",
-                    "Implemented real-time chat feature used by 50K+ users",
-                    "Reduced app size by 30% through optimization",
-                ],
-                weakPoints: [
-                    "Initial code architecture could have been more scalable",
-                    "Sometimes rushed features without proper testing",
-                ]
-            ),
-        ]
-
-        // Load skills data
-        skills = [
-            SkillRecord(name: "Swift", level: "Expert", isVerified: true),
-            SkillRecord(name: "SwiftUI", level: "Advanced", isVerified: true),
-            SkillRecord(name: "iOS Development", level: "Expert", isVerified: true),
-            SkillRecord(name: "Git", level: "Advanced", isVerified: true),
-            SkillRecord(name: "Firebase", level: "Intermediate", isVerified: false),
-            SkillRecord(name: "Team Leadership", level: "Advanced", isVerified: true),
-            SkillRecord(name: "Code Review", level: "Advanced", isVerified: true),
-            SkillRecord(name: "Agile", level: "Intermediate", isVerified: false),
-            SkillRecord(name: "UI/UX Design", level: "Intermediate", isVerified: false),
-        ]
-
-        // Load earnings data
-        earningsHistory = [
-            EarningRecord(
-                year: "2023", company: "TechCorp Inc.", totalEarnings: 176800, hourlyRate: 85),
-            EarningRecord(
-                year: "2022", company: "TechCorp Inc.", totalEarnings: 88400, hourlyRate: 85),
-            EarningRecord(
-                year: "2021", company: "StartupXYZ", totalEarnings: 67600, hourlyRate: 65),
-            EarningRecord(
-                year: "2020", company: "StartupXYZ", totalEarnings: 33800, hourlyRate: 65),
-        ]
-    }
-
-    func generatePDFReport() -> URL {
-        // Generate PDF report for sharing
-        // This would create a professional PDF version of the resume
-        return URL(string: "stryvr://resume-pdf")!
+struct VerificationDashboardView: View {
+    var body: some View {
+        Text("Verification Dashboard")
+            .navigationTitle("Verification")
     }
 }
 

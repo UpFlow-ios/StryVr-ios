@@ -3,6 +3,7 @@
 //  StryVr
 //
 //  Created by Joe Dormond on 3/12/25.
+//  🌟 iOS 18 Liquid Glass Implementation
 //
 
 import OSLog
@@ -16,6 +17,7 @@ struct PaywallView: View {
     @State private var limitedTimeOffer: String?
     @State private var showAlert = false
     @State private var alertMessage = ""
+    @Namespace private var glassNamespace
     private let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier ?? "com.stryvr", category: "PaywallView")
 
@@ -42,6 +44,7 @@ struct PaywallView: View {
                             Text("🔥 Special Offer: \(offer)")
                                 .font(Font.Style.caption)
                                 .foregroundColor(.red)
+                                .applySpecialOfferGlassEffect()
                         }
                     }
                     .padding(.top, Theme.Spacing.large)
@@ -68,8 +71,7 @@ struct PaywallView: View {
                                     .foregroundColor(.white)
                                     .frame(maxWidth: .infinity)
                                     .padding()
-                                    .background(Color.neonBlue)
-                                    .cornerRadius(12)
+                                    .applyUpgradeButtonGlassEffect()
                             }
                         }
                         .disabled(isProcessingPayment)
@@ -78,6 +80,7 @@ struct PaywallView: View {
                         Button("Restore Purchase", action: restorePurchases)
                             .font(Font.Style.caption)
                             .foregroundColor(.lightGray)
+                            .applyRestoreButtonGlassEffect()
                     }
 
                     Spacer()
@@ -154,5 +157,37 @@ struct PaywallView: View {
         logger.error("❌ \(message)")
         alertMessage = message
         showAlert = true
+    }
+}
+
+// MARK: - iOS 18 Liquid Glass Helper Extensions
+
+extension View {
+    /// Apply special offer glass effect with iOS 18 Liquid Glass
+    func applySpecialOfferGlassEffect() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular.tint(.red.opacity(0.2)), in: RoundedRectangle(cornerRadius: 8))
+        } else {
+            return self
+        }
+    }
+    
+    /// Apply upgrade button glass effect with iOS 18 Liquid Glass
+    func applyUpgradeButtonGlassEffect() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular.tint(Color.neonBlue.opacity(0.3)), in: RoundedRectangle(cornerRadius: 12))
+        } else {
+            return self.background(Color.neonBlue)
+                .cornerRadius(12)
+        }
+    }
+    
+    /// Apply restore button glass effect with iOS 18 Liquid Glass
+    func applyRestoreButtonGlassEffect() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular.tint(.lightGray.opacity(0.1)), in: RoundedRectangle(cornerRadius: 6))
+        } else {
+            return self
+        }
     }
 }

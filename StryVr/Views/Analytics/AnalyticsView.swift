@@ -4,6 +4,7 @@ import OSLog
 
 struct AnalyticsView: View {
     @StateObject private var viewModel = AnalyticsViewModel()
+    @Namespace private var glassNamespace
     private let logger = Logger(subsystem: "com.stryvr.analytics", category: "AnalyticsView")
     
     var body: some View {
@@ -45,6 +46,7 @@ struct AnalyticsView: View {
 
 struct PerformanceOverviewCard: View {
     @ObservedObject var viewModel: AnalyticsViewModel
+    @Namespace private var glassNamespace
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -76,9 +78,7 @@ struct PerformanceOverviewCard: View {
             }
         }
         .padding()
-        .background(Color(.systemBackground))
-        .cornerRadius(12)
-        .shadow(radius: 2)
+        .applyLiquidGlassCard()
         .padding(.horizontal)
     }
 }
@@ -88,12 +88,21 @@ struct MetricCard: View {
     let value: String
     let icon: String
     let color: Color
+    @Namespace private var glassNamespace
     
     var body: some View {
         VStack(spacing: 8) {
-            Image(systemName: icon)
-                .font(.title2)
-                .foregroundColor(color)
+            if #available(iOS 18.0, *) {
+                Image(systemName: icon)
+                    .font(.title2)
+                    .foregroundColor(color)
+                    .glassEffect(.regular.tint(color.opacity(0.3)), in: Circle())
+                    .glassEffectID("metric-icon-\(title)", in: glassNamespace)
+            } else {
+                Image(systemName: icon)
+                    .font(.title2)
+                    .foregroundColor(color)
+            }
             
             Text(value)
                 .font(.title2)
@@ -106,8 +115,7 @@ struct MetricCard: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 12)
-        .background(Color(.systemGray6))
-        .cornerRadius(8)
+        .applyMetricCardStyle()
     }
 }
 
@@ -126,23 +134,36 @@ struct SkillsProgressChart: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding()
             } else {
-                Chart(viewModel.skillsData) { skill in
-                    BarMark(
-                        x: .value("Skill", skill.name),
-                        y: .value("Progress", skill.progress)
-                    )
-                    .foregroundStyle(Color.blue.gradient)
-                }
-                .frame(height: 200)
-                .chartYAxis {
-                    AxisMarks(position: .leading)
+                if #available(iOS 18.0, *) {
+                    Chart(viewModel.skillsData) { skill in
+                        BarMark(
+                            x: .value("Skill", skill.name),
+                            y: .value("Progress", skill.progress)
+                        )
+                        .foregroundStyle(Color.blue.gradient)
+                    }
+                    .frame(height: 200)
+                    .chartYAxis {
+                        AxisMarks(position: .leading)
+                    }
+                    .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 8))
+                } else {
+                    Chart(viewModel.skillsData) { skill in
+                        BarMark(
+                            x: .value("Skill", skill.name),
+                            y: .value("Progress", skill.progress)
+                        )
+                        .foregroundStyle(Color.blue.gradient)
+                    }
+                    .frame(height: 200)
+                    .chartYAxis {
+                        AxisMarks(position: .leading)
+                    }
                 }
             }
         }
         .padding()
-        .background(Color(.systemBackground))
-        .cornerRadius(12)
-        .shadow(radius: 2)
+        .applyLiquidGlassCard()
         .padding(.horizontal)
     }
 }
@@ -164,9 +185,16 @@ struct RecentActivityCard: View {
             } else {
                 ForEach(viewModel.recentActivity, id: \.id) { activity in
                     HStack {
-                        Image(systemName: activity.icon)
-                            .foregroundColor(activity.color)
-                            .frame(width: 24)
+                        if #available(iOS 18.0, *) {
+                            Image(systemName: activity.icon)
+                                .foregroundColor(activity.color)
+                                .frame(width: 24)
+                                .glassEffect(.regular.tint(activity.color.opacity(0.3)), in: Circle())
+                        } else {
+                            Image(systemName: activity.icon)
+                                .foregroundColor(activity.color)
+                                .frame(width: 24)
+                        }
                         
                         VStack(alignment: .leading, spacing: 4) {
                             Text(activity.title)
@@ -189,10 +217,33 @@ struct RecentActivityCard: View {
             }
         }
         .padding()
-        .background(Color(.systemBackground))
-        .cornerRadius(12)
-        .shadow(radius: 2)
+        .applyLiquidGlassCard()
         .padding(.horizontal)
+    }
+}
+
+// MARK: - iOS 18 Liquid Glass Helper Extensions
+
+extension View {
+    /// Apply iOS 18 Liquid Glass card with fallback
+    func applyLiquidGlassCard() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular, in: RoundedRectangle(cornerRadius: 12))
+        } else {
+            return self.background(Color(.systemBackground))
+                .cornerRadius(12)
+                .shadow(radius: 2)
+        }
+    }
+    
+    /// Apply metric card style with iOS 18 Liquid Glass
+    func applyMetricCardStyle() -> some View {
+        if #available(iOS 18.0, *) {
+            return self.glassEffect(.regular.tint(Color(.systemGray6).opacity(0.3)), in: RoundedRectangle(cornerRadius: 8))
+        } else {
+            return self.background(Color(.systemGray6))
+                .cornerRadius(8)
+        }
     }
 }
 
