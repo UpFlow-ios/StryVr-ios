@@ -2,13 +2,12 @@
 //  PerformanceMonitor.swift
 //  StryVr
 //
-//  📊 Professional Performance Monitoring & Analytics
-//  Tracks app performance, memory usage, and startup metrics
+//  Real-time performance monitoring and optimization
 //
 
 import Foundation
 import OSLog
-import UIKit
+import SwiftUI
 
 /// Professional performance monitoring for production apps
 @MainActor

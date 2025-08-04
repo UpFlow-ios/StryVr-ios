@@ -185,7 +185,8 @@ enum VerificationProvider: String, Codable, CaseIterable {
 
     var isTrusted: Bool {
         switch self {
-        case .clearMe, .okta, .equifax, .experian, .transunion, .hireright, .sterling, .checkr: return true
+        case .clearMe, .okta, .equifax, .experian, .transunion, .hireright, .sterling, .checkr:
+            return true
         case .stryVr, .custom: return false
         }
     }
@@ -324,6 +325,7 @@ struct BackgroundCheckData: Codable {
 }
 
 // MARK: - ClearMe Verification Data
+// ClearMeVerificationLevel is now defined in ClearMeTypes.swift
 
 struct ClearMeVerificationData: Codable {
     var clearMeID: String
@@ -337,78 +339,5 @@ struct ClearMeVerificationData: Codable {
     var isActive: Bool {
         guard let expirationDate = expirationDate else { return true }
         return expirationDate > Date()
-    }
-}
-
-enum ClearMeVerificationLevel: String, Codable, CaseIterable {
-    case basic = "Basic"
-    case standard = "Standard"
-    case premium = "Premium"
-    case enterprise = "Enterprise"
-
-    var description: String {
-        switch self {
-        case .basic: return "Basic identity verification"
-        case .standard: return "Standard verification with document check"
-        case .premium: return "Premium verification with background check"
-        case .enterprise: return "Enterprise-level comprehensive verification"
-        }
-    }
-
-    var verificationScore: Double {
-        switch self {
-        case .basic: return 0.7
-        case .standard: return 0.85
-        case .premium: return 0.95
-        case .enterprise: return 0.99
-        }
-    }
-}
-
-// MARK: - Verification Status
-
-enum VerificationStatus: String, Codable, CaseIterable {
-    case pending = "Pending"
-    case inProgress = "In Progress"
-    case underReview = "Under Review"
-    case approved = "Approved"
-    case rejected = "Rejected"
-    case expired = "Expired"
-    case cancelled = "Cancelled"
-
-    var description: String {
-        switch self {
-        case .pending: return "Verification request submitted and awaiting processing"
-        case .inProgress: return "Verification is currently being processed"
-        case .underReview: return "Verification is under manual review"
-        case .approved: return "Verification has been approved"
-        case .rejected: return "Verification has been rejected"
-        case .expired: return "Verification has expired and needs renewal"
-        case .cancelled: return "Verification request was cancelled"
-        }
-    }
-
-    var iconName: String {
-        switch self {
-        case .pending: return "clock"
-        case .inProgress: return "arrow.clockwise"
-        case .underReview: return "doc.text.magnifyingglass"
-        case .approved: return "checkmark.seal.fill"
-        case .rejected: return "xmark.seal.fill"
-        case .expired: return "exclamationmark.triangle"
-        case .cancelled: return "xmark.circle"
-        }
-    }
-
-    var colorCode: String {
-        switch self {
-        case .pending: return "gray"
-        case .inProgress: return "blue"
-        case .underReview: return "orange"
-        case .approved: return "green"
-        case .rejected: return "red"
-        case .expired: return "yellow"
-        case .cancelled: return "gray"
-        }
     }
 }

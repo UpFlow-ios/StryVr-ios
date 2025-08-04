@@ -290,19 +290,19 @@ struct ReportsView: View {
             VStack(spacing: Theme.Spacing.small) {
                 VerificationRow(
                     item: "Employment History",
-                    status: .verified,
+                    status: .approved,
                     date: "2024-01-15"
                 )
 
                 VerificationRow(
                     item: "Performance Metrics",
-                    status: .verified,
+                    status: .approved,
                     date: "2024-01-15"
                 )
 
                 VerificationRow(
                     item: "Earnings Data",
-                    status: .verified,
+                    status: .approved,
                     date: "2024-01-15"
                 )
 
@@ -314,13 +314,13 @@ struct ReportsView: View {
 
                 VerificationRow(
                     item: "Identity Verification",
-                    status: .verified,
+                    status: .approved,
                     date: "ClearMe Verified"
                 )
 
                 VerificationRow(
                     item: "Company Verification",
-                    status: .verified,
+                    status: .approved,
                     date: "HR Verified"
                 )
             }
@@ -631,33 +631,7 @@ enum ResumeFilter: CaseIterable {
     }
 }
 
-enum VerificationStatus {
-    case verified, pending, failed
-
-    var iconName: String {
-        switch self {
-        case .verified: return "checkmark.seal.fill"
-        case .pending: return "clock.fill"
-        case .failed: return "xmark.seal.fill"
-        }
-    }
-
-    var color: Color {
-        switch self {
-        case .verified: return .green
-        case .pending: return .orange
-        case .failed: return .red
-        }
-    }
-
-    var displayName: String {
-        switch self {
-        case .verified: return "Verified"
-        case .pending: return "Pending"
-        case .failed: return "Failed"
-        }
-    }
-}
+// Using the VerificationStatus enum from StryVr/Models/Enums/VerificationStatus.swift
 
 // MARK: - Data Models
 
