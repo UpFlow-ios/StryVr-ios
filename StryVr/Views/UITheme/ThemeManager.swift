@@ -116,7 +116,7 @@ struct Theme {
                 colors: [
                     Theme.Colors.deepNavyBlue,
                     Theme.Colors.softCharcoalGray,
-                    Theme.Colors.subtleLightGray
+                    Theme.Colors.subtleLightGray,
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -124,9 +124,10 @@ struct Theme {
         }
 
         /// Ultra-thin material background with depth blur
-        static let ultraThinBackground = Rectangle()
-            .fill(.ultraThinMaterial)
-            .background(.ultraThinMaterial)
+        static var ultraThinBackground: some View {
+            Rectangle()
+                .fill(.ultraThinMaterial)
+        }
 
         /// Card styling with glass effect and glow (20pt border radius)
         struct CardStyle: ViewModifier {
@@ -149,7 +150,7 @@ struct Theme {
                                 LinearGradient(
                                     colors: [
                                         Theme.Colors.glassPrimary,
-                                        Theme.Colors.glassSecondary
+                                        Theme.Colors.glassSecondary,
                                     ],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
@@ -182,7 +183,7 @@ struct Theme {
                                 LinearGradient(
                                     colors: [
                                         Theme.Colors.glassAccent,
-                                        Theme.Colors.glassPrimary
+                                        Theme.Colors.glassPrimary,
                                     ],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing

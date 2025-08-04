@@ -1,0 +1,1 @@
+../optimize_xcode_performance.sh

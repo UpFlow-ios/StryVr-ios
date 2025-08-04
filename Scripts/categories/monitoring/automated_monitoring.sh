@@ -1,0 +1,1 @@
+../automated_monitoring.sh

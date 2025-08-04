@@ -1,0 +1,1 @@
+../test_ai_services.sh

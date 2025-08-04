@@ -1,0 +1,1 @@
+../auto_screenshot.sh

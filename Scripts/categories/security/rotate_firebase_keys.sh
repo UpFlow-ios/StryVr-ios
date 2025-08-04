@@ -1,0 +1,1 @@
+../rotate_firebase_keys.sh

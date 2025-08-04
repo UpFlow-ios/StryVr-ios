@@ -83,6 +83,29 @@ print_section "2. BUILD STATUS CHECK"
 echo "" >> "$DAILY_LOG"
 echo "2. BUILD STATUS CHECK" >> "$DAILY_LOG"
 
+# TODO Progress Check
+print_subsection "Checking TODO progress..."
+echo "Checking TODO progress..." >> "$DAILY_LOG"
+
+if [ -f "TODO_APP_STORE_READY.md" ]; then
+    PROGRESS=$(grep -A 5 "Overall Progress:" TODO_APP_STORE_READY.md | head -1 | sed 's/.*~\([0-9]*\)%.*/\1/' 2>/dev/null || echo "0")
+    COMPLETED=$(grep -c "✅" TODO_APP_STORE_READY.md 2>/dev/null || echo "0")
+    PENDING=$(grep -c "⏳\|🟡\|🔴" TODO_APP_STORE_READY.md 2>/dev/null || echo "0")
+    
+    print_status "TODO Progress: ~${PROGRESS}% Complete ($COMPLETED done, $PENDING pending)"
+    echo "✅ TODO Progress: ~${PROGRESS}% Complete ($COMPLETED done, $PENDING pending)" >> "$DAILY_LOG"
+    
+    # Check for critical tasks
+    CRITICAL_TASKS=$(grep -c "🔴" TODO_APP_STORE_READY.md 2>/dev/null || echo "0")
+    if [ "$CRITICAL_TASKS" -gt 0 ]; then
+        print_warning "Critical tasks found: $CRITICAL_TASKS"
+        echo "⚠️ Critical tasks found: $CRITICAL_TASKS" >> "$DAILY_LOG"
+    fi
+else
+    print_warning "TODO file not found"
+    echo "⚠️ TODO file not found" >> "$DAILY_LOG"
+fi
+
 # Quick build check
 print_subsection "Checking build status..."
 echo "Checking build status..." >> "$DAILY_LOG"

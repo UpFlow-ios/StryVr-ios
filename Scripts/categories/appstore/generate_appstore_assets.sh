@@ -1,0 +1,1 @@
+../generate_appstore_assets.sh

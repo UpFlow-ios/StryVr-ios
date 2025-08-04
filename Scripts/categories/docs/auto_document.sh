@@ -1,0 +1,1 @@
+../auto_document.sh
