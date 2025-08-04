@@ -224,7 +224,9 @@ class OktaIntegrationService: ObservableObject {
 
     /// Build Okta authorization URL with PKCE
     private func buildAuthURL() -> URL {
-        var components = URLComponents(url: oktaConfig.authorizationEndpoint, resolvingAgainstBaseURL: false)!
+        guard var components = URLComponents(url: oktaConfig.authorizationEndpoint, resolvingAgainstBaseURL: false) else {
+            fatalError("Failed to create URL components for authorization endpoint")
+        }
         components.queryItems = [
             URLQueryItem(name: "client_id", value: oktaConfig.clientId),
             URLQueryItem(name: "redirect_uri", value: oktaConfig.redirectUri),
@@ -235,7 +237,10 @@ class OktaIntegrationService: ObservableObject {
             URLQueryItem(name: "code_challenge_method", value: "S256")
         ]
         
-        return components.url!
+        guard let url = components.url else {
+            fatalError("Failed to create authorization URL")
+        }
+        return url
     }
 
     /// Extract authorization code from callback URL
@@ -374,7 +379,7 @@ struct OktaUserProfile: Codable {
 
     enum CodingKeys: String, CodingKey {
         case email, firstName, lastName, title, department, manager, groups
-        case hireDate = "hireDate"
+        case hireDate
     }
 }
 

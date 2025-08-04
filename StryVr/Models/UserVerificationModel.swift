@@ -25,7 +25,7 @@ struct UserVerificationModel: Identifiable, Codable {
     // MARK: - Computed Properties
 
     var isVerified: Bool {
-        return status == .approved && (expirationDate == nil || expirationDate! > Date())
+        return status == .approved && (expirationDate == nil || (expirationDate ?? Date()) > Date())
     }
 
     var isExpired: Bool {

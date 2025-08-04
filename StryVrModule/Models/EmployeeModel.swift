@@ -42,22 +42,37 @@ struct FeedbackEntry: Codable, Hashable {
             joinDate: Date(timeIntervalSince1970: 1_672_531_200),
             skills: [
                 SkillProgress(
-                    skillId: "swiftui", skillName: "SwiftUI", currentLevel: 4,
-                    progressPercentage: 0.85),
+                    skillId: "swiftui",
+                    skillName: "SwiftUI",
+                    currentLevel: 4,
+                    progressPercentage: 0.85
+                ),
                 SkillProgress(
-                    skillId: "leadership", skillName: "Leadership", currentLevel: 3,
-                    progressPercentage: 0.72),
+                    skillId: "leadership",
+                    skillName: "Leadership",
+                    currentLevel: 3,
+                    progressPercentage: 0.72
+                ),
                 SkillProgress(
-                    skillId: "communication", skillName: "Communication", currentLevel: 3,
-                    progressPercentage: 0.68),
+                    skillId: "communication",
+                    skillName: "Communication",
+                    currentLevel: 3,
+                    progressPercentage: 0.68
+                ),
             ],
             feedbackEntries: [
                 FeedbackEntry(
-                    category: .collaboration, comment: "Always helpful in team tasks.", rating: 5,
-                    date: .now),
+                    category: .collaboration,
+                    comment: "Always helpful in team tasks.",
+                    rating: 5,
+                    date: .now
+                ),
                 FeedbackEntry(
-                    category: .clarity, comment: "Could communicate more clearly during standups.",
-                    rating: 3, date: .now),
+                    category: .clarity,
+                    comment: "Could communicate more clearly during standups.",
+                    rating: 3,
+                    date: .now
+                ),
             ],
             performanceRating: 4.6,
             goalsAchieved: 12,

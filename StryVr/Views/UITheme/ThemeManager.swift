@@ -128,13 +128,13 @@ struct Theme {
         static var glassEffect: Glass {
             .regular
         }
-        
+
         /// iOS 18 Glass Effect with tint for backward compatibility
         @available(iOS 18.0, *)
         static func glassEffect(tint: Color) -> Glass {
             .regular.tint(tint)
         }
-        
+
         /// iOS 18 Interactive Glass Effect for backward compatibility
         @available(iOS 18.0, *)
         static var interactiveGlassEffect: Glass {
@@ -151,53 +151,51 @@ struct Theme {
         struct CardStyle: ViewModifier {
             func body(content: Content) -> some View {
                 if #available(iOS 18.0, *) {
-                    content
-                        .glassEffect(.regular, in: RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: Theme.CornerRadius.card)
-                                .stroke(
-                                    LinearGradient(
-                                        colors: [
-                                            Theme.Colors.glassPrimary,
-                                            Theme.Colors.glassSecondary,
-                                        ],
-                                        startPoint: .topLeading,
-                                        endPoint: .bottomTrailing
-                                    ),
-                                    lineWidth: 1
-                                )
-                        )
-                        .clipShape(RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
+                    applyIOS18CardStyle(to: content)
                 } else {
-                    // iOS 16+ fallback
-                    content
-                        .background(.ultraThinMaterial)
-                        .background(
-                            RoundedRectangle(cornerRadius: Theme.CornerRadius.card)
-                                .fill(.ultraThinMaterial)
-                                .shadow(
-                                    color: Theme.Shadows.glassGlow,
-                                    radius: Theme.Shadows.glassGlowRadius,
-                                    x: Theme.Shadows.glassGlowX,
-                                    y: Theme.Shadows.glassGlowY
-                                )
-                        )
-                        .overlay(
-                            RoundedRectangle(cornerRadius: Theme.CornerRadius.card)
-                                .stroke(
-                                    LinearGradient(
-                                        colors: [
-                                            Theme.Colors.glassPrimary,
-                                            Theme.Colors.glassSecondary,
-                                        ],
-                                        startPoint: .topLeading,
-                                        endPoint: .bottomTrailing
-                                    ),
-                                    lineWidth: 1
-                                )
-                        )
-                        .clipShape(RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
+                    applyIOS16CardStyle(to: content)
                 }
+            }
+
+            @available(iOS 18.0, *)
+            private func applyIOS18CardStyle(to content: Content) -> some View {
+                content
+                    .glassEffect(
+                        .regular, in: RoundedRectangle(cornerRadius: Theme.CornerRadius.card)
+                    )
+                    .overlay(createCardBorder())
+                    .clipShape(RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
+            }
+
+            private func applyIOS16CardStyle(to content: Content) -> some View {
+                content
+                    .background(.ultraThinMaterial)
+                    .background(createCardBackground())
+                    .overlay(createCardBorder())
+                    .clipShape(RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
+            }
+
+            private func createCardBorder() -> some View {
+                RoundedRectangle(cornerRadius: Theme.CornerRadius.card)
+                    .stroke(
+                        LinearGradient(
+                            colors: [Theme.Colors.glassPrimary, Theme.Colors.glassSecondary],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ),
+                        lineWidth: 1
+                    )
+            }
+
+            private func createCardBackground() -> some View {
+                RoundedRectangle(cornerRadius: Theme.CornerRadius.card)
+                    .fill(.ultraThinMaterial)
+                    .shadow(
+                        color: Theme.Shadows.glassGlow,
+                        radius: Theme.Shadows.glassGlowRadius,
+                        x: Theme.Shadows.glassGlowX,
+                        y: Theme.Shadows.glassGlowY
+                    )
             }
         }
 
@@ -205,53 +203,44 @@ struct Theme {
         struct ButtonStyle: ViewModifier {
             func body(content: Content) -> some View {
                 if #available(iOS 18.0, *) {
-                    content
-                        .glassEffect(.regular.interactive(), in: RoundedRectangle(cornerRadius: Theme.CornerRadius.medium))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: Theme.CornerRadius.medium)
-                                .stroke(
-                                    LinearGradient(
-                                        colors: [
-                                            Theme.Colors.glassAccent,
-                                            Theme.Colors.glassPrimary,
-                                        ],
-                                        startPoint: .topLeading,
-                                        endPoint: .bottomTrailing
-                                    ),
-                                    lineWidth: 1.5
-                                )
-                        )
-                        .clipShape(RoundedRectangle(cornerRadius: Theme.CornerRadius.medium))
+                    applyIOS18ButtonStyle(to: content)
                 } else {
-                    // iOS 16+ fallback
-                    content
-                        .background(.ultraThinMaterial)
-                        .background(
-                            RoundedRectangle(cornerRadius: Theme.CornerRadius.medium)
-                                .fill(.ultraThinMaterial)
-                                .shadow(
-                                    color: Theme.Colors.glowAccent,
-                                    radius: 6,
-                                    x: 0,
-                                    y: 3
-                                )
-                        )
-                        .overlay(
-                            RoundedRectangle(cornerRadius: Theme.CornerRadius.medium)
-                                .stroke(
-                                    LinearGradient(
-                                        colors: [
-                                            Theme.Colors.glassAccent,
-                                            Theme.Colors.glassPrimary,
-                                        ],
-                                        startPoint: .topLeading,
-                                        endPoint: .bottomTrailing
-                                    ),
-                                    lineWidth: 1.5
-                                )
-                        )
-                        .clipShape(RoundedRectangle(cornerRadius: Theme.CornerRadius.medium))
+                    applyIOS16ButtonStyle(to: content)
                 }
+            }
+            
+            @available(iOS 18.0, *)
+            private func applyIOS18ButtonStyle(to content: Content) -> some View {
+                content
+                    .glassEffect(.regular.interactive(), in: RoundedRectangle(cornerRadius: Theme.CornerRadius.medium))
+                    .overlay(createButtonBorder())
+                    .clipShape(RoundedRectangle(cornerRadius: Theme.CornerRadius.medium))
+            }
+            
+            private func applyIOS16ButtonStyle(to content: Content) -> some View {
+                content
+                    .background(.ultraThinMaterial)
+                    .background(createButtonBackground())
+                    .overlay(createButtonBorder())
+                    .clipShape(RoundedRectangle(cornerRadius: Theme.CornerRadius.medium))
+            }
+            
+            private func createButtonBorder() -> some View {
+                RoundedRectangle(cornerRadius: Theme.CornerRadius.medium)
+                    .stroke(
+                        LinearGradient(
+                            colors: [Theme.Colors.glassAccent, Theme.Colors.glassPrimary],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ),
+                        lineWidth: 1.5
+                    )
+            }
+            
+            private func createButtonBackground() -> some View {
+                RoundedRectangle(cornerRadius: Theme.CornerRadius.medium)
+                    .fill(.ultraThinMaterial)
+                    .shadow(color: Theme.Colors.glowAccent, radius: 6, x: 0, y: 3)
             }
         }
 
@@ -304,11 +293,11 @@ struct Theme {
         /// iOS 18 Glass Effect Container with fallback
         struct GlassContainer: ViewModifier {
             let spacing: CGFloat
-            
+
             init(spacing: CGFloat = 20.0) {
                 self.spacing = spacing
             }
-            
+
             func body(content: Content) -> some View {
                 if #available(iOS 18.0, *) {
                     GlassEffectContainer(spacing: spacing) {
@@ -391,13 +380,13 @@ extension View {
     func glassEffect(_ glass: Glass, in shape: some Shape = Capsule()) -> some View {
         self.glassEffect(glass, in: shape)
     }
-    
+
     /// Apply iOS 18 Glass Effect with tint (iOS 18+ only)
     @available(iOS 18.0, *)
     func glassEffect(tint: Color, in shape: some Shape = Capsule()) -> some View {
         self.glassEffect(.regular.tint(tint), in: shape)
     }
-    
+
     /// Apply iOS 18 Interactive Glass Effect (iOS 18+ only)
     @available(iOS 18.0, *)
     func interactiveGlassEffect(in shape: some Shape = Capsule()) -> some View {
@@ -422,7 +411,9 @@ extension View {
     }
 
     /// Apply iOS 18 Glass Effect Container with fallback
-    func glassContainer(spacing: CGFloat = 20.0) -> ModifiedContent<Self, Theme.LiquidGlass.GlassContainer> {
+    func glassContainer(spacing: CGFloat = 20.0) -> ModifiedContent<
+        Self, Theme.LiquidGlass.GlassContainer
+    > {
         self.modifier(Theme.LiquidGlass.GlassContainer(spacing: spacing))
     }
 
@@ -445,17 +436,17 @@ extension View {
     func glassEffect<Shape: SwiftUI.Shape>(_ glass: Glass, in shape: Shape) -> some View {
         self.glassEffect(glass, in: shape)
     }
-    
+
     /// Apply glass effect with custom transition
     func glassEffectTransition(_ transition: GlassEffectTransition) -> some View {
         self.glassEffectTransition(transition)
     }
-    
+
     /// Apply glass effect ID for animation grouping
     func glassEffectID<ID: Hashable>(_ id: ID, in namespace: Namespace.ID) -> some View {
         self.glassEffectID(id, in: namespace)
     }
-    
+
     /// Apply glass effect union for combining effects
     func glassEffectUnion<ID: Hashable>(id: ID, namespace: Namespace.ID) -> some View {
         self.glassEffectUnion(id: id, namespace: namespace)

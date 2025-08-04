@@ -19,7 +19,7 @@ struct ClearMeCreateSessionRequest: Codable {
     let locale: String?
     let customFields: [String: String]?
     let clearMemberId: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case projectId = "project_id"
         case redirectUrl = "redirect_url"
@@ -47,7 +47,7 @@ struct ClearMePaginationLinks: Codable {
     let prev: String?
     let last: String?
     let totalResults: Int
-    
+
     enum CodingKeys: String, CodingKey {
         case current
         case first
@@ -86,7 +86,7 @@ struct ClearMeVerificationSession: Codable {
     let customFields: [String: String]
     let userProfileMatchStatus: String?
     let idvStatus: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case objectName = "object_name"
@@ -119,15 +119,15 @@ struct ClearMeVerificationSession: Codable {
 
 /// Verification session status enum
 enum ClearMeSessionStatus: String, Codable {
-    case success = "success"
-    case fail = "fail"
+    case success
+    case fail
     case awaitingUserInput = "awaiting_user_input"
     case processingData = "processing_data"
-    case expired = "expired"
+    case expired
     case awaitingManualReview = "awaiting_manual_review"
     case manualSuccess = "manual_success"
     case manualFail = "manual_fail"
-    case canceled = "canceled"
+    case canceled
 }
 
 /// Individual check within a verification session
@@ -137,7 +137,7 @@ struct ClearMeCheck: Codable {
     let status: ClearMeCheckStatus
     let additionalDetails: ClearMeAdditionalDetails?
     let params: [String: String]
-    
+
     enum CodingKeys: String, CodingKey {
         case name
         case value
@@ -154,10 +154,10 @@ enum ClearMeCheckValue: Codable {
     case number(Double)
     case string(String)
     case null
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        
+
         if container.decodeNil() {
             self = .null
         } else if let boolValue = try? container.decode(Bool.self) {
@@ -169,13 +169,14 @@ enum ClearMeCheckValue: Codable {
         } else if let stringValue = try? container.decode(String.self) {
             self = .string(stringValue)
         } else {
-            throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode ClearMeCheckValue")
+            throw DecodingError.dataCorruptedError(
+                in: container, debugDescription: "Cannot decode ClearMeCheckValue")
         }
     }
-    
+
     func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-        
+
         switch self {
         case .boolean(let value):
             try container.encode(value)
@@ -193,16 +194,16 @@ enum ClearMeCheckValue: Codable {
 
 /// Check status enum
 enum ClearMeCheckStatus: String, Codable {
-    case completed = "completed"
-    case skipped = "skipped"
-    case error = "error"
+    case completed
+    case skipped
+    case error
 }
 
 /// Additional details for checks
 struct ClearMeAdditionalDetails: Codable {
     let watchlistHits: ClearMeWatchlistHits?
     let params: [String: String]
-    
+
     enum CodingKeys: String, CodingKey {
         case watchlistHits = "watchlist_hits"
         case params
@@ -213,7 +214,7 @@ struct ClearMeAdditionalDetails: Codable {
 struct ClearMeWatchlistHits: Codable {
     let hits: [ClearMeWatchlistHit]
     let updatedAt: Int
-    
+
     enum CodingKeys: String, CodingKey {
         case hits
         case updatedAt = "updated_at"
@@ -226,7 +227,7 @@ struct ClearMeWatchlistHit: Codable {
     let details: ClearMeHitDetails
     let sourceLists: [ClearMeSourceList]
     let hitTypes: [String]
-    
+
     enum CodingKeys: String, CodingKey {
         case entityType = "entity_type"
         case details
@@ -253,7 +254,7 @@ struct ClearMeHitDetails: Codable {
     let createdAt: [ClearMeDate]?
     let modifiedAt: [ClearMeDate]?
     let sourceUrls: [String]?
-    
+
     enum CodingKeys: String, CodingKey {
         case name
         case alias
@@ -301,7 +302,7 @@ struct ClearMeTraits: Codable {
     let documentBack: String?
     let faceScanPreview: String?
     let healthInsurance: ClearMeHealthInsurance?
-    
+
     enum CodingKeys: String, CodingKey {
         case address
         case dob
@@ -332,7 +333,7 @@ struct ClearMeAddress: Codable {
     let state: String?
     let postalCode: String?
     let country: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case line1
         case line2
@@ -364,7 +365,7 @@ struct ClearMeDocument: Codable {
     let firstName: String?
     let lastName: String?
     let middleName: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case nationality
         case documentType = "document_type"
@@ -392,7 +393,7 @@ struct ClearMeHealthInsurance: Codable {
     let groupId: String?
     let insuranceType: String?
     let insuranceMemberId: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case payerId = "payer_id"
         case payerName = "payer_name"
@@ -420,7 +421,7 @@ struct ClearMeName: Codable {
     let firstName: String?
     let lastName: String?
     let middleName: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case firstName = "first_name"
         case lastName = "last_name"
@@ -440,4 +441,4 @@ struct ClearMeErrorDetails: Codable {
     let type: String
     let message: String
     let code: String?
-} 
+}

@@ -11,6 +11,7 @@ import OSLog
 import Security
 
 /// Manages secure storage of sensitive data using Apple's Keychain API
+@MainActor
 final class SecureStorageService {
     static let shared = SecureStorageService()
     private let logger = Logger(

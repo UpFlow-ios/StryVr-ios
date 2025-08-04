@@ -103,7 +103,7 @@ struct ReportsView: View {
                             .font(.title)
                             .foregroundColor(.green)
                     }
-                    
+
                     Text("Verified")
                         .font(Theme.Fonts.caption)
                         .foregroundColor(.green)
@@ -210,7 +210,7 @@ struct ReportsView: View {
             LazyVGrid(
                 columns: [
                     GridItem(.flexible()),
-                    GridItem(.flexible()),
+                    GridItem(.flexible())
                 ], spacing: Theme.Spacing.medium
             ) {
                 MetricCard(
@@ -256,7 +256,7 @@ struct ReportsView: View {
                 columns: [
                     GridItem(.flexible()),
                     GridItem(.flexible()),
-                    GridItem(.flexible()),
+                    GridItem(.flexible())
                 ], spacing: Theme.Spacing.small
             ) {
                 ForEach(reportsViewModel.skills, id: \.name) { skill in
@@ -350,23 +350,25 @@ extension View {
     /// Apply iOS 18 Liquid Glass card with fallback
     func applyLiquidGlassCard() -> some View {
         if #available(iOS 18.0, *) {
-            return self.glassEffect(.regular, in: RoundedRectangle(cornerRadius: Theme.Spacing.medium))
+            return self.glassEffect(
+                .regular, in: RoundedRectangle(cornerRadius: Theme.Spacing.medium))
         } else {
             return self.background(Theme.Colors.surface)
                 .cornerRadius(Theme.Spacing.medium)
         }
     }
-    
+
     /// Apply iOS 18 Interactive Liquid Glass card with fallback
     func applyInteractiveLiquidGlassCard() -> some View {
         if #available(iOS 18.0, *) {
-            return self.glassEffect(.regular.interactive(), in: RoundedRectangle(cornerRadius: Theme.Spacing.medium))
+            return self.glassEffect(
+                .regular.interactive(), in: RoundedRectangle(cornerRadius: Theme.Spacing.medium))
         } else {
             return self.background(Theme.Colors.surface)
                 .cornerRadius(Theme.Spacing.medium)
         }
     }
-    
+
     /// Apply filter button style with iOS 18 Liquid Glass
     func applyFilterButtonStyle(isSelected: Bool) -> some View {
         if #available(iOS 18.0, *) {
@@ -383,11 +385,13 @@ extension View {
             .cornerRadius(Theme.Spacing.small)
         }
     }
-    
+
     /// Apply verification badge style with iOS 18 Liquid Glass
     func applyVerificationBadgeStyle() -> some View {
         if #available(iOS 18.0, *) {
-            return self.glassEffect(.regular.tint(.green.opacity(0.1)), in: RoundedRectangle(cornerRadius: Theme.Spacing.small))
+            return self.glassEffect(
+                .regular.tint(.green.opacity(0.1)),
+                in: RoundedRectangle(cornerRadius: Theme.Spacing.small))
         } else {
             return self.background(Color.green.opacity(0.1))
                 .cornerRadius(Theme.Spacing.small)
@@ -417,7 +421,7 @@ struct StatCard: View {
                     .font(.title2)
                     .foregroundColor(color)
             }
-            
+
             Text(value)
                 .font(Theme.Fonts.headline)
                 .foregroundColor(Theme.Colors.text)
@@ -610,25 +614,7 @@ enum ResumeFilter: CaseIterable {
     }
 }
 
-enum VerificationStatus {
-    case approved, pending, rejected
-
-    var icon: String {
-        switch self {
-        case .approved: return "checkmark.circle.fill"
-        case .pending: return "clock.circle.fill"
-        case .rejected: return "xmark.circle.fill"
-        }
-    }
-
-    var color: Color {
-        switch self {
-        case .approved: return .green
-        case .pending: return .orange
-        case .rejected: return .red
-        }
-    }
-}
+// VerificationStatus enum moved to StryVr/Models/Enums/VerificationStatus.swift
 
 struct EarningHistory {
     let year: Int
@@ -675,7 +661,7 @@ class ReportsViewModel: ObservableObject {
                 endDate: "2022-01",
                 salary: 95000,
                 weakPoints: ["Team leadership"]
-            )
+            ),
         ]
 
         skills = [
@@ -684,14 +670,14 @@ class ReportsViewModel: ObservableObject {
             Skill(name: "Firebase", level: 4, isVerified: false),
             Skill(name: "Git", level: 5, isVerified: true),
             Skill(name: "Agile", level: 3, isVerified: false),
-            Skill(name: "UI/UX", level: 4, isVerified: true)
+            Skill(name: "UI/UX", level: 4, isVerified: true),
         ]
 
         earningsHistory = [
             EarningHistory(year: 2024, company: "TechCorp", amount: 120000),
             EarningHistory(year: 2023, company: "TechCorp", amount: 115000),
             EarningHistory(year: 2022, company: "StartupXYZ", amount: 95000),
-            EarningHistory(year: 2021, company: "StartupXYZ", amount: 90000)
+            EarningHistory(year: 2021, company: "StartupXYZ", amount: 90000),
         ]
     }
 

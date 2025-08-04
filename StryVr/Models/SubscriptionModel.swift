@@ -3,10 +3,10 @@ import StoreKit
 
 // MARK: - Subscription Tiers
 enum SubscriptionTier: String, CaseIterable, Codable {
-    case free = "free"
-    case premium = "premium"
-    case team = "team"
-    case enterprise = "enterprise"
+    case free
+    case premium
+    case team
+    case enterprise
 
     var displayName: String {
         switch self {
@@ -67,7 +67,7 @@ enum SubscriptionTier: String, CaseIterable, Codable {
                 .teamCollaboration,
                 .customIntegrations,
                 .teamReports,
-                .adminControls,
+                .adminControls
             ]
         case .enterprise:
             return [
@@ -79,7 +79,7 @@ enum SubscriptionTier: String, CaseIterable, Codable {
                 .advancedSecurity,
                 .customWorkflows,
                 .enterpriseAnalytics,
-                .customIntegrations,
+                .customIntegrations
             ]
         }
     }
@@ -118,7 +118,6 @@ enum SubscriptionFeature: String, CaseIterable, Codable {
     case advancedSecurity = "advanced_security"
     case customWorkflows = "custom_workflows"
     case enterpriseAnalytics = "enterprise_analytics"
-    case customIntegrations = "custom_integrations"
 
     var displayName: String {
         switch self {
@@ -153,7 +152,6 @@ enum SubscriptionFeature: String, CaseIterable, Codable {
         case .advancedSecurity: return "Advanced Security"
         case .customWorkflows: return "Custom Workflows"
         case .enterpriseAnalytics: return "Enterprise Analytics"
-        case .customIntegrations: return "Custom Integrations"
         }
     }
 
@@ -190,7 +188,6 @@ enum SubscriptionFeature: String, CaseIterable, Codable {
         case .advancedSecurity: return "Enterprise-grade security"
         case .customWorkflows: return "Tailored to your processes"
         case .enterpriseAnalytics: return "Advanced team performance insights"
-        case .customIntegrations: return "Connect with your existing tools"
         }
     }
 }
