@@ -1,131 +1,78 @@
-# StryVr - AI-Powered Professional Development Platform
+# 🚀 StryVr - AI-Powered Professional Development Platform
 
-[![Swift](https://img.shields.io/badge/Swift-6.0-orange.svg)](https://swift.org)
+[![Swift](https://img.shields.io/badge/Swift-6.1.2-orange.svg)](https://swift.org)
 [![iOS](https://img.shields.io/badge/iOS-16.0+-blue.svg)](https://developer.apple.com/ios/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![SwiftUI](https://img.shields.io/badge/SwiftUI-5.0+-green.svg)](https://developer.apple.com/xcode/swiftui/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> **The Revolutionary HR-Verified Professional Resume Platform** - Transforming how professionals showcase their verified employment history, earnings, and performance metrics to employers.
+> **Transform workplace performance through AI-powered skill assessment and personalized career guidance**
 
-## 🚀 About StryVr
+## 🌟 About StryVr
 
-**StryVr** is the next-generation AI-powered professional development platform that revolutionizes how professionals track, measure, and accelerate their career growth. Built for ambitious individuals and forward-thinking organizations, StryVr combines cutting-edge AI technology with intuitive design to deliver real-time skill assessment and personalized career guidance.
+StryVr is the next-generation iOS platform that revolutionizes how professionals track, measure, and accelerate their career growth. Built for ambitious individuals and forward-thinking organizations, we combine cutting-edge AI technology with intuitive design to deliver real-time skill assessment and personalized career guidance.
 
-## 💰 **Monetization Strategy**
+### 🎯 What Makes StryVr Different
 
-StryVr features a comprehensive **freemium model** with AI-powered user tracking and personalized recommendations:
+- **🤖 AI-Powered Insights**: Real-time analysis of workplace interactions during video calls
+- **📊 Personalized Analytics**: Data-driven career path recommendations and skill assessments
+- **🎮 Gamified Learning**: Achievement systems, challenges, and progress tracking
+- **🏢 Enterprise Ready**: Team health monitoring and performance analytics for organizations
+- **🔐 Secure & Private**: End-to-end encryption with biometric authentication
+- **📱 Modern UI**: iOS 18 Liquid Glass effects with premium visual design
 
-### **Subscription Tiers:**
-- **Free**: Basic skill tracking, limited AI insights, 3 career goals
-- **Premium ($7.99/month)**: Unlimited AI insights, professional reports, skill assessments
-- **Team ($29.99/month)**: Team analytics, manager dashboard, collaboration features
-- **Enterprise ($99.99/month)**: White-label options, custom branding, dedicated support
+## ✨ Key Features
 
-### **AI-Powered User Tracking:**
-- **Behavior Analysis**: Tracks feature usage, skill interactions, goal progress
-- **Personalized Recommendations**: AI-generated career paths and skill suggestions
-- **Revenue Optimization**: Converts insights to subscription upgrades and additional services
+### For Professionals
+- **Real-Time Skill Assessment**: AI analyzes communication, leadership, and technical skills
+- **Personalized Career Paths**: Data-driven recommendations for skill development
+- **Achievement System**: Gamified progress tracking with badges and milestones
+- **Secure Resume Builder**: Professional report generation with insights
+- **Learning Challenges**: Interactive skill-building exercises and goals
 
-### **Additional Revenue Streams:**
-- **Certification Programs**: Industry-recognized certifications
-- **Career Coaching**: Professional coaching services
-- **Premium Content**: Exclusive learning materials
-- **Consulting Services**: Implementation consulting
-- **White Label Solutions**: Custom branded versions
+### For Organizations
+- **Team Health Analytics**: Monitor employee engagement and growth potential
+- **Performance Insights**: Data-driven feedback on team dynamics
+- **Behavioral Analytics**: Track workplace interactions and communication patterns
+- **Enterprise Dashboard**: Comprehensive reporting and analytics suite
 
-### 🎯 **The Core Vision (November 2024)**
+## 🛠️ Technical Stack
 
-StryVr was born from a simple yet revolutionary idea: **What if resumes could be completely verified and trusted?** The **ReportsView** - our HR-verified professional resume system - is the foundation that started it all. It transforms traditional "trust me" resumes into **verified, data-driven professional profiles** that employers can rely on.
+### Core Technologies
+- **Swift 6.1.2** - Latest Swift language features and performance optimizations
+- **SwiftUI 5.0+** - Modern declarative UI framework
+- **iOS 18 Liquid Glass** - Cutting-edge visual effects and interactions
+- **Firebase** - Authentication, Firestore, and real-time data
+- **HuggingFace AI** - Advanced natural language processing
 
-### ✨ **Revolutionary Features**
+### Key Libraries
+- **Swift Charts** - Beautiful data visualization and analytics
+- **Lottie** - Smooth animations and micro-interactions
+- **ConfettiSwiftUI** - Celebration effects and user engagement
+- **OSLog** - Modern logging and debugging
+- **Keychain Services** - Secure biometric authentication
 
-#### **📊 HR-Verified Professional Resume System**
-- **Verified Employment History** - Past companies verify all data
-- **Real Performance Metrics** - Actual ratings, achievements, responsibilities
-- **Earnings Transparency** - Verified salary history and hourly rates
-- **Skills Assessment** - Proven competencies with verification badges
-- **Privacy Control** - Users can hide weak points while maintaining employer trust
-- **Professional Sharing** - PDF generation for job applications and networking
-- **ClearMe Integration** - Biometric identity verification for complete transparency
-- **Company Verification** - HR-verified company associations and employment history
-- **Okta Integration** - Seamless HR data sync for enterprise employers
+### Architecture
+- **MVVM Pattern** - Clean separation of concerns
+- **Modular Design** - Scalable and maintainable codebase
+- **Protocol-Oriented** - Swift best practices and testability
+- **Dependency Injection** - Flexible and testable architecture
 
-#### **🤖 AI-Powered Professional Development**
-- **Real-Time Skill Assessment** - AI analyzes workplace interactions
-- **Personalized Career Guidance** - Data-driven recommendations
-- **Performance Analytics** - Track improvement over time
-- **Goal Tracking** - Gamified learning with achievements and challenges
+## 📱 Screenshots
 
-#### **🏢 Enterprise Analytics**
-- **Team Performance Insights** - Comprehensive team health overview
-- **Skill Gap Identification** - Data-driven training recommendations
-- **Behavior Feedback System** - Real-time workplace behavior analysis
-- **Growth Potential Analysis** - Predictive career trajectory insights
-
-#### **🎨 Liquid Glass UI**
-- **Modern Apple-Native Design** - Dark gradient backgrounds with frosted glass cards
-- **Enhanced Glow Effects** - Pulsing animations and depth blur
-- **Professional Aesthetics** - Premium visual effects throughout
-- **Smooth Animations** - Spring-based transitions and scale effects
-
-### 🛠 **Professional Tech Stack**
-
-- **Frontend**: Swift 6.0, SwiftUI, Core Data
-- **Backend**: Node.js, Express.js, Firebase
-- **AI/ML**: OpenAI API, HuggingFace, Custom ML models
-- **Security**: AES-GCM 256-bit encryption, Keychain integration
-- **Database**: Firebase Firestore, Core Data
-- **Authentication**: Firebase Auth, SecureStorageManager
-- **Development**: Oh My Zsh, SwiftLint, SwiftFormat, VS Code
-
-## 📱 **Core Views & Features**
-
-### **🏠 Home Dashboard**
-- AI-powered personalized greetings
-- Today's Goal tracking with visual progress
-- Skill Streak monitoring
-- Active Challenges overview
-- Recent Achievements showcase
-
-### **📊 ReportsView (The Core Vision)**
-- **HR-Verified Employment History** - The revolutionary feature that started StryVr
-- **Professional Profile Header** - Name, title, verification badge
-- **Quick Stats Dashboard** - Experience, companies, ratings
-- **Employment Cards** - Verified jobs with performance metrics
-- **Performance Metrics** - Leadership, technical skills, communication
-- **Skills & Competencies** - Verified skill assessments
-- **Earnings History** - Year-by-year verified salary data
-- **Verification Status** - Real-time verification tracking
-- **ClearMe Integration** - Biometric identity verification dashboard
-- **Company Verification** - HR-verified company associations
-- **Okta HR Sync** - Enterprise HR data integration
-
-### **👤 Profile Management**
-- Glass profile section with circular image
-- Skills/Badges/Goals metrics with neon glow icons
-- Professional achievements showcase
-- Privacy controls and settings
-
-### **🎯 Learning & Development**
-- AI-generated learning paths
-- Gamified challenges and achievements
-- Skill visualization dashboards
-- Progress tracking and analytics
-
-### **🏢 Enterprise Features**
-- Team health overview
-- Employee performance analytics
-- Behavior feedback system
-- Growth potential analysis
+<div align="center">
+  <img src="Marketing/Assets/Screenshots/dashboard.png" width="200" alt="StryVr Dashboard">
+  <img src="Marketing/Assets/Screenshots/analytics.png" width="200" alt="Analytics View">
+  <img src="Marketing/Assets/Screenshots/career-path.png" width="200" alt="Career Path">
+  <img src="Marketing/Assets/Screenshots/achievements.png" width="200" alt="Achievements">
+</div>
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-
-- Xcode 16.0+
-- iOS 16.0+
-- Swift 6.0
-- Node.js 18+ (for backend)
-- Homebrew (for development tools)
+- Xcode 15.0+
+- iOS 16.0+ deployment target
+- Apple Developer Account
+- Firebase project setup
 
 ### Installation
 
@@ -135,274 +82,128 @@ StryVr was born from a simple yet revolutionary idea: **What if resumes could be
    cd stryvr-ios
    ```
 
-2. **Setup iOS App**
+2. **Install dependencies**
    ```bash
-   cd SupportingFiles
-   open StryVr.xcodeproj
+   # Install Swift Package Manager dependencies
+   # (Automatically managed by Xcode)
    ```
 
-3. **Setup Backend (Optional)**
+3. **Configure Firebase**
    ```bash
-   cd backend
-   npm install
-   cp .env.example .env
-   # Add your API keys to .env
-   npm start
+   # Add your Firebase configuration files
+   # GoogleService-Info.plist for iOS
    ```
 
-4. **Setup Development Environment (Optional but Recommended)**
+4. **Build and run**
    ```bash
-   # Install development tools
-   brew install swiftlint swiftformat fzf ripgrep bat eza git-delta lazygit
-   
-   # Install terminal enhancements
-   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-   
-   # Install Powerlevel10k theme
-   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-   
-   # Install VS Code extensions
-   code --install-extension ms-vscode.vscode-swift
-   code --install-extension vknabel.vscode-swift-development-environment
-   
-   # Configure Powerlevel10k (run this after installation)
-   source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
+   # Open StryVr.xcodeproj in Xcode
+   # Select your target device or simulator
+   # Press Cmd+R to build and run
    ```
 
-5. **Run the App**
-   - Open Xcode
-   - Select your target device/simulator
-   - Press Cmd+R to build and run
-   - Or use our build script: `./build-stryvr.sh`
-   - Or use our custom commands: `build`, `clean`, `lint`, `format`
+## 🏗️ Project Structure
 
-## 🛠️ Development Environment
+```
+StryVr/
+├── App/                    # App configuration and lifecycle
+├── Views/                  # SwiftUI views and UI components
+│   ├── AI/                # AI-powered features and insights
+│   ├── Analytics/         # Data visualization and charts
+│   ├── Auth/              # Authentication and onboarding
+│   ├── Challenges/        # Gamified learning features
+│   ├── Enterprise/        # Business analytics and team features
+│   ├── Home/              # Main dashboard and navigation
+│   ├── Insights/          # Performance insights and feedback
+│   ├── Profile/           # User profiles and settings
+│   └── UIComponents/      # Reusable UI components
+├── Models/                 # Data models and structures
+├── Services/              # Business logic and external services
+├── ViewModels/            # MVVM view models
+├── Utils/                 # Utilities and helpers
+└── Config/                # Configuration files
+```
 
-### **Professional Setup** ✅ **RECOMMENDED**
+## 🎨 Design System
 
-StryVr comes with a complete professional development environment setup that includes:
+StryVr features a premium design system built with:
 
-#### **Terminal Enhancement**
-- **Oh My Zsh** + **Powerlevel10k** theme for a beautiful terminal experience
-- **iTerm2** with syntax highlighting and auto-suggestions
-- **FZF** for fuzzy file finding and command history
-- **Professional Prompt**: Git status, time, directory, and command success indicators
+- **Liquid Glass UI**: iOS 18's latest visual effects
+- **Dark Mode Support**: Optimized for all lighting conditions
+- **Accessibility**: Full VoiceOver and Dynamic Type support
+- **Responsive Design**: Adapts to all iOS device sizes
+- **Premium Animations**: Smooth transitions and micro-interactions
 
-#### **Code Quality Tools**
-- **SwiftLint** for code style enforcement
-- **SwiftFormat** for automatic code formatting
-- **Custom aliases** for streamlined development workflow
+## 🔧 Development
 
-#### **Enhanced File Management**
-- **Bat** for syntax-highlighted file viewing
-- **Eza** for modern file listing with icons
-- **Ripgrep** for fast text search across the codebase
+### Code Style
+- **Swift 6.1.2** syntax and best practices
+- **SwiftLint** for consistent code formatting
+- **Documentation** for all public APIs
+- **Unit Tests** for critical business logic
 
-#### **Git Workflow Optimization**
-- **Git Delta** for enhanced diff viewing
-- **LazyGit** for terminal-based Git GUI
-- **Custom shortcuts**: `gs`, `ga`, `gc`, `gp`, `gl`, `gd`
-
-#### **StryVr-Specific Commands**
+### Building
 ```bash
-stryvr-dev          # Show all development commands
-stryvr              # Navigate to project directory
-build               # Build the iOS app
-clean               # Clean build folder
-lint                # Run SwiftLint
-format              # Run SwiftFormat
-test                # Run tests
-stryvr-commit "msg" # Quick commit and push
+# Clean build
+xcodebuild clean -project StryVr.xcodeproj -scheme StryVr
+
+# Build for release
+xcodebuild archive -project StryVr.xcodeproj -scheme StryVr -archivePath StryVr.xcarchive
 ```
 
-#### **Powerlevel10k Features**
-- **Git Integration**: Shows branch, commits ahead/behind, and file status
-- **Time Display**: Current time in the prompt
-- **Status Indicators**: Success (✔) and error (✘) indicators
-- **Directory Shortening**: Smart path display
-- **Professional Appearance**: Beautiful icons and colors
-
-### **Quick Setup**
+### Testing
 ```bash
-# Install all development tools at once
-curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-brew install swiftlint swiftformat fzf ripgrep bat eza git-delta lazygit
+# Run unit tests
+xcodebuild test -project StryVr.xcodeproj -scheme StryVr -destination 'platform=iOS Simulator,name=iPhone 15 Pro'
 ```
 
----
+## 📊 Performance
 
-## 🔧 Configuration
+- **60 FPS animations** across all interactions
+- **Optimized memory usage** for smooth performance
+- **Efficient data loading** with intelligent caching
+- **Background processing** for AI analysis
+- **Battery optimization** for extended use
 
-### Environment Variables
+## 🔐 Security & Privacy
 
-Create a `.env` file in the `backend` directory:
+- **End-to-end encryption** for all user data
+- **Biometric authentication** with Face ID/Touch ID
+- **Secure keychain storage** for sensitive information
+- **Privacy-first design** with local data processing
+- **GDPR compliance** for European users
 
-```env
-# Firebase Configuration
-FIREBASE_PROJECT_ID=your_project_id
-FIREBASE_PRIVATE_KEY=your_private_key
-FIREBASE_CLIENT_EMAIL=your_client_email
-FIREBASE_STORAGE_BUCKET=your_storage_bucket
+## 🌟 Contributing
 
-# API Keys
-OPENAI_API_KEY=your_openai_key
-HUGGINGFACE_API_KEY=your_huggingface_key
+We welcome contributions from the community! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
 
-# Server Configuration
-PORT=5000
-NODE_ENV=development
-```
-
-### iOS Configuration
-
-1. Add your `GoogleService-Info.plist` to the project
-2. Configure Firebase in your iOS app
-3. Set up your API keys in the app configuration
-
-## 📁 Project Structure
-
-```
-stryvr-ios/
-├── StryVr/                    # iOS App Source
-│   ├── App/                   # App configuration & lifecycle
-│   ├── Models/                # Data models & enums
-│   ├── Views/                 # SwiftUI views with Liquid Glass UI
-│   │   ├── Home/             # Premium dashboard with AI greetings
-│   │   ├── Reports/          # HR-verified professional resume system
-│   │   ├── Profile/          # User profile management
-│   │   ├── Auth/             # Authentication flows
-│   │   ├── UITheme/          # Liquid Glass styling system
-│   │   └── Debug/            # Development tools (DEBUG only)
-│   ├── Services/              # Business logic & external integrations
-│   ├── ViewModels/            # MVVM view models
-│   ├── Utils/                 # Utilities & helpers
-│   ├── Protocols/             # Service protocols for abstraction
-│   └── Config/                # Environment configuration
-├── backend/                   # Node.js backend
-│   ├── server.js             # Express server
-│   ├── functions/            # Firebase functions
-│   └── package.json          # Dependencies
-├── Marketing/                # Marketing assets and guides
-├── Scripts/                  # Automation scripts
-├── Docs/                     # Documentation
-└── build-stryvr.sh           # Safe build script
-```
-
-## 🔧 Build & Development
-
-### **Quick Build**
-```bash
-./build-stryvr.sh
-```
-
-### **Build Documentation**
-- [Build Status & Recent Fixes](Docs/BUILD_STATUS.md)
-- [Quick Start Guide](Docs/QUICK_START.md)
-- [Contributing Guidelines](CONTRIBUTING.md)
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
-
-### Development Workflow
-
+### Development Setup
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📊 Roadmap
-
-### **Phase 1: Core Platform** ✅ **COMPLETED**
-- [x] HR-verified professional resume system
-- [x] AI-powered skill assessment
-- [x] Liquid Glass UI implementation
-- [x] Enterprise analytics dashboard
-- [x] Professional development tracking
-
-### **Phase 2: Advanced Features** 🚧 **IN PROGRESS**
-- [ ] Enhanced AI recommendations
-- [ ] Advanced team analytics
-- [ ] Integration marketplace
-- [ ] Mobile apps (Android)
-
-### **Phase 3: Enterprise Expansion** 📋 **PLANNED**
-- [ ] Advanced HR tools
-- [ ] Custom reporting
-- [ ] API integrations
-- [ ] White-label solutions
-
-## 🔒 Security
-
-We take security seriously. StryVr implements:
-
-- **AES-GCM 256-bit encryption** for all sensitive data
-- **Secure Keychain integration** for credential storage
-- **Environment variable management** for API keys
-- **Regular security audits** and updates
-- **GDPR compliance** for data privacy
-- **HR verification system** for data integrity
-- **ClearMe biometric verification** for identity transparency
-- **Okta OIDC integration** for enterprise HR data sync
-
-## 📈 Analytics & Privacy
-
-- **No personal data collection** without consent
-- **Anonymous analytics** for app improvement
-- **Local data processing** where possible
-- **Transparent privacy policy** and data handling
-- **Verified data integrity** through HR partnerships
-
-## 🏆 Achievements
-
-- **🏗️ Built in Public** - Transparent development process
-- **🔒 Enterprise Security** - Bank-level encryption
-- **📱 Native iOS** - Optimized for Apple ecosystem
-- **🤖 AI-Powered** - Machine learning integration
-- **🎯 User-Centric** - Designed for real user needs
-- **✅ HR-Verified** - Revolutionary resume verification system
-- **🔐 ClearMe-Integrated** - Biometric identity verification for complete transparency
-- **🔗 Okta-Connected** - Enterprise HR data integration for seamless verification
-
-## 📞 Support & Contact
-
-### **Get in Touch**
-
-- **📧 Email**: [joedormond@stryvr.app](mailto:joedormond@stryvr.app)
-- **💼 LinkedIn**: [Joe Dormond](https://linkedin.com/injoedormond)
-- **🐙 GitHub**: [@upflow-ios](https://github.com/upflow-ios)
-- **🌐 Website**: [stryvr.app](https://stryvr.app)
-
-### **Business Inquiries**
-
-- **🤝 Partnerships**: [partnerships@stryvr.app](mailto:partnerships@stryvr.app)
-- **💼 Enterprise Sales**: [enterprise@stryvr.app](mailto:enterprise@stryvr.app)
-- **📊 Investor Relations**: [investors@stryvr.app](mailto:investors@stryvr.app)
-- **🔧 Technical Support**: [support@stryvr.app](mailto:support@stryvr.app)
-
-### **Resources**
-
-- **📚 Documentation**: [Docs/](Docs/)
-- **🐛 Bug Reports**: [GitHub Issues](https://github.com/upflow-ios/stryvr-ios/issues)
-- **💡 Feature Requests**: [GitHub Discussions](https://github.com/upflow-ios/stryvr-ios/discussions)
-- **🌐 Website**: [stryvr.app](https://stryvr.app)
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Submit a pull request
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## 🤝 Support
+
+- **Website**: [stryvr.app](https://stryvr.app)
+- **Documentation**: [docs.stryvr.app](https://docs.stryvr.app)
+- **Issues**: [GitHub Issues](https://github.com/upflow-ios/stryvr-ios/issues)
+- **Contact**: joedormond@stryvr.app
+
 ## 🙏 Acknowledgments
 
-- **OpenAI** for AI capabilities
-- **Firebase** for backend services
-- **Apple** for iOS development tools
-- **Open Source Community** for inspiration and tools
-- **HR Professionals** for insights into verification needs
+- **Apple** for SwiftUI and iOS development tools
+- **Firebase** for backend infrastructure
+- **HuggingFace** for AI capabilities
+- **Open Source Community** for amazing libraries and tools
 
 ---
 
-**Built with ❤️ for professional development**
-
-[Website](https://stryvr.app) • [LinkedIn](https://linkedin.com/injoedormond) • [GitHub](https://github.com/upflow-ios) 
+<div align="center">
+  <strong>Built with ❤️ by Joseph Dormond</strong><br>
+  <em>Transforming professional development through AI</em>
+</div> 
