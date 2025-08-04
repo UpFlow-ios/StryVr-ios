@@ -186,7 +186,7 @@ class OktaIntegrationService: ObservableObject {
             "grant_type": "authorization_code",
             "code": code,
             "redirect_uri": oktaConfig.redirectUri,
-            "client_id": oktaConfig.clientId,
+            "client_id": oktaConfig.clientId
         ]
 
         request.httpBody = body.percentEncoded()
@@ -270,7 +270,7 @@ class OktaIntegrationService: ObservableObject {
         let body = [
             "grant_type": "refresh_token",
             "refresh_token": refreshToken,
-            "client_id": oktaConfig.clientId,
+            "client_id": oktaConfig.clientId
         ]
 
         request.httpBody = body.percentEncoded()

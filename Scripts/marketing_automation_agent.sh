@@ -215,7 +215,7 @@ case $DAY_OF_WEEK in
         echo "💡 Tip: Track your daily progress to stay motivated and achieve your goals."
         ;;
     "Tuesday")
-        echo "⚡ Tech Tuesday: Built with Swift 6.1.2 and cutting-edge AI technology!"
+        echo "⚡ Tech Tuesday: Built with Swift 6.1.2 and modern AI technology!"
         echo "🔧 Feature: Real-time skill assessment during video calls."
         ;;
     "Wednesday")

@@ -165,7 +165,7 @@ refactor/glass-card-components
 
 ---
 
-**Remember**: Every commit to StryVr should move the project closer to App Store success. Quality over quantity, and always prioritize the user experience and app performance.
+**Remember**: Every commit to StryVr should move the project closer to App Store submission. Quality over quantity, and always prioritize the user experience and app performance.
 description:
 globs:
 alwaysApply: false

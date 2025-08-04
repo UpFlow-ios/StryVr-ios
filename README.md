@@ -5,25 +5,25 @@
 [![SwiftUI](https://img.shields.io/badge/SwiftUI-5.0+-green.svg)](https://developer.apple.com/xcode/swiftui/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> **The Revolutionary HR-Verified Professional Resume Platform** - Transforming how professionals showcase their verified employment history, earnings, and performance metrics to employers.
+> **Professional HR-Verified Resume Platform** - Helping professionals showcase their verified employment history, earnings, and performance metrics to employers.
 
 ## 🌟 About StryVr
 
-**StryVr** is the next-generation AI-powered professional development platform that revolutionizes how professionals track, measure, and accelerate their career growth. Built for ambitious individuals and forward-thinking organizations, StryVr combines cutting-edge AI technology with intuitive design to deliver real-time skill assessment and personalized career guidance.
+**StryVr** is an AI-powered professional development platform that helps professionals track, measure, and accelerate their career growth. Built for individuals and organizations, StryVr combines AI technology with intuitive design to deliver skill assessment and personalized career guidance.
 
 ### 🎯 **The Core Vision (November 2024)**
 
-StryVr was born from a simple yet revolutionary idea: **What if resumes could be completely verified and trusted?** The **ReportsView** - our HR-verified professional resume system - is the foundation that started it all. It transforms traditional "trust me" resumes into **verified, data-driven professional profiles** that employers can rely on.
+StryVr was born from a simple idea: **What if resumes could be completely verified and trusted?** The **ReportsView** - our HR-verified professional resume system - is the foundation that started it all. It transforms traditional "trust me" resumes into **verified, data-driven professional profiles** that employers can rely on.
 
 ### 🎯 What Makes StryVr Different
 
-- **📊 HR-Verified Professional Resume System**: The revolutionary feature that started StryVr - verified employment history, performance metrics, and earnings transparency
+- **📊 HR-Verified Professional Resume System**: The core feature that started StryVr - verified employment history, performance metrics, and earnings transparency
 - **🤖 AI-Powered Insights**: Real-time analysis of workplace interactions during video calls
 - **📈 Personalized Analytics**: Data-driven career path recommendations and skill assessments
 - **🎮 Gamified Learning**: Achievement systems, challenges, and progress tracking
 - **🏢 Enterprise Ready**: Team health monitoring and performance analytics for organizations
 - **🔐 Secure & Private**: End-to-end encryption with biometric authentication
-- **📱 Modern UI**: iOS 18 Liquid Glass effects with premium visual design
+- **📱 Modern UI**: iOS 18 Liquid Glass effects with clean visual design
 
 ## ✨ Key Features
 
@@ -68,7 +68,7 @@ StryVr was born from a simple yet revolutionary idea: **What if resumes could be
 ### Core Technologies
 - **Swift 6.1.2** - Latest Swift language features and performance optimizations
 - **SwiftUI 5.0+** - Modern declarative UI framework
-- **iOS 18 Liquid Glass** - Cutting-edge visual effects and interactions
+- **iOS 18 Liquid Glass** - Modern visual effects and interactions
 - **Firebase** - Authentication, Firestore, and real-time data
 - **HuggingFace AI** - Advanced natural language processing
 

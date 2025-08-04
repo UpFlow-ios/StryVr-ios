@@ -43,7 +43,7 @@ enum SubscriptionTier: String, CaseIterable, Codable {
                 .limitedAIInsights,
                 .threeCareerGoals,
                 .basicReports,
-                .communityAccess,
+                .communityAccess
             ]
         case .premium:
             return [
@@ -56,7 +56,7 @@ enum SubscriptionTier: String, CaseIterable, Codable {
                 .advancedGamification,
                 .personalizedCoaching,
                 .professionalReports,
-                .skillAssessments,
+                .skillAssessments
             ]
         case .team:
             return [

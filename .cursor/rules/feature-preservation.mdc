@@ -236,7 +236,7 @@ func existingFunction() {
 2. **Enhance carefully** - Add value without removing value
 3. **Test thoroughly** - Every change affects user experience
 4. **Document changes** - Future developers need to understand
-5. **Respect the vision** - StryVr is building toward App Store success
+5. **Respect the vision** - StryVr is building toward App Store submission
 
 ### Success Metrics
 - ✅ **No broken features** after changes

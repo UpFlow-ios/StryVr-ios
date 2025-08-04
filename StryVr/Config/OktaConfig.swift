@@ -57,7 +57,7 @@ struct OktaConfig {
         "openid",
         "profile",
         "email",
-        "workforce_identity",
+        "workforce_identity"
     ]
 
     /// Authorization endpoint

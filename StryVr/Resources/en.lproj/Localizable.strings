@@ -1,0 +1,232 @@
+/* 
+  Localizable.strings
+  StryVr
+  
+  Created by Joseph Dormond on 1/15/25.
+  🌍 Comprehensive localization for global App Store submission
+*/
+
+// MARK: - App General
+"app_name" = "StryVr";
+"app_tagline" = "AI-Powered Professional Development";
+"app_description" = "Transform your career with AI-driven insights and personalized skill development";
+
+// MARK: - Navigation
+"tab_home" = "Home";
+"tab_insights" = "Insights";
+"tab_skills" = "Skills";
+"tab_profile" = "Profile";
+"tab_enterprise" = "Enterprise";
+
+// MARK: - Authentication
+"auth_sign_in" = "Sign In";
+"auth_sign_up" = "Sign Up";
+"auth_forgot_password" = "Forgot Password?";
+"auth_email" = "Email";
+"auth_password" = "Password";
+"auth_confirm_password" = "Confirm Password";
+"auth_first_name" = "First Name";
+"auth_last_name" = "Last Name";
+"auth_company" = "Company";
+"auth_job_title" = "Job Title";
+
+// MARK: - Onboarding
+"onboarding_welcome_title" = "Welcome to StryVr";
+"onboarding_welcome_subtitle" = "Your AI-powered professional development companion";
+"onboarding_step_1_title" = "Track Your Skills";
+"onboarding_step_1_description" = "Monitor your professional growth with real-time analytics";
+"onboarding_step_2_title" = "AI Insights";
+"onboarding_step_2_description" = "Get personalized recommendations for career advancement";
+"onboarding_step_3_title" = "Team Analytics";
+"onboarding_step_3_description" = "Understand team dynamics and performance patterns";
+"onboarding_get_started" = "Get Started";
+
+// MARK: - Home Dashboard
+"home_welcome" = "Welcome back";
+"home_today_insights" = "Today's Insights";
+"home_skill_progress" = "Skill Progress";
+"home_recent_achievements" = "Recent Achievements";
+"home_team_health" = "Team Health";
+"home_view_all" = "View All";
+
+// MARK: - Skills
+"skills_title" = "Skills";
+"skills_technical" = "Technical Skills";
+"skills_soft" = "Soft Skills";
+"skills_leadership" = "Leadership";
+"skills_communication" = "Communication";
+"skills_problem_solving" = "Problem Solving";
+"skills_teamwork" = "Teamwork";
+"skills_adaptability" = "Adaptability";
+"skills_progress" = "Progress";
+"skills_target" = "Target";
+"skills_current" = "Current";
+
+// MARK: - AI Coach
+"ai_coach_title" = "AI Career Coach";
+"ai_coach_greeting" = "Hello! I'm your AI career coach.";
+"ai_coach_how_can_help" = "How can I help you today?";
+"ai_coach_career_advice" = "Career Advice";
+"ai_coach_skill_recommendations" = "Skill Recommendations";
+"ai_coach_interview_prep" = "Interview Preparation";
+"ai_coach_resume_review" = "Resume Review";
+"ai_coach_goal_setting" = "Goal Setting";
+
+// MARK: - Insights
+"insights_title" = "Insights";
+"insights_performance" = "Performance Insights";
+"insights_growth" = "Growth Analysis";
+"insights_team" = "Team Insights";
+"insights_behavior" = "Behavior Patterns";
+"insights_recommendations" = "Recommendations";
+"insights_trends" = "Trends";
+"insights_comparison" = "Comparison";
+
+// MARK: - Enterprise
+"enterprise_title" = "Enterprise";
+"enterprise_analytics" = "Analytics Dashboard";
+"enterprise_team_health" = "Team Health";
+"enterprise_performance" = "Performance Metrics";
+"enterprise_behavior" = "Behavior Feedback";
+"enterprise_reports" = "Reports";
+"enterprise_verification" = "Verification";
+
+// MARK: - Profile
+"profile_title" = "Profile";
+"profile_edit" = "Edit Profile";
+"profile_settings" = "Settings";
+"profile_notifications" = "Notifications";
+"profile_privacy" = "Privacy";
+"profile_security" = "Security";
+"profile_subscription" = "Subscription";
+"profile_help" = "Help & Support";
+"profile_about" = "About StryVr";
+"profile_logout" = "Log Out";
+
+// MARK: - Subscription
+"subscription_title" = "Subscription";
+"subscription_free" = "Free";
+"subscription_premium" = "Premium";
+"subscription_enterprise" = "Enterprise";
+"subscription_monthly" = "Monthly";
+"subscription_yearly" = "Yearly";
+"subscription_current_plan" = "Current Plan";
+"subscription_upgrade" = "Upgrade";
+"subscription_manage" = "Manage Subscription";
+"subscription_restore" = "Restore Purchases";
+
+// MARK: - Challenges & Achievements
+"challenges_title" = "Challenges";
+"challenges_active" = "Active Challenges";
+"challenges_completed" = "Completed";
+"challenges_streaks" = "Streaks";
+"challenges_achievements" = "Achievements";
+"challenges_leaderboard" = "Leaderboard";
+"challenges_join" = "Join Challenge";
+"challenges_complete" = "Complete Challenge";
+
+// MARK: - Reports
+"reports_title" = "Reports";
+"reports_generate" = "Generate Report";
+"reports_download" = "Download PDF";
+"reports_share" = "Share Report";
+"reports_resume" = "Resume";
+"reports_performance" = "Performance Report";
+"reports_skills" = "Skills Report";
+"reports_behavior" = "Behavior Report";
+
+// MARK: - Notifications
+"notifications_title" = "Notifications";
+"notifications_enable" = "Enable Notifications";
+"notifications_daily_insights" = "Daily Insights";
+"notifications_achievements" = "Achievements";
+"notifications_challenges" = "Challenge Updates";
+"notifications_team" = "Team Updates";
+"notifications_reminders" = "Reminders";
+
+// MARK: - Common Actions
+"action_save" = "Save";
+"action_cancel" = "Cancel";
+"action_delete" = "Delete";
+"action_edit" = "Edit";
+"action_share" = "Share";
+"action_download" = "Download";
+"action_upload" = "Upload";
+"action_continue" = "Continue";
+"action_back" = "Back";
+"action_next" = "Next";
+"action_previous" = "Previous";
+"action_finish" = "Finish";
+"action_retry" = "Retry";
+"action_refresh" = "Refresh";
+
+// MARK: - Status Messages
+"status_loading" = "Loading...";
+"status_saving" = "Saving...";
+"status_processing" = "Processing...";
+"status_success" = "Success!";
+"status_error" = "Error";
+"status_network_error" = "Network Error";
+"status_offline" = "You're offline";
+"status_online" = "Back online";
+
+// MARK: - Error Messages
+"error_generic" = "Something went wrong. Please try again.";
+"error_network" = "Network connection error. Please check your internet connection.";
+"error_authentication" = "Authentication failed. Please sign in again.";
+"error_permission" = "Permission denied. Please check your settings.";
+"error_validation" = "Please check your input and try again.";
+"error_server" = "Server error. Please try again later.";
+
+// MARK: - Success Messages
+"success_saved" = "Successfully saved!";
+"success_updated" = "Successfully updated!";
+"success_deleted" = "Successfully deleted!";
+"success_uploaded" = "Successfully uploaded!";
+"success_downloaded" = "Successfully downloaded!";
+"success_shared" = "Successfully shared!";
+
+// MARK: - Accessibility
+"accessibility_home_tab" = "Home tab";
+"accessibility_insights_tab" = "Insights tab";
+"accessibility_skills_tab" = "Skills tab";
+"accessibility_profile_tab" = "Profile tab";
+"accessibility_enterprise_tab" = "Enterprise tab";
+"accessibility_back_button" = "Back button";
+"accessibility_close_button" = "Close button";
+"accessibility_menu_button" = "Menu button";
+"accessibility_search_field" = "Search field";
+"accessibility_profile_image" = "Profile image";
+
+// MARK: - Time & Date
+"time_just_now" = "Just now";
+"time_minutes_ago" = "%d minutes ago";
+"time_hours_ago" = "%d hours ago";
+"time_days_ago" = "%d days ago";
+"time_weeks_ago" = "%d weeks ago";
+"time_months_ago" = "%d months ago";
+"time_years_ago" = "%d years ago";
+
+// MARK: - Numbers & Percentages
+"number_percentage" = "%d%%";
+"number_of_total" = "%d of %d";
+"number_count" = "%d";
+"number_ordinal" = "%d%@";
+
+// MARK: - Currency
+"currency_format" = "$%.2f";
+"currency_free" = "Free";
+"currency_per_month" = "$%.2f/month";
+"currency_per_year" = "$%.2f/year";
+
+// MARK: - Feature Flags
+"feature_ai_coach" = "AI Career Coach";
+"feature_skill_tracking" = "Skill Tracking";
+"feature_team_analytics" = "Team Analytics";
+"feature_behavior_feedback" = "Behavior Feedback";
+"feature_resume_builder" = "Resume Builder";
+"feature_challenges" = "Challenges";
+"feature_achievements" = "Achievements";
+"feature_leaderboard" = "Leaderboard";
+"feature_enterprise" = "Enterprise Features";
+"feature_verification" = "Identity Verification"; 

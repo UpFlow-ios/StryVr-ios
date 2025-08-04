@@ -73,7 +73,7 @@ git push origin main
 
 ---
 
-**Remember**: When in doubt, ask yourself: "Does this make StryVr better for App Store success?" If yes, commit. If no, wait.
+**Remember**: When in doubt, ask yourself: "Does this make StryVr better for App Store submission?" If yes, commit. If no, wait.
 description:
 globs:
 alwaysApply: false

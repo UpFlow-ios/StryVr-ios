@@ -73,7 +73,7 @@ final class VideoContentService {
                         "comments": 0,
                         "shares": 0,
                         "views": 0,
-                        "tags": tags,
+                        "tags": tags
                     ]
 
                     self.firestore.collection("Videos").document(videoID).setData(metadata) {

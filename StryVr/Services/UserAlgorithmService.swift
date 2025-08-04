@@ -170,7 +170,7 @@ class UserAlgorithmService: ObservableObject {
                     title: "Executive Leadership",
                     description: "Move into senior management and executive roles",
                     skills: [
-                        "Strategic Planning", "Business Development", "Executive Communication",
+                        "Strategic Planning", "Business Development", "Executive Communication"
                     ],
                     estimatedGrowth: "40% salary increase potential",
                     timeToAchieve: "3-5 years",

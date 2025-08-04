@@ -210,7 +210,7 @@ struct ReportsView: View {
             LazyVGrid(
                 columns: [
                     GridItem(.flexible()),
-                    GridItem(.flexible())
+                    GridItem(.flexible()),
                 ], spacing: Theme.Spacing.medium
             ) {
                 MetricCard(
@@ -256,7 +256,7 @@ struct ReportsView: View {
                 columns: [
                     GridItem(.flexible()),
                     GridItem(.flexible()),
-                    GridItem(.flexible())
+                    GridItem(.flexible()),
                 ], spacing: Theme.Spacing.small
             ) {
                 ForEach(reportsViewModel.skills, id: \.name) { skill in

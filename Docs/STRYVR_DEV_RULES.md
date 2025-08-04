@@ -228,4 +228,4 @@ final class MyService {
 
 ---
 
-*These rules ensure StryVr maintains its premium quality and App Store readiness.*
+*These rules ensure StryVr maintains its high quality and App Store readiness.*
