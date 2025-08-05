@@ -1,19 +1,70 @@
 {
   "images" : [
     {
-      "filename" : "AppIcon-1x.png",
+      "filename" : "AppIcon-Light-1x.png",
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "light"
+        }
+      ]
     },
     {
-      "filename" : "AppIcon-2x.png",
+      "filename" : "AppIcon-Dark-1x.png",
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "1x",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ]
     },
     {
-      "filename" : "AppIcon-3x.png",
+      "filename" : "AppIcon-Light-2x.png",
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "2x",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "light"
+        }
+      ]
+    },
+    {
+      "filename" : "AppIcon-Dark-2x.png",
+      "idiom" : "universal",
+      "scale" : "2x",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ]
+    },
+    {
+      "filename" : "AppIcon-Light-3x.png",
+      "idiom" : "universal",
+      "scale" : "3x",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "light"
+        }
+      ]
+    },
+    {
+      "filename" : "AppIcon-Dark-3x.png",
+      "idiom" : "universal",
+      "scale" : "3x",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ]
     }
   ],
   "info" : {
