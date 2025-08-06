@@ -80,6 +80,43 @@ This directory contains all automation scripts for StryVr development, deploymen
 - **`auto_screenshot.sh`** - Auto-screenshot
 - **`github_profile_setup.sh`** - GitHub profile setup
 - **`deployment_agent.sh`** - Deployment agent
+- **`setup_mcp_servers.sh`** - MCP (Model Context Protocol) server setup and management
+
+## 🤖 MCP Server Management
+
+The **`setup_mcp_servers.sh`** script manages Model Context Protocol (MCP) servers for enhanced AI assistant capabilities.
+
+### Features
+- **Automated Installation**: Installs all required MCP server packages
+- **Configuration Management**: Generates and manages MCP configuration files
+- **API Key Setup**: Guides through GitHub and Brave Search API setup
+- **Validation**: Tests configuration validity
+- **Backup**: Creates backups before making changes
+
+### Available MCP Servers
+- **Filesystem**: Direct file system access for code analysis
+- **GitHub**: Repository management and issue tracking
+- **Terminal**: Command execution in project context
+- **Brave Search**: Research and development information
+- **Client Configuration**: Cross-client MCP management
+
+### Usage
+```bash
+# Interactive menu
+./Scripts/setup_mcp_servers.sh
+
+# Quick commands
+./Scripts/setup_mcp_servers.sh install    # Install packages
+./Scripts/setup_mcp_servers.sh configure  # Generate config
+./Scripts/setup_mcp_servers.sh github     # Setup GitHub token
+./Scripts/setup_mcp_servers.sh brave      # Setup Brave Search
+./Scripts/setup_mcp_servers.sh test       # Test configuration
+./Scripts/setup_mcp_servers.sh show       # Show current config
+./Scripts/setup_mcp_servers.sh full       # Complete setup
+```
+
+### Integration
+The daily maintenance script now includes MCP server status checking and will prompt you to run the setup script if needed.
 
 ## 🎯 TODO Integration
 

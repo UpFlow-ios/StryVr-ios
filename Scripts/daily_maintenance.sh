@@ -304,6 +304,49 @@ echo "3. Dependencies: npm install in backend/"
 echo "4. Cache issues: Clear DerivedData"
 echo "5. Performance: Restart Xcode"
 
+print_section "9. MCP SERVER STATUS"
+echo "" >> "$DAILY_LOG"
+echo "9. MCP SERVER STATUS" >> "$DAILY_LOG"
+
+print_subsection "Checking MCP server configuration..."
+echo "Checking MCP server configuration..." >> "$DAILY_LOG"
+
+# Check MCP configuration
+MCP_CONFIG="$HOME/.cursor/mcp.json"
+if [ -f "$MCP_CONFIG" ]; then
+    print_status "MCP configuration file exists"
+    echo "✅ MCP configuration file exists" >> "$DAILY_LOG"
+    
+    # Check if configuration is valid JSON
+    if jq empty "$MCP_CONFIG" 2>/dev/null; then
+        print_status "MCP configuration is valid JSON"
+        echo "✅ MCP configuration is valid JSON" >> "$DAILY_LOG"
+        
+        # Count configured servers
+        SERVER_COUNT=$(jq '.mcpServers | keys | length' "$MCP_CONFIG" 2>/dev/null || echo "0")
+        print_info "Configured MCP servers: $SERVER_COUNT"
+        echo "ℹ️ Configured MCP servers: $SERVER_COUNT" >> "$DAILY_LOG"
+        
+        # List configured servers
+        if [ "$SERVER_COUNT" -gt 0 ]; then
+            print_info "Active servers:"
+            echo "ℹ️ Active servers:" >> "$DAILY_LOG"
+            jq -r '.mcpServers | keys[]' "$MCP_CONFIG" 2>/dev/null | while read server; do
+                print_info "  - $server"
+                echo "    - $server" >> "$DAILY_LOG"
+            done
+        fi
+    else
+        print_warning "MCP configuration contains invalid JSON"
+        echo "⚠️ MCP configuration contains invalid JSON" >> "$DAILY_LOG"
+    fi
+else
+    print_warning "MCP configuration file not found"
+    echo "⚠️ MCP configuration file not found" >> "$DAILY_LOG"
+    print_info "Run: ./Scripts/setup_mcp_servers.sh to configure MCP servers"
+    echo "ℹ️ Run: ./Scripts/setup_mcp_servers.sh to configure MCP servers" >> "$DAILY_LOG"
+fi
+
 print_section "10. SUMMARY"
 echo "" >> "$DAILY_LOG"
 echo "10. SUMMARY" >> "$DAILY_LOG"
