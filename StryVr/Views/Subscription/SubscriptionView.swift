@@ -1,509 +1,563 @@
+//
+//  SubscriptionView.swift
+//  StryVr
+//
+//  Created by Joe Dormond on 8/1/25.
+//  💎 Subscription management with pricing tiers and premium features
+//
+
 import SwiftUI
 import StoreKit
 
 struct SubscriptionView: View {
-    @StateObject private var subscriptionService = SubscriptionService()
-    @Environment(\.dismiss) private var dismiss
-    
-    @State private var selectedTier: SubscriptionTier = .premium
-    @State private var isYearly = true
-    @State private var showingPurchase = false
+    @EnvironmentObject var router: AppRouter
+    @StateObject private var viewModel = SubscriptionViewModel()
+    @State private var selectedPlan: SubscriptionPlan?
+    @State private var showingPaywall = false
+    @State private var isProcessingPurchase = false
+    @Namespace private var subscriptionNamespace
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(spacing: 30) {
-                    // Header
-                    headerSection
-                    
-                    // Pricing Toggle
-                    pricingToggleSection
-                    
-                    // Subscription Tiers
-                    subscriptionTiersSection
-                    
-                    // Features Comparison
-                    featuresComparisonSection
-                    
-                    // Additional Revenue Streams
-                    revenueStreamsSection
-                    
-                    // CTA Button
-                    ctaSection
-                }
-                .padding(.horizontal, 20)
-                .padding(.bottom, 100)
-            }
-            .background(
-                LinearGradient(
-                    colors: [
-                        Color(red: 0.1, green: 0.1, blue: 0.2),
-                        Color(red: 0.05, green: 0.05, blue: 0.1)
-                    ],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-            )
-            .navigationTitle("Choose Your Plan")
-            .navigationBarTitleDisplayMode(.large)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Close") {
-                        dismiss()
-                    }
-                    .foregroundColor(.white)
-                }
-            }
-        }
-        .sheet(isPresented: $showingPurchase) {
-            PurchaseView(
-                tier: selectedTier,
-                isYearly: isYearly,
-                subscriptionService: subscriptionService
-            )
-        }
-    }
-    
-    // MARK: - Header Section
-    private var headerSection: some View {
-        VStack(spacing: 16) {
-            Image(systemName: "star.circle.fill")
-                .font(.system(size: 60))
-                .foregroundStyle(
-                    LinearGradient(
-                        colors: [.blue, .purple],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
-            
-            Text("Unlock Your Full Potential")
-                .font(.title)
-                .fontWeight(.bold)
-                .foregroundColor(.white)
-            
-            Text("Choose the plan that accelerates your career growth with AI-powered insights and personalized development paths.")
-                .font(.body)
-                .foregroundColor(.gray)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal)
-        }
-        .padding(.top, 20)
-    }
-    
-    // MARK: - Pricing Toggle
-    private var pricingToggleSection: some View {
-        VStack(spacing: 12) {
-            Text("Billing Cycle")
-                .font(.headline)
-                .foregroundColor(.white)
-            
-            HStack(spacing: 0) {
-                Button("Monthly") {
-                    isYearly = false
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 12)
-                .background(isYearly ? Color.clear : Color.blue.opacity(0.3))
-                .foregroundColor(isYearly ? .gray : .white)
-                .cornerRadius(8, corners: [.topLeading, .bottomLeading])
+        ScrollView {
+            VStack(spacing: 32) {
+                // Premium Header
+                premiumHeader
                 
-                Button("Yearly") {
-                    isYearly = true
+                // Current Plan Status
+                if viewModel.hasActiveSubscription {
+                    currentPlanSection
                 }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 12)
-                .background(isYearly ? Color.blue.opacity(0.3) : Color.clear)
-                .foregroundColor(isYearly ? .white : .gray)
-                .cornerRadius(8, corners: [.topTrailing, .bottomTrailing])
+                
+                // Pricing Plans
+                pricingPlansSection
+                
+                // Features Comparison
+                featuresComparisonSection
+                
+                // Success Stories / Testimonials
+                successStoriesSection
+                
+                // FAQ Section
+                faqSection
             }
-            .background(Color.gray.opacity(0.2))
-            .cornerRadius(8)
-            
-            if isYearly {
-                Text("Save up to 17% with yearly billing")
-                    .font(.caption)
-                    .foregroundColor(.green)
+            .padding()
+        }
+        .background(subscriptionGradientBackground)
+        .navigationTitle("Subscription")
+        .navigationBarTitleDisplayMode(.large)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                if viewModel.hasActiveSubscription {
+                    Button {
+                        router.navigate(to: .subscriptionManagement)
+                    } label: {
+                        Text("Manage")
+                            .foregroundColor(Theme.Colors.textPrimary)
+                    }
+                    .liquidGlassButton()
+                }
             }
         }
-        .padding(.horizontal)
+        .onAppear {
+            viewModel.loadSubscriptionData()
+        }
+        .sheet(isPresented: $showingPaywall) {
+            PaywallView(selectedPlan: selectedPlan)
+                .environmentObject(router)
+        }
     }
     
-    // MARK: - Subscription Tiers
-    private var subscriptionTiersSection: some View {
+    // MARK: - Premium Header
+    
+    private var premiumHeader: some View {
         VStack(spacing: 20) {
-            ForEach(SubscriptionTier.allCases.filter { $0 != .free }, id: \.self) { tier in
-                SubscriptionTierCard(
-                    tier: tier,
-                    isYearly: isYearly,
-                    isSelected: selectedTier == tier
-                ) {
-                    selectedTier = tier
-                }
+            // Crown Icon with Animation
+            ZStack {
+                Circle()
+                    .fill(Theme.Colors.glassPrimary)
+                    .frame(width: 100, height: 100)
+                
+                Image(systemName: "crown.fill")
+                    .font(.system(size: 50))
+                    .foregroundColor(Theme.Colors.neonYellow)
+                    .symbolEffect(.bounce.up, options: .repeating)
             }
-        }
-    }
-    
-    // MARK: - Features Comparison
-    private var featuresComparisonSection: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            Text("What's Included")
-                .font(.title2)
-                .fontWeight(.bold)
-                .foregroundColor(.white)
+            .neonGlow(color: Theme.Colors.neonYellow, pulse: true)
             
-            LazyVStack(spacing: 12) {
-                ForEach(SubscriptionFeature.allCases, id: \.self) { feature in
-                    FeatureRow(
-                        feature: feature,
-                        tiers: SubscriptionTier.allCases.filter { $0 != .free }
-                    )
-                }
-            }
-        }
-        .padding()
-        .background(.ultraThinMaterial)
-        .cornerRadius(16)
-    }
-    
-    // MARK: - Revenue Streams
-    private var revenueStreamsSection: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            Text("Additional Services")
-                .font(.title2)
-                .fontWeight(.bold)
-                .foregroundColor(.white)
-            
-            LazyVGrid(columns: [
-                GridItem(.flexible()),
-                GridItem(.flexible())
-            ], spacing: 16) {
-                ForEach(RevenueStream.allCases, id: \.self) { stream in
-                    RevenueStreamCard(stream: stream)
-                }
-            }
-        }
-        .padding()
-        .background(.ultraThinMaterial)
-        .cornerRadius(16)
-    }
-    
-    // MARK: - CTA Section
-    private var ctaSection: some View {
-        VStack(spacing: 16) {
-            Button(action: {
-                showingPurchase = true
-            }) {
-                HStack {
-                    Text("Start \(selectedTier.displayName) Plan")
-                        .font(.headline)
-                        .fontWeight(.semibold)
-                    
-                    Spacer()
-                    
-                    Text(priceText)
-                        .font(.subheadline)
-                        .fontWeight(.medium)
-                }
-                .foregroundColor(.white)
-                .padding()
-                .background(
-                    LinearGradient(
-                        colors: [.blue, .purple],
-                        startPoint: .leading,
-                        endPoint: .trailing
-                    )
-                )
-                .cornerRadius(12)
-            }
-            .disabled(subscriptionService.isLoading)
-            
-            if subscriptionService.isLoading {
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
-            }
-            
-            if let errorMessage = subscriptionService.errorMessage {
-                Text(errorMessage)
-                    .font(.caption)
-                    .foregroundColor(.red)
+            VStack(spacing: 12) {
+                Text("Unlock Your Full Potential")
+                    .font(Theme.Typography.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(Theme.Colors.textPrimary)
                     .multilineTextAlignment(.center)
+                
+                Text("Get AI-powered insights, unlimited analytics, and personalized career guidance")
+                    .font(Theme.Typography.body)
+                    .foregroundColor(Theme.Colors.textSecondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal)
             }
         }
-        .padding(.horizontal)
+        .padding()
+        .liquidGlassCard()
     }
     
-    private var priceText: String {
-        let price = isYearly ? selectedTier.yearlyPrice : selectedTier.monthlyPrice
-        let period = isYearly ? "year" : "month"
-        return "$\(price)/\(period)"
-    }
-}
-
-// MARK: - Subscription Tier Card
-struct SubscriptionTierCard: View {
-    let tier: SubscriptionTier
-    let isYearly: Bool
-    let isSelected: Bool
-    let onTap: () -> Void
+    // MARK: - Current Plan Section
     
-    var body: some View {
-        Button(action: onTap) {
-            VStack(alignment: .leading, spacing: 16) {
+    @ViewBuilder
+    private var currentPlanSection: some View {
+        if let currentPlan = viewModel.currentSubscription {
+            VStack(spacing: 16) {
                 HStack {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text(tier.displayName)
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
+                        Text("Current Plan")
+                            .font(Theme.Typography.caption)
+                            .foregroundColor(Theme.Colors.textSecondary)
                         
-                        Text(tierDescription)
-                            .font(.caption)
-                            .foregroundColor(.gray)
+                        Text(currentPlan.name)
+                            .font(Theme.Typography.headline)
+                            .foregroundColor(Theme.Colors.textPrimary)
                     }
                     
                     Spacer()
                     
                     VStack(alignment: .trailing, spacing: 4) {
-                        Text(priceText)
-                            .font(.title3)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
+                        Text("Next Billing")
+                            .font(Theme.Typography.caption)
+                            .foregroundColor(Theme.Colors.textSecondary)
                         
-                        Text(periodText)
-                            .font(.caption)
-                            .foregroundColor(.gray)
+                        Text(currentPlan.renewalDate.formatted(date: .abbreviated, time: .omitted))
+                            .font(Theme.Typography.body)
+                            .foregroundColor(Theme.Colors.textPrimary)
                     }
                 }
                 
-                // Popular badge for Premium
-                if tier == .premium {
-                    HStack {
-                        Image(systemName: "star.fill")
-                            .foregroundColor(.yellow)
-                        Text("Most Popular")
-                            .font(.caption)
-                            .fontWeight(.medium)
-                            .foregroundColor(.yellow)
-                    }
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(Color.yellow.opacity(0.2))
-                    .cornerRadius(8)
-                }
-                
-                // Top features preview
-                LazyVGrid(columns: [GridItem(.flexible())], spacing: 8) {
-                    ForEach(Array(tier.features.prefix(3)), id: \.self) { feature in
-                        HStack {
-                            Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.green)
-                                .font(.caption)
-                            
-                            Text(feature.displayName)
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                            
-                            Spacer()
-                        }
-                    }
+                // Usage Stats
+                if currentPlan.tier == .premium || currentPlan.tier == .professional {
+                    UsageStatsView(usage: viewModel.usageStats)
                 }
             }
             .padding()
-            .background(
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(.ultraThinMaterial)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 16)
-                            .stroke(isSelected ? Color.blue : Color.clear, lineWidth: 2)
-                    )
-            )
-        }
-        .buttonStyle(PlainButtonStyle())
-    }
-    
-    private var priceText: String {
-        let price = isYearly ? tier.yearlyPrice : tier.monthlyPrice
-        return "$\(price)"
-    }
-    
-    private var periodText: String {
-        return isYearly ? "per year" : "per month"
-    }
-    
-    private var tierDescription: String {
-        switch tier {
-        case .premium: return "Perfect for individual professionals"
-        case .team: return "Ideal for growing teams"
-        case .enterprise: return "For large organizations"
-        default: return ""
+            .liquidGlassCard()
+            .neonGlow(color: currentPlan.tier.color.opacity(0.3))
         }
     }
-}
-
-// MARK: - Feature Row
-struct FeatureRow: View {
-    let feature: SubscriptionFeature
-    let tiers: [SubscriptionTier]
     
-    var body: some View {
-        HStack {
-            Text(feature.displayName)
-                .font(.body)
-                .foregroundColor(.white)
-                .frame(maxWidth: .infinity, alignment: .leading)
+    // MARK: - Pricing Plans Section
+    
+    private var pricingPlansSection: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            Text("Choose Your Plan")
+                .font(Theme.Typography.headline)
+                .foregroundColor(Theme.Colors.textPrimary)
             
-            ForEach(tiers, id: \.self) { tier in
-                if tier.features.contains(feature) {
-                    Image(systemName: "checkmark.circle.fill")
-                        .foregroundColor(.green)
-                } else {
-                    Image(systemName: "xmark.circle.fill")
-                        .foregroundColor(.red.opacity(0.5))
+            LazyVGrid(columns: [
+                GridItem(.flexible()),
+                GridItem(.flexible())
+            ], spacing: 16) {
+                ForEach(viewModel.availablePlans, id: \.id) { plan in
+                    PricingPlanCard(
+                        plan: plan,
+                        isSelected: selectedPlan?.id == plan.id,
+                        isCurrentPlan: viewModel.currentSubscription?.tier == plan.tier,
+                        namespace: subscriptionNamespace
+                    ) {
+                        selectedPlan = plan
+                        showingPaywall = true
+                    }
                 }
             }
+            
+            // Annual Discount Banner
+            if !viewModel.hasActiveSubscription {
+                DiscountBanner()
+            }
         }
-        .padding(.vertical, 4)
+    }
+    
+    // MARK: - Features Comparison
+    
+    private var featuresComparisonSection: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            Text("Feature Comparison")
+                .font(Theme.Typography.headline)
+                .foregroundColor(Theme.Colors.textPrimary)
+            
+            VStack(spacing: 12) {
+                ForEach(SubscriptionFeature.allFeatures, id: \.name) { feature in
+                    FeatureComparisonRow(feature: feature)
+                }
+            }
+            .padding()
+            .liquidGlassCard()
+        }
+    }
+    
+    // MARK: - Success Stories
+    
+    private var successStoriesSection: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            Text("Success Stories")
+                .font(Theme.Typography.headline)
+                .foregroundColor(Theme.Colors.textPrimary)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 16) {
+                    ForEach(viewModel.testimonials, id: \.id) { testimonial in
+                        TestimonialCard(testimonial: testimonial)
+                    }
+                }
+                .padding(.horizontal)
+            }
+        }
+    }
+    
+    // MARK: - FAQ Section
+    
+    private var faqSection: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Frequently Asked Questions")
+                .font(Theme.Typography.headline)
+                .foregroundColor(Theme.Colors.textPrimary)
+            
+            ForEach(viewModel.faqs, id: \.question) { faq in
+                FAQItemView(faq: faq)
+            }
+        }
+    }
+    
+    // MARK: - Background
+    
+    private var subscriptionGradientBackground: some View {
+        LinearGradient(
+            colors: [
+                Theme.Colors.deepNavyBlue,
+                Theme.Colors.softCharcoalGray.opacity(0.8),
+                Theme.Colors.subtleLightGray.opacity(0.6)
+            ],
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        )
     }
 }
 
-// MARK: - Revenue Stream Card
-struct RevenueStreamCard: View {
-    let stream: RevenueStream
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(stream.displayName)
-                .font(.headline)
-                .fontWeight(.semibold)
-                .foregroundColor(.white)
-            
-            Text(stream.description)
-                .font(.caption)
-                .foregroundColor(.gray)
-                .lineLimit(2)
-            
-            Text(stream.estimatedRevenue)
-                .font(.caption)
-                .fontWeight(.medium)
-                .foregroundColor(.green)
-        }
-        .padding()
-        .background(Color.gray.opacity(0.1))
-        .cornerRadius(12)
-    }
-}
+// MARK: - Component Views
 
-// MARK: - Purchase View
-struct PurchaseView: View {
-    let tier: SubscriptionTier
-    let isYearly: Bool
-    let subscriptionService: SubscriptionService
-    @Environment(\.dismiss) private var dismiss
+private struct PricingPlanCard: View {
+    let plan: SubscriptionPlan
+    let isSelected: Bool
+    let isCurrentPlan: Bool
+    let namespace: Namespace.ID
+    let action: () -> Void
     
     var body: some View {
-        NavigationView {
-            VStack(spacing: 30) {
-                // Purchase Summary
-                VStack(spacing: 16) {
-                    Image(systemName: "creditcard.circle.fill")
-                        .font(.system(size: 60))
-                        .foregroundColor(.blue)
-                    
-                    Text("Complete Your Purchase")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                    
-                    VStack(spacing: 8) {
-                        Text("\(tier.displayName) Plan")
-                            .font(.headline)
-                        
-                        Text(priceText)
-                            .font(.title3)
+        Button(action: action) {
+            VStack(spacing: 16) {
+                // Plan Header
+                VStack(spacing: 8) {
+                    if plan.isPopular {
+                        Text("MOST POPULAR")
+                            .font(.caption2)
                             .fontWeight(.bold)
-                            .foregroundColor(.blue)
-                        
-                        if isYearly {
-                            Text("Save 17% with yearly billing")
-                                .font(.caption)
-                                .foregroundColor(.green)
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 4)
+                            .background(Theme.Colors.neonOrange)
+                            .clipShape(Capsule())
+                    }
+                    
+                    Text(plan.name)
+                        .font(Theme.Typography.headline)
+                        .foregroundColor(Theme.Colors.textPrimary)
+                    
+                    VStack(spacing: 4) {
+                        HStack(alignment: .top, spacing: 2) {
+                            Text("$")
+                                .font(.title3)
+                                .foregroundColor(plan.tier.color)
+                            
+                            Text("\(plan.price)")
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .foregroundColor(plan.tier.color)
                         }
+                        
+                        Text(plan.billingPeriod)
+                            .font(Theme.Typography.caption)
+                            .foregroundColor(Theme.Colors.textSecondary)
                     }
                 }
                 
-                // Features included
-                VStack(alignment: .leading, spacing: 12) {
-                    Text("You'll get:")
-                        .font(.headline)
-                    
-                    ForEach(tier.features, id: \.self) { feature in
-                        HStack {
+                // Key Features
+                VStack(alignment: .leading, spacing: 8) {
+                    ForEach(plan.keyFeatures, id: \.self) { feature in
+                        HStack(spacing: 8) {
                             Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.green)
-                            Text(feature.displayName)
+                                .foregroundColor(plan.tier.color)
+                                .font(.caption)
+                            
+                            Text(feature)
+                                .font(Theme.Typography.caption)
+                                .foregroundColor(Theme.Colors.textPrimary)
+                            
                             Spacer()
                         }
                     }
                 }
-                .padding()
-                .background(.ultraThinMaterial)
-                .cornerRadius(12)
                 
                 Spacer()
                 
-                // Purchase Button
-                Button("Complete Purchase") {
-                    // Handle purchase
-                    dismiss()
+                // Action Button
+                Group {
+                    if isCurrentPlan {
+                        Text("Current Plan")
+                            .foregroundColor(Theme.Colors.textSecondary)
+                    } else {
+                        Text(plan.tier == .free ? "Current" : "Upgrade")
+                            .foregroundColor(.white)
+                            .fontWeight(.semibold)
+                    }
                 }
                 .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color.blue)
-                .foregroundColor(.white)
-                .cornerRadius(12)
-                .disabled(subscriptionService.isLoading)
+                .padding(.vertical, 12)
+                .background(
+                    Group {
+                        if isCurrentPlan {
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Theme.Colors.glassPrimary)
+                        } else {
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(plan.tier.color)
+                        }
+                    }
+                )
             }
             .padding()
-            .navigationTitle("Purchase")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Cancel") {
-                        dismiss()
+            .frame(maxWidth: .infinity, minHeight: 280)
+        }
+        .disabled(isCurrentPlan)
+        .liquidGlassCard()
+        .overlay(
+            Group {
+                if plan.isPopular {
+                    RoundedRectangle(cornerRadius: Theme.CornerRadius.card)
+                        .stroke(Theme.Colors.neonOrange, lineWidth: 2)
+                        .neonGlow(color: Theme.Colors.neonOrange)
+                }
+            }
+        )
+        .scaleEffect(isSelected ? 1.05 : 1.0)
+        .animation(.spring(), value: isSelected)
+    }
+}
+
+private struct UsageStatsView: View {
+    let usage: UsageStats
+    
+    var body: some View {
+        VStack(spacing: 12) {
+            Text("This Month's Usage")
+                .font(Theme.Typography.caption)
+                .foregroundColor(Theme.Colors.textSecondary)
+            
+            HStack(spacing: 20) {
+                UsageStatItem(
+                    title: "AI Insights",
+                    current: usage.aiInsightsUsed,
+                    limit: usage.aiInsightsLimit
+                )
+                
+                UsageStatItem(
+                    title: "Reports",
+                    current: usage.reportsGenerated,
+                    limit: usage.reportsLimit
+                )
+                
+                UsageStatItem(
+                    title: "Exports",
+                    current: usage.exportsUsed,
+                    limit: usage.exportsLimit
+                )
+            }
+        }
+        .padding()
+        .background(Theme.Colors.glassPrimary)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+}
+
+private struct UsageStatItem: View {
+    let title: String
+    let current: Int
+    let limit: Int?
+    
+    var body: some View {
+        VStack(spacing: 4) {
+            Text("\(current)")
+                .font(Theme.Typography.headline)
+                .foregroundColor(Theme.Colors.textPrimary)
+            
+            Text(title)
+                .font(Theme.Typography.caption)
+                .foregroundColor(Theme.Colors.textSecondary)
+            
+            if let limit = limit {
+                Text("of \(limit)")
+                    .font(.caption2)
+                    .foregroundColor(Theme.Colors.textSecondary)
+            } else {
+                Text("Unlimited")
+                    .font(.caption2)
+                    .foregroundColor(Theme.Colors.neonGreen)
+            }
+        }
+    }
+}
+
+private struct DiscountBanner: View {
+    var body: some View {
+        HStack {
+            Image(systemName: "gift.fill")
+                .foregroundColor(Theme.Colors.neonGreen)
+            
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Save 25% with Annual Plans")
+                    .font(Theme.Typography.body)
+                    .foregroundColor(Theme.Colors.textPrimary)
+                
+                Text("Limited time offer")
+                    .font(Theme.Typography.caption)
+                    .foregroundColor(Theme.Colors.textSecondary)
+            }
+            
+            Spacer()
+        }
+        .padding()
+        .liquidGlassCard()
+        .neonGlow(color: Theme.Colors.neonGreen.opacity(0.3))
+    }
+}
+
+private struct FeatureComparisonRow: View {
+    let feature: SubscriptionFeature
+    
+    var body: some View {
+        HStack {
+            Text(feature.name)
+                .font(Theme.Typography.body)
+                .foregroundColor(Theme.Colors.textPrimary)
+            
+            Spacer()
+            
+            HStack(spacing: 20) {
+                FeatureAvailabilityIcon(availability: feature.freeAvailability)
+                FeatureAvailabilityIcon(availability: feature.premiumAvailability)
+                FeatureAvailabilityIcon(availability: feature.professionalAvailability)
+            }
+        }
+    }
+}
+
+private struct FeatureAvailabilityIcon: View {
+    let availability: FeatureAvailability
+    
+    var body: some View {
+        Group {
+            switch availability {
+            case .available:
+                Image(systemName: "checkmark.circle.fill")
+                    .foregroundColor(Theme.Colors.neonGreen)
+            case .limited(let count):
+                Text("\(count)")
+                    .font(.caption)
+                    .foregroundColor(Theme.Colors.neonYellow)
+            case .unavailable:
+                Image(systemName: "xmark.circle")
+                    .foregroundColor(Theme.Colors.textSecondary)
+            }
+        }
+        .frame(width: 30)
+    }
+}
+
+private struct TestimonialCard: View {
+    let testimonial: Testimonial
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("\"\(testimonial.text)\"")
+                .font(Theme.Typography.body)
+                .foregroundColor(Theme.Colors.textPrimary)
+                .italic()
+            
+            HStack {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(testimonial.name)
+                        .font(Theme.Typography.caption)
+                        .foregroundColor(Theme.Colors.textPrimary)
+                        .fontWeight(.semibold)
+                    
+                    Text(testimonial.title)
+                        .font(.caption2)
+                        .foregroundColor(Theme.Colors.textSecondary)
+                }
+                
+                Spacer()
+                
+                HStack(spacing: 2) {
+                    ForEach(0..<5) { index in
+                        Image(systemName: index < testimonial.rating ? "star.fill" : "star")
+                            .foregroundColor(Theme.Colors.neonYellow)
+                            .font(.caption2)
                     }
                 }
             }
         }
+        .padding()
+        .frame(width: 250)
+        .liquidGlassCard()
     }
+}
+
+private struct FAQItemView: View {
+    let faq: FAQ
+    @State private var isExpanded = false
     
-    private var priceText: String {
-        let price = isYearly ? tier.yearlyPrice : tier.monthlyPrice
-        let period = isYearly ? "year" : "month"
-        return "$\(price)/\(period)"
-    }
-}
-
-// MARK: - Corner Radius Extension
-extension View {
-    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
-        clipShape(RoundedCorner(radius: radius, corners: corners))
-    }
-}
-
-struct RoundedCorner: Shape {
-    var radius: CGFloat = .infinity
-    var corners: UIRectCorner = .allCorners
-
-    func path(in rect: CGRect) -> Path {
-        let path = UIBezierPath(
-            roundedRect: rect,
-            byRoundingCorners: corners,
-            cornerRadii: CGSize(width: radius, height: radius)
-        )
-        return Path(path.cgPath)
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Button {
+                withAnimation(.spring()) {
+                    isExpanded.toggle()
+                }
+            } label: {
+                HStack {
+                    Text(faq.question)
+                        .font(Theme.Typography.body)
+                        .foregroundColor(Theme.Colors.textPrimary)
+                        .multilineTextAlignment(.leading)
+                    
+                    Spacer()
+                    
+                    Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
+                        .foregroundColor(Theme.Colors.textSecondary)
+                }
+            }
+            
+            if isExpanded {
+                Text(faq.answer)
+                    .font(Theme.Typography.caption)
+                    .foregroundColor(Theme.Colors.textSecondary)
+                    .transition(.opacity.combined(with: .slide))
+            }
+        }
+        .padding()
+        .liquidGlassCard()
     }
 }
 
 #Preview {
-    SubscriptionView()
-} 
+    NavigationStack {
+        SubscriptionView()
+            .environmentObject(AppRouter())
+    }
+}

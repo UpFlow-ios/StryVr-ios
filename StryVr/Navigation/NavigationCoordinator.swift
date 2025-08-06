@@ -96,7 +96,7 @@ struct NavigationCoordinator {
                 .environmentObject(router)
             
         case .pricing:
-            PricingView()
+            SubscriptionView()
                 .environmentObject(router)
             
         case .paywall(let feature):
