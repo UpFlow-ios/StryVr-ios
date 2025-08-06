@@ -118,3 +118,5 @@ site/
 # Development Files
 codex-fix.patch
 swiftly.pkg
+.slack_config.json
+slack_app_manifest*.json
