@@ -21,7 +21,10 @@
     "backend": "./Scripts/backend_health_agent.sh",
     "docs": "./Scripts/documentation_agent.sh",
     "assets": "./Scripts/asset_management_agent.sh",
-    "dashboard": "./Scripts/agent_dashboard.sh"
+    "dashboard": "./Scripts/agent_dashboard.sh",
+    "slack": "./Scripts/slack_integration.sh",
+    "slack:setup": "./Scripts/slack_integration.sh setup",
+    "slack:test": "./Scripts/slack_integration.sh test"
   },
   "keywords": [
     "ios",

@@ -1,0 +1,65 @@
+{
+  "templates": {
+    "ci_cd": {
+      "pipeline_start": "🚀 StryVr CI/CD Pipeline Started\n**Commit:** {commit}\n**Branch:** {branch}\n**Triggered by:** {author}",
+      "pipeline_success": "✅ StryVr CI/CD Pipeline Completed Successfully\n**Duration:** {duration}\n**Tests:** All passed\n**Security:** Clean",
+      "pipeline_failure": "❌ StryVr CI/CD Pipeline Failed\n**Stage:** {failed_stage}\n**Error:** {error_message}\n**Action Required:** Review build logs",
+      "quality_check": "🔍 Code Quality Check: {status}\n**SwiftLint:** {swiftlint_status}\n**Tests:** {test_status}\n**Build:** {build_status}"
+    },
+    "deployment": {
+      "testflight_start": "🛫 StryVr TestFlight Deployment Started\n**Version:** {version}\n**Build:** {build_number}",
+      "testflight_success": "✅ StryVr Successfully Deployed to TestFlight\n**Version:** {version}\n**Available for:** Internal testing",
+      "app_store_submission": "🏪 StryVr Submitted to App Store\n**Version:** {version}\n**Status:** Under Review\n**ETA:** 24-48 hours",
+      "app_store_approved": "🎉 StryVr APPROVED by App Store!\n**Version:** {version}\n**Status:** Ready for Release\n**Action:** Can release when ready"
+    },
+    "security": {
+      "vulnerability_found": "🚨 Security Vulnerability Detected\n**Severity:** {severity}\n**Package:** {package}\n**CVE:** {cve_id}\n**Action:** Update required",
+      "security_scan_clean": "🔒 Security Scan Complete\n**Status:** All clear\n**Dependencies:** {dependency_count} checked\n**Last Updated:** {timestamp}",
+      "secrets_detected": "⚠️ Potential Secrets Detected\n**Type:** {secret_type}\n**File:** {file_path}\n**Action:** Review and remediate immediately"
+    },
+    "development": {
+      "feature_complete": "✨ New Feature Complete\n**Feature:** {feature_name}\n**Status:** Ready for testing\n**PR:** {pr_link}",
+      "release_ready": "🎯 StryVr Release Ready\n**Version:** {version}\n**Features:** {feature_count} new features\n**Fixes:** {bug_count} bug fixes",
+      "milestone_reached": "🏆 Development Milestone Reached\n**Milestone:** {milestone_name}\n**Progress:** {completion_percentage}%\n**Next:** {next_milestone}"
+    }
+  },
+  "channels": {
+    "ci_cd": {
+      "name": "stryvr-ci",
+      "description": "CI/CD pipeline notifications and build status",
+      "notifications": ["pipeline_start", "pipeline_success", "pipeline_failure", "quality_check"]
+    },
+    "deployment": {
+      "name": "stryvr-deployment", 
+      "description": "Deployment notifications for TestFlight and App Store",
+      "notifications": ["testflight_start", "testflight_success", "app_store_submission", "app_store_approved"]
+    },
+    "security": {
+      "name": "stryvr-security",
+      "description": "Security alerts and vulnerability notifications",
+      "notifications": ["vulnerability_found", "security_scan_clean", "secrets_detected"]
+    },
+    "development": {
+      "name": "stryvr-dev",
+      "description": "General development updates and milestones",
+      "notifications": ["feature_complete", "release_ready", "milestone_reached"]
+    }
+  },
+  "webhook_setup": {
+    "instructions": [
+      "1. Go to your Slack workspace",
+      "2. Create channels: #stryvr-ci, #stryvr-deployment, #stryvr-security, #stryvr-dev",
+      "3. Go to https://api.slack.com/apps",
+      "4. Create a new app for StryVr",
+      "5. Go to 'Incoming Webhooks' and activate them",
+      "6. Create webhooks for each channel",
+      "7. Copy webhook URLs to .slack_config.json",
+      "8. Run './Scripts/slack_integration.sh test' to verify"
+    ],
+    "required_permissions": [
+      "incoming-webhook",
+      "chat:write",
+      "chat:write.public"
+    ]
+  }
+}

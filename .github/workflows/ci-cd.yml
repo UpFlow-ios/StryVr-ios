@@ -16,6 +16,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
+    - name: Notify CI Start
+      run: |
+        if [ -f "Scripts/slack_integration.sh" ]; then
+          ./Scripts/slack_integration.sh ci "started" "Code quality checks beginning for commit ${{ github.sha }}"
+        fi
+      
     - name: Setup Xcode
       uses: maxim-lobanov/setup-xcode@v1
       with:
@@ -84,6 +90,20 @@ jobs:
           echo "Running Swift Package Manager tests"
           swift test || echo "No tests configured yet"
         fi
+        
+    - name: Notify CI Success
+      if: success()
+      run: |
+        if [ -f "Scripts/slack_integration.sh" ]; then
+          ./Scripts/slack_integration.sh ci "success" "✅ All quality checks passed for StryVr!"
+        fi
+        
+    - name: Notify CI Failure
+      if: failure()
+      run: |
+        if [ -f "Scripts/slack_integration.sh" ]; then
+          ./Scripts/slack_integration.sh ci "failure" "❌ Quality checks failed. Please review the build logs."
+        fi
 
   # MARK: - Security Audit
   security-audit:
@@ -114,6 +134,17 @@ jobs:
           cd backend && npm audit --audit-level=moderate
         else
           echo "Backend directory not found, skipping backend audit"
+        fi
+        
+    - name: Notify Security Results
+      if: always()
+      run: |
+        if [ -f "Scripts/slack_integration.sh" ]; then
+          if [ "${{ job.status }}" == "success" ]; then
+            ./Scripts/slack_integration.sh security "Dependency Scan" "low" "🔒 No vulnerabilities found in dependencies"
+          else
+            ./Scripts/slack_integration.sh security "Dependency Scan" "high" "⚠️ Security audit failed - requires attention"
+          fi
         fi
 
   # MARK: - Performance Testing
