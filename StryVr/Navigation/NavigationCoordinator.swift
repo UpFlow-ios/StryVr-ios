@@ -11,170 +11,170 @@ import SwiftUI
 /// Coordinates navigation between views and handles view creation
 @MainActor
 struct NavigationCoordinator {
-    
+
     /// Shared router instance
     let router: AppRouter
-    
+
     // MARK: - View Factory
-    
+
     /// Creates the appropriate view for a given destination
     @ViewBuilder
     func view(for destination: AppDestination) -> some View {
         switch destination {
-            
+
         // MARK: - Core App Views
         case .dashboard:
             DashboardView()
                 .environmentObject(router)
-            
+
         case .profile(let userId):
             ProfileView(userId: userId)
                 .environmentObject(router)
-            
+
         case .settings:
             SettingsView()
                 .environmentObject(router)
-            
+
         // MARK: - Reports & Analytics
         case .reports:
             ReportsView()
                 .environmentObject(router)
-            
+
         case .reportDetail(let reportId, let userId):
             ReportDetailView(reportId: reportId, userId: userId)
                 .environmentObject(router)
-            
+
         case .reportShare(let reportId):
             ReportShareView(reportId: reportId)
                 .environmentObject(router)
-            
+
         case .analytics(let userId):
             AnalyticsView(userId: userId)
                 .environmentObject(router)
-            
+
         case .performanceDetail(let metricId, let timeframe):
             PerformanceDetailView(metricId: metricId, timeframe: timeframe)
                 .environmentObject(router)
-            
+
         // MARK: - Career Development
         case .careerGoals(let userId):
             CareerGoalsView(userId: userId)
                 .environmentObject(router)
-            
+
         case .skillAssessment(let assessmentId):
             SkillAssessmentView(assessmentId: assessmentId)
                 .environmentObject(router)
-            
+
         case .careerAdvice(let userId):
             CareerAdviceView(userId: userId)
                 .environmentObject(router)
-            
+
         case .learningPath(let pathId):
             LearningPathView(pathId: pathId)
                 .environmentObject(router)
-            
+
         // MARK: - AI & Recommendations
         case .aiInsights(let userId):
             AIInsightsView(userId: userId)
                 .environmentObject(router)
-            
+
         case .personalizedRecommendations(let userId):
             PersonalizedRecommendationsView(userId: userId)
                 .environmentObject(router)
-            
+
         case .careerPredictions(let userId):
             CareerPredictionsView(userId: userId)
                 .environmentObject(router)
-            
+
         // MARK: - Subscription & Monetization
         case .subscription:
             SubscriptionView()
                 .environmentObject(router)
-            
+
         case .subscriptionManagement:
             SubscriptionManagementView()
                 .environmentObject(router)
-            
+
         case .pricing:
             SubscriptionView()
                 .environmentObject(router)
-            
+
         case .paywall(let feature):
             PaywallView(feature: feature)
                 .environmentObject(router)
-            
+
         // MARK: - Onboarding & Authentication
         case .onboarding(let step):
             OnboardingView(step: step)
                 .environmentObject(router)
-            
+
         case .login:
             LoginView()
                 .environmentObject(router)
-            
+
         case .signup:
             SignupView()
                 .environmentObject(router)
-            
+
         case .emailVerification(let email):
             EmailVerificationView(email: email)
                 .environmentObject(router)
-            
+
         case .resetPassword:
             ResetPasswordView()
                 .environmentObject(router)
-            
+
         // MARK: - HR Integration & Verification
         case .hrVerification(let employerId):
             HRVerificationView(employerId: employerId)
                 .environmentObject(router)
-            
+
         case .employerDashboard(let employerId):
             EmployerDashboardView(employerId: employerId)
                 .environmentObject(router)
-            
+
         case .workplaceMetrics(let workplaceId):
             WorkplaceMetricsView(workplaceId: workplaceId)
                 .environmentObject(router)
-            
+
         case .teamAnalytics(let teamId):
             TeamAnalyticsView(teamId: teamId)
                 .environmentObject(router)
-            
+
         // MARK: - Social & Sharing
         case .shareProfile(let userId):
             ShareProfileView(userId: userId)
                 .environmentObject(router)
-            
+
         case .exportReport(let reportId, let format):
             ExportReportView(reportId: reportId, format: format)
                 .environmentObject(router)
-            
+
         case .deepLinkShare(let type, let id):
             DeepLinkShareView(type: type, id: id)
                 .environmentObject(router)
-            
+
         // MARK: - Support & Help
         case .help:
             HelpView()
                 .environmentObject(router)
-            
+
         case .support:
             SupportView()
                 .environmentObject(router)
-            
+
         case .feedback:
             FeedbackView()
                 .environmentObject(router)
-            
+
         case .about:
             AboutView()
                 .environmentObject(router)
-            
+
         case .privacyPolicy:
             PrivacyPolicyView()
                 .environmentObject(router)
-            
+
         case .termsOfService:
             TermsOfServiceView()
                 .environmentObject(router)
@@ -185,7 +185,7 @@ struct NavigationCoordinator {
 // MARK: - Navigation Helpers
 
 extension NavigationCoordinator {
-    
+
     /// Apply liquid glass styling to navigation views
     @ViewBuilder
     func styledNavigationView<Content: View>(@ViewBuilder content: () -> Content) -> some View {
@@ -194,7 +194,7 @@ extension NavigationCoordinator {
             .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
     }
-    
+
     /// Create a navigation view with custom back button
     @ViewBuilder
     func customNavigationView<Content: View>(
@@ -229,22 +229,22 @@ private struct PlaceholderView: View {
     let title: String
     let destination: AppDestination
     @EnvironmentObject var router: AppRouter
-    
+
     var body: some View {
         VStack(spacing: 20) {
             Image(systemName: "gear")
                 .font(.system(size: 60))
                 .foregroundColor(.secondary)
-            
+
             Text(title)
                 .font(.title2)
                 .fontWeight(.bold)
-            
+
             Text("This view is under development")
                 .font(.body)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
-            
+
             Button("Go Back") {
                 router.navigateBack()
             }
@@ -293,7 +293,8 @@ private struct ReportDetailView: View {
     let reportId: String
     let userId: String
     var body: some View {
-        PlaceholderView(title: "Report Detail", destination: .reportDetail(reportId: reportId, userId: userId))
+        PlaceholderView(
+            title: "Report Detail", destination: .reportDetail(reportId: reportId, userId: userId))
     }
 }
 
@@ -308,7 +309,9 @@ private struct PerformanceDetailView: View {
     let metricId: String
     let timeframe: String
     var body: some View {
-        PlaceholderView(title: "Performance Detail", destination: .performanceDetail(metricId: metricId, timeframe: timeframe))
+        PlaceholderView(
+            title: "Performance Detail",
+            destination: .performanceDetail(metricId: metricId, timeframe: timeframe))
     }
 }
 
@@ -322,7 +325,8 @@ private struct CareerGoalsView: View {
 private struct SkillAssessmentView: View {
     let assessmentId: String
     var body: some View {
-        PlaceholderView(title: "Skill Assessment", destination: .skillAssessment(assessmentId: assessmentId))
+        PlaceholderView(
+            title: "Skill Assessment", destination: .skillAssessment(assessmentId: assessmentId))
     }
 }
 
@@ -350,14 +354,16 @@ private struct AIInsightsView: View {
 private struct PersonalizedRecommendationsView: View {
     let userId: String
     var body: some View {
-        PlaceholderView(title: "Recommendations", destination: .personalizedRecommendations(userId: userId))
+        PlaceholderView(
+            title: "Recommendations", destination: .personalizedRecommendations(userId: userId))
     }
 }
 
 private struct CareerPredictionsView: View {
     let userId: String
     var body: some View {
-        PlaceholderView(title: "Career Predictions", destination: .careerPredictions(userId: userId))
+        PlaceholderView(
+            title: "Career Predictions", destination: .careerPredictions(userId: userId))
     }
 }
 
@@ -421,21 +427,24 @@ private struct ResetPasswordView: View {
 private struct HRVerificationView: View {
     let employerId: String
     var body: some View {
-        PlaceholderView(title: "HR Verification", destination: .hrVerification(employerId: employerId))
+        PlaceholderView(
+            title: "HR Verification", destination: .hrVerification(employerId: employerId))
     }
 }
 
 private struct EmployerDashboardView: View {
     let employerId: String
     var body: some View {
-        PlaceholderView(title: "Employer Dashboard", destination: .employerDashboard(employerId: employerId))
+        PlaceholderView(
+            title: "Employer Dashboard", destination: .employerDashboard(employerId: employerId))
     }
 }
 
 private struct WorkplaceMetricsView: View {
     let workplaceId: String
     var body: some View {
-        PlaceholderView(title: "Workplace Metrics", destination: .workplaceMetrics(workplaceId: workplaceId))
+        PlaceholderView(
+            title: "Workplace Metrics", destination: .workplaceMetrics(workplaceId: workplaceId))
     }
 }
 
@@ -457,7 +466,8 @@ private struct ExportReportView: View {
     let reportId: String
     let format: ExportFormat
     var body: some View {
-        PlaceholderView(title: "Export Report", destination: .exportReport(reportId: reportId, format: format))
+        PlaceholderView(
+            title: "Export Report", destination: .exportReport(reportId: reportId, format: format))
     }
 }
 
