@@ -15,6 +15,7 @@ struct StryVrApp: App {
 
     @StateObject private var authViewModel = AuthViewModel.shared
     @StateObject private var performanceMonitor = PerformanceMonitor.shared
+    @StateObject private var router = AppRouter()
     @State private var showSplash = true
     private let splashDuration: TimeInterval = 2.0
     private let logger = Logger(subsystem: "com.stryvr.app", category: "AppLifecycle")
@@ -31,17 +32,15 @@ struct StryVrApp: App {
                     SplashScreenView()
                         .onAppear(perform: handleSplash)
                 } else {
-                    NavigationStack {
-                        if authViewModel.isAuthenticated {
-                            HomeView()
-                        } else {
-                            LoginView()
-                        }
-                    }
+                    NavigationRootView()
+                        .environmentObject(router)
+                        .environmentObject(authViewModel)
                 }
             }
-            .environmentObject(authViewModel)
             .animation(.easeInOut, value: authViewModel.isAuthenticated)
+            .onOpenURL { url in
+                router.handleDeepLink(url: url)
+            }
         }
     }
 

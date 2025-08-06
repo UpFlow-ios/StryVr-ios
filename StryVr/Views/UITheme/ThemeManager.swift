@@ -451,4 +451,27 @@ extension View {
     func glassEffectUnion<ID: Hashable>(id: ID, namespace: Namespace.ID) -> some View {
         self.glassEffectUnion(id: id, namespace: namespace)
     }
+    
+    /// Premium glass card with interactive effects
+    func premiumGlassCard() -> some View {
+        self
+            .glassEffect(.regular.interactive(), in: RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
+            .overlay(
+                RoundedRectangle(cornerRadius: Theme.CornerRadius.card)
+                    .stroke(.white.opacity(0.3), lineWidth: 1)
+            )
+            .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
+    }
+    
+    /// Navigation glass for top-level navigation
+    func navigationGlassEffect() -> some View {
+        self
+            .glassEffect(.regular.tint(.blue.opacity(0.1)), in: RoundedRectangle(cornerRadius: 0))
+            .overlay(
+                Rectangle()
+                    .frame(height: 0.5)
+                    .foregroundColor(.white.opacity(0.2)),
+                alignment: .bottom
+            )
+    }
 }

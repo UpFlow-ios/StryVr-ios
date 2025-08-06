@@ -11,54 +11,81 @@ import SwiftUI
 
 struct ReportsView: View {
     @StateObject private var reportsViewModel = ReportsViewModel()
+    @EnvironmentObject var router: AppRouter
     @State private var showWeakPoints = false
     @State private var selectedFilter: ResumeFilter = .all
     @State private var showingShareSheet = false
     @Namespace private var glassNamespace
 
     var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(spacing: Theme.Spacing.large) {
-                    // Professional Header
-                    professionalHeader
+        ScrollView {
+            VStack(spacing: Theme.Spacing.large) {
+                // Professional Header with new styling
+                professionalHeader
 
-                    // Quick Stats Overview
-                    quickStatsSection
+                // Quick Actions Row
+                quickActionsRow
 
-                    // Filter Controls
-                    filterControls
+                // Quick Stats Overview
+                quickStatsSection
 
-                    // Employment History
-                    employmentHistorySection
+                // Filter Controls
+                filterControls
 
-                    // Performance Metrics
-                    performanceMetricsSection
+                // Employment History
+                employmentHistorySection
 
-                    // Skills & Competencies
-                    skillsSection
+                // Performance Metrics
+                performanceMetricsSection
 
-                    // Earnings History
-                    earningsSection
+                // Skills & Competencies
+                skillsSection
 
-                    // Verification Status
-                    verificationStatusSection
+                // Earnings History
+                earningsSection
 
-                    // Verification Dashboard Link
-                    verificationDashboardLink
-                }
-                .padding()
+                // Verification Status
+                verificationStatusSection
+
+                // AI Insights Link
+                aiInsightsLink
             }
-            .background(Theme.Colors.background)
-            .navigationTitle("Professional Profile")
-            .navigationBarTitleDisplayMode(.large)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: { showingShareSheet = true }) {
-                        Image(systemName: "square.and.arrow.up")
-                            .foregroundColor(Theme.Colors.primary)
+            .padding()
+        }
+        .background(
+            LinearGradient(
+                colors: [Theme.Colors.deepNavyBlue, Theme.Colors.subtleLightGray],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+        )
+        .navigationTitle("Reports")
+        .navigationBarTitleDisplayMode(.large)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Menu {
+                    Button {
+                        showingShareSheet = true
+                    } label: {
+                        Label("Share Report", systemImage: "square.and.arrow.up")
                     }
+                    
+                    Button {
+                        router.navigate(to: .exportReport(reportId: "current_report", format: .pdf))
+                    } label: {
+                        Label("Export PDF", systemImage: "doc.fill")
+                    }
+                    
+                    Button {
+                        router.navigate(to: .reportShare(reportId: "current_report"))
+                    } label: {
+                        Label("Generate Link", systemImage: "link")
+                    }
+                } label: {
+                    Image(systemName: "ellipsis.circle.fill")
+                        .foregroundColor(Theme.Colors.textPrimary)
                 }
+                .liquidGlassButton()
             }
         }
         .onAppear {
@@ -704,6 +731,101 @@ struct VerificationDashboardView: View {
     }
 }
 
+    // MARK: - Quick Actions Row
+    
+    private var quickActionsRow: some View {
+        HStack(spacing: 16) {
+            ActionButton(
+                title: "Analytics",
+                icon: "chart.line.uptrend.xyaxis",
+                color: Theme.Colors.neonBlue
+            ) {
+                router.navigateToAnalytics(userId: "current_user")
+            }
+            
+            ActionButton(
+                title: "AI Insights",
+                icon: "brain.head.profile",
+                color: Theme.Colors.neonGreen
+            ) {
+                router.navigateToAIInsights(userId: "current_user")
+            }
+            
+            ActionButton(
+                title: "Export",
+                icon: "square.and.arrow.up",
+                color: Theme.Colors.neonOrange
+            ) {
+                showingShareSheet = true
+            }
+        }
+    }
+    
+    // MARK: - AI Insights Link
+    
+    private var aiInsightsLink: some View {
+        Button {
+            router.navigateToAIInsights(userId: "current_user")
+        } label: {
+            HStack {
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack {
+                        Image(systemName: "brain.head.profile.fill")
+                            .foregroundColor(Theme.Colors.neonGreen)
+                        
+                        Text("AI-Powered Insights")
+                            .font(Theme.Typography.headline)
+                            .foregroundColor(Theme.Colors.textPrimary)
+                        
+                        Spacer()
+                        
+                        Image(systemName: "arrow.right")
+                            .foregroundColor(Theme.Colors.textSecondary)
+                    }
+                    
+                    Text("Get personalized career recommendations based on your performance data")
+                        .font(Theme.Typography.body)
+                        .foregroundColor(Theme.Colors.textSecondary)
+                        .multilineTextAlignment(.leading)
+                }
+                
+                Spacer()
+            }
+            .padding()
+        }
+        .liquidGlassCard()
+        .neonGlow(color: Theme.Colors.neonGreen.opacity(0.3))
+    }
+}
+
+// MARK: - Action Button Component
+
+private struct ActionButton: View {
+    let title: String
+    let icon: String
+    let color: Color
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            VStack(spacing: 8) {
+                Image(systemName: icon)
+                    .font(.title2)
+                    .foregroundColor(color)
+                
+                Text(title)
+                    .font(Theme.Typography.caption)
+                    .foregroundColor(Theme.Colors.textPrimary)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 12)
+        }
+        .liquidGlassCard()
+        .neonGlow(color: color.opacity(0.3))
+    }
+}
+
 #Preview {
     ReportsView()
+        .environmentObject(AppRouter())
 }
