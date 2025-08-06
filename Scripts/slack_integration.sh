@@ -35,7 +35,7 @@ print_section() {
 }
 
 # Configuration
-SLACK_CONFIG_FILE=".slack_config.json"
+SLACK_CONFIG_FILE="$HOME/.stryvr/secure/slack_notifications.json"
 CURRENT_DATE=$(date +"%Y-%m-%d %H:%M:%S")
 
 # Function to check if Slack webhook URL is configured
@@ -144,8 +144,8 @@ notify_ci_status() {
         return 1
     fi
     
-    local webhook=$(cat "$SLACK_CONFIG_FILE" | grep -o '"ci_cd":"[^"]*"' | cut -d'"' -f4)
-    local channel=$(cat "$SLACK_CONFIG_FILE" | grep -o '"ci_cd":"[^"]*"' | cut -d'"' -f4)
+    local webhook=$(cat "$SLACK_CONFIG_FILE" | python3 -c "import sys, json; data=json.load(sys.stdin); print(data['webhooks']['ci_cd'])")
+    local channel=$(cat "$SLACK_CONFIG_FILE" | python3 -c "import sys, json; data=json.load(sys.stdin); print(data['channels']['ci_cd'])")
     
     case "$status" in
         "success")
@@ -166,7 +166,7 @@ notify_ci_status() {
             ;;
     esac
     
-    local message="${emoji} CI/CD Pipeline ${status^}: ${details}"
+    local message="${emoji} CI/CD Pipeline ${status}: ${details}"
     send_slack_notification "$channel" "$message" "$color" "$webhook"
 }
 
