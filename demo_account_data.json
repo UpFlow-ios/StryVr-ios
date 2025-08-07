@@ -1,0 +1,140 @@
+{
+  "account": {
+    "email": "reviewer@stryvr.app",
+    "name": "App Store Reviewer",
+    "company": "Apple Inc.",
+    "jobTitle": "App Review Specialist",
+    "profileImage": "https://api.stryvr.app/demo/reviewer-avatar.jpg",
+    "verified": true,
+    "premiumMember": true,
+    "joinDate": "2024-01-15"
+  },
+  "professionalProfile": {
+    "summary": "Experienced App Review Specialist with 8+ years in mobile app evaluation and quality assurance. Expert in iOS development standards and App Store guidelines compliance.",
+    "employmentHistory": [
+      {
+        "company": "Apple Inc.",
+        "position": "Senior App Review Specialist",
+        "startDate": "2020-01-01",
+        "endDate": null,
+        "verified": true,
+        "responsibilities": [
+          "Review iOS applications for App Store compliance",
+          "Evaluate user experience and interface design",
+          "Ensure privacy and security standards"
+        ]
+      },
+      {
+        "company": "Tech Innovations Corp",
+        "position": "Mobile QA Engineer",
+        "startDate": "2016-06-01",
+        "endDate": "2019-12-31",
+        "verified": true,
+        "responsibilities": [
+          "Mobile application testing and validation",
+          "Automated testing framework development",
+          "Cross-platform compatibility testing"
+        ]
+      }
+    ],
+    "skills": [
+      {
+        "name": "iOS Development",
+        "level": 95,
+        "verified": true,
+        "category": "Technical"
+      },
+      {
+        "name": "App Store Guidelines",
+        "level": 98,
+        "verified": true,
+        "category": "Technical"
+      },
+      {
+        "name": "Quality Assurance",
+        "level": 92,
+        "verified": true,
+        "category": "Technical"
+      },
+      {
+        "name": "Team Leadership",
+        "level": 88,
+        "verified": true,
+        "category": "Leadership"
+      },
+      {
+        "name": "Communication",
+        "level": 90,
+        "verified": true,
+        "category": "Soft Skills"
+      }
+    ],
+    "achievements": [
+      {
+        "title": "App Store Excellence Award",
+        "description": "Recognized for outstanding app review quality",
+        "date": "2023-12-01",
+        "verified": true
+      },
+      {
+        "title": "iOS Certification",
+        "description": "Advanced iOS Development Certification",
+        "date": "2023-06-15",
+        "verified": true
+      }
+    ]
+  },
+  "aiInsights": [
+    {
+      "type": "skill_recommendation",
+      "title": "Enhance SwiftUI Expertise",
+      "description": "Consider deepening SwiftUI knowledge to stay current with latest iOS development trends",
+      "priority": "medium",
+      "estimatedTime": "2 weeks"
+    },
+    {
+      "type": "career_opportunity",
+      "title": "Senior Technical Lead Role",
+      "description": "Your experience qualifies you for senior technical leadership positions",
+      "priority": "high",
+      "confidence": 0.89
+    },
+    {
+      "type": "networking",
+      "title": "iOS Developer Conferences",
+      "description": "Attending WWDC and similar events could expand your professional network",
+      "priority": "low"
+    }
+  ],
+  "analytics": {
+    "skillProgress": {
+      "lastMonth": "+3.2%",
+      "thisQuarter": "+12.5%",
+      "yearOverYear": "+28.7%"
+    },
+    "performanceMetrics": {
+      "productivityScore": 94,
+      "collaborationScore": 88,
+      "innovationScore": 91,
+      "leadershipScore": 85
+    },
+    "teamMetrics": {
+      "teamSize": 12,
+      "teamHealthScore": 92,
+      "avgTeamPerformance": 89,
+      "teamGrowthRate": "+15.3%"
+    }
+  },
+  "subscription": {
+    "tier": "Professional",
+    "status": "active",
+    "renewalDate": "2025-02-15",
+    "features": [
+      "Unlimited AI Insights",
+      "Advanced Team Analytics",
+      "Priority Support",
+      "Export Capabilities",
+      "Custom Reporting"
+    ]
+  }
+}
