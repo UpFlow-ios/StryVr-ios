@@ -71,19 +71,19 @@ enum AppDestination: Hashable {
 
 /// Export format options for reports
 enum ExportFormat: String, CaseIterable {
-    case pdf = "pdf"
-    case csv = "csv"
-    case json = "json"
-    case email = "email"
+    case pdf
+    case csv
+    case json
+    case email
 }
 
 /// Share type for deep linking
 enum ShareType: String, CaseIterable {
-    case profile = "profile"
-    case report = "report"
-    case achievement = "achievement"
-    case goal = "goal"
-    case insight = "insight"
+    case profile
+    case report
+    case achievement
+    case goal
+    case insight
 }
 
 // MARK: - Deep Linking Support
@@ -108,7 +108,8 @@ extension AppDestination {
             
         case "reports":
             if pathComponents.count >= 2 {
-                return .reportDetail(reportId: pathComponents[0], userId: pathComponents[1])
+                let (reportId, userId) = (pathComponents[0], pathComponents[1])
+                return .reportDetail(reportId: reportId, userId: userId)
             }
             return .reports
             
@@ -122,7 +123,8 @@ extension AppDestination {
         case "share":
             guard pathComponents.count >= 2,
                   let shareType = ShareType(rawValue: pathComponents[0]) else { return nil }
-            return .deepLinkShare(type: shareType, id: pathComponents[1])
+            let shareId = pathComponents[1]
+            return .deepLinkShare(type: shareType, id: shareId)
             
         default:
             return nil
@@ -143,7 +145,7 @@ extension AppDestination {
         case .reports:
             urlString = "\(baseURL)reports"
             
-        case .reportDetail(let reportId, let userId):
+        case let .reportDetail(reportId, userId):
             urlString = "\(baseURL)reports/\(reportId)/\(userId)"
             
         case .analytics(let userId):
@@ -152,7 +154,7 @@ extension AppDestination {
         case .subscription:
             urlString = "\(baseURL)subscription"
             
-        case .deepLinkShare(let type, let id):
+        case let .deepLinkShare(type, id):
             urlString = "\(baseURL)share/\(type.rawValue)/\(id)"
             
         default:

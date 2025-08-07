@@ -12,14 +12,14 @@ import SwiftUI
 struct NavigationRootView: View {
     @EnvironmentObject var router: AppRouter
     @EnvironmentObject var authViewModel: AuthViewModel
-    
+
     /// Navigation coordinator for view creation
     @State private var coordinator: NavigationCoordinator
-    
+
     init() {
         self._coordinator = State(initialValue: NavigationCoordinator(router: AppRouter()))
     }
-    
+
     var body: some View {
         NavigationStack(path: $router.path) {
             rootView
@@ -33,7 +33,7 @@ struct NavigationRootView: View {
         .onAppear {
             // Update coordinator with the actual router from environment
             coordinator = NavigationCoordinator(router: router)
-            
+
             // Set initial destination based on auth state
             if authViewModel.isAuthenticated {
                 router.currentDestination = .dashboard
@@ -53,7 +53,7 @@ struct NavigationRootView: View {
             }
         }
     }
-    
+
     /// Determines the root view based on authentication state
     @ViewBuilder
     private var rootView: some View {
@@ -77,7 +77,7 @@ struct NavigationRootView: View {
 private struct MainAppView: View {
     @EnvironmentObject var router: AppRouter
     @EnvironmentObject var authViewModel: AuthViewModel
-    
+
     var body: some View {
         TabView {
             // Dashboard Tab
@@ -87,7 +87,7 @@ private struct MainAppView: View {
                     Text("Dashboard")
                 }
                 .tag(0)
-            
+
             // Reports Tab
             ReportsTabView()
                 .tabItem {
@@ -95,7 +95,7 @@ private struct MainAppView: View {
                     Text("Reports")
                 }
                 .tag(1)
-            
+
             // AI Insights Tab
             AIInsightsTabView()
                 .tabItem {
@@ -103,7 +103,7 @@ private struct MainAppView: View {
                     Text("AI Insights")
                 }
                 .tag(2)
-            
+
             // Profile Tab
             ProfileTabView()
                 .tabItem {
@@ -121,7 +121,7 @@ private struct MainAppView: View {
 
 private struct DashboardTabView: View {
     @EnvironmentObject var router: AppRouter
-    
+
     var body: some View {
         VStack(spacing: 20) {
             // Header
@@ -130,14 +130,14 @@ private struct DashboardTabView: View {
                     Text("Dashboard")
                         .font(Theme.Typography.largeTitle)
                         .foregroundColor(Theme.Colors.textPrimary)
-                    
+
                     Text("Welcome back to StryVr")
                         .font(Theme.Typography.body)
                         .foregroundColor(Theme.Colors.textSecondary)
                 }
-                
+
                 Spacer()
-                
+
                 Button {
                     router.navigateToSettings()
                 } label: {
@@ -148,7 +148,7 @@ private struct DashboardTabView: View {
                 .liquidGlassButton()
             }
             .padding(.horizontal)
-            
+
             // Quick Actions
             ScrollView {
                 LazyVStack(spacing: 16) {
@@ -161,7 +161,7 @@ private struct DashboardTabView: View {
                             router.navigateToReports()
                         }
                     )
-                    
+
                     // Analytics Card
                     QuickActionCard(
                         title: "Analytics",
@@ -171,7 +171,7 @@ private struct DashboardTabView: View {
                             router.navigateToAnalytics(userId: "current_user")
                         }
                     )
-                    
+
                     // AI Insights Card
                     QuickActionCard(
                         title: "AI Insights",
@@ -181,7 +181,7 @@ private struct DashboardTabView: View {
                             router.navigateToAIInsights(userId: "current_user")
                         }
                     )
-                    
+
                     // Subscription Card
                     QuickActionCard(
                         title: "Subscription",
@@ -207,13 +207,13 @@ private struct DashboardTabView: View {
 
 private struct ReportsTabView: View {
     @EnvironmentObject var router: AppRouter
-    
+
     var body: some View {
         VStack {
             Text("Reports")
                 .font(Theme.Typography.largeTitle)
                 .foregroundColor(Theme.Colors.textPrimary)
-            
+
             // This will be replaced by your actual ReportsView
             Button("View Sample Report") {
                 router.navigateToReportDetail(reportId: "sample_report", userId: "current_user")
@@ -232,13 +232,13 @@ private struct ReportsTabView: View {
 
 private struct AIInsightsTabView: View {
     @EnvironmentObject var router: AppRouter
-    
+
     var body: some View {
         VStack {
             Text("AI Insights")
                 .font(Theme.Typography.largeTitle)
                 .foregroundColor(Theme.Colors.textPrimary)
-            
+
             Button("Get AI Recommendations") {
                 router.navigateToPersonalizedRecommendations(userId: "current_user")
             }
@@ -256,13 +256,13 @@ private struct AIInsightsTabView: View {
 
 private struct ProfileTabView: View {
     @EnvironmentObject var router: AppRouter
-    
+
     var body: some View {
         VStack {
             Text("Profile")
                 .font(Theme.Typography.largeTitle)
                 .foregroundColor(Theme.Colors.textPrimary)
-            
+
             Button("View Profile") {
                 router.navigateToProfile(userId: "current_user")
             }
@@ -283,7 +283,7 @@ private struct ProfileTabView: View {
 private struct AuthenticationFlowView: View {
     @EnvironmentObject var router: AppRouter
     @EnvironmentObject var authViewModel: AuthViewModel
-    
+
     var body: some View {
         VStack(spacing: 30) {
             // App Logo
@@ -291,40 +291,40 @@ private struct AuthenticationFlowView: View {
                 .font(.system(size: 80))
                 .foregroundColor(Theme.Colors.neonBlue)
                 .liquidGlassGlow(color: Theme.Colors.glowPrimary, radius: 20)
-            
+
             // App Title
             VStack(spacing: 8) {
                 Text("StryVr")
                     .font(Theme.Typography.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(Theme.Colors.textPrimary)
-                
+
                 Text("AI-Powered Professional Development")
                     .font(Theme.Typography.body)
                     .foregroundColor(Theme.Colors.textSecondary)
                     .multilineTextAlignment(.center)
             }
-            
+
             // Authentication Buttons
             VStack(spacing: 16) {
                 Button {
-                    // TODO: Implement actual login logic
+                    // Demo login for development - replace with actual login logic
                     authViewModel.signIn(email: "demo@stryvr.com", password: "demo123")
                 } label: {
                     HStack {
                         Text("Sign In")
                             .font(Theme.Typography.buttonText)
                             .foregroundColor(Theme.Colors.textPrimary)
-                        
+
                         Spacer()
-                        
+
                         Image(systemName: "arrow.right")
                             .foregroundColor(Theme.Colors.textPrimary)
                     }
                     .padding()
                 }
                 .liquidGlassButton()
-                
+
                 Button {
                     router.navigate(to: .signup)
                 } label: {
@@ -332,9 +332,9 @@ private struct AuthenticationFlowView: View {
                         Text("Create Account")
                             .font(Theme.Typography.buttonText)
                             .foregroundColor(Theme.Colors.textSecondary)
-                        
+
                         Spacer()
-                        
+
                         Image(systemName: "person.badge.plus")
                             .foregroundColor(Theme.Colors.textSecondary)
                     }
@@ -362,7 +362,7 @@ private struct QuickActionCard: View {
     let subtitle: String
     let icon: String
     let action: () -> Void
-    
+
     var body: some View {
         Button(action: action) {
             HStack(spacing: 16) {
@@ -373,20 +373,20 @@ private struct QuickActionCard: View {
                     .frame(width: 40, height: 40)
                     .background(Theme.Colors.glassPrimary)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                
+
                 // Content
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title)
                         .font(Theme.Typography.subheadline)
                         .foregroundColor(Theme.Colors.textPrimary)
-                    
+
                     Text(subtitle)
                         .font(Theme.Typography.caption)
                         .foregroundColor(Theme.Colors.textSecondary)
                 }
-                
+
                 Spacer()
-                
+
                 // Arrow
                 Image(systemName: "chevron.right")
                     .font(.body)

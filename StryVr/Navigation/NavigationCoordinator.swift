@@ -40,7 +40,7 @@ struct NavigationCoordinator {
             ReportsView()
                 .environmentObject(router)
 
-        case .reportDetail(let reportId, let userId):
+        case let .reportDetail(reportId, userId):
             ReportDetailView(reportId: reportId, userId: userId)
                 .environmentObject(router)
 
@@ -52,7 +52,7 @@ struct NavigationCoordinator {
             AnalyticsView(userId: userId)
                 .environmentObject(router)
 
-        case .performanceDetail(let metricId, let timeframe):
+        case let .performanceDetail(metricId, timeframe):
             PerformanceDetailView(metricId: metricId, timeframe: timeframe)
                 .environmentObject(router)
 
@@ -146,7 +146,7 @@ struct NavigationCoordinator {
             ShareProfileView(userId: userId)
                 .environmentObject(router)
 
-        case .exportReport(let reportId, let format):
+        case let .exportReport(reportId, format):
             ExportReportView(reportId: reportId, format: format)
                 .environmentObject(router)
 
