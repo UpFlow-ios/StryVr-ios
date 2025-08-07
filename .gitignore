@@ -41,10 +41,12 @@ GoogleService-info.plist
 *.p8
 secrets/
 .env
+.env.*
 .env.local
 .env.production
 .env.staging
 .env.development
+.env.backup*
 
 # Okta Configuration (Production)
 StryVr/Config/OktaConfig-Production.swift

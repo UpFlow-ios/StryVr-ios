@@ -1,384 +1,110 @@
 #!/bin/bash
 
-# 📅 Daily Maintenance Script for StryVr
-# This script handles daily tasks: quick checks, monitoring, and immediate issues
+# StryVr Daily Maintenance Script
+echo "🔧 StryVr Daily Maintenance - $(date +'%B %d, %Y')"
+echo "================================================"
 
-echo "📅 Running daily maintenance for StryVr..."
-
-# Colors for output
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-PURPLE='\033[0;35m'
-CYAN='\033[0;36m'
-NC='\033[0m' # No Color
-
-# Function to print colored output
-print_status() {
-    echo -e "${GREEN}✅ $1${NC}"
-}
-
-print_warning() {
-    echo -e "${YELLOW}⚠️  $1${NC}"
-}
-
-print_info() {
-    echo -e "${BLUE}ℹ️  $1${NC}"
-}
-
-print_error() {
-    echo -e "${RED}❌ $1${NC}"
-}
-
-print_section() {
-    echo -e "${PURPLE}📋 $1${NC}"
-    echo "=================================="
-}
-
-print_subsection() {
-    echo -e "${CYAN}🔧 $1${NC}"
-}
-
-# Check if we're in the right directory
-if [ ! -f "package.json" ]; then
-    print_error "Not in the stryvr-ios repository root. Please run this script from the project root."
-    exit 1
-fi
-
-# Get current date for logging
-CURRENT_DATE=$(date +%Y-%m-%d)
-DAILY_LOG="daily_maintenance_${CURRENT_DATE}.log"
-
-echo "📅 Daily Maintenance Report - $CURRENT_DATE" > "$DAILY_LOG"
-echo "===========================================" >> "$DAILY_LOG"
-
-print_section "1. QUICK SECURITY CHECK"
-echo "1. QUICK SECURITY CHECK" >> "$DAILY_LOG"
-
-# Quick security audit
-print_subsection "Running quick security check..."
-echo "Running quick security check..." >> "$DAILY_LOG"
-
-# Check for exposed secrets
-SECRETS_CHECK=$(grep -r -i "password\|key\|secret\|token" . --exclude-dir=.git --exclude-dir=node_modules 2>/dev/null | grep -v "example\|placeholder" | wc -l)
-if [ "$SECRETS_CHECK" -eq 0 ]; then
-    print_status "No exposed secrets found"
-    echo "✅ No exposed secrets found" >> "$DAILY_LOG"
+# 1. Git Health Check
+echo "📊 Git Repository Status:"
+git_status=$(git status --porcelain)
+if [ -z "$git_status" ]; then
+    echo "✅ Repository clean"
 else
-    print_warning "Potential secrets found: $SECRETS_CHECK"
-    echo "⚠️ Potential secrets found: $SECRETS_CHECK" >> "$DAILY_LOG"
+    echo "⚠️ Uncommitted changes found"
 fi
 
-# Check environment files
-if [ -f "backend/.env" ]; then
-    print_status "Environment file exists"
-    echo "✅ Environment file exists" >> "$DAILY_LOG"
-else
-    print_warning "Environment file not found"
-    echo "⚠️ Environment file not found" >> "$DAILY_LOG"
-fi
-
-print_section "2. BUILD STATUS CHECK"
-echo "" >> "$DAILY_LOG"
-echo "2. BUILD STATUS CHECK" >> "$DAILY_LOG"
-
-# TODO Progress Check
-print_subsection "Checking TODO progress..."
-echo "Checking TODO progress..." >> "$DAILY_LOG"
-
-if [ -f "TODO_APP_STORE_READY.md" ]; then
-    PROGRESS=$(grep -A 5 "Overall Progress:" TODO_APP_STORE_READY.md | head -1 | sed 's/.*~\([0-9]*\)%.*/\1/' 2>/dev/null || echo "0")
-    COMPLETED=$(grep -c "✅" TODO_APP_STORE_READY.md 2>/dev/null || echo "0")
-    PENDING=$(grep -c "⏳\|🟡\|🔴" TODO_APP_STORE_READY.md 2>/dev/null || echo "0")
-    
-    print_status "TODO Progress: ~${PROGRESS}% Complete ($COMPLETED done, $PENDING pending)"
-    echo "✅ TODO Progress: ~${PROGRESS}% Complete ($COMPLETED done, $PENDING pending)" >> "$DAILY_LOG"
-    
-    # Check for critical tasks
-    CRITICAL_TASKS=$(grep -c "🔴" TODO_APP_STORE_READY.md 2>/dev/null || echo "0")
-    if [ "$CRITICAL_TASKS" -gt 0 ]; then
-        print_warning "Critical tasks found: $CRITICAL_TASKS"
-        echo "⚠️ Critical tasks found: $CRITICAL_TASKS" >> "$DAILY_LOG"
-    fi
-else
-    print_warning "TODO file not found"
-    echo "⚠️ TODO file not found" >> "$DAILY_LOG"
-fi
-
-# Quick build check
-print_subsection "Checking build status..."
-echo "Checking build status..." >> "$DAILY_LOG"
-
-# Check for build errors in recent logs
-RECENT_BUILD_ERRORS=$(find . -name "*build*log*" -mtime -1 2>/dev/null | head -1)
-if [ -n "$RECENT_BUILD_ERRORS" ]; then
-    print_warning "Recent build logs found - check for errors"
-    echo "⚠️ Recent build logs found - check for errors" >> "$DAILY_LOG"
-else
-    print_status "No recent build logs found"
-    echo "✅ No recent build logs found" >> "$DAILY_LOG"
-fi
-
-# Check Xcode project
-if [ -d "SupportingFiles" ]; then
-    print_status "Xcode project found"
-    echo "✅ Xcode project found" >> "$DAILY_LOG"
-else
-    print_error "Xcode project not found"
-    echo "❌ Xcode project not found" >> "$DAILY_LOG"
-fi
-
-print_section "3. GIT STATUS CHECK"
-echo "" >> "$DAILY_LOG"
-echo "3. GIT STATUS CHECK" >> "$DAILY_LOG"
-
-# Check git status
-print_subsection "Checking git status..."
-echo "Checking git status..." >> "$DAILY_LOG"
-
-# Check for uncommitted changes
-if git status --porcelain | grep -q .; then
-    print_warning "Uncommitted changes detected"
-    echo "⚠️ Uncommitted changes detected" >> "$DAILY_LOG"
-    git status --porcelain >> "$DAILY_LOG"
-else
-    print_status "Repository is clean"
-    echo "✅ Repository is clean" >> "$DAILY_LOG"
-fi
-
-# Check for unpushed commits
-UNPUSHED_COMMITS=$(git log --oneline origin/main..HEAD 2>/dev/null | wc -l)
-if [ "$UNPUSHED_COMMITS" -gt 0 ]; then
-    print_warning "Unpushed commits: $UNPUSHED_COMMITS"
-    echo "⚠️ Unpushed commits: $UNPUSHED_COMMITS" >> "$DAILY_LOG"
-else
-    print_status "All commits pushed"
-    echo "✅ All commits pushed" >> "$DAILY_LOG"
-fi
-
-print_section "4. AI SERVICE STATUS"
-echo "" >> "$DAILY_LOG"
-echo "4. AI SERVICE STATUS" >> "$DAILY_LOG"
-
-# Quick AI service check
-print_subsection "Checking AI services..."
-echo "Checking AI services..." >> "$DAILY_LOG"
-
-# Check AI services
-AI_SERVICES=(
-    "AIRecommendationService.swift"
-    "AIProfileValidator.swift"
-    "AIGreetingManager.swift"
-)
-
-for service in "${AI_SERVICES[@]}"; do
-    if [ -f "StryVr/Services/$service" ]; then
-        print_status "✅ $service"
-        echo "✅ $service" >> "$DAILY_LOG"
+# 2. SwiftLint Code Quality
+echo ""
+echo "🔍 Code Quality Check:"
+if command -v swiftlint >/dev/null 2>&1; then
+    violations=$(swiftlint 2>&1 | grep -c "warning\|error" || echo "0")
+    if [ "$violations" -eq 0 ]; then
+        echo "✅ No SwiftLint violations"
+        quality="🟢 Excellent"
+    elif [ "$violations" -le 10 ]; then
+        echo "⚠️ $violations violations found"
+        quality="🟡 Good ($violations issues)"
     else
-        print_warning "⚠️ $service (not found)"
-        echo "⚠️ $service (not found)" >> "$DAILY_LOG"
-    fi
-done
-
-print_section "5. CONSUMER FEATURE CHECK"
-echo "" >> "$DAILY_LOG"
-echo "5. CONSUMER FEATURE CHECK" >> "$DAILY_LOG"
-
-# Quick consumer feature check
-print_subsection "Checking consumer features..."
-echo "Checking consumer features..." >> "$DAILY_LOG"
-
-# Check key consumer features
-CONSUMER_FEATURES=(
-    "Onboarding"
-    "Profile"
-    "Challenges"
-    "Feed"
-)
-
-for feature in "${CONSUMER_FEATURES[@]}"; do
-    if [ -d "StryVr/Views/$feature" ]; then
-        print_status "✅ $feature"
-        echo "✅ $feature" >> "$DAILY_LOG"
-    else
-        print_warning "⚠️ $feature (not found)"
-        echo "⚠️ $feature (not found)" >> "$DAILY_LOG"
-    fi
-done
-
-print_section "6. ENTERPRISE FEATURE CHECK"
-echo "" >> "$DAILY_LOG"
-echo "6. ENTERPRISE FEATURE CHECK" >> "$DAILY_LOG"
-
-# Quick enterprise feature check
-print_subsection "Checking enterprise features..."
-echo "Checking enterprise features..." >> "$DAILY_LOG"
-
-# Check key enterprise features
-ENTERPRISE_FEATURES=(
-    "EmployeeInsights"
-    "Reports"
-    "Analytics"
-)
-
-for feature in "${ENTERPRISE_FEATURES[@]}"; do
-    if [ -d "StryVr/Views/$feature" ]; then
-        print_status "✅ $feature"
-        echo "✅ $feature" >> "$DAILY_LOG"
-    else
-        print_warning "⚠️ $feature (not found)"
-        echo "⚠️ $feature (not found)" >> "$DAILY_LOG"
-    fi
-done
-
-print_section "7. QUICK PERFORMANCE CHECK"
-echo "" >> "$DAILY_LOG"
-echo "7. QUICK PERFORMANCE CHECK" >> "$DAILY_LOG"
-
-# Quick performance check
-print_subsection "Checking performance..."
-echo "Checking performance..." >> "$DAILY_LOG"
-
-# Check system resources
-MEMORY_USAGE=$(vm_stat | grep "Pages free" | awk '{print $3}' | sed 's/\.//')
-MEMORY_GB=$((MEMORY_USAGE * 4096 / 1024 / 1024 / 1024))
-print_info "Available memory: ${MEMORY_GB}GB"
-echo "Available memory: ${MEMORY_GB}GB" >> "$DAILY_LOG"
-
-DISK_SPACE=$(df -h . | tail -1 | awk '{print $4}')
-print_info "Available disk space: $DISK_SPACE"
-echo "Available disk space: $DISK_SPACE" >> "$DAILY_LOG"
-
-# Check for large files
-LARGE_FILES=$(find . -type f -size +50M -not -path "./.git/*" -not -path "./node_modules/*" 2>/dev/null | wc -l)
-if [ "$LARGE_FILES" -gt 0 ]; then
-    print_warning "Large files found: $LARGE_FILES"
-    echo "⚠️ Large files found: $LARGE_FILES" >> "$DAILY_LOG"
-else
-    print_status "No large files found"
-    echo "✅ No large files found" >> "$DAILY_LOG"
-fi
-
-print_section "8. DAILY TASKS"
-echo "" >> "$DAILY_LOG"
-echo "8. DAILY TASKS" >> "$DAILY_LOG"
-
-print_subsection "Daily task checklist..."
-echo "Daily task checklist..." >> "$DAILY_LOG"
-
-echo "Daily tasks to complete:" >> "$DAILY_LOG"
-echo "1. Check GitHub notifications" >> "$DAILY_LOG"
-echo "2. Review any new issues or PRs" >> "$DAILY_LOG"
-echo "3. Test app on simulator" >> "$DAILY_LOG"
-echo "4. Check social media engagement" >> "$DAILY_LOG"
-echo "5. Monitor App Store reviews (if live)" >> "$DAILY_LOG"
-
-print_info "Daily tasks to complete:"
-echo "1. Check GitHub notifications"
-echo "2. Review any new issues or PRs"
-echo "3. Test app on simulator"
-echo "4. Check social media engagement"
-echo "5. Monitor App Store reviews (if live)"
-
-print_section "9. QUICK FIXES"
-echo "" >> "$DAILY_LOG"
-echo "9. QUICK FIXES" >> "$DAILY_LOG"
-
-# Quick fixes for common issues
-print_subsection "Quick fixes for common issues..."
-echo "Quick fixes for common issues..." >> "$DAILY_LOG"
-
-echo "Common quick fixes:" >> "$DAILY_LOG"
-echo "1. Build issues: Clean build folder (Cmd+Shift+K)" >> "$DAILY_LOG"
-echo "2. Git issues: git pull origin main" >> "$DAILY_LOG"
-echo "3. Dependencies: npm install in backend/" >> "$DAILY_LOG"
-echo "4. Cache issues: Clear DerivedData" >> "$DAILY_LOG"
-echo "5. Performance: Restart Xcode" >> "$DAILY_LOG"
-
-print_info "Common quick fixes:"
-echo "1. Build issues: Clean build folder (Cmd+Shift+K)"
-echo "2. Git issues: git pull origin main"
-echo "3. Dependencies: npm install in backend/"
-echo "4. Cache issues: Clear DerivedData"
-echo "5. Performance: Restart Xcode"
-
-print_section "9. MCP SERVER STATUS"
-echo "" >> "$DAILY_LOG"
-echo "9. MCP SERVER STATUS" >> "$DAILY_LOG"
-
-print_subsection "Checking MCP server configuration..."
-echo "Checking MCP server configuration..." >> "$DAILY_LOG"
-
-# Check MCP configuration
-MCP_CONFIG="$HOME/.cursor/mcp.json"
-if [ -f "$MCP_CONFIG" ]; then
-    print_status "MCP configuration file exists"
-    echo "✅ MCP configuration file exists" >> "$DAILY_LOG"
-    
-    # Check if configuration is valid JSON
-    if jq empty "$MCP_CONFIG" 2>/dev/null; then
-        print_status "MCP configuration is valid JSON"
-        echo "✅ MCP configuration is valid JSON" >> "$DAILY_LOG"
-        
-        # Count configured servers
-        SERVER_COUNT=$(jq '.mcpServers | keys | length' "$MCP_CONFIG" 2>/dev/null || echo "0")
-        print_info "Configured MCP servers: $SERVER_COUNT"
-        echo "ℹ️ Configured MCP servers: $SERVER_COUNT" >> "$DAILY_LOG"
-        
-        # List configured servers
-        if [ "$SERVER_COUNT" -gt 0 ]; then
-            print_info "Active servers:"
-            echo "ℹ️ Active servers:" >> "$DAILY_LOG"
-            jq -r '.mcpServers | keys[]' "$MCP_CONFIG" 2>/dev/null | while read server; do
-                print_info "  - $server"
-                echo "    - $server" >> "$DAILY_LOG"
-            done
-        fi
-    else
-        print_warning "MCP configuration contains invalid JSON"
-        echo "⚠️ MCP configuration contains invalid JSON" >> "$DAILY_LOG"
+        echo "❌ $violations violations - needs work"
+        quality="🔴 Poor ($violations issues)"
     fi
 else
-    print_warning "MCP configuration file not found"
-    echo "⚠️ MCP configuration file not found" >> "$DAILY_LOG"
-    print_info "Run: ./Scripts/setup_mcp_servers.sh to configure MCP servers"
-    echo "ℹ️ Run: ./Scripts/setup_mcp_servers.sh to configure MCP servers" >> "$DAILY_LOG"
+    echo "⚠️ SwiftLint not installed"
+    quality="❓ Unknown"
 fi
 
-print_section "10. SUMMARY"
-echo "" >> "$DAILY_LOG"
-echo "10. SUMMARY" >> "$DAILY_LOG"
+# 3. Build Test
+echo ""
+echo "🏗️ Build Health:"
+if xcodebuild build -scheme StryVr -destination 'platform=iOS Simulator,name=iPhone 16 Pro' -quiet >/dev/null 2>&1; then
+    echo "✅ Build successful"
+    build_status="🟢 Success"
+else
+    echo "❌ Build failed"
+    build_status="🔴 Failed"
+fi
 
-print_status "Daily maintenance completed!"
-echo "✅ Daily maintenance completed!" >> "$DAILY_LOG"
+# 4. App Store Readiness
+echo ""
+echo "🏪 App Store Readiness:"
+score=0
+total=3
 
-print_info "📋 Quick action items:"
-echo "📋 Quick action items:" >> "$DAILY_LOG"
-echo "1. Review the daily log: $DAILY_LOG" >> "$DAILY_LOG"
-echo "2. Address any warnings or errors" >> "$DAILY_LOG"
-echo "3. Complete daily tasks checklist" >> "$DAILY_LOG"
-echo "4. Test app functionality" >> "$DAILY_LOG"
-echo "5. Check for urgent issues" >> "$DAILY_LOG"
+# Check app icons
+if [ -f "StryVr/Assets.xcassets/AppIcon.appiconset/AppIcon-Light-1x.png" ]; then
+    echo "✅ App icons present"
+    score=$((score + 1))
+else
+    echo "❌ App icons missing"
+fi
 
-print_info "📊 Daily report saved to: $DAILY_LOG"
-echo "📊 Daily report saved to: $DAILY_LOG" >> "$DAILY_LOG"
+# Check Info.plist
+if [ -f "StryVr/Info.plist" ]; then
+    echo "✅ Info.plist configured"
+    score=$((score + 1))
+else
+    echo "❌ Info.plist missing"
+fi
+
+# Check code quality
+if [ "$violations" -le 20 ]; then
+    echo "✅ Code quality acceptable"
+    score=$((score + 1))
+else
+    echo "⚠️ Code quality needs improvement"
+fi
+
+readiness=$((score * 100 / total))
+
+# 5. Overall Status
+echo ""
+echo "📋 Summary:"
+echo "Code Quality: $quality"
+echo "Build Status: $build_status"
+echo "App Store Ready: $score/$total ($readiness%)"
+
+if [ "$build_status" = "🟢 Success" ] && [ "$violations" -le 5 ]; then
+    overall="🟢 Excellent"
+    emoji="🚀"
+elif [ "$build_status" = "🟢 Success" ]; then
+    overall="🟡 Good"
+    emoji="👍"
+else
+    overall="🔴 Needs Work"
+    emoji="⚠️"
+fi
 
 echo ""
-print_warning "💡 Daily Pro Tips:"
-echo "   - Run this script every morning"
-echo "   - Address issues immediately"
-echo "   - Keep commits small and frequent"
-echo "   - Test features as you develop"
-echo "   - Monitor user feedback"
-echo "   - Use npm scripts for quick access (npm run daily)"
-echo "   - Check marketing automation regularly"
-echo "   - Monitor AI service performance"
-echo "   - Track deployment status"
-echo "   - Review security alerts daily"
+echo "$emoji StryVr Health: $overall"
+
+# 6. Send to Slack
+if [ -f "~/.stryvr/secure/.slack_config.json" ]; then
+    webhook=$(cat ~/.stryvr/secure/.slack_config.json | python3 -c "import sys, json; data=json.load(sys.stdin); print(data['webhooks']['dev'])" 2>/dev/null)
+    if [ ! -z "$webhook" ]; then
+        curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"🔧 *Daily Maintenance Complete*\n\n• Code Quality: $quality\n• Build: $build_status\n• App Store Ready: $readiness%\n\n$emoji *Overall: $overall*\"}" "$webhook" -s >/dev/null
+        echo "📤 Report sent to Slack"
+    fi
+fi
 
 echo ""
-print_status "🎉 Daily maintenance completed successfully!"
-echo ""
-echo "📞 Need help? Contact: joedormond@stryvr.app" 
+echo "🎉 Maintenance complete!"
