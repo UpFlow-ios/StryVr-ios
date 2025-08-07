@@ -4,35 +4,47 @@
 <dict>
 	<key>CFBundleName</key>
 	<string>StryVr</string>
+	<key>CFBundleDisplayName</key>
+	<string>StryVr</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.stryvr.app</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.0</string>
+	<string>1</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.0.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arm64</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSExceptionDomains</key>
-		<dict>
-			<key>api.stryvr.app</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<false/>
-				<key>NSExceptionMinimumTLSVersion</key>
-				<string>TLSv1.2</string>
-			</dict>
-		</dict>
-	</dict>
+	<!-- Privacy - Camera Usage -->
 	<key>NSCameraUsageDescription</key>
-	<string>This allows StryVr to access your camera to record your resume video or scan a document.</string>
+	<string>StryVr uses your camera to capture professional video resumes and workplace documentation for your career development.</string>
+	
+	<!-- Privacy - Photo Library Usage -->
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Used to upload your video resume or company documents from your photo library.</string>
+	<string>StryVr accesses your photo library to upload professional documents and career-related images to enhance your profile.</string>
+	
+	<!-- Privacy - Microphone Usage -->
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Allows StryVr to capture your audio for recording a voice pitch or feedback.</string>
+	<string>StryVr uses your microphone to record audio for video resumes, voice notes, and professional communication features.</string>
+	
+	<!-- Privacy - Face ID Usage -->
 	<key>NSFaceIDUsageDescription</key>
-	<string>Used for quick and secure login via Face ID.</string>
+	<string>StryVr uses Face ID to provide secure, convenient access to your professional career data and workplace analytics.</string>
+	
+	<!-- Privacy - Notifications -->
+	<key>NSUserNotificationsUsageDescription</key>
+	<string>StryVr sends you personalized career insights, skill reminders, and professional development notifications to support your growth.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
@@ -43,12 +55,25 @@
 	<true/>
 	<key>NSUserNotificationAlertStyle</key>
 	<string>banner</string>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>StryVr uses Bluetooth to connect with wearable devices for enhanced performance tracking and analytics.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>StryVr uses location data to provide context-aware workplace insights and performance analytics.</string>
+	<!-- Privacy - Bluetooth Usage -->
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>StryVr connects to professional wearable devices and wireless accessories to enhance your workplace performance tracking and analytics.</string>
+	
+	<!-- Privacy - Location Usage -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>StryVr uses your location to provide workplace context and location-based career insights while you use the app.</string>
+	
+	<!-- Privacy - Motion Usage -->
 	<key>NSMotionUsageDescription</key>
-	<string>StryVr uses motion data to track workplace activity patterns and provide personalized performance insights.</string>
+	<string>StryVr analyzes motion data to understand your work patterns and provide personalized productivity insights for career growth.</string>
+	
+	<!-- Privacy - Health Data -->
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>StryVr integrates with Health data to provide comprehensive wellness insights that support your professional performance.</string>
+	
+	<!-- Privacy - Contacts -->
+	<key>NSContactsUsageDescription</key>
+	<string>StryVr accesses your contacts to help you build your professional network and connect with career mentors.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -66,15 +91,10 @@
 			</array>
 		</dict>
 	</dict>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>armv7</string>
-	</array>
+	<!-- UI Configuration -->
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
@@ -83,28 +103,50 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	
+	<!-- Status Bar Configuration -->
 	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleDefault</string>
+	<string>UIStatusBarStyleDarkContent</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	
+	<!-- iOS 18 Liquid Glass Support -->
+	<key>UIUserInterfaceStyle</key>
+	<string>Automatic</string>
+	
+	<!-- App Store Configuration -->
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	
+	<!-- URL Schemes -->
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>https</string>
-		<string>http</string>
+		<string>mailto</string>
+		<string>tel</string>
 	</array>
-	<key>CFBundleDisplayName</key>
-	<string>StryVr</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
-	<key>CFBundleResourceSpecification</key>
-	<string>ResourceRules.plist</string>
+	
+	<!-- App Category -->
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.business</string>
+	
+	<!-- App Transport Security -->
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<false/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>api.stryvr.app</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<false/>
+				<key>NSExceptionMinimumTLSVersion</key>
+				<string>TLSv1.2</string>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
 </dict>
 </plist>

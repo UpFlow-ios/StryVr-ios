@@ -4,16 +4,104 @@
 <dict>
 	<key>CFBundleName</key>
 	<string>StryVr</string>
+	<key>CFBundleDisplayName</key>
+	<string>StryVr</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.stryvr.app</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.0</string>
+	<string>1</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.0.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arm64</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+	
+	<!-- Privacy - Camera Usage -->
+	<key>NSCameraUsageDescription</key>
+	<string>StryVr uses your camera to capture professional video resumes and workplace documentation for your career development.</string>
+	
+	<!-- Privacy - Microphone Usage -->
+	<key>NSMicrophoneUsageDescription</key>
+	<string>StryVr uses your microphone to record audio for video resumes, voice notes, and professional communication features.</string>
+	
+	<!-- Privacy - Face ID Usage -->
+	<key>NSFaceIDUsageDescription</key>
+	<string>StryVr uses Face ID to provide secure, convenient access to your professional career data and workplace analytics.</string>
+	<!-- App Background Modes -->
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>background-fetch</string>
+		<string>remote-notification</string>
+	</array>
+	
+	<!-- Firebase Configuration -->
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<true/>
+	
+	<!-- UI Configuration -->
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	
+	<!-- Status Bar Configuration -->
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleDarkContent</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
+	
+	<!-- iOS 18 Liquid Glass Support -->
+	<key>UIUserInterfaceStyle</key>
+	<string>Automatic</string>
+	
+	<!-- Privacy - Additional Permissions -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>StryVr accesses your photo library to upload professional documents and career-related images to enhance your profile.</string>
+	
+	<key>NSMotionUsageDescription</key>
+	<string>StryVr analyzes motion data to understand your work patterns and provide personalized productivity insights for career growth.</string>
+	
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>StryVr connects to professional wearable devices and wireless accessories to enhance your workplace performance tracking and analytics.</string>
+	
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>StryVr uses your location to provide workplace context and location-based career insights while you use the app.</string>
+	
+	<!-- Privacy - Notifications -->
+	<key>NSUserNotificationsUsageDescription</key>
+	<string>StryVr sends you personalized career insights, skill reminders, and professional development notifications to support your growth.</string>
+	
+	<!-- App Store Configuration -->
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	
+	<!-- App Category -->
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.business</string>
+	
+	<!-- App Transport Security -->
 	<key>NSAppTransportSecurity</key>
 	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<false/>
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>api.stryvr.app</key>
@@ -22,34 +110,10 @@
 				<false/>
 				<key>NSExceptionMinimumTLSVersion</key>
 				<string>TLSv1.2</string>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<true/>
 			</dict>
 		</dict>
 	</dict>
-	<key>NSCameraUsageDescription</key>
-	<string>StryVr needs access to your camera for video calls and content creation.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>StryVr needs access to your microphone for voice communication during video calls.</string>
-	<key>NSFaceIDUsageDescription</key>
-	<string>StryVr uses Face ID for secure login and authentication.</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>audio</string>
-		<string>voip</string>
-		<string>fetch</string>
-	</array>
-	<key>FirebaseAppDelegateProxyEnabled</key>
-	<true/>
-	<key>NSUserNotificationAlertStyle</key>
-	<string>banner</string>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>StryVr needs access to Bluetooth for connecting to external devices.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>StryVr needs access to your location even when the app is not in use to provide continuous personalized learning.</string>
-        <key>NSMotionUsageDescription</key>
-        <string>StryVr uses motion data to enhance your learning experience.</string>
-        <key>NSPhotoLibraryUsageDescription</key>
-        <string>StryVr needs access to your photo library for uploading images.</string>
-        <key>NSUserTrackingUsageDescription</key>
-        <string>This identifier will be used to deliver personalized ads.</string>
 </dict>
 </plist>
