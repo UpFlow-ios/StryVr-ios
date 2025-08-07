@@ -74,8 +74,40 @@ struct CustomTabBar: View {
                 selectedTab = tab
             }
         }
-        .accessibilityLabel("\(tab.title) Tab")
-        .accessibilityHint("Switches to the \(tab.title) section")
+        .navigationAccessibility(
+            label: getAccessibilityLabel(for: tab),
+            hint: getAccessibilityHint(for: tab),
+            isSelected: selectedTab == tab
+        )
+        .professionalDynamicType(.accessibility)
+    }
+    
+    // MARK: - Accessibility Helpers
+    
+    private func getAccessibilityLabel(for tab: TabItem) -> String {
+        switch tab {
+        case .home:
+            return AccessibilityManager.VoiceOverLabels.homeTab
+        case .feed:
+            return AccessibilityManager.VoiceOverLabels.insightsTab
+        case .profile:
+            return AccessibilityManager.VoiceOverLabels.profileTab
+        case .reports:
+            return AccessibilityManager.VoiceOverLabels.reportsTab
+        }
+    }
+    
+    private func getAccessibilityHint(for tab: TabItem) -> String {
+        switch tab {
+        case .home:
+            return AccessibilityManager.VoiceOverHints.homeTab
+        case .feed:
+            return AccessibilityManager.VoiceOverHints.insightsTab
+        case .profile:
+            return AccessibilityManager.VoiceOverHints.profileTab
+        case .reports:
+            return AccessibilityManager.VoiceOverHints.reportsTab
+        }
     }
 }
 

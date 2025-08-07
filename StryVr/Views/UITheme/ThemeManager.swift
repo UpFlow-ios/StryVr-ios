@@ -56,17 +56,48 @@ struct Theme {
         static let lightGray = Color(.systemGray3)
     }
 
-    // MARK: - Typography (SF Pro Rounded + Apple HIG)
+    // MARK: - Typography (SF Pro Rounded + Apple HIG) with Dynamic Type Support
 
-    /// Defines the app's typography styles for consistent text appearance.
+    /// Professional typography with comprehensive Dynamic Type and accessibility support
     struct Typography {
-        static let headline = Font.system(size: 20, weight: .bold, design: .rounded)
-        static let body = Font.system(size: 16, weight: .medium, design: .rounded)
-        static let caption = Font.system(size: 13, weight: .regular, design: .rounded)
-        static let subheadline = Font.system(size: 17, weight: .semibold, design: .rounded)
-        static let buttonText = Font.system(size: 16, weight: .semibold, design: .rounded)
-        static let title = Font.system(size: 24, weight: .bold, design: .rounded)
-        static let largeTitle = Font.system(size: 32, weight: .bold, design: .rounded)
+        // Base Dynamic Type fonts (automatically scale with user preferences)
+        static let headline = Font.headline.weight(.bold)
+        static let body = Font.body.weight(.medium)
+        static let caption = Font.caption.weight(.regular)
+        static let subheadline = Font.subheadline.weight(.semibold)
+        static let buttonText = Font.body.weight(.semibold)
+        static let title = Font.title.weight(.bold)
+        static let largeTitle = Font.largeTitle.weight(.bold)
+        
+        // Professional business app hierarchy
+        struct Professional {
+            static let resumeTitle = Font.title.weight(.bold)
+            static let sectionHeader = Font.headline.weight(.semibold)
+            static let skillName = Font.subheadline.weight(.medium)
+            static let metricValue = Font.title2.weight(.bold)
+            static let description = Font.body.weight(.regular)
+            static let timestamp = Font.caption.weight(.medium)
+            static let navigationTitle = Font.title2.weight(.semibold)
+            static let cardTitle = Font.headline.weight(.medium)
+        }
+        
+        // Accessibility-enhanced text styles
+        struct Accessible {
+            static let primaryButton = Font.body.weight(.semibold)
+            static let secondaryButton = Font.body.weight(.medium)
+            static let dataLabel = Font.subheadline.weight(.medium)
+            static let dataValue = Font.title3.weight(.semibold)
+            static let alertText = Font.body.weight(.medium)
+            static let helpText = Font.caption.weight(.regular)
+        }
+        
+        // Chart and data visualization typography
+        struct Charts {
+            static let axisLabel = Font.caption.weight(.medium)
+            static let dataPoint = Font.caption2.weight(.regular)
+            static let chartTitle = Font.subheadline.weight(.semibold)
+            static let legendText = Font.caption.weight(.regular)
+        }
     }
 
     // MARK: - Corner Radius (20pt as per mockup)

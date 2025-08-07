@@ -115,6 +115,12 @@ struct AnalyticsView: View {
                 icon: "chart.line.uptrend.xyaxis",
                 color: Theme.Colors.neonGreen
             )
+            .professionalCardAccessibility(
+                title: "Performance Score",
+                description: "Current score: \(viewModel.performanceScore), change: \(viewModel.performanceChange)",
+                action: "Double tap to view detailed performance analytics"
+            )
+            .professionalDynamicType(.accessibility)
             
             MetricCard(
                 title: "Skill Growth",

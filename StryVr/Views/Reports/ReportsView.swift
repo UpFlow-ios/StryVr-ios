@@ -69,18 +69,30 @@ struct ReportsView: View {
                     } label: {
                         Label("Share Report", systemImage: "square.and.arrow.up")
                     }
+                    .professionalButtonAccessibility(
+                        label: AccessibilityManager.VoiceOverLabels.shareButton,
+                        hint: AccessibilityManager.VoiceOverHints.shareButton
+                    )
                     
                     Button {
                         router.navigate(to: .exportReport(reportId: "current_report", format: .pdf))
                     } label: {
                         Label("Export PDF", systemImage: "doc.fill")
                     }
+                    .professionalButtonAccessibility(
+                        label: AccessibilityManager.VoiceOverLabels.exportButton,
+                        hint: AccessibilityManager.VoiceOverHints.exportButton
+                    )
                     
                     Button {
                         router.navigate(to: .reportShare(reportId: "current_report"))
                     } label: {
                         Label("Generate Link", systemImage: "link")
                     }
+                    .professionalButtonAccessibility(
+                        label: "Generate shareable link",
+                        hint: "Double tap to create a shareable link for your professional report"
+                    )
                 } label: {
                     Image(systemName: "ellipsis.circle.fill")
                         .foregroundColor(Theme.Colors.textPrimary)
