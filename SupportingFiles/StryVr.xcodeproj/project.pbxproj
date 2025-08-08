@@ -146,6 +146,7 @@
 		85AD56A62D94BAE8007B6542 /* SkillProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AD56A42D94BAE8007B6542 /* SkillProgress.swift */; };
 		85AD56A82D94B9EA007B6542 /* SubscriptionPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AD56A02D94B9EA007B6542 /* SubscriptionPlan.swift */; };
 		85AD56AA2D94B931007B6542 /* ChallengeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AD569D2D94B931007B6542 /* ChallengeModel.swift */; };
+		85ADE1EE2E44FEC500972700 /* LaunchScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85ADE1ED2E44FEC500972700 /* LaunchScreenCoordinator.swift */; };
 		85BE23322DD3E53600298EDF /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE23312DD3E53600298EDF /* FirebaseAppCheck */; };
 		85BE23342DD3E53600298EDF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE23332DD3E53600298EDF /* FirebaseAuth */; };
 		85BE23382DD3E53600298EDF /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE23372DD3E53600298EDF /* FirebaseFirestore */; };
@@ -394,6 +395,7 @@
 		85AD56A12D94BA79007B6542 /* Skill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skill.swift; sourceTree = "<group>"; };
 		85AD56A32D94BA97007B6542 /* LearningReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningReport.swift; sourceTree = "<group>"; };
 		85AD56A42D94BAE8007B6542 /* SkillProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillProgress.swift; sourceTree = "<group>"; };
+		85ADE1ED2E44FEC500972700 /* LaunchScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenCoordinator.swift; sourceTree = "<group>"; };
 		85BE23892DD3F40F00298EDF /* FeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
 		85C8B3BF2E1309CF00CEDEEE /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		85CB82D82DAE2E7B002AA544 /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
@@ -705,6 +707,7 @@
 			children = (
 				855E96122D9DB44E002173EF /* SupportingFiles */,
 				856AA6632D91674C00402F84 /* AppDelegate.swift */,
+				85ADE1ED2E44FEC500972700 /* LaunchScreenCoordinator.swift */,
 				856AA6692D91686B00402F84 /* SceneDelegate.swift */,
 				856AA66C2D91692E00402F84 /* StryVrApp.swift */,
 				856AA6652D9167AE00402F84 /* Info.plist */,
@@ -1127,6 +1130,7 @@
 				85AD56AA2D94B931007B6542 /* ChallengeModel.swift in Sources */,
 				855E96092D9D0ED0002173EF /* CareerPathInsightsView.swift in Sources */,
 				851D524C2E3DB5B800322D16 /* ErrorRecoveryManager.swift in Sources */,
+				85ADE1EE2E44FEC500972700 /* LaunchScreenCoordinator.swift in Sources */,
 				8519660B2DA6D836004264AE /* StryVrCardView.swift in Sources */,
 				8588F0BB2DC26B5100D04995 /* ProfileBadgesView.swift in Sources */,
 				856AA66D2D91692E00402F84 /* StryVrApp.swift in Sources */,
@@ -1254,7 +1258,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULE_DEBUGGING = NO;
-				CODE_SIGN_ENTITLEMENTS = "StryVr/App/StryVr.entitlements";
+				CODE_SIGN_ENTITLEMENTS = StryVr/App/StryVr.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1262,13 +1266,13 @@
 				DEVELOPMENT_TEAM = 69Y49KN8KD;
 				FRAMEWORK_SEARCH_PATHS = FirebaseMessaging.framework;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "StryVr/App/Info.plist";
+				INFOPLIST_FILE = StryVr/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = StryVr;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1293,20 +1297,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = "StryVr/App/StryVr.entitlements";
+				CODE_SIGN_ENTITLEMENTS = StryVr/App/StryVr.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 69Y49KN8KD;
 				FRAMEWORK_SEARCH_PATHS = FirebaseMessaging.framework;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "StryVr/App/Info.plist";
+				INFOPLIST_FILE = StryVr/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = StryVr;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

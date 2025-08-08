@@ -88,12 +88,12 @@ struct CustomTabBar: View {
         switch tab {
         case .home:
             return AccessibilityManager.VoiceOverLabels.homeTab
-        case .feed:
+        case .connect:
+            return "Connect Tab"
+        case .community:
             return AccessibilityManager.VoiceOverLabels.insightsTab
         case .profile:
             return AccessibilityManager.VoiceOverLabels.profileTab
-        case .reports:
-            return AccessibilityManager.VoiceOverLabels.reportsTab
         }
     }
     
@@ -101,12 +101,12 @@ struct CustomTabBar: View {
         switch tab {
         case .home:
             return AccessibilityManager.VoiceOverHints.homeTab
-        case .feed:
+        case .connect:
+            return "Navigate to video calls and team collaboration"
+        case .community:
             return AccessibilityManager.VoiceOverHints.insightsTab
         case .profile:
             return AccessibilityManager.VoiceOverHints.profileTab
-        case .reports:
-            return AccessibilityManager.VoiceOverHints.reportsTab
         }
     }
 }

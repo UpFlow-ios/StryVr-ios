@@ -30,16 +30,16 @@ struct AppShellView: View {
                         HomeView()
                             .environmentObject(authViewModel)
 
-                    case .feed:
-                        FriendLearningFeed()
+                    case .connect:
+                        MeetingListView()
                             .environmentObject(authViewModel)
+
+                                    case .community:
+                    GenZCommunityFeedView()
+                        .environmentObject(authViewModel)
 
                     case .profile:
                         ProfileView()
-                            .environmentObject(authViewModel)
-
-                    case .reports:
-                        ReportsDashboardView()
                             .environmentObject(authViewModel)
                     }
                 }

@@ -58,6 +58,14 @@ struct HomeView: View {
 
                         recentAchievementsCard()
 
+                        // MARK: - Collaboration Spaces Card (Revolutionary Feature)
+
+                        collaborationSpacesCard()
+
+                        // MARK: - Gamification Progress Card (XP & Level System)
+
+                        gamificationProgressCard()
+
                         // MARK: - Unlock New Badge Button (from mockup)
 
                         unlockNewBadgeButton()
@@ -74,7 +82,7 @@ struct HomeView: View {
                             .blue,
                             .purple,
                             .pink,
-                            .orange
+                            .orange,
                         ],
                         radius: 350,
                         repetitions: 1,
@@ -133,7 +141,9 @@ struct HomeView: View {
             ZStack {
                 if #available(iOS 18.0, *) {
                     Circle()
-                        .glassEffect(.regular.tint(Theme.Colors.neonGreen.opacity(0.3)), in: Circle())
+                        .glassEffect(
+                            .regular.tint(Theme.Colors.neonGreen.opacity(0.3)), in: Circle()
+                        )
                         .frame(width: 60, height: 60)
                         .glassEffectID("goal-checkmark", in: glassNamespace)
                 } else {
@@ -141,7 +151,7 @@ struct HomeView: View {
                         .fill(Color.green)
                         .frame(width: 60, height: 60)
                 }
-                
+
                 Circle()
                     .fill(Color.green)
                     .frame(width: 60, height: 60)
@@ -173,7 +183,9 @@ struct HomeView: View {
                 ZStack {
                     if #available(iOS 18.0, *) {
                         Circle()
-                            .glassEffect(.regular.tint(Theme.Colors.neonBlue.opacity(0.3)), in: Circle())
+                            .glassEffect(
+                                .regular.tint(Theme.Colors.neonBlue.opacity(0.3)), in: Circle()
+                            )
                             .frame(width: 30, height: 30)
                             .glassEffectID("goal-indicator", in: glassNamespace)
                     } else {
@@ -181,7 +193,7 @@ struct HomeView: View {
                             .fill(Theme.Colors.neonBlue)
                             .frame(width: 30, height: 30)
                     }
-                    
+
                     Circle()
                         .fill(Theme.Colors.neonBlue)
                         .frame(width: 30, height: 30)
@@ -310,6 +322,118 @@ struct HomeView: View {
         }
         ConfettiManager.shared.triggerConfetti()
         aiGreetingManager.updateContext(userAction: "goal_completed")
+
+        // Award XP for completing goal
+        GamificationService.shared.awardXP(for: .completeGoal, context: "Daily goal completed")
+    }
+
+    // MARK: - Collaboration Spaces Card (Revolutionary Feature)
+
+    private func collaborationSpacesCard() -> some View {
+        NavigationLink(destination: CollaborationSpacesListView()) {
+            HStack(spacing: Theme.Spacing.large) {
+                // Left side: Content
+                VStack(alignment: .leading, spacing: Theme.Spacing.small) {
+                    Text("Team Spaces")
+                        .font(Theme.Typography.body)
+                        .fontWeight(.semibold)
+                        .foregroundColor(Theme.Colors.textPrimary)
+
+                    Text("Bridge gaps • Share skills")
+                        .font(Theme.Typography.caption)
+                        .foregroundColor(Theme.Colors.textSecondary)
+                }
+
+                Spacer()
+
+                // Right side: Bridge icon with glow
+                Image(systemName: "arrow.triangle.merge")
+                    .font(.title)
+                    .foregroundColor(Theme.Colors.neonBlue)
+                    .neonGlow(color: Theme.Colors.glowPrimary, pulse: true)
+            }
+            .padding(Theme.Spacing.large)
+            .applyLiquidGlassCard()
+            .liquidGlassGlow(color: Theme.Colors.glowPrimary, radius: 10, intensity: 0.8)
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+
+    // MARK: - Gamification Progress Card
+
+    private func gamificationProgressCard() -> some View {
+        NavigationLink(destination: GamificationDashboardView()) {
+            HStack(spacing: Theme.Spacing.large) {
+                // Left side: Level and XP info
+                VStack(alignment: .leading, spacing: Theme.Spacing.small) {
+                    HStack(spacing: 8) {
+                        Image(systemName: "star.fill")
+                            .foregroundColor(Theme.Colors.neonYellow)
+                            .font(.title3)
+                            .neonGlow(color: Theme.Colors.neonYellow, pulse: true)
+
+                        Text("Level 8 • Rising Star")
+                            .font(Theme.Typography.body)
+                            .fontWeight(.semibold)
+                            .foregroundColor(Theme.Colors.textPrimary)
+                    }
+
+                    Text("1,247 XP • 203 XP to next level")
+                        .font(Theme.Typography.caption)
+                        .foregroundColor(Theme.Colors.textSecondary)
+                }
+
+                Spacer()
+
+                // Right side: Progress circle and streak
+                VStack(spacing: 8) {
+                    // XP Progress Circle
+                    ZStack {
+                        Circle()
+                            .stroke(Theme.Colors.glassPrimary, lineWidth: 6)
+                            .frame(width: 40, height: 40)
+
+                        Circle()
+                            .trim(from: 0, to: 0.73)  // 73% progress to next level
+                            .stroke(
+                                LinearGradient(
+                                    colors: [Theme.Colors.neonYellow, Theme.Colors.neonOrange],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                ),
+                                style: StrokeStyle(lineWidth: 6, lineCap: .round)
+                            )
+                            .frame(width: 40, height: 40)
+                            .rotationEffect(.degrees(-90))
+
+                        Text("73%")
+                            .font(.caption2)
+                            .fontWeight(.bold)
+                            .foregroundColor(Theme.Colors.textPrimary)
+                    }
+
+                    // Streak indicator
+                    HStack(spacing: 4) {
+                        Image(systemName: "flame.fill")
+                            .foregroundColor(Theme.Colors.neonOrange)
+                            .font(.caption2)
+
+                        Text("3 day")
+                            .font(.caption2)
+                            .foregroundColor(Theme.Colors.neonOrange)
+                            .fontWeight(.semibold)
+                    }
+                }
+
+                Image(systemName: "chevron.right")
+                    .font(.caption)
+                    .foregroundColor(Theme.Colors.textTertiary)
+            }
+            .padding(Theme.Spacing.large)
+            .applyLiquidGlassCard()
+            .liquidGlassGlow(color: Theme.Colors.neonYellow, radius: 10, intensity: 0.8)
+        }
+        .buttonStyle(PlainButtonStyle())
     }
 
     // MARK: - Badge Unlock
@@ -320,6 +444,9 @@ struct HomeView: View {
         }
         ConfettiManager.shared.triggerConfetti()
         aiGreetingManager.updateContext(userAction: "badge_unlocked")
+
+        // Award XP for unlocking badge
+        GamificationService.shared.awardXP(for: .shareAchievement, context: "Badge unlocked")
     }
 }
 
@@ -329,16 +456,18 @@ extension View {
     /// Apply iOS 18 Liquid Glass card with fallback
     func applyLiquidGlassCard() -> some View {
         if #available(iOS 18.0, *) {
-            return self.glassEffect(.regular, in: RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
+            return self.glassEffect(
+                .regular, in: RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
         } else {
             return self.liquidGlassCard()
         }
     }
-    
+
     /// Apply iOS 18 Interactive Liquid Glass card with fallback
     func applyInteractiveLiquidGlassCard() -> some View {
         if #available(iOS 18.0, *) {
-            return self.glassEffect(.regular.interactive(), in: RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
+            return self.glassEffect(
+                .regular.interactive(), in: RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
         } else {
             return self.liquidGlassCard()
         }

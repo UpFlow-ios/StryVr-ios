@@ -37,6 +37,10 @@ struct ProfileView: View {
 
                         metricsSection()
 
+                        // MARK: - AI Coaching Section
+
+                        aiCoachingSection()
+
                         Spacer(minLength: 100)
                     }
                     .padding(.horizontal, Theme.Spacing.large)
@@ -242,6 +246,74 @@ struct ProfileView: View {
             .applyProfileImageGlassEffect()
     }
 
+    // MARK: - AI Coaching Section
+
+    private func aiCoachingSection() -> some View {
+        NavigationLink(destination: CoachingDashboardView()) {
+            HStack(spacing: Theme.Spacing.large) {
+                // Left side: Coaching info
+                VStack(alignment: .leading, spacing: Theme.Spacing.small) {
+                    HStack(spacing: 8) {
+                        Image(systemName: "brain.head.profile")
+                            .foregroundColor(Theme.Colors.neonPink)
+                            .font(.title3)
+                            .neonGlow(color: Theme.Colors.neonPink, pulse: true)
+
+                        Text("AI Coaching")
+                            .font(Theme.Typography.body)
+                            .fontWeight(.semibold)
+                            .foregroundColor(Theme.Colors.textPrimary)
+                    }
+
+                    Text("Personal development & career growth")
+                        .font(Theme.Typography.caption)
+                        .foregroundColor(Theme.Colors.textSecondary)
+                }
+
+                Spacer()
+
+                // Right side: Progress indicator
+                VStack(spacing: 4) {
+                    ZStack {
+                        Circle()
+                            .stroke(Theme.Colors.glassPrimary, lineWidth: 6)
+                            .frame(width: 40, height: 40)
+
+                        Circle()
+                            .trim(from: 0, to: 0.87)  // 87% progress
+                            .stroke(
+                                LinearGradient(
+                                    colors: [Theme.Colors.neonPink, Theme.Colors.neonBlue],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                ),
+                                style: StrokeStyle(lineWidth: 6, lineCap: .round)
+                            )
+                            .frame(width: 40, height: 40)
+                            .rotationEffect(.degrees(-90))
+
+                        Text("87")
+                            .font(.caption2)
+                            .fontWeight(.bold)
+                            .foregroundColor(Theme.Colors.textPrimary)
+                    }
+
+                    Text("Score")
+                        .font(.caption2)
+                        .foregroundColor(Theme.Colors.textTertiary)
+                }
+
+                Image(systemName: "chevron.right")
+                    .font(.caption)
+                    .foregroundColor(Theme.Colors.textTertiary)
+            }
+            .padding(Theme.Spacing.large)
+            .applyLiquidGlassCard()
+            .liquidGlassGlow(color: Theme.Colors.neonPink, radius: 10, intensity: 0.8)
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+
     private func simpleHaptic() {
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
@@ -254,25 +326,28 @@ extension View {
     /// Apply iOS 18 Liquid Glass card with fallback
     func applyLiquidGlassCard() -> some View {
         if #available(iOS 18.0, *) {
-            return self.glassEffect(.regular, in: RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
+            return self.glassEffect(
+                .regular, in: RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
         } else {
             return self.liquidGlassCard()
         }
     }
-    
+
     /// Apply iOS 18 Interactive Liquid Glass card with fallback
     func applyInteractiveLiquidGlassCard() -> some View {
         if #available(iOS 18.0, *) {
-            return self.glassEffect(.regular.interactive(), in: RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
+            return self.glassEffect(
+                .regular.interactive(), in: RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
         } else {
             return self.liquidGlassCard()
         }
     }
-    
+
     /// Apply profile image glass effect
     func applyProfileImageGlassEffect() -> some View {
         if #available(iOS 18.0, *) {
-            return self.glassEffect(.regular.tint(Theme.Colors.glassPrimary.opacity(0.2)), in: Circle())
+            return self.glassEffect(
+                .regular.tint(Theme.Colors.glassPrimary.opacity(0.2)), in: Circle())
         } else {
             return self
         }
