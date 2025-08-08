@@ -5,7 +5,7 @@
 **Market Opportunity:** $366+ Billion Global Corporate Training Market
 **Target:** All Fortune 500 Companies + Cross-Industry Professional Development
 **Positioning:** Revolutionary AI-Powered Professional Development Platform
-**Mission:** Make LinkedIn Look Like Kindergarten Compared to StryVr
+**Mission:** help users excel in their career 
 
 ---
 
