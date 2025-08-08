@@ -19,13 +19,11 @@ struct BulletinPostCard: View {
             // Actions
             postActions
         }
-        .background(.ultraThinMaterial)
-        .cornerRadius(16)
+        .quantumGlassCard()
         .overlay(
-            RoundedRectangle(cornerRadius: 16)
+            RoundedRectangle(cornerRadius: 20)
                 .stroke(borderColor, lineWidth: isPinned ? 2 : 1)
         )
-        .shadow(color: shadowColor, radius: 8, x: 0, y: 4)
         .onAppear {
             markAsViewed()
         }

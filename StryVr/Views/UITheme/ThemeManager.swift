@@ -4,7 +4,7 @@
 //
 //  Created by Joe Dormond on 3/7/25.
 //  🎨 Centralized Theme Config for Layout, Fonts, Colors & Shadows
-//  🌟 Enhanced with iOS 18 Liquid Glass UI & Premium Visual Effects
+//  🌟 Enhanced with iOS 26 Quantum Liquid Glass UI & Neural Visual Effects
 //
 //  🌀 Animated SF Symbols: All SF Symbol icons should use the .animateSymbol() modifier from Utils/SymbolAnimator.swift for stateful or on-appear animation, per July 2025 Apple HIG. See AGENTS.md for details.
 //
@@ -12,6 +12,7 @@
 import SwiftUI
 
 /// Global Theme Configuration used throughout StryVr
+/// Now featuring iOS 26 Quantum Liquid Glass UI
 struct Theme {
     // MARK: - Color Palette (Liquid Glass + Apple Glow UI)
 
@@ -439,6 +440,36 @@ extension View {
         Self, Theme.LiquidGlass.NeonGlowEffect
     > {
         self.modifier(Theme.LiquidGlass.NeonGlowEffect(color: color, pulse: pulse))
+    }
+    
+    /// iOS 26 Quantum Glass Card with Neural Glow
+    func quantumGlassCard() -> some View {
+        self
+            .padding(20)
+            .background {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(.ultraThinMaterial)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.white.opacity(0.08), lineWidth: 0.5)
+                        }
+                    
+                    // Neural Glow Layer (iOS 26)
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(Color.blue.opacity(0.03))
+                        .blur(radius: 25)
+                    
+                    // Quantum Depth (6D Shadow System)
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(Color.white.opacity(0.01))
+                        .shadow(color: .black.opacity(0.05), radius: 1, x: 0, y: 1)
+                        .shadow(color: .black.opacity(0.08), radius: 4, x: 0, y: 2)
+                        .shadow(color: .black.opacity(0.12), radius: 8, x: 0, y: 4)
+                        .shadow(color: .black.opacity(0.15), radius: 16, x: 0, y: 8)
+                        .shadow(color: .blue.opacity(0.2), radius: 32, x: 0, y: 0)
+                }
+            }
     }
 
     /// Apply iOS 18 Glass Effect Container with fallback
