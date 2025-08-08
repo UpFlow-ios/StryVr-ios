@@ -140,6 +140,23 @@ struct NavigationCoordinator {
         case .teamAnalytics(let teamId):
             TeamAnalyticsView(teamId: teamId)
                 .environmentObject(router)
+                
+        // MARK: - Enterprise Features
+        case .bulletinBoard:
+            BulletinBoardView()
+                .environmentObject(router)
+                
+        case .bulletinPost(let postId):
+            BulletinPostDetailView(postId: postId)
+                .environmentObject(router)
+                
+        case .createBulletinPost:
+            CreateBulletinPostView()
+                .environmentObject(router)
+                
+        case .bulletinEvent(let eventId):
+            BulletinEventDetailView(eventId: eventId)
+                .environmentObject(router)
 
         // MARK: - Social & Sharing
         case .shareProfile(let userId):

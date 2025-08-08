@@ -74,6 +74,18 @@
 	<!-- Privacy - Contacts -->
 	<key>NSContactsUsageDescription</key>
 	<string>StryVr accesses your contacts to help you build your professional network and connect with career mentors.</string>
+	
+	<!-- Privacy - Calendar Access -->
+	<key>NSCalendarsUsageDescription</key>
+	<string>StryVr accesses your calendar to schedule professional development activities, sync company events, and manage career milestones.</string>
+	
+	<!-- Privacy - Reminders Access -->
+	<key>NSRemindersUsageDescription</key>
+	<string>StryVr creates reminders for career goals, training deadlines, and professional development tasks to support your growth.</string>
+	
+	<!-- Enterprise Features -->
+	<key>NSDocumentUsageDescription</key>
+	<string>StryVr accesses documents to help you upload professional certificates, company policies, and career-related files.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -124,6 +136,29 @@
 		<string>https</string>
 		<string>mailto</string>
 		<string>tel</string>
+		<string>calendar</string>
+		<string>calshow</string>
+	</array>
+	
+	<!-- Custom URL Schemes for Deep Linking -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.stryvr.app</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>stryvr</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.stryvr.bulletin</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>stryvr-bulletin</string>
+			</array>
+		</dict>
 	</array>
 	
 	<!-- App Category -->

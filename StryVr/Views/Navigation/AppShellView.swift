@@ -17,7 +17,7 @@ struct AppShellView: View {
     var body: some View {
         ZStack {
             // MARK: - Dark Gradient Background
-            
+
             Theme.LiquidGlass.background
                 .ignoresSafeArea()
 
@@ -34,9 +34,13 @@ struct AppShellView: View {
                         MeetingListView()
                             .environmentObject(authViewModel)
 
-                                    case .community:
-                    GenZCommunityFeedView()
-                        .environmentObject(authViewModel)
+                    case .bulletin:
+                        BulletinBoardView()
+                            .environmentObject(authViewModel)
+
+                    case .community:
+                        GenZCommunityFeedView()
+                            .environmentObject(authViewModel)
 
                     case .profile:
                         ProfileView()
