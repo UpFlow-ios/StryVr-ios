@@ -54,7 +54,7 @@ final class AppStoreOptimizer: ObservableObject {
         }
 
         saveMetrics()
-        logger.info("📱 Session #\(sessionCount) started")
+        logger.info("📱 Session #\(self.sessionCount) started")
     }
 
     func endSession() {

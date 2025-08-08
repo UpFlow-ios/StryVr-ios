@@ -1,4 +1,4 @@
-xzhjsjsajjssdsissaimport SwiftUI
+import SwiftUI
 
 class LaunchScreenCoordinator: ObservableObject {
     @Published var showLaunchScreen = true

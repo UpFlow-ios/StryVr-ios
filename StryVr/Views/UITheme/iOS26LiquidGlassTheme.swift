@@ -10,7 +10,7 @@
 import SwiftUI
 
 /// iOS 26 Liquid Glass Theme - The most advanced UI system
-struct iOS26LiquidGlass {
+struct IOS26LiquidGlass {
     
     // MARK: - Quantum Glass Colors (iOS 26)
     struct QuantumColors {
@@ -198,16 +198,16 @@ extension View {
         self
             .padding(20)
             .background {
-                iOS26LiquidGlass.QuantumEffects.holoSurface()
+                IOS26LiquidGlass.QuantumEffects.holoSurface()
             }
             .overlay {
-                iOS26LiquidGlass.QuantumEffects.neuralGlow()
+                IOS26LiquidGlass.QuantumEffects.neuralGlow()
                     .opacity(0.3)
             }
     }
     
     /// Applies Neural Glow effect
-    func neuralGlow(color: Color = iOS26LiquidGlass.QuantumColors.neuralGlowPrimary, radius: CGFloat = 20) -> some View {
+    func neuralGlow(color: Color = IOS26LiquidGlass.QuantumColors.neuralGlowPrimary, radius: CGFloat = 20) -> some View {
         self
             .shadow(color: color, radius: radius, x: 0, y: 0)
             .shadow(color: color.opacity(0.5), radius: radius * 0.5, x: 0, y: 0)
@@ -217,7 +217,7 @@ extension View {
     func quantumDepth(layer: Int = 3) -> some View {
         self
             .background {
-                iOS26LiquidGlass.QuantumEffects.quantumDepth(layer: layer)
+                IOS26LiquidGlass.QuantumEffects.quantumDepth(layer: layer)
             }
     }
     
@@ -227,27 +227,27 @@ extension View {
             .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16))
             .overlay {
                 RoundedRectangle(cornerRadius: 16)
-                    .stroke(iOS26LiquidGlass.QuantumColors.holoGlass, lineWidth: 0.5)
+                    .stroke(IOS26LiquidGlass.QuantumColors.holoGlass, lineWidth: 0.5)
             }
             .overlay {
-                iOS26LiquidGlass.QuantumColors.holoGradient
+                IOS26LiquidGlass.QuantumColors.holoGradient
                     .cornerRadius(16)
                     .blendMode(.overlay)
             }
     }
     
     /// Applies Neural Text Styling
-    func neuralText(style: Font = iOS26LiquidGlass.NeuralTypography.quantumBody) -> some View {
+    func neuralText(style: Font = IOS26LiquidGlass.NeuralTypography.quantumBody) -> some View {
         self
             .font(style)
-            .foregroundColor(iOS26LiquidGlass.NeuralTypography.holoText)
+            .foregroundColor(IOS26LiquidGlass.NeuralTypography.holoText)
     }
     
     /// Applies Quantum Pulse Animation
     func quantumPulse() -> some View {
         self
             .scaleEffect(1.0)
-            .animation(iOS26LiquidGlass.NeuralAnimations.quantumPulse, value: UUID())
+            .animation(IOS26LiquidGlass.NeuralAnimations.quantumPulse, value: UUID())
     }
     
     /// Applies Liquid Crystal Button styling
@@ -257,12 +257,12 @@ extension View {
             .padding(.vertical, 16)
             .background {
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(iOS26LiquidGlass.QuantumColors.liquidCrystal)
+                    .fill(IOS26LiquidGlass.QuantumColors.liquidCrystal)
                     .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
             }
             .neuralGlow()
             .scaleEffect(1.0)
-            .animation(iOS26LiquidGlass.NeuralAnimations.liquidMorph, value: UUID())
+            .animation(IOS26LiquidGlass.NeuralAnimations.liquidMorph, value: UUID())
     }
 }
 
@@ -272,24 +272,24 @@ extension Color {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int: UInt64 = 0
         Scanner(string: hex).scanHexInt64(&int)
-        let a, r, g, b: UInt64
+        let alpha, red, green, blue: UInt64
         switch hex.count {
         case 3: // RGB (12-bit)
-            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+            (alpha, red, green, blue) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
         case 6: // RGB (24-bit)
-            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+            (alpha, red, green, blue) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
         case 8: // ARGB (32-bit)
-            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+            (alpha, red, green, blue) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
         default:
-            (a, r, g, b) = (1, 1, 1, 0)
+            (alpha, red, green, blue) = (1, 1, 1, 0)
         }
 
         self.init(
             .sRGB,
-            red: Double(r) / 255,
-            green: Double(g) / 255,
-            blue:  Double(b) / 255,
-            opacity: Double(a) / 255
+            red: Double(red) / 255,
+            green: Double(green) / 255,
+            blue:  Double(blue) / 255,
+            opacity: Double(alpha) / 255
         )
     }
 }

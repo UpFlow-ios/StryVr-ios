@@ -838,6 +838,8 @@ private struct ActionButton: View {
 }
 
 #Preview {
-    ReportsView()
-        .environmentObject(AppRouter())
+    NavigationStack {
+        ReportsView()
+    }
+    .environmentObject(AppRouter())
 }
