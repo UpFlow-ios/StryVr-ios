@@ -1,8 +1,8 @@
 # StryVr - Agent & System Architecture
 
-## 🚀 **Current App Status: Production-Ready with HR-Verified Resume System**
+## 🚀 **Current App Status: Production-Ready Professional Development Platform**
 
-**StryVr** is an iOS app built with SwiftUI, featuring the **HR-Verified Professional Resume System** that started the entire vision in November 2024. The app now features a complete Liquid Glass + Apple Glow UI overhaul, personalized AI greetings, and professional-grade architecture with the core ReportsView that transforms traditional resumes into verified, trusted professional profiles.
+**StryVr** is an iOS application built with SwiftUI, featuring comprehensive professional development tools including HR-verified resume systems, real-time skill tracking, and AI-powered coaching capabilities. The application implements iOS 18 Liquid Glass UI patterns and maintains enterprise-grade architecture standards.
 
 ---
 
@@ -11,16 +11,16 @@
 ### **The Foundation**
 The **ReportsView** is the heart and soul of StryVr - the feature that started it all. It transforms the traditional "trust me" resume into a **HR-verified, data-driven professional profile** that employers can rely on.
 
-## 💰 **Monetization System (July 2025)**
+## 💰 **Monetization System & Freemium Model**
 
-### **Complete Revenue Strategy**
-StryVr now features a comprehensive monetization system with **AI-powered user tracking** and **personalized recommendations**:
+### **Revenue Strategy**
+StryVr implements a comprehensive freemium model designed for scalability from individual professionals to enterprise clients:
 
 #### **Subscription Tiers:**
-- **Free**: Basic skill tracking, limited AI insights, 3 career goals
-- **Premium ($7.99/month)**: Unlimited AI insights, professional reports, skill assessments
-- **Team ($29.99/month)**: Team analytics, manager dashboard, collaboration features
-- **Enterprise ($99.99/month)**: White-label options, custom branding, dedicated support
+- **StryVr Starter (Free)**: Basic video calls, limited AI coaching, community access
+- **StryVr Pro ($29/month)**: Unlimited meetings, full AI coaching, collaboration spaces
+- **StryVr Enterprise ($89/month)**: Advanced analytics, security, integrations, dedicated support
+- **StryVr Fortune (Custom)**: White-label solutions, custom AI training, executive dashboards
 
 #### **User Algorithm Tracking:**
 - **Feature Usage**: Tracks which features users engage with most
