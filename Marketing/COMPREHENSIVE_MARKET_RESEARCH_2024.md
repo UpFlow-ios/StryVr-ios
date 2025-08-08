@@ -162,7 +162,7 @@
 - ✅ Enterprise security
 - ✅ Dedicated success manager
 - ✅ Custom branding
-- ✅ API access
+- ✅ Full reports tool 
 - ✅ Advanced reporting
 
 ### **ENTERPRISE+ TIER - "StryVr Fortune"**
