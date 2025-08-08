@@ -9,7 +9,7 @@
 
 ## 🌟 About StryVr
 
-**StryVr** is an AI-powered professional development platform that helps professionals track, measure, and accelerate their career growth. Built for individuals and organizations, StryVr combines AI technology with intuitive design to deliver skill assessment and personalized career guidance.
+**StryVr** is an AI-powered professional development platform that helps professionals track, measure, and accelerate career growth. Built for individuals and organizations, StryVr combines AI technology with intuitive design to deliver skill assessment and personalized career guidance.
 
 ### 🎯 **The Core Vision (November 2024)**
 
