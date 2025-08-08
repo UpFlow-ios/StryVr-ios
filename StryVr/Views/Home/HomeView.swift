@@ -66,6 +66,10 @@ struct HomeView: View {
 
                         gamificationProgressCard()
 
+                        // MARK: - Cross-Departmental Bridge Card (Revolutionary Gap Analysis)
+
+                        crossDepartmentalBridgeCard()
+
                         // MARK: - Unlock New Badge Button (from mockup)
 
                         unlockNewBadgeButton()
@@ -432,6 +436,76 @@ struct HomeView: View {
             .padding(Theme.Spacing.large)
             .applyLiquidGlassCard()
             .liquidGlassGlow(color: Theme.Colors.neonYellow, radius: 10, intensity: 0.8)
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+
+    // MARK: - Cross-Departmental Bridge Card (Revolutionary Gap Analysis)
+    private func crossDepartmentalBridgeCard() -> some View {
+        NavigationLink(destination: CrossDepartmentalBridgeDashboard()) {
+            HStack(spacing: Theme.Spacing.large) {
+                // Left side: Content
+                VStack(alignment: .leading, spacing: Theme.Spacing.small) {
+                    HStack(spacing: 8) {
+                        Image(systemName: "building.2.crop.circle.badge.checkmark")
+                            .foregroundColor(Theme.Colors.neonPurple)
+                            .font(.title3)
+                            .neonGlow(color: Theme.Colors.neonPurple, pulse: true)
+
+                        Text("Bridge Gaps")
+                            .font(Theme.Typography.body)
+                            .fontWeight(.semibold)
+                            .foregroundColor(Theme.Colors.textPrimary)
+                    }
+
+                    Text("Connect departments • Break silos")
+                        .font(Theme.Typography.caption)
+                        .foregroundColor(Theme.Colors.textSecondary)
+                }
+
+                Spacer()
+
+                // Right side: Gap metrics and bridge icon
+                VStack(spacing: 4) {
+                    // Gap count indicator
+                    HStack(spacing: 4) {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                            .foregroundColor(Theme.Colors.neonOrange)
+                            .font(.caption2)
+
+                        Text("3 gaps")
+                            .font(.caption2)
+                            .fontWeight(.semibold)
+                            .foregroundColor(Theme.Colors.neonOrange)
+                    }
+                    .padding(.horizontal, 6)
+                    .padding(.vertical, 2)
+                    .background(Theme.Colors.neonOrange.opacity(0.2), in: Capsule())
+
+                    // Success rate
+                    HStack(spacing: 4) {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(Theme.Colors.neonGreen)
+                            .font(.caption2)
+
+                        Text("85% success")
+                            .font(.caption2)
+                            .fontWeight(.semibold)
+                            .foregroundColor(Theme.Colors.neonGreen)
+                    }
+                    .padding(.horizontal, 6)
+                    .padding(.vertical, 2)
+                    .background(Theme.Colors.neonGreen.opacity(0.2), in: Capsule())
+                }
+
+                Image(systemName: "building.2.crop.circle.badge.checkmark")
+                    .font(.title)
+                    .foregroundColor(Theme.Colors.neonPurple)
+                    .neonGlow(color: Theme.Colors.glowPrimary, pulse: true)
+            }
+            .padding(Theme.Spacing.large)
+            .applyLiquidGlassCard()
+            .liquidGlassGlow(color: Theme.Colors.neonPurple, radius: 10, intensity: 0.8)
         }
         .buttonStyle(PlainButtonStyle())
     }
