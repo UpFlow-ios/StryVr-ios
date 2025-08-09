@@ -7,6 +7,14 @@
 
 import Foundation
 
+/// ClearMe verification levels
+enum ClearMeVerificationLevel: String, CaseIterable {
+    case basic = "basic"
+    case standard = "standard" 
+    case premium = "premium"
+    case enterprise = "enterprise"
+}
+
 /// Secure ClearMe API Configuration
 /// ClearMe Identity API for biometric verification
 struct ClearMeConfig {

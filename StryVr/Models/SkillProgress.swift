@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct SkillProgress: Codable, Identifiable {
+struct SkillProgress: Codable, Identifiable, Equatable, Hashable {
     let id: String
     let skillId: String
     let skillName: String

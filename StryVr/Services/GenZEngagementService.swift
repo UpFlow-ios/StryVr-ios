@@ -441,8 +441,8 @@ class GenZEngagementService: ObservableObject {
     
     private func updateTrendingTopics() {
         // Update trending topics based on recent activity
-        for i in 0..<trendingTopics.count {
-            trendingTopics[i].posts += Int.random(in: 1...5)
+        for topicIndex in 0..<trendingTopics.count {
+            trendingTopics[topicIndex].posts += Int.random(in: 1...5)
         }
     }
 }

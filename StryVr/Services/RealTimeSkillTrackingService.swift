@@ -480,15 +480,15 @@ class RealTimeSkillTrackingService: ObservableObject {
     }
     
     private func updateSkillParticles() {
-        for i in 0..<skillParticles.count {
-            skillParticles[i].update()
+        for index in 0..<skillParticles.count {
+            skillParticles[index].update()
         }
         skillParticles.removeAll { $0.life <= 0 }
     }
     
     private func updateSkillAuraAnimations() {
-        for i in 0..<liveSkillAuras.count {
-            liveSkillAuras[i].updateAnimation()
+        for index in 0..<liveSkillAuras.count {
+            liveSkillAuras[index].updateAnimation()
         }
     }
     

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct LearningReport: Codable, Identifiable {
+struct LearningReport: Codable, Identifiable, Equatable, Hashable {
     let id: String
     let employeeId: String
     let employeeName: String

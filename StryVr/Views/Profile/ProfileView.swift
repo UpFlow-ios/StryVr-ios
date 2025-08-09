@@ -249,7 +249,7 @@ struct ProfileView: View {
     // MARK: - AI Coaching Section
 
     private func aiCoachingSection() -> some View {
-        NavigationLink(destination: CoachingDashboardView()) {
+                            NavigationLink(destination: Text("Coaching Dashboard - Coming Soon")) {
             HStack(spacing: Theme.Spacing.large) {
                 // Left side: Coaching info
                 VStack(alignment: .leading, spacing: Theme.Spacing.small) {
@@ -326,8 +326,7 @@ extension View {
     /// Apply iOS 18 Liquid Glass card with fallback
     func applyLiquidGlassCard() -> some View {
         if #available(iOS 18.0, *) {
-            return self.glassEffect(
-                .regular, in: RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
+            return self.background(.regularMaterial, in: RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
         } else {
             return self.liquidGlassCard()
         }
@@ -336,8 +335,9 @@ extension View {
     /// Apply iOS 18 Interactive Liquid Glass card with fallback
     func applyInteractiveLiquidGlassCard() -> some View {
         if #available(iOS 18.0, *) {
-            return self.glassEffect(
-                .regular.interactive(), in: RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
+            return self.background(.regularMaterial, in: RoundedRectangle(cornerRadius: Theme.CornerRadius.card))
+                .scaleEffect(1.0)
+                .animation(.spring(response: 0.3), value: 1.0)
         } else {
             return self.liquidGlassCard()
         }
@@ -346,8 +346,8 @@ extension View {
     /// Apply profile image glass effect
     func applyProfileImageGlassEffect() -> some View {
         if #available(iOS 18.0, *) {
-            return self.glassEffect(
-                .regular.tint(Theme.Colors.glassPrimary.opacity(0.2)), in: Circle())
+            return self.background(.regularMaterial, in: Circle())
+                .overlay(Theme.Colors.glassPrimary.opacity(0.2), in: Circle())
         } else {
             return self
         }

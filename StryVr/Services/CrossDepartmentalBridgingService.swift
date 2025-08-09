@@ -181,10 +181,10 @@ class CrossDepartmentalBridgingService: ObservableObject {
     
     private func identifySkillComplementarity() {
         // Find opportunities where departments have complementary skills
-        for i in 0..<departmentProfiles.count {
-            for j in (i+1)..<departmentProfiles.count {
-                let dept1 = departmentProfiles[i]
-                let dept2 = departmentProfiles[j]
+        for profileIndex in 0..<departmentProfiles.count {
+            for otherProfileIndex in (profileIndex+1)..<departmentProfiles.count {
+                let dept1 = departmentProfiles[profileIndex]
+                let dept2 = departmentProfiles[otherProfileIndex]
                 
                 let complementarity = calculateSkillComplementarity(dept1, dept2)
                 
@@ -376,15 +376,15 @@ class CrossDepartmentalBridgingService: ObservableObject {
         var patterns: [DepartmentCommunicationPattern] = []
         
         let departments = Department.allCases
-        for i in 0..<departments.count {
-            for j in (i+1)..<departments.count {
+        for departmentIndex in 0..<departments.count {
+            for otherIndex in (departmentIndex+1)..<departments.count {
                 let pattern = DepartmentCommunicationPattern(
-                    department1: departments[i],
-                    department2: departments[j],
+                    department1: departments[departmentIndex],
+                    department2: departments[otherIndex],
                     frequency: Double.random(in: 0.1...0.9),
                     quality: Double.random(in: 0.3...0.9),
                     channels: generateCommunicationChannels(),
-                    barriers: identifyBarriers(departments[i], departments[j])
+                    barriers: identifyBarriers(departments[departmentIndex], departments[otherIndex])
                 )
                 patterns.append(pattern)
             }

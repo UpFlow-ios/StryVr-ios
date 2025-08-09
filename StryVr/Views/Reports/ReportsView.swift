@@ -833,8 +833,9 @@ private struct ActionButton: View {
 }
 
 #Preview {
-    NavigationStack {
+    @StateObject var router = AppRouter()
+    return NavigationStack {
         ReportsView()
-            .environmentObject(AppRouter())
+            .environmentObject(router)
     }
 }

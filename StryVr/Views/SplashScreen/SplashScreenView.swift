@@ -66,7 +66,9 @@ struct SplashVideoPlayer: UIViewControllerRepresentable {
                 object: player.currentItem,
                 queue: .main
             ) { _ in
-                onFinished()
+                Task { @MainActor in
+                    onFinished()
+                }
             }
 
             player.play()

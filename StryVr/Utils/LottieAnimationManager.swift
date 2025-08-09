@@ -36,8 +36,7 @@ struct LottieAnimationView: UIViewRepresentable {
             return view
         }
 
-        let lottieView = LottieAnimationView()
-        lottieView.animation = animation
+        let lottieView = LottieAnimationView(animation: animation)
         lottieView.contentMode = UIView.ContentMode.scaleAspectFit
         lottieView.loopMode = loopMode
         lottieView.animationSpeed = speed
@@ -72,7 +71,7 @@ struct LottieAnimationView: UIViewRepresentable {
         var animationView: LottieAnimationView?
 
         deinit {
-            animationView?.stop()
+            animationView?.pause()
         }
     }
 }

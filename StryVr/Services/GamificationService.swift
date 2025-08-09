@@ -134,8 +134,8 @@ class GamificationService: ObservableObject {
     
     private func getTotalXPForLevel(_ level: Int) -> Int {
         var totalXP = 0
-        for l in 1..<level {
-            totalXP += (l * 150) + (l * l * 25)
+        for levelIndex in 1..<level {
+            totalXP += (levelIndex * 150) + (levelIndex * levelIndex * 25)
         }
         return totalXP
     }
@@ -758,10 +758,10 @@ class LeaderboardGenerator {
         
         var entries: [LeaderboardEntry] = []
         
-        for i in 1...10 {
-            let isCurrentUser = i == 5 // User is 5th place
+        for index in 1...10 {
+            let isCurrentUser = index == 5 // User is 5th place
             entries.append(LeaderboardEntry(
-                rank: i,
+                rank: index,
                 name: isCurrentUser ? "You" : names.randomElement()!,
                 level: isCurrentUser ? userLevel : Int.random(in: max(1, userLevel-3)...(userLevel+2)),
                 weeklyXP: Int.random(in: 500...2000),
