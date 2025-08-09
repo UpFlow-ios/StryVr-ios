@@ -7,7 +7,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>StryVr</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.stryvr.app</string>
+	<string>com.josephdormond.stryvr</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>CFBundleShortVersionString</key>
