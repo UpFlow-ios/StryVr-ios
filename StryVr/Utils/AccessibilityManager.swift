@@ -224,7 +224,7 @@ extension View {
                 hint: "Progress indicator showing current level",
                 value: "\(percentage) percent complete"
             )
-            .accessibilityAdjustableAction { direction in
+            .accessibilityAdjustableAction { _ in
                 // Allow VoiceOver users to adjust values if applicable
             }
     }
@@ -262,7 +262,7 @@ extension View {
         text: String,
         context: String? = nil
     ) -> some View {
-        let fullLabel = context != nil ? "\(context!): \(text)" : text
+        let fullLabel = context.map { "\($0): \(text)" } ?? text
         return self.stryVrAccessibility(
             trait: .bodyText,
             label: fullLabel,
@@ -329,22 +329,24 @@ struct AccessibilityTesting {
     
     /// Accessibility validation result
     struct AccessibilityValidationResult {
-        let type: ValidationType
+        let type: AccessibilityValidationType
         let message: String
-        let severity: Severity
-        
-        enum ValidationType {
-            case missingLabel
-            case insufficientContrast
-            case smallTouchTarget
-            case missingHint
-            case dynamicTypeIssue
-        }
-        
-        enum Severity {
-            case error
-            case warning
-            case suggestion
-        }
+        let severity: AccessibilitySeverity
     }
+}
+
+/// Accessibility validation types
+enum AccessibilityValidationType {
+    case missingLabel
+    case insufficientContrast
+    case smallTouchTarget
+    case missingHint
+    case dynamicTypeIssue
+}
+
+/// Accessibility severity levels
+enum AccessibilitySeverity {
+    case error
+    case warning
+    case suggestion
 }

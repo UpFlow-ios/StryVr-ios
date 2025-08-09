@@ -167,7 +167,7 @@ struct NavigationCoordinator {
             ExportReportView(reportId: reportId, format: format)
                 .environmentObject(router)
 
-        case .deepLinkShare(let type, let id):
+        case let .deepLinkShare(type, id):
             DeepLinkShareView(type: type, id: id)
                 .environmentObject(router)
 

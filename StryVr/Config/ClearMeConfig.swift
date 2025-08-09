@@ -9,10 +9,10 @@ import Foundation
 
 /// ClearMe verification levels
 enum ClearMeVerificationLevel: String, CaseIterable {
-    case basic = "basic"
-    case standard = "standard" 
-    case premium = "premium"
-    case enterprise = "enterprise"
+    case basic
+    case standard
+    case premium
+    case enterprise
 }
 
 /// Secure ClearMe API Configuration
