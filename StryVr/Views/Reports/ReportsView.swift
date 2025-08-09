@@ -671,11 +671,7 @@ struct EmploymentHistory {
     let weakPoints: [String]
 }
 
-struct Skill {
-    let name: String
-    let level: Int
-    let isVerified: Bool
-}
+// Removed duplicate Skill struct - using main Skill model instead
 
 class ReportsViewModel: ObservableObject {
     @Published var employmentHistory: [EmploymentHistory] = []
@@ -839,6 +835,6 @@ private struct ActionButton: View {
 #Preview {
     NavigationStack {
         ReportsView()
+            .environmentObject(AppRouter())
     }
-    .environmentObject(AppRouter())
 }

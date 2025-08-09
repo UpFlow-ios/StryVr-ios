@@ -11,7 +11,7 @@ import Foundation
 import OSLog
 
 /// Implementation of SkillServiceProtocol for skill management
-final class SkillService: SkillServiceProtocol {
+final class SkillService: SkillServiceProtocol, @unchecked Sendable {
     static let shared = SkillService()
 
     // MARK: - Concurrency Safety

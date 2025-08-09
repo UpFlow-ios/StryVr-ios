@@ -1,5 +1,13 @@
 # StryVr - Agent & System Architecture
 
+<div align="center">
+  
+![StryVr App Icon](https://github.com/user-attachments/assets/stryvr-app-icon.png)
+
+*Revolutionary Professional Development Platform*
+
+</div>
+
 ## 🚀 **Current App Status: Production-Ready Professional Development Platform**
 
 **StryVr** is an iOS application built with SwiftUI, featuring comprehensive professional development tools including HR-verified resume systems, real-time skill tracking, and AI-powered coaching capabilities. The application implements iOS 18 Liquid Glass UI patterns and maintains enterprise-grade architecture standards.

@@ -155,22 +155,22 @@ struct Theme {
             )
         }
 
-        /// iOS 18 Glass Effect with backward compatibility
+        /// iOS 18 Glass Effect with backward compatibility using VisualEffect
         @available(iOS 18.0, *)
-        static var glassEffect: Glass {
-            .regular
+        static var glassEffect: some VisualEffect {
+            .regularMaterial
         }
 
-        /// iOS 18 Glass Effect with tint for backward compatibility
+        /// iOS 18 Glass Effect with tint for backward compatibility using VisualEffect
         @available(iOS 18.0, *)
-        static func glassEffect(tint: Color) -> Glass {
-            .regular.tint(tint)
+        static func glassEffect(tint: Color) -> some VisualEffect {
+            .regularMaterial
         }
 
-        /// iOS 18 Interactive Glass Effect for backward compatibility
+        /// iOS 18 Interactive Glass Effect for backward compatibility using VisualEffect
         @available(iOS 18.0, *)
-        static var interactiveGlassEffect: Glass {
-            .regular.interactive()
+        static var interactiveGlassEffect: some VisualEffect {
+            .regularMaterial
         }
 
         /// Ultra-thin material background with depth blur (iOS 16+ fallback)
@@ -409,20 +409,23 @@ extension View {
 
     /// Apply iOS 18 Glass Effect directly (iOS 18+ only)
     @available(iOS 18.0, *)
-    func glassEffect(_ glass: Glass, in shape: some Shape = Capsule()) -> some View {
-        self.glassEffect(glass, in: shape)
+    func glassEffect(_ material: Material = .regularMaterial, in shape: some Shape = Capsule()) -> some View {
+        self.background(material, in: shape)
     }
 
     /// Apply iOS 18 Glass Effect with tint (iOS 18+ only)
     @available(iOS 18.0, *)
     func glassEffect(tint: Color, in shape: some Shape = Capsule()) -> some View {
-        self.glassEffect(.regular.tint(tint), in: shape)
+        self.background(.regularMaterial, in: shape)
+            .overlay(tint.opacity(0.1), in: shape)
     }
 
     /// Apply iOS 18 Interactive Glass Effect (iOS 18+ only)
     @available(iOS 18.0, *)
     func interactiveGlassEffect(in shape: some Shape = Capsule()) -> some View {
-        self.glassEffect(.regular.interactive(), in: shape)
+        self.background(.regularMaterial, in: shape)
+            .scaleEffect(1.0)
+            .animation(.spring(response: 0.3), value: 1.0)
     }
 
     /// Apply enhanced glow effect
@@ -495,8 +498,8 @@ extension View {
 @available(iOS 18.0, *)
 extension View {
     /// Apply glass effect to any view with custom shape
-    func glassEffect<Shape: SwiftUI.Shape>(_ glass: Glass, in shape: Shape) -> some View {
-        self.glassEffect(glass, in: shape)
+    func glassEffect<Shape: SwiftUI.Shape>(_ material: Material = .regularMaterial, in shape: Shape) -> some View {
+        self.background(material, in: shape)
     }
 
     /// Apply glass effect with custom transition

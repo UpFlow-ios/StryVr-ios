@@ -660,7 +660,7 @@ enum TechSavviness {
 }
 
 enum LearningStyle {
-    case visual, auditory, kinesthetic, analytical, interactive, data_driven
+    case visual, auditory, kinesthetic, analytical, interactive, dataDriven
 }
 
 struct UserBehaviorPattern: Identifiable {
