@@ -808,7 +808,6 @@ struct VerificationDashboardView: View {
         .liquidGlassCard()
         .neonGlow(color: Theme.Colors.neonGreen.opacity(0.3))
     }
-}
 
 // MARK: - Action Button Component
 
